@@ -40,26 +40,36 @@
      
     
     <?php
-   //ma if tadi guro sa admin kag user nga side ah
-    // if(isset($_SESSION['name'])){
-    //     $name = $_SESSION['name'];
-			include "modules/header.php";
-    //     echo '<div class="main-wrapper">'; 
-    //     include "modules/sidebar.php"; 
-    //         echo '<div class="page-wrapper">';   
-    //         include "modules/header.php";
-			include "modules/sidebar.php";
         
-    //             echo '<div class="page-content">';  
+
         if(isset($_GET["route"])){
             if ($_GET["route"] == 'login' ||
+			$_GET["route"] == 'signup' ||
             $_GET["route"] == 'publichomepage' ||
             $_GET["route"] == 'churchpage'||
             $_GET["route"] == 'catdetails'||
             $_GET["route"] == 'adminhomepage'||
             $_GET["route"] == 'reportgen'||
-            $_GET["route"] == 'churchcalendar'){
+            $_GET["route"] == 'churchcalendar' ||
+            $_GET["route"] == 'songlist' || 
+			$_GET["route"] == 'filestorage' || 
+			$_GET["route"] == 'lyrics'|| 
+			$_GET["route"] == 'songlyrics'|| 
+			$_GET["route"] == 'playlist'||
+			$_GET["route"] == 'profile'||
+			$_GET["route"] == 'public'){
+
             include "modules/".$_GET["route"].".php";
+
+			if($_GET["route"] == 'login' || $_GET["route"] == 'signup'  ||$_GET["route"] == 'public'){
+			
+			}else{
+				include "modules/header.php";
+				include "modules/sidebar.php";
+				
+			}
+
+
             }else{
             include "modules/404.php";
             }
