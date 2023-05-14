@@ -475,16 +475,6 @@ a {
 	transition: ease-out .3s;
 }
 
-.parent-icon {
-    display: inline-block;
-    font-size: 0px;
-    cursor: pointer;
-    border-radius: 50%;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    color: #2e2d2d;
-}
 
 .sidebar-wrapper .metismenu .mm-active>a {
 	color: #0d6efd;

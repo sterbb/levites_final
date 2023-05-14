@@ -33,6 +33,8 @@
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
 
 
+
+
     
 </head>
 <body>
@@ -111,6 +113,9 @@
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
 	<script src="views/assets/js/index.js"></script>
 
+	<!-- google maps api -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
+	<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
     
     <!--BS Scripts-->
     <script src="views/assets/js/bootstrap.bundle.min.js"></script>
