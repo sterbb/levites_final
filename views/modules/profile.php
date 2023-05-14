@@ -33,20 +33,22 @@
             <div class="card overflow-hidden">
               <div class="profile-cover bg-dark position-relative mb-4">
                 <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-                  <img src="views/assets/images/avatars/11.jpg" alt="...">
+                  <img src="views/images/ch1.jpg" alt="...">
                 </div>
               </div>
               <div class="card-body">
-                <div class="mt-5 d-flex align-items-start justify-content-between">
+                <div class="mt-5 align-items-start justify-content-between">
                   <div class="">
                     <h3 class="mb-2">Our Lady Of Lourdes Parish Church</h3>
                     <p class="mb-1">Brg. Bata, Bacolod City</p> 
                     <p>Negros Occidental, Philippines</p>
-                    
+                    <div class="position-relative">
+                    <button type="submit" class="position-absolute bottom-0 end-0 btn btn-primary px-8" name="submit2"><i  class="fa fa-child"></i>  Ask Membership</button>
+                    </div>
                   </div>
-                  
                 </div>
               </div>
+
             </div>
             <div class="card">
             <div class="card-body">
@@ -54,7 +56,7 @@
                 <li class="nav-item" role="presentation">
                   <a class="nav-link active" data-bs-toggle="tab" href="#primaryhome" role="tab" aria-selected="true">
                     <div class="d-flex align-items-center">
-                      <div class="tab-icon"><i class='bi bi-home font-18 me-1'></i>
+                      <div class="tab-icon"><i class='bx bxs-calendar-heart'></i>
                       </div>
                       <div class="tab-title">Calendar</div>
                     </div>
@@ -63,7 +65,7 @@
                 <li class="nav-item" role="presentation">
                   <a class="nav-link" data-bs-toggle="tab" href="#primarycontact" role="tab" aria-selected="false">
                     <div class="d-flex align-items-center">
-                      <div class="tab-icon"><i class='bx bx-microphone font-18 me-1'></i>
+                      <div class="tab-icon"><i class='bx bxs-folder-open'>  </i>
                       </div>
                       <div class="tab-title">Public Folder</div>
                     </div>
@@ -122,7 +124,6 @@
                   </div>
                 </div>
               </div><!--end row-->
-        
      </main>
      <!--end main content-->
  
