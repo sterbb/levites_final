@@ -1,8 +1,8 @@
-<div class="header">
+<main class="page-content bg-dark">
     <div class="card">
-					<div class="card-body">
-						<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-							<div class="container-fluid">	<a class="navbar-brand " href="signup"><span class="h2">LEVITES</span></a>
+					<div class="card-body bg-dark">
+						<nav class="navbar navbar-expand-lg navbar-dark  ">
+							<div class="container-fluid ">	<a class="navbar-brand " href="signup"><span class="h2">LEVITES</span></a>
 								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 								</button>
 								<div class="collapse navbar-collapse" id="navbarSupportedContent1">
@@ -70,7 +70,7 @@
 						</nav>
 					</div>
 				</div>
-         </div>
+         
 
 
  
@@ -205,6 +205,8 @@
       </div>
     </div>
   </div>
+
+</main>
 
 
 

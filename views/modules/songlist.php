@@ -1,7 +1,7 @@
-<div class="header">
+<main class="page-content bg-dark ">
     <div class="card">
-					<div class="card-body">
-						<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+					<div class="card-body bg-dark">
+						<nav class="navbar navbar-expand-lg navbar-dark  ">
 							<div class="container-fluid">	<a class="navbar-brand" href="songlyrics"> <span class="h2">LEVITES</span></a>
 								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 								</button>
@@ -62,14 +62,14 @@
 						</nav>
 					</div>
 				</div>
-         </div>
+         
 
 
-<div class="container main-page" >
+<div class="container main-page " >
 <div class="row">
 
-<div class="col-sm-6 text-center artist-col" style="color:white" >
-<a href="a/a1.html">a1</a><br>
+<div class="col-sm-6 text-center artist-col" style="color:dark" >
+<a href="lyrics">Living Hope</a><br>
 <a href="f/floyda1bentley.html">A1</a><br>
 <a href="a/a1xj1.html">A1 x J1</a><br>
 <a href="a/a.html">A</a><br>
@@ -1289,3 +1289,5 @@
 
 </div>
 </div>
+
+</main

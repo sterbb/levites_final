@@ -510,3 +510,15 @@
 [data-bs-theme=dark] .btn-option {
     color: var(--bs-body-color)
 }
+
+[data-bs-theme=dark] .btn-outline-dark {
+    color: var(--bs-body-color);
+    background-color: var(--bs-light-bg-subtle);
+    border-color:var(--bs-border-color-translucent)
+}   
+
+[data-bs-theme=dark] .btn-outline-dark:hover {
+    color: white;
+    background-color: var(--bs-light-bg-subtle);
+    border-color: white;
+}   

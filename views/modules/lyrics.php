@@ -1,7 +1,7 @@
-<div class="header">
+<main class="page-content bg-dark">
     <div class="card">
-					<div class="card-body">
-						<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+					<div class="card-body bg-dark">
+						<nav class="navbar navbar-expand-lg navbar-dark ">
 							<div class="container-fluid">	<a class="navbar-brand" href="songlyrics"> <span class="h2">LEVITES</span></a>
 								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 								</button>
@@ -62,8 +62,7 @@
 						</nav>
 					</div>
 				</div>
-         </div>
-
+         
 
 
 
@@ -192,16 +191,14 @@
                     <div class="card rounded-0 mb-0 border-0 bg-transparent">
                         <div class="card-body">
                         <div class="video-container">
-                            <iframe width="780" height="300" class="rounded-3" src="https://www.youtube.com/embed/OjXkeHHPTzQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9f2FXxDVO6w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
 
                         <h2 class="mt-3 p-4 " style="font-weight:bold">Playlist</h2>
                             
-                
-                            </header>
                             
                                 
-                            <main class="bg-light " style="width:400; height:300;">
+                            <div class="bg-light " style="width:600; height:300;">
                                 <!-- Start DEMO HTML (Use the following code into your project)-->
                             <div class="simple-audio-player " id="simp" data-config='{"shide_top":false,"shide_btm":false,"auto_load":false}'>
 
@@ -234,7 +231,7 @@
                             <div class="simp-footer">Made with 💖 &amp; 🙌 by <a href="https://bit.ly/sekedus" target="_blank" title="Sekedus">Sekedus</a></div>
                             </div>    
                                 <!-- END EDMO HTML (Happy Coding!)-->
-                            </main>
+                            </div>
 
                                              
                                         
@@ -251,3 +248,4 @@
 <br></br>
 
 
+</main> 

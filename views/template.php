@@ -13,7 +13,7 @@
     <link href="views/assets/plugins/fullcalendar/css/main.min.css" rel="stylesheet">
     <link href="views/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
     <link href="views/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
-    <link href="assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
+    <link href="views/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
     
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
     <!-- loader-->
@@ -44,7 +44,10 @@
 
         if(isset($_GET["route"])){
             if ($_GET["route"] == 'login' ||
-			$_GET["route"] == 'signup' ||
+			$_GET["route"] == 'churchregistration' ||
+			$_GET["route"] == 'forgotpassword' ||
+			$_GET["route"] == 'resetpassword' ||	
+			$_GET["route"] == 'accounts' ||
             $_GET["route"] == 'publichomepage' ||
             $_GET["route"] == 'churchpage'||
             $_GET["route"] == 'catdetails'||
@@ -54,14 +57,16 @@
             $_GET["route"] == 'songlist' || 
 			$_GET["route"] == 'filestorage' || 
 			$_GET["route"] == 'lyrics'|| 
-			$_GET["route"] == 'songlyrics'|| 
+			$_GET["route"] == 'requests'|| 
+			$_GET["route"] == 'slhomepage'|| 
 			$_GET["route"] == 'playlist'||
 			$_GET["route"] == 'profile'||
-			$_GET["route"] == 'public'){
+			$_GET["route"] == 'superuser'||
+			$_GET["route"] == 'publicregistration'){
 
             include "modules/".$_GET["route"].".php";
 
-			if($_GET["route"] == 'login' || $_GET["route"] == 'signup'  ||$_GET["route"] == 'public'){
+			if($_GET["route"] == 'login' || $_GET["route"] == 'churchregistration'  ||$_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'){
 			
 			}else{
 				include "modules/header.php";
@@ -101,7 +106,10 @@
     <script src="views/assets/plugins/simplebar/js/simplebar.min.js"></script>
     <script src="views/assets/plugins/fullcalendar/js/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="assets/plugins/input-tags/js/tagsinput.js"></script>
+    <script src="views/assets/plugins/input-tags/js/tagsinput.js"></script>
+	<!-- customize analystics -->
+	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
+	<script src="views/assets/js/index.js"></script>
 
     
     <!--BS Scripts-->

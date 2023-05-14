@@ -1,7 +1,7 @@
-<div class="header">
-    <div class="card">
-					<div class="card-body">
-						<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+<main class="page-content bg-dark">
+    <div class="card bg-dark">
+					<div class="card-body bg-dark">
+						<nav class="navbar navbar-expand-lg navbar-dark ">
 							<div class="container-fluid">	<a class="navbar-brand" href="songlyrics"> <span class="h2">LEVITES</span></a>
 								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
 								</button>
@@ -62,7 +62,7 @@
 						</nav>
 					</div>
 				</div>
-         </div>
+</main>
 
         
                                        

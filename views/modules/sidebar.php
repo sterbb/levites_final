@@ -9,7 +9,7 @@ $account_type = "admin";
               <img src="assets/images/logo-icon.png" class="logo-img" alt="">
             </div>
             <div class="logo-name flex-grow-1">
-              <h5 class="mb-0">Roksyn</h5>
+              <h5 class="mb-0">Levites</h5>
             </div>
             <div class="sidebar-close ">
               <span class="material-symbols-outlined">close</span>
@@ -62,8 +62,8 @@ $account_type = "admin";
                     <li><a class="has-arrow" href="javascript:;"><span class="material-symbols-outlined">arrow_right</span>Song Pages</a>
                       <ul>
                         <li><a href="lyrics"><span class="material-symbols-outlined">arrow_right</span>Lyrics</a></li>
-                        <li><a href="songlyrics" ><span class="material-symbols-outlined">arrow_right</span>Song Lyrics?</a></li>
-                        <li><a href="playlist" target="_blank"><span class="material-symbols-outlined">arrow_right</span>Playlist?</a></li>
+                        <li><a href="slhomepage" ><span class="material-symbols-outlined">arrow_right</span>Song and Lyrics Homepage</a></li>
+      
                       </ul>
                     </li>
                   </ul>
@@ -78,13 +78,27 @@ $account_type = "admin";
                   <ul>
                     <li> <a href="filestorage"><span class="material-symbols-outlined">arrow_right</span>File Storage View</a>
                     </li>
-                    <li> <a href="map-vector-maps.html"><span class="material-symbols-outlined">arrow_right</span>Vector Maps</a>
-                    </li>
                   </ul>
                 </li>
-                <li class="menu-label">Others </li>
-                
-                 <li>
+
+
+                <li>
+                  <a href="accounts">
+                    <div class="parent-icon"><i class="lni lni-users"></i>
+                    </div>
+                    <div class="menu-title">Accounts</div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="requests ">
+                    <div class="parent-icon"><i class="fadeIn animated bx bx-comment-dots"></i>
+                    </div>
+                    <div class="menu-title">Requests</div>
+                  </a>
+                </li>
+
+                <li>
                     <a href="javascript:;" class="has-arrow">
                       <div class="parent-icon"><span class="material-symbols-outlined">apps</span>
                       </div>
@@ -95,6 +109,10 @@ $account_type = "admin";
                       </li>
                     </ul>
                 </li>
+
+                <li class="menu-label">Others </li>
+                
+                 
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
@@ -114,35 +132,23 @@ $account_type = "admin";
                       
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                      <div class="parent-icon"><span class="material-symbols-outlined">apps</span>
+                      </div>
+                      <div class="menu-title">Super User View</div>
+                    </a>
+                    <ul>
+                      <li> <a href="superuser"><span class="material-symbols-outlined">arrow_right</span>Church Verification</a>
+                      </li>
+                    </ul>
+                </li>
+                
                 
 
-                <li>
-                  <a href="adminhomepage">
-                    <div class="parent-icon"><span class="material-symbols-outlined">home</span>
-                    </div>
-                    <div class="menu-title">Application Organizer</div>
-                  </a>
-                </li>
+                
 
-                <li>
-                  <a class="has-arrow" href="javascript:;">
-                    <div class="parent-icon"><span class="material-symbols-outlined">toc</span>
-                    </div>
-                    <div class="menu-title">Reference</div>
-                  </a>
-                  <ul>
-                    <li> <a class="has-arrow" href="javascript:;"><span class="material-symbols-outlined">arrow_right</span>Level One</a>
-                      <ul>
-                        <li> <a class="has-arrow" href="javascript:;"><span class="material-symbols-outlined">arrow_right</span>Level Two</a>
-                          <ul>
-                            <li> <a href="javascript:;"><span class="material-symbols-outlined">arrow_right</span>Level Three</a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
               
               </ul>
               <!--end navigation-->
@@ -183,11 +189,11 @@ $account_type = "admin";
                 <li>
                   <div class="dropdown-divider mb-0"></div>
                 </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
+                <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
                   logout
                   </span><span>Logout</span></a>
                 </li>
               </ul>
           </div>
      </aside>
-     <!--end sidebar-->
+     <!--end sidebar-->z

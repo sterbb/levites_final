@@ -31,16 +31,16 @@
 													<label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
 												</div>
 											</div>
-											<div class="col-md-6 text-end">	<a href="auth-basic-forgot-password.html">Forgot Password ?</a>
+											<div class="col-md-6 text-end">	<a href="forgotpassword">Forgot Password ?</a>
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-primary">Login</button>
+												<a href="adminhomepage" class="btn btn-primary">Login</a>
 												</div>
 											</div>
 											<div class="col-12">
 												<div class="text-start">
-													<p class="mb-0">Don't have an account yet? <a href="signup">Sign up here</a>
+													<p class="mb-0">Don't have an account yet? <a href="churchregistration">Sign up here</a>
 													</p>
 												</div>
 											</div>

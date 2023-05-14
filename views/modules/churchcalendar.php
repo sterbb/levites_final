@@ -121,7 +121,7 @@
                                   <div class="card">
                                     <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                       <h5 class="card-title inline">Worship Team</h5>
-                                      <button class="font-18 text-white btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                       <li class="list-group-item">Church Person 1</li>
@@ -135,7 +135,7 @@
                                   <div class="card">
                                     <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                       <h5 class="card-title inline">Media Team</h5>
-                                      <button class="font-18 text-white btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                       <li class="list-group-item">Church Person 1</li>
@@ -149,7 +149,7 @@
                                   <div class="card">
                                     <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                       <h5 class="card-title inline">Technical Team</h5>
-                                      <button class="font-18 text-white btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                       <li class="list-group-item">Church Person 1</li>

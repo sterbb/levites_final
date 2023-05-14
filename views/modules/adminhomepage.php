@@ -10,8 +10,8 @@
                             <h6 class="mb-0 text-uppercase">Local Application</h6>
                         </div>
                         <div class="col d-flex justify-content-around">
-                            <button type="button" class="btn btn-outline-light px-3  radius-30 text-center"><i class="fadeIn animated bx bx-plus-circle"></i>&nbsp;Application</button>
-                            <button type="button" class="btn btn-outline-light px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus"></i>&nbsp;Group</button>
+                            <button type="button" class="btn btn-outline-dark px-3  radius-30 text-center"><i class="fadeIn animated bx bx-plus-circle"></i>&nbsp;Application</button>
+                            <button type="button" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus"></i>&nbsp;Group</button>
                         </div>
                         <div class="my-3 border-top"></div>
                     </div>
@@ -20,7 +20,7 @@
                     <div class="row row-cols-1 row-cols-lg-4 g-3">
 
                         <div class="col text-center " >
-                            <a href="">
+                            <a href="https://www.facebook.com" target="_blank">
                                 <i class="lni lni-facebook" style="font-size:4em;"></i>
                                 <p style="font-size:1.5em;">Facebook</p>
                             </a>
@@ -38,6 +38,13 @@
                     <div class="row mt-4 border">
                         <div class="col pt-3">
                             <h4>Group 1</h4>
+
+                           
+                        </div>
+
+                        <div class="col d-flex mt-4 justify-content-around">
+                            <button type="button" class="btn btn-outline-dark px-3  radius-30 text-center"><i class="fadeIn animated bx bx-message-square-edit"></i>&nbsp;Edit</button>
+                            <button type="button" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-eraser"></i>&nbsp;Delete </button>
                         </div>
 
                         <div class="row row-cols-1 row-cols-lg-4 g-3 ">
@@ -118,9 +125,9 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-around align-items-center">
                     <h6 class="mb-0 text-uppercase">April 16, 2023</h6>
-                    <button type="button" class="btn btn-outline-light px-5 radius-30">View Calendar</button>
+                    <a href="churchcalendar" class="btn btn-outline-dark px-5 radius-30">View Calendar</a>
                 </div>
-            </div>
+            </div>  
             
 
             <div class="card">
