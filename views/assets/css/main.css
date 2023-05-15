@@ -1591,6 +1591,35 @@ a {
 	background: #16e15e
 }
 
+.modal-content {
+	color: #000000; /* Set the font color to dark */
+}
+
+.info-mod {
+	background-color: transparent;
+	border: none;
+	color: #272b2f;
+	cursor: pointer;
+	font-size: 20px;
+	
+  }
+
+
+.pinned-button {
+	background-color: transparent;
+	border: none;
+	color: #afadad;
+	cursor: pointer;
+	font-size: 20px;
+	transition: transform 0.3s ease;
+  }
+  
+.pinned-button.clicked {
+	background-color: transparent;
+	color: #0b5ed7;
+	transform: rotate(45deg);
+  }
+
 .email-toggle-btn {
 	width: auto;
 	height: auto;

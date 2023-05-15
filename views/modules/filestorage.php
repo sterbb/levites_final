@@ -567,64 +567,166 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-3">
-                <div class="col-12 col-lg-4">
-                  <div class="card shadow-none border radius-15">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div class="fm-icon-box  rounded-circle bg-primary text-white"><i class="lni lni-google-drive"></i>
-                        </div>
-                        <div class="ms-auto font-24"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                      </div>
-                      <h5 class="mt-3 mb-0">Holy week</h5>
-                      <p class="mb-1 mt-4"><span>April 3, 2023</span>  
-                      </p>
-                      <div class="progress" style="height: 7px;">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                  <div class="card shadow-none border radius-15">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div class="fm-icon-box  rounded-circle bg-success text-white"><i class="lni lni-dropbox-original"></i>
-                        </div>
-                        <div class="ms-auto font-24"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                      </div>
-                      <h5 class="mt-3 mb-0">Solemnity of St. Joseph</h5>
-                      <p class="mb-1 mt-4"><span>March 25, 2023</span>  
-                      </p>
-                      <div class="progress" style="height: 7px;">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 45%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                  <div class="card shadow-none border radius-15">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div class="fm-icon-box  rounded-circle bg-warning text-dark"><i class="bx bxs-door-open"></i>
-                        </div>
-                        <div class="ms-auto font-24"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                      </div>
-                      <h5 class="mt-3 mb-0">A Time of Grace</h5>
-                      <p class="mb-1 mt-4"><span>May 2023</span> 
-                      </p>
-                      <div class="progress" style="height: 7px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--end row-->
+              <div class="mt-3">
               <h5>Folders</h5>
+              </div>
+              <div class="row mt-3 ">
+                <div class="col-12 col-lg-4">
+                  <div class="card shadow-none  border radius-15 " >
+                  <div class="card-body ">
+                      <div class="d-flex align-items-center">
+                        <div class="fm-icon-box  rounded-circle bg-danger text-white mt-3" ><i class="bx bx-folder"></i>
+                        <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
+                        <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
+                        </button>
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleScrollableModal" tabindex="-1" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title">Holy Week Notes:</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <p>Folder content:
+                                            <ul>
+                                              <li>Presentation</li>
+                                              <li>Application</li>
+                                              <li>Prayer</li>
+                                            </ul>
+                                          </p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="dropdown ms-auto">
+                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="javascript:;">Add note</a>
+                          </li>
+                          <li><a class="dropdown-item" href="javascript:;">Edit note</a>
+                          </li>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                          <li><a class="dropdown-item" href="javascript:;">Delete note</a>
+                          </li>
+                        </ul>
+                      </div>
+                      </div>
+                      <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Holy week</i></h5>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="col-12 col-lg-4">
+                  <div class="card shadow-none  border radius-15 " >
+                  <div class="card-body ">
+                      <div class="d-flex align-items-center">
+                        <div class="fm-icon-box  rounded-circle bg-success text-white mt-3" ><i class="bx bx-folder"></i>
+                        <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
+                        <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#2exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
+                        </button>
+                          <!-- Modal -->
+                          <div class="modal fade" id="2exampleScrollableModal" tabindex="-1" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title">Note:</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <p>The following are the usable presentation and application:</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="dropdown ms-auto">
+                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="javascript:;">Add note</a>
+                          </li>
+                          <li><a class="dropdown-item" href="javascript:;">Edit note</a>
+                          </li>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                          <li><a class="dropdown-item" href="javascript:;">Delete note</a>
+                          </li>
+                        </ul>
+                      </div>
+                      </div>
+                      <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Outreach Program</i></h5>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                  <div class="card shadow-none  border radius-15 " >
+                  <div class="card-body ">
+                      <div class="d-flex align-items-center">
+                        <div class="fm-icon-box  rounded-circle bg-warning text-white mt-3" ><i class="bx bx-folder"></i>
+                        <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
+                        <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#1exampleScrollableModal"  id="modalTrigger" disabled><i class='bx bx-info-circle fs-4 m-3'></i>
+                        </button>
+                          <!-- Modal -->
+                          <div class="modal fade" id="1exampleScrollableModal" tabindex="-1" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-scrollable">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title">Modal title</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                          <p>xxx</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="dropdown ms-auto">
+                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="javascript:;">Add note</a>
+                          </li>
+                          <li><a class="dropdown-item" href="javascript:;">Edit note</a>
+                          </li>
+                          <li>
+                            <hr class="dropdown-divider">
+                          </li>
+                          <li><a class="dropdown-item" href="javascript:;">Delete note</a>
+                          </li>
+                        </ul>
+                      </div>
+                      </div>
+                      <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Christmas Carol</i></h5>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              <!--end row-->
+              
               <div class="row mt-3">
                 <div class="col-12 col-lg-4">
                   <div class="card shadow-none border radius-15">
@@ -632,11 +734,11 @@
                       <div class="d-flex align-items-center">
                         <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
                         </div>
-                        <div class="user-groups ms-auto">
-                          <img src="assets/images/avatars/01.png" width="35" height="35" class="rounded-circle" alt="">
+                        <!--<div class="user-groups ms-auto">
+                          end row<img src="assets/images/avatars/01.png" width="35" height="35" class="rounded-circle" alt="">
                           <img src="assets/images/avatars/02.png" width="35" height="35" class="rounded-circle" alt="">
-                        </div>
-                        <div class="user-plus">+</div>
+                        </div>-->
+            
                       </div>
                       <h6 class="mb-0 text-primary">Presentation</h6>
                       <small>15 files</small>
@@ -649,9 +751,9 @@
                       <div class="d-flex align-items-center">
                         <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
                         </div>
-                        <div class="user-groups ms-auto">
+                        <!--<div class="user-groups ms-auto">
                           <img src="assets/images/avatars/04.png" width="35" height="35" class="rounded-circle" alt="">
-                        </div>
+                        </div>-->
                       </div>
                       <h6 class="mb-0 text-primary">Outreach Images</h6>
                       <small>345 files</small>
@@ -664,10 +766,10 @@
                       <div class="d-flex align-items-center">
                         <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
                         </div>
-                        <div class="user-groups ms-auto">
+                        <!--<div class="user-groups ms-auto">
                           <img src="assets/images/avatars/07.png" width="35" height="35" class="rounded-circle" alt="">
                           <img src="assets/images/avatars/08.png" width="35" height="35" class="rounded-circle" alt="">
-                        </div>
+                        </div>-->
                       </div>
                       <h6 class="mb-0 text-primary">Prayer of Intention</h6>
                       <small>1 files</small>
