@@ -113,13 +113,17 @@
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
 	<script src="views/assets/js/index.js"></script>
 
-	<!-- google maps api -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
-	<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
+	   <!-- google maps api -->
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
+		<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
+
     
     <!--BS Scripts-->
     <script src="views/assets/js/bootstrap.bundle.min.js"></script>
     <script src="views/assets/js/main.js"></script>
+
+	<!-- customize scripts -->
+	<script src="views/js/alerts.js"></script>
 
     <script>
 		document.addEventListener('DOMContentLoaded', function () {
@@ -141,48 +145,52 @@
 				businessHours: true,
 				dayMaxEvents: true, // allow "more" link when too many events
 				events: [{
-					title: 'Event 1',
+					title: 'Instrument Workshop',
 					start: '2020-09-01',
 				}, {
-					title: 'Event 2',
+					title: 'Offering Prayer',
 					start: '2020-09-07',
 					end: '2020-09-10'
 				}, {
-					groupId: 999,
-					title: 'Event Time',
-					start: '2020-09-09T16:00:00'
+					// groupId: 999,
+					// title: 'Event Time',
+					// start: '2020-09-09T16:00:00'
 				}, {
-					groupId: 999,
-					title: 'Event Time',
-					start: '2020-09-16T16:00:00'
+					// groupId: 999,
+					// title: 'Event Time',
+					// start: '2020-09-16T16:00:00'
 				}, {
-					title: 'Event 2',
+					title: 'Bible Study',
 					start: '2020-09-11',
 					end: '2020-09-13'
 				}, {
-					title: 'Event Time',
+					title: 'Outreach Program',
 					start: '2020-09-12T10:30:00',
 					end: '2020-09-12T12:30:00'
 				}, {
-					title: 'Lunch',
+					title: 'Media Seminar',
 					start: '2020-09-12T12:00:00'
 				}, {
-					title: 'Meeting',
+					title: 'Instrument Workshop',
 					start: '2020-09-12T14:30:00'
 				}, {
-					title: 'Happy Hour',
+					title: 'Bible Study',
 					start: '2020-09-12T17:30:00'
 				}, {
-					title: 'Dinner',
+					title: 'Meeting',
 					start: '2020-09-12T20:00:00'
 				}, {
-					title: 'Event Time',
-					start: '2020-09-13T07:00:00'
+					// title: 'Event Time',
+					// start: '2020-09-13T07:00:00'
 				}, {
-					title: 'Event Link',
+					title: 'Church Anniversary',
 					url: 'http://google.com/',
 					start: '2020-09-28'
-				}]
+				}],
+				dateClick: function(info) {
+					$('#exampleVerticallycenteredModal').modal('show');
+				}
+				
 			});
 			calendar.render();
 		});

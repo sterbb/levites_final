@@ -29,9 +29,7 @@ $account_type = "admin";
 
                 <li>
                   <a href="adminhomepage">
-                    <div class="parent-icon"><span class="material-symbols-outlined">
-                    inventory
-                    </span>
+                    <div class="parent-icon"><span class="material-symbols-outlined">home</span>
                     </div>
                     <div class="menu-title">Application Organizer</div>
                   </a>
@@ -131,7 +129,7 @@ $account_type = "admin";
                     <ul>
                       <li> <a href="publichomepage"><span class="material-symbols-outlined">arrow_right</span>Public Homepage</a>
                       </li>
-                      <li> <a href="churchpage"><span class="material-symbols-outlined">arrow_right</span>Church Details</a>
+                      <li> <a href="churchpage"><span class="material-symbols-outlined">arrow_right</span>Church Calendar</a>
                       </li>
                       <li> <a href="profile"><span class="material-symbols-outlined">arrow_right</span>Church Details 2</a>
                       </li>
@@ -176,29 +174,7 @@ $account_type = "admin";
                 </div>
               </div>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  account_circle
-                  </span><span>Profile</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  tune
-                  </span><span>Settings</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  dashboard
-                  </span><span>Dashboard</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  account_balance
-                  </span><span>Earnings</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  cloud_download
-                  </span><span>Downloads</span></a>
-                </li>
-                <li>
-                  <div class="dropdown-divider mb-0"></div>
-                </li>
+               
                 <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
                   logout
                   </span><span>Logout</span></a>

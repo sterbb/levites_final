@@ -58,10 +58,9 @@
                             <div class="col-6">
                                 <label for="inputReligion" class="form-label">Religion</label>
                                 <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
-                                <option selected="" value="Catholic">Catholicism</option>
+                                <option selected="" value="Catholic">Catholic</option>
                                 <option value="Baptist">Baptist</option>
-                                <option value="Baptist">Islam</option>
-                                <option value="Christianity ">Christianity </option>
+                                <option value="Christian ">Christian</option>
                                 </select>
                             </div>
 
@@ -87,7 +86,7 @@
 
                             <div class="col-12">
                                 <div class="d-grid">
-                                <button type="submit" class="btn btn-primary border-3">Register</button>
+                                    <a href="login" class="btn btn-primary border-3">Register</a>
                                 </div>
                             </div>
                             <div class="col-12">

@@ -121,7 +121,7 @@
 
                         <div class="col-12">
                             <div class="d-grid">
-                            <button href="login" class="btn btn-primary border-3">Register</button>
+                                <a href="login"  class="btn btn-primary border-3" >Register</a>
                             </div>
                         </div>
                         <div class="col-12">
