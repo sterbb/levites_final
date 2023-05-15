@@ -250,7 +250,17 @@
                     </div>
 
                     <div class="row mt-3">
-                  
+
+                      <div class="col-6">
+                        <label for="inputReligion" class="form-label">Event Type</label>
+                        <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
+                        <option selected="" value="Catholic">Bible Study</option>
+                        <option value="Baptist">Baptist</option>
+                        <option value="Baptist">Islam</option>
+                        <option value="Christianity ">Sunday Worship</option>
+                        </select>
+                      </div>
+
                       <div class="col-8 "> 
                         <label for="Collection" class="form-label fw-bold">Event Title</label>
                         <input type="text" class="form-control" id="Collection" placeholder="">
@@ -321,19 +331,19 @@
                 <h6>Calendar Filters</h6>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Calendar Events 1</label>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Meetings</label>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Calendar Events 2</label>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Workshops</label>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Calendar Events 3</label>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Outreaches</label>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Calendar Events 4</label>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Bible Study</label>
             </div>
             </div>
           </div>

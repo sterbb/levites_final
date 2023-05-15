@@ -116,7 +116,7 @@ $account_type = "admin";
                     <ul>
                       <li> <a href="publichomepage"><span class="material-symbols-outlined">arrow_right</span>Public Homepage</a>
                       </li>
-                      <li> <a href="churchpage"><span class="material-symbols-outlined">arrow_right</span>Church Details</a>
+                      <li> <a href="churchpage"><span class="material-symbols-outlined">arrow_right</span>Church Calendar</a>
                       </li>
                       <li> <a href="profile"><span class="material-symbols-outlined">arrow_right</span>Church Details 2</a>
                       </li>
