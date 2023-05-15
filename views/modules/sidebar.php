@@ -6,7 +6,7 @@ $account_type = "admin";
 <aside class="sidebar-wrapper">
           <div class="sidebar-header">
             <div class="logo-icon">
-              <img src="assets/images/logo-icon.png" class="logo-img" alt="">
+              <img src="views/images/logo.png" class="logo-img" alt="">
             </div>
             <div class="logo-name flex-grow-1">
               <h5 class="mb-0">Levites</h5>
@@ -27,11 +27,20 @@ $account_type = "admin";
                   </a>
                 </li>
 
+                <li>
+                  <a href="adminhomepage">
+                    <div class="parent-icon"><span class="material-symbols-outlined">home</span>
+                    </div>
+                    <div class="menu-title">Application Organizer</div>
+                  </a>
+                </li>
 
 
                 <li>
                   <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><span class="material-symbols-outlined">apps</span>
+                    <div class="parent-icon"><span class="material-symbols-outlined">
+                    calendar_add_on
+                    </span>
                     </div>
                     <div class="menu-title">Calendar of Activities</div>
                   </a>
@@ -44,7 +53,9 @@ $account_type = "admin";
                 
                 <li>
                   <a class="has-arrow" href="javascript:;">
-                    <div class="parent-icon"><span class="material-symbols-outlined">lock_open</span>
+                    <div class="parent-icon"><span class="material-symbols-outlined">
+                    lyrics
+                    </span>
                     </div>
                     <div class="menu-title">Songs and Lyrics</div>
                   </a>
@@ -93,7 +104,7 @@ $account_type = "admin";
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">apps</span>
+                      <div class="parent-icon"><span class="material-symbols-outlined">rate_review</span>
                       </div>
                       <div class="menu-title">Reports</div>
                     </a>
@@ -109,7 +120,9 @@ $account_type = "admin";
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">apps</span>
+                      <div class="parent-icon"><span class="material-symbols-outlined">
+                        public
+                        </span>
                       </div>
                       <div class="menu-title">Public Pages View</div>
                     </a>
@@ -128,7 +141,9 @@ $account_type = "admin";
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">apps</span>
+                      <div class="parent-icon"><span class="material-symbols-outlined">
+                      hdr_auto
+                      </span>
                       </div>
                       <div class="menu-title">Super User View</div>
                     </a>
@@ -151,7 +166,7 @@ $account_type = "admin";
           <div class="sidebar-bottom dropdown dropup-center dropup">
               <div class="dropdown-toggle d-flex align-items-center px-3 gap-3 w-100 h-100" data-bs-toggle="dropdown">
                 <div class="user-img">
-                   <img src="assets/images/avatars/01.png" alt="">
+                   <img src="views/assets/images/avatars/03.png" alt="">
                 </div>
                 <div class="user-info">
                   <h5 class="mb-0 user-name">Jhon Maxwell</h5>

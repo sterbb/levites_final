@@ -796,7 +796,7 @@
                   </div>
                   
                 </div>
-                <button type="button" class="btn btn-outline-light px-5 radius-30 ml-10"><i class="lni lni-folder mr-5"></i>&nbsp;&nbsp;Files</button>
+                <button type="button" class="btn btn-outline-primary px-5 radius-30 ml-10"><i class="fa fa-user" aria-hidden="true"></i></i>&nbsp;&nbsp;Profile</button>
               </div>
 
               
