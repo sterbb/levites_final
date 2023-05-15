@@ -40,12 +40,12 @@
                     <div class="row g-3">
                         <div class="col-12 col-lg-3">
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Pricing" type="button"><i class="bi bi-tag-fill me-2"></i>Church Event 1</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button"><i class="bi bi-box-seam-fill me-2"></i>Church Event 2</button>
-                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button"><i class="bi bi-truck-front-fill me-2"></i>Church Event 3</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Church Event 4</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Church Event 5</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Church Event 6</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Pricing" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
+                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button"><i class="bi bi-truck-front-fill me-2"></i>Sunday Worship</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Instrument Workship</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
                           </div>
                         </div>
                         <div class="col-12 col-lg-9 border">
@@ -124,9 +124,9 @@
                                       <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">Church Person 1</li>
-                                      <li class="list-group-item">Church Person 2</li>
-                                      <li class="list-group-item">Church Person 3</li>
+                                      <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                                      <li class="list-group-item">JayCobb Andrew D. Moya</li>
+                                      <li class="list-group-item">John Cliff Fortaleza</li>
                                     </ul>
                                   </div>
                                 </div>
@@ -245,35 +245,60 @@
 
                   <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
 
-                    <div class="col-12 d-flex justify-content-end ">
-                      <button type="button" class="btn btn-outline-light px-5 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus"></i>&nbsp;Group</button>
-                    </div>
+                  <div class="row">
+                    <div class="col-6">
+                          <label for="inputReligion" class="form-label">Event Type</label>
+                          <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
+                          <option selected="" value="Catholic">Bible Study</option>
+                          <option value="Baptist">Baptist</option>
+                          <option value="Baptist">Islam</option>
+                          <option value="Christianity ">Sunday Worship</option>
+                          </select>
+                      </div>
+                  </div>
+                    
 
                     <div class="row mt-3">
 
-                      <div class="col-6">
-                        <label for="inputReligion" class="form-label">Event Type</label>
-                        <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
-                        <option selected="" value="Catholic">Bible Study</option>
-                        <option value="Baptist">Baptist</option>
-                        <option value="Baptist">Islam</option>
-                        <option value="Christianity ">Sunday Worship</option>
-                        </select>
+                        <div class="col-8 "> 
+                          <label for="Collection" class="form-label fw-bold">Event Title</label>
+                          <input type="text" class="form-control" id="Collection" placeholder="">
+                        </div>
+
+                        <div class="col-2">
+                          <label for="Collection" class="form-label fw-bold">Date</label>
+                          <input type="text" class="form-control" id="Collection" placeholder="">
+                        </div>
+                        <div class="col-2">
+                          <label for="Collection" class="form-label fw-bold">Time</label>
+                          <input type="text" class="form-control" id="Collection" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-6 "> 
+                          <label for="Collection" class="form-label fw-bold">Venue</label>
+                          <input type="text" class="form-control" id="Collection" placeholder="">
                       </div>
 
-                      <div class="col-8 "> 
-                        <label for="Collection" class="form-label fw-bold">Event Title</label>
-                        <input type="text" class="form-control" id="Collection" placeholder="">
+                      <div class="col-6 "> 
+                          <label for="Collection" class="form-label fw-bold">Location</label>
+                          <input type="text" class="form-control" id="Collection" placeholder="">
                       </div>
+                    </div>
 
-                      <div class="col-2">
-                        <label for="Collection" class="form-label fw-bold">Date</label>
-                        <input type="text" class="form-control" id="Collection" placeholder="">
+                    <div class="row mt-3">
+                      <div class="col-6 ">
+    
+                        <label for="Collection" class="form-label fw-bold">Podcast</label>
+                        <input type="file" class="form-control" id="inputGroupFile02">
                       </div>
-                      <div class="col-2">
-                        <label for="Collection" class="form-label fw-bold">Time</label>
-                        <input type="text" class="form-control" id="Collection" placeholder="">
-                      </div>
+                    </div>
+
+
+
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                      <button type="button" class="btn btn-outline-light px-5 radius-30 text-center" data-bs-toggle="modal" data-bs-target="#gggg"><i class="fadeIn animated bx bx-list-plus"></i>&nbsp;Group</button>
                     </div>
 
                     <div class="row row-cols-1 row-cols-lg-3 g-3 border-bottom pb-3 pt-3">
@@ -281,12 +306,13 @@
                         <div class="card">
                           <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                             <h5 class="card-title inline">Worship Team</h5>
-                            <button class="font-18 text-white btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                            <button class="font-18 text-black btn btn-outline-success px-3 inline">	<i class="lni lni-pencil-alt"></i></button>
+                            <button class="font-18 text-black btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                           </div>
                           <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Church Person 1</li>
-                            <li class="list-group-item">Church Person 2</li>
-                            <li class="list-group-item">Church Person 3</li>
+                            <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                            <li class="list-group-item">John Cliff T. Fortaleza</li>
+                            <li class="list-group-item">JayCobb Andrew D. Moya</li>
                           </ul>
                         </div>
                       </div>
@@ -366,3 +392,46 @@
     </main>
      <!--end main content-->
 
+
+
+<div class="col">
+  <!-- Modal -->
+  <div class="modal fade" id="gggg" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Group</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <div class="col-12 "> 
+            <label for="Collection" class="form-label fw-bold">Group Name</label>
+            <input type="text" class="form-control" id="Collection" placeholder="">
+          </div>
+          <div class="mt-3">
+            <h6>Members</h6>
+            <hr>
+            <div class="col-12 "> 
+              <label for="Collection" class="form-label fw-bold">Name</label>
+              <input type="text" class="form-control" id="Collection" placeholder="">
+            </div>
+            <div class="col-12 "> 
+              <label for="Collection" class="form-label fw-bold">Email</label>
+              <input type="text" class="form-control" id="Collection" placeholder="">
+            </div>
+
+          </div>
+          
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

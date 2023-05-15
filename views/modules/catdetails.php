@@ -103,19 +103,19 @@
 
                 <div>
                   <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Church Event 1</p>
+                    <p class="fw-bold text-white">Bible Study</p>
                     <p class="fw-semi-bold">9:30 AM</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Church Event 2</p>
+                    <p class="fw-bold text-white">Instrument workshop</p>
                     <p class="fw-semi-bold">1:30 PM</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Church Event 3</p>
+                    <p class="fw-bold text-white">Meeting</p>
                     <p class="fw-semi-bold">5:30 PM</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Church Event 4</p>
+                    <p class="fw-bold text-white">Outreach</p>
                     <p class="fw-semi-bold">8:00 PM</p>
                   </div>
 

@@ -188,7 +188,6 @@
 					start: '2020-09-28'
 				}],
 				dateClick: function(info) {
-
 					$('#exampleVerticallycenteredModal').modal('show');
 				}
 				
