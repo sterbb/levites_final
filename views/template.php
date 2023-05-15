@@ -111,10 +111,17 @@
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
 	<script src="views/assets/js/index.js"></script>
 
+	   <!-- google maps api -->
+	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
+		<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
+
     
     <!--BS Scripts-->
     <script src="views/assets/js/bootstrap.bundle.min.js"></script>
     <script src="views/assets/js/main.js"></script>
+
+	<!-- customize scripts -->
+	<script src="views/js/alerts.js"></script>
 
     <script>
 		document.addEventListener('DOMContentLoaded', function () {
@@ -177,7 +184,12 @@
 					title: 'Event Link',
 					url: 'http://google.com/',
 					start: '2020-09-28'
-				}]
+				}],
+				dateClick: function(info) {
+
+					$('#exampleVerticallycenteredModal').modal('show');
+				}
+				
 			});
 			calendar.render();
 		});

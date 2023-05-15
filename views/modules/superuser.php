@@ -11,7 +11,7 @@
                         </div>
                         <!-- MARGIN RIGHT -->
                         <div class="ms-auto me-3">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Customers">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Church">
                         </div>
                         <!-- ALIGN SA CENTER -->
                         <div class="">  
@@ -33,7 +33,8 @@
                         <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
                         </div>
                         <div class="">
-                            <button class="btn btn-outline-secondary rounded-5 btn-sm pr-3">View Details </button>
+                            <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Details </button>
+                           
                             <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
                             <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
                         </div>
@@ -96,3 +97,102 @@
 
 </main>
 
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Church Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-body g-3">
+                    <form role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
+                        <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
+                        <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
+                                <label for="churchID" class="form-label">ID</label>
+                                <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
+                        </div>
+
+                        <div class="row g-3">        
+                            <div class="col-12">
+                                <label for="inputChurchName" class="form-label">Church Name</label>
+                                <input type="text" class="form-control border-3" id="tns-churchName" name="churchName" placeholder="Our Lady of Peace and Good Voyage" value="Our Lady of Peace and Good Voyage" readonly>
+                            </div>             
+                        </div>
+                        
+                        <div class="row g-3">     
+
+                            <div class="col-6">
+                                <label for="inputEmailAddress" class="form-label">Church Email Address</label>
+                                <input type="email" class="form-control border-3" id="tns-email" name="email" placeholder="example@user.com" value="ourladyofpeaceandgoodvoyage001@gmail.com" readonly>
+                            </div> 
+
+                            <div class="col-6">
+                                <label for="inputReligion" class="form-label">Religion</label>
+                                <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example" disabled>
+                                <option selected="" value="Catholic">Catholic</option>
+                                <option value="Baptist">Baptist</option>
+                                <option value="Born Again">Born Again </option>
+                                </select>
+                            </div>
+
+                            
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Church Address</label>
+                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Raquel St." value="Brgy. Singcang Airport, Raquel St." readonly>
+                            </div>
+                        
+                        </div>
+
+
+                        <div class="row g-3">
+                            <div class="col-6">
+                            <label for="inputSelectCountry" class="form-label">City</label>
+                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example" disabled>
+                                <option selected="" value="Philippines">Bacolod City</option>
+                                <option  value="India">India</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="America">America</option>
+                                <option value="Dubai">Dubai</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="inputNum" class="form-label">Telephone Number</label>
+                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="432-0048" value="432-0048">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <label for="inputSelectCountry" class="form-label">Province</label>
+                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example" disabled>
+                                <option selected="" value="Philippines">Negros Occidental</option>
+                                <option  value="India">India</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="America">America</option>
+                                <option value="Dubai">Dubai</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="inputSelectCountry" class="form-label">Country</label>
+                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example" disabled>
+                                <option selected="" value="Philippines">Philippines</option>
+                                <option  value="India">India</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="America">America</option>
+                                <option value="Dubai">Dubai</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->

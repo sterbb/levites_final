@@ -20,7 +20,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Choose an Application</h5>
+                          <h5 class="modal-title">Add Application</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -36,10 +36,10 @@
                                      </div>  
 
                                     <div class="col-4">
-                                        <label for="inputURL" class="form-label">Choose</label>
+                                        <label for="inputURL" class="form-label">Category</label>
                                         <select class="form-select border-3" id="tns-pathUrl" name="pathUrl" aria-label="Default select example">
-                                            <option selected="" value="Catholic">PATH</option>
-                                            <option value="Baptist">URL</option>
+                                            <option selected="" value="Catholic">Photo Editing</option>
+                                            <option value="Baptist">Video Editing</option>
                                             
                                         
                                         </select>
@@ -60,7 +60,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title">Choose an Application</h5>
+                          <h5 class="modal-title">Add Group</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -169,6 +169,19 @@
                                 <p style="font-size:1.5em;">Youtube</p>
                             </a>
                         </div>
+
+                        <div class="col text-center " >
+                            <a href="file:///C:/Users/janry/OneDrive/Desktop/µTorrent.lnk">
+                                <i class="lni lni-youtube" style="font-size:4em;"></i>
+                                <p style="font-size:1.5em;">Photoshop</p>
+                            </a>
+                        </div>
+
+            
+
+
+                        
+
 
                     </div><!--end row-->
 
@@ -286,68 +299,10 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-around align-items-center">
                     <h6 class="mb-0 text-uppercase">April 16, 2023</h6>
-                    <button type="button" class="btn btn-outline-light px-5 radius-30" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Calendar</button>
+                    <a href="churchcalendar"><button type="button" class="btn btn-outline-light px-5 radius-30">View Calendar</button></a>
+                    
                 </div>
-            </div>
-
-            <div class="col">
-                  <!-- Button trigger modal -->
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Sans Sebastian Calendar of Activity</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                            <div class="col-2 col-lg-2 col-xl-3">
-                                <div class="card overflow-hidden">
-                                <div class="profile-cover bg-dark   position-relative  mb-4" style="background-image: url('views/images/ch3.jpg')">
-                                    <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-                                    <img src="views/images/ch3.3.png" class=" d-flex align-items-center justify-content-between" alt="...">
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mt-5 d-flex align-items-center justify-content-between" >
-                                    <div class="">
-                                        <h3 class="mb-2">San Sebastian Cathedral</h3>
-                                        <p class="mb-1">Rizal - San Juan Sts., Bacolod CIty,</p>
-                                        <p>Negros Occidental, Philippines</p>
-                                    </div>
-                                    
-                                    </div>
-                                    <button type="button" class="btn btn-outline-light px-5 radius-30 ml-10"><i class="lni lni-folder mr-5"></i>&nbsp;&nbsp;Files</button>
-                                </div>
-
-                                
-                                </div>
-                            </div>
-                            <div class="col-10 col-lg-10 col-xl-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                        <div id="calendar">
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div><!--end row-->
-
-
-
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            
+            </div>            
 
             <div class="card">
                 <div class="card-body">
@@ -405,6 +360,7 @@
         </div>
 
     </div><!--end row-->
+    
 
 
 
