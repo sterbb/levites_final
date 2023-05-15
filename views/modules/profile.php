@@ -26,12 +26,18 @@
 
             <div class="card">
               <div class="card-body">
-                <h4 class="mb-2">About Me</h4>
-                <div id="marker-map" class="gmaps"></div>
-
+                  <h5 class="mb-2">Calendar of Activities</h5>
+                </div>
+                <div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<div id='calendar'></div>
+						</div>
+					</div>
+				</div>
               </div>
             </div>
-          </div>
+            
           <div class="col-12 col-lg-4 col-xl-3">
             <div class="card">
               <div class="card-body">
@@ -42,7 +48,7 @@
 
             <div class="card">
               <div class="card-body">
-                <h5 class="mb-3">Connect</h5>
+                <h5 class="mb-3">Social Media</h5>
                  <p class=""><i class="bi bi-browser-edge me-2"></i>www.example.com</p>
                  <p class=""><i class="bi bi-facebook me-2"></i>Facebook</p>
                  <p class=""><i class="bi bi-twitter me-2"></i>Twitter</p>
@@ -52,38 +58,34 @@
 
             <div class="card">
               <div class="card-body">
-                <h5 class="mb-3">Skills</h5>
-                 <div class="mb-3">
-                  <p class="mb-1">Web Design</p>
-                  <div class="progress" style="height: 5px;">
-                   <div class="progress-bar" role="progressbar" style="width: 45%"></div>
+              <div class="mt-3">
+                <div class="">
+                  <div class="card shadow-none border radius-2">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
+                        </div>
+                        
+                      </div>
+                      <h6 class="mb-0 text-primary">Public folder</h6>
+                      <small>345 files</small>
+                    </div>
                   </div>
-                 </div>
-                 <div class="mb-3">
-                  <p class="mb-1">HTML5</p>
-                  <div class="progress" style="height: 5px;">
-                   <div class="progress-bar" role="progressbar" style="width: 55%"></div>
+                </div>
+                <div class="">
+                  <div class="card shadow-none border radius-15">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
+                        </div>
+                        
+                      </div>
+                      <h6 class="mb-0 text-primary">Member folder</h6>
+                      <small>143 files</small>
+                    </div>
                   </div>
-                 </div>
-                 <div class="mb-3">
-                  <p class="mb-1">PHP7</p>
-                  <div class="progress" style="height: 5px;">
-                   <div class="progress-bar" role="progressbar" style="width: 65%"></div>
-                  </div>
-                 </div>
-                 <div class="mb-3">
-                  <p class="mb-1">CSS3</p>
-                  <div class="progress" style="height: 5px;">
-                   <div class="progress-bar" role="progressbar" style="width: 75%"></div>
-                  </div>
-                 </div>
-                 <div class="mb-0">
-                  <p class="mb-1">Photoshop</p>
-                  <div class="progress" style="height: 5px;">
-                   <div class="progress-bar" role="progressbar" style="width: 85%"></div>
-                  </div>
-                 </div>
-
+                </div>
+              </div>
               </div>
             </div>
 
