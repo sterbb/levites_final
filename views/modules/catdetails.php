@@ -121,68 +121,26 @@
 
                 </div>
 
-              </div>
-            </div>
-            
-            <div class="card">
-              <div class="card-body text-center">
-                
-                <h4 class="card-title fw-bold text-white">Podcast</h4>
-                <p class="fw-semi-bold" style="margin-top: -8px; ">Bishop Patricio A. Buzon</p>
-                  <audio controls autoplay >
-                      <source src="horse.ogg" type="audio/ogg">
-                      <source src="horse.mp3" type="audio/mpeg">
-                      Your browser does not support the audio element.
-                  </audio>
-                <button type="button" class="btn btn-outline-light mt-3 px-5" data-bs-toggle="modal" data-bs-target="#exampleSmallModal"><span class="material-symbols-outlined">cloud_download</span>Download</button>
-                  
-              </div>
-            </div>
-          </div>
-          </div>
-        </div><!--end row-->
-
-
-        <div class="col">
-                  <!-- Button trigger modal -->
-                  
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleSmallModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title">Bishop Patricio A. Buzon</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row text-center ">
-                            <img class="img mb-2" src="views/img/c1.png">
-                            <audio controls autoplay>
-                                <source src="horse.ogg" type="audio/ogg">
-                                <source src="horse.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                            <div class="col-12">
-                            
-                                <button type="button" class="btn btn-outline-light mt-3 px-5" data-bs-toggle="modal" data-bs-target="#exampleSmallModal"><span class="material-symbols-outlined">cloud_download</span>Mp3</button>
-                              </div>
-                              
-
-                            
-                          </div>
-
-                          
-                          
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Download</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-        
+              </div>
+              
+              <div class="card">
+                <div class="card-body text-center">
+                  <h4 class="card-title fw-bold text-center text-white">Podcast</h4>
+                  <p class="fw-semi-bold " style="margin-top: -8px; ">Bishop Patricio A. Buzon</p>
+                    <audio controls autoplay>
+                        <source src="horse.ogg" type="audio/ogg">
+                        <source src="horse.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                  <button type="button" class="btn btn-outline-light mt-3 px-5"><span class="material-symbols-outlined">cloud_download</span>Download</button>
+                    
+                </div>
+              </div>
+            </div>
+           </div>
+         </div><!--end row-->
+         
 
 
 
