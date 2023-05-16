@@ -108,3 +108,73 @@ $(".dark-mode").click(function () {
 
 
 });
+//EXPEREMENT under
+
+//pinned button 
+
+const iconButtons = document.querySelectorAll('.pinned-button');
+
+iconButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    button.classList.toggle('clicked');
+  });
+});
+
+
+//tooltip
+
+document.addEventListener('DOMContentLoaded', function() {
+	var cardBody = document.querySelector('.custom-tooltip');
+	var tooltip = new bootstrap.Tooltip(cardBody);
+  
+	// Function to generate the tooltip content
+	function generateTooltipContent() {
+
+		var creationDate = "2023-04-23";
+
+	  // Retrieve the file's modified date (replace this with your own logic)
+	  var modifiedDate = "2023-05-15";
+	  
+	  // Retrieve the folder size (replace this with your own logic)
+	  var folderSize = "10 MB";
+	  
+	  // Retrieve the recently added files (replace this with your own logic)
+	  var recentFiles = ["Prayer.txt", "PrayerofIntention.txt", "DailyReading.txt"];
+	  
+	  // Generate the tooltip content
+	  var tooltipContent = 	"<div>Date Created: " + creationDate + "</div>" +
+	  						"<div>Modified Date: " + modifiedDate + "</div>" +
+						   "<div>Folder Size: " + folderSize + "</div>" +
+						   "<div>Recent Files:</div>" +
+						   "<ul>" +
+						   recentFiles.map(function(file) {
+							 return "<li>" + file + "</li>";
+						   }).join("") +
+						   "</ul>";
+  
+	  // Update the tooltip content using the data-bs-original-title attribute
+	  cardBody.setAttribute('data-bs-original-title', tooltipContent);
+  
+	  // Update the tooltip instance
+	  tooltip.dispose();
+	  tooltip = new bootstrap.Tooltip(cardBody);
+	}
+  
+	// Call the generateTooltipContent function when needed
+	generateTooltipContent();
+  });
+
+
+  //modal
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var modal = new bootstrap.Modal(document.getElementById('exampleScrollableModal'));
+    var modalTrigger = document.getElementById('modalTrigger');
+    var modalBody = document.querySelector('#exampleScrollableModal .modal-body');
+  
+    modalTrigger.addEventListener('click', function() {
+        modalBody.innerHTML = '<p>Folder contents</p>';
+        modal.show();
+    });
+})
