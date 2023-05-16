@@ -99,8 +99,9 @@ $("#ShadowTheme").on("click", function() {
 
 
 $(".dark-mode").click(function () {
+	alert("hello")
 	$("html").attr("data-bs-theme" , function(i, v){
-	  return v === 'dark' ? 'light1' : 'dark';
+	  return v === 'dark' ? 'light' : 'dark';
 	})
 })
 

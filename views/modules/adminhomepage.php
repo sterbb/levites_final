@@ -1,13 +1,138 @@
   <!--start main content-->
   <main class="page-content">   
-
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4">
+        <div class="col">
+        <div class="card radius-10 bg-danger">
+            <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="">
+                <p class="mb-1 text-white">User 1</p>
+                <h4 class="mb-0 text-white">Online</h4>
+                <p class="mb-0 text-white">Logged In: 12/24/2023 8:05:05 A.M.</p>
+                </div>
+                <div class="ms-auto fs-2 text-white">
+                <i class="bi bi-cup"></i>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+        <div class="card radius-10 bg-info">
+            <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="">
+                <p class="mb-1 text-white">User 2</p>
+                <h4 class="mb-0 text-white">Online</h4>
+                <p class="mb-0 text-white">Logged In: 12/24/2023 8:05:05 A.M.</p>
+                </div>
+                <div class="ms-auto fs-2 text-white">
+                <i class="bi bi-wallet"></i>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+        <div class="card radius-10 bg-purple">
+            <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="">
+                <p class="mb-1 text-white">User 3</p>
+                <h4 class="mb-0 text-white">Online</h4>
+                <p class="mb-0 text-white">Logged In: 12/24/2023 8:05:05 A.M.</p>
+                </div>
+                <div class="ms-auto fs-2 text-white">
+                <i class="bi bi-chat-right"></i>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+        <div class="card radius-10 bg-primary">
+            <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="">
+                <p class="mb-1 text-white">User 4</p>
+                <h4 class="mb-0 text-white">Online</h4>
+                <p class="mb-0 text-white">Logged In: 12/24/2023 8:05:05 A.M.</p>
+                </div>
+                <div class="ms-auto fs-2 text-white">
+                <i class="bi bi-truck"></i>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div><!--end row-->
     <div class="row">
+        
+            <div class="col-12 col-lg-12 col-xl-6">
+                <div class="card">
+                <div class="card-header bg-transparent">
+                    <div class="d-flex align-items-center">
+                    <div class="">
+                        <h6 class="mb-0 fw-bold">Monthly Views</h6>
+                    </div>
+                    <div class="dropdown ms-auto">
+                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:;">Action</a>
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                        </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="chart3"></div>
+                </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-12 col-xl-6">
+                <div class="card">
+                <div class="card-header bg-transparent">
+                    <div class="d-flex align-items-center">
+                    <div class="">
+                        <h6 class="mb-0 fw-bold">Monthly Members</h6>
+                    </div>
+                    <div class="dropdown ms-auto">
+                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:;">Action</a>
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                        </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="chart4"></div>
+                </div>
+                </div>
+            </div>
+     
         <div class="col-12 col-lg-8 col-xl-8">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            <h6 class="mb-0 text-uppercase">Software Application</h6>
+                            <h6 class="mb-0 text-uppercase">Website Organizer</h6>
                         </div>
                         <div class="col d-flex justify-content-around">
                             <button type="button"  data-bs-toggle="modal" data-bs-target="#Application" class="btn btn-outline-light px-3  radius-30 text-center"><i class="fadeIn animated bx bx-plus-circle" ></i>&nbsp;Application</button>
@@ -68,7 +193,7 @@
                                 <div class="row g-3 mb-3"> 
                                     <div class="col-12">
                                         <label for="inputUrl" class="form-label">Group Name</label>
-                                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="Social Media Tool">   
+                                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="">   
                                     </div>
                                         <div class="row row-cols-4 row-cols-lg-8 g-3">
                                             <ul class="ml-3">                                              
@@ -169,18 +294,13 @@
                                 <p style="font-size:1.5em;">Youtube</p>
                             </a>
                         </div>
-
-            
-
-
-                        
-
-
                     </div><!--end row-->
 
-                    <div class="row mt-4 border">
+                    <hr>
+                                        
+                    <div class="row mt-4 border border-2">
                         <div class="col pt-3">
-                            <h4>Social Media</h4>
+                            <h6 class="mb-0 text-uppercase">Social Media</h6>
                         </div>
 
                         <div class="row row-cols-1 row-cols-lg-4 g-3 ">
@@ -204,66 +324,7 @@
                 
             </div>
 
-            <div class="row">
-                <div class="col-12 col-lg-12 col-xl-6">
-                    <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div class="d-flex align-items-center">
-                        <div class="">
-                            <h6 class="mb-0 fw-bold">Monthly Views</h6>
-                        </div>
-                        <div class="dropdown ms-auto">
-                            <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="javascript:;">Action</a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="chart3"></div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-12 col-xl-6">
-                    <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div class="d-flex align-items-center">
-                        <div class="">
-                            <h6 class="mb-0 fw-bold">Monthly Users</h6>
-                        </div>
-                        <div class="dropdown ms-auto">
-                            <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="javascript:;">Action</a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div id="chart4"></div>
-                    </div>
-                    </div>
-                </div>
-            </div><!--end row-->
+            
         </div>
 
         <div class="col-12 col-lg-8 col-xl-4">

@@ -31,7 +31,7 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
-							<div id='calendar'></div>
+							<div id='calendar2' class="calendar2"></div>
 						</div>
 					</div>
 				</div>
@@ -49,10 +49,9 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="mb-3">Social Media</h5>
-                 <p class=""><i class="bi bi-browser-edge me-2"></i>www.example.com</p>
-                 <p class=""><i class="bi bi-facebook me-2"></i>Facebook</p>
+                <a href="   https://www.facebook.com/ollpBata"><p class=""><i class="bi bi-facebook me-2"></i>facebook.com/ollpBata</p></a>
+             
                  <p class=""><i class="bi bi-twitter me-2"></i>Twitter</p>
-                 <p class="mb-0"><i class="bi bi-linkedin me-2"></i>LinkedIn</p>
               </div>
             </div>
 
@@ -62,15 +61,17 @@
               <div class="mt-3">
                 <div class="">
                   <div class="card shadow-none border radius-2">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
+                    <a href="filestorage">
+                      <div class="card-body">
+                        <div class="d-flex align-items-center">
+                          <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
+                          </div>
+                          
                         </div>
-                        
+                        <h6 class="mb-0 text-primary">Public folder</h6>
+                        <small>345 files</small>
                       </div>
-                      <h6 class="mb-0 text-primary">Public folder</h6>
-                      <small>345 files</small>
-                    </div>
+                    </a>
                   </div>
                 </div>
                 <div class="">

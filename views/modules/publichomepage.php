@@ -795,11 +795,13 @@
               </div>
               <div class="card-body">
                 <div class="mt-5 d-flex align-items-start justify-content-between">
-                  <div class="">
+                  <a href=" profile">
+                    <div class="text-black">
                     <h3 class="mb-2">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h3>
                     <p class="mb-1">Mansilingan, Bacolod City</p>
                     <p>Negros Occidental, Philippines</p>
-                  </div>
+                  </div></a>
+                  
 
                 </div>
               </div>

@@ -7,9 +7,9 @@
       <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
           <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body ">
             <div class="card">
-              <div class="card-body">
+              <div class="card-body ">
                <div class="d-flex text-right justify-content-end align-self-center pl-10 " style="float: right;">
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
@@ -34,7 +34,7 @@
                   </li>
 
                 </ul>
-                <div class="tab-content  py-3">
+                <div class="tab-content py-3" >
 
                   <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
                     <div class="row g-3">
@@ -49,7 +49,11 @@
                           </div>
                         </div>
                         <div class="col-12 col-lg-9 border">
-                          <div class="tab-content">
+                          <div class="d-flex align-items-center justify-content-end">
+                            <button>hello</button>
+                          </div>
+                          
+                          <div class="tab-content overflow-auto p-3 border" style="overflow-x: hidden !important; max-height: 50vh; "> 
 
                             <div class="tab-pane fade" id="Pricing">
                               <div class="row g-3">
@@ -97,72 +101,219 @@
                                 </tbody>
                               </table>
                             </div>
+
+
                             <div class="tab-pane fade show active" id="Shipping">
-                              <div class="row g-3">
-                                <div class="col-12 col-lg-12 text-center ">
-                                  <h4 class="mb-2 ">Instrument Workshop</h4>
+
+                            <!-- event -->
+                              <div>
+                                <div class="row g-3">
+                                  <div class="col-12 col-lg-12 text-center ">
+                                    <h4 class="mb-2 ">Instrument Workshop</h4>
+                                  </div>
                                 </div>
+                                <div class="row g-3 mt-2">
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
+
+                                  </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
+                                    <p></p>
+                                  </div>
+                                </div>
+                                <h6>Groups</h6>
+                                <div class="row row-cols-1 row-cols-lg-3 g-3">
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Worship Team</h5>
+                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
+                                        <li class="list-group-item">John Cliff Fortaleza</li>
+                                      </ul>
+                                    </div>
+
+                                    
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Media Team</h5>
+                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Church Person 1</li>
+                                        <li class="list-group-item">Church Person 2</li>
+                                        <li class="list-group-item">Church Person 3</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Technical Team</h5>
+                                        <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Church Person 1</li>
+                                        <li class="list-group-item">Church Person 2</li>
+                                        <li class="list-group-item">Church Person 3</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  
+
+                                </div><!--end row-->
                               </div>
-                              <div class="row g-3 mt-2">
-                                <div class="col-12 col-lg-12 ">
-                                  <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
-
+                            <!-- event -->
+                              <div>
+                                <div class="row g-3">
+                                  <div class="col-12 col-lg-12 text-center ">
+                                    <h4 class="mb-2 ">Instrument Workshop</h4>
+                                  </div>
                                 </div>
+                                <div class="row g-3 mt-2">
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
 
-                                <div class="col-12 col-lg-12 ">
-                                  <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                  <p></p>
+                                  </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
+                                    <p></p>
+                                  </div>
                                 </div>
+                                <h6>Groups</h6>
+                                <div class="row row-cols-1 row-cols-lg-3 g-3">
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Worship Team</h5>
+                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
+                                        <li class="list-group-item">John Cliff Fortaleza</li>
+                                      </ul>
+                                    </div>
+
+                                    
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Media Team</h5>
+                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Church Person 1</li>
+                                        <li class="list-group-item">Church Person 2</li>
+                                        <li class="list-group-item">Church Person 3</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Technical Team</h5>
+                                        <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Church Person 1</li>
+                                        <li class="list-group-item">Church Person 2</li>
+                                        <li class="list-group-item">Church Person 3</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  
+
+                                </div><!--end row-->
                               </div>
-                              <h6>Groups</h6>
-                              <div class="row row-cols-1 row-cols-lg-3 g-3">
-                                
-                                <div class="col">
-                                  <div class="card">
-                                    <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                      <h5 class="card-title inline">Worship Team</h5>
-                                      <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                                      <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                                      <li class="list-group-item">John Cliff Fortaleza</li>
-                                    </ul>
+                              <!-- event -->
+                              <div>
+                                <div class="row g-3">
+                                  <div class="col-12 col-lg-12 text-center ">
+                                    <h4 class="mb-2 ">Instrument Workshop</h4>
                                   </div>
                                 </div>
-                                
-                                <div class="col">
-                                  <div class="card">
-                                    <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                      <h5 class="card-title inline">Media Team</h5>
-                                      <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">Church Person 1</li>
-                                      <li class="list-group-item">Church Person 2</li>
-                                      <li class="list-group-item">Church Person 3</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                
-                                <div class="col">
-                                  <div class="card">
-                                    <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                      <h5 class="card-title inline">Technical Team</h5>
-                                      <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">Church Person 1</li>
-                                      <li class="list-group-item">Church Person 2</li>
-                                      <li class="list-group-item">Church Person 3</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                                
+                                <div class="row g-3 mt-2">
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
 
-                              </div><!--end row-->
+                                  </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
+                                    <p></p>
+                                  </div>
+                                </div>
+                                <h6>Groups</h6>
+                                <div class="row row-cols-1 row-cols-lg-3 g-3">
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Worship Team</h5>
+                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
+                                        <li class="list-group-item">John Cliff Fortaleza</li>
+                                      </ul>
+                                    </div>
+
+                                    
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Media Team</h5>
+                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Church Person 1</li>
+                                        <li class="list-group-item">Church Person 2</li>
+                                        <li class="list-group-item">Church Person 3</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col">
+                                    <div class="card">
+                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title inline">Technical Team</h5>
+                                        <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+                                      </div>
+                                      <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Church Person 1</li>
+                                        <li class="list-group-item">Church Person 2</li>
+                                        <li class="list-group-item">Church Person 3</li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  
+
+                                </div><!--end row-->
+                              </div>
+                              <!-- event -->
 
                             </div>
+
+
                             <div class="tab-pane fade" id="GlobalDelivery">
                               <div class="d-flex flex-column h-100">
                                 <h6 class="mb-3">Global Delivery</h6>
