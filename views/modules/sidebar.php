@@ -9,7 +9,7 @@ $account_type = "admin";
               <img src="views/images/logo.png" class="logo-img" alt="">
             </div>
             <div class="logo-name flex-grow-1">
-              <h5 class="mb-0">Levites</h5>
+              <h5 class="mb-0 cursor-pointer">Levites</h5>
             </div>
             <div class="sidebar-close ">
               <span class="material-symbols-outlined">close</span>
