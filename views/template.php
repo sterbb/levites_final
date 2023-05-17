@@ -66,7 +66,8 @@
 			$_GET["route"] == 'playlist'||
 			$_GET["route"] == 'profile'||
 			$_GET["route"] == 'superuser'||
-			$_GET["route"] == 'publicregistration'){
+			$_GET["route"] == 'publicregistration'||
+			$_GET["route"] == 'landingpage'){
 
             include "modules/".$_GET["route"].".php";
 
