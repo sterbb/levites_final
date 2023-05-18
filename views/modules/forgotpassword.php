@@ -18,7 +18,7 @@
 											<div class="col-12">
 												<div class="d-grid gap-2">
                                                     
-                                                <a href="resetpassword" class="btn btn-primary">Send</a>
+                                                <a href="requestPassword" class="btn btn-primary">Send</a>
                                                 <a href="login" class="btn btn-light">Back to Login</a>
                                                 </div>
 											</div>
