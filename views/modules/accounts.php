@@ -7,7 +7,7 @@
               <div class="card-body">
                 <div class="d-flex align-items-center ">
                   <div class="">
-                    <p class="mb-1">Active</p>
+                    <p class="mb-1">Activated</p>
                     <h4 class="mb-0 text-primary">User 1</h4>
                   </div>
 
@@ -29,7 +29,7 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="">
-                    <p class="mb-1">Active</p>
+                    <p class="mb-1">Activated</p>
                     <h4 class="mb-0 text-success">User 2</h4>
                   </div>
 
@@ -50,7 +50,7 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="">
-                    <p class="mb-1">Not Active</p>
+                    <p class="mb-1">Nonactivated</p>
                     <h4 class="mb-0 text-danger">User 3</h4>
                   </div>
                   
@@ -58,7 +58,7 @@
                     <div class="widget-icon bg-danger text-white">
                       <i class="fadeIn animated bx bx-user"></i>
                     </div>
-                    <p class="mb-0 text-danger">Online</p>
+                    <p class="mb-0 text-danger">Offline</p>
                   </div>
 
                 </div>
@@ -70,14 +70,14 @@
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="">
-                    <p class="mb-1">Not Active</p>
+                    <p class="mb-1">Nonactivated</p>
                     <h4 class="mb-0 text-warning">User 4</h4>
                   </div>
                   <div class="ms-auto">
                     <div class="widget-icon bg-warning text-white">
                       <i class="fadeIn animated bx bx-user"></i>
                     </div>
-                    <p class="mb-0 text-warning">Online</p>
+                    <p class="mb-0 text-warning">Offline</p>
                   </div>
                 </div>
               </div>
@@ -89,8 +89,9 @@
         <div class="row mt-5">
             <div class="col-lg-8 mx-auto">
 						<div class="card">
-							<div class="card-header px-4 py-3 bg-transparent">
-								<h5 class="mb-0">Create User 2 Account</h5>
+							<div class="card-header px-4 py-3 bg-transparent d-flex justify-content-between align-items-center">
+								<h5 class="mb-0">Edit User 2 Account</h5>
+                <button class="btn btn-danger">Deactivate</button>
 							</div>
 							<div class="card-body p-4">
 								<form id="jQueryValidationForm">
@@ -132,10 +133,6 @@
                     <div class="form-check form-switch form-check-success">
                       <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDanger" checked>
                       <label class="form-check-label" for="flexSwitchCheckDanger" style="font-size:18px">Requests</label>
-                    </div>
-                    <div class="form-check form-switch form-check-success">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckWarning" checked>
-                      <label class="form-check-label" for="flexSwitchCheckWarning" style="font-size:18px">Song and Lyrics</label>
                     </div>
 
                   </div>

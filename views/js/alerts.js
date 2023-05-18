@@ -26,8 +26,55 @@ $(document).ready(function() {
     });
 
 
+    $(".btn-toggle-menu").click(function() {
+      $("body").hasClass("toggled") ? ($("body").removeClass("toggled"), $(".sidebar-wrapper").unbind("hover")) : ($("body").addClass("toggled"), $(".sidebar-wrapper").hover(function() {
+        $("body").addClass("sidebar-hovered")
+      }, function() {
+        $("body").removeClass("sidebar-hovered")
+      }))
+    })
 
 
+    // chart 8
+    var options = {
+      series: [44, 55, 13, 43, 22],
+      chart: {
+        foreColor: '#9ba7b2',
+        height: 500,
+        type: 'pie',
+      },
+      colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
+      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            height: 500
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+    };
+    var chart = new ApexCharts(document.querySelector("#chart8"), options);
+    chart.render(); 
+
+
+    // marker map
+    var myLatLng = {
+      lat: 10.70230,
+      lng: 122.97429, 
+    };
+    var map = new google.maps.Map(document.getElementById('marker-map'), {
+      zoom: 17,
+      center: myLatLng
+    });
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Our Lady Of Lourdes Parish Church'
+    });
 
 
   });

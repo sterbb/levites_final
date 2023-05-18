@@ -16,6 +16,7 @@
     <link href="views/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
     <!-- loader-->
     <link href="views/assets/css/pace.min.css" rel="stylesheet">
     <script src="views/assets/js/pace.min.js"></script>
@@ -23,6 +24,7 @@
     <link href="views/assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="views/assets/css/icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="views/assets/css/extra-icons.css" rel="stylesheet">
@@ -109,6 +111,9 @@
     <script src="views/assets/plugins/fullcalendar/js/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="views/assets/plugins/input-tags/js/tagsinput.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="assets/plugins/select2/js/select2-custom.js"></script>4
+	
 	<!-- customize analystics -->
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
 	<script src="views/assets/js/index.js"></script>
@@ -129,10 +134,11 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			var calendarEl = document.getElementById('calendar');
 			var calendar = new FullCalendar.Calendar(calendarEl, {
+				themeSystem: 'bootstrap5',
 				headerToolbar: {
-					left: 'prev,next today',
+					left: 'prev today',
 					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+					right: 'dayGridMonth,listWeek next'
 				},
 				initialView: 'dayGridMonth',
 				initialDate: '2020-09-12',
@@ -293,7 +299,7 @@
 		$(".time-picker").flatpickr({
 				enableTime: true,
 				noCalendar: true,
-				dateFormat: "Y-m-d H:i",
+				dateFormat: "H:i",
 			});
 
 		$(".date-time").flatpickr({
@@ -320,6 +326,8 @@
 			altFormat: "F j, Y",
 			dateFormat: "Y-m-d",
 		});
+
+		
 
 
 

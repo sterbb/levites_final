@@ -514,7 +514,8 @@
 [data-bs-theme=dark] .btn-outline-dark {
     color: var(--bs-body-color);
     background-color: var(--bs-light-bg-subtle);
-    border-color:var(--bs-border-color-translucent)
+    border-color:var(--bs-border-color-translucent);
+    
 }   
 
 [data-bs-theme=dark] .btn-outline-dark:hover {
@@ -522,3 +523,17 @@
     background-color: var(--bs-light-bg-subtle);
     border-color: white;
 }   
+
+[data-bs-theme=dark] .card-title {
+    color: white;
+}   
+
+[data-bs-theme=dark] label{
+    color:white;
+}
+
+[data-bs-theme=dark] p.text-dark{
+    color:white;
+}
+
+
