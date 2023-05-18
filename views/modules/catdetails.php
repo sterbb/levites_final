@@ -30,11 +30,42 @@
           <div class="col-12 col-lg-8 d-flex">
             <div class="card w-100">
               <div class="card-body">
+
+              
+                
                   <div>
-                    <div class="d-flex justify-content-between">
-                      <p class="fw-bold text-white">Bible Study</p>
-                      <p class="fw-semi-bold">9:30 AM</p>
-                    </div>
+
+
+                   <!-- event -->
+                   <div class="border border-secondary p-3 mb-5">
+                 
+                                <div class="row g-3">
+                                  <div class="col-12 col-lg-12 text-center ">
+                                    <h4 class="mb-2 ">Instrument Workshop</h4>
+                                  </div>
+                                </div>
+
+                                <div class="row g-3 mt-2 mb-2">
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
+                                  </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
+                                  </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Announcement</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" readonly></textarea>
+              
+                                  </div>
+
+                                </div>
+
+                              </div>
+                            <!-- event -->
+
+
                     <div class="d-flex justify-content-between">
                       <p class="fw-bold text-white">Instrument workshop</p>
                       <p class="fw-semi-bold">1:30 PM</p>
@@ -57,35 +88,35 @@
           
           <div class="col-12 col-lg-4 d-flex">
             <div class="w-100">
-            <div class="card">
-              <div class="card-body">
+            <div class="card overflow-auto py-3">
+              <div class="card-body " style="max-height:700px;">
                   <div class="text-center ">
                       <h5 class="mb-3 fw-bold ">Daily Readings</h5>
                       <div class="row">
-                          <h2> Second Sunday of Easter (or Sunday of Divine Mercy)</h2>
+                          <h4> Second Sunday of Easter (or Sunday of Divine Mercy)</h4>
                           <p>Lectionary: 43</p>
                       </div>
                   </div>
-                  <div class="row mt-4 px-5">
+                  <div class="row mt-2 px-5">
                       <div class="d-flex justify-content-between border-bottom border-white mb-3">
-                          <h4>Reading 1 </h4>
+                          <h5>Reading 1 </h5>
                           <div>
                               Acts 2:42-47
                           </div>
                       </div>
-                      <div class="text-wrap" style="font-size:20px;" >
+                      <div class="text-wrap" style="font-size:1.2em;" >
                           <p>They devoted themselves<br>to the teaching of the apostles and to the communal life,<br>to the breaking of bread and to the prayers.<br>Awe came upon everyone,<br>and many wonders and signs were done through the apostles.<br>All who believed were together and had all things in common;<br>they would sell their property and possessions<br>and divide them among all according to each one’s need.<br>Every day they devoted themselves<br>to meeting together in the temple area<br>and to breaking bread in their homes.<br>They ate their meals with exultation and sincerity of heart,<br>praising God and enjoying favor with all the people.<br>And every day the Lord added to their number those who were being saved.</p>
             
                       </div>
                   </div>
                   <div class="row mt-4 px-5">
                       <div class="d-flex justify-content-between border-bottom border-white mb-3">
-                          <h4>Responsorial Psalm</h4>
+                          <h5>Responsorial Psalm</h5>
                           <div>
                           Ps 118:2-4, 13-15, 22-24
                           </div>
                       </div>
-                      <div class="text-wrap" style="font-size:20px;" >
+                      <div class="text-wrap" style="font-size:1.2em;" >
                       <p>R. (1) <strong>Give thanks to the LORD for he is good, his love is everlasting.</strong><br>
                           or:<br>
                           R. <strong>Alleluia.</strong><br>

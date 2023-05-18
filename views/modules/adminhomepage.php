@@ -305,11 +305,9 @@
 
                         <div class="col">
                             <div class="card text-center">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div id="chart8"></div>
-                                </div>
-                             </div>
+                        
+                                <div id="chart8"></div>
+
                                 <div class="card-body">
                                     <h5 class="card-title">Local Storage</h5>
                                     <a href="#" class="btn btn-primary">View Storage</a>
@@ -319,7 +317,14 @@
 
                         <div class="col">
                             <div class="card text-center">
-                                <img src="views/assets/images/gallery/01.png" class="card-img-top" alt="...">
+                            <h5 class="mb-0 text-primary font-weight-bold">45.5 GB <span class="float-end text-secondary">50 GB</span></h5>
+                            <p class="mb-0 mt-2"><span class="text-secondary">Used</span><span class="float-end text-primary">Upgrade</span>
+                            </p>
+                            <div class="progress mt-3" style="height:7px;">
+                                <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
                                 <div class="card-body">
                                     <h5 class="card-title">San Sebastian Cathedral</h5>
                                     <a href="#" class="btn btn-primary">View Storage</a>

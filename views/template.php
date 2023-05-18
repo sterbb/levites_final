@@ -65,6 +65,7 @@
 			$_GET["route"] == 'slhomepage'|| 
 			$_GET["route"] == 'playlist'||
 			$_GET["route"] == 'profile'||
+			$_GET["route"] == 'publicsettings'||
 			$_GET["route"] == 'superuser'||
 			$_GET["route"] == 'publicregistration'||
 			$_GET["route"] == 'landingpage'){

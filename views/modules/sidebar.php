@@ -165,7 +165,7 @@ $account_type = "admin";
                       <div class="menu-title">Account Settings</div>
                     </a>
                     <ul>
-                      <li> <a href="superuser"><span class="material-symbols-outlined">arrow_right</span>My Account</a>
+                      <li> <a href="publicsettings"><span class="material-symbols-outlined">arrow_right</span>My Account</a>
                       </li>
                     </ul>
                 </li>

@@ -37,14 +37,14 @@ $(document).ready(function() {
 
     // chart 8
     var options = {
-      series: [44, 55, 13, 43, 22],
+      series: [44, , 13, 43, 22],
       chart: {
         foreColor: '#9ba7b2',
         height: 500,
         type: 'pie',
       },
       colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
-      labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+      labels: ['Free', 'Team B', 'Team C', 'Team D', 'Team E'],
       responsive: [{
         breakpoint: 480,
         options: {
@@ -73,7 +73,7 @@ $(document).ready(function() {
     var marker = new google.maps.Marker({
       position: myLatLng,
       map: map,
-      title: 'Our Lady Of Lourdes Parish Church'
+      title: 'Our Lady Of Lourdes Parish Church '
     });
 
 
