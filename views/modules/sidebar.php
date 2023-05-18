@@ -75,7 +75,9 @@ $account_type = "admin";
 
                 <li>
                   <a class="has-arrow" href="javascript:;">
-                    <div class="parent-icon"><span class="material-symbols-outlined">distance</span>
+                    <div class="parent-icon"><span class="material-symbols-outlined">
+                    hard_drive
+                    </span>
                     </div>
                     <div class="menu-title">File Storage</div>
                   </a>
