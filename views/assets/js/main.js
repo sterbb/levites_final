@@ -178,3 +178,54 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.show();
     });
 })
+
+
+
+//File-storage 
+
+document.addEventListener('DOMContentLoaded', function () {
+	// Add File Form submission handler
+	document.getElementById('addFileForm').addEventListener('submit', function (e) {
+	  e.preventDefault(); // Prevent form submission
+	  
+	  // Get the selected file from the file input field
+	  const fileInput = document.getElementById('fileInput');
+	  const file = fileInput.files[0];
+	  
+	  if (file) {
+		// Create a new list item for the file and append it to the file list
+		const fileList = document.getElementById('fileList');
+		const newFileItem = document.createElement('li');
+		newFileItem.innerHTML = `${file.name} <button class="btn btn-danger btn-sm delete-file">Delete</button> <button class="btn btn-primary btn-sm view-file">View</button>`;
+		fileList.appendChild(newFileItem);
+		
+		// Clear the file input field
+		fileInput.value = '';
+	  }
+	});
+	
+	// Delete File button click handler
+	document.addEventListener('click', function (e) {
+	  if (e.target.classList.contains('delete-file')) {
+		// Remove the file's list item when the delete button is clicked
+		const fileItem = e.target.parentNode;
+		fileItem.remove();
+	  }
+	});
+  
+	// View File button click handler
+	document.addEventListener('click', function (e) {
+	  if (e.target.classList.contains('view-file')) {
+		const fileName = e.target.parentNode.firstChild.textContent.trim();
+		const fileViewer = document.getElementById('fileViewer');
+		const filePreview = document.getElementById('filePreview');
+		
+		// Set the source of the file preview iframe
+		filePreview.src = `path/to/files/${fileName}`;
+		
+		// Show the file viewer and hide the file list
+		fileViewer.style.display = 'block';
+		document.getElementById('fileList').style.display = 'none';
+	  }
+	});
+  });

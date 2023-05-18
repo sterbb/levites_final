@@ -1604,6 +1604,28 @@ a {
 	
   }
 
+  .filter {
+	background-color: transparent;
+	border: none;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	
+  }
+  
+  .filter:hover {
+	background-color: #dcdcdc;
+  }
+  
+  .filter i {
+	color: #555555;
+	transition: color 0.3s ease;
+  }
+  
+  .filter:hover i {
+	color: #0b5ed7;
+  }
 
 .pinned-button {
 	background-color: transparent;

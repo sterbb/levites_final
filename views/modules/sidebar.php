@@ -9,7 +9,7 @@ $account_type = "admin";
               <img src="views/images/logo.png" class="logo-img" alt="">
             </div>
             <div class="logo-name flex-grow-1">
-              <h5 class="mb-0">Levites</h5>
+              <h5 class="mb-0 cursor-pointer">Levites</h5>
             </div>
             <div class="sidebar-close ">
               <span class="material-symbols-outlined">close</span>
@@ -75,7 +75,9 @@ $account_type = "admin";
 
                 <li>
                   <a class="has-arrow" href="javascript:;">
-                    <div class="parent-icon"><span class="material-symbols-outlined">distance</span>
+                    <div class="parent-icon"><span class="material-symbols-outlined">
+                    hard_drive
+                    </span>
                     </div>
                     <div class="menu-title">File Storage</div>
                   </a>
