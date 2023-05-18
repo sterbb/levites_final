@@ -28,7 +28,36 @@
 
         <div class="row">
           <div class="col-12 col-lg-8 d-flex">
-              <div class="card w-100">
+            <div class="card w-100">
+              <div class="card-body">
+                  <div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-bold text-white">Bible Study</p>
+                      <p class="fw-semi-bold">9:30 AM</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-bold text-white">Instrument workshop</p>
+                      <p class="fw-semi-bold">1:30 PM</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-bold text-white">Meeting</p>
+                      <p class="fw-semi-bold">5:30 PM</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <p class="fw-bold text-white">Outreach</p>
+                      <p class="fw-semi-bold">8:00 PM</p>
+                    </div>
+                  </div>
+
+                
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="col-12 col-lg-4 d-flex">
+            <div class="w-100">
+            <div class="card">
               <div class="card-body">
                   <div class="text-center ">
                       <h5 class="mb-3 fw-bold ">Daily Readings</h5>
@@ -90,39 +119,11 @@
             
                       </div>
                   </div>
+
+                
+
               </div>
-              </div>
-          </div>
-
-          
-          <div class="col-12 col-lg-4 d-flex">
-            <div class="w-100">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title mb-4 fw-bold text-white text-center">Events</h4>
-
-                <div>
-                  <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Bible Study</p>
-                    <p class="fw-semi-bold">9:30 AM</p>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Instrument workshop</p>
-                    <p class="fw-semi-bold">1:30 PM</p>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Meeting</p>
-                    <p class="fw-semi-bold">5:30 PM</p>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <p class="fw-bold text-white">Outreach</p>
-                    <p class="fw-semi-bold">8:00 PM</p>
-                  </div>
-
-                </div>
-
-                </div>
-              </div>
+            </div>
               
               <div class="card">
                 <div class="card-body text-center">

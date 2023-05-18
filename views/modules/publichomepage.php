@@ -784,6 +784,52 @@
                 <input type="text" class="form-control" placeholder="Search mail">
             </div>
         </div>
+
+        <div class="row mt-4">
+          <div class="col-12 col-lg-12 col-xl-12">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-0 text-uppercase">Affilliated Churches</h6>
+              <div class="my-3 border-top"></div>
+              <div class="card-group">
+                <div class="card border-end">
+                  <img src="assets/images/gallery/07.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+                <div class="card border-end">
+                  <img src="assets/images/gallery/08.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-danger">Go somewhere</a>
+                  </div>
+                </div>
+                <div class="card border-end">
+                  <img src="assets/images/gallery/09.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-success">Go somewhere</a>
+                  </div>
+                </div>
+                <div class="card">
+                  <img src="assets/images/gallery/10.png" class="card-img-top" alt="...">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-warning">Go somewhere</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+              
+          </div>
+        </div>
   
         <div class="row pt-3">
           <div class="col-12 col-lg-12 col-xl-12">

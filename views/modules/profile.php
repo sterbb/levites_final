@@ -1,6 +1,7 @@
 
 
 <main class="page-content">
+        <button class="btn btn-outline-danger">Report</button>
         <div class="row">
           <div class="col-12 col-lg-8 col-xl-9">
             <div class="card overflow-hidden">
@@ -20,6 +21,7 @@
                   <div class="">
                      <a href="javascript:;" class="btn btn-primary"><i class="bi bi-chat me-2"></i>Ask Membership</a>
                   </div>
+          
                 </div>
               </div>
             </div>

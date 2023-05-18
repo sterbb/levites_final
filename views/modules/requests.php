@@ -1,12 +1,11 @@
 <!--start main content-->
 <main class="page-content">
 
-    <div class="row ">
-
-        <div class="col-12 col-lg-6 col-xl-7  ">  
-            <div class="row">
+    <div class="row  py-3 border border-2">
+        <div class="col-12 col-lg-6 col-xl-7">  
+            <div class="row ">
                 <div class="col-12 col-lg-12 col-xl-12 d-flex ">
-                    <div class="card w-100 mx-10">
+                    <div class="card w-100 mx-10 mb-0">
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
                                 <div class="px-2">
@@ -19,7 +18,7 @@
                                 <!-- ALIGN SA CENTER -->
                                 <div class="">  
 
-                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Create Request</button>
+                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3 " data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Create Request</button>
                     
                                 </div>
                             </div>
@@ -48,9 +47,9 @@
 
             </div>
             
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-12 col-lg-12 col-xl-12 d-flex ">
-                    <div class="card w-100 mx-10">
+                    <div class="card w-100 mx-10 mb-0">
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
                                 <div class="px-2">
@@ -58,13 +57,13 @@
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
-                                    <input class="form-control px-2 " type="search"  placeholder="Search Customers">
+                                    <input class="form-control px-2 " type="search"  placeholder="Search Church">
                                 </div>
                                 <!-- ALIGN SA CENTER -->
                                 <div class="">  
-
-                                        <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept All</button>
-                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject All</button>
+ 
+                                        <button class="btn btn-outline-success rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-check"></i></button>
+                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -98,14 +97,14 @@
         </div>
 
         <div class="col-12 col-lg-6 col-xl-5 d-flex">
-            <div class="card w-100">
+            <div class="card w-100 mb-0">
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">
                         <h6 class="mb-0 fw-bold">Affilliated Churches</h6>
                         </div>
                         <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Customers">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Church">
                         </div>
                     </div>
                 </div>
@@ -137,17 +136,16 @@
 
 
    
-
-    <div class="row">
+    <div class="row border border-2 border-  py-3 mt-5">
         <div class="col-12 col-lg-6 col-xl-7 d-flex ">  
-            <div class="card w-100 mx-10">
+            <div class="card w-100 mx-10 mb-0">
                 <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center py-2 px-2">
                     <div class="px-2">
                        <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-plus"></i>Membership Request</h6>
                     </div>
                     <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Customers">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Name">
                         </div>
                     <div class="">
                             <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept All</button>
@@ -192,14 +190,14 @@
         </div>
 
         <div class="col-12 col-lg-6 col-xl-5 d-flex">
-            <div class="card w-100">
+            <div class="card w-100 mb-0">
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">
                             <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-circle"></i>Members</h6>
                         </div>
                         <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Customers">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Name">
                         </div>
                     </div>
                 </div>
@@ -232,3 +230,37 @@
 
 </main>
 
+
+
+<div class="col">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Vertically Centered</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Request Collaboration</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-4">  
+                <label for="single-select-clear-field" class="form-label">Single select w/ allow clear</label>
+                <select class="form-select" id="single-select-clear-field" data-placeholder="Choose one thing">
+                    <option></option>
+                    <option>Reactive</option>
+                    <option>Solution</option>
+                    <option>Conglomeration</option>
+                    <option>Algoritm</option>
+                    <option>Holistic</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

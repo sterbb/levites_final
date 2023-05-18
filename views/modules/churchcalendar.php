@@ -9,24 +9,32 @@
           <div class="modal-content">
             <div class="modal-body ">
             <div class="card">
-              <div class="card-body ">
+              <div class="card-body pt-3">
                <div class="d-flex text-right justify-content-end align-self-center pl-10 " style="float: right;">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                <ul class="nav nav-tabs nav-primary justify-content-start" role="tablist">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <ul class="nav nav-tabs nav-primary justify-content-between" role="tablist">
+                  
                   <li class="nav-item" role="presentation">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#primaryhome" role="tab" aria-selected="true">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#primaryhome" role="tab" aria-selected="true" style="font-size:1.1em;">
                       <div class="d-flex align-items-center">
-                        <div class="tab-icon"><i class='bi bi-home font-18 me-1'></i>
+                        <div class="tab-icon"><i class="fadeIn animated bx bx-calendar"></i></i>
                         </div>
                         <div class="tab-title">View</div>
                       </div>
                     </a>
                   </li>
-                  <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-bs-toggle="tab" href="#primaryprofile" role="tab" aria-selected="false">
+
+                  <div class="d-flex justify-content-center align-items-center text-center pb-1">
+                    <button class="btn btn-white  me-3"><i class="bx bx-chevron-left me-0"></i></button>
+                    <h6>APRIL 26, 2023</h6>
+                    <button class="btn btn-white  ms-3"><i class="bx bx-chevron-right me-0"></i></button>
+                  </div>
+
+                  <li class="nav-item mr-1" role="presentation" style="float:right;">
+                    <a class="nav-link btn btn-outline-success" data-bs-toggle="tab" href="#primaryprofile" role="tab" aria-selected="false" style="font-size:1.1em;">
                       <div class="d-flex align-items-center">
-                        <div class="tab-icon"><i class='bx bx-user-pin font-18 me-1'></i>
+                        <div class="tab-icon"><i class="fadeIn animated bx bx-calendar-plus"></i></i>
                         </div>
                         <div class="tab-title">Add</div>
                       </div>
@@ -34,6 +42,10 @@
                   </li>
 
                 </ul>
+
+      
+                
+            
                 <div class="tab-content py-3" >
 
                   <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
@@ -47,13 +59,18 @@
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
                           </div>
-                        </div>
-                        <div class="col-12 col-lg-9 border">
-                          <div class="d-flex align-items-center justify-content-end">
-                            <button>hello</button>
+                          
+                          <div class="col-12 col-lg-12 text-center mt-5">
+                            <h5 for="Collection" class="form-label fw-bold mb-3"><i class="lni lni-mic"></i>Podcast</h5>
+                            <input type="file" class="form-control" id="inputGroupFile02">
                           </div>
                           
-                          <div class="tab-content overflow-auto p-3 border" style="overflow-x: hidden !important; max-height: 50vh; "> 
+                        </div>
+                        <div class="col-12 col-lg-9 border">
+
+                         
+                          
+                          <div class="tab-content overflow-auto p-3" style="overflow-x: hidden !important; max-height: 50vh; "> 
 
                             <div class="tab-pane fade" id="Pricing">
                               <div class="row g-3">
@@ -106,28 +123,39 @@
                             <div class="tab-pane fade show active" id="Shipping">
 
                             <!-- event -->
-                              <div>
+                              <div class="border border-secondary p-3 mb-5">
+                                <div class="d-flex justify-content-end">
+                                  <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
+                                  <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+                                </div>
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
                                     <h4 class="mb-2 ">Instrument Workshop</h4>
                                   </div>
                                 </div>
-                                <div class="row g-3 mt-2">
+
+                                <div class="row g-3 mt-2 mb-2">
                                   <div class="col-12 col-lg-12 ">
                                     <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
-
                                   </div>
 
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                    <p></p>
+                                    <h6 class="">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
                                   </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Announcement</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+              
+                                  </div>
+
                                 </div>
-                                <h6>Groups</h6>
+
+                                <h6 >Groups</h6>
                                 <div class="row row-cols-1 row-cols-lg-3 g-3">
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Worship Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -143,7 +171,7 @@
                                   </div>
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Media Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -157,7 +185,7 @@
                                   </div>
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Technical Team</h5>
                                         <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -174,7 +202,11 @@
                                 </div><!--end row-->
                               </div>
                             <!-- event -->
-                              <div>
+                            <div class="border border-secondary p-3 mb-5">
+                                <div class="d-flex justify-content-end">
+                                  <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
+                                  <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+                                </div>
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
                                     <h4 class="mb-2 ">Instrument Workshop</h4>
@@ -190,12 +222,19 @@
                                     <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
                                     <p></p>
                                   </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Announcement</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                                    <p></p>
+                                  </div>
                                 </div>
+
                                 <h6>Groups</h6>
                                 <div class="row row-cols-1 row-cols-lg-3 g-3">
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Worship Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -211,7 +250,7 @@
                                   </div>
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Media Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -225,7 +264,7 @@
                                   </div>
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Technical Team</h5>
                                         <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -242,7 +281,11 @@
                                 </div><!--end row-->
                               </div>
                               <!-- event -->
-                              <div>
+                              <div class="border border-secondary p-3 mb-5">
+                                <div class="d-flex justify-content-end">
+                                  <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
+                                  <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+                                </div>
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
                                     <h4 class="mb-2 ">Instrument Workshop</h4>
@@ -258,12 +301,18 @@
                                     <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
                                     <p></p>
                                   </div>
+
+                                  <div class="col-12 col-lg-12 ">
+                                    <h6 class="mb-2 ">Announcement</h6>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                                    <p></p>
+                                  </div>
                                 </div>
                                 <h6>Groups</h6>
                                 <div class="row row-cols-1 row-cols-lg-3 g-3">
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Worship Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -279,7 +328,7 @@
                                   </div>
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Media Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -293,7 +342,7 @@
                                   </div>
                                   
                                   <div class="col">
-                                    <div class="card">
+                                    <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
                                         <h5 class="card-title inline">Technical Team</h5>
                                         <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
@@ -397,33 +446,44 @@
                   <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
 
                   <div class="row">
-                    <div class="col-6">
-                          <label for="inputReligion" class="form-label">Event Type</label>
+                    <div class="col-4">
+                          <label for="inputReligion" class="form-label fw-bold" >Event Type</label>
                           <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
                           <option selected="" value="Catholic">Bible Study</option>
-                          <option value="Baptist">Baptist</option>
-                          <option value="Baptist">Islam</option>
+                          <option value="">Outreach</option>
+                          <option value="">Workshop</option>
                           <option value="Christianity ">Sunday Worship</option>
+                          <option value="">Praryer Meeting</option>
+                          <option value="">Baptismal</option>
+                          <option value="">Wedding</option>
                           </select>
+                      </div>  
+                      <div class="col-8"> 
+                          <label for="Collection" class="form-label fw-bold">Event Title</label>
+                          <input type="text" class="form-control" id="Collection" placeholder="">
                       </div>
+
                   </div>
                     
 
                     <div class="row mt-3">
 
-                        <div class="col-8 "> 
-                          <label for="Collection" class="form-label fw-bold">Event Title</label>
-                          <input type="text" class="form-control" id="Collection" placeholder="">
+                      
+
+                        <div class="col-6">
+                          <label class="form-label fw-bold">Date Range</label>
+                          <input type="text" class="form-control date-range" />
+                        </div>
+                        <div class="col-3">
+                          <label for="Collection" class="form-label fw-bold">Time Range</label>
+                          <input type="text" class="form-control time-picker" />
+                        </div>
+                        <div class="col-3">
+                          <label for="Collection" class="form-label fw-bold">&nbsp</label>
+                          <input type="text" class="form-control time-picker" />
                         </div>
 
-                        <div class="col-2">
-                          <label for="Collection" class="form-label fw-bold">Date</label>
-                          <input type="text" class="form-control" id="Collection" placeholder="">
-                        </div>
-                        <div class="col-2">
-                          <label for="Collection" class="form-label fw-bold">Time</label>
-                          <input type="text" class="form-control" id="Collection" placeholder="">
-                        </div>
+                        
                     </div>
 
                     <div class="row">
@@ -438,18 +498,20 @@
                       </div>
                     </div>
 
+
+              
+
                     <div class="row mt-3">
-                      <div class="col-6 ">
-    
-                        <label for="Collection" class="form-label fw-bold">Podcast</label>
-                        <input type="file" class="form-control" id="inputGroupFile02">
+                      <div class="col-12 ">
+                          <label for="Collection" class="form-label fw-bold">Announcement</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
                       </div>
                     </div>
 
 
 
                     <div class="col-12 d-flex justify-content-end mt-3">
-                      <button type="button" class="btn btn-outline-light px-5 radius-30 text-center" data-bs-toggle="modal" data-bs-target="#gggg"><i class="fadeIn animated bx bx-list-plus"></i>&nbsp;Group</button>
+                      <button type="button" class="btn btn-outline-dark px-5 radius-30 text-center" data-bs-toggle="modal" data-bs-target="#gggg"><i class="fadeIn animated bx bx-plus"></i><i class="fadeIn animated bx bx-group"></i>&nbsp;Group</button>
                     </div>
 
                     <div class="row row-cols-1 row-cols-lg-3 g-3 border-bottom pb-3 pt-3">
@@ -476,8 +538,8 @@
       
                     <div class="row pt-3">
                       <div class="col d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger me-3">Clear </button>
                         <button type="button" class="btn btn-success me-3">Save</button>
-                        <button type="button" class="btn btn-danger">Clear </button>
                       </div>
 
                       
@@ -560,16 +622,27 @@
             <input type="text" class="form-control" id="Collection" placeholder="">
           </div>
           <div class="mt-3">
-            <h6>Members</h6>
+            <div class="d-flex justify-content-between align-items-center">            
+              <h6 class="mb-0">Members</h6>
+              <button class="me-0 btn btn-success"><i class="fadeIn animated bx bx-user-plus"></i></button>
+            </div>
+
             <hr>
-            <div class="col-12 "> 
-              <label for="Collection" class="form-label fw-bold">Name</label>
-              <input type="text" class="form-control" id="Collection" placeholder="">
+            <div>
+              <div class="d-flex justify-content-end">
+                <button class="me-0 btn btn-danger"><i class="fadeIn animated bx bx-user-minus"></i></button>
+              </div>
+
+              <div class="col-12 "> 
+                <label for="Collection" class="form-label fw-bold">Name</label>
+                <input type="text" class="form-control" id="Collection" placeholder="">
+              </div>
+              <div class="col-12 "> 
+                <label for="Collection" class="form-label fw-bold">Email</label>
+                <input type="text" class="form-control" id="Collection" placeholder="">
+              </div>
             </div>
-            <div class="col-12 "> 
-              <label for="Collection" class="form-label fw-bold">Email</label>
-              <input type="text" class="form-control" id="Collection" placeholder="">
-            </div>
+          
 
           </div>
           
