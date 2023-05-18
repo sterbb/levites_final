@@ -229,3 +229,24 @@ document.addEventListener('DOMContentLoaded', function () {
 	  }
 	});
   });
+
+
+  // JavaScript
+document.getElementById('uploadButton').addEventListener('click', function () {
+	document.getElementById('fileInput').click();
+  });
+  
+  document.getElementById('fileInput').addEventListener('change', function () {
+	var file = this.files[0];
+	if (file) {
+	  uploadFile(file);
+	}
+  });
+  
+  function uploadFile(file) {
+	// Implement your file upload logic here
+	// You can use AJAX, fetch, or a form submission to send the file to the server
+	// Example:
+	console.log('Uploading file:', file.name);
+  }
+  

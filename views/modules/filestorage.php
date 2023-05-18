@@ -459,6 +459,42 @@
       <!--end breadcrumb-->
       <div class="row">
         <div class="col-12 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+            <h5 class="mt-2 mb-0">My Storage</h5>
+                      <p class="mb-1 mt-2"><span>1.2 GB</span>  <span class="float-end">2 GB</span>
+                      </p>
+                      <div class="progress" style="height: 7px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>  
+               <div class="d-flex align-items-center">
+                <div>
+                  <h6 class="mb-0 mt-4">Recent Files</h6>
+                  
+                </div>
+                <div class="ms-auto"><a href="javascript:;" class="btn btn-sm btn-outline-primary justify-content-center mt-4">View all</a>
+                </div>
+                
+              </div>
+              <div class="d-flex align-items-center">
+              <div><i class="bx bxs-file-pdf me-2 font-24 text-danger"></i>
+                          </div>
+                          <div class="font-weight-bold ">Sermon Details</div>
+              </div>
+              <div class="d-flex align-items-center mt-1">
+              <div><i class="bx bxs-file me-2 font-24 text-primary"></i>
+                          </div>
+                          <div class="font-weight-bold ">Daily Reading</div>
+              </div>
+              <div class="d-flex align-items-center mt-1">
+                 <div><i class="bx bxs-file-doc me-2 font-24 text-success"></i>
+                          </div>
+                          <div class="font-weight-bold">Note</div>
+              </div>
+           <div class="mb-3 border-top"></div>
+           
+            </div>
+          </div>
           <div class="card overflow-hidden">
             <div class="card-body">
             <h5 class="mb-0 text-Dark font-weight-bold">Affiliates</h5>
@@ -501,43 +537,7 @@
               
             </div>
           </div>
-          <div class="card">
-            <div class="card-body">
-            <h5 class="mt-2 mb-0">My Storage</h5>
-                      <p class="mb-1 mt-2"><span>1.2 GB</span>  <span class="float-end">2 GB</span>
-                      </p>
-                      <div class="progress" style="height: 7px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>  
-               <div class="d-flex align-items-center">
-                <div>
-                  <h6 class="mb-0 mt-4">Recent Files</h6>
-                  
-                </div>
-                <div class="ms-auto"><a href="javascript:;" class="btn btn-sm btn-outline-primary justify-content-center mt-4">View all</a>
-                </div>
-                
-              </div>
-              <div class="d-flex align-items-center">
-              <div><i class="bx bxs-file-pdf me-2 font-24 text-danger"></i>
-                          </div>
-                          <div class="font-weight-bold ">Sermon Details</div>
-              </div>
-              <div class="d-flex align-items-center mt-1">
-              <div><i class="bx bxs-file me-2 font-24 text-primary"></i>
-                          </div>
-                          <div class="font-weight-bold ">Daily Reading</div>
-              </div>
-              <div class="d-flex align-items-center mt-1">
-                 <div><i class="bx bxs-file-doc me-2 font-24 text-success"></i>
-                          </div>
-                          <div class="font-weight-bold">Note</div>
-              </div>
-           <div class="mb-3 border-top"></div>
-            </div>
-            
-          </div>
-          
+
         </div>
         <div class="col-12 col-lg-9">
           <div class="card">
@@ -565,9 +565,14 @@
                           </li>
                         </ul>
                       </div>
+                                          <!-- HTML -->
+                    <input type="file" id="fileInput" style="display: none;">
+                    <button id="uploadButton" class="btn btn-outline-secondary">Upload File</button>
+
                   </div>
                 </div>
               </div>
+              
               
               <div class="mt-3">
               <h5>Folders</h5>
@@ -897,23 +902,130 @@
                   </div>
                 </div>
                 <hr>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center m-0">
-                  <li class="page-item"><a class="page-link" href="javascript:;">Previous</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="javascript:;javascript:;">1</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="javascript:;">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="javascript:;">3</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="javascript:;">Next</a>
-                  </li>
-                </ul>
-              </nav>
-                
+            
               </div>
               <!--end row-->
+              <div class="d-flex align-items-center">
+                <div>
+                  <h5 class="mb-0">Uploaded Files</h5>
+                </div>
+                <div class="ms-auto"><a href="javascript:;" class="btn btn-sm btn-outline-secondary">View all</a>
+                </div>
+              </div>
+              <div class="table-responsive mt-3">
+                <table class="table table-striped table-hover table-sm mb-0">
+                  <thead>
+                    <tr>
+                      <th>Name <i class="bx bx-up-arrow-alt ms-2"></i>
+                      </th>
+                      <th>Date uploaded</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file-pdf me-2 font-24 text-danger"></i>
+                          </div>
+                          <div class="font-weight-bold text-danger">Sermon Details</div>
+                        </div>
+                      </td>
+                      <td>Sep 3, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file me-2 font-24 text-primary"></i>
+                          </div>
+                          <div class="font-weight-bold text-primary">Daily Reading</div>
+                        </div>
+                      </td>
+                      <td>Jun 12, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file-doc me-2 font-24 text-success"></i>
+                          </div>
+                          <div class="font-weight-bold text-success">Note</div>
+                        </div>
+                      </td>
+                      <td>Sep 8, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file-pdf me-2 font-24 text-danger"></i>
+                          </div>
+                          <div class="font-weight-bold text-danger">Meeting Report</div>
+                        </div>
+                      </td>
+                      <td>Aug 28, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file me-2 font-24 text-primary"></i>
+                          </div>
+                          <div class="font-weight-bold text-primary">Project Documents</div>
+                        </div>
+                      </td>
+                      <td>Aug 17, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+              
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file me-2 font-24 text-primary"></i>
+                          </div>
+                          <div class="font-weight-bold text-primary">How to Create a Case Study</div>
+                        </div>
+                      </td>
+                      <td>Jun 12, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file me-2 font-24 text-primary"></i>
+                          </div>
+                          <div class="font-weight-bold text-primary">Landing Page Structure</div>
+                        </div>
+                      </td>
+                      <td>Jul 17, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div><i class="bx bxs-file-doc me-2 font-24 text-success"></i>
+                          </div>
+                          <div class="font-weight-bold text-success">Review Checklist Template</div>
+                        </div>
+                      </td>
+                      <td>Sep 8, 2019</td>
+                      <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
               
     </main>
      <!--end main content-->
