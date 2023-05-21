@@ -1604,44 +1604,6 @@ a {
 	
   }
 
-  .filter {
-	background-color: transparent;
-	border: none;
-	padding: 10px;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	
-  }
-  
-  .filter:hover {
-	background-color: #dcdcdc;
-  }
-  
-  .filter i {
-	color: #555555;
-	transition: color 0.3s ease;
-  }
-  
-  .filter:hover i {
-	color: #0b5ed7;
-  }
-
-.pinned-button {
-	background-color: transparent;
-	border: none;
-	color: #afadad;
-	cursor: pointer;
-	font-size: 20px;
-	transition: transform 0.3s ease;
-  }
-  
-.pinned-button.clicked {
-	background-color: transparent;
-	color: #0b5ed7;
-	transform: rotate(45deg);
-  }
-
 .email-toggle-btn {
 	width: auto;
 	height: auto;
@@ -1907,3 +1869,78 @@ a {
 		display: none
 	}
 }
+.filter {
+	background-color: transparent;
+	border: none;
+	padding: 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	
+  }
+  
+  .filter:hover {
+	background-color: #dcdcdc;
+  }
+  
+  .filter i {
+	color: #555555;
+	transition: color 0.3s ease;
+  }
+  
+  .filter:hover i {
+	color: #0b5ed7;
+  }
+
+.pinned-button {
+	background-color: transparent;
+	border: none;
+	color: #afadad;
+	cursor: pointer;
+	font-size: 20px;
+	transition: transform 0.3s ease;
+  }
+  
+.pinned-button.clicked {
+	background-color: transparent;
+	color: #0b5ed7;
+	transform: rotate(45deg);
+  }
+
+  .bi-plus{
+	color: #0b5ed7;
+
+  }
+
+  .si{
+	font-size: 20px;
+  }
+
+  .dropdown-item .si{
+	margin-right: 10px;
+  }
+
+  .dropdown-item {
+	display: flex; 
+	align-items: center;
+  }
+  
+  .dropdown-item .fi{
+	margin-right: 5px;
+  }
+
+  .upload-file {
+	margin-top: 15px; /* Adjust the margin-top value to move the button down */
+	margin-right: 30px;
+	top: 0;
+  	right: 2.5rem;
+	
+  }
+
+  .dropdown-item .upicon {
+	margin-right: 5px;
+  }
+
+  .btn .upicon {
+	margin-left: 5px;
+  }
