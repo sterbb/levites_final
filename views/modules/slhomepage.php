@@ -1,75 +1,69 @@
-<main class="page-content bg-dark">
-    <div class="card">
-					<div class="card-body bg-dark">
-						<nav class="navbar navbar-expand-lg navbar-dark  ">
-							<div class="container-fluid ">	<a class="navbar-brand " href="signup"><span class="h2">LEVITES</span></a>
-								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-								</button>
-								<div class="collapse navbar-collapse" id="navbarSupportedContent1">
+<main class="page-content ">
+<div class="card ">
+	<div class="card-body ">
+		<nav class="navbar navbar-expand-xl navbar-light ">
+		<div class="container-fluid"><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse text-center " id="navbarSupportedContent1">
+		<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+		    <li  class="nav-item">
+		    <div class="btn-group text-center " role="group">
+		    <a class="nav-link active" href="a">A</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/b.html">B</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/c.html">C</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/d.html">D</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/e.html">E</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/f.html">F</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/g.html">G</a>
+		    <a class="nav-link active"href="//www.azlyrics.com/h.html">H</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/i.html">I</a>
+		    <a class="nav-link active"ref="//www.azlyrics.com/j.html">J</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/k.html">K</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/l.html">L</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/m.html">M</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/n.html">N</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/o.html">O</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/p.html">P</a>
+		    <a class="nav-link active"href="//www.azlyrics.com/q.html">Q</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/r.html">R</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/s.html">S</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/t.html">T</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/u.html">U</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/v.html">V</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/w.html">W</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/x.html">X</a>
+		    <a class="nav-link active"href="//www.azlyrics.com/y.html">Y</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/z.html">Z</a>
+		    <a class="nav-link active" href="//www.azlyrics.com/19.html">#</a>
+		    </div>
+		    </li>
+		    </ul>
 
-
-
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li  class="nav-item">
-                                    <div class="btn-group text-center " role="group">
-                                    <a class="nav-link active" href="a">A</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/b.html">B</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/c.html">C</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/d.html">D</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/e.html">E</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/f.html">F</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/g.html">G</a>
-                                    <a class="nav-link active"href="//www.azlyrics.com/h.html">H</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/i.html">I</a>
-                                    <a class="nav-link active"ref="//www.azlyrics.com/j.html">J</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/k.html">K</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/l.html">L</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/m.html">M</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/n.html">N</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/o.html">O</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/p.html">P</a>
-                                    <a class="nav-link active"href="//www.azlyrics.com/q.html">Q</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/r.html">R</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/s.html">S</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/t.html">T</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/u.html">U</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/v.html">V</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/w.html">W</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/x.html">X</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/y.html">Y</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/z.html">Z</a>
-                                    <a class="nav-link active" href="//www.azlyrics.com/19.html">#</a>
-                                    
-                                    </div>
-
-                                    
-                                    </li>
-                                    </ul>
-
-                                    <div class="col-2" style="padding-right:20px">
-                                        <select class="form-select border-1 " id="inputSelectCountry" aria-label="Default select example" onchange="location = this.value; ">
-                                        <option selected="" style="font-weight:bold; color:aquamarine;"><span style="color:aquamarine">Category
-                                    </span></option>
-                                        <option value="lyrics"><a class="nav-link active" href="login.php" ></a>Songs</option>
-                                        <option value="artist"><a href="artist"></a>Artist</option>
-                                        <option value="album"><a href="albums"></a>Albums</option>
-                                        <option value="playlist"><a href="playlist"></a>Playlist</option>
-                                        </select>
-                                    </div>
-
-									<form class="d-flex nav-search">
-                                
-										<div class="input-group ">
-											<input type="text" class="form-control" placeholder="Some" />
-											<button class="btn border border-grey" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-light"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-											</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</nav>
-					</div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-6 p-3 ">
+                        <select class="form-select border border-dark" id="inputSelectCountry" aria-label="Default select example" onchange="location = this.value; ">
+                        <option selected="" value="disabled" style="font-weight:bold; color:aquamarine;"><span style="color:aquamarine">Category
+                        </span></option>
+                        <option value="songlist"><a class="nav-link active" href="" ></a>Songs List</option>
+                        <option value="lyrics"><a href=""></a>Lyrics</option>
+                        <option value="slhomepage"><a href=""></a>Homepage</option>
+                        </select>
+                    </div>
+                    
+                    <form class="d-flex nav-search col-4 col-sm-4 col-md-4 col-lg-4 col-xl-6 ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control border border-dark " placeholder="Some" />
+                            <button class="btn border border-dark " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </button> 
+                        </div>
+                    </form>
+                </div>
 				</div>
+			</div>
+		</nav>
+	</div>
+</div>
          
 
 
@@ -78,6 +72,7 @@
              <div class="col-xs-12 text-left p-4 artist-col">
               <h2>HOT SONGS</h2>
              </div>
+             
             
 
             <div class="row justify-content-center p" >
@@ -113,7 +108,7 @@
 				<div class=" row row-cols-1 row-cols-lg-4  row-cols-xl-4 p-3 justify-content-center ">
 					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
 						<div class="card border-warning border-bottom border-3 border-0  h-100">
-							<img src="views/img/c1.png" class="card-img-top" alt="...">
+							<img src="views/SLimg/c1.png" class="card-img-top" alt="...">
 							<div class="card-body ">
 								<h6 class=" text-light">God Is Here As We His People</h6> 
                                <div class="">
@@ -125,7 +120,7 @@
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
 						<div class="card border-danger border-bottom border-3 border-0 h-100">
-							<img src="views/img/c2.png" class="card-img-top" alt="...">
+							<img src="views/SLimg/c2.png" class="card-img-top" alt="...">
 							<div class="card-body ">
 								<h6 class="text-light">O Church Arise</h6>
 								<div class="">
@@ -137,7 +132,7 @@
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
 						<div class="card border-success border-bottom border-3 border-0 h-100">
-							<img src="views/img/c3.png" class="card-img-top" alt="...">
+							<img src="views/SLimg/c3.png" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h6 class="card-title text-light">For I'm Building A People Of Power</h6>
 								<div class="">
@@ -149,7 +144,7 @@
 					</div>
 					<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
 						<div class="card border-primary border-bottom border-3 border-0 h-100">
-							<img src="views/img/c4.png" class="card-img-top" alt="...">
+							<img src="views/SLimg/c4.png" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h6 class="card-title text-light">Spirit Touch Your Church</h6>
                                 <div class="">
@@ -175,22 +170,22 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="1000">
-            <img src="views/img/c5.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+            <img src="views/SLimg/c5.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption text-white d-none d-md-block">
               <h3>First slide label</h3>
-              <p class="text-light">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <p class="text-white">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </div>
           </div>
           <div class="carousel-item" data-bs-interval="2000">
-            <img src="views/img/c6.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+            <img src="views/SLimg/c6.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption text-white d-none d-md-block">
               <h3>Second slide label</h3>
               <p class="text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="views/img/c7.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+            <img src="views/SLimg/c7.png" class="d-block w-100" alt="...">
+            <div class="carousel-caption text-white d-none d-md-block">
               <h3>Third slide label</h3>
               <p class="text-light">Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
             </div>
