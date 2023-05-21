@@ -33,6 +33,8 @@
     <link href="views/assets/css/semi-dark-theme.css" rel="stylesheet">
     <link href="views/assets/css/minimal-theme.css" rel="stylesheet">
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
+    <link href="views/assets/css/style.css" rel="stylesheet">
+
 
 
 
