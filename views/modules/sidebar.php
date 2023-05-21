@@ -60,14 +60,11 @@ $account_type = "admin";
                     <div class="menu-title">Songs and Lyrics</div>
                   </a>
                   <ul>
-                    <li> <a href="songlist"><span class="material-symbols-outlined">arrow_right</span>Song List / Homepage</a>
-                    </li>
-                    
+                  <li><a href="slhomepage" ><span class="material-symbols-outlined">arrow_right</span>Song and Lyrics Homepage</a></li>       
                     <li><a class="has-arrow" href="javascript:;"><span class="material-symbols-outlined">arrow_right</span>Song Pages</a>
                       <ul>
-                        <li><a href="lyrics"><span class="material-symbols-outlined">arrow_right</span>Lyrics</a></li>
-                        <li><a href="slhomepage" ><span class="material-symbols-outlined">arrow_right</span>Song and Lyrics Homepage</a></li>
-      
+                      <li> <a href="songlist"><span class="material-symbols-outlined">arrow_right</span>Song List</a></li>
+                        <li><a href="lyrics"><span class="material-symbols-outlined">arrow_right</span>Lyrics</a></li> 
                       </ul>
                     </li>
                   </ul>
