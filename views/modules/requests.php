@@ -237,28 +237,22 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Vertically Centered</button>
     <!-- Modal -->
     <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered moda-lg">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Request Collaboration</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="mb-4">  
-                <label for="single-select-clear-field" class="form-label">Single select w/ allow clear</label>
-                <select class="form-select" id="single-select-clear-field" data-placeholder="Choose one thing">
-                    <option></option>
-                    <option>Reactive</option>
-                    <option>Solution</option>
-                    <option>Conglomeration</option>
-                    <option>Algoritm</option>
-                    <option>Holistic</option>
-                </select>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-12">  
+                <label for="single-select-clear-field" class="form-label">Search Churches</label>
+                <input class="form-control px-2 " type="search" placeholder="Search Church">
+                
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-outline-secondary rounded-5 btn-md border-2 pr-3 " data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-success rounded-5 btn-md border-2 pr-3 ">Search</button>
         </div>
         </div>
     </div>
