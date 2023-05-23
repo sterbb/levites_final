@@ -214,9 +214,10 @@
                                 <div class=" d-flex align-items-center">
                                     <div class="accordion  col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 " id="accordionExample">
                                         <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingTwo">  
-                                            <button class="accordion-button collapsed" id="NewItem" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-weight:bold">
-                                            Sunday Line Up
+                                        <h2 class="accordion-header" id="headingTwo"> 
+                                             
+                                            <button class="accordion-button collapsed" id="NewItem" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <input class="border-1" placeholder="" value="Sunday Line Up" readonly  style="font-weight:bold"></input>
                                             </button>
                                         </h2>
 
@@ -271,19 +272,19 @@
                                     </div>
                                 </div>
 
-                                    <button type="button" class="btn d-fixed btn-light border border-1 ms-1" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-info"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    <button type="button" class="btn d-fixed btn-light border border-1 ms-1" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                     </button>
 
-
-                                
                                     <button type="button" class="btn btn-light border border-1 ms-1" data-bs-toggle="dropdown"><svg       xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical text-warning"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                     </button>
 
                                 
                                     <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" >Add Song</a>
+                                        </li>
                                         <li><a class="dropdown-item" type="button" >Dowload Playlist Songs</a>
                                         </li>
-                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#EditPlaylist" >Edit Playlist</a>
+                                        <li><a class="dropdown-item" type="button" >Edit Playlist</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
@@ -324,7 +325,7 @@
                                      </div>
                                 </div>  
 
-                                    <button type="button" class="btn btn-light border border-1 ms-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-info"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    <button type="button" class="btn btn-light border border-1 ms-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                     </button>
 
                                     <button type="button" class="btn btn-light border border-1 ms-1" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical text-warning"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
@@ -494,9 +495,8 @@
             </div>
 
 
-            <div class="col" >
-                  <!-- Button trigger modal -->
-                  <!-- Modal -->
+          <!--  <div class="col" >
+                 
                   <div class="modal fade" id="EditPlaylist" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md">
                       <div class="modal-content">
@@ -520,10 +520,107 @@
                     </div>
                 </div>
                 </div>
+            </div>-->
+
+            <div class="col">
+                <!-- Button trigger modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="AddSongs" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered moda-lg">
+                    <div class="modal-content">
+                    <div class="modal-header bg-warning ">
+                        <h5 class="modal-title">Add Songs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">  
+                            <label for="single-select-clear-field" class="form-label">Search Songs</label>
+                            <input type="search" id="searchBar" class="form-control" placeholder="">
+                            <ul id="searchResults"  class="list-group mt-2 dropdown-menu"></ul> 
+                        </div>
+                        <div class="row">
+                                <div class=" d-flex align-items-center mb-3 mt-3">
+                                    <div class="accordion col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11" id="accordionExample">
+                                        <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">  
+                                            <button class="accordion-button collapsed" id="NewItem" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-weight:bold">
+                                            Sunday Line Up
+                                            </button>
+                                        </h2>
+
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                <li class="d-flex justify-content-between align-items-center">
+                                                    <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
+                                                    <div>
+                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                    </div>
+                                                </li> 
+                                                    
+    
+                                                <li class="d-flex justify-content-between align-items-center mt-1">
+                                                    <a href=""><span class=" " type="text" value="" id="flexCheckDefault">Artist 5</span></a>      
+                                                    <div>
+                                                        <button class="btn btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                    </div>
+                                                </li>                                       
+                                                
+                                                <li class="d-flex justify-content-between align-items-center mt-1 ">
+                                                    <a href=""><span class=" " type="text" value="" id="flexCheckDefault">Set Stori</span></a>
+                                                    <div>
+                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                    </div>
+                                                </li>   
+
+                                                <li class="d-flex justify-content-between align-items-center mt-1">
+                                                    <a href=""> <p class=" " type="text" value="" id="flexCheckDefault">Angklung Preman Pensiun</p></a>
+                                                    <div>
+                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                    </div>
+                                                </li>   
+                                                
+                                                <li class="d-flex justify-content-between align-items-center mt-1">
+                                                    <a href=""> <span class=" " type="text" value="" id="flexCheckDefault">Canon Rock (JerryC) by Funtwo</span></a>
+                                                    <div>
+                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                    </div>
+                                                </li>   
+
+                                                <li class="d-flex justify-content-between align-items-center mt-1">
+                                                    <a href=""><span class=" " type="text" value="" id="flexCheckDefault">105.9 FM Ardan Radio Streaming Radio</span></a>
+                                                    <div>
+                                                        <button class="btn btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                    </div>
+                                                </li>   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">  
+                                <button type="button" class="btn d-fixed btn-light border border-1 ms-1" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </button>
+                                </div>
+
+                        
+                    </div>
+                    <div class="modal-footer">
+                       
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
               
                         
 </main> 
+<style>
+    .newCollapsed {
+      display: none;
+    }
+  </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   
 
 
 <script>
@@ -536,15 +633,79 @@ function printDiv(divName) {
 
      document.body.innerHTML = originalContents;   
 }
-
-
-
 </script>
 
 <script>
- 
-    
-</script>
+    var data = [
+      { id: 1, name: "Joy of Jesus" },
+      { id: 2, name: "Holy Spirit Grooves" },
+      { id: 3, name: "Gospel Glory" },
+      { id: 4, name: "God’s Rockin’ Tunes" },
+      { id: 5, name: "Blessed Beats" },
+      { id: 6, name: "Songs Of Praise" }
+     
+    ];
+
+    function search(query) {
+      var results = [];
+      query = query.toLowerCase();
+
+      for (var i = 0; i < data.length; i++) {
+        var item = data[i];
+
+        if (item.name.toLowerCase().includes(query)) {
+          results.push(item);
+        }
+      }
+
+      return results;
+    }
+
+    function displayResults(results) {
+      var searchResults = document.getElementById("searchResults");
+      searchResults.innerHTML = "";
+
+      if (results.length === 0) {
+        searchResults.style.display = "none";
+        return;
+      }
+
+      for (var i = 0; i < results.length; i++) {
+        var result = results[i];
+        var listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.textContent = result.name;
+        listItem.addEventListener("click", function() {
+          document.getElementById("searchBar").value = this.textContent;
+          searchResults.style.display = "none";
+        });
+        searchResults.appendChild(listItem);
+      }
+
+      searchResults.style.display = "block";
+    }
+
+    var searchBar = document.getElementById("searchBar");
+    var searchResults = document.getElementById("searchResults");
+
+    searchBar.addEventListener("input", function() {
+      var query = this.value;
+      var results = search(query);
+      displayResults(results);
+    });
+
+    searchBar.addEventListener("focus", function() {
+      if (this.value.trim() !== "") {
+        searchResults.style.display = "block";
+      }
+    });
+
+    document.addEventListener("click", function(event) {
+      if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+        searchResults.style.display = "none";
+      }
+    });
+  </script>
 
 
                                      
