@@ -35,81 +35,81 @@ $(document).ready(function() {
     })
 
 
-       // chart 8
-    var options = {
-      series: [44, , 13, 43, 22],
-      chart: {
-        foreColor: '#9ba7b2',
-        height: 500,
-        type: 'pie',
-      },
-      colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
-      labels: ['Spreedshett', 'Document', 'PDFs', 'Presentations', 'Forms'],
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            height: 500
-          },
-          legend: {
-            position: 'bottom'
-          }
-        }
-      }]
-    };
-    var chart = new ApexCharts(document.querySelector("#chart8"), options);
-    chart.render(); 
+   
+	// chart 8
+	var options = {
+		series: [44, 55, 13, 43, 22],
+		chart: {
+			foreColor: '#9ba7b2',
+			height: 330,
+			type: 'pie',
+		},
+		colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
+		labels: ['Document', 'Forms', 'PDFs', 'Presentations', 'Spreedsheet'],
+		responsive: [{
+			breakpoint: 480,
+			options: {
+				chart: {
+					height: 360
+				},
+				legend: {
+					position: 'bottom'
+				}
+			}
+		}]
+	};
+	var chart = new ApexCharts(document.querySelector("#chart8"), options);
+	chart.render();
 
-    // chart stat
-    var options = {
-      series: [44, , 13, 43, 22],
-      chart: {
-        foreColor: '#9ba7b2',
-        height: 500,
-        type: 'pie',
-      },
-      colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
-      labels: ['Spreedshett', 'Document', 'PDFs', 'Presentations', 'Forms'],
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            height: 500
-          },
-          legend: {
-            position: 'bottom'
-          }
-        }
-      }]
-    };
-    
-    var chart = new ApexCharts(document.querySelector("#chartStat"), options);
-    chart.render(); 
+  	// chart 8
+	var options = {
+		series: [44, 55, 13, 43, 22],
+		chart: {
+			foreColor: '#9ba7b2',
+			height: 330,
+			type: 'pie',
+		},
+		colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
+		labels: ['Document', 'Forms', 'PDFs', 'Presentations', 'Spreedsheet'],
+		responsive: [{
+			breakpoint: 480,
+			options: {
+				chart: {
+					height: 360
+				},
+				legend: {
+					position: 'bottom'
+				}
+			}
+		}]
+	};
+	var chart = new ApexCharts(document.querySelector("#chartStat"), options);
+	chart.render();
 
-    // chart New
-    var options = {
-      series: [44, , 13, 43, 22],
-      chart: {
-        foreColor: '#9ba7b2',
-        height: 500,
-        type: 'pie',
-      },
-      colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
-      labels: ['Spreedshett', 'Document', 'PDFs', 'Presentations', 'Forms'],
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            height: 500
-          },
-          legend: {
-            position: 'bottom'
-          }
-        }
-      }]
-    };
-    var chart = new ApexCharts(document.querySelector("#chartNew"), options);
-    chart.render(); 
+	// chart 8
+	var options = {
+		series: [44, 55, 13, 43, 22],
+		chart: {
+			foreColor: '#9ba7b2',
+			height: 330,
+			type: 'pie',
+		},
+		colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
+		labels: ['Document', 'Forms', 'PDFs', 'Presentations', 'Spreedsheet'],
+		responsive: [{
+			breakpoint: 480,
+			options: {
+				chart: {
+					height: 360
+				},
+				legend: {
+					position: 'bottom'
+				}
+			}
+		}]
+	};
+	var chart = new ApexCharts(document.querySelector("#chartNew"), options);
+	chart.render();
 
 
     // marker map
@@ -130,8 +130,6 @@ $(document).ready(function() {
 
   });
 
-
-  
   // Public Folder content
   $("#public_folder").click(function(){
   
@@ -150,7 +148,6 @@ $(document).ready(function() {
     // Code to go back to the specific ID
     window.location.href = "filestorage";
   });
-
 
   $(function() {
     for (var e = window.location, o = $(".sidebar-wrapper .metismenu li a").filter(function() {
