@@ -67,15 +67,15 @@
 
 
                     <div class="d-flex justify-content-between">
-                      <p class="fw-bold text-white">Instrument workshop</p>
+                      <p class="fw-bold text-dark">Instrument workshop</p>
                       <p class="fw-semi-bold">1:30 PM</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                      <p class="fw-bold text-white">Meeting</p>
+                      <p class="fw-bold text-dark">Meeting</p>
                       <p class="fw-semi-bold">5:30 PM</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                      <p class="fw-bold text-white">Outreach</p>
+                      <p class="fw-bold text-dark">Outreach</p>
                       <p class="fw-semi-bold">8:00 PM</p>
                     </div>
                   </div>
@@ -170,12 +170,96 @@
                 </div>
               </div>
             </div>
-           </div>
-         </div><!--end row-->
+          </div>
+          
          
+          
+          <div class="col-12 col-lg-4 d-flex">
+            <div class="row">
+                <div class="col-12 col-lg-4 col-xl-12 d-flex">
+              <div class="card">
+                  <div class="card-body text-center">
+                    <h4 class="card-title fw-bold text-center text-black">Podcast</h4>
+                    <p class="fw-semi-bold " style="margin-top: -8px; ">Bishop Patricio A. Buzon</p>
+                      <audio controls autoplay>
+                          <source src="horse.ogg" type="audio/ogg">
+                          <source src="horse.mp3" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                      </audio>
+                    <button type="button" class="btn btn-outline-dark mt-3 px-5"><span class="material-symbols-outlined">cloud_download</span>Download</button>
+                      
+                  </div>
+                </div>
+            </div>
 
-
-
-      
-    </main>
+            <div class="col-12 col-lg-4 col-xl-12 ">
+                <div class="card">
+                  <div class="card-body">
+                      <div class="text-center ">
+                          <h5 class="mb-3 fw-bold ">Daily Readings</h5>
+                          <div class="row">
+                              <h2> Second Sunday of Easter (or Sunday of Divine Mercy)</h2>
+                              <p>Lectionary: 43</p>
+                          </div>
+                      </div>
+                      <div class="row mt-4 px-5">
+                          <div class="d-flex justify-content-between border-bottom border-white mb-3">
+                              <h4>Reading 1 </h4>
+                              <div>
+                                  Acts 2:42-47
+                              </div>
+                          </div>
+                          <div class="text-wrap" style="font-size:20px;" >
+                              <p>They devoted themselves<br>to the teaching of the apostles and to the communal life,<br>to the breaking of bread and to the prayers.<br>Awe came upon everyone,<br>and many wonders and signs were done through the apostles.<br>All who believed were together and had all things in common;<br>they would sell their property and possessions<br>and divide them among all according to each one’s need.<br>Every day they devoted themselves<br>to meeting together in the temple area<br>and to breaking bread in their homes.<br>They ate their meals with exultation and sincerity of heart,<br>praising God and enjoying favor with all the people.<br>And every day the Lord added to their number those who were being saved.</p>
+                
+                          </div>
+                      </div>
+                      <div class="row mt-4 px-5">
+                          <div class="d-flex justify-content-between border-bottom border-white mb-3">
+                              <h4>Responsorial Psalm</h4>
+                              <div>
+                              Ps 118:2-4, 13-15, 22-24
+                              </div>
+                          </div>
+                          <div class="text-wrap" style="font-size:20px;" >
+                          <p>R. (1) <strong>Give thanks to the LORD for he is good, his love is everlasting.</strong><br>
+                              or:<br>
+                              R. <strong>Alleluia.</strong><br>
+                              Let the house of Israel say,<br>
+                              “His mercy endures forever.”<br>
+                              Let the house of Aaron say,<br>
+                              “His mercy endures forever.”<br>
+                              Let those who fear the LORD say,<br>
+                              “His mercy endures forever.”<br>
+                              R. <strong>Give thanks to the LORD for he is good, his love is everlasting.</strong><br>
+                              or:<br>
+                              R. <strong>Alleluia.</strong><br>
+                              I was hard pressed and was falling,<br>
+                              but the LORD helped me.<br>
+                              My strength and my courage is the LORD,<br>
+                              and he has been my savior.<br>
+                              The joyful shout of victory<br>
+                              in the tents of the just:<br>
+                              R. <strong>Give thanks to the LORD for he is good, his love is everlasting.</strong><br>
+                              or:<br>
+                              R.<strong> Alleluia.</strong><br>
+                              The stone which the builders rejected<br>
+                              has become the cornerstone.<br>
+                              By the LORD has this been done;<br>
+                              it is wonderful in our eyes.<br>
+                              This is the day the LORD has made;<br>
+                              let us be glad and rejoice in it.<br>
+                              R. <strong>Give thanks to the LORD for he is good, his love is everlasting.</strong><br>
+                              or:<br>
+                              R. <strong>Alleluia.</strong></p>
+                
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!--end row-->        
+</main>
     <!--end main content-->

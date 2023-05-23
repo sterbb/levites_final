@@ -8,14 +8,17 @@
     <link rel="icon" href="views/images/logo.png" type="image/x-icon">
 
 
-	    <!--plugins-->
-		<link href="views/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+	<!--plugins-->
+	<link href="views/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
     <link href="views/assets/plugins/fullcalendar/css/main.min.css" rel="stylesheet">
     <link href="views/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
     <link href="views/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
     <link href="views/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+	<link href="views/assets/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet">
+	<link href="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet">
+
 
     <!-- loader-->
     <link href="views/assets/css/pace.min.css" rel="stylesheet">
@@ -33,6 +36,8 @@
     <link href="views/assets/css/semi-dark-theme.css" rel="stylesheet">
     <link href="views/assets/css/minimal-theme.css" rel="stylesheet">
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
+	<link href="views/assets/css/style.css" rel="stylesheet">
+
 
 
 
@@ -52,13 +57,13 @@
 			$_GET["route"] == 'forgotpassword' ||
 			$_GET["route"] == 'resetpassword' ||	
 			$_GET["route"] == 'accounts' ||
-			$_GET["route"] == 'publichomepage' ||
-			$_GET["route"] == 'churchpage'||
-			$_GET["route"] == 'catdetails'||
-			$_GET["route"] == 'adminhomepage'||
-			$_GET["route"] == 'reportgen'||
-			$_GET["route"] == 'churchcalendar' ||
-			$_GET["route"] == 'songlist' || 
+            $_GET["route"] == 'publichomepage' ||
+            $_GET["route"] == 'churchpage'||
+            $_GET["route"] == 'catdetails'||
+            $_GET["route"] == 'adminhomepage'||
+            $_GET["route"] == 'reportgen'||
+            $_GET["route"] == 'churchcalendar' ||
+            $_GET["route"] == 'songlist' || 
 			$_GET["route"] == 'filestorage' || 
 			$_GET["route"] == 'lyrics'|| 
 			$_GET["route"] == 'requests'|| 
@@ -67,6 +72,7 @@
 			$_GET["route"] == 'profile'||
 			$_GET["route"] == 'publicsettings'||
 			$_GET["route"] == 'superuser'||
+			$_GET["route"] == 'accountsettings'||
 			$_GET["route"] == 'publicregistration' ||
 			$_GET["route"] == 'requestPassword'){
 
@@ -114,15 +120,24 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="views/assets/plugins/input-tags/js/tagsinput.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-	<script src="assets/plugins/select2/js/select2-custom.js"></script>4
+	<script src="views/assets/plugins/select2/js/select2-custom.js"></script>
+
+	<script src="views/assets/plugins/fancy-file-uploader/jquery.ui.widget.js"></script>
+	<script src="views/assets/plugins/fancy-file-uploader/jquery.fileupload.js"></script>
+	<script src="views/assets/plugins/fancy-file-uploader/jquery.iframe-transport.js"></script>
+	<script src="views/assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
+	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+
+	
+
 	
 	<!-- customize analystics -->
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
 	<script src="views/assets/js/index.js"></script>
 
 	   <!-- google maps api -->
-	   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
-		<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
+	<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
 
     
     <!--BS Scripts-->
@@ -329,13 +344,22 @@
 			dateFormat: "Y-m-d",
 		});
 
-		
-
-
-
-
-
 </script>
+
+<script>
+		$('#fancy-file-upload').FancyFileUpload({
+			params: {
+				action: 'fileuploader'
+			},
+			maxfilesize: 1000000
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			$('#image-uploadify').imageuploadify();
+		})
+	</script>
+
 
 
 </body>

@@ -234,33 +234,100 @@
 
 <div class="col">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Vertically Centered</button>
     <!-- Modal -->
     <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered moda-lg">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Request Collaboration</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="mb-4">  
-                <label for="single-select-clear-field" class="form-label">Single select w/ allow clear</label>
-                <select class="form-select" id="single-select-clear-field" data-placeholder="Choose one thing">
-                    <option></option>
-                    <option>Reactive</option>
-                    <option>Solution</option>
-                    <option>Conglomeration</option>
-                    <option>Algoritm</option>
-                    <option>Holistic</option>
-                </select>
+            <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-12 ">  
+                <label for="single-select-clear-field" class="form-label">Search Churches</label>
+                <input type="search" id="searchBar" class="form-control" placeholder="Search Churches">
+                <ul id="searchResults"  class="list-group mt-2 dropdown-menu"></ul>
+                
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-outline-secondary rounded-5 btn-md border-2 pr-3 " data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-success rounded-5 btn-md border-2 pr-3 ">Search</button>
         </div>
         </div>
     </div>
     </div>
 </div>
+
+<script>
+    var data = [
+      { id: 1, name: "San Sebastian Cathedral" },
+      { id: 2, name: "Our Lady of the Miraculous Medal Parish" },
+      { id: 3, name: "San Sebastian Cathedral (Bacolod)" },
+      { id: 4, name: "Lupit Church" },
+      { id: 5, name: "Abad Church (Bacolod)" },
+      { id: 6, name: "Christ the Living God Fellowship Bacolod" }
+     
+    ];
+
+    function search(query) {
+      var results = [];
+      query = query.toLowerCase();
+
+      for (var i = 0; i < data.length; i++) {
+        var item = data[i];
+
+        if (item.name.toLowerCase().includes(query)) {
+          results.push(item);
+        }
+      }
+
+      return results;
+    }
+
+    function displayResults(results) {
+      var searchResults = document.getElementById("searchResults");
+      searchResults.innerHTML = "";
+
+      if (results.length === 0) {
+        searchResults.style.display = "none";
+        return;
+      }
+
+      for (var i = 0; i < results.length; i++) {
+        var result = results[i];
+        var listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.textContent = result.name;
+        listItem.addEventListener("click", function() {
+          document.getElementById("searchBar").value = this.textContent;
+          searchResults.style.display = "none";
+        });
+        searchResults.appendChild(listItem);
+      }
+
+      searchResults.style.display = "block";
+    }
+
+    var searchBar = document.getElementById("searchBar");
+    var searchResults = document.getElementById("searchResults");
+
+    searchBar.addEventListener("input", function() {
+      var query = this.value;
+      var results = search(query);
+      displayResults(results);
+    });
+
+    searchBar.addEventListener("focus", function() {
+      if (this.value.trim() !== "") {
+        searchResults.style.display = "block";
+      }
+    });
+
+    document.addEventListener("click", function(event) {
+      if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+        searchResults.style.display = "none";
+      }
+    });
+  </script>
+
