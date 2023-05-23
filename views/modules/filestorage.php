@@ -45,7 +45,7 @@
           <!-- Additional content -->
               <div class="card overflow-hidden">
                 <div class="card-body">
-                  <h5 class="mb-0 text-Dark font-weight-bold">Affiliates</h5>
+                  <h5 class="aff mb-0 text-Dark font-weight-bold">Affiliates <i class='upicon bx bxs-user-plus' ></i></h5>
                   <div class="mt-3"></div>
                   <div class="d-flex align-items-center mt-3">
                     <div class="fm-file-box bg-light-primary text-primary mr-1">
@@ -191,10 +191,10 @@
                       </div>
                       <div class="row mt-3 ">
                         <div class="col-12 col-lg-4">
-                          <div class="card shadow-none  border radius-15 " >
+                          <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
                           <div class="card-body ">
                               <div class="d-flex align-items-center">
-                                <div class="fm-icon-box  rounded-circle bg-danger text-white mt-3" ><i class="bx bx-folder"></i>
+                                <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
                                 </button>
@@ -251,68 +251,13 @@
                           </div>
                         </div>
 
-                        <!-- Modal -->
-        <div class="modal fade" id="folderModal" tabindex="-1" aria-labelledby="folderModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="folderModalLabel">Holy week folder</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                      <!-- Files -->
-              <ul id="fileList" class="list-unstyled">
-                <!-- Add your existing files here -->
-                <li class="d-flex justify-content-between align-items-center">
-                  <span class="file-name">Prayer.txt</span>
-                  <div>
-                    <button class="btn btn-danger btn-sm delete-file">Delete</button>
-                    <button class="btn btn-primary btn-sm view-file">View</button>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center">
-                  <span class="file-name">PrayerofIntention.txt</span>
-                  <div>
-                    <button class="btn btn-danger btn-sm delete-file">Delete</button>
-                    <button class="btn btn-primary btn-sm view-file">View</button>
-                  </div>
-                </li>
-                <li class="d-flex justify-content-between align-items-center">
-                  <span class="file-name">DailyReading.txt</span>
-                  <div>
-                    <button class="btn btn-danger btn-sm delete-file">Delete</button>
-                    <button class="btn btn-primary btn-sm view-file">View</button>
-                  </div>
-                </li>
-              </ul>
-                <!-- Add File Form -->
-                      <form id="addFileForm">
-                <div class="mb-3">
-                  <label for="fileInput" class="form-label">Choose File:</label>
-                  <input type="file" class="form-control" id="fileInput" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Upload File</button>
-              </form>
-                
-                <!-- File Viewer -->
-                <div id="fileViewer" style="display: none;">
-                  <h6>File Viewer</h6>
-                  <iframe id="filePreview" src="" style="width: 100%; height: 300px;"></iframe>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+          
                         <div class="col-12 col-lg-4">
-                          <div class="card shadow-none  border radius-15 " >
+                          <div class="card radius-10 border-0 border-bottom border-primary border-4  shadow-sm" >
                           <div class="card-body ">
                               <div class="d-flex align-items-center">
-                                <div class="fm-icon-box  rounded-circle bg-success text-white mt-3" ><i class="bx bx-folder"></i>
-                                <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
+                              <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>                                
+                              <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info " data-bs-toggle="modal" data-bs-target="#2exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
                                 </button>
                                   <!-- Modal -->
@@ -363,10 +308,10 @@
                         </div>
 
                         <div class="col-12 col-lg-4">
-                          <div class="card shadow-none  border radius-15 " >
+                          <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
                           <div class="card-body ">
                               <div class="d-flex align-items-center">
-                                <div class="fm-icon-box  rounded-circle bg-warning text-white mt-3" ><i class="bx bx-folder"></i>
+                              <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#1exampleScrollableModal"  id="modalTrigger" disabled><i class='bx bx-info-circle fs-4 m-3'></i>
                                 </button>
@@ -428,7 +373,7 @@
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-5 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#1exampleScrollableModal"  id="modalTrigger" disabled><i class='bx bx-info-circle fs-5 m-3'></i>
                                 </div>
-                                <div class="font-30 text-primary mt-2"><i class="bx bxs-folder"></i>
+                                <div class="font-30 text-secondary mt-2"><i class="bx bxs-folder"></i>
                                 </div>
                                 <!--<div class="user-groups ms-auto">
                                   end row<img src="assets/images/avatars/01.png" width="35" height="35" class="rounded-circle" alt="">
@@ -470,7 +415,7 @@
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-5 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#1exampleScrollableModal"  id="modalTrigger" disabled><i class='bx bx-info-circle fs-5 m-3'></i>
                                 </div>
-                                <div class="font-30 text-primary mt-2"><i class="bx bxs-folder"></i>
+                                <div class="font-30 text-secondary mt-2"><i class="bx bxs-folder"></i>
                                 </div>
                                 <!--<div class="user-groups ms-auto">
                                   <img src="assets/images/avatars/04.png" width="35" height="35" class="rounded-circle" alt="">
@@ -510,7 +455,7 @@
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-5 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#1exampleScrollableModal"  id="modalTrigger" disabled><i class='bx bx-info-circle fs-5 m-3'></i>
                                 </div>
-                                <div class="font-30 text-primary mt-2"><i class="bx bxs-folder"></i>
+                                <div class="font-30 text-secondary mt-2"><i class="bx bxs-folder"></i>
                                 </div>
                                 <!--<div class="user-groups ms-auto">
                                   <img src="assets/images/avatars/07.png" width="35" height="35" class="rounded-circle" alt="">

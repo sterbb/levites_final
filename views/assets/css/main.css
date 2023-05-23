@@ -1943,4 +1943,13 @@ a {
 
   .btn .upicon {
 	margin-left: 5px;
+	font-size: 100;
+	width: 20px; /* Set the desired width */
+	height: 30px; /* Set the desired height */
+	
+	  
+  }
+  .upicon {
+    float: right;
+	margin-right: 10px;
   }
