@@ -47,7 +47,6 @@
 <body>
 
      
-    
     <?php
         
 
@@ -59,7 +58,6 @@
 			$_GET["route"] == 'accounts' ||
             $_GET["route"] == 'publichomepage' ||
             $_GET["route"] == 'churchpage'||
-			$_GET["route"] == 'churchsettings'||
             $_GET["route"] == 'catdetails'||
             $_GET["route"] == 'adminhomepage'||
             $_GET["route"] == 'reportgen'||
@@ -71,15 +69,14 @@
 			$_GET["route"] == 'slhomepage'|| 
 			$_GET["route"] == 'playlist'||
 			$_GET["route"] == 'profile'||
-			$_GET["route"] == 'publicsettings'||
 			$_GET["route"] == 'superuser'||
-			$_GET["route"] == 'accountsettings'||
 			$_GET["route"] == 'publicregistration' ||
+			$_GET["route"] == 'loginrequest' ||
 			$_GET["route"] == 'requestPassword'){
 
             include "modules/".$_GET["route"].".php";
 
-			if($_GET["route"] == 'login' || $_GET["route"] == 'churchregistration' || $_GET["route"] == 'requestPassword'  || $_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'){
+			if($_GET["route"] == 'login' || $_GET["route"] == 'loginrequest' || $_GET["route"] == 'churchregistration' || $_GET["route"] == 'requestPassword'  || $_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'){
 			
 			}else{
 				include "modules/header.php";
