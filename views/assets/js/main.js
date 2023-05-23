@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Function to generate the tooltip content
 	function generateTooltipContent() {
 
+		var addedBy = "JayCobb "
+
 		var creationDate = "2023-04-23";
 
 	  // Retrieve the file's modified date (replace this with your own logic)
@@ -142,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	  var recentFiles = ["Prayer.txt", "PrayerofIntention.txt", "DailyReading.txt"];
 	  
 	  // Generate the tooltip content
-	  var tooltipContent = 	"<div>Date Created: " + creationDate + "</div>" +
+	  var tooltipContent = 	"<div>Added by: " + addedBy + "</div>" +
+	  						"<div>Date Created: " + creationDate + "</div>" +
 	  						"<div>Modified Date: " + modifiedDate + "</div>" +
 						   "<div>Folder Size: " + folderSize + "</div>" +
 						   "<div>Recent Files:</div>" +
