@@ -78,6 +78,24 @@ $(document).ready(function() {
 
 
   });
+
+
+  $("#public_folder").click(function(){
+    alert("hello po heheh");
+    $("#upper-title").text("Folder > Public Folder");
+    $(".folder-preview").empty();
+
+    var html = [];
+    html.push("<p> Hello</p>");
+
+    // basi lng to sa file storage nga una2
+    $(".folder-preview").html(html);
+
+  });
+
+
+
+
   
 
 

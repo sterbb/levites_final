@@ -187,41 +187,19 @@
                       
                       
                       <div class="mt-3 cursor-pointer">
-                      <h5>Folders<i class="bi bi-plus fs-4"></i></i></h5>
+                      <h5 id="upper-title">Folders<i class="bi bi-plus fs-4"></i></i></h5>
                       </div>
-                      <div class="row mt-3 ">
+                      <div class="row mt-3 folder-preview">
                         <div class="col-12 col-lg-4">
                           <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
-                          <div class="card-body ">
+                          <div class="card-body " id="public_folder">
                               <div class="d-flex align-items-center">
                                 <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
                                 <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
                                 </button>
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="exampleScrollableModal" tabindex="-1" aria-hidden="true">
-                                      <div class="modal-dialog modal-dialog-scrollable">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title">Holy Week Notes:</h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                              </div>
-                                              <div class="modal-body text-info">
-                                                  <p>Folder content:
-                                                    <ul>
-                                                      <li>Presentation</li>
-                                                      <li>Application</li>
-                                                      <li>Prayer</li>
-                                                    </ul>
-                                                  </p>
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
+  
+             
                                 </div>
                                 <div class="dropdown ms-auto">
                                 <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
@@ -245,7 +223,7 @@
                                 </ul>
                               </div>
                               </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="modal" data-bs-target="#folderModal"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" >Holy week</i></h5>
+                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="modal" data-bs-target="#folderModal"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" >Public Folder</i></h5>
                               </p>
                             </div>
                           </div>
@@ -301,7 +279,7 @@
                                 </ul>
                               </div>
                               </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Outreach Program</i></h5>
+                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Members Folder</i></h5>
                               </p>
                             </div>
                           </div>
