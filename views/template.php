@@ -59,6 +59,7 @@
 			$_GET["route"] == 'accounts' ||
             $_GET["route"] == 'publichomepage' ||
             $_GET["route"] == 'churchpage'||
+			$_GET["route"] == 'churchsettings'||
             $_GET["route"] == 'catdetails'||
             $_GET["route"] == 'adminhomepage'||
             $_GET["route"] == 'reportgen'||
@@ -126,6 +127,7 @@
 	<script src="views/assets/plugins/fancy-file-uploader/jquery.fileupload.js"></script>
 	<script src="views/assets/plugins/fancy-file-uploader/jquery.iframe-transport.js"></script>
 	<script src="views/assets/plugins/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
+	<script src="views/assets/plugins/validation/jquery.validate.min.js"></script>
 	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 
 	

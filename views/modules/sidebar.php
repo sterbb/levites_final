@@ -149,6 +149,7 @@ $account_type = "admin";
                     <ul>
                       <li> <a href="superuser"><span class="material-symbols-outlined">arrow_right</span>Church Verification</a>
                       </li>
+                      
                     </ul>
                 </li>
                 
@@ -163,6 +164,8 @@ $account_type = "admin";
                     </a>
                     <ul>
                       <li> <a href="publicsettings"><span class="material-symbols-outlined">arrow_right</span>My Account</a>
+                      </li>
+                      <li> <a href="churchsettings"><span class="material-symbols-outlined">arrow_right</span>Church Account</a>
                       </li>
                     </ul>
                 </li>
