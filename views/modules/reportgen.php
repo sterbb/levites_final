@@ -151,6 +151,150 @@
           </div>
 
        </div><!--end row-->
+    <div class="row">
+       <div class="col-12 col-xl-4 col-lg-4">
+            <div class="card overflow-hidden">
+              <div class="card-header bg-transparent">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <h6 class="mb-0 fw-bold">San Sebastian Cathedral</h6>
+                  </div>
+                  <div class="dropdown ms-auto">
+                    <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="javascript:;">Action</a>
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                   <div id="chart8"></div>
+                  
+              </div>
+              <div class="card-header bg-transparent" style="overflow-y: scroll; height:100px;">
+                  <ul class="list-group list-group-flush mb-0 ">
+                    <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent">Document<span class="badge bg-success rounded-pill">12.4%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">PDFs<span class="badge bg-primary rounded-pill">24.9%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Forms<span class="badge rounded-pill" style="background-color:deeppink">7.3%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Presentations<span class="badge rounded-pill" style="background-color:coral">24.3%</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Spreadsheet<span class="badge rounded-pill" style="background-color:blueviolet">31.1%</span>
+                    </li>
+                  </ul>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-xl-4 col-lg-4">
+            <div class="card overflow-hidden">
+              <div class="card-header bg-transparent">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <h6 class="mb-0 fw-bold">Christ the Living God Fellowship Bacolod</h6>
+                  </div>
+                  <div class="dropdown ms-auto">
+                    <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="javascript:;">Action</a>
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                   <div id="chartStat"></div>
+              </div>
+              <div class="card-header bg-transparent" style="overflow-y: scroll; height:100px;">
+                <ul class="list-group list-group-flush mb-0 ">
+                  <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent">Document<span class="badge bg-success rounded-pill">12.4%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">PDFs<span class="badge bg-primary rounded-pill">24.9%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Forms<span class="badge rounded-pill" style="background-color:deeppink">7.3%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Presentations<span class="badge rounded-pill" style="background-color:coral">24.3%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Spreadsheet<span class="badge rounded-pill" style="background-color:blueviolet">31.1%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-12 col-xl-4 col-lg-4">
+            <div class="card overflow-hidden">
+              <div class="card-header bg-transparent">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <h6 class="mb-0 fw-bold">Abad Church (Bacolod)</h6>
+                  </div>
+                  <div class="dropdown ms-auto">
+                    <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="javascript:;">Action</a>
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:;">Another action</a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="javascript:;">Something else here</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                   <div id="chartNew"></div>
+              </div>
+              <div class="card-header bg-transparent" style="overflow-y: scroll; height:100px;">
+                <ul class="list-group list-group-flush mb-0 ">
+                  <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent">Document<span class="badge bg-success rounded-pill">12.4%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">PDFs<span class="badge bg-primary rounded-pill">24.9%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Forms<span class="badge rounded-pill" style="background-color:deeppink">7.3%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Presentations<span class="badge rounded-pill" style="background-color:coral">24.3%</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Spreadsheet<span class="badge rounded-pill" style="background-color:blueviolet">31.1%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+       </div><!--end row-->
+
+      
+      
+
 
      </main>
      <!--end main content-->
+
+    
