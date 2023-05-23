@@ -118,13 +118,47 @@
 [data-bs-theme=dark] .sidebar-wrapper .metismenu a:hover .parent-icon,
 [data-bs-theme=dark] .sidebar-wrapper .metismenu a:focus .parent-icon,
 [data-bs-theme=dark] .sidebar-wrapper .metismenu a:active .parent-icon {
-	color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
     text-decoration: none;
-    background: #0d6efd;
-    border-color: #0d6efd;
-	transition: ease-out .3s;
-}
+    background: rgba(148,191,242,1);
+	background: radial-gradient(circle, rgba(148,191,242,1) 0%, rgba(192,128,249,1) 100%);
+    transition: ease-out .3s;
+    background-size: 200% 100%;
+    animation: gasEffect 2s infinite;
+  }
 
+  .sidebar-wrapper .metismenu li a .parent-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .sidebar-wrapper .metismenu li a .parent-icon:hover::before,
+  .sidebar-wrapper .metismenu li a .parent-icon:focus::before {
+    opacity: 1;
+  }
+
+  @keyframes gasEffect {
+    0% {
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+    50% {
+      background-position: 100% 50%;
+      transform: scale(1.2);
+    }
+    100% {
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+  }
 
 [data-bs-theme=dark] .sidebar-wrapper .metismenu ul {
     background-color: var(--bs-body-bg);
@@ -537,3 +571,20 @@
 }
 
 
+[data-bs-theme=dark] main {
+	position: relative;
+  }
+  
+  [data-bs-theme=dark] main::before {
+	content: "";
+	background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255)), url("../../images/marble.jpg");
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	mix-blend-mode: multiply;
+  }

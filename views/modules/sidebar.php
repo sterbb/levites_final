@@ -27,13 +27,7 @@ $account_type = "admin";
                   </a>
                 </li>
 
-                <li>
-                  <a href="adminhomepage">
-                    <div class="parent-icon"><span class="material-symbols-outlined">home</span>
-                    </div>
-                    <div class="menu-title">Application Organizer</div>
-                  </a>
-                </li>
+                
 
 
                 <li>
