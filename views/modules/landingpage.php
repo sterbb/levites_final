@@ -895,7 +895,7 @@
                             <i class="fas fa-gem"></i>
                         </div>
                         <h4>Trusted by 12,00 companies!</h4>
-                        <p>We have more than 1200+ trusted clients around World wide.</p>
+                        <p>We have more than 120+ trusted clients around World wide.</p>
                     </div>
                 </div>
             </div>
@@ -935,7 +935,7 @@
         </section>
      <!-- End of Newslatter  section
         ============================================= -->
-
+   
       <!-- Start of Footer  section
         ============================================= -->
         <section id="ei-footer" class="ei-footer-section position-relative">
