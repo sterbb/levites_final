@@ -35,7 +35,7 @@ $(document).ready(function() {
     })
 
 
-    // chart 8
+       // chart 8
     var options = {
       series: [44, , 13, 43, 22],
       chart: {
@@ -44,7 +44,7 @@ $(document).ready(function() {
         type: 'pie',
       },
       colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
-      labels: ['Free', 'Team B', 'Team C', 'Team D', 'Team E'],
+      labels: ['Spreedshett', 'Document', 'PDFs', 'Presentations', 'Forms'],
       responsive: [{
         breakpoint: 480,
         options: {
@@ -58,6 +58,57 @@ $(document).ready(function() {
       }]
     };
     var chart = new ApexCharts(document.querySelector("#chart8"), options);
+    chart.render(); 
+
+    // chart stat
+    var options = {
+      series: [44, , 13, 43, 22],
+      chart: {
+        foreColor: '#9ba7b2',
+        height: 500,
+        type: 'pie',
+      },
+      colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
+      labels: ['Spreedshett', 'Document', 'PDFs', 'Presentations', 'Forms'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            height: 500
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+    };
+    
+    var chart = new ApexCharts(document.querySelector("#chartStat"), options);
+    chart.render(); 
+
+    // chart New
+    var options = {
+      series: [44, , 13, 43, 22],
+      chart: {
+        foreColor: '#9ba7b2',
+        height: 500,
+        type: 'pie',
+      },
+      colors: ["#0d6efd", "#6f42c1", "#d63384", "#fd7e14", "#20c997"],
+      labels: ['Spreedshett', 'Document', 'PDFs', 'Presentations', 'Forms'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            height: 500
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+    };
+    var chart = new ApexCharts(document.querySelector("#chartNew"), options);
     chart.render(); 
 
 
