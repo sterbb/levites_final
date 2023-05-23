@@ -93,6 +93,14 @@ $(document).ready(function() {
 
   });
 
+  $(function() {
+    for (var e = window.location, o = $(".sidebar-wrapper .metismenu li a").filter(function() {
+        return this.href == e
+      }).addClass("").parent().addClass("mm-active"); o.is("li");) o = o.parent("").addClass("mm-show").parent("").addClass("mm-active")
+  })
+  
+  
+
 
 
 
