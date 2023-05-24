@@ -3,7 +3,7 @@
 <main class="page-content">
 <h4 class="mb-3 text-uppercase text-left">Affiliated Churches</h4>
 <hr> 
-    <div id="churchCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="3000">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row  d-flex">
@@ -79,10 +79,10 @@
         </div>
    
       </div>
-        <a class="carousel-control-prev" href="#churchCarousel" role="button" data-bs-slide="prev">	<span class="carousel-control-prev-icon" aria-hidden="true" style="color:white;"></span>
+        <a class="carousel-control-prev" href="#churchCarousel" role="button" data-bs-slide="prev">	<span class="carousel-control-prev-icon bg-dark" style="width: 60px; height: 50px;" aria-hidden="true" ></span>
         <span class="visually-hidden">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#churchCarousel" role="button" data-bs-slide="next">	<span class="carousel-control-next-icon" aria-hidden="true" style="color:white;"></span>
+        <a class="carousel-control-next" href="#churchCarousel" role="button" data-bs-slide="next">	<span class="carousel-control-next-icon bg-dark" style="width: 60px; height: 50px;" aria-hidden="true" style="color:black;"></span>
           <span class="visually-hidden">Next</span>
         </a>
     </div>
