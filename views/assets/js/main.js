@@ -255,4 +255,6 @@ document.getElementById('uploadButton').addEventListener('click', function () {
 	// Example:
 	console.log('Uploading file:', file.name);
   }
+
+  
   

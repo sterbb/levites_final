@@ -130,7 +130,7 @@
                 </div>
               </div>
         </div>
-          <div class="col-12 col-lg-9">
+          <div class="col-12 col-lg-9 " >
             <!-- Content for the column on the right -->
             <div class="card">
                     <div class="card-body">
@@ -192,7 +192,7 @@
                       <div class="row mt-3 folder-preview">
                         <div class="col-12 col-lg-4">
                           <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
-                          <div class="card-body " id="public_folder">
+                          <div class="card-body " id="public_folder" data-bs-target="#folderModal" >
                               <div class="d-flex align-items-center">
                                 <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>
                                 <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
@@ -486,6 +486,7 @@
                     
                       </div>
                       <!--end row-->
+                      <div id="PubFol" class="">
                       <div class="d-flex align-items-center">
                         <div>
                           <h5 class="mb-0">Uploaded Files</h5>
@@ -614,10 +615,13 @@
                         </table>
                       </div>
                     </div>
-                  </div>
+                   
+
                 </div>
-          </div>  
-        </div>
+              </div>
+            </div>
+      </div>  
+    </div>
 
     </main>
      <!--end main content-->

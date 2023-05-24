@@ -128,6 +128,7 @@
     animation: gasEffect 2s infinite;
   }
 
+
 [data-bs-theme=dark] .sidebar-wrapper .metismenu ul {
     background-color: var(--bs-body-bg);
 }
@@ -539,22 +540,3 @@
 }
 
 
-[data-bs-theme=dark] main {
-	position: relative;
-  }
-  
-  [data-bs-theme=dark] main::before {
-	content: "";
-	background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgb(255, 255, 255)), url("../../images/marble.jpg");
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: cover;
-	mix-blend-mode: multiply;
-    z-index:-1;
-	height:100%;
-  }

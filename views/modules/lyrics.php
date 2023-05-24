@@ -494,7 +494,7 @@
                                     <select class="form-select border border-dark" id="inputSelectCountry" aria-label="Default select example" onchange="location = this.value; ">
                                     <option selected="" value="disabled" class="" style="font-weight:bold; color:aquamarine;"><span style="color:aquamarine">Sunday Line Up
                                     </span></option>
-                                    <option value="">Devine Groove</option>
+                                    <option value="">The Divine Groove</option>
                                  
 
 

@@ -37,8 +37,8 @@
     <link href="views/assets/css/minimal-theme.css" rel="stylesheet">
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
 	<link href="views/assets/css/style.css" rel="stylesheet">
-
-
+	<script src="https://kit.fontawesome.com/2cafbb6f68.js" crossorigin="anonymous"></script>
+   
 
 
 
@@ -47,7 +47,6 @@
 <body>
 
      
-    
     <?php
         
 
@@ -59,7 +58,6 @@
 			$_GET["route"] == 'accounts' ||
             $_GET["route"] == 'publichomepage' ||
             $_GET["route"] == 'churchpage'||
-			$_GET["route"] == 'churchsettings'||
             $_GET["route"] == 'catdetails'||
             $_GET["route"] == 'adminhomepage'||
             $_GET["route"] == 'reportgen'||
@@ -72,15 +70,15 @@
 			$_GET["route"] == 'slhomepage'|| 
 			$_GET["route"] == 'playlist'||
 			$_GET["route"] == 'profile'||
-			$_GET["route"] == 'publicsettings'||
 			$_GET["route"] == 'superuser'||
-			$_GET["route"] == 'accountsettings'||
 			$_GET["route"] == 'publicregistration' ||
+			$_GET["route"] == 'loginrequest' ||
+			$_GET["route"] == 'landingpage' ||
 			$_GET["route"] == 'requestPassword'){
 
             include "modules/".$_GET["route"].".php";
 
-			if($_GET["route"] == 'login' || $_GET["route"] == 'churchregistration' || $_GET["route"] == 'requestPassword'  || $_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'){
+			if($_GET["route"] == 'login' || $_GET["route"] == 'loginrequest' || $_GET["route"] == 'churchregistration' || $_GET["route"] == 'requestPassword'  || $_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'||$_GET["route"] == 'landingpage'){
 			
 			}else{
 				include "modules/header.php";
@@ -110,7 +108,8 @@
     
     ?>
 	
-
+<!-- Font Awesome -->
+	
 
 
     <!--plugins-->
@@ -132,7 +131,6 @@
 	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 
 	
-
 	
 	<!-- customize analystics -->
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
