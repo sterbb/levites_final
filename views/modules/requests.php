@@ -148,8 +148,8 @@
                             <input class="form-control px-2 " type="search"  placeholder="Search Name">
                         </div>
                     <div class="">
-                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept All</button>
-                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject All</button>
+                        <button class="btn btn-outline-success rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-check"></i></button>
+                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
                     </div>
                 </div>
                 </div>
@@ -251,8 +251,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary rounded-5 btn-md border-2 pr-3 " data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-outline-success rounded-5 btn-md border-2 pr-3 ">Search</button>
+            <button type="button" class="btn btn-outline-secondary rounded-5 btn-md border-2 pr-3 " data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-success rounded-5 btn-md border-2 pr-3 ">Send Request</button>
         </div>
         </div>
     </div>

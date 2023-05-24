@@ -67,6 +67,7 @@
             $_GET["route"] == 'songlist' || 
 			$_GET["route"] == 'filestorage' || 
 			$_GET["route"] == 'lyrics'|| 
+			$_GET["route"] == 'lyrics1'|| 
 			$_GET["route"] == 'requests'|| 
 			$_GET["route"] == 'slhomepage'|| 
 			$_GET["route"] == 'playlist'||
@@ -146,6 +147,8 @@
     <script src="views/assets/js/bootstrap.bundle.min.js"></script>
     <script src="views/assets/js/main.js"></script>
 
+	<script src="views/assets/plugins/form-repeater/repeater.js"></script>
+
 	<!-- customize scripts -->
 	<script src="views/js/alerts.js"></script>
 
@@ -160,7 +163,7 @@
 					right: 'dayGridMonth,listWeek next'
 				},
 				initialView: 'dayGridMonth',
-				initialDate: '2020-09-12',
+				initialDate: '2023-05-24',
 				navLinks: true, // can click day/week names to navigate views
 				selectable: true,
 				nowIndicator: true,
@@ -171,11 +174,11 @@
 				dayMaxEvents: true, // allow "more" link when too many events
 				events: [{
 					title: 'Instrument Workshop',
-					start: '2020-09-01',
+					start: '2023-05-01',
 				}, {
 					title: 'Offering Prayer',
-					start: '2020-09-07',
-					end: '2020-09-10'
+					start: '2023-05-07',
+					end: '2023-05-10'
 				}, {
 					// groupId: 999,
 					// title: 'Event Time',
@@ -186,31 +189,31 @@
 					// start: '2020-09-16T16:00:00'
 				}, {
 					title: 'Bible Study',
-					start: '2020-09-11',
-					end: '2020-09-13'
+					start: '2023-05-11',
+					end: '2023-05-13'
 				}, {
 					title: 'Outreach Program',
-					start: '2020-09-12T10:30:00',
-					end: '2020-09-12T12:30:00'
+					start: '2023-05-12T10:30:00',
+					end: '2023-05-12T12:30:00'
 				}, {
 					title: 'Media Seminar',
-					start: '2020-09-12T12:00:00'
+					start: '2023-05-12T12:00:00'
 				}, {
 					title: 'Instrument Workshop',
-					start: '2020-09-12T14:30:00'
+					start: '2023-05-12T14:30:00'
 				}, {
 					title: 'Bible Study',
-					start: '2020-09-12T17:30:00'
+					start: '2023-05-12T17:30:00'
 				}, {
 					title: 'Meeting',
-					start: '2020-09-12T20:00:00'
+					start: '2023-05-12T20:00:00'
 				}, {
 					// title: 'Event Time',
 					// start: '2020-09-13T07:00:00'
 				}, {
 					title: 'Church Anniversary',
 					url: 'http://google.com/',
-					start: '2020-09-28'
+					start: '2023-05-28',
 				}],
 				dateClick: function(info) {
 
@@ -231,7 +234,7 @@
 					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
 				},
 				initialView: 'dayGridMonth',
-				initialDate: '2020-09-12',
+				initialDate: '2023-05-24',
 				navLinks: true, // can click day/week names to navigate views
 				selectable: true,
 				nowIndicator: true,
@@ -361,6 +364,13 @@
 			$('#image-uploadify').imageuploadify();
 		})
 	</script>
+
+<script>
+        /* Create Repeater */
+        $("#repeater").createRepeater({
+            showFirstItemToDefault: true,
+        });
+    </script>
 
 
 

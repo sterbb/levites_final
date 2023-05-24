@@ -4,58 +4,62 @@
 
         <div class="row justify-content-end">
             <div class="input-group w-25 text-right pl-20">	<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search mail">
+                <input type="text" class="form-control" placeholder="">
             </div>
         </div>
 
-        <div class="row mt-4">
-          <div class="col-12 col-lg-12 col-xl-12">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="mb-0 text-uppercase">Affilliated Churches</h6>
-              <div class="my-3 border-top"></div>
-              <div class="card-group">
-                <div class="card border-end">
-                  <img src="views/images/ch1.jpg" class="card-img-top" style="object-fit: cover; width: 322px; height: 300px;" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
-                    <p class="card-text">Mansilingan, Bacolod City</p>
-                    <p class="card-text">Negros Occidental, Philippines</p>
-                  </div>
-                </div>
-                <div class="card border-end">
-                  <img src="views/images/ch2.jpg" class="card-img-top" style="object-fit: cover; width: 322px; height: 300px;" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Christ the Living God Fellowship Bacolod</h5>
-                    <p class="card-text">Libertad, Bacolod City</p>
-                    <p class="card-text">Negros Occidental, Philippines</p>
-                  </div>
-                </div>
-                <div class="card border-end">
-                  <img src="views/images/lupit.jpg" class="card-img-top"style="object-fit: cover; width: 322px; height: 300px;" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Lupit Church</h5>
-                    <p class="card-text">Lizares St, Bacolod City</p>
-                    <p class="card-text">Negros Occidental, Philippines</p>
-                   
-                  </div>
-                </div>
-                <div class="card border-end">
-                  <img src="views/images/sanseb.jpg" class="card-img-top" style="object-fit: cover; width: 322px; height: 300px;" alt="...">
-                  <div class="card-body ">
-                  <h5 class="card-title">Christ the Living God Fellowship Bacolod</h5>
-                    <p class="card-text">Libertad, Bacolod City</p>
-                    <p class="card-text">Negros Occidental, Philippines</p>
-                   
-                  </div>
-                </div>
+        
+
+        <div class="row border border-3 border-dark" >
+          <h6 class="mb-0 text-uppercase">Affilliated Churches</h6>
+          <hr>
+          <div class="col-3">
+            <div class="card h-auto" >
+              <img src="views/images/ch1.jpg" class="card-img-top" style="height:400px; object-fit:cover;   background-size: cover;"  alt="...">
+              <div class="card-body" style="height:150px;">
+                <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
+                <p class="card-text">Mansilngan, Bacolod City</p>
+                <p class="card-text">Negros Occidental, Philippines</p>
               </div>
             </div>
           </div>
-              
+
+          <div class="col-3">
+            <div class="card h-auto">
+              <img src="views/images/sanseb.jpg" class="card-img-top" style="height:400px; object-fit:cover;   background-size: cover;"  alt="...">
+              <div class="card-body" style="height:150px;">
+                <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
+                <p class="card-text">Mansilngan, Bacolod City</p>
+                <p class="card-text">Negros Occidental, Philippines</p>
+              </div>
+            </div>
           </div>
+
+          <div class="col-3">
+            <div class="card">
+              <img src="views/images/lupit.jpg" class="card-img-top" style="height:400px; object-fit:cover;   background-size: cover;"  alt="...">
+              <div class="card-body" style="height:150px;">
+                <h5 class="card-title">LUPIT CHURCH </h5>
+                <p class="card-text">Mansilngan, Bacolod City</p>
+                <p class="card-text">Negros Occidental, Philippines</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="card">
+              <img src="views/images/abad.png" class="card-img-top" style="height:400px; object-fit:cover;   background-size: cover;"  alt="...">
+              <div class="card-body" style="height:150px;">
+                <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
+                <p class="card-text">Mansilngan, Bacolod City</p>
+                <p class="card-text">Negros Occidental, Philippines</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-        
+
+
 
         <div class="row pt-3">
           <div class="col-12 col-lg-12 col-xl-12">

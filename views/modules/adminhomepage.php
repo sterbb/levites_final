@@ -1,6 +1,6 @@
   <!--start main content-->
   <main class="page-content">   
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4 justify-content-around">
         <div class="col">
         <div class="card radius-10 bg-primary">
             <div class="card-body">
@@ -49,22 +49,7 @@
             </div>
         </div>
         </div>
-        <div class="col">
-        <div class="card radius-10 bg-warning">
-            <div class="card-body">
-            <div class="d-flex align-items-center">
-                <div class="">
-                <p class="mb-1 text-white">User 4</p>
-                <h4 class="mb-0 text-white">Nonactivated</h4>
-                <p class="mb-0 text-white">&nbsp</p>
-                </div>
-                <div class="ms-auto fs-2 text-white">
-                <i class="fadeIn animated bx bx-user"></i>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
+
     </div><!--end row-->
     <div class="row">
         
@@ -106,7 +91,7 @@
                             <h6 class="mb-0 text-uppercase">Website Organizer</h6>
                         </div>
                         <div class="col d-flex justify-content-end gap-3">
-                            <button type="button" class="btn btn-outline-success px-3  radius-30 text-center"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
+                            <button type="button" class="btn btn-outline-success px-3  radius-30 text-center" id="edit-website"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
                             <button type="button"  data-bs-toggle="modal" data-bs-target="#Application" class="btn btn-outline-dark px-3  radius-30 text-center"><i class="fadeIn animated bx bx-plus" style="font-size:1.2em;"></i> <i class="fadeIn animated bx bx-globe" style="font-size:1.2em; margin-left:-5px;"></i></button>
                             <button type="button" data-bs-toggle="modal" data-bs-target="#Group" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button>
                         </div>
@@ -118,10 +103,14 @@
                     <div class="row row-cols-4 row-cols-lg-6 g-1">
 
                         <div class="col text-center " >
+   
                             <a href="https://www.facebook.com" target="_blank">
                                 <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
                                 <p class="text-dark" style="font-size:1.5em;">Facebook</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
+
+                        
                         </div>
 
                         <div class="col text-center " >
@@ -130,6 +119,7 @@
                                 
                                 <p class="text-dark" style="font-size:1.5em;">Youtube</p>
                             </a>
+                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -137,6 +127,7 @@
                                 <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em; color:#144272;"  ></i>        
                                 <p class="text-dark" style="font-size:1.5em;">Google Sheets</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>  
 
                         <div class="col text-center " >
@@ -145,6 +136,7 @@
                                 
                                 <p class="text-dark"  style="font-size:1.5em;">Twitter</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -153,6 +145,7 @@
                                 
                                 <p class="text-black" style="font-size:1.5em;">Google Docs</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                 
@@ -161,6 +154,7 @@
                             <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>     
                                 <p class="text-black"class="text-black" style="font-size:1.5em;">Canva</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -168,6 +162,7 @@
                                 <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;    "     ></i>       
                                 <p class="text-black" style="font-size:1.5em;">Google Meet</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -175,6 +170,7 @@
                             <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>
                                 <p class="text-black" style="font-size:1.5em;">Pixlr</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -182,6 +178,7 @@
                                 <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;"     ></i>     
                                 <p class="text-black" style="font-size:1.5em;">Prezi</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -189,6 +186,7 @@
                                 <i class="fadeIn animated bx bx-camera" style="font-size:4em;  color:#205295;"    ></i>    
                                 <p class="text-black" style="font-size:1.5em;">Zoom</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
@@ -196,6 +194,7 @@
                                 <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>       
                                 <p class="text-black" style="font-size:1.5em;">Microsoft Teams</p>
                             </a>
+                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                        
@@ -205,6 +204,7 @@
                                         
                     <div class="row mt-4 border border-2 mx-3 px-3">
                         <div class="col pt-3 d-flex justify-content-between align-items-center mb-2">
+                            
                             <h6 class="mb-0 text-uppercase">Social Media</h6>
                             <div>
                                 <button type="button" class="btn btn-outline-success px-3  radius-30 text-center"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
@@ -213,6 +213,7 @@
                         <hr>
                         <div class="row row-cols-4 row-cols-lg-6 g-1 ">
                             <div class="col text-center     " >
+                       
                                 <a href="https://www.facebook.com" target="_blank">
                                     <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
                                     <p class="text-dark" style="font-size:1.5em;">Facebook</p>
@@ -306,7 +307,7 @@
                         <div class="col">
                             <div class="card text-center">
                         
-                                <div id="chart8"></div>
+                                <div id="chart8" class="mt-3"></div>
 
                                 <div class="card-body">
                                     <h5 class="card-title">Local Storage</h5>
@@ -317,14 +318,8 @@
 
                         <div class="col">
                             <div class="card text-center">
-                            <h5 class="mb-0 text-primary font-weight-bold">45.5 GB <span class="float-end text-secondary">50 GB</span></h5>
-                            <p class="mb-0 mt-2"><span class="text-secondary">Used</span><span class="float-end text-primary">Upgrade</span>
-                            </p>
-                            <div class="progress mt-3" style="height:7px;">
-                                <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                              <div id="chart9" class="mt-3"></div>
+                  
                                 <div class="card-body">
                                     <h5 class="card-title">San Sebastian Cathedral</h5>
                                     <a href="#" class="btn btn-primary">View Storage</a>
@@ -334,7 +329,7 @@
 
                         <div class="col">
                             <div class="card text-center">
-                                <img src="views/assets/images/gallery/01.png" class="card-img-top" alt="...">
+                                <div id="chart10" class="mt-3"></div>
                                 <div class="card-body">
                                     <h5 class="card-title">Our Lady of Lourdes Parish Church</h5>
                                     <a href="#" class="btn btn-primary">View Storage</a>
@@ -344,7 +339,7 @@
 
                         <div class="col">
                             <div class="card text-center">
-                                <img src="views/assets/images/gallery/01.png" class="card-img-top" alt="...">
+                                <div id="chart11" class="mt-3"></div>
                                 <div class="card-body">
                                     <h5 class="card-title">Parish of San Antonio Abad</h5>
                                     <a href="#" class="btn btn-primary">View Storage</a>
@@ -378,15 +373,15 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Add Application</h5>
+            <h5 class="modal-title">Add Website</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="form-body g-5 ">
                 <div class="row g-3 mb-3"> 
                 <div class="col-12">
-                        <label for="tns-urlPath" class="form-label">Name</label>
-                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="facebook">
+                        <label for="tns-urlPath" class="form-label">Website Name</label>
+                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="Enter website name">
                         </div>  
                     <div class="col-8">
                         <label for="inputUrl" class="form-label">URL</label>
@@ -427,10 +422,10 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                
-                <div class="row mt-3 mb-5">
-                        <label for="tns-urlPath" class="form-label">Name</label>
-                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="facebook">
+                <label for="tns-urlPath" class="form-label">Group Name</label>
+                <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="Enter group name">
+                <div class="row mt-3 mb-1">
+              
                    
                     <div class=" d-flex justify-content-between align-items-center mt-4">
                         <h6>Social Media</h6>
@@ -440,31 +435,48 @@
                     </div>
                     <hr>
                     <div class='col-3 text-center'>
+
+                        <div class="card">
                             <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
                             <p style="font-size:1.5em;">Facebook</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                            <div class="card-body">
+                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                </div>
+                            </div>
                         </div>
+                        
+                 
                     </div>
 
                     <div class='col-3 text-center'>
-                            <i class="fadeIn animated bx bx-hash" style="font-size:3em;  color:#A27B5C;"></i>
+                        <div class="card">
+                            <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
                             <p style="font-size:1.5em;">Youtube</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                            <div class="card-body">
+                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
 
                     <div class='col-3 text-center'>
-                            <i class="fadeIn animated bx bx-hash" style="font-size:3em;  color:#A27B5C;"></i>
+                        <div class="card">
+                            <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
                             <p style="font-size:1.5em;">Twitter</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                            <div class="card-body">
+                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
 
-                <div class="row mb-5">
+                <div class="row mb-2">
                         <div class=" d-flex justify-content-between align-items-center">
                         <h6>Productivity</h6>
                         <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
@@ -473,23 +485,32 @@
                     </div>
                     <hr>
                     <div class='col-3 text-center'>
-                        <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em;  color:#144272;"  ></i>     
+                        <div class="card">
+                            <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em;  color:#144272;"  ></i>     
                             <p style="font-size:1.5em;">Google Docs</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                            <div class="card-body">
+                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                </div>
+                            </div>
                         </div>
+                       
                     </div>
 
                     <div class='col-3 text-center'>
-                        <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em;  color:#144272;"  ></i>     
-                        <p style="font-size:1.5em;">Goolge Sheets</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                        <div class="card">
+                            <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em;  color:#144272;"  ></i>     
+                            <p style="font-size:1.5em;">Google Sheets</p>
+                            <div class="card-body">
+                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mb-5">
+                <div class="row mb-2">
                     <div class=" d-flex justify-content-between align-items-center">
                         <h6>Multimedia</h6>
                         <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
@@ -498,31 +519,44 @@
                     </div>
                     <hr>
                     <div class='col-3 text-center'>
-                    <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>    
+                        <div class="card">
+                            <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>      
                             <p style="font-size:1.5em;">Canva</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                            <div class="card-body">
+                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                </div>
+                            </div>
                         </div>
+                    
                     </div>
 
-                    <div class='col-3 text-center'>
-                        <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>    
-                            <p style="font-size:1.5em;">Pixlr</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                        <div class='col-3 text-center'>
+                            <div class="card">
+                                <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>      
+                                <p style="font-size:1.5em;">Pixlr</p>
+                                <div class="card-body">
+                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class='col-3 text-center'>
-                            <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>    
-                            <p style="font-size:1.5em;">Prezi</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                        <div class='col-3 text-center'>
+                            <div class="card">
+                                <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>      
+                                <p style="font-size:1.5em;">Prezi</p>
+                                <div class="card-body">
+                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
-                <div class="row mb-5">
+                <div class="row mb-2">
                     <div class=" d-flex justify-content-between align-items-center">
                         <h6>Video Conference</h6>
                         <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
@@ -531,27 +565,39 @@
                     </div>
                     <hr>
                     <div class='col-3 text-center'>
-                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>   
-                            <p style="font-size:1.5em;">Microsoft Teams</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                        </div>
+                        <div class="card m">
+                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>      
+                                <p style="font-size:1.5em;">MS Teams</p>
+                                <div class="card-body">
+                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                    </div>
+                                </div>
+                            </div>
                     </div>
 
                     <div class='col-3 text-center'>
-                            <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>   
-                            <p style="font-size:1.5em;">Google Meet</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                        </div>
+                        <div class="card">
+                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>      
+                                <p style="font-size:1.5em;">Google Meet</p>
+                                <div class="card-body">
+                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                    </div>
+                                </div>
+                            </div>
                     </div>
 
                     <div class='col-3 text-center'>
-                            <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>   
-                            <p style="font-size:1.5em;">Zoom</p>
-                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                            <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                        </div>
+                        <div class="card">
+                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"></i>      
+                                <p style="font-size:1.5em;">Zoom</p>
+                                <div class="card-body">
+                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

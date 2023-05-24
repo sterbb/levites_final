@@ -1,7 +1,7 @@
 <!--start main content-->
 <main class="page-content">
 
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4">
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-xl-3 row-cols-xxl-3">
           <div class="col">
             <div class="card radius-10 border-0 border-start border-primary border-4" type="button" id="user1">
               <div class="card-body">
@@ -65,24 +65,7 @@
               </div>
             </div>
            </div>
-           <div class="col">
-            <div class="card radius-10 border-0 border-start border-warning border-4" type="button" id="user4">
-              <div class="card-body">
-                <div class="d-flex align-items-center">
-                  <div class="">
-                    <p class="mb-1">Nonactivated</p>
-                    <h4 class="mb-0 text-warning">User 4</h4>
-                  </div>
-                  <div class="ms-auto">
-                    <div class="widget-icon bg-warning text-white">
-                      <i class="fadeIn animated bx bx-user"></i>
-                    </div>
-                    <p class="mb-0 text-warning">Offline</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-           </div>
+
         </div><!--end row-->
 
 

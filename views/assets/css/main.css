@@ -468,18 +468,71 @@ a {
 .sidebar-wrapper .metismenu a:hover .parent-icon,
 .sidebar-wrapper .metismenu a:focus .parent-icon,
 .sidebar-wrapper .metismenu a:active .parent-icon {
-	color: #ffffff;
+	position: relative;
+    overflow: hidden;
+    color: #ffffff;
     text-decoration: none;
-    background: #0d6efd;
-    border-color: #0d6efd;
-	transition: ease-out .3s;
-}
+    background: rgb(192,128,249);
+	background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%);
+    transition: ease-out .3s;
+    background-size: 200% 100%;
+    animation: gasEffect 2s infinite;
+  }
+
+  .sidebar-wrapper .metismenu li a .parent-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .sidebar-wrapper .metismenu li a .parent-icon:hover::before,
+  .sidebar-wrapper .metismenu li a .parent-icon:focus::before {
+    opacity: 1;
+  }
+
+  @keyframes gasEffect {
+    0% {
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+    50% {
+      background-position: 100% 50%;
+      transform: scale(1.2);
+    }
+    100% {
+      background-position: 0% 50%;
+      transform: scale(1);
+    }
+  }
+
 
 
 .sidebar-wrapper .metismenu .mm-active>a {
-	color: #0d6efd;
-	font-weight: 600;
-}
+	color:rgba(148,191,242,1) ;
+	font-size: 17px;
+   
+  }
+
+  .sidebar-wrapper .metismenu li a .parent-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .sidebar-wrapper .metismenu li a .parent-icon:hover::before,
+  .sidebar-wrapper .metismenu li a .parent-icon:focus::before {
+    opacity: 1;
+  }
 
 
 .menu-label {
@@ -1078,6 +1131,13 @@ a {
 
 .profile-cover {
     background-image: url(../images/gallery/profile-bg.jpg);
+    background-size: cover;
+    height: 10rem;
+    background-position: center;
+}
+
+.profile-ourlady {
+    background-image: url(../../images/ch1.2.jpg);
     background-size: cover;
     height: 10rem;
     background-position: center;
@@ -1953,3 +2013,29 @@ a {
     float: right;
 	margin-right: 10px;
   }
+
+  
+
+  main {
+	position: relative;
+	   height: 100%;
+  }
+  
+  main::before {
+	content: "";
+	background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(255, 255, 255)), url("../../images/marble.jpg");
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	mix-blend-mode: multiply;
+	z-index:-1;
+	height:100%;
+  }
+
+
+
+  
