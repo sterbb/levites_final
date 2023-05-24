@@ -493,7 +493,7 @@ We're excited to explore the world of analog mixers together and discover how th
           <h5 class="modal-title">Add Group</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="overflow-y: scroll; height:60vh">
          <div class="col-12 "> 
             <label for="Collection" class="form-label fw-bold">Group Name</label>
             <input type="text" class="form-control" id="Collection" placeholder="">
@@ -545,7 +545,7 @@ We're excited to explore the world of analog mixers together and discover how th
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#AddEvents">Save changes</button>
+          <button type="button" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#AddEvents">Save </button>
         </div>
       </div>
     </div>
