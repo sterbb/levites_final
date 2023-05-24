@@ -19,7 +19,7 @@ $account_type = "admin";
             
               <!--navigation-->
               <ul class="metismenu" id="menu">
-                <li>
+                <li class="admin">
                   <a href="adminhomepage">
                     <div class="parent-icon"><span class="material-symbols-outlined">home</span>
                     </div>
@@ -27,7 +27,7 @@ $account_type = "admin";
                   </a>
                 </li>
                 
-                <li>
+                <li class="admin">
                   <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                     calendar_add_on
@@ -42,7 +42,7 @@ $account_type = "admin";
                 </li>
                 
                 
-                <li>
+                <li class="admin-public">
                   <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                     lyrics
@@ -61,7 +61,7 @@ $account_type = "admin";
                   </ul>
                 </li>
 
-                <li>
+                <li class="admin-public">
                   <a class="has-arrow" href="javascript:;">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                     hard_drive
@@ -76,7 +76,7 @@ $account_type = "admin";
                 </li>
 
 
-                <li>
+                <li class="admin">
                   <a href="accounts">
                     <div class="parent-icon"><i class="lni lni-users"></i>
                     </div>
@@ -84,7 +84,7 @@ $account_type = "admin";
                   </a>
                 </li>
 
-                <li>
+                <li class="admin">
                   <a href="requests ">
                     <div class="parent-icon"><i class="fadeIn animated bx bx-comment-dots"></i>
                     </div>
@@ -92,7 +92,7 @@ $account_type = "admin";
                   </a>
                 </li>
 
-                <li>
+                <li class="admin">
                     <a href="javascript:;" class="has-arrow">
                       <div class="parent-icon"><span class="material-symbols-outlined">rate_review</span>
                       </div>
@@ -104,11 +104,14 @@ $account_type = "admin";
                     </ul>
                 </li>
 
+                <li> <a href="churchsettings"><span class="material-symbols-outlined">arrow_right</span>Church Account</a>
+                    </li>
+
                 <li class="menu-label">Others </li>
                 
                  
 
-                <li>
+                <li class="public">
                     <a href="javascript:;" class="has-arrow">
                       <div class="parent-icon"><span class="material-symbols-outlined">
                         public
@@ -117,11 +120,8 @@ $account_type = "admin";
                       <div class="menu-title">Public Pages View</div>
                     </a>
                     <ul>
+                      
                       <li> <a href="publichomepage"><span class="material-symbols-outlined">arrow_right</span>Public Homepage</a>
-                      </li>
-                      <li> <a href="churchpage"><span class="material-symbols-outlined">arrow_right</span>Church Calendar</a>
-                      </li>
-                      <li> <a href="profile"><span class="material-symbols-outlined">arrow_right</span>Church Details 2</a>
                       </li>
                       <li> <a href="catdetails"><span class="material-symbols-outlined">arrow_right</span>Calendar Details</a>
                       </li>
@@ -129,7 +129,7 @@ $account_type = "admin";
                     </ul>
                 </li>
 
-                <li>
+                <li class="superuser">
                     <a href="javascript:;" class="has-arrow">
                       <div class="parent-icon"><span class="material-symbols-outlined">
                       hdr_auto
@@ -156,8 +156,7 @@ $account_type = "admin";
                     <ul>
                       <li> <a href="publicsettings"><span class="material-symbols-outlined">arrow_right</span>My Account</a>
                       </li>
-                      <li> <a href="churchsettings"><span class="material-symbols-outlined">arrow_right</span>Church Account</a>
-                      </li>
+
                     </ul>
                 </li>
                 

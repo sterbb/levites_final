@@ -185,11 +185,7 @@
                 </div>
               </div>
               <div class="card-body">
-<<<<<<< HEAD
-                   <div id="chart8"></div>
-=======
                    <div id="sansebchart"></div>
->>>>>>> 4af27e6e18e2f45123b6686bc3c119d0372f401d
                   
               </div>
               <div class="card-header bg-transparent" style="overflow-y: scroll; height:100px;">

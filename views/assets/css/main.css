@@ -2031,53 +2031,16 @@ a {
 	background-repeat: no-repeat;
 	background-size: cover;
 	mix-blend-mode: multiply;
+	z-index:-1;
+	height:100%;
   }
 
 
-  .custom-tooltip {
-	position: relative;
-  }
+
   
-  .custom-tooltip::after {
-	content: attr(data-bs-original-title);
-	visibility: hidden;
-	width: 150px;
-	background-color: #000;
-	color: #fff;
-	text-align: center;
-	border-radius: 4px;
-	padding: 5px;
-	position: absolute;
-	z-index: 1;
-	bottom: 125%;
-	left: 50%;
-	transform: translateX(-50%);
-	opacity: 0;
-	transition: opacity 0.3s;
-  }
+
   
-  .custom-tooltip[data-bs-original-title]:hover::after {
-	visibility: visible;
-	opacity: 1;
-	animation: hideTooltip 5s forwards;
-  }
-  
-  @keyframes hideTooltip {
-	0% {
-	  opacity: 1;
-	}
-	80% {
-	  opacity: 1;
-	}
-	100% {
-	  opacity: 0;
-	  visibility: hidden;
-	}
-  }
-  
-  .container-fluid {
-	position: relative;
-  }
+
   
   .container-fluid::before {
 	content: "";
@@ -2090,4 +2053,5 @@ a {
 	background-repeat: no-repeat;
 	background-size: cover;
 	mix-blend-mode: multiply;
+	height:100%;
   }

@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-12">
 									<div class="d-grid">
-									<a href="adminhomepage" type="button"  class="btn text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</a>
+									<a href="adminhomepage" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</a>
 									</div>
 								</div>
 								<div class="col-12">

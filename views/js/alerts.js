@@ -311,6 +311,37 @@ $(document).ready(function() {
 	chart.render();
 
 
+
+	$(document).on('click', '#loginBtn', function() {
+		
+		var login;
+		alert($("#inputEmailAddress").val());
+		login = $("#inputEmailAddress").val();
+
+		if(login == "admin"){
+			$(".public").attr("hidden",true);
+			$(".superuser").attr("hidden",true);
+		}
+	});
+
+	$('#loginBtn').submit(function(event) {
+		// Prevent the default form submission behavior
+		event.preventDefault();
+	
+		var login;
+		alert($("#inputEmailAddress").val());
+		login = $("#inputEmailAddress").val();
+
+		if(login == "admin"){
+			$(".public").attr("hidden",true);
+			$(".superuser").attr("hidden",true);
+		}
+
+		window.location.href = adminhomepage;
+	  });
+
+
+
  
 
 
