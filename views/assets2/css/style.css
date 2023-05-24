@@ -409,6 +409,7 @@ theme.
     z-index: 10;
     position: absolute;
   }
+  
 
   .main-header-eight .appheader-content {
     padding: 0px 280px;
@@ -416,6 +417,11 @@ theme.
 
   .main-header-eight .appheader-content .site-logo {
     margin-right: 255px;
+  }
+
+  .main-header-eight .appheader-content .site-logo .a {
+    font-size: 100vh;
+    
   }
 
   .main-header-eight .appheader-content .navigation-eight {
@@ -653,7 +659,7 @@ Sticky Menu
   border-radius: 50px;
   margin-right: 20px;
   border-top-right-radius: 0;
-  background-color: #ff00d6;
+  background-color: rgb(192,128,249);
 }
 
 .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(1) i {
@@ -665,7 +671,7 @@ Sticky Menu
 }
 
 .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(1):hover {
-  background-color: #009cff;
+  background-color: rgba(93,166,254,1);
   border-top-right-radius: 50px;
   border-bottom-left-radius: 0px;
 }
@@ -766,8 +772,9 @@ Sticky Menu
   overflow: hidden;
   height: 100%;
   bottom: -1px;
-  background: #6d8cf8;
-  background: linear-gradient(to right, #c12dd1, #6d8cf8);
+ 
+  background: rgb(192,128,249);
+  background: linear-gradient(270deg, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%);
 }
 
 .bgTop {
@@ -902,6 +909,9 @@ Sticky Menu
 }
 .feature-eight-section {
   padding: 165px 0px 120px;
+  z-index: 1;
+  padding: 135px 0px 140px;
+  background-color: #ffffff;
 }
 
 .feature-eight-section .ei-feature-shape {
@@ -926,6 +936,7 @@ Sticky Menu
   padding: 40px 30px 53px;
   background-color: #e9ebf7;
   transition: 0.3s all ease-in-out;
+  height: 400px;
 }
 
 .feature-eight-section .eight-feature-box .feature-icon8 {
@@ -1990,7 +2001,7 @@ Sticky Menu
 }
 
 .ei-screenshots-section .ei-screen-mobile-image {
-  background-image: url(../img/app-landing/screenshoot/mobile-1.png);
+  background-image: url(../../images/desktop.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   display: block;
@@ -1999,7 +2010,7 @@ Sticky Menu
   position: absolute;
   top: 24px;
   transform: translateX(-50%);
-  width: 301px;
+  width: 100%;
   z-index: 2;
   border-radius: 40px;
 }
@@ -2417,6 +2428,10 @@ Sticky Menu
 /*----------------------------------------------------*/
 .ei-footer-section {
   padding-top: 160px;
+}
+
+.ei-footer-logo img{
+  width: 100px;
 }
 
 .ei-footer-widget .ei-widget-title {
@@ -3073,7 +3088,7 @@ Sticky Menu
   }
 
   .ei-screenshots-section .ei-screen-mobile-image {
-    width: 305px;
+    width: 100%;
   }
 
   #testimonial-scroller {
@@ -17696,3 +17711,71 @@ SaaSio - HR Management
 .sa-contact-inner-btn {
   width: 100%;
 }
+
+
+.glow {
+  display: inline-block;
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.glow:hover {
+  color: rgba(148,191,242,1) ; /* Change the color to your desired glow color */
+}
+
+.glow::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  overflow: hidden;
+  opacity: 0;
+  animation: glow-effect 1s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes glow-effect {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  50% {
+    left: 100%;
+    opacity: 1;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes nudge-effect {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.sign-up-btn-eight {
+  display: inline-block;
+}
+
+.nudge-animation {
+  animation: nudge-effect 0.3s;
+}
+
+
+.main-mockup img {
+  width: 70%;
+}
+

@@ -235,3 +235,16 @@ Last change:    00/00/00
 	});
 
 })();
+
+function startNudging() {
+    var signUpLink = document.getElementById('sign-up-link');
+    signUpLink.classList.add('nudge-animation');
+    setTimeout(function() {
+      signUpLink.classList.remove('nudge-animation');
+    }, 300);
+  }
+
+  setTimeout(startNudging, 100);
+
+
+  

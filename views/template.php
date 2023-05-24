@@ -37,19 +37,8 @@
     <link href="views/assets/css/minimal-theme.css" rel="stylesheet">
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
 	<link href="views/assets/css/style.css" rel="stylesheet">
-
-   <!-- Assets 2 -->
-   <link rel="stylesheet" href="views/assets2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="views/assets2/css/animate.css">
-    <link rel="stylesheet" href="views/assets2/css/newfont.css">
-    <link rel="stylesheet" href="views/assets2/css/owl.carousel.css">
-    <link rel="stylesheet" href="views/assets2/css/fontawesome-all.css">
-    <link rel="stylesheet" href="views/assets2/css/swiper.css">
-    <link rel="stylesheet" href="views/assets2/css/jquery.bxslider.min.css">
-    <link rel="stylesheet" href="views/assets2/css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="views/assets2/css/odometer-theme-default.css">
-    <link rel="stylesheet" href="views/assets2/css/flaticon.css">
-    <link rel="stylesheet" href="views/assets2/css/style.css">
+	<script src="https://kit.fontawesome.com/2cafbb6f68.js" crossorigin="anonymous"></script>
+   
 
 
 
@@ -118,7 +107,8 @@
     
     ?>
 	
-
+<!-- Font Awesome -->
+	
 
 
     <!--plugins-->
@@ -139,25 +129,7 @@
 	<script src="views/assets/plugins/validation/jquery.validate.min.js"></script>
 	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 
-	<!-- Asset 2 below -->
-	<!-- JS library -->
-			<script src="views/assets2/js/jquery.js"></script>
-			<script src="views/assets2/js/popper.min.js"></script>
-			<script src="views/assets2/js/bootstrap.min.js"></script>
-			<script src="views/assets2/js/appear-2.js"></script>
-			<script src="views/assets2/js/owl.js"></script>
-			<script src="views/assets2/js/wow.min.js"></script>
-			<script src="views/assets2/js/aos.js"></script>
-			<script src="views/assets2/js/slick.js"></script>
-			<script src="views/assets2/js/pagenav.js"></script>
-			<script src="views/assets2/js/bxslider.js"></script>
-			<script src="views/assets2/js/jquery.barfiller.js"></script>
-			<script src="views/assets2/js/jquery.mCustomScrollbar.concat.min.js"></script>
-			<script src="views/assets2/js/parallax-scroll.js"></script>
-			<script src="views/assets2/js/swiper.min.js"></script>
-			<script src="views/assets2/js/typer-new.js"></script>
-			<script src="views/assets2/js/odometer.js"></script>
-			<script src="views/assets2/js/script.js"></script>
+	
 	
 	<!-- customize analystics -->
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>

@@ -176,11 +176,11 @@ $account_type = "admin";
           <div class="sidebar-bottom dropdown dropup-center dropup">
               <div class="dropdown-toggle d-flex align-items-center px-3 gap-3 w-100 h-100" data-bs-toggle="dropdown">
                 <div class="user-img">
-                   <img src="views/assets/images/avatars/03.png" alt="">
+                   <img src="views/images/ch3.3.png" alt="">
                 </div>
                 <div class="user-info">
-                  <h5 class="mb-0 user-name">Jhon Maxwell</h5>
-                  <p class="mb-0 user-designation">UI Engineer</p>
+                  <h5 class="mb-0 user-name">Vicariate of San Jose</h5>
+                  <p class="mb-0 user-designation">apostolic vicariate</p>
                 </div>
               </div>
               <ul class="dropdown-menu dropdown-menu-end">
