@@ -167,7 +167,6 @@ $(document).ready(function() {
 
   // Public Folder content
   $("#public_folder").click(function(){
-    alert("hello po heheh");
     $("#upper-title").text("Folder > Public Folder");
     $(".folder-preview").empty();
 
@@ -315,7 +314,6 @@ $(document).ready(function() {
 	$(document).on('click', '#loginBtn', function() {
 		
 		var login;
-		alert($("#inputEmailAddress").val());
 		login = $("#inputEmailAddress").val();
 
 		if(login == "admin"){
