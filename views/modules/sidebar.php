@@ -72,13 +72,7 @@ $account_type = "admin";
                 </li>
 
 
-                <li class="admin">
-                  <a href="accounts">
-                    <div class="parent-icon"><i class="lni lni-users"></i>
-                    </div>
-                    <div class="menu-title">Accounts</div>
-                  </a>
-                </li>
+                
 
                 <li class="admin">
                   <a href="requests ">
@@ -97,11 +91,18 @@ $account_type = "admin";
                     <ul>
                       <li> <a href="reportgen"><span class="material-symbols-outlined">arrow_right</span>Report View</a>
                       </li>
+                      <li> <a href="churchsettings"><span class="material-symbols-outlined">arrow_right</span>Church Account</a>
+                    </li>
                     </ul>
                 </li>
 
-                <li> <a href="churchsettings"><span class="material-symbols-outlined">arrow_right</span>Church Account</a>
-                    </li>
+                <li class="admin">
+                  <a href="accounts">
+                    <div class="parent-icon"><i class="lni lni-users"></i>
+                    </div>
+                    <div class="menu-title">Accounts</div>
+                  </a>
+                </li>
 
                 <li class="menu-label">Others </li>
                 

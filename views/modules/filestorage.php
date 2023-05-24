@@ -45,7 +45,7 @@
           <!-- Additional content -->
               <div class="card overflow-hidden">
                 <div class="card-body">
-                  <h5 class="aff mb-0 text-Dark font-weight-bold">Affiliates <i class='upicon bx bxs-user-plus' ></i></h5>
+                  <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' ></i></a></h5>
                   <div class="mt-3"></div>
                   <div class="d-flex align-items-center mt-3">
                     <div class="fm-file-box bg-light-primary text-primary mr-1">
@@ -89,7 +89,7 @@
           <div class="col-12 col-lg-9 " >
             <!-- Content for the column on the right -->
             <div class="card">
-                    <div class="card-body">
+                    <div class="card-body cursor-pointer">
                       
                       <div class="fm-search">
                         <div class="mb-0">
@@ -144,7 +144,8 @@
                       
                       <div class="mt-3 cursor-pointer">
                       <h5 id="upper-title">Folders<i class="bi bi-plus fs-4"></i></i></h5>
-                      </div>
+                      <p></p>
+                    </div>
                       <div class="row mt-3 folder-preview">
                         <div class="col-12 col-lg-4">
                           <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
@@ -203,7 +204,7 @@
                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                               </div>
                                               <div class="modal-body">
-                                                  <p>The following are the usable presentation and application:</p>
+                                              <textarea class="form-control" rows="5" placeholder="Enter your notes here"></textarea>
                                               </div>
                                               <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -454,9 +455,9 @@
                         <table class="table table-striped table-hover table-sm mb-0">
                           <thead>
                             <tr>
-                              <th>Name<i class="bx bx-up-arrow-alt ms-2"></i>
+                              <th>Name<i class=""></i>
                               </th>
-                              <th>Uploaded by<i class="bx bx-up-arrow-alt ms-2"></i>
+                              <th>Uploaded by<i class=""></i>
                               </th>
                               <th>Date uploaded</th>
                               <th></th>
@@ -472,7 +473,7 @@
                                 </div>
                               </td>
                               <td>Cliff</td>
-                              <td>Sep 3, 2019</td>
+                              <td>Mar 3, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -485,7 +486,7 @@
                                 </div>
                               </td>
                               <td>Ryan</td>
-                              <td>Jun 12, 2019</td>
+                              <td>Apr 12, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -498,7 +499,7 @@
                                 </div>
                               </td>
                               <td>JayCobb</td>
-                              <td>Sep 8, 2019</td>
+                              <td>Apr 8, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -510,7 +511,7 @@
                                 </div>
                               </td>
                               <td>JayCobb</td>
-                              <td>Aug 28, 2019</td>
+                              <td>Feb 28, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -523,7 +524,7 @@
                                 </div>
                               </td>
                               <td>Ryan</td>
-                              <td>Aug 17, 2019</td>
+                              <td>Feb17, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -537,7 +538,7 @@
                                 </div>
                               </td>
                               <td>Cliff</td>
-                              <td>Jun 12, 2019</td>
+                              <td>Feb12, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -550,7 +551,7 @@
                                 </div>
                               </td>
                               <td>Ryan</td>
-                              <td>Jul 17, 2019</td>
+                              <td>Jan 17, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
@@ -563,7 +564,7 @@
                                 </div>
                               </td>
                               <td>JayCobb</td>
-                              <td>Sep 8, 2019</td>
+                              <td>Jan 8, 2023</td>
                               <td><i class="bx bx-dots-horizontal-rounded font-24"></i>
                               </td>
                             </tr>
