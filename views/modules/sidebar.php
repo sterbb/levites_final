@@ -26,10 +26,7 @@ $account_type = "admin";
                     <div class="menu-title">Dashboard</div>
                   </a>
                 </li>
-
                 
-
-
                 <li>
                   <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><span class="material-symbols-outlined">

@@ -51,6 +51,7 @@
                   <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
                     <div class="row g-3">
                         <div class="col-12 col-lg-3">
+
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Pricing" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
@@ -58,6 +59,7 @@
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Instrument Workship</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Add" type="button"><i class="lni lni-plus me-2 "></i>Add Event Type</button>  
                           </div>
                           
                           <div class="col-12 col-lg-12 text-center mt-5">
@@ -143,9 +145,27 @@
                                     <h6 class="">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
                                   </div>
 
-                                  <div class="col-12 col-lg-12 ">
+                                  <div class="col-12 col-lg-12 mb-3">
                                     <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
+Attention workshop participants!
+
+Just a friendly reminder to bring your instruments to the upcomingworkshop.
+
+Label your instrument with your name.
+Make sure it's in good working condition and tuned.
+Protect it in a suitable case or bag.
+Don't forget any necessary accessories (extra strings, reeds, picks, etc.).
+If you have an instrument that can be shared, let us know in advance!
+
+Safety first! Handle your instrument with care and be aware of your surroundings.
+
+Get ready to enhance your workshop experience by practicing and applying what you learn in real-time!
+
+If you have any questions, feel free to reach out. We're here to help!
+
+Looking forward to an amazing workshop with all of you. See you soon!
+                                    </textarea>
               
                                   </div>
 
@@ -157,7 +177,7 @@
                                   <div class="col">
                                     <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Worship Team</h5>
+                                        <h5 class="card-title inline">Trainer Team</h5>
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                       </div>
                                       <ul class="list-group list-group-flush">
@@ -169,34 +189,7 @@
 
                                     
                                   </div>
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Media Team</h5>
-                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Church Person 1</li>
-                                        <li class="list-group-item">Church Person 2</li>
-                                        <li class="list-group-item">Church Person 3</li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Technical Team</h5>
-                                        <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Church Person 1</li>
-                                        <li class="list-group-item">Church Person 2</li>
-                                        <li class="list-group-item">Church Person 3</li>
-                                      </ul>
-                                    </div>
-                                  </div>
+              
                                   
 
                                 </div><!--end row-->
@@ -209,12 +202,12 @@
                                 </div>
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Instrument Workshop</h4>
+                                    <h4 class="mb-2 ">Media Workshop</h4>
                                   </div>
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
+                                    <h6 class="mb-2 ">When: April 26, 2023 @1:00pm - 3:30pm</h6>
 
                                   </div>
 
@@ -223,31 +216,28 @@
                                     <p></p>
                                   </div>
 
-                                  <div class="col-12 col-lg-12 ">
+                                  <div class="col-12 col-lg-12 mb-3 ">
                                     <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
+Instructions for a successful workshop:
+
+Come prepared: Bring your camera, fully charged batteries, memory cards, and any necessary cables.
+Laptop and Software: If you're using editing software or other programs, make sure to bring your laptop and have the software installed beforehand.
+Notebooks and Pens: It's always a good idea to have something for taking notes during the workshop.
+Collaboration: Be ready to work together in teams and share ideas and experiences with fellow participants.
+Questions and Engagement: Feel free to ask questions and actively engage with the workshop content. We're here to learn from each other.
+We're looking forward to a creative and inspiring workshop experience where we can enhance our media skills and use them to serve our church community.
+                                    </textarea>
                                     <p></p>
                                   </div>
                                 </div>
 
                                 <h6>Groups</h6>
                                 <div class="row row-cols-1 row-cols-lg-3 g-3">
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Worship Team</h5>
-                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                                        <li class="list-group-item">John Cliff Fortaleza</li>
-                                      </ul>
-                                    </div>
+                              
 
                                     
-                                  </div>
+          
                                   
                                   <div class="col">
                                     <div class="card mb-0">
@@ -256,23 +246,9 @@
                                         <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                       </div>
                                       <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Church Person 1</li>
-                                        <li class="list-group-item">Church Person 2</li>
-                                        <li class="list-group-item">Church Person 3</li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Technical Team</h5>
-                                        <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Church Person 1</li>
-                                        <li class="list-group-item">Church Person 2</li>
-                                        <li class="list-group-item">Church Person 3</li>
+                                      <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
+                                        <li class="list-group-item">John Cliff Fortaleza</li>
                                       </ul>
                                     </div>
                                   </div>
@@ -288,12 +264,12 @@
                                 </div>
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Instrument Workshop</h4>
+                                    <h4 class="mb-2 ">Technical Workshop</h4>
                                   </div>
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
+                                    <h6 class="mb-2 ">When: April 26, 2023 @4:00pm - 6:30pm</h6>
 
                                   </div>
 
@@ -302,45 +278,28 @@
                                     <p></p>
                                   </div>
 
-                                  <div class="col-12 col-lg-12 ">
+                                  <div class="col-12 col-lg-12 mb-3">
                                     <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
+Come prepared to learn: Bring a notebook and pen to take notes during the workshop. This will help you remember key concepts and techniques discussed.
+
+Active participation: Engage in discussions and ask questions. This workshop is designed to be interactive and collaborative, so your active participation will greatly enhance the learning experience.
+
+Familiarize yourself with the church's analog mixer: During the workshop, we will be focusing on the specific analog mixer used by our church. Take some time before the workshop to familiarize yourself with the layout, controls, and features of the mixer.
+
+Hands-on practice: We will provide opportunities for hands-on practice with the analog mixer. Make the most of these practice sessions to develop your skills and gain confidence in operating the mixer.
+
+Collaboration and knowledge sharing: Engage with fellow participants, share your experiences, and learn from one another. This collaborative environment will foster a deeper understanding and appreciation for analog mixers in a church setting.
+
+We're excited to explore the world of analog mixers together and discover how they can enhance our worship services. 
+                                    </textarea>
                                     <p></p>
                                   </div>
                                 </div>
                                 <h6>Groups</h6>
                                 <div class="row row-cols-1 row-cols-lg-3 g-3">
                                   
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Worship Team</h5>
-                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                                        <li class="list-group-item">John Cliff Fortaleza</li>
-                                      </ul>
-                                    </div>
-
-                                    
-                                  </div>
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Media Team</h5>
-                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Church Person 1</li>
-                                        <li class="list-group-item">Church Person 2</li>
-                                        <li class="list-group-item">Church Person 3</li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  
+        
                                   <div class="col">
                                     <div class="card mb-0">
                                       <div class="card-body border-bottom d-flex justify-content-between align-items-center">
@@ -348,9 +307,9 @@
                                         <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
                                       </div>
                                       <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Church Person 1</li>
-                                        <li class="list-group-item">Church Person 2</li>
-                                        <li class="list-group-item">Church Person 3</li>
+                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
+                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
+                                        <li class="list-group-item">John Cliff Fortaleza</li>
                                       </ul>
                                     </div>
                                   </div>
@@ -437,6 +396,26 @@
                                 </div>
                               </div>
                             </div>
+
+                            <div class="tab-pane fade" id="Add">
+                              <div class="row g-3">
+                                <div class="col-12 col-lg-12">
+                                  <label class="mt-3">Event Type Name</label>
+                                  <input class="form-control" type="text" placeholder="">
+                                  
+
+                                </div>
+                                
+                              </div>
+
+                              <div class="row mt-3">
+                                  <div class="d-flex justify-content-end">
+                                  <button type="button" class="btn btn-danger me-3">Clear </button>
+                                  <button type="button" class="btn btn-success me-3">Save</button>
+                                  </div>  
+                              </div>
+                            </div>
+
                           </div>
                         </div>
                        </div>
@@ -520,26 +499,46 @@
             <input type="text" class="form-control" id="Collection" placeholder="">
           </div>
           <div class="mt-3">
-            <div class="d-flex justify-content-between align-items-center">            
-              <h6 class="mb-0">Members</h6>
-              <button class="me-0 btn btn-success"><i class="fadeIn animated bx bx-user-plus"></i></button>
-            </div>
+
+                <!-- Repeater Html Start -->
+            <div id="repeater">
+              <!-- Repeater Heading -->
+
+              <div class="d-flex justify-content-between align-items-center">            
+                <h6 class="mb-0">Members</h6>
+                <button class="me-0 btn btn-success repeater-add-btn"><i class="fadeIn animated bx bx-user-plus"></i></button>
+              </div>
 
             <hr>
-            <div>
-              <div class="d-flex justify-content-end">
-                <button class="me-0 btn btn-danger"><i class="fadeIn animated bx bx-user-minus"></i></button>
+
+              <!-- Repeater Items -->
+              <div class="items" data-group="test"> 
+                <div class="card">
+                  <div class="card-body">
+                    <!-- Repeater Content -->
+                    <div class="item-content">
+                      <div class="d-flex align-items-end  justify-content-end">
+                       <button class="btn btn-danger remove-btn "><i class="fadeIn animated bx bx-user-minus"></i></button>
+                      </div>
+                   
+                      <div class="mb-3">
+                        <label for="inputName1" class="form-label">Name</label>
+                       
+                        <input type="text" class="form-control" id="inputName1" placeholder="Name" data-name="name">
+                      </div>
+                      <div class="mb-3">
+                        <label for="inputEmail1" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="inputEmail1" placeholder="Email" data-skip-name="true"
+                          data-name="email">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="col-12 "> 
-                <label for="Collection" class="form-label fw-bold">Name</label>
-                <input type="text" class="form-control" id="Collection" placeholder="">
-              </div>
-              <div class="col-12 "> 
-                <label for="Collection" class="form-label fw-bold">Email</label>
-                <input type="text" class="form-control" id="Collection" placeholder="">
-              </div>
+
             </div>
+            <!-- Repeater End -->
           
 
           </div>

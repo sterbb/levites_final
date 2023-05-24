@@ -223,7 +223,7 @@
                                 </ul>
                               </div>
                               </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="modal"   data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" >Public Folder</i></h5>
+                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="modal" data-delay="2000" data-bs-target="#folderModal"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" >Public Folder</i></h5>
                               </p>
                             </div>
                           </div>
@@ -279,7 +279,7 @@
                                 </ul>
                               </div>
                               </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Members Folder</i></h5>
+                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000" id="membertooltip">Members Folder</i></h5>
                               </p>
                             </div>
                           </div>

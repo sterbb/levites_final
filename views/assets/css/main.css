@@ -1136,6 +1136,13 @@ a {
     background-position: center;
 }
 
+.profile-ourlady {
+    background-image: url(../../images/ch1.2.jpg);
+    background-size: cover;
+    height: 10rem;
+    background-position: center;
+}
+
 .user-profile-avatar {
     background-color: #ffffff;
     width: 160px;
@@ -2010,6 +2017,7 @@ a {
 
   main {
 	position: relative;
+	   height: 100%;
   }
   
   main::before {

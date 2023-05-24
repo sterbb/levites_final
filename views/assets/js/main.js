@@ -162,10 +162,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	  tooltip.dispose();
 	  tooltip = new bootstrap.Tooltip(cardBody);
 	}
+
+
   
 	// Call the generateTooltipContent function when needed
 	generateTooltipContent();
   });
+
 
 
   //modal

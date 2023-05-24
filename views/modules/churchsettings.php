@@ -1,25 +1,19 @@
 <main class="page-content"> 
 
 <div class="card overflow-hidden">
-    <div class="profile-cover bg-dark position-relative mb-4">
+    <div class="profile-ourlady bg-dark position-relative mb-4">
     <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-        <img src="assets/images/avatars/06.png" alt="...">
+        <img src="views/images/ch1.jpg" alt="...">
     </div>
     </div>
     <div class="card-body">
     <div class="mt-5 d-flex align-items-start justify-content-between">
         <div class="">
-        <h3 class="mb-2">Jhon Deo</h3>
-        <p class="mb-1">Engineer at BB Agency Industry</p>
-        <p>New York, United States</p>
+        <h3 class="mb-2">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h3>
         <div class="">
-            <span class="badge rounded-pill bg-primary">UX Research</span>
-            <span class="badge rounded-pill bg-primary">CX Strategy</span>
-            <span class="badge rounded-pill bg-primary">Project Management</span>
+            <span class="badge rounded-pill bg-primary">Mansiligan, Bacolod City</span>
+            <span class="badge rounded-pill bg-primary">Negros Occidenal Philippines</span>
         </div>
-        </div>
-        <div class="">
-            <a href="javascript:;" class="btn btn-primary"><i class="bi bi-chat me-2"></i>Send Message</a>
         </div>
     </div>  
     </div>
@@ -28,19 +22,20 @@
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="card">
-                <div class="card-header px-4 py-3 bg-transparent">
-                    <h5 class="mb-0">jQuery Validation</h5>
-                </div>
                 <div class="card-body p-4">
                     <form id="jQueryValidationForm">
                         <div class="row mb-3">
-                            <label for="input35" class="col-sm-3 col-form-label">Enter Your Name</label>
+                            <label for="input35" class="col-sm-3 col-form-label">Church Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="input35" name="yourname" placeholder="Enter Your Name">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input36" class="col-sm-3 col-form-label">Phone No</label>
+                                <label for="inputAddress" class="form-label">Church Address *</label>
+                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
+                        </div>
+                        <div class="row mb-3">
+                            <label for="input36" class="col-sm-3 col-form-label">Contact Details</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="input36" name="phone" placeholder="Phone No">
                             </div>
@@ -58,7 +53,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input38" class="col-sm-3 col-form-label">Choose Password</label>
+                            <label for="input38" class="col-sm-3 col-form-label"> Password</label>
                             <div class="col-sm-9">
                                 <input type="password" class="form-control" id="input38" name="password" placeholder="Choose Password">
                             </div>
@@ -70,31 +65,31 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input39" class="col-sm-3 col-form-label">Select Country</label>
-                            <div class="col-sm-9">
-                                <select class="form-select" id="input39" name="country">
-                                    <option selected disabled value>Choose...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    </select>
-                            </div>
+                                <label for="inputReligion" class="form-label">Religion *</label>
+                                <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example">
+                                <option selected="" value="Catholic">Catholicism</option>
+                                <option value="Baptist">Baptist</option>
+                                <option value="Baptist">Islam</option>
+                                <option value="Christianity ">Christianity </option>
+                                </select>
                         </div>
                         <div class="row mb-3">
-                            <label for="input40" class="col-sm-3 col-form-label">Address</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" id="input40" name="address" rows="3" placeholder="Address"></textarea>
-                            </div>
+                                <label for="inputCity" class="form-label">City *</label>
+                                <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Bacolod City">
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label"></label>
-                            <div class="col-sm-9">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="input41" name="agree">
-                                    <label class="form-check-label" for="input41">Check me out</label>
-                                </div>
-                            </div>
+
+                       <div class="row mb-3">
+                                <label for="inputSelectCountry" class="form-label">Country *</label>
+                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example">
+                                <option selected="" value="Philippines">Philippines</option>
+                                <option  value="India">India</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="America">America</option>
+                                <option value="Dubai">Dubai</option>
+                                </select>
                         </div>
+
+    
                         <div class="row">
                             <label class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">
@@ -111,4 +106,11 @@
         </div>
     </div>
     <!--end row-->
+
+    <div class="card">
+        <div class="card-body">
+        <h5 class="mb-3">Location</h5>
+            <div id="marker-map" class="gmaps"></div>
+        </div>
+    </div>
 </main>
