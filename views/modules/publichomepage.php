@@ -56,20 +56,20 @@
           <div class="row d-flex">
             <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/lupit.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/ourlady.jpg" class="card-img-top" style="height:400px; " alt="...">
                   <div class="card-body" style="height:150px;">
-                    <h5 class="card-title">LUPIT CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <h5 class="card-title">Our Lady of Peace and Good Voyage</h5>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Singcang Airport, Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
               </div>
               <div class="col-3 ">
                 <div class="card h-auto">
-                  <img src="views/images/ch1.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/Shrine.jpg" class="card-img-top" style="height:400px; " alt="...">
                   <div class="card-body" style="height:150px;">
-                    <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <h5 class="card-title">OUR LADY OF PERPETUAL HELP SHRINE BACOLOD </h5>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">B. S. Aquino Drive, Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
@@ -118,17 +118,17 @@
 <div class="row pt-3">
   <div class="col-12 col-lg-12 col-xl-12">
     <div class="card overflow-hidden">
-      <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url('views/images/ch1.2.jpg'); height:250px">
+      <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url('views/images/SanNic.jpg'); height:250px">
         <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-          <img src="views/images/ch1.jpg" alt="...">
+          <img src="views/images/LogoTal.jpg" alt="...">
         </div>
       </div>
       <div class="card-body">
         <div class=" d-flex align-items-start justify-content-between">
           <a href=" profile">
             <div class="text-black">
-            <h3 class="mb-2">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h3>
-             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+            <h3 class="mb-2">SAN NICOLAS DE TOLENTINO PARISH</h3>
+             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lizare street, Barangay Zone 6, TALISAY CITY</span>
             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">432-0048</span>
 
@@ -145,16 +145,16 @@
 <div class="row pt-3">
   <div class="col-12 col-lg-12 col-xl-12">
     <div class="card overflow-hidden">
-      <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url('views/images/ch2.2.jpg'); height:250px">
+      <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url('views/images/Trimph.jpg'); height:250px">
         <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-          <img src="views/images/ch2.jpg" alt="...">
+          <img src="views/images/LogoTrim.jpg" alt="...">
         </div>
       </div>
       <div class="card-body">
         <div class=" d-flex align-items-start justify-content-between">
           <div class="">
-            <h3 class="mb-2">Christ the Living God Fellowship Bacolod</h3>
-            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+            <h3 class="mb-2">TRIUMPH OF THE HOLY CROSS </h3>
+            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Burgos Ave, Bacolod City</span>
             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">09292929865</span>
 

@@ -11,10 +11,10 @@
               <h5 class="mt-2 mb-0">My Storage</h5>
               <p class="mb-1 mt-2">
                 <span>1.2 GB</span>
-                <span class="float-end">2 GB</span>
+                <span class="float-end">5  GB</span>
               </p>
               <div class="progress" style="height: 7px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="d-flex align-items-center">
                 <div>
@@ -54,7 +54,7 @@
                     <div class="flex-grow-1 ms-2">
                       <h6 class="mb-0 cursor-pointer">San Sebastian Cathedral (Bacolod)</h6>
                       <div class="progress" style="height: 7px; width: 150px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 48%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                     <h6 class="text-primary mb-0"> 930 MB</h6>
@@ -66,7 +66,7 @@
                     <div class="flex-grow-1 ms-2">
                       <h6 class="mb-0 cursor-pointer">Lupit Church</h6>
                       <div class="progress" style="height: 7px; width: 150px;">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 25%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                     <h6 class="text-primary mb-0">153 MB</h6>
@@ -78,57 +78,13 @@
                     <div class="flex-grow-1 ms-2">
                       <h6 class="mb-0 cursor-pointer">Abad Church (Bacolod)</h6>
                       <div class="progress" style="height: 7px; width: 150px;">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 98%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
-                    <h6 class="text-primary mb-0">1.6 GB</h6>
+                    <h6 class="text-primary mb-0">1.8 GB</h6>
                   </div>
                 </div>
-              </div>
-
-              <!-- Additional content -->
-              <div class="card overflow-hidden">
-                <div class="card-body">
-                  <h5 class="mb-0 text-Dark font-weight-bold">Shared Folders</h5>
-                  <div class="mt-3"></div>
-                  <div class="d-flex align-items-center mt-3">
-                    <div class="fm-file-box bg-light-primary text-primary mr-1">
-                      <img src="views/images/sanseb.jpg" alt="Responsive image" class="img-thumbnail">
-                    </div>
-                    <div class="flex-grow-1 ms-2">
-                      <h6 class="mb-0 cursor-pointer">San Sebastian Cathedral (Bacolod)</h6>
-                      <div class="progress" style="height: 7px; width: 150px;">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <h6 class="text-primary mb-0"> 930 MB</h6>
-                  </div>
-                  <div class="d-flex align-items-center mt-3">
-                    <div class="fm-file-box bg-light-success text-success">
-                      <img src="views/images/lupit.jpg" alt="Responsive image" class="img-thumbnail">
-                    </div>
-                    <div class="flex-grow-1 ms-2">
-                      <h6 class="mb-0 cursor-pointer">Lupit Church</h6>
-                      <div class="progress" style="height: 7px; width: 150px;">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 25%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <h6 class="text-primary mb-0">153 MB</h6>
-                  </div>
-                  <div class="d-flex align-items-center mt-3">
-                    <div class="fm-file-box bg-light-danger text-danger">
-                      <img src="views/images/abad.jpg" alt="Responsive image" class="img-thumbnail">
-                    </div>
-                    <div class="flex-grow-1 ms-2">
-                      <h6 class="mb-0 cursor-pointer">Abad Church (Bacolod)</h6>
-                      <div class="progress" style="height: 7px; width: 150px;">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 95%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <h6 class="text-primary mb-0">1.6 GB</h6>
-                  </div>
-                </div>
-              </div>
+            </div>
         </div>
           <div class="col-12 col-lg-9 " >
             <!-- Content for the column on the right -->
