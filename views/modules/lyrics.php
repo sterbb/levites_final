@@ -167,8 +167,7 @@
                     <div class="card mt-3 ">
                         <div class="card-body">
                             <div class="video-container ">
-                                <iframe width="100%" height="500" src="https://www.youtube.com/embed/9f2FXxDVO6w" title="Phil Wickham - Living Hope (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                 
-                            </div>
+                            <iframe width="630" height="300" src="https://www.youtube.com/embed/9f2FXxDVO6w" title="Phil Wickham - Living Hope (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            </div>
                         </div>
                     </div>
 
@@ -189,7 +188,7 @@
                                         <h2 class="accordion-header" id="headingTwo"> 
                                              
                                             <button class="accordion-button collapsed" id="NewItem" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <input class="border-1 p-2" placeholder="" value="Sunday Line Up" readonly  style="font-weight:bold"></input>
+                                            <input class="border-1" placeholder="" value="Sunday Line Up" readonly  style="font-weight:bold"></input>
                                             </button>
                                         </h2>
 
@@ -495,12 +494,8 @@
                                     <select class="form-select border border-dark" id="inputSelectCountry" aria-label="Default select example" onchange="location = this.value; ">
                                     <option selected="" value="disabled" class="" style="font-weight:bold; color:aquamarine;"><span style="color:aquamarine">Sunday Line Up
                                     </span></option>
-                                    <option value=""><a class="nav-link active" href="" ></a>Living Hope Phil Wickham</option>
-                                    <option value=""><a class="nav-link active" href=""></a>Artist 5</option>
-                                    <option value=""><a class="nav-link active" href=""></a>Set Stori</option>
-                                    <option value=""><a class="nav-link active" href=""></a>Angklung Preman Pensiun</option>
-                                    <option value=""><a class="nav-link active" href=""></a>Canon Rock (JerryC) by Funtwo</option>
-                                    <option value=""><a class="nav-link active" href=""></a>105.9 FM Ardan Radio Streaming Radio</option>
+                                    <option value="">Devine Groove</option>
+                                 
 
 
 

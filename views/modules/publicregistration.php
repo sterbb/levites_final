@@ -1,16 +1,24 @@
 
 <div class="row p-5 d-flex justify-content-center align-items-center">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-6">
-          <div class="card rounded-0 m-3 border-0 rounded-3 ">
+          <div class="card rounded-0 m-3 border-3 rounded-5 shadow  ">
             <div class="card-body ">
                 <div class="text-center">
               <img src="views/img/LEVITES.png" class="mb-4" width="100" alt="">
               
-              <h4 class="fw-bold">Registration</h4>
+              <h1 class="fw-bold">Public Registration</h1>
 
                 <div>
-                    <button type="button" class="btn "><a  href="churchregistration"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-warning"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg></button>
-                            <label class="form-check-label mt-1 text-warning" for="flexSwitchCheckChecked" style="display: inline-block">Switch Church Registration to Public Registration</label></a>
+                <button type="button" class="btn "><a  href="churchregistration"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                    <defs>
+                        <linearGradient id="gradient" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="#c080f9" />
+                        <stop offset="100%" stop-color="#94c0f2 " />
+                        </linearGradient>
+                    </defs>
+                    </svg></button>
+                        <label class="form-check-label mt-1 " for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Public Registration to Church Registration</label> </a>
                     </div>
              
             </div>
@@ -75,7 +83,7 @@
                                 <div class="form-check form-switch border-3">
                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
                                 <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms &amp; Conditions</label>
-                                 <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement"><i class="lni lni-question-circle text-primary"></i></a>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>
                                 </div>
                             </div>
                             
@@ -83,12 +91,12 @@
 
                             <div class="col-12">
                                 <div class="d-grid">
-                                    <a href="login" class="btn btn-primary border-3">Register</a>
+                                    <a href="login" type="button"  class="btn text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="text-start">
-                                <p class="mb-0">Already have an account? <a href="login">Sign in here</a></p>
+                                <p class="mb-0">Already have an account? <a href="login" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sign in here</a></p>
                                 </div>
                             </div>
                         </div>
