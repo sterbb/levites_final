@@ -292,7 +292,7 @@
             
             <div class="card">
                 <div class="card-body d-flex justify-content-around align-items-center">
-                    <h6 class="mb-0 text-uppercase">April 16, 2023</h6>
+                    <h6 class="mb-0 text-uppercase">May 25, 2023</h6>
                     <a href="churchcalendar"><button type="button" class="btn btn-outline-dark px-5 radius-30">View Calendar</button></a>
                     
                 </div>

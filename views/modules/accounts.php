@@ -78,6 +78,19 @@
 							</div>
 							<div class="card-body p-4">
 								<form id="jQueryValidationForm">
+
+                  <div class="row mb-3 mt-3 pb-3">
+										<label for="input37" class="col-sm-3 col-form-label">Members</label>
+										<div class="col-sm-9">
+                      <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
+                          <option selected="" value="Jan Ryan ">Jan Ryan Divinagracia</option>
+                          <option value="John Cliff">John Cliff Fortaleza</option>
+                          <option value="Jay Cobb ">Jay Cobb Andrew Moya</option>
+                        </select>
+										</div>
+									</div>
+                  
+                  <hr>
 									
 									<div class="row mb-3 mt-3">
 										<label for="input37" class="col-sm-3 col-form-label">Username</label>
@@ -126,8 +139,8 @@
 										<label class="col-sm-3 col-form-label"></label>
 										<div class="col-sm-9">
 											<div class="d-md-flex d-grid align-items-center justify-content-end  gap-3">
-												<button type="submit" class="btn btn-success px-4" name="submit2">Submit</button>
-												<button type="reset" class="btn btn-light px-4">Reset</button>
+												<button type="submit" class="btn btn-outline-success px-4" name="submit2">Submit</button>
+												<button type="reset" class="btn btn-outline-danger px-4">Clear</button>
 											</div>
 										</div>
 									</div>
