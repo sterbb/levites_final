@@ -72,13 +72,7 @@ $account_type = "admin";
                 </li>
 
 
-                <li class="admin">
-                  <a href="accounts">
-                    <div class="parent-icon"><i class="lni lni-users"></i>
-                    </div>
-                    <div class="menu-title">Accounts</div>
-                  </a>
-                </li>
+                
 
                 <li class="admin">
                   <a href="requests ">
@@ -97,11 +91,17 @@ $account_type = "admin";
                     <ul>
                       <li> <a href="reportgen"><span class="material-symbols-outlined">arrow_right</span>Report View</a>
                       </li>
+                  
                     </ul>
                 </li>
 
-                <li> <a href="churchsettings"><span class="material-symbols-outlined">arrow_right</span>Church Account</a>
-                    </li>
+                <li class="admin">
+                  <a href="accounts">
+                    <div class="parent-icon"><i class="lni lni-users"></i>
+                    </div>
+                    <div class="menu-title">Accounts</div>
+                  </a>
+                </li>
 
                 <li class="menu-label">Others </li>
                 
@@ -141,22 +141,7 @@ $account_type = "admin";
                 </li>
                 
 
-                <li>
-                    <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">
-                      hdr_auto
-                      </span>
-                      </div>
-                      <div class="menu-title">Account Settings</div>
-                    </a>
-                    <ul>
-                      <li> <a href="publicsettings"><span class="material-symbols-outlined">arrow_right</span>My Account</a>
-                      </li>
-
-                    </ul>
-                </li>
-                
-
+             
                 
 
               
@@ -177,10 +162,17 @@ $account_type = "admin";
               </div>
               <ul class="dropdown-menu dropdown-menu-end">
 
-                <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
-                  logout
-                  </span><span>Account Settings</span></a>
+                <li><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
+                  settings
+                  </span><span>Church Account Settings</span></a>
                 </li>
+
+                <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
+                  settings
+                  </span><span>Public Account Settings</span></a>
+                </li>
+
+                
                
                 <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
                   logout
@@ -189,4 +181,4 @@ $account_type = "admin";
               </ul>
           </div>
      </aside>
-     <!--end sidebar-->z
+     <!--end sidebar-->

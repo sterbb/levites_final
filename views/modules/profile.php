@@ -1,7 +1,6 @@
 
 
 <main class="page-content">
-        <button class="btn btn-outline-danger">Report</button>
         <div class="row">
           <div class="col-12 col-lg-8 col-xl-9">
             <div class="card overflow-hidden">
@@ -18,9 +17,24 @@
                     <p>Negros Occidental, Philippines</p>
               
                   </div>
-                  <div class="">
-                     <a href="javascript:;" class="btn btn-primary"><i class="bi bi-chat me-2"></i>Ask Membership</a>
+                  <div class="row">
+                    <div class="col">
+                    <a href="javascript:;" class="btn btn-primary btn-hover" onclick="changeButtonText(this)">Ask Membership</a>
+       
+                    </div>
                   </div>
+                  <script>
+                    function changeButtonText(button) {
+                      if (button.innerText === "Ask Membership") {
+                        button.innerText = "Cancel Membership";
+                        button.classList.add("btn-danger");
+                      } else {
+                        button.innerText = "Ask Membership";
+                        button.classList.remove("btn-danger");
+                      }
+                    }
+                  </script>
+          
           
                 </div>
               </div>
