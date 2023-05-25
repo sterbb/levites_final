@@ -8,6 +8,7 @@
         <div class="carousel-item active">
           <div class="row  d-flex">
               <div class="col-3 ">
+                <a class="button" href="profile">
                 <div class="card h-auto">
                   <img src="views/images/ch1.jpg" class="card-img-top" style="height:400px; " alt="...">
                   <div class="card-body" style="height:150px;">
@@ -16,6 +17,7 @@
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
+                </a>
               </div>
               <div class="col-3  ">
                 <div class="card h-auto">

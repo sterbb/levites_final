@@ -15,6 +15,9 @@
             <span class="badge rounded-pill bg-primary">Negros Occidenal Philippines</span>
         </div>
         </div>
+        <div class="">
+                     <a href="javascript:;" class="btn btn-danger"><i class="bi bi-person-x"></i>Deactivate Account</a>
+                  </div>
     </div>  
     </div>
 </div>
@@ -91,10 +94,9 @@
 
     
                         <div class="row">
-                            <label class="col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">
-                                <div class="d-md-flex d-grid align-items-center gap-3">
-                                    <button type="submit" class="btn btn-primary px-4" name="submit2">Submit</button>
+                                <div class="d-flex align-items-end justify-content-end">
+                                    <button type="submit" class="btn text-white" name="submit2" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Submit</button>
                                     <button type="reset" class="btn btn-light px-4">Reset</button>
                                 </div>
                             </div>

@@ -28,7 +28,7 @@
                         </linearGradient>
                     </defs>
                     </svg></button>
-                        <label class="form-check-label mt-1 " for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Church Registration to Public Registration</label> </a>
+                        <label class="form-check-label mt-1 cursor-pointer" for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Church Registration to Public Registration</label> </a>
                 </div>
             </div>
 
@@ -47,12 +47,12 @@
 
                     <div class="row g-2">
                         <div class="col-6">
-                            <label for="username" class="form-label">Username *</label>
+                            <label for="username" class="form-label">Username<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                             <input type="text" class="form-control border-3" id="tns-username" name="username" placeholder="Jhon">
                         </div>
 
                             <div class="col-6">
-                            <label for="inputChoosePassword" class="form-label">Password *</label>
+                            <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                             <div class="input-group" id="show_hide_password">
                                 <input type="password" class="form-control border-end-0 border-3" id="tns-password" name="password" value="12345678" placeholder="Enter Password">
                                 <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
@@ -60,7 +60,7 @@
                             </div>     
                             
                             <div class="col-12">
-                                <label for="inputChurchName" class="form-label">Church Name *</label>
+                                <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-churchName" name="churchName" placeholder="Our Lady of Peace and Good Voyage">
                             </div>             
                         </div>
@@ -68,12 +68,12 @@
                         <div class="row g-2">     
 
                             <div class="col-6">
-                                <label for="inputEmailAddress" class="form-label">Church Email Address *</label>
+                                <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
                                 <input type="email" class="form-control border-3" id="tns-email" name="email" placeholder="example@user.com">
                             </div> 
 
                             <div class="col-6">
-                                <label for="inputReligion" class="form-label">Religion *</label>
+                                <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
                                 <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example">
                                 <option selected="" value="Catholic">Catholic</option>
                                 <option value="Baptist">Baptist</option>
@@ -83,7 +83,7 @@
 
                            
                             <div class="col-12">
-                                <label for="inputAddress" class="form-label">Church Address *</label>
+                                <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
                             </div>
                      
@@ -92,17 +92,17 @@
 
                         <div class="row g-2">
                             <div class="col-6">
-                                <label for="inputCity" class="form-label">City *</label>
+                                <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Bacolod City">
                             </div>
                             <div class="col-6">
-                                <label for="inputNum" class="form-label">Telephone Number *</label>
+                                <label for="inputNum" class="form-label">Telephone Number <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="432-0048">
                             </div>
                         </div>
                     <div class="row g-2">
                         <div class="col-12">
-                                <label for="inputSelectCountry" class="form-label">Country *</label>
+                                <label for="inputSelectCountry" class="form-label">Country <sup style='color:red;'>  *</sup></label>
                                 <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example">
                                 <option selected="" value="Philippines">Philippines</option>
                                 <option  value="India">India</option>
@@ -116,13 +116,13 @@
                     </div>
                     <div class="row g-2">
                         <div class="col-12">
-                            <label for="inputProof" class="form-label">Church Proof of Legitimacy * <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
+                            <label for="inputProof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
                             <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
                                 
                                     
                         </div>
                         <div class="col-6">
-                            <label for="inputProof" class="form-label">User Identifications* <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
+                            <label for="inputProof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
                             <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
                                 
                                     
@@ -327,7 +327,7 @@
             <p>
             <h5> Privacy Policy</h5>
             Your privacy is important to us. Our Privacy Policy explains how we collect,
-            use, and disclose information about you in connection with your use of the Levites App.* 
+            use, and disclose information about you in connection with your use of the Levites App.<sup style='color:red;'>  *</sup> 
             By using the Levites App, you consent to our collection and use of your personal information
             in accordance with our Privacy Policy.
             </p>
@@ -478,9 +478,9 @@
             <br><br>
             The Company requires all visitors to the Site to adhere to the following rules and regulations:
             <br><br>
-            &nbsp; &nbsp; * By accessing the Site you indicate your acknowledgment and acceptance of these terms and conditions. From time to time we may revise these terms and conditions. <br>
-            &nbsp; &nbsp; * The Company owns the text and images appearing on this Site or others as indicated. <br>
-            &nbsp; &nbsp; * Not all the services described on the site are available in all geographic areas of the Philippines. 
+            &nbsp; &nbsp; <sup style='color:red;'>  *</sup> By accessing the Site you indicate your acknowledgment and acceptance of these terms and conditions. From time to time we may revise these terms and conditions. <br>
+            &nbsp; &nbsp; <sup style='color:red;'>  *</sup> The Company owns the text and images appearing on this Site or others as indicated. <br>
+            &nbsp; &nbsp; <sup style='color:red;'>  *</sup> Not all the services described on the site are available in all geographic areas of the Philippines. 
             <br><br>
             We will use our best efforts to include accurate and up to date information on the Site, but we make no warranties or representations as to the accuracy of the information. You agree that all access and use of the Site and its contents is at your own risk. By using the Site, you acknowledge that we specifically disclaim any liability for any damages arising out of or in any way connected with your access to our use of the Site. 
             <br><br>
