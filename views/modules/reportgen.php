@@ -30,9 +30,9 @@
                         <label class="form-label">Category</label>
                         <select class="form-select mb-3" aria-label="Default select example">
                             <option selected="">All</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="1">Bible Study</option>
+                            <option value="2">Outreach</option>
+                            <option value="3">Sunday Worship</option>
                         </select>
                     </div>
                     
@@ -40,7 +40,7 @@
                
                 <hr>
 
-                <div class="col-12 col-lg-6 text-end">
+                <div class="col-12 col-lg-6 text-end mb-3">
                             <a href="javascript:;" class="btn btn-danger btn-sm me-2"><i class="bi bi-file-earmark-pdf me-2"></i>Export as PDF</a>
                             <a href="javascript:;" onclick="window.print()" class="btn btn-dark btn-sm"><i class="bi bi-printer-fill me-2"></i>Print</a>
                 </div>

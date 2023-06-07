@@ -3,7 +3,8 @@
 
     <div class="row ">
         <div class="col-12 col-lg-6 col-xl-7 d-flex ">  
-            <div class="card w-100 mx-10">
+            <div class="card w-100 mx-10 shadow p-3 mb-5 bg-body rounded">
+            <div class="background-image"></div>
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center py-2 px-2">
                         <div class="px-2">
@@ -26,11 +27,11 @@
                 <div class="team-list">
                     <div class="d-flex align-items-center gap-3">
                         <div class="">
-                        <img src="assets/images/avatars/01.png" alt="" width="50" height="50" class="rounded-circle">
+                        <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
                         </div>
                         <div class="flex-grow-1">
-                        <h6 class="mb-1 fw-bold">Our Lady of the Miraculous Medal Parish    </h6>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                        <h6 class="mb-1 fw-bold">Our Lady of Peace and Good Voyage</h6>
+                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
                         <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
                         </div>
                         <div class="">
@@ -47,7 +48,7 @@
         </div>
 
         <div class="col-12 col-lg-6 col-xl-5 d-flex">
-            <div class="card w-100">
+            <div class="card w-100 shadow p-3 mb-5 bg-body rounded">
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">
@@ -74,7 +75,7 @@
                     <div class="team-list">
                         <div class="d-flex align-items-center gap-3">
                             <div class="">
-                                <img src="assets/images/avatars/01.png" alt="" width="50" height="50" class="rounded-circle">
+                                <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
                                 </div>
                                 <div class="flex-grow-1">
                                 <h6 class="mb-1 fw-bold">Our Lady of the Miraculous Medal Parish    </h6>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Levites</title>
-    <link rel="icon" href="views/images/logo.png" type="image/x-icon">
+    <link rel="icon" href="views/images/try2.png" type="image/x-icon" alt="Favicon">
 
 
 	<!--plugins-->

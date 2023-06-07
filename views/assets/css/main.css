@@ -93,7 +93,7 @@ a {
 
 .top-header .navbar .dropdown-app .dropdown-menu {
     width: 270px;
-    border: 1px solid #dee2e6;
+    border: 1px solid #0481ff;
     padding: 0.5rem;
     border-radius: 16px;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
@@ -121,6 +121,7 @@ a {
     padding: .5rem;
     border-radius: 1rem;
     transition: .2s;
+	z-index: 9999;
 }
 
 .top-header .navbar .dropdown-app .dropdown-menu .app-box:hover {
@@ -273,7 +274,8 @@ a {
 
 .dropdown-large .dropdown-menu .dropdown-item {
 	padding: .5rem 1.3rem;
-	border-bottom: 1px solid #ededed
+	border-bottom: 1px solid #ededed;
+	
 }
 
 .header-message-list {
@@ -360,7 +362,7 @@ a {
 /* side navigation */
 
 .sidebar-wrapper .sidebar-nav {
-    margin-top: 60px;
+    margin-top: 80px;
     height: 100%;
     background-color: #ffffff;
     height: calc(100% - 120px);
@@ -625,9 +627,27 @@ a {
 	
 }
 
-
-
-
+  
+.card {
+	position: relative;
+	z-index: 1;
+	
+  }
+  
+  .card::before {
+	content: "";
+	background-image: url("../../images/marblecard.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.2;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+  }
+  
 /* sidebar bottom */
 
 .sidebar-wrapper .sidebar-bottom {
@@ -636,9 +656,9 @@ a {
     justify-content: start;
     width: 260px;
     height: 60px;
-    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
     position: fixed;
-    bottom: 0;
+    top: 0;
     background-color: #fff;;
     transition: ease-out .3s;
     border-right: 1px solid #dee2e6;
@@ -1187,6 +1207,20 @@ a {
     padding: 0 1rem;
 }
 
+
+
+.auth-cover-left {
+    position: relative;
+  }
+  
+  .auth-cover-left img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
 .auth-cover-left {
     display: flex;
@@ -2022,8 +2056,8 @@ a {
   
   main::before {
 	content: "";
-	background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(255, 255, 255)), url("../../images/marble.jpg");
-	position: absolute;
+	background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(255, 255, 255)), url("../../images/marblebackground.png");
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -2044,8 +2078,8 @@ a {
   
   .container-fluid::before {
 	content: "";
-	background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(255, 255, 255)), url("../../images/marble.jpg");
-	position: absolute;
+	background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(255, 255, 255)), url("../../images/marblebackground.png");
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -2054,4 +2088,8 @@ a {
 	background-size: cover;
 	mix-blend-mode: multiply;
 	height:100%;
+  }
+
+  .section-authentication-cover {
+    overflow: hidden;
   }

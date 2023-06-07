@@ -32,7 +32,7 @@
         <header id="header-eight" class="main-header-eight" >
             <div class="appheader-content">
                 <div class="site-logo float-left " style="font-size: 24px; font-weight: bold; color: white;">
-                    <a href="#" class="glow" data-text="LEVITES">LEVITES</a>
+                    <a href="#" class="glow" data-text="LEVITES"><img src="views/images/try.png" class="hlogo" alt=""> LEVITES</a>
                 </div>
                 <nav class="navigation-eight ul-li saasio_one_click">
                     <ul>
@@ -45,7 +45,7 @@
                 </nav>
                 
                 <div class="sign-up-btn-eight text-center float-right clearfix shake-animation"  id="sign-up-link">
-                    <a href="login" id="sign-up-link" >Sign Up</a>
+                    <a href="login" id="sign-up-link" >Login</a>
                 </div>
             </div>
             <!-- /desktop-menu -->
@@ -60,7 +60,7 @@
                             <i class="far fa-times-circle"></i>
                         </div>
                         <div class="m-brand-logo text-center">
-                            <img src="views/assets2/img/app-landing/logo/f-logo.png" alt="">
+                            <img src="views/images/try.png" alt="">
                         </div>
                         <nav class="appi-ei-mobile-main-navigation saasio_one_click  clearfix ul-li">
                             <ul id="main-nav" class="navbar-nav text-capitalize clearfix">
@@ -99,15 +99,15 @@
                                         <b>File Storage</b>
                                     </span>
                                 </h1>
-                                <P>"To belive is to connect." </P>
+                                <P>"To believe is to connect." </P>
                                 <div class="ei-banner-btn">
-                                    <a href="#"><i class="fas fa-solid fa-arrow-right"></i> Register Now</a>
+                                    <a href="churchregistration"><i class="fas fa-solid fa-arrow-right"></i> Register Now</a>
                                    
                                 </div>
                                 
                             </div>
                             <div class="ei-banner-mbl-mockup wow fadeInRight" data-wow-delay="600ms" data-wow-duration="1500ms">
-                                <img src="views/assets2/img/app-landing/.mockup/bm1.png" alt="">
+                                <img src="views/images/med.mjpg" class="bann" alt="">
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                             <div class="col-lg-3 col-md-6  wow fadeFromUp" data-wow-delay="0ms" data-wow-duration="1500ms">
                                 <div class="eight-feature-box text-center position-relative">
                                     <div class="feature-icon8 position-relative">
-                                        <i class="flaticon-logo"></i>
+                                    <i class='bx bxs-grid bx-tada' ></i>
                                         <span class="ei-icon-bg"></span>
                                     </div>
                                     <div class="feature-text8 appeight-headline pera-content">
@@ -162,7 +162,7 @@
                             <div class="col-lg-3 col-md-6 wow fadeFromUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                                 <div class="eight-feature-box text-center position-relative">
                                     <div class="feature-icon8 position-relative">
-                                        <i class="flaticon-computer"></i>
+                                    <i class='bx bxs-music bx-tada bx-rotate-90' ></i>
                                         <span class="ei-icon-bg"></span>
                                     </div>
                                     <div class="feature-text8 appeight-headline pera-content">
@@ -177,7 +177,7 @@
                             <div class="col-lg-3 col-md-6 wow fadeFromUp" data-wow-delay="900ms" data-wow-duration="1500ms">
                                 <div class="eight-feature-box text-center position-relative">
                                     <div class="feature-icon8 position-relative">
-                                        <i class="flaticon-pen-tool"></i>
+                                    <i class='bx bx-hdd bx-tada' ></i>
                                         <span class="ei-icon-bg"></span>
                                     </div>
                                     <div class="feature-text8 appeight-headline pera-content">
@@ -192,7 +192,7 @@
                             <div class="col-lg-3 col-md-6 wow fadeFromUp" data-wow-delay="1200ms" data-wow-duration="1500ms">
                                 <div class="eight-feature-box text-center position-relative">
                                     <div class="feature-icon8 position-relative">
-                                        <i class="flaticon-layers"></i>
+                                    <i class='bx bx-calendar bx-tada' ></i>
                                         <span class="ei-icon-bg"></span>
                                     </div>
                                     <div class="feature-text8 appeight-headline pera-content">
@@ -259,17 +259,17 @@
                     </div>
                 </div>
                 <div class="eight-service-text position-relative appeight-headline wow fadeFromRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="ei-service-slide-mbl" data-background="views/assets2/img/app-landing/mockup/.dsmu1.png">
+                    <div class="ei-service-slide-mbl" data-background="views/images/desktop.png">
                         <div class="slide-inner">
                             <div class="ei-service-slide">
                                 <div class="slide-item">
                                     <div class="image">
-                                        <img src="views/assets2/img/app-landing/screenshoot/.aslider-01.jpg" alt="" />
+                                        <img src="views/assets2/img/app-landing/screenshoot/aslider-01.jpg" alt="" />
                                     </div>
                                 </div>
                                 <div class="slide-item">
                                     <div class="image">
-                                        <img src="views/assets2/img/app-landing/screenshoot/.aslider-01.jpg" alt="" />
+                                        <img src="views/assets2/img/app-landing/screenshoot/aslider-01.jpg" alt="" />
                                     </div>
                                 </div>
                                 <div class="slide-item">
@@ -279,7 +279,7 @@
                                 </div>
                                 <div class="slide-item">
                                     <div class="image">
-                                        <img src="views/assets2/img/app-landing/screenshoot/.aslider-01.jpg" alt="" />
+                                        <img src="views/assets2/img/app-landing/screenshoot/aslider-01.jpg" alt="" />
                                     </div>
                                 </div>
 
@@ -291,7 +291,7 @@
                     app?</h2>
                 </div>
             </div>
-            <div class="s-shape-bg1" data-parallax='{"x" : -70}'><img src="views/assets2/img/app-landing/shape/ls-shape3.png" alt=""></div>
+            <div class="s-shape-bg1" data-parallax='{"x" : -70}'><img src="views/assets2/img/app-landing/shape/s-shape3.png" alt=""></div>
             <div class="s-shape-bg2 text-center"><img src="views/assets2/img/app-landing/shape/ls-shape4.png" alt=""></div>
         </section>
     <!-- End of service  section
@@ -364,14 +364,12 @@
                     <div class="col-lg-4">
                         <div class="ei-footer-widget pera-content appeight-headline">
                             <div class="ei-footer-logo">
-                                <H1><img src="views/assets/images/logo-icon.png" alt="">LEVITES</H1>
+                                <H1><img src="views/images/try.png" alt="">LEVITES</H1>
                             </div>
                             <p>
-                                Lorem Ipsum is simply dummy text of the printing and type.
+                                
                             </p>
-                            <div class="ei-payment-mathod">
-                                <img src="views/assets2/img/app-landing/logo/paypal.png" alt="">
-                            </div>
+                          
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -396,18 +394,15 @@
                             <h3 class="ei-widget-title">Contact:</h3>
                             <h4>
                                 <i class="fas fa-phone"></i>
-                                Call Us: (210) 123451 
-                                <span>(Sat - Thursday)</span>
+                                Call Us: (+63) 92929304151
+                                <span>(Mon - Sunday)</span>
                             </h4>
                             <h4>
                                <i class="fas fa-map-marker-alt"></i>
-                                380 St Kilda Road, 
-                                <span>Melbourne, Australia</span>
+                                University of Negros Occidental - Recoletos 
+                                <span>Bacolod City, Philippines</span>
                             </h4>
-                            <div class="download-btn">
-                                <a href="#"><img src="views/assets2/img/app-landing/logo/app1.png" alt=""></a>
-                                <a href="#"><img src="views/assets2/img/app-landing/logo/gp1.png" alt=""></a>
-                            </div>
+                            
                             <div class="ei-footer-social">
                                 <a href="#"><i class="fab fa-facebook-f "></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>

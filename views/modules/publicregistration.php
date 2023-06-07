@@ -1,15 +1,30 @@
 
-<div class="row p-5 d-flex justify-content-center align-items-center">
-        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-6">
-          <div class="card rounded-0 m-3 border-3 rounded-5 shadow  ">
-            <div class="card-body ">
+  <!--authentication-->
+
+  <div class="section-authentication-cover">
+    <div class="">
+      <div class="row g-0">
+
+        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
+
+          <div class=" rounded-0 mb-0 border-0 bg-transparent">
+            <div class="card-body">
+              <img src="views/images/marblebackground.png" class="img-fluid auth-img-cover-login" width="650"
+                alt="">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+        <div class="card m-3 border-0 rounded-3 ">
+            <div class="card-body p-sm-10">
                 <div class="text-center">
               <img src="views/img/LEVITES.png" class="mb-4" width="100" alt="">
-              
+   
               <h1 class="fw-bold">Public Registration</h1>
-
                 <div>
-                <button type="button" class="btn "><a  href="churchregistration"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <button type="button" class="btn "><a  href="churchregistration"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
                     <polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
                     <defs>
                         <linearGradient id="gradient" gradientTransform="rotate(90)">
@@ -18,21 +33,31 @@
                         </linearGradient>
                     </defs>
                     </svg></button>
-                        <label class="form-check-label mt-1 cursor-pointer" for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Public Registration to Church Registration</label> </a>
-                    </div>
+                        <label class="form-check-label mt-1 cursor-pointer" for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Church Registration to Public Registration</label> </a>
+                </div>
              
-            </div>
 
-              <div class="form-body g-3">
-                <form role="form" id="church-form" method="POST" autocomplete="nope" class="row g-3">
-            
-                        <div class="row g-3">
-                        <div class="col-6">
+              <div class="separator section-padding">
+                <div class="line"></div>
+               
+                <div class="line"></div>
+              </div>
+            </div>      
+
+              <div class="form-body mt-4">
+                <form class="row g-3 " role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
+                <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
+
+                <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
+                    <label for="churchID" class="form-label">ID</label>
+                    <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
+                </div>
+                <div class="col-12">
                             <label for="inputUsername" class="form-label">Username <sup style='color:red;'>  *</sup></label>
                             <input type="email" class="form-control border-3" id="inputUsername" placeholder="Jhon">
                         </div>
 
-                            <div class="col-6">
+                            <div class="col-12">
                             <label for="inputChoosePassword" class="form-label">Password <sup style='color:red;'>  *</sup></label>
                             <div class="input-group" id="show_hide_password">
                                 <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword" value="12345678" placeholder="Enter Password">
@@ -44,17 +69,12 @@
                             <label for="inputEmailAddress" class="form-label">Email Address <sup style='color:red;'>  *</sup></label>
                             <input type="email" class="form-control border-3" id="inputEmailAddress" placeholder="example@user.com">
                             </div> 
-
-                        </div>
-
-                        <div class="row g-3">
-
-                            <div class="col-6">
+                            <div class="col-12">
                                 <label for="inputName" class="form-label">Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="inputName" placeholder="JAY COBB">
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-12">
                                 <label for="inputLastName" class="form-label">Last Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="inputLastName" placeholder="MOYA">
                             </div>
@@ -69,50 +89,166 @@
                                 </select>
                             </div>
 
-                            <div class="col-6">
-                                <label for="inputNum" class="form-label">Telephone Number <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="inputNum" placeholder="432-0048">
-                            </div>
-
-                        
                         </div>
 
-                        <div class="row g-3">
-
-                            <div class="col-12 ">
-                                <div class="form-check form-switch border-3">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                                <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms &amp; Conditions</label>
+                  <div class="col-12">
+                  <div class="form-check form-switch border-3">
+                                <input class="form-check-input" type="checkbox" id="agree" >
+                                <label class="form-check-label" for="flexSwitchCheckChecked" >I read and agree to Terms &amp; Conditions</label>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>
-                                </div>
                             </div>
-                            
-                            
-
-                            <div class="col-12">
-                                <div class="d-grid">
-                                    <a href="login" type="button"  class="btn text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="text-start">
-                                <p class="mb-0">Already have an account? <a href="login" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sign in here</a></p>
-                                </div>
-                            </div>
-                        </div>
-  
+                  </div>
+                  <div class="col-12">
+                    <div class="d-grid">
+					<a href="login" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="text-start">
+                      <p class="mb-0">Already have an account? <a href="login" style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sign in here</a></p>
+                    </div>
+                  </div>
                 </form>
               </div>
 
           </div>
           </div>
         </div>
-     </div>
+
+      </div>
       <!--end row-->
+    </div>
+  </div>
+
+  <!--authentication-->
 
 
-<!--Modal-->
+
+
+  <div class="modal fade" id="modal-search-accounts" tabindex="-1"  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CHURCH ACCOUNTS LIST</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+      </div>
+
+
+      <div class="modal-body">
+        <table class="table table-hover  datatable-small-font profile-grid-header churchAccountsTable" width="100%" >
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>USERNAME</th>
+                    <th>CHURCH NAME</th>
+                    <th>CHURCH ADDRESS</th>
+                    <th>TELEPHONE NUMBER</th>
+              
+                    </tr>
+                </thead>
+        </table>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class="col">
+     <!-- Button trigger modal -->
+     <!-- Modal -->
+    <div class="modal fade" id="UserIds" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recommended IDs and Certificate for Churches </h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> 
+                    <div class="row">
+                    <p>The following are the official IDs and Certificate that will be accepted in registration for church account:</p>
+                        <div class="col">
+                           
+                            <ul>
+                                <li>Passport</li>
+                                <li>National ID</li>
+                                <li>Social Security Service ID</li>
+                                <li>Government Service Insurance System e-Card</li>
+                                <li>Driver’s License</li>
+                                <li>National Bureau of Investigation clearance</li>
+                                <li>Senior Citizen’s Card</li>
+                                <li>Unified Multi-Purpose Identification Card</li>
+
+                            </ul>
+                        </div>
+                  
+
+                        <div class="col">
+                            <ul>
+                                <li>Police Clearance</li>
+                                <li>Firearms’ License to Own and Possess ID </li>
+                                <li>Professional Regulation Commission ID</li>
+                                <li>Integrated Bar of the Philippines ID</li>
+                                <li>Bureau of Internal Revenue ID</li>
+                                <li>Voter’s ID</li>
+                                <li>Person with Disabilities Card</li>
+                                <li>Other government-issued ID with photo</li>
+                            </ul>
+
+                        </div>
+                        
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="col">
+     <!-- Button trigger modal -->
+     <!-- Modal -->
+    <div class="modal fade" id="Churchid" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recommended IDs </h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> 
+                    <div class="row">
+                    <p>The following are the official IDs that will be accepted in registration for church account:</p>
+                        <div class="col">
+                           
+                            <ul>
+                                <li>BIR Certificates</li>
+                                <li>Church Priest IDs</li>
+                                <li>Decree of Canonical Erection</li>
+                                
+                            </ul>
+                        </div>
+                      
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+ <!-- Modal -->
+ <div class="col">
      <!-- Button trigger modal -->
      <!-- Modal -->
     <div class="modal fade" id="LevitesAgreement" tabindex="-1" aria-hidden="true">

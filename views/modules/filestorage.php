@@ -144,7 +144,7 @@
                       
                       <div class="mt-3 cursor-pointer">
                       <h5 id="upper-title">Folders<i class="bi bi-plus fs-4"></i></i></h5>
-                      <p></p>
+                      
                     </div>
                       <div class="row mt-3 folder-preview">
                         <div class="col-12 col-lg-4">
