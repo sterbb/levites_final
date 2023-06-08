@@ -27,7 +27,7 @@
 
                   <div class="d-flex justify-content-center align-items-center text-center pb-1">
                     <button class="btn btn-white  me-3"><i class="bx bx-chevron-left me-0"></i></button>
-                    <h6>APRIL 26, 2023</h6>
+                    <h6>MAY 25, 2023</h6>
                     <button class="btn btn-white  ms-3"><i class="bx bx-chevron-right me-0"></i></button>
                   </div>
 
@@ -138,7 +138,7 @@
 
                                 <div class="row g-3 mt-2 mb-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @10:00am - 11:30am</h6>
+                                    <h6 class="mb-2 ">When: May 25, 2023 @10:00am - 11:30am</h6>
                                   </div>
 
                                   <div class="col-12 col-lg-12 ">
@@ -447,19 +447,19 @@ We're excited to explore the world of analog mixers together and discover how th
                 <h6>Calendar Filters</h6>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Meetings</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                 <label class="form-check-label" for="flexSwitchCheckChecked">Workshops</label>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Outreaches</label>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Offering Prayer</label>
             </div>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                 <label class="form-check-label" for="flexSwitchCheckChecked">Bible Study</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Anniversary</label>
             </div>
             </div>
           </div>

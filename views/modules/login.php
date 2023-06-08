@@ -1,5 +1,5 @@
  <!--authentication-->
- 
+
  <div class="container-fluid" style="margin-top:130px;">
 	<div class="row ">
 		<div class="d-flex justify-content-center align-items-center">
@@ -12,12 +12,12 @@
 							<p class="mb-0">Enter your credentials to login your account</p>
 						</div>
 						
-					
-						<div class="form-body mt-4">
-							<form class="row g-3">
+ 				
+						<div class="form-body mt-4">	
+							<form class="row g-3" id="loginForm" method="POST">
 								<div class="col-12">
 									<label for="inputEmailAddress" class="form-label">Username</label>
-									<input type="email" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com">
+									<input type="text" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com" name="username">
 								</div>
 								<div class="col-12">
 									<label for="inputChoosePassword" class="form-label">Password</label>
@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-12">
 									<div class="d-grid">
-									<a href="adminhomepage" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</a>
+									<button type="submit" form="loginForm"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</a>
 									</div>
 								</div>
 								<div class="col-12">

@@ -14,6 +14,7 @@
     <link href="views/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
     <link href="views/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
     <link href="views/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
+	<link href="views/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 	<link href="views/assets/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet">
@@ -55,6 +56,7 @@
 			$_GET["route"] == 'churchregistration' ||
 			$_GET["route"] == 'forgotpassword' ||
 			$_GET["route"] == 'resetpassword' ||	
+			$_GET["route"] == 'websiteorg' ||	
 			$_GET["route"] == 'accounts' ||
             $_GET["route"] == 'publichomepage' ||
             $_GET["route"] == 'churchpage'||

@@ -1,7 +1,31 @@
 <!--start sidebar-->
 
 <?php
-$account_type = "admin";
+if(isset($_COOKIE["type"])){
+  if($_COOKIE["type"]  == "admin"){
+    echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+  }elseif($_COOKIE["type"]  == "subuser"){
+    echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+  }elseif($_COOKIE["type"] == "superuser"){
+    echo"<style>.admin{display:none !important;}</style>";
+    echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+    echo"<style>.admin-public{display:none !important;}</style>";
+  }elseif($_COOKIE["type"]  == "public"){
+    echo"<style>.admin{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+  }
+}
+
+
+
+
+
+
 ?>
 <aside class="sidebar-wrapper">
           <div class="sidebar-header">
@@ -26,19 +50,25 @@ $account_type = "admin";
                     <div class="menu-title">Dashboard</div>
                   </a>
                 </li>
+
+                <li class="admin">
+                  <a href="websiteorg">
+                    <div class="parent-icon"><span class="material-symbols-outlined">
+                      calendar_add_on
+                      </span> 
+                    </div>
+                    <div class="menu-title">Website Organizer</div>
+                  </a>
+                </li>
                 
                 <li class="admin">
-                  <a href="javascript:;" class="has-arrow">
+                  <a href="churchcalendar">
                     <div class="parent-icon"><span class="material-symbols-outlined">
-                    calendar_add_on
-                    </span>
+                      calendar_add_on
+                      </span> 
                     </div>
                     <div class="menu-title">Calendar of Activities</div>
                   </a>
-                  <ul>
-                    <li> <a href="churchcalendar"><span class="material-symbols-outlined">arrow_right</span>Calendar View</a>
-                    </li>
-                  </ul>
                 </li>
                 
                 
@@ -50,7 +80,7 @@ $account_type = "admin";
                     </div>
                     <div class="menu-title">Songs and Lyrics</div>
                   </a>
-                  <ul>
+                  <ul >
                     <li><a href="slhomepage" ><span class="material-symbols-outlined">arrow_right</span>Song and Lyrics Homepage</a></li>         
                     <li> <a href="songlist"><span class="material-symbols-outlined">arrow_right</span>Song List</a></li>
                     <li><a href="lyrics"><span class="material-symbols-outlined">arrow_right</span>Lyrics</a></li> 
@@ -95,7 +125,7 @@ $account_type = "admin";
                     </ul>
                 </li>
 
-                <li class="admin">
+                <li class="churchadmin">
                   <a href="accounts">
                     <div class="parent-icon"><i class="lni lni-users"></i>
                     </div>
@@ -103,7 +133,6 @@ $account_type = "admin";
                   </a>
                 </li>
 
-                <li class="menu-label">Others </li>
                 
                  
 
@@ -180,5 +209,5 @@ $account_type = "admin";
                 </li>
               </ul>
           </div>
-     </aside>
-     <!--end sidebar-->
+</aside>
+<!--end sidebar-->
