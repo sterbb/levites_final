@@ -640,6 +640,7 @@ a {
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: absolute;
+	margin-bottom: 10vh;
 	top: 0;
 	left: 0;
 	opacity: 0.2;

@@ -59,11 +59,11 @@
                   <div class="col-12">
                   <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                             <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control border-end-0 border-3 " id="tns-password" name="password" value="12345678" placeholder="Enter Password">
+                                <input type="password" class="form-control border-end-0 border-3 " id="tns-password" name="password"  placeholder="Enter Password">
                                 <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                 </div>
                     <div class="input-group mt-1" id="show_hide_password">
-                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword" value="12345678" placeholder="Enter Password">
+                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-Enter Password">
                        <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                     </div>
                   </div>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="432-0048 or ">
+                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="Landline or phone number ">
                             </div>
                         </div>
                   </div>
