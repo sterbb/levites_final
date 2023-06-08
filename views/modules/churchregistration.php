@@ -63,7 +63,7 @@
                                 <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                 </div>
                     <div class="input-group mt-1" id="show_hide_password">
-                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-Enter Password">
+                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-gEnter Password">
                        <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                     </div>
                   </div>
