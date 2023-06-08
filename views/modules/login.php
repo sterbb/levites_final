@@ -32,10 +32,10 @@
 			</div>
 
               <div class="form-body mt-4">
-                <form class="row g-3">
+                <form class="row g-3" id="loginForm" method="post">
                   <div class="col-12">
                     <label for="inputEmailAddress" class="form-label">Email</label>
-                    <input type="email" class="form-control  border-3" id="inputEmailAddress" placeholder="jhon@example.com">
+                    <input type="text" class="form-control  border-3" id="inputEmailAddress" placeholder="jhon@example.com">
                   </div>
                   <div class="col-12">
                     <label for="inputChoosePassword" class="form-label">Password</label>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-					<a href="superuser" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</a>
+					<button  type="submit"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</button>
                     </div>
                   </div>
                   <div class="col-12">
