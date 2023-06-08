@@ -491,3 +491,15 @@
 	
 
 })(window.jQuery);
+
+
+window.addEventListener('scroll', function() {
+	var header = document.querySelector('.main-header-eight');
+	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+	if (scrollTop > 0) {
+	  header.classList.add('eisticky-menu-bg-overlay');
+	} else {
+	  header.classList.remove('eisticky-menu-bg-overlay');
+	}
+  });

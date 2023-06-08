@@ -1,18 +1,23 @@
 
-<div class="section-authentication-cover">
-    
-        
+  <!--authentication-->
+
+  <div class="section-authentication-cover">
+    <div class="">
       <div class="row g-0">
 
-        <div class="col-12 col-sm-2 col-md-12 col-lg-12 col-xl-6 col-xxl-6 auth-cover-left align-items-center justify-content-center d-none d-xl-flex ">
-            <img src="views/assets/images/boxed-register.png" class="img-fluid auth-img-cover-login" width="650"
-            alt="">
+        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
+
+          <div class=" rounded-0 mb-0 border-0 bg-transparent">
+            <div class="card-body">
+              <img src="views/images/marblebackground.png" class="img-fluid auth-img-cover-login" width="650"
+                alt="">
+            </div>
+          </div>
 
         </div>
-        
-        <div class="col-12 col-sm-2 col-md-12 col-lg-12 col-xl-6 col-xxl-6 auth-cover-right border-3 align-items-center justify-content-center ">
-         <div class="container-fluid">
-          <div class="card m-3 border-0 rounded-3 ">
+
+        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+        <div class="card m-3 border-0 rounded-3 ">
             <div class="card-body p-sm-10">
                 <div class="text-center">
               <img src="views/img/LEVITES.png" class="mb-4" width="100" alt="">
@@ -30,152 +35,119 @@
                     </svg></button>
                         <label class="form-check-label mt-1 cursor-pointer" for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Church Registration to Public Registration</label> </a>
                 </div>
-            </div>
+             
 
-            
-                    
+              <div class="separator section-padding">
+                <div class="line"></div>
+               
+                <div class="line"></div>
+              </div>
+            </div>      
 
-              <div class="form-body g-2">
-                <form role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
-                        <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
+              <div class="form-body mt-4">
+                <form class="row g-3 " role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
+                <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
 
-
-                        <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
-                                            <label for="churchID" class="form-label">ID</label>
-                                            <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
-                                    </div>
-
-                    <div class="row g-2">
-                        <div class="col-6">
-                            <label for="username" class="form-label">Username<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                            <input type="text" class="form-control border-3" id="tns-username" name="username" placeholder="Jhon">
-                        </div>
-
-                            <div class="col-6">
-                            <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
+                    <label for="churchID" class="form-label">ID</label>
+                    <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
+                </div>
+                  <div class="col-12">
+                  <label for="username" class="form-label">Username<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                <input type="text" class="form-control border-3" id="tns-username" name="username" placeholder="Jhon">
+                  </div>
+                  <div class="col-12">
+                  <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                             <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control border-end-0 border-3" id="tns-password" name="password" value="12345678" placeholder="Enter Password">
+                                <input type="password" class="form-control border-end-0 border-3 " id="tns-password" name="password"  placeholder="Enter Password">
                                 <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                 </div>
-                            </div>     
-                            
-                            <div class="col-12">
+                    <div class="input-group mt-1" id="show_hide_password">
+                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-Enter Password">
+                       <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-12">
                                 <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-churchName" name="churchName" placeholder="Our Lady of Peace and Good Voyage">
-                            </div>             
-                        </div>
-                        
-                        <div class="row g-2">     
-
-                            <div class="col-6">
-                                <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
-                                <input type="email" class="form-control border-3" id="tns-email" name="email" placeholder="example@user.com">
-                            </div> 
-
-                            <div class="col-6">
-                                <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
+                            </div>  
+                  <div class="col-12">
+                  <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
+                <input type="email" class="form-control border-3" id="tns-email" name="email" placeholder="example@user.com">
+                  </div>
+                  <div class="col-12">
+                                <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
+                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
+                            </div>
+                  <div class="col-12">
+                  <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
                                 <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example">
                                 <option selected="" value="Catholic">Catholic</option>
                                 <option value="Baptist">Baptist</option>
                                 <option value="Christianity ">Christian</option>
                                 </select>
-                            </div>
-
-                           
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
-                            </div>
-                     
-                        </div>
-
-
-                        <div class="row g-2">
-                            <div class="col-6">
+                  </div>
+                  <div class="row mt-2">
+                  <div class="col-6">
                                 <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Bacolod City">
                             </div>
                             <div class="col-6">
-                                <label for="inputNum" class="form-label">Telephone Number <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="432-0048">
+                                <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
+                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="Landline or phone number ">
                             </div>
                         </div>
-                    <div class="row g-2">
-                        <div class="col-12">
-                                <label for="inputSelectCountry" class="form-label">Country <sup style='color:red;'>  *</sup></label>
-                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example">
-                                <option selected="" value="Philippines">Philippines</option>
-                                <option  value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="America">America</option>
-                                <option value="Dubai">Dubai</option>
-                                </select>
-                            </div>
-                       
-                        
-                    </div>
-                    <div class="row g-2">
-                        <div class="col-12">
+                  </div>
+                  
+                  <div class="col-12 mt-2">
                             <label for="inputProof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
                             <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
                                 
                                     
                         </div>
-                        <div class="col-6">
+
+                        <div class="col-12 mt-2">
                             <label for="inputProof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
                             <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
                                 
                                     
                         </div>
-                        <div class="col-6">
-                            <label for="inputProof" class="form-label">&nbsp;</label>
-                            <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">         
-                        </div>
-                     
-                    </div>
 
-
-                    <div class="row g-2">
-
-                        <div class="col-12">
-                            <div class="form-check form-switch border-3">
+                  <div class="col-12 mt-2">
+                  <div class="form-check form-switch border-3">
                                 <input class="form-check-input" type="checkbox" id="agree" >
                                 <label class="form-check-label" for="flexSwitchCheckChecked" >I read and agree to Terms &amp; Conditions</label>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>
                             </div>
-                        </div>
-                        
-                        
-
-                        <div class="col-12">
-                            <div class="d-grid">
-                                <a href="login"  type="button"  class="btn text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="text-start">
-                            <p class="mb-0">Already have an account? <a href="login" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sign in here</a></p>
-                            </div>
-                        </div>
-
+                  </div>
+                  <div class="col-12">
+                    <div class="d-grid">
+					<a href="login" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
                     </div>
-  
+                  </div>
+                  <div class="col-12">
+                    <div class="text-start">
+                      <p class="mb-0">Already have an account? <a href="login" style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sign in here</a></p>
+                    </div>
+                  </div>
                 </form>
               </div>
 
           </div>
           </div>
-         </div>
         </div>
+
       </div>
       <!--end row-->
-   
-  </div>    <!--end Sections-->
-  
+    </div>
+  </div>
+
+  <!--authentication-->
 
 
-  <!-- Modal -->
-<div class="modal fade" id="modal-search-accounts" tabindex="-1"  aria-hidden="true">
+
+
+  <div class="modal fade" id="modal-search-accounts" tabindex="-1"  aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
