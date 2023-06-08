@@ -1,5 +1,5 @@
 <!--start main content-->
-<main class="page-content">
+<main class="page-content" style="height:100vh;">
 
     <div class="row ">
         <div class="col-12 col-lg-6 col-xl-7 d-flex ">  
@@ -104,9 +104,6 @@
                       }
                     }
                   </script>
-
-
-
 
 </main>
 

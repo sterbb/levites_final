@@ -1,5 +1,5 @@
 
-<main class="page-content">
+<main class="page-content" style="height:100vh;">
     
     <div class="container-fluid d-flex justify-content-center align-items-center">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 p-5">

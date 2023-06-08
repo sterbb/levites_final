@@ -183,6 +183,11 @@ $(document).ready(function() {
     window.location.href = "filestorage";
   });
 
+
+  $(function() {
+	$("#menu").metisMenu()
+})
+
   $(function() {
     for (var e = window.location, o = $(".sidebar-wrapper .metismenu li a").filter(function() {
         return this.href == e
@@ -322,21 +327,51 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#loginBtn').submit(function(event) {
+	$('#loginForm').submit(function(event) {
 		// Prevent the default form submission behavior
 		event.preventDefault();
 	
-		var login;
-		alert($("#inputEmailAddress").val());
-		login = $("#inputEmailAddress").val();
+		var username = $("#inputEmailAddress").val();
+		alert(username);
 
-		if(login == "admin"){
-			$(".public").attr("hidden",true);
-			$(".superuser").attr("hidden",true);
-		}
 
-		window.location.href = adminhomepage;
+		var account = new FormData();
+		account.append("username", username);
+
+		$.ajax({
+			url: "ajax/login_account.ajax.php",
+			method: "POST",
+			data: account,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: "text",
+			success: function(answer) {
+				alert(answer);
+				document.cookie = 'type =' +answer; 
+			  if(answer == "admin"){
+				
+				window.location.href='adminhomepage';
+			  }else if(answer == "public"){
+				window.location.href='publichomepage';
+			  }else if(answer == "superuser"){
+				window.location.href='superuser';
+			  }else if(answer == "subuser"){
+				window.location.href='adminhomepage';
+			  }
+		   
+		   
+			},
+			error: function() {
+				alert("Oops. Something went wrong!");
+			},
+			complete: function() {
+			}
+		});
+
 	  });
+
+	  
 
 
 
