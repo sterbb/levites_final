@@ -2,9 +2,12 @@
 
 <div class="card overflow-hidden">
     <div class="profile-ourlady bg-dark position-relative mb-4">
-    <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-        <img src="views/images/ch1.jpg" alt="...">
-    </div>
+        <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
+            <img src="views/images/ch1.jpg" alt="...">
+
+        </div>
+        <button class="position-absolute btn btn-secondary rounded-circle" style=" top:190px; left:140px; font-size:18px;"><i class="fadeIn animated bx bx-edit"></i></button>
+        <button class="position-absolute btn btn-secondary rounded-circle" style=" top:140px; right:140px; font-size:20px;"><i class="fadeIn animated bx bx-edit"></i></button>
     </div>
     <div class="card-body">
     <div class="mt-5 d-flex align-items-start justify-content-between">
@@ -106,13 +109,36 @@
                 </div>
             </div>
         </div>
+
+        <div class="col">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="mb-3">Location</h5>
+                        <div id="marker-map" class="gmaps"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-around align-items-center">
+                        <h6 class="mb-0 text-uppercase">May 25, 2023</h6>
+                        <a href="churchcalendar"><button type="button" class="btn btn-outline-dark px-5 radius-30">View Calendar</button></a> 
+                    </div>
+
+                    <ul class="list-group list-group-flush mb-0">
+                        <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent"><img src="views/images/gcash2.png" alt="GCash" style="height:50px; width:100px; "> <p>09772535688</p>
+                        </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Baptism<span class="badge bg-primary rounded-pill">8:50 A.M.</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Workshop<span class="badge bg-danger rounded-pill">7:45 P.M.</span>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <!--end row-->
 
-    <div class="card">
-        <div class="card-body">
-        <h5 class="mb-3">Location</h5>
-            <div id="marker-map" class="gmaps"></div>
-        </div>
-    </div>
+  
 </main>

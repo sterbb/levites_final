@@ -2,52 +2,72 @@
   <main class="page-content">   
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4 justify-content-around">
         <div class="col">
-        <div class="card radius-10 bg-primary">
-            <div class="card-body">
-            <div class="d-flex align-items-center">
-                <div class="">
-                <p class="mb-1 text-white">User 1</p>
-                <h4 class="mb-0 text-white">Online</h4>
-                <p class="mb-0 text-white">Logged In: 12/24/2023 8:05:05 </p>
+            <div class="card radius-10">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <p class="mb-1">Total Views</p>
+                    <h4 class="mb-0 text-primary">1,045</h4>
+                  </div>
+                  <div class="ms-auto fs-2 text-primary">
+                    <i class="bi bi-bell-fill"></i>
+                  </div>
                 </div>
-                <div class="ms-auto fs-2 text-white">
-                <i class="fadeIn animated bx bx-user"></i>
-                </div>
+                <hr class="my-2">
+                <small class="mb-0"><i class="bi bi-arrow-up"></i> <span>+12.3% from last week</span></small>
+              </div>
             </div>
-            </div>
-        </div>
         </div>
         <div class="col">
-        <div class="card radius-10 bg-success">
-            <div class="card-body">
-            <div class="d-flex align-items-center">
-                <div class="">
-                <p class="mb-1 text-white">User 2</p>
-                <h4 class="mb-0 text-white">Offline</h4>
-                <p class="mb-0 text-white">Logged Out: 12/24/2023 13:05:05 </p>
+            <div class="card radius-10">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <p class="mb-1">Total Members</p>
+                    <h4 class="mb-0 text-danger">145</h4>
+                  </div>
+                  <div class="ms-auto fs-2 text-danger">
+                    <i class="bi bi-bell-fill"></i>
+                  </div>
                 </div>
-                <div class="ms-auto fs-2 text-white">
-                <i class="fadeIn animated bx bx-user"></i>
-                </div>
+                <hr class="my-2">
+                <small class="mb-0"><i class="bi bi-arrow-up"></i> <span>+7.3% from last week</span></small>
+              </div>
             </div>
-            </div>
-        </div>
         </div>
         <div class="col">
-        <div class="card radius-10 bg-danger">
-            <div class="card-body">
-            <div class="d-flex align-items-center">
-                <div class="">
-                <p class="mb-1 text-white">User 3</p>
-                <h4 class="mb-0 text-white">Nonactivated</h4>
-                <p class="mb-0 text-white">&nbsp</p>
+            <div class="card radius-10">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <p class="mb-1">Events This Month</p>
+                    <h4 class="mb-0 text-success">40</h4>
+                  </div>
+                  <div class="ms-auto fs-2 text-success">
+                    <i class="bi bi-bell-fill"></i>
+                  </div>
                 </div>
-                <div class="ms-auto fs-2 text-white">
-                <i class="fadeIn animated bx bx-user"></i>
-                </div>
-            </div>
+                <hr class="my-2">
+                <small class="mb-0"><i class="bi bi-arrow-down"></i> <span>-5% from last week</span></small>
+              </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card radius-10">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <p class="mb-1">Storage Consumed</p>
+                    <h4 class="mb-0 text-primary">1.2GB</h4>
+                  </div>
+                  <div class="ms-auto fs-2 text-primary">
+                    <i class="bi bi-bell-fill"></i>
+                  </div>
+                </div>
+                <hr class="my-2">
+                <small class="mb-0"><span>76% Free Space</span></small>
+              </div>
+            </div>
         </div>
 
     </div><!--end row-->
@@ -153,7 +173,7 @@
         <div class="col-4">
          <div class="card">
                 <div class="card-body d-flex justify-content-around align-items-center">
-                    <h6 class="mb-0 text-uppercase">May 25, 2023</h6>
+                    <h6 class="mb-0 text-uppercase">May 1, 2023</h6>
                     <a href="churchcalendar"><button type="button" class="btn btn-outline-dark px-5 radius-30">View Calendar</button></a> 
                 </div>
 

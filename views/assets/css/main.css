@@ -684,11 +684,50 @@ a {
        border-radius: 50%;
 }
 
+.navbar-upperright{
+    background-color: #fff;;
+    transition: ease-out .3s;
+    cursor: pointer;
+}
+
+
+.dropdown-menu {
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    overflow: hidden;
+    border: 1px solid #dee2e6;
+}
+
+
+.dropdown-toggle {
+    justify-content: start;
+ }
+
+.user-img img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.user-info .user-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #212529;
+}
+
+.user-info .user-designation {
+    font-size: 13px;
+    font-weight: 500;
+    color: #656a6f;
+}
+
 .sidebar-wrapper .sidebar-bottom .user-info .user-name {
     font-size: 15px;
     font-weight: 600;
     color: #212529;
 }
+
+
 
 .sidebar-wrapper .sidebar-bottom .user-info .user-designation {
     font-size: 13px;

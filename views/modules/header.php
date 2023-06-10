@@ -101,51 +101,45 @@
                   </a>
                 </div>
               </li>
+              <li class="nav-item dropdown ">
+                <div class="dropdown dropdown-center dropdown navbar-upperright">
+                    <div class="dropdown-toggle d-flex align-items-center px-3 gap-3" data-bs-toggle="dropdown">
+                      <div class="user-img">
+                        <img src="views/images/ch3.3.png" alt="">
+                      </div>
+                      <div class="user-info">
+                        <h5 class="mb-0 user-name">Vicariate of San Jose</h5>
+                        <p class="mb-0 user-designation">Church Admin</p>
+                      </div>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                      <li><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
+                        settings
+                        </span><span>Church Account Settings</span></a>
+                      </li>
+
+                      <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
+                        settings
+                        </span><span>Public Account Settings</span></a>
+                      </li>
+
+                      
+                    
+                      <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
+                        logout
+                        </span><span>Logout</span></a>
+                      </li>
+                    </ul>
+                </div>
+
+              </li>
+           
             </ul>
+
 
             
        </nav>
 
-
-       <div class="sidebar-bottom dropdown dropdown-center dropdown">
-              <div class="dropdown-toggle d-flex align-items-center px-3 gap-3 w-100 h-100" data-bs-toggle="dropdown">
-                <div class="user-img">
-                   <img src="assets/images/avatars/01.png" alt="">
-                </div>
-                <div class="user-info">
-                  <h5 class="mb-0 user-name">Jhon Maxwell</h5>
-                  <p class="mb-0 user-designation">UI Engineer</p>
-                </div>
-              </div>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  account_circle
-                  </span><span>Profile</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  tune
-                  </span><span>Settings</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  dashboard
-                  </span><span>Dashboard</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  account_balance
-                  </span><span>Earnings</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  cloud_download
-                  </span><span>Downloads</span></a>
-                </li>
-                <li>
-                  <div class="dropdown-divider mb-0"></div>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  logout
-                  </span><span>Logout</span></a>
-                </li>
-              </ul>
-          </div>
      </header>
      <!--end header-->  

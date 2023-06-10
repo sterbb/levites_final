@@ -284,6 +284,8 @@
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
                                   </li>
+                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Link to Event</a>
+                                  </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
@@ -371,6 +373,8 @@
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
                                   </li>
+                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Link to Event</a>
+                                  </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
@@ -411,6 +415,8 @@
                                     <hr class="dropdown-divider">
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
+                                  </li>
+                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Link to Event</a>
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
                                   </li>

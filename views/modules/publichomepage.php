@@ -1,16 +1,16 @@
 
     <!--start main content-->
 <main class="page-content">
-<h4 class="mb-3 text-uppercase text-left">Affiliated Churches</h4>
-<hr> 
-    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="3000">
+  <h4 class="mb-3 text-uppercase text-center" style="font-family: 'Montserrat', sans-serif; font-weight:700;">Affiliated Churches</h4>
+  <hr> 
+    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="8000">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row  d-flex">
               <div class="col-3 ">
-                <a class="button" href="profile">
+                <a class="button text-black" href="profile">
                 <div class="card h-auto">
-                  <img src="views/images/ch1.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/ch1.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
@@ -21,7 +21,7 @@
               </div>
               <div class="col-3  ">
                 <div class="card h-auto">
-                  <img src="views/images/sanseb.jpg" class="card-img-top" style="height:400px;" alt="...">
+                  <img src="views/images/sanseb.jpg" class="card-img-top" style="height:350px;" alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
@@ -31,7 +31,7 @@
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/lupit.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/lupit.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">LUPIT CHURCH</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
@@ -41,7 +41,7 @@
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/abad.png" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/abad.png" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
@@ -58,7 +58,7 @@
           <div class="row d-flex">
             <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/ourlady.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/ourlady.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">Our Lady of Peace and Good Voyage</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Singcang Airport, Bacolod City</span>
@@ -68,7 +68,7 @@
               </div>
               <div class="col-3 ">
                 <div class="card h-auto">
-                  <img src="views/images/Shrine.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/Shrine.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">OUR LADY OF PERPETUAL HELP SHRINE BACOLOD </h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">B. S. Aquino Drive, Bacolod City</span>
@@ -81,10 +81,10 @@
         </div>
    
       </div>
-        <a class="carousel-control-prev" href="#churchCarousel" role="button" data-bs-slide="prev">	<span class="carousel-control-prev-icon bg-dark" style="width: 60px; height: 50px;" aria-hidden="true" ></span>
+        <a class="carousel-control-prev" href="#churchCarousel" role="button" data-bs-slide="prev" style="width:5%;">	<span class="carousel-control-prev-icon bg-dark" style="width: 50px; height: 50px;" aria-hidden="true" ></span>
         <span class="visually-hidden">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#churchCarousel" role="button" data-bs-slide="next">	<span class="carousel-control-next-icon bg-dark" style="width: 60px; height: 50px;" aria-hidden="true" style="color:black;"></span>
+        <a class="carousel-control-next" href="#churchCarousel" role="button" data-bs-slide="next" style="width:5%;">	<span class="carousel-control-next-icon bg-dark" style="width: 50px; height: 50px;" aria-hidden="true" ></span>
           <span class="visually-hidden">Next</span>
         </a>
     </div>
@@ -99,7 +99,7 @@
 
 <div class="col-6 ">
     <div class=" justify-content-start align-items-start  d-flex">
-      <h4 class="mb-0 text-uppercase text-left">Explore</h4>
+      <h4 class="mb-0 text-uppercase text-left" style="font-family: 'Montserrat', sans-serif; font-weight:700;">Explore</h4>
     </div>
   </div>
   

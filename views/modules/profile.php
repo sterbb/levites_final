@@ -40,6 +40,37 @@
               </div>
             </div>
 
+                
+            <!-- Mission and Vision -->
+            <div class="row mb-3">
+              <div class="col pt-3 mx-3 me-3">
+                <div class="card pt-3">
+                  <p class="text-center " style="font-size:25px;font-family: 'Montserrat', sans-serif; font-weight:700;">MISSION</p>
+                  <div class="card-body">
+                    <div><p class="text-center ">As Christ’s disciples we commit ourselves to, 
+                    LISTEN, LIVE AND SHARE THE WORD OF GOD AND THE TEACHINGS OF THE CHURCH through, a prayerful community life; a proper and  meaningful celebration of the liturgy and the sacraments; building and sustaining a Christian  family life; and, a unified and effective evangelization of the lay faithful.
+                    <br><br>As a community imbued with Marian Spirit, we commit ourselves to, EMULATE THE VIRTUES OF HUMILITY, OBEDIENCE, AND CHARITY through, active involvement in pastoral care, social services and other parish activities; shared talents, abilities and temporal goods; and, proper attire and decorum in the participation of liturgical services. </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col pt-3 mx-3">
+                <div class="card pt-3">
+                  <p class="text-center " style="font-size:25px;font-family: 'Montserrat', sans-serif; font-weight:700;">VISION</p>
+                  <div class="card-body ">
+                    <div><p class="text-center "style="font-size:15px;">Our Lady of Lourdes Parish envisions
+                        “A Community of Christ’s Disciples Imbued with Marian Spirit”.  
+                        In order to realize this vision the parish values are articulated in our mission.</p>
+                    </div>
+                  </div>
+                </div>
+              
+                
+              </div>
+                        
+            </div>
+
             <div class="card">
               <div class="card-body">
                   <h5 class="mb-2">Calendar of Activities</h5>
@@ -68,6 +99,43 @@
                 <a href="   https://www.facebook.com/ollpBata"><p class=""><i class="bi bi-facebook me-2"></i>facebook.com/ollpBata</p></a>
              
                  <p class=""><i class="bi bi-twitter me-2"></i>Twitter</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="mb-3">For Donations and Offerings</h5>
+
+                <div class="row">
+                  <div class="col d-flex align-items-end justify-content-start">
+                    <img src="views/images/gcash2.png" alt="GCash" style="height:50px; width:100px; "> 
+                  </div>
+                  <div class="col d-flex align-items-center justify-content-end">
+                    <p class="text-black mb-0" style="font-size:16px;font-family: 'Montserrat', sans-serif; font-weight:600;">09772535688</p>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col d-flex align-items-center justify-content-start">
+                    <img src="views/images/pnb.png" alt="pnb" style="height:30px; width: 80px; "> 
+                  </div>
+                  <div class="col d-flex align-items-end justify-content-end">
+                    <p class="text-black mb-0" style="font-size:16px;font-family: 'Montserrat', sans-serif; font-weight:600;">3079 1003 0797</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col d-flex align-items-center justify-content-start">
+                    <img src="views/images/bdo.png" alt="pnb" style="height:30px; width: 80px; "> 
+                  </div>
+                  <div class="col d-flex align-items-end justify-content-end">
+                    <p class="text-black mb-0" style="font-size:16px;font-family: 'Montserrat', sans-serif; font-weight:600;">00-3350-0373-69</p>
+                  </div>
+                </div>
+             
+             
+             
+
               </div>
             </div>
 
@@ -109,4 +177,5 @@
 
           </div>
         </div><!--end row-->
+
 </main>

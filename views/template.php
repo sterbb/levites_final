@@ -39,7 +39,12 @@
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
 	<link href="views/assets/css/style.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/2cafbb6f68.js" crossorigin="anonymous"></script>
-   
+
+	<!-- Fonts  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	
 
 
 
@@ -176,7 +181,14 @@
 				dayMaxEvents: true, // allow "more" link when too many events
 				events: [{
 					title: 'Instrument Workshop',
-					start: '2023-05-01',
+					start: '2023-05-01T10:30:00',
+					end: '2023-05-01T11:30:00'
+				},{
+					title: 'Technical Workshop',
+					start: '2023-05-01T16:30:00',
+				},{
+					title: 'Media Workshop',
+					start: '2023-05-01T13:00:00',
 				}, {
 					title: 'Offering Prayer',
 					start: '2023-05-07',

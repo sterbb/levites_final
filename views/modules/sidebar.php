@@ -42,36 +42,7 @@ if(isset($_COOKIE["type"])){
           <div class="sidebar-nav" data-simplebar="true">
 
           
-          <div class="sidebar-bottom dropdown dropup-center dropdown">
-              <div class="dropdown-toggle d-flex align-items-center px-3 gap-1 w-100 h-100" data-bs-toggle="dropdown">
-                <div class="user-img">
-                   <img src="views/assets/images/avatars/02.png" alt="">
-                </div>
-                <div class="user-info">
-                  <h5 class="mb-0 user-name">Jan Ryan Divinagracia</h5>
-                  <p class="mb-0 user-designation">Community Follower</p>
-                </div>
-              </div>
-              <ul class="dropdown-menu dropdown-menu-right">
-
-                <li hidden><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
-                  settings
-                  </span><span>Church Account Settings</span></a>
-                </li>
-
-                <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
-                  settings
-                  </span><span>Public Account Settings</span></a>
-                </li>
-
-                
-               
-                <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
-                  logout
-                  </span><span>Logout</span></a>
-                </li>
-              </ul>
-          </div>
+       
             
               <!--navigation-->
               <ul class="metismenu" id="menu">
@@ -182,7 +153,6 @@ if(isset($_COOKIE["type"])){
                       </li>
                       <li> <a href="catdetails"><span class="material-symbols-outlined">arrow_right</span>Calendar Details</a>
                       </li>
-                      <li><a href="slhomepage" ><span class="material-symbols-outlined">arrow_right</span>Song and Lyrics</a></li> 
                       
                     </ul>
                 </li>
@@ -212,19 +182,26 @@ if(isset($_COOKIE["type"])){
            
 
           </div>
-          <div class="sidebar-bottom dropdown dropup-center dropup">
-              <div class="dropdown-toggle d-flex align-items-center px-3 gap-3 w-100 h-100" data-bs-toggle="dropdown">
+
+</aside>
+<!--end sidebar-->
+
+
+<!-- user logout -->
+
+<!-- <div class="sidebar-bottom dropdown dropup-center dropdown">
+              <div class="dropdown-toggle d-flex align-items-center px-3 gap-1 w-100 h-100" data-bs-toggle="dropdown">
                 <div class="user-img">
-                   <img src="views/images/ch3.3.png" alt="">
+                   <img src="views/assets/images/avatars/02.png" alt="">
                 </div>
                 <div class="user-info">
-                  <h5 class="mb-0 user-name">Vicariate of San Jose</h5>
-                  <p class="mb-0 user-designation">apostolic vicariate</p>
+                  <h5 class="mb-0 user-name">Jan Ryan Divinagracia</h5>
+                  <p class="mb-0 user-designation">Community Follower</p>
                 </div>
               </div>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu dropdown-menu-right">
 
-                <li><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
+                <li hidden><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
                   settings
                   </span><span>Church Account Settings</span></a>
                 </li>
@@ -241,6 +218,4 @@ if(isset($_COOKIE["type"])){
                   </span><span>Logout</span></a>
                 </li>
               </ul>
-          </div>
-</aside>
-<!--end sidebar-->
+          </div> -->
