@@ -122,23 +122,49 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body d-flex justify-content-around align-items-center">
-                        <h6 class="mb-0 text-uppercase">May 25, 2023</h6>
-                        <a href="churchcalendar"><button type="button" class="btn btn-outline-dark px-5 radius-30">View Calendar</button></a> 
+                        <div class="row">
+                            <div class="col-4">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected="">GCash</option>
+                                    <option value="1">PNB</option>
+                                    <option value="2">BDO</option>
+                                    <option value="3">Metrobank</option>
+                                    <option value="3">BPI</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="btn btn-outline-success">Success</button>
+                            </div>
+                        </div>
+                    
+                 
+   
                     </div>
 
                     <ul class="list-group list-group-flush mb-0">
                         <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent"><img src="views/images/gcash2.png" alt="GCash" style="height:50px; width:100px; "> <p>09772535688</p>
                         </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Baptism<span class="badge bg-primary rounded-pill">8:50 A.M.</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Workshop<span class="badge bg-danger rounded-pill">7:45 P.M.</span>
-                    </li>
-                </ul>
+    
+                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!--end row-->
+
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center ">MISSION</h2>
+            <textarea class="form-control" id="input11" placeholder="Address ..." rows="3" style="height: 120px;"></textarea>
+        </div>
+        <div class="col">
+            <H2 class="text-center">VISION</H2>
+            <textarea class="form-control" id="input11" placeholder="Address ..." rows="3" style="height: 120px;"></textarea>
+        </div>
+    </div>
 
   
 </main>
