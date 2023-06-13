@@ -38,6 +38,12 @@
 
                    <!-- event -->
                    <div class="border border-secondary p-3 mb-5">
+                   <div class="col ">
+										<button type="button" class="btn btn-outline-dark" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?"><span class="material-symbols-outlined">
+                      settings_account_box
+                      </span>
+										</button>
+									</div>
                  
                    <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">

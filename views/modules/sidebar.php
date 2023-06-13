@@ -42,36 +42,7 @@ if(isset($_COOKIE["type"])){
           <div class="sidebar-nav" data-simplebar="true">
 
           
-          <div class="sidebar-bottom dropdown dropup-center dropdown">
-              <div class="dropdown-toggle d-flex align-items-center px-3 gap-1 w-100 h-100" data-bs-toggle="dropdown">
-                <div class="user-img">
-                   <img src="views/assets/images/avatars/02.png" alt="">
-                </div>
-                <div class="user-info">
-                  <h5 class="mb-0 user-name">Jan Ryan Divinagracia</h5>
-                  <p class="mb-0 user-designation">Community Follower</p>
-                </div>
-              </div>
-              <ul class="dropdown-menu dropdown-menu-right">
-
-                <li hidden><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
-                  settings
-                  </span><span>Church Account Settings</span></a>
-                </li>
-
-                <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
-                  settings
-                  </span><span>Public Account Settings</span></a>
-                </li>
-
-                
-               
-                <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
-                  logout
-                  </span><span>Logout</span></a>
-                </li>
-              </ul>
-          </div>
+         
             
               <!--navigation-->
               <ul class="metismenu" id="menu">
@@ -219,10 +190,10 @@ if(isset($_COOKIE["type"])){
                 </div>
                 <div class="user-info">
                   <h5 class="mb-0 user-name">Vicariate of San Jose</h5>
-                  <p class="mb-0 user-designation">apostolic vicariate</p>
+                  <p class="mb-0 user-designation">admin</p>
                 </div>
               </div>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu dropdown-menu-end " style="position: absolute;inset: 0px auto auto 0px;margin: 0px;transform: translate3d(8.8px, 61.6px, 0px);margin-left: 100px;">
 
                 <li><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
                   settings
@@ -233,6 +204,9 @@ if(isset($_COOKIE["type"])){
                   settings
                   </span><span>Public Account Settings</span></a>
                 </li>
+                <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
 
                 
                

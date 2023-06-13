@@ -52,21 +52,31 @@
                     <label for="churchID" class="form-label">ID</label>
                     <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
                 </div>
-                  <div class="col-12">
-                  <label for="username" class="form-label">Username<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                <input type="text" class="form-control border-3" id="tns-username" name="username" placeholder="Jhon">
+                <h5>Personal Information</h5>
+
+
+                <div class="col-12">
+                  <label for="username" class="form-label">Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                <input type="text" class="form-control border-3" id="tns-name" name="name" placeholder="">
                   </div>
                   <div class="col-12">
-                  <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                            <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control border-end-0 border-3 " id="tns-password" name="password"  placeholder="Enter Password">
-                                <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
-                                </div>
-                    <div class="input-group mt-1" id="show_hide_password">
-                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-gEnter Password">
-                       <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
-                    </div>
+                  <label for="username" class="form-label">Last Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                <input type="text" class="form-control border-3" id="tns-lname" name="lname" placeholder="">
                   </div>
+                  <div class="col-12">
+                  <label for="username" class="form-label">Designation<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                <input type="text" class="form-control border-3" id="tns-role" name="role" placeholder="e.g. secretary">
+                  </div>
+
+                  <div class="col-6">
+                                <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
+                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="Landline or phone number ">
+                            </div>
+
+
+
+                  <h5>Church Information</h5>
+                  
                   <div class="col-12">
                                 <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-churchName" name="churchName" placeholder="Our Lady of Peace and Good Voyage">
@@ -87,7 +97,7 @@
                                 <option value="Christianity ">Christian</option>
                                 </select>
                   </div>
-                  <div class="row mt-2">
+                  <div class="row mt-2 mb-3">
                   <div class="col-6">
                                 <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Bacolod City">
@@ -98,8 +108,25 @@
                             </div>
                         </div>
                   </div>
-                  
+                  <h5>Account Information</h5>
+
+                  <div class="col-12">
+                  <label for="username" class="form-label">Username<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                <input type="text" class="form-control border-3" id="tns-username" name="username" placeholder="Jhon">
+                  </div>
                   <div class="col-12 mt-2">
+                  <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                            <div class="input-group" id="show_hide_password">
+                                <input type="password" class="form-control border-end-0 border-3 " id="tns-password" name="password"  placeholder="Enter Password">
+                                <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
+                                </div>
+                    <div class="input-group mt-1" id="show_hide_password">
+                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-Enter Password">
+                       <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
+                    </div>
+                  </div>
+                  
+                  <div class="col-12 mt-3">
                             <label for="inputProof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
                             <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
                                 
@@ -113,14 +140,14 @@
                                     
                         </div>
 
-                  <div class="col-12 mt-2">
-                  <div class="form-check form-switch border-3">
-                                <input class="form-check-input" type="checkbox" id="agree" >
-                                <label class="form-check-label" for="flexSwitchCheckChecked" >I read and agree to Terms &amp; Conditions</label>
+                  <div class="col-12 mt-3">
+                  <div class="form-check form-check-info border-3">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckInfo">
+                                <label class="form-check-label" for="flexCheckInfo" >I read and agree to Terms &amp; Conditions</label>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>
                             </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-12 mt-3">
                     <div class="d-grid">
 					<a href="login" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
                     </div>
@@ -458,6 +485,7 @@
             <br><br>
             You agree that your use of this Site shall be governed by Philippine laws and agree that venue of any relevant suit shall be located in the proper courts of Taguig City, Philippines.</br>
             </p>
+            
         </div>
    
         </div>

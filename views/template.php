@@ -39,6 +39,9 @@
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
 	<link href="views/assets/css/style.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/2cafbb6f68.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="views/assets/plugins/notifications/css/lobibox.min.css">
+
    
 
 
@@ -136,6 +139,9 @@
 
 	
 	
+	<script src="views/assets/plugins/notifications/js/lobibox.min.js"></script>
+
+
 	<!-- customize analystics -->
 	<script src="views/assets/plugins/apex/apexcharts.min.js"></script>
 	<script src="views/assets/js/index.js"></script>

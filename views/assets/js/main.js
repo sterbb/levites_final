@@ -168,8 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Call the generateTooltipContent function when needed
 	generateTooltipContent();
   });
-
-
+  //catdetailstooltip
 
   //modal
 
@@ -256,5 +255,20 @@ document.getElementById('uploadButton').addEventListener('click', function () {
 	console.log('Uploading file:', file.name);
   }
 
-  
-  
+  function dateTime(){
+	const myInterval = setInterval(myTimer, 1000);
+
+  }
+  function myTimer() {
+	const date = new Date();
+	$('#today_time').text(date.toLocaleTimeString());
+}
+
+function currentDate(){
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let dtoday = new Date().toLocaleDateString('en-US', {month: 'long', year:'numeric', day:'numeric'});
+  let d = new Date();
+  $("#today_date").text(dtoday+" ");
+  $("#today_day").text(days[d.getDay()] + ", ");
+
+}

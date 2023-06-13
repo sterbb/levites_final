@@ -26,7 +26,7 @@
                       <p class="msg-header-clear ms-auto">Marks all as read</p>
                     </div>
                   </a>
-                  <div class="header-notifications-list">
+                  <div class="header-notifications-list" >
                     <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModalDefault">
                       <div class="d-flex align-items-center">
                         <div class="notify text-primary border">
@@ -35,31 +35,14 @@
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Accounts <span class="msg-time float-end "> 2 min
+                          <h6 class="msg-name">Accounts <span class="msg-time float-end " > 2 min
                               ago</span></h6>
                           <p class="msg-info">Created a user with level access in...</p>
                         </div>
                       </div>
                     </a>
                     
-                    <!-- Modal -->
-                  <div class="modal fade" id="exampleModalDefault" tabindex="-1">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur.</div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                    <a class="dropdown-item" href="javascript:;">
+                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleDangerModal">
                       <div class="d-flex align-items-center">
                         <div class="notify text-danger border">
                           <span class="material-symbols-outlined">
@@ -120,50 +103,41 @@
                 </div>
               </li>
             </ul>
-
-            
        </nav>
-
-
-       <div class="sidebar-bottom dropdown dropdown-center dropdown">
-              <div class="dropdown-toggle d-flex align-items-center px-3 gap-3 w-100 h-100" data-bs-toggle="dropdown">
-                <div class="user-img">
-                   <img src="assets/images/avatars/01.png" alt="">
-                </div>
-                <div class="user-info">
-                  <h5 class="mb-0 user-name">Jhon Maxwell</h5>
-                  <p class="mb-0 user-designation">UI Engineer</p>
-                </div>
-              </div>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  account_circle
-                  </span><span>Profile</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  tune
-                  </span><span>Settings</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  dashboard
-                  </span><span>Dashboard</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  account_balance
-                  </span><span>Earnings</span></a>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  cloud_download
-                  </span><span>Downloads</span></a>
-                </li>
-                <li>
-                  <div class="dropdown-divider mb-0"></div>
-                </li>
-                <li><a class="dropdown-item" href="javascript:;"><span class="material-symbols-outlined me-2">
-                  logout
-                  </span><span>Logout</span></a>
-                </li>
-              </ul>
-          </div>
      </header>
      <!--end header-->  
+
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModalDefault" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Accounts</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">We are notifying that you created a user with access in file storage. The username is JayCobb and password is ******534. to modify your sub-user credentials, kindly go to your accounts in the sidebar menu. Thank you!</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleDangerModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog">
+                      <div class="modal-content bg-danger">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-white">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-white">
+                          <p></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>

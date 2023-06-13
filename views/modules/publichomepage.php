@@ -3,13 +3,67 @@
 <main class="page-content">
 <h4 class="mb-3 text-uppercase text-left">Affiliated Churches</h4>
 <hr> 
-    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="3000">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row  d-flex">
+
+<div class="card">
+        <div class="card-body">
+          <h6 class="mb-0 text-uppercase"></h6>
+          <div class="my-3 border-top"></div>
+          <div class="row row-cols-1 row-cols-lg-4 g-3">
+            <div class="col">
+              <div class="card">
+                <img src="views/images/ch1.jpg" class="card-img-top" style="height:375px;" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
+                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+                  <a href="profile" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="views/images/sanseb.jpg" class="card-img-top" style="height:400px;"  alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
+                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+                  <a href="#" class="btn btn-danger">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="views/images/lupit.jpg" class="card-img-top" style="height:400px;" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">LUPIT CHURCH</h5>
+                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+                  <a href="#" class="btn btn-success">Go somewhere</a>
+                  <a href="#" class="btn btn-light">Cancle</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <img src="views/images/abad.jpg" class="card-img-top" style="height:400px;" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">San Antonio Abad Church</h5>
+                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+                  <a href="#" class="btn btn-warning">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+          </div><!--end row-->
+        </div>
+      </div>
+    <!--
+    <div class="card  ">
+    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="3000">.
+      
+      <div class="carousel-inner mt-3 my-3">
+        
+        <div class="carousel-item active m-3">
+          <div class="row row-cols-1 row-cols-lg-4 g-3">
               <div class="col-3 ">
                 <a class="button" href="profile">
-                <div class="card h-auto">
+                <div class="card ">
                   <img src="views/images/ch1.jpg" class="card-img-top" style="height:400px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
@@ -20,7 +74,7 @@
                 </a>
               </div>
               <div class="col-3  ">
-                <div class="card h-auto">
+                <div class="card ">
                   <img src="views/images/sanseb.jpg" class="card-img-top" style="height:400px;" alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
@@ -41,7 +95,7 @@
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/abad.png" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/abad.jpg" class="card-img-top" style="height:400px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
@@ -53,6 +107,7 @@
             </div>
           
         </div>
+</div>
 
         <div class="carousel-item ">
           <div class="row d-flex">
@@ -95,15 +150,17 @@
 
 <br>  
 
-<div class="row  mt-3 ">
+-->
 
-<div class="col-6 ">
+<div class="row border-top ">
+
+<div class="col-6 mt-3">
     <div class=" justify-content-start align-items-start  d-flex">
       <h4 class="mb-0 text-uppercase text-left">Explore</h4>
     </div>
   </div>
   
-  <div class="col-6">
+  <div class="col-6 mt-3">
     <div class="d-flex justify-content-end align-items-end ">
         <div class="input-group w-50 text-right ">	<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
             <input type="text" class="form-control" placeholder="">
