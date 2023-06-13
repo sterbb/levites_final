@@ -94,7 +94,7 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
 <p id='head2' class='header'><em>Whatever you do, work at it with all your heart, <br />as working for the Lord, not for human masters</em> <br /><sub>Colossians 3:23</sub></p>
 <p id='head3' class='header'><em>Finally, brothers and sisters,<br /> whatever is true, whatever is noble, whatever is right,whatever is pure, <br /> whatever is lovely, whatever is admirable—if anything <br />is excellent or praiseworthy—think about such things.</em> <br /><sub>Philippians 4:8</sub></p>
 <p id='head4' class='header'><em>And we know that in all things <br />God works for the good of those who love him, <br />who have been called according to his purpose.</em>  <br /><sub>Romans 8:28</sub></p>
-<p id='head5' class='header'>Welcome to Levites <br /><sub id="today_day"></sub><sub id="today_date"></sub>&nbsp;<sub id="today_time"></sub></p>
+<p id='head5' class='header stl'>LEVITES<br id='head6'><b>"To believe is to connect"</b> <br/><sub id="today_day"></sub><sub id="today_date"></sub>&nbsp;<sub id="today_time"></sub></p>
   <div class='light x1'></div>
   <div class='light x2'></div>
   <div class='light x3'></div>
@@ -104,3 +104,4 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
   <div class='light x7'></div>
   <div class='light x8'></div>
   <div class='light x9'></div>
+  
