@@ -160,6 +160,8 @@
 
 	<!-- customize scripts -->
 	<script src="views/js/alerts.js"></script>
+	<script src="views/js/deactivate.js"></script>
+
 
     <script>
 		document.addEventListener('DOMContentLoaded', function () {
