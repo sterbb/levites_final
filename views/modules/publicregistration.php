@@ -93,8 +93,8 @@
 
                         </div>
 
-                  <div class="col-12">
-                  <div class="form-check form-switch border-3">
+                  <div class="col-12 mt-3">
+                  <div class="form-check form-check-info border-3">
                                 <input class="form-check-input" type="checkbox" id="agree" >
                                 <label class="form-check-label" for="flexSwitchCheckChecked" >I read and agree to Terms &amp; Conditions</label>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>

@@ -422,22 +422,6 @@
                                   </li>
                                   <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
                                   </li>
-                                    <hr class="dropdown-divider">
-                                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-add-to-queue' ></i>Add note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x' ></i>Delete note</a>
-                                  </li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
-                                  </li>
                                 </ul>
                               </div>
                               <h6 class="mb-0 ">Prayer of Intention</h6>

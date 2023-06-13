@@ -210,6 +210,9 @@ if(isset($_COOKIE["type"])){
                   settings
                   </span><span>Public Account Settings</span></a>
                 </li>
+                <li>
+                                    <hr class="dropdown-divider">
+                                  </li>
 
                 
                

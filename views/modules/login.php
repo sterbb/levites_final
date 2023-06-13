@@ -1,4 +1,4 @@
-<body>
+<body style="overflow: hidden;">
 
 
   <!--authentication-->
@@ -7,12 +7,26 @@
     <div class="">
       <div class="row g-0">
 
-        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
+        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-dark" style="background: linear-gradient(270deg, rgba(192,128,249,0.5) 0%, rgba(148,191,242,0.8) 100%);">
           <div class=" rounded-0 mb-0 border-0 bg-transparent">
             <div class="card-body">
-              <img src="views/images/marblebackground.png" class="img-fluid auth-img-cover-login" width="650"
-                alt="">
+              
+                <div>
+<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+<defs>
+<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+</defs>
+<g class="parallax">
+<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+</g>
+</svg>
+</div>
             </div>
+            
           </div>
 
         </div>
@@ -75,3 +89,19 @@
       <!--end row-->
     </div>
   </div>
+  <em>
+<p id='head1' class='header'><em>Therefore go and make disciples of all nations, <br /> baptizing them in the name of the Father and of the Son <br />and of the Holy Spirit, <br />and teaching them to obey everything  <br /> I have commanded you. <br />And surely I am with you always, <br />to the very end of the age.”</em>  <br /><sub>Matthew 28:19-20</sub></p>
+<p id='head2' class='header'><em>Whatever you do, work at it with all your heart, <br />as working for the Lord, not for human masters</em> <br /><sub>Colossians 3:23</sub></p>
+<p id='head3' class='header'><em>Finally, brothers and sisters,<br /> whatever is true, whatever is noble, whatever is right,whatever is pure, <br /> whatever is lovely, whatever is admirable—if anything <br />is excellent or praiseworthy—think about such things.</em> <br /><sub>Philippians 4:8</sub></p>
+<p id='head4' class='header'><em>And we know that in all things <br />God works for the good of those who love him, <br />who have been called according to his purpose.</em>  <br /><sub>Romans 8:28</sub></p>
+<p id='head5' class='header stl'>LEVITES<br id='head6'><b>"To believe is to connect"</b> <br/><sub id="today_day"></sub><sub id="today_date"></sub>&nbsp;<sub id="today_time"></sub></p>
+  <div class='light x1'></div>
+  <div class='light x2'></div>
+  <div class='light x3'></div>
+  <div class='light x4'></div>
+  <div class='light x5'></div>
+  <div class='light x6'></div>
+  <div class='light x7'></div>
+  <div class='light x8'></div>
+  <div class='light x9'></div>
+  

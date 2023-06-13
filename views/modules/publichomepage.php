@@ -53,6 +53,7 @@
             </div>
           
         </div>
+</div>
 
         <div class="carousel-item ">
           <div class="row d-flex">
@@ -95,15 +96,17 @@
 
 <br>  
 
-<div class="row  mt-3 ">
+-->
 
-<div class="col-6 ">
+<div class="row border-top ">
+
+<div class="col-6 mt-3">
     <div class=" justify-content-start align-items-start  d-flex">
       <h4 class="mb-0 text-uppercase text-left" style="font-family: 'Montserrat', sans-serif; font-weight:700;">Explore</h4>
     </div>
   </div>
   
-  <div class="col-6">
+  <div class="col-6 mt-3">
     <div class="d-flex justify-content-end align-items-end ">
         <div class="input-group w-50 text-right ">	<span class="input-group-text bg-transparent"><i class="bx bx-search"></i></span>
             <input type="text" class="form-control" placeholder="">

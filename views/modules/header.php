@@ -26,8 +26,8 @@
                       <p class="msg-header-clear ms-auto">Marks all as read</p>
                     </div>
                   </a>
-                  <div class="header-notifications-list">
-                    <a class="dropdown-item" href="javascript:;">
+                  <div class="header-notifications-list" >
+                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModalDefault">
                       <div class="d-flex align-items-center">
                         <div class="notify text-primary border">
                           <span class="material-symbols-outlined">
@@ -35,13 +35,14 @@
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Accounts <span class="msg-time float-end "> 2 min
+                          <h6 class="msg-name">Accounts <span class="msg-time float-end " > 2 min
                               ago</span></h6>
                           <p class="msg-info">Created a user with level access in...</p>
                         </div>
                       </div>
                     </a>
-                    <a class="dropdown-item" href="javascript:;">
+                    
+                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleDangerModal">
                       <div class="d-flex align-items-center">
                         <div class="notify text-danger border">
                           <span class="material-symbols-outlined">
@@ -143,3 +144,38 @@
 
      </header>
      <!--end header-->  
+
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModalDefault" tabindex="-1">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Accounts</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">We are notifying that you created a user with access in file storage. The username is JayCobb and password is ******534. to modify your sub-user credentials, kindly go to your accounts in the sidebar menu. Thank you!</div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleDangerModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog">
+                      <div class="modal-content bg-danger">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-white">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-white">
+                          <p></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>

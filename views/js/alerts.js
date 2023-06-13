@@ -372,10 +372,27 @@ $(document).ready(function() {
 	  });
 
 	  
-
-
+	
 
  
 
 
 })
+
+function myTimer() {
+	const date = new Date();
+	document.getElementById("today_time").innerHTML = date.toLocaleTimeString();
+  }
+
+  function currentDate() {
+	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	let dtoday = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric', day: 'numeric' });
+	let d = new Date();
+	document.getElementById("today_date").innerHTML = dtoday + " ";
+	document.getElementById("today_day").innerHTML = days[d.getDay()] + ", ";
+  }
+
+  window.addEventListener("DOMContentLoaded", function() {
+	currentDate();
+	setInterval(myTimer, 1000); // Update time every second
+  });

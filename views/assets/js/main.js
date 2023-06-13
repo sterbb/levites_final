@@ -168,8 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Call the generateTooltipContent function when needed
 	generateTooltipContent();
   });
-
-
+  //catdetailstooltip
 
   //modal
 
@@ -256,5 +255,4 @@ document.getElementById('uploadButton').addEventListener('click', function () {
 	console.log('Uploading file:', file.name);
   }
 
-  
-  
+ 
