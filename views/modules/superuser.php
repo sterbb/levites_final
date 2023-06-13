@@ -52,23 +52,10 @@
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">
-                        <h6 class="mb-0 fw-bold">Approved Churches</h6>
+                        <h6 class="mb-2 mt-2 fw-bold">Approved Churches</h6>
                         </div>
-                        <div class="dropdown ms-auto">
-                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="javascript:;">Action</a>
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Another action</a>
-                            </li>
-                            <li>
-                            <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="javascript:;">Something else here</a>
-                            </li>
-                        </ul>
-                        </div>
+
+
                     </div>
                 </div>
                 <div class="card-body">

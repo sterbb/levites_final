@@ -133,10 +133,10 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                                <input class="form-control" type="text" placeholder="" aria-label="default input example">
                             </div>
                             <div class="col-1">
-                                <button type="button" class="btn btn-outline-success">Success</button>
+                                <button type="button" class="btn btn-outline-success"><i class="fadeIn animated bx bx-plus"></i></button>
                             </div>
                         </div>
                     
@@ -157,12 +157,25 @@
 
     <div class="row">
         <div class="col">
-            <h2 class="text-center ">MISSION</h2>
-            <textarea class="form-control" id="input11" placeholder="Address ..." rows="3" style="height: 120px;"></textarea>
+
+                <div class="card">
+                     <h2 class="text-center pt-3 mb-0   ">MISSION</h2>
+                    <div class="card-body d-flex justify-content-around align-items-center">
+                        <textarea class="form-control" id="input11" placeholder="" rows="3" style="height: 250px;"></textarea>
+                    </div>
+                </div>
+        
+
         </div>
+
+
         <div class="col">
-            <H2 class="text-center">VISION</H2>
-            <textarea class="form-control" id="input11" placeholder="Address ..." rows="3" style="height: 120px;"></textarea>
+            <div class="card">
+                    <h2 class="text-center pt-3 mb-0   ">VISION</h2>
+                <div class="card-body d-flex justify-content-around align-items-center">
+                    <textarea class="form-control" id="input11" placeholder="" rows="3" style="height: 250px;"></textarea>
+                </div>
+            </div>
         </div>
     </div>
 

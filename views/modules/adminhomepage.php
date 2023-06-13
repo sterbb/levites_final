@@ -10,7 +10,7 @@
                     <h4 class="mb-0 text-primary">1,045</h4>
                   </div>
                   <div class="ms-auto fs-2 text-primary">
-                    <i class="bi bi-bell-fill"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye text-primary"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                   </div>
                 </div>
                 <hr class="my-2">
@@ -27,7 +27,7 @@
                     <h4 class="mb-0 text-danger">145</h4>
                   </div>
                   <div class="ms-auto fs-2 text-danger">
-                    <i class="bi bi-bell-fill"></i>
+                    <i class="lni lni-users" style="font-size:1.3em;"></i>
                   </div>
                 </div>
                 <hr class="my-2">
@@ -44,7 +44,7 @@
                     <h4 class="mb-0 text-success">40</h4>
                   </div>
                   <div class="ms-auto fs-2 text-success">
-                    <i class="bi bi-bell-fill"></i>
+                    <i class="fadeIn animated bx bx-calendar-event"></i>
                   </div>
                 </div>
                 <hr class="my-2">
@@ -61,7 +61,7 @@
                     <h4 class="mb-0 text-primary">1.2GB</h4>
                   </div>
                   <div class="ms-auto fs-2 text-primary">
-                    <i class="bi bi-bell-fill"></i>
+                    <i class="fadeIn animated bx bx-folder"></i>
                   </div>
                 </div>
                 <hr class="my-2">

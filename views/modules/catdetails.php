@@ -44,7 +44,7 @@
                                   <p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Tooltip on bottom"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
                                       <h4 class="mb-0">Instrument Workshop</h4>
                             
-                                      <p class="mb-0"><button  style="font-size:25px;" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Tooltip on bottom"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
+                                      <p class="mb-0"><button  style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assigned to: Guitar"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
 
 
                                   </div>

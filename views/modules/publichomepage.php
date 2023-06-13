@@ -24,7 +24,7 @@
                   <img src="views/images/sanseb.jpg" class="card-img-top" style="height:350px;" alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Rizal St., Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
@@ -34,17 +34,17 @@
                   <img src="views/images/lupit.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">LUPIT CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lizares St., Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
-                </div>
+                </div>f
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/abad.png" class="card-img-top" style="height:350px; " alt="...">
+                  <img src="views/images/sanAntonio.png" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lacson St., Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
