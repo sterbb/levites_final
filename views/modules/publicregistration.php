@@ -334,6 +334,10 @@
                     <br><br>
                     You agree that your use of this Site shall be governed by Philippine laws and agree that venue of any relevant suit shall be located in the proper courts of Bacolod City, Philippines.</br>
                     </p>
+
+                    <div class=" d-flex justify-content-center align-items-right">
+            <button type="button" id="agree" data-bs-dismiss="modal" class="btn btn-light text-white agree" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">I agree to the terms and conditions</button>
+        </div>
     
                 </div>
             </div>

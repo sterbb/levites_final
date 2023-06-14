@@ -179,3 +179,29 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- Modal -->
+<div class="modal fade" id="lockScreen" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <form role="form" id="lockscreen-form" method="POST" autocomplete="nope" class="lockscreenForm"> 
+      <div class="modal-body">
+        <div class="text-center">
+        <i class="bx bx-lock-alt" style="font-size:80px;"></i>
+         <p class="">YOUR ACCOUNT HAS BEEN DEACTIVATED!</p>
+         </div>
+         <p>  We have notice that there are some reports on your account. Your account will not be visible for at the moment as we analyze your issue.
+         Rest assured, we are working diligently to resolve the issue and reactivate your account as soon as possible.
+         </p>
+         <p>If you have any further questions or concerns, please <a href="faq">contact us</a>. or email on levites@gmail.com</p>
+        
+      </div>
+      <div class="modal-footer d-flex justify-content-center align-items-center">
+        <div class="text-center d-flex justify-content-center align-items-center">
+            <button type="submit" id="passwordLock"  class="btn btn-danger passwordLock ">close</button>
+        </div>
+    </div>
+    </form>
+    </div>
+  </div>
+</div>
