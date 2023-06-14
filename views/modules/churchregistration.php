@@ -56,7 +56,7 @@
 
 
                 <div class="col-12">
-                  <label for="username" class="form-label">Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                  <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                 <input type="text" class="form-control border-3" id="tns-name" name="name" placeholder="">
                   </div>
                   <div class="col-12">
