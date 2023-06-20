@@ -180,7 +180,7 @@
                     </div>
                   </div>
 
-                  <!-- Modal -->
+                  <!-- Modal
 <div class="modal fade" id="lockScreen" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -190,10 +190,9 @@
         <i class="bx bx-lock-alt" style="font-size:80px;"></i>
          <p class="">YOUR ACCOUNT HAS BEEN DEACTIVATED!</p>
          </div>
-         <p>  We have notice that there are some reports on your account. Your account will not be visible for at the moment as we analyze your issue.
-         Rest assured, we are working diligently to resolve the issue and reactivate your account as soon as possible.
+         <p>  We have noticed that there are some reports(explicit content at file storage) on your account . Your account will be private for the moment as we analyze your issue.
          </p>
-         <p>If you have any further questions or concerns, please <a href="faq">contact us</a>. or email on levites@gmail.com</p>
+         <p>         Rest assured that you can plead to activate your account by contacting us. If you have any further questions or concerns, please contact us on jajajo@gmail.com</p>
         
       </div>
       <div class="modal-footer d-flex justify-content-center align-items-center">
@@ -204,4 +203,4 @@
     </form>
     </div>
   </div>
-</div>
+</div> -->

@@ -41,7 +41,7 @@
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/sanAntonio.png" class="card-img-top" style="height:350px; " alt="...">
+                  <img src="views/images/sanAntonio.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lacson St., Bacolod City</span>
