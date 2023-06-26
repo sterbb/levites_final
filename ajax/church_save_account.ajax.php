@@ -1,47 +1,107 @@
 <?php
 
-require_once "../controllers/registration.controller.php";
-require_once "../models/registration.model.php";
+require_once "../controllers/register.church.controller.php";
+require_once "../models/register.church.model.php";
 
 
-class registerAccount {
+class saveChurchAccounts {
 
-    public $user_username;
-    public $user_password;
-    public $user_email;
+    public $trans_type;
+    public $username;
+
+    public $password;
+
+    public $email;
+
+    public $churchName;
+
+    public $religion;
+    public $churchAddress;
+
+    public $city;
+
+    public $telnum;
+
+    public $country;
+
+    public $profleg;
+
+    public $agree;
+
+    public $churchID;
+
+    public function saveChurchAccountsRecord(){
+        $trans_type = $this -> trans_type;
+        $username = $this -> username;
+        $password = $this -> password;
+        $email = $this -> email;
+        $churchName = $this -> churchName;
+        $religion = $this -> religion;
+        $churchAddress = $this -> churchAddress;
+        $city = $this -> city;
+        $telnum = $this -> telnum;
+        $country = $this -> country;
+        $profleg = $this -> profleg;
+        $agree = $this -> agree;
+        $churchID = $this -> churchID;
 
 
-    public function registerUserAccount(){
-        $user_username = $this -> user_username;
-        $user_password = $this -> user_password;
-        $user_email = $this -> user_email;
+        $hashpass = password_hash($password, PASSWORD_DEFAULT);
 
 
 
-        // $hashpass = password_hash($password, PASSWORD_DEFAULT);
+        $data = array("username"=>$username,
+        "password"=>$hashpass,
+        "email"=>$email,
+        "churchName"=>$churchName,
+        "religion"=>$religion,
+        "churchAddress"=>$churchAddress,
+        "city"=>$city,
+        "telnum"=>$telnum,
+        "profleg"=>$profleg,
+        "agree"=>$agree,
+        "churchID"=>$churchID,
+        "country"=>$country);
 
 
-
-        $data = array("user_username"=>$user_username,
-        "user_password"=>$user_password,
-        "user_email"=>$user_email);
-
-        $answer = (new ControllerAccounts)->ctrAddChurchAccounts($data);
-
+        if ($trans_type == 'New'){
+            $answer = (new ControllerAccounts)->ctrAddChurchAccounts($data);
+          }else{
+            $answer = (new ControllerAccounts)->ctrEditChurchAccounts($data);
+          }
     }
 
 
 }
 
-$save_church_accounts = new registerAccount();
+$save_church_accounts = new saveChurchAccounts();
+$save_church_accounts -> trans_type = $_POST["trans_type"];
 
-$save_church_accounts -> user_username = $_POST["user_username"];
+$save_church_accounts -> username = $_POST["username"];
 
-$save_church_accounts -> user_password = $_POST["user_password"];
+$save_church_accounts -> password = $_POST["password"];
 
-$save_church_accounts -> user_email = $_POST["user_email"];
+$save_church_accounts -> email = $_POST["email"];
 
-$save_church_accounts -> registerUserAccount();
+$save_church_accounts -> churchName = $_POST["churchName"];
+
+$save_church_accounts -> religion = $_POST["religion"];
+
+$save_church_accounts -> churchAddress = $_POST["churchAddress"];
+
+$save_church_accounts -> city = $_POST["city"];
+
+$save_church_accounts -> telnum = $_POST["telnum"];
+
+$save_church_accounts -> country = $_POST["country"];
+
+$save_church_accounts -> profleg = $_POST["profleg"];
+
+$save_church_accounts -> agree = $_POST["agree"];
+
+$save_church_accounts -> churchID = $_POST["churchID"];
+
+$save_church_accounts -> saveChurchAccountsRecord();
 
 
 

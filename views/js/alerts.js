@@ -316,18 +316,18 @@ $(document).ready(function() {
 
 
 
-	// $(document).on('click', '#loginBtn', function() {
+	$(document).on('click', '#loginBtn', function() {
 		
-	// 	var login;
-	// 	login = $("#inputEmailAddress").val();
+		var login;
+		login = $("#inputEmailAddress").val();
 
-	// 	if(login == "admin"){
-	// 		$(".public").attr("hidden",true);
-	// 		$(".superuser").attr("hidden",true);
-	// 	}
-	// });
+		if(login == "admin"){
+			$(".public").attr("hidden",true);
+			$(".superuser").attr("hidden",true);
+		}
+	});
 
-	$('#loginForm2').submit(function(event) {
+	$('#loginForm').submit(function(event) {
 		// Prevent the default form submission behavior
 		event.preventDefault();
 	
