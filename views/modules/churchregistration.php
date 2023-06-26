@@ -45,32 +45,28 @@
             </div>      
 
               <div class="form-body mt-4">
-                <form class="row g-3 " role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
+                <form class="row g-3 " role="form" id="churchRegistrationForm " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
                 <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
 
-                <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
-                    <label for="churchID" class="form-label">ID</label>
-                    <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
-                </div>
                 <h5>Personal Information</h5>
 
 
                 <div class="col-12">
                   <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                <input type="text" class="form-control border-3" id="tns-name" name="name" placeholder="">
+                <input type="text" class="form-control border-3" id="church_pfname" name="name" placeholder="">
                   </div>
                   <div class="col-12">
                   <label for="username" class="form-label">Last Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                <input type="text" class="form-control border-3" id="tns-lname" name="lname" placeholder="">
+                <input type="text" class="form-control border-3" id="church_plname" name="lname" placeholder="">
                   </div>
                   <div class="col-12">
                   <label for="username" class="form-label">Designation<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                <input type="text" class="form-control border-3" id="tns-role" name="role" placeholder="e.g. secretary">
+                <input type="text" class="form-control border-3" id="church_designation" name="role" placeholder="e.g. secretary">
                   </div>
 
                   <div class="col-6">
                                 <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="Landline or phone number ">
+                                <input type="text" class="form-control border-3" id="church_pnum" name="telnum" placeholder="Landline or phone number ">
                             </div>
 
 
@@ -79,19 +75,19 @@
                   
                   <div class="col-12">
                                 <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="tns-churchName" name="churchName" placeholder="Our Lady of Peace and Good Voyage">
+                                <input type="text" class="form-control border-3" id="church_name" name="churchName" placeholder="Our Lady of Peace and Good Voyage">
                             </div>  
                   <div class="col-12">
                   <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
-                <input type="email" class="form-control border-3" id="tns-email" name="email" placeholder="example@user.com">
+                <input type="email" class="form-control border-3" id="church_email" name="email" placeholder="example@user.com">
                   </div>
                   <div class="col-12">
                                 <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
+                                <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
                             </div>
                   <div class="col-12">
                   <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
-                                <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example">
+                                <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example">
                                 <option selected="" value="Catholic">Catholic</option>
                                 <option value="Baptist">Baptist</option>
                                 <option value="Christianity ">Christian</option>
@@ -100,11 +96,11 @@
                   <div class="row mt-2 mb-3">
                   <div class="col-6">
                                 <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Bacolod City">
+                                <input type="text" class="form-control border-3" id="church_city" name="city" placeholder="Bacolod City">
                             </div>
                             <div class="col-6">
                                 <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="Landline or phone number ">
+                                <input type="text" class="form-control border-3" id="church_num" name="telnum" placeholder="Landline or phone number ">
                             </div>
                         </div>
                   </div>
@@ -112,30 +108,30 @@
 
                   <div class="col-12">
                   <label for="username" class="form-label">Username<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                <input type="text" class="form-control border-3" id="tns-username" name="username" placeholder="Jhon">
+                <input type="text" class="form-control border-3" id="church_username" name="username" placeholder="Jhon">
                   </div>
                   <div class="col-12 mt-2">
                   <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                             <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control border-end-0 border-3 " id="tns-password" name="password"  placeholder="Enter Password">
+                                <input type="password" class="form-control border-end-0 border-3 " id="church_password" name="password"  placeholder="Enter Password">
                                 <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                 </div>
                     <div class="input-group mt-1" id="show_hide_password">
-                      <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword"  placeholder="Re-Enter Password">
+                      <input type="password" class="form-control border-end-0 border-3" id="church_repassword"  placeholder="Re-Enter Password">
                        <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                     </div>
                   </div>
                   
                   <div class="col-12 mt-3">
                             <label for="inputProof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                            <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
+                            <input class="form-control form-control-ml" id="church_prof" name="profleg" type="file">
                                 
                                     
                         </div>
 
                         <div class="col-12 mt-2">
                             <label for="inputProof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                            <input class="form-control form-control-ml" id="profleg" name="profleg" type="file">
+                            <input class="form-control form-control-ml" id="church_pprof" name="profleg" type="file">
                                 
                                     
                         </div>
@@ -149,7 +145,7 @@
                   </div>
                   <div class="col-12 mt-3">
                     <div class="d-grid">
-					<a href="loginrequest" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
+					<button type="submit"  class="btn text-white" id="churchRegisterBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</button>
                     </div>
                   </div>
                   <div class="col-12">
