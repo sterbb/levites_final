@@ -20,6 +20,7 @@ class ModelRegister {
         $pdo = $db->connect();
 
 		$verify_token = substr(md5(rand()), 0,5);
+		$account_type= "public";
 
 
 		$mail = new PHPMailer(true);
@@ -49,10 +50,10 @@ class ModelRegister {
 								<h1>'. $verify_token.'</h1> ';
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();
-				echo 'Message has been sent';
-			} catch (Exception $e) {
-				echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-			}
+			echo 'Message has been sent';
+		} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
 
 
         try{
@@ -70,10 +71,11 @@ class ModelRegister {
 			$stmt->bindParam(":acc_password", $data["user_password"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_email", $data["user_email"], PDO::PARAM_STR);
 			$stmt->bindParam(":verify_token", $verify_token, PDO::PARAM_STR);
-			$stmt->bindParam(":acc_type", "public", PDO::PARAM_STR);
+			$stmt->bindParam(":acc_type", $account_type, PDO::PARAM_STR);
 			
 			setcookie("current_email", $data["user_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
-
+			
+	
 
 			$stmt->execute();			
 

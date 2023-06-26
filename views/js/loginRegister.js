@@ -38,7 +38,7 @@ $(function(){
 
     });
 
-    $("")
+  
 
     $("#verification_code").keyup(function(){
       var code = $("#verification_code").val();
