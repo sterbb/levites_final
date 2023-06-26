@@ -142,7 +142,7 @@
                     </div>
                   </div>
 
-                  <!-- Modal -->
+                  <!-- Modal
 <div class="modal fade" id="lockScreen" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -166,4 +166,4 @@
     </form>
     </div>
   </div>
-</div>
+</div> -->
