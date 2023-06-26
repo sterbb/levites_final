@@ -45,7 +45,7 @@
             </div>      
 
               <div class="form-body mt-4">
-                <form class="row g-3 " role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
+                <form class="row g-3 " role="form" id="publicRegistrationForm" method="POST" autocomplete="nope" class="row g-3">
                 <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
 
                 <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
@@ -53,14 +53,14 @@
                     <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
                 </div>
                 <div class="col-12">
-                            <label for="inputUsername" class="form-label">Username <sup style='color:red;'>  *</sup></label>
-                            <input type="email" class="form-control border-3" id="inputUsername" placeholder="Jhon">
+                            <label for="pubUsername" class="form-label">Username <sup style='color:red;'>  *</sup></label>
+                            <input type="text" class="form-control border-3" id="pubUsername" placeholder="Jhon">
                         </div>
 
                             <div class="col-12">
-                            <label for="inputChoosePassword" class="form-label">Password <sup style='color:red;'>  *</sup></label>
+                            <label for="pubPassword" class="form-label">Password <sup style='color:red;'>  *</sup></label>
                             <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword" value="12345678" placeholder="Enter Password">
+                                <input type="password" class="form-control border-end-0 border-3" id="pubPassword" value="" placeholder="Enter Password">
                                 <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                 </div>
                             </div>     
@@ -68,8 +68,8 @@
                             <hr>
 
                             <div class="col-12">
-                            <label for="inputEmailAddress" class="form-label">Email Address <sup style='color:red;'>  *</sup></label>
-                            <input type="email" class="form-control border-3" id="inputEmailAddress" placeholder="example@user.com">
+                            <label for="pubEmail" class="form-label">Email Address <sup style='color:red;'>  *</sup></label>
+                            <input type="email" class="form-control border-3" id="pubEmail" placeholder="example@user.com">
                             </div> 
                             <div class="col-12">
                                 <label for="inputName" class="form-label">First Name <sup style='color:red;'>  *</sup></label>
@@ -102,7 +102,7 @@
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-					            <a href="loginrequest" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
+					            <button  type="submit"  class="btn text-white" id="pubRegisterBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</button>
                     </div>
                   </div>
                   <div class="col-12">
