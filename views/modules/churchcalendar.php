@@ -1,8 +1,6 @@
 <!--start main content-->
 <main class="page-content">
     <div class="col ">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary opacity-0" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">Vertically Centered</button>
       <!-- Modal -->
       <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -27,7 +25,7 @@
 
                   <div class="d-flex justify-content-center align-items-center text-center pb-1">
                     <button class="btn btn-white  me-3"><i class="bx bx-chevron-left me-0"></i></button>
-                    <h6>MAY 25, 2023</h6>
+                    <h6>MAY 1, 2023</h6>
                     <button class="btn btn-white  ms-3"><i class="bx bx-chevron-right me-0"></i></button>
                   </div>
 
@@ -55,8 +53,8 @@
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Pricing" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
-                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button"><i class="bi bi-truck-front-fill me-2"></i>Sunday Worship</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Instrument Workship</button>
+                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button"><i class="bi bi-truck-front-fill me-2"></i>Workshop</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Sunday Worship</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Add" type="button"><i class="lni lni-plus me-2 "></i>Add Event Type</button>  
@@ -126,10 +124,37 @@
 
                             <!-- event -->
                               <div class="border border-secondary p-3 mb-5">
-                                <div class="d-flex justify-content-end">
-                                  <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
-                                  <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+                                
+                                <div class="row">
+                                  <div class="col d-flex justify-content-start">
+                                    <div class="dropdown">
+                                      <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-music"></i></button>
+                                      <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Broken Vessels</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Raise a Hallelujah</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="lyrics">Living Hope</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="dropdown">
+                                      <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-file"></i></button>
+                                      <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Chords Chart</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col d-flex justify-content-end">
+                                    <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
+                                    <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+                                  </div>
+
                                 </div>
+                              
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
                                     <h4 class="mb-2 ">Instrument Workshop</h4>
@@ -138,7 +163,7 @@
 
                                 <div class="row g-3 mt-2 mb-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 25, 2023 @10:00am - 11:30am</h6>
+                                    <h6 class="mb-2 ">When: May 1, 2023 @10:00am - 11:30am</h6>
                                   </div>
 
                                   <div class="col-12 col-lg-12 ">
@@ -207,7 +232,7 @@ Looking forward to an amazing workshop with all of you. See you soon!
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @1:00pm - 3:30pm</h6>
+                                    <h6 class="mb-2 ">When: May 1, 2023 @1:00pm - 3:30pm</h6>
 
                                   </div>
 
@@ -269,7 +294,7 @@ We're looking forward to a creative and inspiring workshop experience where we c
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @4:00pm - 6:30pm</h6>
+                                    <h6 class="mb-2 ">When: May 1, 2023 @4:00pm - 6:30pm</h6>
 
                                   </div>
 
@@ -436,12 +461,25 @@ We're excited to explore the world of analog mixers together and discover how th
       <div class="row">
         <div class="col-12 col-lg-3">
           <div class="card">
-            <div class="card-body d-flex align-items-center justify-content-center">
-                <div class="mb-2 d-flex align-items-center">
-                    <input type="text" class="form-control date-inline mb-3 d-none"  />
+            
+                <div class="card-body d-flex justify-content-around align-items-center">
+                    <h6 class="mb-0 text-uppercase" style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:1.5em;">May 1, 2023</h6>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddEvents"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
                 </div>
-            </div>
+
+                <ul class="list-group list-group-flush mb-0">
+                    <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent">Wedding<span class="badge bg-success rounded-pill">7:45 A.M.</span>
+                    </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Baptism<span class="badge bg-primary rounded-pill">8:50 A.M.</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Workshop<span class="badge bg-danger rounded-pill">7:45 P.M.</span>
+                </li>
+              </ul>
+
+
           </div>
+          
+
           <div class="card">
             <div class="card-body">
                 <h6>Calendar Filters</h6>

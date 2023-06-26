@@ -1,70 +1,16 @@
 
     <!--start main content-->
 <main class="page-content">
-<h4 class="mb-3 text-uppercase text-left">Affiliated Churches</h4>
-<hr> 
-
-<div class="card">
-        <div class="card-body">
-          <h6 class="mb-0 text-uppercase"></h6>
-          <div class="my-3 border-top"></div>
-          <div class="row row-cols-1 row-cols-lg-4 g-3">
-            <div class="col">
-              <div class="card">
-                <img src="views/images/ch1.jpg" class="card-img-top" style="height:375px;" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
-                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                  <a href="profile" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="views/images/sanseb.jpg" class="card-img-top" style="height:400px;"  alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
-                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                  <a href="#" class="btn btn-danger">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="views/images/lupit.jpg" class="card-img-top" style="height:400px;" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">LUPIT CHURCH</h5>
-                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                  <a href="#" class="btn btn-success">Go somewhere</a>
-                  <a href="#" class="btn btn-light">Cancle</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="views/images/abad.jpg" class="card-img-top" style="height:400px;" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">San Antonio Abad Church</h5>
-                  <p class="card-text">Some are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                  <a href="#" class="btn btn-warning">Go somewhere</a>
-                </div>
-              </div>
-            </div>
-          </div><!--end row-->
-        </div>
-      </div>
-    <!--
-    <div class="card  ">
-    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="3000">.
-      
-      <div class="carousel-inner mt-3 my-3">
-        
-        <div class="carousel-item active m-3">
-          <div class="row row-cols-1 row-cols-lg-4 g-3">
+  <h4 class="mb-3 text-uppercase text-center" style="font-family: 'Montserrat', sans-serif; font-weight:700;">Affiliated Churches</h4>
+  <hr> 
+    <div id="churchCarousel" class="carousel slide carousel-fade " data-bs-ride="carousel" data-bs-interval="8000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row  d-flex">
               <div class="col-3 ">
-                <a class="button" href="profile">
-                <div class="card ">
-                  <img src="views/images/ch1.jpg" class="card-img-top" style="height:400px; " alt="...">
+                <a class="button text-black" href="profile">
+                <div class="card h-auto">
+                  <img src="views/images/ch1.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
@@ -74,31 +20,31 @@
                 </a>
               </div>
               <div class="col-3  ">
-                <div class="card ">
-                  <img src="views/images/sanseb.jpg" class="card-img-top" style="height:400px;" alt="...">
+                <div class="card h-auto">
+                  <img src="views/images/sanseb.jpg" class="card-img-top" style="height:350px;" alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Rizal St., Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/lupit.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/lupit.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">LUPIT CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lizares St., Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
-                </div>
+                </div>f
               </div>
               <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/abad.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/sanAntonio.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lacson St., Bacolod City</span>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
                   </div>
                 </div>
@@ -113,7 +59,7 @@
           <div class="row d-flex">
             <div class="col-3 ">
                 <div class="card">
-                  <img src="views/images/ourlady.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/ourlady.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">Our Lady of Peace and Good Voyage</h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Singcang Airport, Bacolod City</span>
@@ -123,7 +69,7 @@
               </div>
               <div class="col-3 ">
                 <div class="card h-auto">
-                  <img src="views/images/Shrine.jpg" class="card-img-top" style="height:400px; " alt="...">
+                  <img src="views/images/Shrine.jpg" class="card-img-top" style="height:350px; " alt="...">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">OUR LADY OF PERPETUAL HELP SHRINE BACOLOD </h5>
                     <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">B. S. Aquino Drive, Bacolod City</span>
@@ -136,10 +82,10 @@
         </div>
    
       </div>
-        <a class="carousel-control-prev" href="#churchCarousel" role="button" data-bs-slide="prev">	<span class="carousel-control-prev-icon bg-dark" style="width: 60px; height: 50px;" aria-hidden="true" ></span>
+        <a class="carousel-control-prev" href="#churchCarousel" role="button" data-bs-slide="prev" style="width:5%;">	<span class="carousel-control-prev-icon bg-dark" style="width: 50px; height: 50px;" aria-hidden="true" ></span>
         <span class="visually-hidden">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#churchCarousel" role="button" data-bs-slide="next">	<span class="carousel-control-next-icon bg-dark" style="width: 60px; height: 50px;" aria-hidden="true" style="color:black;"></span>
+        <a class="carousel-control-next" href="#churchCarousel" role="button" data-bs-slide="next" style="width:5%;">	<span class="carousel-control-next-icon bg-dark" style="width: 50px; height: 50px;" aria-hidden="true" ></span>
           <span class="visually-hidden">Next</span>
         </a>
     </div>
@@ -156,7 +102,7 @@
 
 <div class="col-6 mt-3">
     <div class=" justify-content-start align-items-start  d-flex">
-      <h4 class="mb-0 text-uppercase text-left">Explore</h4>
+      <h4 class="mb-0 text-uppercase text-left" style="font-family: 'Montserrat', sans-serif; font-weight:700;">Explore</h4>
     </div>
   </div>
   

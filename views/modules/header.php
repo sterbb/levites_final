@@ -102,8 +102,46 @@
                   </a>
                 </div>
               </li>
+              <li class="nav-item dropdown ">
+                <div class="dropdown dropdown-center dropdown navbar-upperright">
+                    <div class="dropdown-toggle d-flex align-items-center px-3 gap-3" data-bs-toggle="dropdown">
+                      <div class="user-img">
+                        <img src="views/images/ch3.3.png" alt="">
+                      </div>
+                      <div class="user-info">
+                        <h5 class="mb-0 user-name">Vicariate of San Jose</h5>
+                        <p class="mb-0 user-designation">Church Admin</p>
+                      </div>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                      <li><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
+                        settings
+                        </span><span>Church Account Settings</span></a>
+                      </li>
+
+                      <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
+                        settings
+                        </span><span>Public Account Settings</span></a>
+                      </li>
+
+                      
+                    
+                      <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
+                        logout
+                        </span><span>Logout</span></a>
+                      </li>
+                    </ul>
+                </div>
+
+              </li>
+           
             </ul>
+
+
+            
        </nav>
+
      </header>
      <!--end header-->  
 
@@ -152,10 +190,9 @@
         <i class="bx bx-lock-alt" style="font-size:80px;"></i>
          <p class="">YOUR ACCOUNT HAS BEEN DEACTIVATED!</p>
          </div>
-         <p>  We have notice that there are some reports on your account. Your account will not be visible for at the moment as we analyze your issue.
-         Rest assured, we are working diligently to resolve the issue and reactivate your account as soon as possible.
+         <p>  We have noticed that there are some reports(explicit content at file storage) on your account . Your account will be private for the moment as we analyze your issue.
          </p>
-         <p>If you have any further questions or concerns, please <a href="faq">contact us</a>. or email on levites@gmail.com</p>
+         <p>         Rest assured that you can plead to activate your account by contacting us. If you have any further questions or concerns, please contact us on jajajo@gmail.com</p>
         
       </div>
       <div class="modal-footer d-flex justify-content-center align-items-center">

@@ -49,12 +49,12 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                 <form class="row g-3" id="loginForm" method="post">
                   <div class="col-12">
                     <label for="inputEmailAddress" class="form-label">Email</label>
-                    <input type="text" class="form-control  border-3" id="inputEmailAddress" placeholder="jhon@example.com">
+                    <input type="text" class="form-control  border-3" id="login_username" placeholder="jhon@example.com">
                   </div>
                   <div class="col-12">
                     <label for="inputChoosePassword" class="form-label">Password</label>
                     <div class="input-group" id="show_hide_password">
-                      <input type="password" class="form-control border-end-0  border-3" id="inputChoosePassword" value="12345678" placeholder="Enter Password"> 
+                      <input type="password" class="form-control border-end-0  border-3" id="login_password" value="" placeholder="Enter Password"> 
                       <a href="javascript:;" class="input-group-text bg-transparent  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                     </div>
                   </div>

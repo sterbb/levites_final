@@ -5,7 +5,7 @@
     <div class="">
       <div class="row g-0">
 
-        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
+        <div class="col-12 col-xl-7 col-xxl-5 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
 
           <div class=" rounded-0 mb-0 border-0 bg-transparent">
             <div class="card-body">
@@ -16,7 +16,7 @@
 
         </div>
 
-        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+        <div class="col-12 col-xl-5 col-xxl-7 auth-cover-right align-items-center justify-content-center">
         <div class="card m-3 border-0 rounded-3 ">
             <div class="card-body p-sm-10">
                 <div class="text-center">
@@ -33,7 +33,7 @@
                         </linearGradient>
                     </defs>
                     </svg></button>
-                        <label class="form-check-label mt-1 cursor-pointer" for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch Church Registration to Public Registration</label> </a>
+                        <label class="form-check-label mt-1 cursor-pointer" for="flexSwitchCheckChecked" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Switch to Public Registration</label> </a>
                 </div>
              
 
@@ -56,7 +56,7 @@
 
 
                 <div class="col-12">
-                  <label for="username" class="form-label">Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
+                  <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                 <input type="text" class="form-control border-3" id="tns-name" name="name" placeholder="">
                   </div>
                   <div class="col-12">
@@ -149,7 +149,7 @@
                   </div>
                   <div class="col-12 mt-3">
                     <div class="d-grid">
-					<a href="login" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
+					<a href="loginrequest" type="button"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Register</a>
                     </div>
                   </div>
                   <div class="col-12">

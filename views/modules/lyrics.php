@@ -4,31 +4,15 @@
 	    <div class="card-body ">
 		    <nav class="navbar navbar-expand-xl navbar-light ">
                 <div class="container-fluid"><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse text-center " id="navbarSupportedContent1">
-                       
-
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-6 p-3 ">
-                                <select class="form-select border border-dark" id="inputSelectCountry" aria-label="Default select example" onchange="location = this.value; ">
-                                <option selected="" value="disabled" style="font-weight:bold; color:aquamarine;"><span style="color:aquamarine">Category
-                                </span></option>
-                                <option value="songlist"><a class="nav-link active" href="" ></a>Songs List</option>
-                                <option value="lyrics"><a href=""></a>Lyrics</option>
-                                <option value="slhomepage"><a href=""></a>Homepage</option>
-                                </select>
-                            </div>
-                            
-                            <form class="d-flex nav-search col-4 col-sm-4 col-md-4 col-lg-4 col-xl-6 ">
-                                <div class="input-group ">
-                                    <input type="text" class="form-control border border-dark " placeholder="" />
-                                    <button class="btn border border-dark " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                                    </button> 
-                                </div>
-                            </form>
+   
+                    <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+                        <div class="input-group ">
+                            <input type="text" class="form-control border border-dark " placeholder="" />
+                            <button class="btn border border-dark " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </button> 
                         </div>
-                    </div>
+                    </form>
+            
                 </div>
 		    </nav>
         </div>
@@ -221,9 +205,11 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" >Add Song</a>
                                         </li>
-                                        <li><a class="dropdown-item" type="button" >Dowload Playlist Songs</a>
-                                        </li>
                                         <li><a class="dropdown-item" type="button" >Edit Playlist</a>
+                                        </li>
+                                        <li><a class="dropdown-item" type="button" >Link to Event</a>
+                                        </li>
+                                        <li><a class="dropdown-item" type="button" >Dowload Playlist Songs</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
@@ -271,9 +257,13 @@
                                     </button>
 
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item"type="button">Dowload Playlist</a>
+                                            <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" >Add Song</a>
                                             </li>
-                                            <li><a class="dropdown-item" type="button">Edit Playlist</a>
+                                            <li><a class="dropdown-item" type="button" >Edit Playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item" type="button" >Link to Event</a>
+                                            </li>
+                                            <li><a class="dropdown-item" type="button" >Dowload Playlist Songs</a>
                                             </li>
                                             <li>
                                                 <hr class="dropdown-divider">

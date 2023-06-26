@@ -2,9 +2,12 @@
 
 <div class="card overflow-hidden">
     <div class="profile-ourlady bg-dark position-relative mb-4">
-    <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-        <img src="views/images/ch1.jpg" alt="...">
-    </div>
+        <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
+            <img src="views/images/ch1.jpg" alt="...">
+
+        </div>
+        <button class="position-absolute btn btn-secondary rounded-circle" style=" top:190px; left:140px; font-size:18px;"><i class="fadeIn animated bx bx-edit"></i></button>
+        <button class="position-absolute btn btn-secondary rounded-circle" style=" top:140px; right:140px; font-size:20px;"><i class="fadeIn animated bx bx-edit"></i></button>
     </div>
     <div class="card-body">
     <div class="mt-5 d-flex align-items-start justify-content-between">
@@ -106,13 +109,75 @@
                 </div>
             </div>
         </div>
+
+        <div class="col">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="mb-3">Location</h5>
+                        <div id="marker-map" class="gmaps"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-around align-items-center">
+                        <div class="row">
+                            <div class="col-4">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected="">GCash</option>
+                                    <option value="1">PNB</option>
+                                    <option value="2">BDO</option>
+                                    <option value="3">Metrobank</option>
+                                    <option value="3">BPI</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="btn btn-outline-success"><i class="fadeIn animated bx bx-plus"></i></button>
+                            </div>
+                        </div>
+                    
+                 
+   
+                    </div>
+
+                    <ul class="list-group list-group-flush mb-0">
+                        <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent"><img src="views/images/gcash2.png" alt="GCash" style="height:50px; width:100px; "> <p>09772535688</p>
+                        </li>
+    
+                     </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <!--end row-->
 
-    <div class="card">
-        <div class="card-body">
-        <h5 class="mb-3">Location</h5>
-            <div id="marker-map" class="gmaps"></div>
+    <div class="row">
+        <div class="col">
+
+                <div class="card">
+                     <h2 class="text-center pt-3 mb-0   ">MISSION</h2>
+                    <div class="card-body d-flex justify-content-around align-items-center">
+                        <textarea class="form-control" id="input11" placeholder="" rows="3" style="height: 250px;"></textarea>
+                    </div>
+                </div>
+        
+
+        </div>
+
+
+        <div class="col">
+            <div class="card">
+                    <h2 class="text-center pt-3 mb-0   ">VISION</h2>
+                <div class="card-body d-flex justify-content-around align-items-center">
+                    <textarea class="form-control" id="input11" placeholder="" rows="3" style="height: 250px;"></textarea>
+                </div>
+            </div>
         </div>
     </div>
+
+  
 </main>

@@ -7,18 +7,18 @@
                 <div class="overflow-auto align-items-center d-flex justify-content-center text-center">
                 <div class="btn-group position-static text-center align-items-center justify-content-center">
                   <button class="btn btn-white px-2 "><i class="bx bx-chevron-left me-0"></i></button>
-                  <p class="mb-0 ms-3">May 24, 2023</p>
+                  <p class="mb-0 ms-3">April 30, 2023</p>
                 </div>  
                 </div>
 
                 <div class="flex-grow-1 align-self-center text-center">
-                  <h4 class="fw-bold">May 25, 2023</h4>
-                  <p class="mb-0">San Sebastion Cathedral</p>
+                  <h4 class="fw-bold">May 1, 2023</h4>
+                  <p class="mb-0">Our Lady Of Lourdes Parish Church</p>
                 </div>
 
                 <div class="overflow-auto">
                 <div class="btn-group position-static  align-items-center justify-content-center text-center">
-                  <p class="pt-3">May 26, 2023</p>
+                  <p class="pt-3">May 2, 2023</p>
                   <button class="btn btn-white px-2 ms-3"><i class="bx bx-chevron-right me-0"></i></button>
                 </div>  
                 </div>
@@ -37,22 +37,22 @@
 
 
                    <!-- event -->
-                   <div class="border border-secondary p-3 mb-5">
-                   <div class="col ">
-										<button type="button" class="btn btn-outline-dark" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?"><span class="material-symbols-outlined">
-                      settings_account_box
-                      </span>
-										</button>
-									</div>
-                 
-                   <div class="row g-3">
-                                  <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Technical Workshop</h4>
+                   <div class="border border-3 border-secondary p-3 mb-5">
+                     <div class="row g-3">
+                     
+                                  <div class="col-12 col-lg-12 text-center d-flex justify-content-between align-items-center">
+                                  <p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Tooltip on bottom"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
+                                      <h4 class="mb-0">Instrument Workshop</h4>
+                            
+                                      <p class="mb-0"><button  style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assigned to: Guitar"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
+
+
                                   </div>
+                                  
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @4:00pm - 6:30pm</h6>
+                                    <h6 class="mb-2 ">When: May 1, 2023 @4:00pm - 6:30pm</h6>
 
                                   </div>
 
@@ -64,17 +64,23 @@
                                   <div class="col-12 col-lg-12 mb-3">
                                     <h6 class="mb-2 ">Announcement</h6>
                                     <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-                                      Come prepared to learn: Bring a notebook and pen to take notes during the workshop. This will help you remember key concepts and techniques discussed.
+Attention workshop participants!
 
-                                      Active participation: Engage in discussions and ask questions. This workshop is designed to be interactive and collaborative, so your active participation will greatly enhance the learning experience.
+Just a friendly reminder to bring your instruments to the upcomingworkshop.
 
-                                      Familiarize yourself with the church's analog mixer: During the workshop, we will be focusing on the specific analog mixer used by our church. Take some time before the workshop to familiarize yourself with the layout, controls, and features of the mixer.
+Label your instrument with your name.
+Make sure it's in good working condition and tuned.
+Protect it in a suitable case or bag.
+Don't forget any necessary accessories (extra strings, reeds, picks, etc.).
+If you have an instrument that can be shared, let us know in advance!
 
-                                      Hands-on practice: We will provide opportunities for hands-on practice with the analog mixer. Make the most of these practice sessions to develop your skills and gain confidence in operating the mixer.
+Safety first! Handle your instrument with care and be aware of your surroundings.
 
-                                      Collaboration and knowledge sharing: Engage with fellow participants, share your experiences, and learn from one another. This collaborative environment will foster a deeper understanding and appreciation for analog mixers in a church setting.
+Get ready to enhance your workshop experience by practicing and applying what you learn in real-time!
 
-                                      We're excited to explore the world of analog mixers together and discover how they can enhance our worship services. 
+If you have any questions, feel free to reach out. We're here to help!
+
+Looking forward to an amazing workshop with all of you. See you soon!
                                                                           </textarea>
                                     </div>
 
@@ -82,7 +88,7 @@
 
                               </div>
 
-                              <div class="border border-secondary p-3 mb-5">
+                  <div class="border border-3 border-secondary p-3 mb-5">
                  
                    <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
@@ -91,7 +97,7 @@
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @4:00pm - 6:30pm</h6>
+                                    <h6 class="mb-2 ">When: May 1, 2023 @4:00pm - 6:30pm</h6>
 
                                   </div>
 
@@ -103,17 +109,17 @@
                                   <div class="col-12 col-lg-12 mb-3">
                                     <h6 class="mb-2 ">Announcement</h6>
                                     <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-                                      Come prepared to learn: Bring a notebook and pen to take notes during the workshop. This will help you remember key concepts and techniques discussed.
+Come prepared to learn: Bring a notebook and pen to take notes during the workshop. This will help you remember key concepts and techniques discussed.
 
-                                      Active participation: Engage in discussions and ask questions. This workshop is designed to be interactive and collaborative, so your active participation will greatly enhance the learning experience.
+Active participation: Engage in discussions and ask questions. This workshop is designed to be interactive and collaborative, so your active participation will greatly enhance the learning experience.
 
-                                      Familiarize yourself with the church's analog mixer: During the workshop, we will be focusing on the specific analog mixer used by our church. Take some time before the workshop to familiarize yourself with the layout, controls, and features of the mixer.
+Familiarize yourself with the church's analog mixer: During the workshop, we will be focusing on the specific analog mixer used by our church. Take some time before the workshop to familiarize yourself with the layout, controls, and features of the mixer.
 
-                                      Hands-on practice: We will provide opportunities for hands-on practice with the analog mixer. Make the most of these practice sessions to develop your skills and gain confidence in operating the mixer.
+Hands-on practice: We will provide opportunities for hands-on practice with the analog mixer. Make the most of these practice sessions to develop your skills and gain confidence in operating the mixer.
 
-                                      Collaboration and knowledge sharing: Engage with fellow participants, share your experiences, and learn from one another. This collaborative environment will foster a deeper understanding and appreciation for analog mixers in a church setting.
+Collaboration and knowledge sharing: Engage with fellow participants, share your experiences, and learn from one another. This collaborative environment will foster a deeper understanding and appreciation for analog mixers in a church setting.
 
-                                      We're excited to explore the world of analog mixers together and discover how they can enhance our worship services. 
+We're excited to explore the world of analog mixers together and discover how they can enhance our worship services. 
                                                                           </textarea>
                                     </div>
 
@@ -124,7 +130,7 @@
                             <div>
                             <!-- event -->
 
-                            <div class="border border-secondary p-3 mb-5">
+                            <div class="border border-3 border-secondary p-3 mb-5">
                                
                                 <div class="row g-3">
                                   <div class="col-12 col-lg-12 text-center ">
@@ -133,7 +139,7 @@
                                 </div>
                                 <div class="row g-3 mt-2">
                                   <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: April 26, 2023 @1:00pm - 3:30pm</h6>
+                                    <h6 class="mb-2 ">When: May 1, 2023 @1:00pm - 3:30pm</h6>
 
                                   </div>
 
