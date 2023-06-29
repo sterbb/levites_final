@@ -38,6 +38,72 @@ $(function(){
 
     });
 
+    $("#churchRegistrationForm").submit(function(e){
+      alert("ddd");
+      e.preventDefault();
+   
+
+      var username  = $("#church_username").val();
+      var password = $("#church_password").val();
+      var email = $("#church_email").val();
+      var church_proof = $("#church_prof").prop("files");
+      alert(JSON.stringify(church_proof));
+      var user_proof = $("#user_prof").prop("files"); 
+      alert(email + username + password);
+
+
+      var proofData = new FormData(this);
+      $.ajax({
+        url: "models/sendChurchProof.php",
+        method: "POST",
+        data: proofData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+          console.log(answer);
+        },
+        error: function() {
+            alert("Oops. Something went wrong!");
+        },
+        complete: function() {
+        }
+      });
+  
+      
+      var registerData = new FormData();
+      registerData.append("church_email",email);
+      registerData.append("church_username", username);
+      registerData.append("church_password", password);
+      registerData.append("church_proof", church_proof);
+      registerData.append("user_proof", user_proof);
+
+      
+
+      $.ajax({
+          url: "ajax/register_church.ajax.php",
+          method: "POST",
+          data: registerData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+            console.log(answer);
+            window.location.href='verifyEmail';
+          },
+          error: function() {
+              alert("Oops. Something went wrong!");
+          },
+          complete: function() {
+          }
+      });
+
+ 
+    });
+
+
   
 
     $("#verification_code").keyup(function(){
@@ -126,6 +192,32 @@ $(function(){
           }
         });
       });
+
+      $("#resendBtn").click(function(){
+        alert("hello")
+
+        $.ajax({
+          url: "ajax/resend_verification.ajax.php",
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+
+
+        
+        
+          },
+          error: function() {
+              alert("Oops. Something went wrong!");
+          },
+          complete: function() {
+          }
+        });
+        
+      });
+
+
 
 
 });

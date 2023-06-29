@@ -48,8 +48,10 @@ class ModelLogin{
 		$pdo = null;	
 		$stmt = null;
 			
+	}
 
-	
+	public static function forgotPassword(){
+
 	}
 
 }

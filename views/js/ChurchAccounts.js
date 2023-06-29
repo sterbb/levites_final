@@ -19,13 +19,13 @@ $(function() {
 });
 
 
-//Save Church Accounts
-$("#churchAccounts-form").submit(function(e){
-    e.preventDefault();
-    if($(".churchAccountsForm").valid()){
-        AddChurchAccounts();
-    }
-});
+// //Save Church Accounts
+// $("#churchAccounts-form").submit(function(e){
+//     e.preventDefault();
+//     if($(".churchAccountsForm").valid()){
+//         AddChurchAccounts();
+//     }
+// });
 
 
 //Add church Accounts
