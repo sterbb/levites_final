@@ -9,6 +9,9 @@ class ModelChurch {
     static public function mdlChurchAccount($data) {
         $db = new Connection();
         $pdo = $db->connect();
+
+
+
         
         try{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

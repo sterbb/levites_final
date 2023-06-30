@@ -137,7 +137,7 @@ class ModelRegister {
         try{	
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
-			
+
 			//add to account database
 			$stmt = $pdo->prepare("INSERT INTO account (acc_username,acc_password,acc_email,verify_token, acc_type) 
             VALUES (:acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
@@ -154,15 +154,22 @@ class ModelRegister {
 			
 			setcookie("current_email", $data["church_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			$stmt->execute();		
+
+
+			
+			$church_id = (new Connection)->connect()->prepare("SELECT CONCAT('C', LPAD((count(id)+1),4,'0')) as church_id  FROM churches FOR UPDATE");
+			$church_id->execute();
+			$churchid = $church_id -> fetchAll(PDO::FETCH_ASSOC);
+			
 			
 			// add to church database
-			$stmt2 = $pdo->prepare("INSERT INTO churches (church_name,church_email) 
-            VALUES (:church_name, :church_email)");
+			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, church_name,church_email) 
+            VALUES (:churchID, :church_name, :church_email)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
-
+			$stmt2->bindParam(":churchID", $churchid[0]['church_id'], PDO::PARAM_STR);
 			$stmt2->bindParam(":church_name", $data["church_name"], PDO::PARAM_STR);
 			$stmt2->bindParam(":church_email", $data["church_email"], PDO::PARAM_STR);
 			$stmt2->execute();		
