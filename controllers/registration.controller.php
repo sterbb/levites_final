@@ -16,5 +16,7 @@ class ControllerRegistration{
 		return $answer = (new ModelRegister)->mdlResendVerification();
 	}
 
+
+	
 	
 }

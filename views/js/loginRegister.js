@@ -41,6 +41,8 @@ $(function(){
     $("#churchRegistrationForm").submit(function(e){
       alert("ddd");
       e.preventDefault();
+
+      var church_name = $("#church_name").val();
    
 
       var username  = $("#church_username").val();
@@ -73,11 +75,13 @@ $(function(){
   
       
       var registerData = new FormData();
+      registerData.append("church_name",church_name);
       registerData.append("church_email",email);
       registerData.append("church_username", username);
       registerData.append("church_password", password);
       registerData.append("church_proof", church_proof);
       registerData.append("user_proof", user_proof);
+      
 
       
 
@@ -92,6 +96,7 @@ $(function(){
           success: function(answer) {
             console.log(answer);
             window.location.href='verifyEmail';
+
           },
           error: function() {
               alert("Oops. Something went wrong!");
@@ -103,6 +108,8 @@ $(function(){
  
     });
 
+    
+
 
   
 
@@ -112,6 +119,7 @@ $(function(){
         alert(code.length);
         var codeData = new FormData();
         codeData.append("code", code);
+        
 
         $.ajax({
                 url: "ajax/verify_registration.ajax.php",
@@ -123,6 +131,7 @@ $(function(){
                 dataType: "text",
                 success: function(answer) {
                   console.log(answer);
+                  alert(document.cookies);
                   if(answer == "success"){
                     window.location.href='login';
                   }else{
@@ -194,7 +203,6 @@ $(function(){
       });
 
       $("#resendBtn").click(function(){
-        alert("hello")
 
         $.ajax({
           url: "ajax/resend_verification.ajax.php",
@@ -204,9 +212,6 @@ $(function(){
           dataType: "text",
           success: function(answer) {
 
-
-        
-        
           },
           error: function() {
               alert("Oops. Something went wrong!");
@@ -217,6 +222,116 @@ $(function(){
         
       });
 
+      $("#forgotForm").submit(function(e){
+        e.preventDefault();
+
+        var forgot_email = $("#forgot_email").val();
+
+        var forgotData = new FormData();
+        forgotData.append("forgot_email", forgot_email);
+        
+        $.ajax({
+          url: "ajax/forgot_password.ajax.php",
+          method: "POST",
+          data: forgotData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+            alert(document.cookie);
+            console.log(answer);
+            if(answer == "success"){
+              window.location.href= 'verifyForget';
+            }
+          },
+          error: function() {
+              alert("Oops. Something went wrong!");
+          },
+          complete: function() {
+          }
+        });
+
+
+        alert("yiee");  
+      });
+
+
+      $("#verification_code_forget").keyup(function(){
+        var code = $("#verification_code_forget").val();
+        if(code.length == 5){
+          alert(code.length);
+          var codeData = new FormData();
+          codeData.append("code", code);
+          
+  
+          $.ajax({
+                  url: "ajax/verify_registration.ajax.php",
+                  method: "POST",
+                  data: codeData,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "text",
+                  success: function(answer) {
+                    console.log(answer);
+                    alert(document.cookies);
+                    if(answer == "success"){
+                      window.location.href='resetpassword';
+                    }else{
+                      alert("code does not match");
+                    }
+        
+                  },
+                  error: function() {
+                      alert("Oops. Something went wrong!");
+                  },
+                  complete: function() {
+                  }
+              });
+        }
+      });
+
+      $("#forgotPasswordForm").submit(function(e){
+        e.preventDefault();
+
+        var forgot_password= $("#forgot_password").val();
+
+        alert(forgot_password);
+
+        var forgotData = new FormData();
+        forgotData.append("forgot_password", forgot_password);
+        
+        $.ajax({
+          url: "ajax/reset_password.ajax.php",
+          method: "POST",
+          data: forgotData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+            console.log(answer);
+            if(answer == "success"){
+              window.location.href= 'login';
+            }
+          },
+          error: function() {
+              alert("Oops. Something went wrong!");
+          },
+          complete: function() {
+          }
+        });
+
+
+        alert("yiee");  
+      });
+
+      
+
+
+
+      
 
 
 

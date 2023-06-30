@@ -12,19 +12,19 @@
                             </div>
 
                         <div class="form-body mt-4">
-                            <form class="row g-3">
+                            <form class="row g-3" id="forgotPasswordForm" method="POST" role="form" autocomplete="nope">
                                 <div class="col-12">
                                     <label class="form-label" for="NewPassword">New Password</label>
-                                    <input type="text" class="form-control" id="NewPassword" placeholder="Enter new password">
+                                    <input type="text" class="form-control" id="forgot_password" placeholder="Enter new password">
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label" for="ConfirmPassword">Confirm Password</label>
-                                    <input type="text" class="form-control" id="ConfirmPassword" placeholder="Confirm password">
+                                    <input type="text" class="form-control" id="forgot_repassword" placeholder="Confirm password">
                                 </div>
                                 <div class="col-12">
                                     <div class="d-grid gap-2">
-                                        <a href="login" type="button"  class="btn text-white" style="background:linear-gradient(150deg, #AAC4F2, #C9B4ED 100%); font-weight:bold;">Change Password</a>
-                                        <a href="login" type="button" class="btn font-bold" style="font-weight:bold;">Back to Login</a>
+                                        <button type="submit"  class="btn text-white" style="background:linear-gradient(150deg, #AAC4F2, #C9B4ED 100%); font-weight:bold;">Change Password</button>
+                                        <a href="login" type="button" class="btn font-bold" style="font-weight:bold;">Cancel</a>
                                     </div>
                                 </div>
                             </form>

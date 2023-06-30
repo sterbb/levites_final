@@ -27,21 +27,47 @@
                 <div class="team-list">
                     <div class="d-flex align-items-center gap-3">
                         <div class="">
-                        <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                            <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
                         </div>
                         <div class="flex-grow-1">
-                        <h6 class="mb-1 fw-bold">Our Lady of Peace and Good Voyage</h6>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                            <h6 class="mb-1 fw-bold">Our Lady of Peace and Good Voyage</h6>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
                         </div>
                         <div class="">
                             <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Details </button>
                             <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
-                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
-                           
+                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
                         </div>
                     </div>
                     <hr>
+
+                    <?php
+                        $churches = (new ControllerSuperuser)->ctrShowChurchList(0);
+                        foreach($churches as $key => $value){
+                            echo '
+
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="">
+                                    <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">'.$value["church_name"].' `</h6>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                                </div>
+                                <div class="">
+                                    <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Details </button>
+                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
+                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
+                                </div>
+                            </div>
+                            <hr>
+                            ';
+                        }
+                        
+                        
+                        ?>
                 </div>
                 </div>
             </div>
@@ -74,6 +100,33 @@
                                 <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover" onclick="changeButtonText(this)">Activate</button>
                             </div>
                         </div>
+
+                        <?php
+                        $churches = (new ControllerSuperuser)->ctrShowChurchList(1);
+                        foreach($churches as $key => $value){
+                            echo '
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="">
+                                    <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
+                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                </div>
+                                <div class="">
+                                    <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover" onclick="changeButtonText(this)">Activate</button>
+                                </div>
+                            </div>
+                            <hr>
+                            ';
+                        }
+                        
+                        
+                        ?>
+
+
                         <hr>
                     </div>
                 </div>

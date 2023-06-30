@@ -69,7 +69,7 @@
                   
                     <div class="col-12">
                       <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_name" name="churchName" placeholder="Our Lady of Peace and Good Voyage">
+                      <input type="text" class="form-control border-3" id="church_name" name="church_name" placeholder="Our Lady of Peace and Good Voyage">
                     </div>  
 
                     <div class="col-12">
@@ -127,7 +127,7 @@
 
                     <div class="col-12 mt-2">
                       <label for="church_pprof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                      <input class="form-control form-control-ml" id="church_pprof" name="profleg" type="file" accept="image/*">
+                      <input class="form-control form-control-ml" id="church_pprof" name="church_pprof" type="file" accept="image/*">
                     </div>
 
                     <div class="col-12 mt-3">

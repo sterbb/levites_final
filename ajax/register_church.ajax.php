@@ -5,7 +5,7 @@ require_once "../models/registration.model.php";
 
 
 class registerChurch {
-
+    public $church_name;
     public $church_username;
     public $church_password;
     public $church_email;
@@ -14,6 +14,7 @@ class registerChurch {
 
 
     public function registerChurchAccount(){
+        $church_name = $this -> church_name;
         $church_username = $this -> church_username;
         $church_password = $this -> church_password;
         $church_email = $this -> church_email;
@@ -24,7 +25,8 @@ class registerChurch {
 
         // $hashpass = password_hash($password, PASSWORD_DEFAULT);
 
-        $data = array("church_username"=>$church_username,
+        $data = array("church_name"=>$church_name,
+        "church_username"=>$church_username,
         "church_password"=>$church_password,
         "church_email"=>$church_email,
         "church_proof"=>$church_proof,
@@ -48,6 +50,9 @@ $register-> church_email = $_POST["church_email"];
 $register-> church_proof = $_POST["church_proof"];
 
 $register-> user_proof = $_POST["user_proof"];
+
+$register-> church_name = $_POST["church_name"];
+
 
 $register -> registerChurchAccount();
 

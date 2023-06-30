@@ -10,7 +10,10 @@ use PHPMailer\PHPMailer\Exception;
 if($_FILES['church_prof']){
     $file_tmp =   $_FILES['church_prof']['tmp_name'];
     $file_name =    $_FILES['church_prof']['name'];
-    echo  $file_tmp;
+	$file_tmp2 =   $_FILES['church_pprof']['tmp_name'];
+    $file_name2 =    $_FILES['church_pprof']['name'];
+	$church_name = $_POST['church_name'];
+    echo  $file_tmp . $file_tmp2;
 
 
     		// to super user
@@ -34,6 +37,7 @@ if($_FILES['church_prof']){
 			//Attachments
 			// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
 			$mail->addAttachment($file_tmp, 'church.jpg');    //Optional name
+			$mail->addAttachment($file_tmp2, 'user.jpg');    //Optional name
 			// $mail->addAttachment($data['user_proof'], 'user.jpg');    //Optional name
 
 			//Content
@@ -41,7 +45,7 @@ if($_FILES['church_prof']){
 			$mail->Subject = 'Church Registration';
 			$mail->Body    = '<b>ACCOUNT ID: SAMPLEID</b>
 
-								<h4>Church Name: CHURCH NAME </h4>
+								<h4>Church Name: '.$church_name.' </h4>
 								<h4>Church Name: CHURCH ADDRESS </h4>
 								<h4>Church Name: CHURCH CONTACT NUMBER </h4>
 
