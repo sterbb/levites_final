@@ -47,6 +47,7 @@
               console.log(answer);
 
               $("#superuser_churchID").val(answer[0]);
+              $("#superuser_churchID").val(answer[0]);
 
               $('#superuserModal').modal('show'); 
 
@@ -58,6 +59,9 @@
             }
           });
     });
+    
+
+
 
 
     function myFunction(){

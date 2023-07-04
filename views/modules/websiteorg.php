@@ -174,57 +174,28 @@
             
         </div>
 
-        <div class="col-12 col-lg-8 col-xl-4">
-            <div class="card">
-                <div class="card-body">
+            <div class="col-12 col-lg-8 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
                     <h6 class="mb-0 text-uppercase">Recommendation</h6>
                     <div class="my-3 border-top"></div>
 
                     <div class="row g-3">
-                        <div class="col-12 col-lg-5">
-                          <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden" role="tablist">
-                            <button class="nav-link  rounded-0 active" data-bs-toggle="pill" data-bs-target="#Pricing" type="button" aria-selected="true" role="tab">Photo Editing</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button" aria-selected="false" role="tab" tabindex="-1">Video Editing</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button" aria-selected="false" role="tab" tabindex="-1">Video Conferencing</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button" aria-selected="false" role="tab" tabindex="-1">Presentation</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button" aria-selected="false" role="tab" tabindex="-1">Live Streaming</button>
-                          </div>
+                        <div class="col-12 col-lg-12">
+                        <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden reco"  role="tablist" id="recommendationTabs">
                         </div>
-                        <div class="col-12 col-lg-7">
-                          <div class="row row-cols-2">
-                            <div class="col d-flex text-center justify-content-center align-items-center">
-                                <a href="https://www.adobe.com/ph_en/products/photoshop/landpa.html?gclid=CjwKCAjwjYKjBhB5EiwAiFdSfkdiC2pVatF2Blg4W2bgDrepgNAEULMNFu7P1tULV8TBeA_3-Uf7ghoCGNkQAvD_BwE&sdid=G4FRYR56&mv=search&ef_id=CjwKCAjwjYKjBhB5EiwAiFdSfkdiC2pVatF2Blg4W2bgDrepgNAEULMNFu7P1tULV8TBeA_3-Uf7ghoCGNkQAvD_BwE:G:s&s_kwcid=AL!3085!3!444512451750!e!!g!!adobe%20photoshop!703953000!39399096689">
-                                <i class="lni lni-microsoft" style="font-size:2em;"></i>
-                                    <p style="font-size:1.5em;">Adobe Photoshop</p>
-                                </a>
-                            </div>
-
-                            <div class="col d-flex text-center justify-content-center align-items-center">
-                                <a href="https://www.canva.com/">
-                                <i class="lni lni-microsoft" style="font-size:2em;"></i>
-                                    <p style="font-size:1.5em;">Canva</p>
-                                </a>
-                            </div>
-
-                            <div class="col d-flex text-center justify-content-center align-items-center">
-                                <a href="https://www.adobe.com/ph_en/products/photoshop-lightroom/campaign/pricing.html?gclid=CjwKCAjwjYKjBhB5EiwAiFdSft5QJGKrC5dJ7bh_rl6z6NxOYiKJVyy2Mp8pry96nKqP0cqE8R7jrRoC0aoQAvD_BwE&sdid=G4FRYR56&mv=search&ef_id=CjwKCAjwjYKjBhB5EiwAiFdSft5QJGKrC5dJ7bh_rl6z6NxOYiKJVyy2Mp8pry96nKqP0cqE8R7jrRoC0aoQAvD_BwE:G:s&s_kwcid=AL!3085!3!645544253991!e!!g!!adobe%20lightroom!703952877!39399101169">
-                                <i class="lni lni-microsoft" style="font-size:2em;"></i>
-                                    <p style="font-size:1.5em;">Adobe Lightroom</p>
-                                </a>
-                            </div>
-
-                            <div class="col d-flex text-center justify-content-center align-items-center">
-                                <a href="https://www.dxo.com/dxo-photolab/">
-                                <i class="lni lni-microsoft" style="font-size:2em;"></i>
-                                    <p style="font-size:1.5em;">DxO PhotoLab</p>
-                                </a>
-                            </div>
-                          </div>
                         </div>
+                        <div class="card align-items-center justify-content-center pt-3 p-1 border-1 border Newcard">
+                        <div class="col-12 col-lg-10 Newcard">
+                            <div class="row row-cols-2 " id="cardContainer">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </main>
@@ -286,10 +257,13 @@
             <h5 class="modal-title">Add Group</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
+        <input type="hidden" name="groupWebsiteList" id="groupWebsiteList">
+
         <div class="modal-body">
             <div class="row">
                 <label for="tns-urlPath" class="form-label">Group Name</label>
-                <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="Enter group name">
+                <input type="text" class="form-control border-3" id="website_groupname" name="urlPath" placeholder="Enter group name">
                 <div class="row mt-3 mb-1">
               
                    
@@ -312,7 +286,7 @@
                                     <p style="font-size:1.5em;">'.$value['website_name'].'</p>
                                     <div class="card-body">
                                         <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                            <input class="form-check-input border-2 border-success" type="checkbox" value="" group="websitesGroup" id="flexCheckDefault" style="font-size:2em;">
+                                            <input class="form-check-input border-2 border-success" name="cur_websites" type="checkbox" value="'.$value['website_name'].'" group="websitesGroup" id="cur_websites" style="font-size:2em;">
                                         </div>
                                     </div>
                                 </div>
@@ -335,7 +309,8 @@
                             <p style="font-size:1.5em;">Facebook</p>
                             <div class="card-body">
                                 <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                                <input class="form-check-input border-2 border-success" name="cur_websites" type="checkbox" value="hello" group="websitesGroup" id="cur_websites" style="font-size:2em;">
+
                                 </div>
                             </div>
                         </div>
@@ -499,9 +474,38 @@
         
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary" id="addGroupBtn">Save</button>
         </div>
         </div>
     </div>
     </div>
 </div>
+
+<style>
+    @keyframes slideOut {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.Newcard {
+  animation: slideOut 0.5s ease-out;
+  border: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.reco {
+    font-size: 16px;
+  
+}
+</style>
+
+<script>
+generateCards();
+generateURLList();
+</script>
