@@ -1,24 +1,26 @@
 <!--start sidebar-->
 
 <?php
-if(isset($_COOKIE["type"])){
-  if($_COOKIE["type"]  == "admin"){
+if(isset($_COOKIE["acc_type"])){
+  if($_COOKIE["acc_type"]  == "admin"){
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
-  }elseif($_COOKIE["type"]  == "subuser"){
+  }elseif($_COOKIE["acc_type"]  == "subuser"){
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
-  }elseif($_COOKIE["type"] == "superuser"){
+  }elseif($_COOKIE["acc_type"] == "superuser"){
     echo"<style>.admin{display:none !important;}</style>";
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
     echo"<style>.admin-public{display:none !important;}</style>";
-  }elseif($_COOKIE["type"]  == "public"){
+  }elseif($_COOKIE["acc_type"]  == "public"){
     echo"<style>.admin{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
   }
+
+  echo $_COOKIE['acc_type'];
 }
 
 

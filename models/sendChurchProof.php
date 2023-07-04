@@ -1,7 +1,7 @@
 <?php
-require '../extensions/PHPMailer-master/src/Exception.php';
-require '../extensions/PHPMailer-master/src/PHPMailer.php';
-require '../extensions/PHPMailer-master/src/SMTP.php';
+require '../extensions/PHPMailer/src/Exception.php';
+require '../extensions/PHPMailer/src/PHPMailer.php';
+require '../extensions/PHPMailer/src/SMTP.php';
 
 
 use PHPMailer\PHPMailer\PHPMailer;

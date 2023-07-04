@@ -169,6 +169,7 @@
 	<script src="views/js/deactivate.js"></script>
 	<script src="views/js/loginRegister.js"></script>
 	<script src="views/js/superUser.js"></script>
+	<script src="views/js/website.js"></script>
 
 
     <script>

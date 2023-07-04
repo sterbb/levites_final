@@ -2547,3 +2547,37 @@ button:focus{
 .stl:after {
   border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #ffffff #ffffff;
 }
+
+.verification-input {
+  display: flex;
+  margin-left: 5px;
+  margin: 0 8px;
+  margin-top: 25px;
+  line-height: 50px;
+  width: 20px;
+  justify-content: space-between;
+}
+
+.inputClass {
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 75px;
+  height: 90px;
+  font-size: 60px;
+  text-align: center;
+}
+
+.verify-block {
+  text-align: center;
+}
+
+.verify-block a {
+  color: black;
+  display: block;
+  margin-bottom: 1vh;
+}
+
+.verify-block a:hover{
+  color: rgb(192,128,249);
+}.

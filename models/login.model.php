@@ -5,9 +5,9 @@ require_once "connection.php";
 session_set_cookie_params(0);
 session_start();
 
-require '../extensions/PHPMailer-master/src/Exception.php';
-require '../extensions/PHPMailer-master/src/PHPMailer.php';
-require '../extensions/PHPMailer-master/src/SMTP.php';
+require '../extensions/PHPMailer/src/Exception.php';
+require '../extensions/PHPMailer/src/PHPMailer.php';
+require '../extensions/PHPMailer/src/SMTP.php';
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -25,7 +25,7 @@ class ModelLogin{
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
 	
-			$stmt = $pdo->prepare("SELECT acc_username, acc_password,fname,acc_type	 FROM account WHERE verify_status = :verify_status AND acc_username = :acc_username");
+			$stmt = $pdo->prepare("SELECT AccountID, acc_username, acc_password, fname, acc_type	 FROM account WHERE verify_status = :verify_status AND acc_username = :acc_username");
 			$stmt -> bindParam(":acc_username", $data['login_username'], PDO::PARAM_STR);
             $stmt -> bindParam(":verify_status", $status, PDO::PARAM_INT);
 			$stmt->execute();
@@ -33,12 +33,20 @@ class ModelLogin{
             
 
 		    foreach($result as $row){
-                $acc_username = $row['fname'];
+                $acc_username = $row['acc_username'];
+				$acc_name = $row["fname"];	
                 $acc_type = $row["acc_type"];	
-                    if($data['login_password'] == $row["acc_password"]){
+				$acc_id= $row["AccountID"];
 
+                    if($data['login_password'] == $row["acc_password"]){
+						
+
+						setcookie("acc_type", $acc_type, time() + (86400 * 30), "/"); // 86400 = 1 day
+						setcookie("acc_name", $acc_name, time() + (86400 * 30), "/"); // 86400 = 1 day
+						setcookie("acc_id", $acc_id, time() + (86400 * 30), "/"); // 86400 = 1 day
+						$_SESSION["acc_type"] = $acc_type;
                         $pdo->commit();
-                        echo "success";
+                        echo $acc_type;	
 
                         return "ok";
                     
@@ -101,6 +109,7 @@ class ModelLogin{
 		$status->execute();
 
 		setcookie("current_email", $data["forgot_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
+		
 
 		$pdo->commit();
 		echo "success";	

@@ -111,7 +111,56 @@ $(function(){
     
 
 
+    $(".verification-input input").keyup(function(e) {
+      var maxLength = parseInt($(this).attr("maxlength"));
+      var currentLength = $(this).val().length;
   
+      if (e.keyCode === 8 && currentLength === 0) {
+        // Find the previous input field
+        var $prevInput = $(this).prev("input");
+        
+        // Check if there is a previous input field
+        if ($prevInput.length > 0) {
+          // Focus on the previous input field
+          $prevInput.focus();
+        }
+      } else if (currentLength === maxLength) {
+        // Find the next input field
+        var $nextInput = $(this).next("input");
+        
+        // Check if there is a next input field
+        if ($nextInput.length > 0) {
+          // Focus on the next input field
+          $nextInput.focus();
+        } else {
+          // If there is no next input field, trigger the verification process
+          var code = $(".verification-input input")
+            .map(function() {
+              return $(this).val();
+            })
+            .get()
+            .join("");
+  
+          $.ajax({
+            url: "ajax/verify_registration.ajax.php",
+            method: "POST",
+            data: { code: code.trim() },
+            dataType: "text",
+            success: function(answer) {
+              console.log(answer);
+              if (answer == "success") {
+                window.location.href = 'login';
+              } else {
+                alert("Code does not match");
+              }
+            },
+            error: function() {
+              alert("Oops. Something went wrong!");
+            }
+          });
+        }
+      }
+    });
 
     $("#verification_code").keyup(function(){
       var code = $("#verification_code").val();
@@ -172,12 +221,14 @@ $(function(){
           dataType: "text",
           success: function(answer) {
             console.log(answer);
-            if(answer== "success"){
+            alert(answer);
+
                 //islan pa  
                 // document.cookie = 'type =' +answer; 
-                if(answer == "success"){
+
+                if(answer == "admin"){
                 
-                window.location.href='adminhomepage';
+                window.location.href= 'adminhomepage';
                 }else if(answer == "public"){
                 window.location.href='publichomepage';
                 }else if(answer == "superuser"){
@@ -185,11 +236,7 @@ $(function(){
                 }else if(answer == "subuser"){
                 window.location.href='adminhomepage';
                 }
-             
-             
-            }else{
-              alert("sad");
-            }
+
 
         
         

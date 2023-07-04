@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="card-body" scrollable-y="true">
-                <div class="team-list">
+                <div>
                     <div class="d-flex align-items-center gap-3">
                         <div class="">
                             <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
@@ -36,38 +36,42 @@
                         </div>
                         <div class="">
                             <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Details </button>
-                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
+                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3  ">Accept </button>
                             <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
                         </div>
                     </div>
                     <hr>
 
-                    <?php
-                        $churches = (new ControllerSuperuser)->ctrShowChurchList(0);
-                        foreach($churches as $key => $value){
-                            echo '
+                    <div class="registration_churches" id="registration_churches">
+                        <?php
+                            $churches = (new ControllerSuperuser)->ctrShowChurchList(0);
+                            foreach($churches as $key => $value){
+                                echo '
 
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="">
-                                    <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">'.$value["church_name"].'</h6> 
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                                    </div>
+                                    <div class="church_div">
+                                        <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:block;" required>
+                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" value="hello">View Details </button>
+                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" onclick="changeButtonText(this)">Accept </button>
+                                        <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn">Reject </button>
+                                    </div>
                                 </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1 fw-bold">'.$value["church_name"].' `</h6>
-                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
-                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                                </div>
-                                <div class="">
-                                    <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Details </button>
-                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
-                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
-                                </div>
-                            </div>
-                            <hr>
-                            ';
-                        }
-                        
-                        
-                        ?>
+                                <hr>
+                                ';
+                            }
+                            // first view button
+                            // <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">View Details </button>
+                            ?>
+
+                    </div>      
                 </div>
                 </div>
             </div>
@@ -85,7 +89,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="team-list">
+                    <div >
                         <div class="d-flex align-items-center gap-3">
                             <div class="">
                                 <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
@@ -101,30 +105,33 @@
                             </div>
                         </div>
 
-                        <?php
-                        $churches = (new ControllerSuperuser)->ctrShowChurchList(1);
-                        foreach($churches as $key => $value){
-                            echo '
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="">
-                                    <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
+                        <div class="accepted_churches" id="accepted_churches">
+               
+                            <?php
+                            $churches = (new ControllerSuperuser)->ctrShowChurchList(1);
+                            foreach($churches as $key => $value){
+                                echo '
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
+                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
                                     </div>
-                                    <div class="flex-grow-1">
-                                    <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
-                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
-                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
-                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                    <div class="">
+                                        <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover" onclick="changeButtonText(this)">Activate</button>
+                                    </div>
                                 </div>
-                                <div class="">
-                                    <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover" onclick="changeButtonText(this)">Activate</button>
-                                </div>
-                            </div>
-                            <hr>
-                            ';
-                        }
-                        
-                        
-                        ?>
+                                <hr>
+                                ';
+                            }
+                            
+                            
+                            ?>
+                        </div>
 
 
                         <hr>
@@ -143,25 +150,27 @@
                         button.classList.remove("btn-outline-danger");
                       }
                     }
+
+                    //possible asynchrnous
                   </script>
 
 </main>
 
  <!-- Modal -->
- <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+ <div class="modal fade" id="superuserModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Church Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body church_details_div">
                 <div class="form-body g-3">
                     <form role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
                         <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
-                        <div class="col-md-2 form-group pt-3 pr-3" style="display:none;">
+                        <div class="col-md-2 form-group pt-3 pr-3" style="display:block;">
                                 <label for="churchID" class="form-label">ID</label>
-                                <input id="churchID" class="form-control" name="churchID" type="text" style="font-size:1em;"readonly >
+                                <input id="superuser_churchID" class="form-control" name="superuser_churchID" type="text" style="font-size:1em;"readonly >
                         </div>
 
                         <div class="row g-3">        

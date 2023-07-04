@@ -1,11 +1,10 @@
 <?php 
 
 require_once "connection.php";
-session_start();
 
-require '../extensions/PHPMailer-master/src/Exception.php';
-require '../extensions/PHPMailer-master/src/PHPMailer.php';
-require '../extensions/PHPMailer-master/src/SMTP.php';
+require '../extensions/PHPMailer/src/Exception.php';
+require '../extensions/PHPMailer/src/PHPMailer.php';
+require '../extensions/PHPMailer/src/SMTP.php';
 
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -138,14 +137,22 @@ class ModelRegister {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
 
+			$current_year = substr(date('Y'), -2 );
+			$current_month = date('n');
+
+			$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
+			$account_id->execute();
+			$accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
+			
+
 			//add to account database
-			$stmt = $pdo->prepare("INSERT INTO account (acc_username,acc_password,acc_email,verify_token, acc_type) 
-            VALUES (:acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
+			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password,acc_email,verify_token, acc_type) 
+            VALUES (:AccountID, :acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
-
+			$stmt->bindParam(":AccountID", $accountid[0]['account_id'], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_username", $data["church_username"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_password", $data["church_password"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_email", $data["church_email"], PDO::PARAM_STR);
@@ -155,9 +162,8 @@ class ModelRegister {
 			setcookie("current_email", $data["church_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			$stmt->execute();		
 
-
 			
-			$church_id = (new Connection)->connect()->prepare("SELECT CONCAT('C', LPAD((count(id)+1),4,'0')) as church_id  FROM churches FOR UPDATE");
+			$church_id = (new Connection)->connect()->prepare("SELECT CONCAT('C', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as church_id  FROM churches FOR UPDATE");
 			$church_id->execute();
 			$churchid = $church_id -> fetchAll(PDO::FETCH_ASSOC);
 			

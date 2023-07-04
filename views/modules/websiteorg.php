@@ -20,6 +20,25 @@
                    
                     <div class="row row-cols-4 row-cols-lg-6 g-1">
 
+                        <?php 
+                         $websites = (new ControllerWebsite)->ctrShowWebsites();
+                         foreach($websites as $key => $value){
+                             echo '
+                             <div class="col text-center" >
+   
+                             <a href="'.$value['website_path'].'" target="_blank">
+                                 <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
+                                 <p class="text-dark" style="font-size:1.5em;">'.$value['website_name'].'</p>
+                             </a>
+                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
+ 
+                         
+                            </div>
+                             ';
+                            }
+                        
+                        ?>
+
                         <div class="col text-center " >
    
                             <a href="https://www.facebook.com" target="_blank">
@@ -218,37 +237,42 @@
             <h5 class="modal-title">Add Website</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <div class="form-body g-5 ">
-                <div class="row g-3 mb-3"> 
-                <div class="col-12">
-                        <label for="tns-urlPath" class="form-label">Website Name</label>
-                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="Enter website name">
-                        </div>  
-                    <div class="col-8">
-                        <label for="inputUrl" class="form-label">URL</label>
-                        <input type="text" class="form-control border-3" id="tns-urlPath" name="urlPath" placeholder="https://www.facebook.com">
-                        </div>  
+        <form role="form" id="addWebsiteForm" method="POST" autocomplete="nope" class="addWebsiteForm row g-3">
+            <div class="modal-body">
+                <div class="form-body g-5 ">
+                
+                
+                            <div class="row g-3 mb-3"> 
+                            <div class="col-12">
+                                    <label for="tns-urlPath" class="form-label">Website Name</label>
+                                    <input type="text" class="form-control border-3" id="website_name" name="urlPath" placeholder="Enter website name">
+                                    </div>  
+                                <div class="col-8">
+                                    <label for="inputUrl" class="form-label">URL</label>
+                                    <input type="text" class="form-control border-3" id="website_path" name="urlPath" placeholder="https://www.facebook.com">
+                                    </div>  
 
-                    <div class="col-4">
-                        <label for="inputURL" class="form-label">Category</label>
-                        <select class="form-select border-3" id="tns-pathUrl" name="pathUrl" aria-label="Default select example">
-                            <option selected="" value="">Social Media</option>
-                            <option value="">Productivity</option>
-                            <option value="">Multimedia</option>
-                            <option value="">Video Conference</option>
-                            
-                        
-                        </select>
-                    </div>
+                                <div class="col-4">
+                                    <label for="inputURL" class="form-label">Category</label>
+                                    <select class="form-select border-3" id="website_category" name="pathUrl" aria-label="Default select example">
+                                        <option selected="" value="Social Media">Social Media</option>
+                                        <option value="Productivity">Productivity</option>
+                                        <option value="Multimedia">Multimedia</option>
+                                        <option value="Video Conference">Video Conference</option>
+                                    </select>
+                                </div>
+                            </div>
+            
+        
                 </div>
-            </div>
+        
 
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Add App</button>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Add Website</button>
+            </div>
+        </form>
         </div>
     </div>
 </div>
@@ -276,6 +300,34 @@
                        
                     </div>
                     <hr>
+                    <?php 
+
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value){
+                            echo '
+                            <div class="col-3 text-center">
+
+                                <div class="card">
+                                    <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
+                                    <p style="font-size:1.5em;">'.$value['website_name'].'</p>
+                                    <div class="card-body">
+                                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
+                                            <input class="form-check-input border-2 border-success" type="checkbox" value="" group="websitesGroup" id="flexCheckDefault" style="font-size:2em;">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                    
+                            </div>
+
+                            ';
+
+                            
+                        }
+                    ?>
+
+
+          
                     <div class='col-3 text-center'>
 
                         <div class="card">
