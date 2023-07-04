@@ -5,22 +5,22 @@
     <div class="">
       <div class="row g-0">
 
-        <div class="col-12 col-xl-7 col-xxl-5 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
+        <div class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex bg-primary">
 
           <div class=" rounded-0 mb-0 border-0 bg-transparent">
             <div class="card-body">
-              <img src="views/images/marblebackground.png" class="img-fluid auth-img-cover-login" width="650"
+              <img src="views/images/marblebackground.png" class="img-fluid auth-img-cover-login" style="position:fixed;" width="650"
                 alt="">
             </div>
           </div>
 
         </div>
 
-        <div class="col-12 col-xl-5 col-xxl-7 auth-cover-right align-items-center justify-content-center">
-          <div class="card m-3 border-0 rounded-3 ">
+        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+          <div class="card mb-0 border-0 rounded-3 ">
             <div class="card-body p-sm-10">
                 <div class="text-center">
-                  <img src="views/img/LEVITES.png" class="mb-4" width="100" alt="">
+                  <img src="views/images/try.png" class="mb-4" width="100" alt="">
                   <h1 class="fw-bold">Church Registration</h1>
                   <div>
                       <button type="button" class="btn "><a  href="publicregistration"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
@@ -43,26 +43,27 @@
                 </div>      
                 <div class="form-body mt-4">
                   <form class="row g-3 " role="form" id="churchRegistrationForm" method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
-                    <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
+                    <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" >
 
                     <h5>Personal Information</h5>
-
                     <div class="col-12">
                       <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_pfname" name="name" placeholder="">
+                      <input type="text" class="form-control border-3" id="church_pfname" name="name" placeholder="" >
                     </div>
                     <div class="col-12">
                       <label for="username" class="form-label">Last Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_plname" name="lname" placeholder="">
+                      <input type="text" class="form-control border-3" id="church_plname" name="lname" placeholder="" >
                     </div>
-                    <div class="col-12">
+                    <div class="row mt-4">
+                    <div class="col-6">
                       <label for="username" class="form-label">Designation<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_designation" name="role" placeholder="e.g. secretary">
+                      <input type="text" class="form-control border-3" id="church_designation" name="role" placeholder="e.g. secretary" >
                     </div>
 
                     <div class="col-6">
                       <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
                       <input type="text" class="form-control border-3" id="church_pnum" name="telnum" placeholder="Landline or phone number ">
+                    </div>
                     </div>
 
                     <h5>Church Information</h5>
@@ -91,7 +92,7 @@
                       </select>
                     </div>
 
-                    <div class="row mt-2 mb-3">
+                    <div class="row mt-2 mb-2">
                       <div class="col-6">
                         <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
                         <input type="text" class="form-control border-3" id="church_city" name="city" placeholder="Bacolod City">
@@ -114,11 +115,12 @@
                         <input type="password" class="form-control border-end-0 border-3 " id="church_password" name="password"  placeholder="Enter Password">
                         <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                       </div>
-                      <div class="input-group mt-1" id="show_hide_password">
+                      <div class="input-group mt-2" id="show_hide_password">
                         <input type="password" class="form-control border-end-0 border-3" id="church_repassword"  placeholder="Re-Enter Password">
                         <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                       </div>
                     </div>
+                    <h5>Upload Verification</h5>
                   
                     <div class="col-12 mt-3">
                       <label for="church_prof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
@@ -132,7 +134,7 @@
 
                     <div class="col-12 mt-3">
                       <div class="form-check form-check-info border-3">
-                          <input class="form-check-input" type="checkbox" value="" id="church_terms">
+                          <input class="form-check-input" type="checkbox" value="" id="church_terms" required>
                           <label class="form-check-label" for="church_terms" >I read and agree to Terms &amp; Conditions</label>
                           <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>
                         </div>

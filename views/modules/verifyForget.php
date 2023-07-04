@@ -1,4 +1,4 @@
-
+<body style="background-image: url('views/images/marblebackground.png'); background-size: cover; background-repeat: no-repeat;">
 <!--Request Password-->
 <div class="container-fluid my-5">
         <div class="row">
@@ -27,15 +27,28 @@
                                 
                             </div>
 
-                            <div class="col-12">
-                                <input type="text" class="form-control  border-3" id="verification_code_forget" placeholder="" style="height:150px;font-size:120px;">
+                            <div class="col-12 verification-input" id="verification_code">
+                            <input type="text" class="forgotInputClass" id="code1" name="verification_code" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code2" name="verification_code" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code3" name="verification_code" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code4" name="verification_code" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code5" name="verification_code" maxlength="1" required>
                             </div>
+
+                            <!-- <div class="col-12">
+                                <input type="text" class="form-control  border-3" id="verification_code_forget" placeholder="" style="height:150px;font-size:120px;">
+                            </div> -->
 
                             <div class="col-12 mt-5">
                                 <div class="d-grid">
                                     <button type="button"  id="resendBtn" class="btn p-3 mb-5"   style="font-weight:bold;  background:linear-gradient(150deg, #AAC4F2, #C9B4ED 100%); border: 1 solid; border-color:black; color:dark; box-shadow: 5px 5px; "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rotate-ccw text-white " style="margin-right:20px; "><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg><span class="text-white ">Send Verification Again</span></button>
                                 </div>
                             </div>
+                            <div class="verify-block">
+                                <a href="forgotpassword">
+                                <i class='bx bx-left-arrow-alt fs-1'></i>
+                                </a>
+                                </div>
 
                             <div class="col-12">
                                 <span style="font-weight:normal;">Remember to check your spam folder or unblock janryandivinagracia25@gmail.com if you can't find the message</span></span>
@@ -52,5 +65,6 @@
     </div><!--end row-->
 </div>
       
+</body>
 
     
