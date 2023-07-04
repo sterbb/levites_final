@@ -12,30 +12,28 @@
             <div class="card-body">
               
                 <div>
-<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-<defs>
-<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-</defs>
-<g class="parallax">
-<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-</g>
-</svg>
-</div>
+              <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+              <defs>
+              <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+              </defs>
+              <g class="parallax">
+              <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+              <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+              <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+              <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+              </g>
+              </svg>
+              </div>
             </div>
-            
           </div>
-
         </div>
-
-        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center ">
-          <div class="card border-0 mx-0 ">
-            <div class="card-body p-sm-5 ">
+        
+        <div class="col-12 col-xl-5 col-xxl-4 auth-cover-right align-items-center justify-content-center">
+          <div class="card mb-0 border-0 rounded-3 logcard">
+            <div class="card-body p-sm-10">
 				<div class="text-center">
-			<img src="views/images/try.png" class="align-center mt-5 mb-5 img-fluid"  width="100" alt="">
+			<img src="views/images/try.png" class="align-center mt-5 mb-4"  width="100" alt="">
                            <h1 class="fw-bold" >Welcome to Levites</h1>
                            <p class="mb-0">Enter your credentials to login your account</p>
               <div class="separator section-padding mt-5 mb-5">
@@ -64,11 +62,11 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                       <label class="form-check-label" for="flexSwitchCheckChecked" >Remember Me</label>
                     </div>
                   </div>
-				  <div class="col-md-6 text-end"><a href="forgotpassword"  style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Forgot Password ?</a>
+				           <div class="col-md-6 text-end"><a href="forgotpassword"  style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Forgot Password ?</a>
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-					<button  type="submit"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</button>
+					            <button  type="submit"  class="btn text-white" id="loginBtn" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Login</button>
                     </div>
                   </div>
                   <div class="col-12">
