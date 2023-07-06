@@ -27,12 +27,12 @@
                                 
                             </div>
 
-                            <div class="col-12 verification-input" id="verification_code">
-                            <input type="text" class="forgotInputClass" id="code1" name="verification_code" maxlength="1" required>
-                            <input type="text" class="forgotInputClass" id="code2" name="verification_code" maxlength="1" required>
-                            <input type="text" class="forgotInputClass" id="code3" name="verification_code" maxlength="1" required>
-                            <input type="text" class="forgotInputClass" id="code4" name="verification_code" maxlength="1" required>
-                            <input type="text" class="forgotInputClass" id="code5" name="verification_code" maxlength="1" required>
+                            <div class="col-12 forget-input" id="verification_code_forget">
+                            <input type="text" class="forgotInputClass" id="code1" name="verification_code_forget" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code2" name="verification_code_forget" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code3" name="verification_code_forget" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code4" name="verification_code_forget" maxlength="1" required>
+                            <input type="text" class="forgotInputClass" id="code5" name="verification_code_forget" maxlength="1" required>
                             </div>
 
                             <!-- <div class="col-12">

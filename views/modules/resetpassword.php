@@ -1,3 +1,4 @@
+<body style="background-image: url('views/images/marblebackground.png'); background-size: cover; background-repeat: no-repeat;">
 <!--authentication-->
 <div class="container-fluid" style="margin-top:130px;">
         <div class="row">
@@ -6,7 +7,7 @@
                     <div class="card border-3 rounded-5">
                         <div class="card-body p-5">
                             <div class=" text-center">
-                                <img src="views/images/logo.png" class="align-center mb-4" width="100" alt="">
+                                <img src="views/images/try.png" class="align-center mb-4" width="100" alt="">
                                 <h4 class="fw-bold">Genrate New Password</h4>
                                 <p class="mb-0">We received your reset password request. Please enter your new password!</p>
                             </div>
@@ -24,7 +25,7 @@
                                 <div class="col-12">
                                     <div class="d-grid gap-2">
                                         <button type="submit"  class="btn text-white" style="background:linear-gradient(150deg, #AAC4F2, #C9B4ED 100%); font-weight:bold;">Change Password</button>
-                                        <a href="login" type="button" class="btn font-bold" style="font-weight:bold;">Cancel</a>
+                                        <a href="login" type="button" class="btn border font-bold" style="font-weight:bold;">Cancel</a>
                                     </div>
                                 </div>
                             </form>
@@ -35,5 +36,6 @@
         </div>
     </div><!--end row-->
 </div>
+</body>
     
 <!--authentication-->

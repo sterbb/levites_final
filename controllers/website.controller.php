@@ -11,5 +11,10 @@ class ControllerWebsite{
     static public function ctrAddGroup($data){
         return $answer = (new ModelWebsite)->mdlAddGroup($data);
 	}
+
+	static public function ctrShowGroups(){
+        return $answer = (new ModelWebsite)->mdlShowGroups();
+	}
+    
     
 }

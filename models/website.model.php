@@ -18,6 +18,19 @@ class ModelWebsite{
 	
     }
 
+	public static function mdlShowGroups(){
+        
+        
+        $accID = $_COOKIE["acc_id"];
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM websitegroups WHERE accountID = :accountID");
+        $stmt->bindParam(":accountID", $accID, PDO::PARAM_INT);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;	
+	
+    }
+
     public static function mdlAddWebsite($data){	
 		$db = new Connection();
         $pdo = $db->connect();

@@ -1,7 +1,7 @@
 <main class="page-content" style="height:100vh;"> 
 
 <div class="row">
-        <div class="col-12 col-lg-8 col-xl-8">
+        <div class="col-12 col-lg-8 col-xl-8 mb-3">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -175,8 +175,8 @@
         </div>
 
             <div class="col-12 col-lg-8 col-xl-4">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card " style="height: 650px;">
+                    <div class="card-body" >
                     <h6 class="mb-0 text-uppercase">Recommendation</h6>
                     <div class="my-3 border-top"></div>
 
@@ -286,7 +286,7 @@
                                     <p style="font-size:1.5em;">'.$value['website_name'].'</p>
                                     <div class="card-body">
                                         <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                            <input class="form-check-input border-2 border-success" name="cur_websites" type="checkbox" value="'.$value['website_name'].'" group="websitesGroup" id="cur_websites" style="font-size:2em;">
+                                            <input class="form-check-input border-2 border-success" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'" group="websitesGroup" id="cur_websites" style="font-size:2em;">
                                         </div>
                                     </div>
                                 </div>
@@ -485,11 +485,13 @@
     @keyframes slideOut {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(50px);
+  
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    
   }
 }
 

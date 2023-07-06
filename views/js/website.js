@@ -74,11 +74,21 @@ $("#addGroupBtn").on('click', function(){
 function getWebsites(){
     var arrData = [];
     $('input[name="cur_websites"]:checked').each(function() {
-        console.log(this.value);
+
+        var str = this.value;
+        var strArray = str.split("#");
+
+        var name = strArray[0];
+        var path = strArray[1];
+
+        console.log(strArray);
+
+
 
         
         var websites = {};
-        websites.name = this.value;
+        websites.name = name;
+        websites.path = path;
         arrData.push(websites);
     
      });
