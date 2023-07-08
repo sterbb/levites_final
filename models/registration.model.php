@@ -138,13 +138,22 @@ class ModelRegister {
         try{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
+
+			$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
+			$account_id->execute();
+			$accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
 			
-			$stmt = $pdo->prepare("INSERT INTO account (acc_username,acc_password,acc_email,verify_token, acc_type) 
-            VALUES (:acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
+			
+			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password,acc_email,verify_token, acc_type) 
+            VALUES (:AccountID, :acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
-
+				$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
+			$account_id->execute();
+			$accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
+			
+			$stmt->bindParam(":AccountID", $accountid[0]['account_id'], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_username", $data["user_username"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_password", $data["user_password"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_email", $data["user_email"], PDO::PARAM_STR);
@@ -234,6 +243,7 @@ class ModelRegister {
 
 			$stmt->bindParam(":AccountID", $accountid[0]['account_id'], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_username", $data["church_username"], PDO::PARAM_STR);
+			$stmt->bindParam(":fname", $data["church_name"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_password", $data["church_password"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_email", $data["church_email"], PDO::PARAM_STR);
 			$stmt->bindParam(":verify_token", $verify_token, PDO::PARAM_STR);

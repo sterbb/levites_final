@@ -273,39 +273,57 @@ $(function(){
       });
 
 
-      $("#verification_code_forget").keyup(function(){
-        var code = $("#verification_code_forget").val();
-        if(code.length == 5){
-          alert(code.length);
-          var codeData = new FormData();
-          codeData.append("code", code);
-          
-  
-          $.ajax({
-                  url: "ajax/verify_registration.ajax.php",
-                  method: "POST",
-                  data: codeData,
-                  cache: false,
-                  contentType: false,
-                  processData: false,
-                  dataType: "text",
-                  success: function(answer) {
-                    console.log(answer);
-                    alert(document.cookies);
-                    if(answer == "success"){
-                      window.location.href='resetpassword';
-                    }else{
-                      alert("code does not match");
-                    }
-        
-                  },
-                  error: function() {
-                      alert("Oops. Something went wrong!");
-                  },
-                  complete: function() {
+      $(document).ready(function() {
+        $(".forget-input input").keyup(function(e) {
+          var maxLength = parseInt($(this).attr("maxlength"));
+          var currentLength = $(this).val().length;
+      
+          if (e.keyCode === 8 && currentLength === 0) {
+            // Find the previous input field
+            var $prevInput = $(this).prev("input");
+            
+            // Check if there is a previous input field
+            if ($prevInput.length > 0) {
+              // Focus on the previous input field
+              $prevInput.focus();
+            }
+          } else if (currentLength === maxLength) {
+            // Find the next input field
+            var $nextInput = $(this).next("input");
+            
+            // Check if there is a next input field
+            if ($nextInput.length > 0) {
+              // Focus on the next input field
+              $nextInput.focus();
+            } else {
+              // If there is no next input field, trigger the verification process
+              var code = $(".forget-input input")
+                .map(function() {
+                  return $(this).val();
+                })
+                .get()
+                .join("");
+      
+              $.ajax({
+                url: "ajax/verify_registration.ajax.php",
+                method: "POST",
+                data: { code: code.trim() },
+                dataType: "text",
+                success: function(answer) {
+                  console.log(answer);
+                  if (answer == "success") {
+                    window.location.href = 'resetpassword';
+                  } else {
+                    alert("Code does not match");
                   }
+                },
+                error: function() {
+                  alert("Oops. Something went wrong!");
+                }
               });
-        }
+            }
+          }
+        });
       });
 
       $("#forgotPasswordForm").submit(function(e){

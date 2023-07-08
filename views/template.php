@@ -170,6 +170,8 @@
 	<script src="views/js/loginRegister.js"></script>
 	<script src="views/js/superUser.js"></script>
 	<script src="views/js/website.js"></script>
+	<script src="views/js/weborganizer.js"></script>
+
 
 
     <script>
