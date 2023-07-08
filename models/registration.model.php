@@ -34,20 +34,100 @@ class ModelRegister {
 			$mail->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
+			
 			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Levites Registration Confirmation';
-			$email_template = '<b>Welcome to Levites</b>
-			<h1>Accept this request if you have registered! Disregard this message if not.</h1>
-			<a href="http://localhost/levites/publicregistration/verify-email.php?token=$verify_token" ';
-			$mail->Body    = '<b>Welcome to Levites</b>
-								<h1>Accept this request if you have registered! Disregard this message if not.</h1>
-								<h1>'. $verify_token.'</h1> ';
-			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			
+			
+			// Email Template
+			$email_template = '
+			<html>
+			<head>
+				<style>
+					body {
+						font-family: Arial, sans-serif;
+						background-color: #f1f1f1;
+					}
+					
+					.container {
+						max-width: 600px;
+						margin: 0 auto;
+						padding: 20px;
+						background-color: #f8f8f8;
+						border-radius: 5px;
+					}
+					
+					.logo {
+						text-align: center;
+						margin-bottom: 20px;
+					}
+					
+					.logo img {
+						max-width: 200px;
+					}
+					
+					.message {
+						margin-bottom: 20px;
+					}
+					
+					.verification-code {
+						margin: 0;
+						text-align: center;
+						margin-bottom: 20px;
+						background-color: white;
+						font-size: 32px;
+						font-weight: bold;
+						color: rgb(192, 128, 249);
+					}
+					
+					.social-media-container {
+						text-align: center;
+						margin-top: 20px;
+					}
+					
+					.social-media-link {
+						display: inline-block;
+						margin-right: 10px;
+						text-decoration: none;
+					}
+					
+					.social-media-icon {
+						width: 30px;
+						height: 30px;
+					}
+				</style>
+			</head>
+			<body>
+				<div class="container">
+					<div class="logo">
+						<img src="../~views/images/try.png" alt="Logo">
+					</div>
+					<div class="message">
+						<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
+					</div>
+					<div class="verification-code">' . $verify_token . '</div>
+					<div class="social-media-container">
+						<a class="social-media-link" href="https://www.facebook.com">
+							<img class="social-media-icon" src="facebook_icon.png" alt="Facebook">
+						</a>
+						<a class="social-media-link" href="https://www.twitter.com">
+							<img class="social-media-icon" src="twitter_icon.png" alt="Twitter">
+						</a>
+						<a class="social-media-link" href="https://www.instagram.com">
+							<img class="social-media-icon" src="instagram_icon.png" alt="Instagram">
+						</a>
+					</div>
+				</div>
+			</body>
+			</html>
+		';	
+					
+        $mail->Body = $email_template;
+        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();
 			echo 'Message has been sent';
 		} catch (Exception $e) {
@@ -118,7 +198,7 @@ class ModelRegister {
 			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
@@ -262,18 +342,16 @@ class ModelRegister {
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
 
-			//Content
-			$mail->isHTML(true);                                  //Set email format to HTML
-			$mail->Subject = 'Levites Registration Confirmation';
-			$email_template = '<b>Welcome to Levites</b>
-			<h1>Accept this request if you have registered! Disregard this message if not.</h1>
-			<a href="http://localhost/levites/publicregistration/verify-email.php?token=$verify_token" ';
-			$mail->Body    = '<b>Welcome to Levites</b>
-								<h1>Accept this request if you have registered! Disregard this message if not.</h1>
-								<h1>'. $verify_token.'</h1> ';
-			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			 // Content
+			 $mail->isHTML(true); // Set email format to HTML
+			 $mail->Subject = 'Levites Registration Confirmation';
+			 $email_template = '<b>Welcome to Levites</b>
+				 <h1>Accept this request if you have registered! Disregard this message if not.</h1>
+				 <a href="http://localhost/levites/publicregistration/verify-email.php?token=' . $verify_token . '">Verify Email</a>';
+			 $mail->Body = $email_template;
+			 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();
 			echo 'success';
 		} catch (Exception $e) {
