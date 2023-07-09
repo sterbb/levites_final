@@ -46,11 +46,11 @@
 
               <div class="form-body mt-4">
                 <form class="row g-3 " role="form" id="publicRegistrationForm" method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
-                <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
+                <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" >
 
                 <div class="col-12">
                             <label for="pubUsername" class="form-label">Username <sup style='color:red;'>  *</sup></label>
-                            <input type="text" class="form-control border-3" id="pubUsername" placeholder="Jhon">
+                            <input type="text" class="form-control border-3" id="pubUsername" placeholder="Jhon" required>
                         </div>
 
                             <div class="col-12">
@@ -65,22 +65,22 @@
 
                             <div class="col-12">
                             <label for="pubEmail" class="form-label">Email Address <sup style='color:red;'>  *</sup></label>
-                            <input type="email" class="form-control border-3" id="pubEmail" placeholder="example@user.com">
+                            <input type="email" class="form-control border-3" id="pubEmail" placeholder="example@user.com" required>
                             </div> 
                             <div class="col-12">
                                 <label for="inputName" class="form-label">First Name <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="pubfname" placeholder="JAY COBB">
+                                <input type="text" class="form-control border-3" id="pubfname" placeholder="JAY COBB" required>
                             </div>
 
                             <div class="col-12">
                                 <label for="inputLastName" class="form-label">Last Name <sup style='color:red;'>  *</sup></label>
-                                <input type="text" class="form-control border-3" id="publname" placeholder="MOYA">
+                                <input type="text" class="form-control border-3" id="publname" placeholder="MOYA" required>
                             </div>
 
 
                             <div class="col-6 mb-4">
                                 <label for="inputReligion" class="form-label">Religion<sup style='color:red;'>  *</sup></label>
-                                <select class="form-select border-3" id="pubReligion" aria-label="Default select example">
+                                <select class="form-select border-3" id="pubReligion" aria-label="Default select example" >
                                 <option selected="" value="Catholic">Catholic</option>
                                 <option value="Baptist">Baptist</option>
                                 <option value="Christian ">Christian</option>
@@ -91,7 +91,7 @@
 
                   <div class="col-12 mt-3">
                   <div class="form-check form-check-info border-3">
-                                <input class="form-check-input" type="checkbox" id="public_terms" >
+                                <input class="form-check-input" type="checkbox" id="public_terms" required>
                                 <label class="form-check-label" for="public_terms" >I read and agree to Terms &amp; Conditions</label>
                                 <a type="button" data-bs-toggle="modal" data-bs-target="#LevitesAgreement" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a>
                             </div>

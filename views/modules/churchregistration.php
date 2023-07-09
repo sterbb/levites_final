@@ -48,21 +48,21 @@
                     <h5>Personal Information</h5>
                     <div class="col-12">
                       <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_pfname" name="name" placeholder="" >
+                      <input type="text" class="form-control border-3" id="church_pfname" name="name" placeholder="" required>
                     </div>
                     <div class="col-12">
                       <label for="username" class="form-label">Last Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_plname" name="lname" placeholder="" >
+                      <input type="text" class="form-control border-3" id="church_plname" name="lname" placeholder="" required>
                     </div>
                     <div class="row mt-4">
                     <div class="col-6">
                       <label for="username" class="form-label">Designation<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_designation" name="role" placeholder="e.g. secretary" >
+                      <input type="text" class="form-control border-3" id="church_designation" name="role" placeholder="e.g. secretary" required>
                     </div>
 
                     <div class="col-6">
                       <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_pnum" name="telnum" placeholder="Landline or phone number ">
+                      <input type="text" class="form-control border-3" id="church_pnum" name="telnum" placeholder="Landline or phone number " required>
                     </div>
                     </div>
 
@@ -70,7 +70,7 @@
                   
                     <div class="col-12">
                       <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_name" name="church_name" placeholder="Our Lady of Peace and Good Voyage">
+                      <input type="text" class="form-control border-3" id="church_name" name="church_name" placeholder="Our Lady of Peace and Good Voyage" required>
                     </div>  
 
                     <div class="col-12">
@@ -80,12 +80,12 @@
 
                     <div class="col-12">
                       <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
+                      <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St." required>
                     </div>
 
                     <div class="col-12">
                       <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
-                      <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example">
+                      <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example" >
                       <option selected="" value="Catholic">Catholic</option>
                       <option value="Baptist">Baptist</option>
                       <option value="Christianity ">Christian</option>
@@ -95,11 +95,11 @@
                     <div class="row mt-2 mb-2">
                       <div class="col-6">
                         <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
-                        <input type="text" class="form-control border-3" id="church_city" name="city" placeholder="Bacolod City">
+                        <input type="text" class="form-control border-3" id="church_city" name="city" placeholder="Bacolod City"required>
                       </div>
                       <div class="col-6">
                           <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                          <input type="text" class="form-control border-3" id="church_num" name="telnum" placeholder="Landline or phone number ">
+                          <input type="text" class="form-control border-3" id="church_num" name="telnum" placeholder="Landline or phone number "required>
                       </div>
                     </div>
                 
@@ -112,11 +112,11 @@
                     <div class="col-12 mt-2">
                       <label for="inputChoosePassword" class="form-label">Password<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
                       <div class="input-group" id="show_hide_password">
-                        <input type="password" class="form-control border-end-0 border-3 " id="church_password" name="password"  placeholder="Enter Password">
+                        <input type="password" class="form-control border-end-0 border-3 " id="church_password" name="password"  placeholder="Enter Password"required>
                         <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
                       </div>
                       <div class="input-group mt-2" id="show_hide_password">
-                        <input type="password" class="form-control border-end-0 border-3" id="church_repassword"  placeholder="Re-Enter Password">
+                        <input type="password" class="form-control border-end-0 border-3" id="church_repassword"  placeholder="Re-Enter Password" required>
                         <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                       </div>
                     </div>
@@ -124,12 +124,12 @@
                   
                     <div class="col-12 mt-3">
                       <label for="church_prof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                      <input class="form-control form-control-ml" id="church_prof" name="church_prof" type="file" accept="image/*">      
+                      <input class="form-control form-control-ml" id="church_prof" name="church_prof" type="file" accept="image/*" required>      
                     </div>
 
                     <div class="col-12 mt-2">
                       <label for="church_pprof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                      <input class="form-control form-control-ml" id="church_pprof" name="church_pprof" type="file" accept="image/*">
+                      <input class="form-control form-control-ml" id="church_pprof" name="church_pprof" type="file" accept="image/*" required>
                     </div>
 
                     <div class="col-12 mt-3">

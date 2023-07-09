@@ -168,7 +168,7 @@ $(function(){
         e.preventDefault();
         var login_username =  $("#login_username").val();
         var login_password = $("#login_password").val();
-        alert(login_password + login_username)
+      
 
         var loginData = new FormData();
         loginData.append("login_username", login_username);
@@ -183,8 +183,6 @@ $(function(){
           processData: false,
           dataType: "text",
           success: function(answer) {
-            console.log(answer);
-            alert(answer);
 
                 //islan pa  
                 // document.cookie = 'type =' +answer; 
@@ -198,14 +196,22 @@ $(function(){
                 window.location.href='superuser';
                 }else if(answer == "subuser"){
                 window.location.href='adminhomepage';
+                }else{
+                   // Show an alert for invalid account
+                  var alertHTML = '<div class="alert alert-container border-0 border-danger border-start border-4 bg-danger-subtle alert-dismissible fade show py-2 m-0" style:>';
+                  alertHTML += '<div class="d-flex align-items-center">';
+                  alertHTML += '<div class="fs-3 text-danger"><i class="bx bx-error"></i></div>';
+                  alertHTML += '<div class="ms-3">';
+                  alertHTML += '<div class="text-danger">Invalid account credentials. Please try again.</div>';
+                  alertHTML += '</div></div><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                   // Append the alert HTML to a container element
+                $('#alertContainer').html(alertHTML);
                 }
-
-
-        
-        
           },
           error: function() {
               alert("Oops. Something went wrong!");
+              
+              
           },
           complete: function() {
           }
