@@ -373,7 +373,7 @@ class ModelRegister {
 			 $mail->Subject = 'Levites Registration Confirmation';
 			 $email_template = '<b>Welcome to Levites</b>
 				 <h1>Accept this request if you have registered! Disregard this message if not.</h1>
-				 <a href="http://localhost/levites/publicregistration/verify-email.php?token=' . $verify_token . '">Verify Email</a>';
+				 <h1>'. $verify_token.'</h1> ';
 			 $mail->Body = $email_template;
 			 $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();
