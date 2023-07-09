@@ -631,7 +631,6 @@ body.toggled:not(.sidebar-hovered) .sidebar-wrapper .metismenu .has-arrow:after 
 .card {
 position: relative;
 z-index: 1;
-height: 100%;
 
 
 }

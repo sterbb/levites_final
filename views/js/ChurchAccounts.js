@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 //helper 
 $(function() {
 

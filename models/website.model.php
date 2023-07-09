@@ -22,8 +22,8 @@ class ModelWebsite{
         
         
         $accID = $_COOKIE["acc_id"];
-        $stmt = (new Connection)->connect()->prepare("SELECT * FROM websitegroups WHERE accountID = :accountID");
-        $stmt->bindParam(":accountID", $accID, PDO::PARAM_INT);
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM websitegroups WHERE accID = :accID");
+        $stmt->bindParam(":accID", $accID, PDO::PARAM_INT);
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();
@@ -88,6 +88,21 @@ class ModelWebsite{
 			$stmt->bindParam(":websites_list", $data["website_list"], PDO::PARAM_STR);
 
 			$stmt->execute();		
+
+
+			$websiteList = json_decode($data["website_list"]);
+
+			//attendees
+			foreach($websiteList as $website){
+				$website_group = $pdo->prepare("UPDATE websites SET group_name = :group_name WHERE accountID = :accountID AND website_name = :website_name");
+			
+				$website_group -> bindParam(":accountID", $accID, PDO::PARAM_STR);
+				$website_group -> bindParam(":group_name", $data["website_groupname"], PDO::PARAM_STR);
+				$website_group -> bindParam(":website_name", $website -> name, PDO::PARAM_STR);
+				$website_group->execute();
+
+			}
+			
 		    $pdo->commit();
 			
 		    return "ok";

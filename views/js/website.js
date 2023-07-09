@@ -41,6 +41,7 @@ $("#addGroupBtn").on('click', function(){
     getWebsites();
 
     var website_list = $("#groupWebsiteList").val();
+    console.log(website_list);
     var website_groupname = $("#website_groupname").val()
 
     var websiteGroup = new FormData();
@@ -93,6 +94,7 @@ function getWebsites(){
     
      });
 
+ 
 
      $("#groupWebsiteList").val(JSON.stringify(arrData));
      

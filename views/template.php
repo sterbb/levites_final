@@ -171,87 +171,12 @@
 	<script src="views/js/superUser.js"></script>
 	<script src="views/js/website.js"></script>
 	<script src="views/js/weborganizer.js"></script>
+	<script src="views/js/calendar.js"></script>
 
 
 
     <script>
-		document.addEventListener('DOMContentLoaded', function () {
-			var calendarEl = document.getElementById('calendar');
-			var calendar = new FullCalendar.Calendar(calendarEl, {
-				themeSystem: 'bootstrap5',
-				headerToolbar: {
-					left: 'prev today',
-					center: 'title',
-					right: 'dayGridMonth,listWeek next'
-				},
-				initialView: 'dayGridMonth',
-				initialDate: '2023-05-24',
-				navLinks: true, // can click day/week names to navigate views
-				selectable: true,
-				nowIndicator: true,
-				dayMaxEvents: true, // allow "more" link when too many events
-				editable: true,
-				selectable: true,
-				businessHours: true,
-				dayMaxEvents: true, // allow "more" link when too many events
-				events: [{
-					title: 'Instrument Workshop',
-					start: '2023-05-01T10:30:00',
-					end: '2023-05-01T11:30:00'
-				},{
-					title: 'Technical Workshop',
-					start: '2023-05-01T16:30:00',
-				},{
-					title: 'Media Workshop',
-					start: '2023-05-01T13:00:00',
-				}, {
-					title: 'Offering Prayer',
-					start: '2023-05-07',
-					end: '2023-05-10'
-				}, {
-					// groupId: 999,
-					// title: 'Event Time',
-					// start: '2020-09-09T16:00:00'
-				}, {
-					// groupId: 999,
-					// title: 'Event Time',
-					// start: '2020-09-16T16:00:00'
-				}, {
-					title: 'Bible Study',
-					start: '2023-05-11',
-					end: '2023-05-13'
-				}, {
-					title: 'Outreach Program',
-					start: '2023-05-12T10:30:00',
-					end: '2023-05-12T12:30:00'
-				}, {
-					title: 'Media Seminar',
-					start: '2023-05-12T12:00:00'
-				}, {
-					title: 'Instrument Workshop',
-					start: '2023-05-12T14:30:00'
-				}, {
-					title: 'Bible Study',
-					start: '2023-05-12T17:30:00'
-				}, {
-					title: 'Meeting',
-					start: '2023-05-12T20:00:00'
-				}, {
-					// title: 'Event Time',
-					// start: '2020-09-13T07:00:00'
-				}, {
-					title: 'Church Anniversary',
-					url: 'http://google.com/',
-					start: '2023-05-28',
-				}],
-				dateClick: function(info) {
 
-					$('#exampleVerticallycenteredModal').modal('show');
-				}
-				
-			});
-			calendar.render();
-		});
 
 
 		document.addEventListener('DOMContentLoaded', function () {

@@ -172,6 +172,8 @@ class ModelRegister {
 			setcookie("current_email", $data["church_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			$stmt->execute();		
 
+			$current_year = substr(date('Y'), -2 );
+			$current_month = date('n');
 			
 			$church_id = (new Connection)->connect()->prepare("SELECT CONCAT('C', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as church_id  FROM churches FOR UPDATE");
 			$church_id->execute();

@@ -110,7 +110,7 @@
                       </div>
                       <div class="user-info">
                         <h5 class="mb-0 user-name"><?php echo $_COOKIE["acc_name"]?></h5>
-                        <p class="mb-0 user-designation"><?php echo $_COOKIE["acc_id"]?></p>
+                        <p class="mb-0 user-designation"><?php echo $_COOKIE["church_id"]?></p>
                       </div>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-end">

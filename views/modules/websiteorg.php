@@ -138,6 +138,52 @@
                     </div><!--end row-->
 
                     <hr>
+
+                    <?php 
+                   $websites = (new ControllerWebsite)->ctrShowGroups();
+                    foreach($websites as $key => $value){
+                        echo '
+
+                        <div class="row mt-4 border border-2 mx-3 px-3">
+                            <div class="col pt-3 d-flex justify-content-between align-items-center mb-2">
+                                
+                                <h6 class="mb-0 text-uppercase">'.$value['group_name'].'</h6>
+                                <div>
+                                    <button type="button" class="btn btn-outline-success px-3  radius-30 text-center"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row row-cols-4 row-cols-lg-6 g-1 ">';
+
+                            // $list1 = json_decode(stripslashes($value['websites_list']));
+
+               
+                            // $list2 = json_encode($value['websites_list']);
+                            // echo $list1;
+                            // echo $list2;
+
+                            $list_websites = json_decode($value['websites_list']);
+
+                            foreach($list_websites as $hello){
+                                echo '
+                                    <div class="col text-center" >
+                            
+                                        <a href="'. $hello-> path.'" target="_blank">
+                                            <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
+                                            <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
+                                        </a>
+                                    </div>
+                            ';
+                            }
+
+
+                        
+                            echo' </div> </div>';
+                    }
+                        
+                    
+                    
+                    ?>
                                         
                     <div class="row mt-4 border border-2 mx-3 px-3">
                         <div class="col pt-3 d-flex justify-content-between align-items-center mb-2">
