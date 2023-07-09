@@ -176,7 +176,7 @@
                         <div class="row g-3">        
                             <div class="col-12">
                                 <label for="inputChurchName" class="form-label">Church Name</label>
-                                <input type="text" class="form-control border-3" id="tns-churchName" name="churchName" placeholder="Our Lady of Peace and Good Voyage" value="Our Lady of Peace and Good Voyage" readonly>
+                                <input type="text" class="form-control border-3" id="church_name" name="churchName" placeholder="Our Lady of Peace and Good Voyage" value="Our Lady of Peace and Good Voyage" readonly>
                             </div>             
                         </div>
                         
@@ -184,12 +184,12 @@
 
                             <div class="col-6">
                                 <label for="inputEmailAddress" class="form-label">Church Email Address</label>
-                                <input type="email" class="form-control border-3" id="tns-email" name="email" placeholder="example@user.com" value="ourladyofpeaceandgoodvoyage001@gmail.com" readonly>
+                                <input type="email" class="form-control border-3" id="church_email" name="email" placeholder="example@user.com" value="ourladyofpeaceandgoodvoyage001@gmail.com" readonly>
                             </div> 
 
                             <div class="col-6">
                                 <label for="inputReligion" class="form-label">Religion</label>
-                                <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example" disabled>
+                                <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example" disabled>
                                 <option selected="" value="Catholic">Catholic</option>
                                 <option value="Baptist">Baptist</option>
                                 <option value="Born Again">Born Again </option>
@@ -199,7 +199,7 @@
                             
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Church Address</label>
-                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Raquel St." value="Brgy. Singcang Airport, Raquel St." readonly>
+                                <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Raquel St." value="Brgy. Singcang Airport, Raquel St." readonly>
                             </div>
                         
                         </div>
@@ -208,9 +208,9 @@
                         <div class="row g-3">
                             <div class="col-6">
                             <label for="inputSelectCountry" class="form-label">City</label>
-                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example" disabled>
+                                <select class="form-select border-3" id="church_city" name="country" aria-label="Default select example" disabled>
                                 <option selected="" value="Philippines">Bacolod City</option>
-                                <option  value="India">India</option>
+                                <option value="India">India</option>
                                 <option value="United Kingdom">United Kingdom</option>
                                 <option value="America">America</option>
                                 <option value="Dubai">Dubai</option>
@@ -218,31 +218,12 @@
                             </div>
                             <div class="col-6">
                                 <label for="inputNum" class="form-label">Telephone Number</label>
-                                <input type="text" class="form-control border-3" id="num-telnum" name="telnum" placeholder="432-0048" value="432-0048">
+                                <input type="text" class="form-control border-3" id="church_telnum" name="telnum" placeholder="432-0048" value="432-0048">
                             </div>
                         </div>
 
-                        <div class="row g-3 mb-4">
-                            <div class="col-6">
-                                <label for="inputSelectCountry" class="form-label">Province</label>
-                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example" disabled>
-                                <option selected="" value="Philippines">Negros Occidental</option>
-                                <option  value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="America">America</option>
-                                <option value="Dubai">Dubai</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <label for="inputSelectCountry" class="form-label">Country</label>
-                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example" disabled>
-                                <option selected="" value="Philippines">Philippines</option>
-                                <option  value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="America">America</option>
-                                <option value="Dubai">Dubai</option>
-                                </select>
-                            </div>
+                        
+
 
                         </div>
                     </form>

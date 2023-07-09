@@ -204,10 +204,10 @@ class ModelRegister {
 			$mail2->Username   = 'testclgf@gmail.com';                     //SMTP username
 			$mail2->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
 			$mail2->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
 
 			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress('jaycobb1901@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
@@ -232,43 +232,56 @@ class ModelRegister {
 			$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
 			$account_id->execute();
 			$accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
+
+			$church_id = (new Connection)->connect()->prepare("SELECT CONCAT('C', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as church_id  FROM churches FOR UPDATE");
+			$church_id->execute();
+			$churchid = $church_id -> fetchAll(PDO::FETCH_ASSOC);
 			
 
 			//add to account database
-			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password,acc_email,verify_token, acc_type) 
-            VALUES (:AccountID, :acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
+			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password, fname, lname, designation, religion, acc_contact ,acc_email,verify_token, acc_type, affiliated_church) 
+            VALUES (:AccountID, :acc_username, :acc_password, :fname, :lname, :designation, :acc_contact, :religion, :acc_email, :verify_token, :acc_type, :affiliated_church)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
 			$stmt->bindParam(":AccountID", $accountid[0]['account_id'], PDO::PARAM_STR);
+
+			$stmt->bindParam(":fname", $data["church_fname"], PDO::PARAM_STR);
+			$stmt->bindParam(":lname", $data["church_lname"], PDO::PARAM_STR);
+			$stmt->bindParam(":designation", $data["church_designation"], PDO::PARAM_STR);
+			$stmt->bindParam(":religion", $data["church_religion"], PDO::PARAM_STR);
+			$stmt->bindParam(":acc_contact", $data["church_telnum"], PDO::PARAM_STR);
+
+
 			$stmt->bindParam(":acc_username", $data["church_username"], PDO::PARAM_STR);
-			$stmt->bindParam(":fname", $data["church_name"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_password", $data["church_password"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_email", $data["church_email"], PDO::PARAM_STR);
 			$stmt->bindParam(":verify_token", $verify_token, PDO::PARAM_STR);
 			$stmt->bindParam(":acc_type", $account_type, PDO::PARAM_STR);
+			$stmt->bindParam(":affiliated_church", $churchid[0]['church_id'], PDO::PARAM_STR);
 			
 			setcookie("current_email", $data["church_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			$stmt->execute();		
 
-			$current_year = substr(date('Y'), -2 );
-			$current_month = date('n');
 			
-			$church_id = (new Connection)->connect()->prepare("SELECT CONCAT('C', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as church_id  FROM churches FOR UPDATE");
-			$church_id->execute();
-			$churchid = $church_id -> fetchAll(PDO::FETCH_ASSOC);
+		
 			
 			
 			// add to church database
-			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, church_name,church_email) 
-            VALUES (:churchID, :church_name, :church_email)");
+			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, church_name,  church_num,  church_address,   church_city,  religion, church_email) 
+            VALUES (:churchID, :church_name, :church_num, :church_address, :church_city, :religion, :church_email)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
 			$stmt2->bindParam(":churchID", $churchid[0]['church_id'], PDO::PARAM_STR);
 			$stmt2->bindParam(":church_name", $data["church_name"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_num", $data["church_cotnum"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_address", $data["church_address"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_city", $data["church_city"], PDO::PARAM_STR);
+			$stmt2->bindParam(":religion", $data["church_religion"], PDO::PARAM_STR);
+
 			$stmt2->bindParam(":church_email", $data["church_email"], PDO::PARAM_STR);
 			$stmt2->execute();		
 
@@ -288,7 +301,6 @@ class ModelRegister {
 		$stmt = null;
 
 	}
-
 
 
 

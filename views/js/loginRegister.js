@@ -1,114 +1,143 @@
 $(function(){
 
-
-    $("#publicRegistrationForm").submit(function(e){
-        e.preventDefault();
-        alert("ddd");
-
-        var username  = $("#pubUsername").val();
-        var password = $("#pubPassword").val();
-        var email = $("#pubEmail").val();
-        alert(email + username + password);
-    
-        
-
-        var registerData = new FormData();
-        registerData.append("user_email",email);
-        registerData.append("user_username", username);
-        registerData.append("user_password", password);
-
-        $.ajax({
-                url: "ajax/register_account.ajax.php",
-                method: "POST",
-                data: registerData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: "text",
-                success: function(answer) {
-                  console.log(answer);
-                  window.location.href='verifyEmail';
-                },
-                error: function() {
-                    alert("Oops. Something went wrong!");
-                },
-                complete: function() {
-                }
-            });
-
-    });
-
-    $("#churchRegistrationForm").submit(function(e){
-      alert("ddd");
+  $("#publicRegistrationForm").submit(function(e){
       e.preventDefault();
+      alert("ddd");
 
-      var church_name = $("#church_name").val();
-   
-
-      var username  = $("#church_username").val();
-      var password = $("#church_password").val();
-      var email = $("#church_email").val();
-      var church_proof = $("#church_prof").prop("files");
-      alert(JSON.stringify(church_proof));
-      var user_proof = $("#user_prof").prop("files"); 
+      var username  = $("#pubUsername").val();
+      var password = $("#pubPassword").val();
+      var fname = $("#pubfname").val();
+      var lname = $("#publname").val();
+      var religion = $("#pubReligion").val();
+      var email = $("#pubEmail").val();
       alert(email + username + password);
 
+      var registerData = new FormData();
+      registerData.append("user_email",email);
+      registerData.append("user_username", username);
+      registerData.append("user_password", password);
+      registerData.append("user_fname", fname);
+      registerData.append("user_lname", lname);
+      registerData.append("user_religion", religion);
+      registerData.append("user_email", email);
 
-      var proofData = new FormData(this);
+
       $.ajax({
-        url: "models/sendChurchProof.php",
+              url: "ajax/register_account.ajax.php",
+              method: "POST",
+              data: registerData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "text",
+              success: function(answer) {
+                console.log(answer);
+                  window.location.href='verifyEmail';                                
+              },
+              error: function() {
+                  alert("Oops. Something went wrong!");
+              },
+              complete: function() {
+              }
+          });
+
+  });
+
+
+
+
+  $("#churchRegistrationForm").submit(function(e){
+    alert("ddd");
+    e.preventDefault();
+
+
+    var fname  = $("#church_pfname").val();
+    var lname  = $("#church_plname").val();
+    var designation  = $("#church_designation").val();
+    var telnum  = $("#church_pnum").val();
+
+
+    var churchName  = $("#church_name").val();
+    var churchAddress  = $("#church_address").val();
+    var religion  = $("#church_religion").val();
+    var city  = $("#church_city").val();
+    var contactNum  = $("#church_num").val();
+
+
+    var username  = $("#church_username").val();
+    var password = $("#church_password").val();
+    var email = $("#church_email").val();
+    var church_proof = $("#church_prof").prop("files");
+    alert(JSON.stringify(church_proof));
+    var user_proof = $("#user_prof").prop("files"); 
+    alert(email + username + password);
+
+
+    var proofData = new FormData(this);
+    $.ajax({
+      url: "models/sendChurchProof.php",
+      method: "POST",
+      data: proofData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(answer) {
+        console.log(answer);
+      },
+      error: function() {
+          alert("Oops. Something went wrong!");
+      },
+      complete: function() {
+      }
+    });
+
+    
+    var registerData = new FormData();
+
+    registerData.append("church_fname",fname);
+    registerData.append("church_lname",lname);
+    registerData.append("church_designation",designation);
+    registerData.append("church_telnum",telnum);
+
+
+    registerData.append("church_name",churchName);
+    registerData.append("church_address",churchAddress);
+    registerData.append("church_city", city);
+    registerData.append("church_religion",religion);
+    registerData.append("church_cotnum",contactNum);
+
+
+
+    registerData.append("church_email",email);
+    registerData.append("church_username", username);
+    registerData.append("church_password", password);
+    registerData.append("church_proof", church_proof);
+    registerData.append("user_proof", user_proof);
+
+    
+
+    $.ajax({
+        url: "ajax/register_church.ajax.php",
         method: "POST",
-        data: proofData,
+        data: registerData,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "text",
         success: function(answer) {
           console.log(answer);
-          alert(answer);
+          window.location.href='verifyEmail';
         },
         error: function() {
             alert("Oops. Something went wrong!");
         },
         complete: function() {
         }
-      });
-  
-      
-      var registerData = new FormData();
-      registerData.append("church_name",church_name);
-      registerData.append("church_email",email);
-      registerData.append("church_username", username);
-      registerData.append("church_password", password);
-      registerData.append("church_proof", church_proof);
-      registerData.append("user_proof", user_proof);
-      
-
-      
-
-      $.ajax({
-          url: "ajax/register_church.ajax.php",
-          method: "POST",
-          data: registerData,
-          cache: false,
-          contentType: false,
-          processData: false,
-          dataType: "text",
-          success: function(answer) {
-            console.log(answer);
-            window.location.href='verifyEmail';
-
-          },
-          error: function() {
-              alert("Oops. Something went wrong!");
-          },
-          complete: function() {
-          }
-      });
-
- 
     });
 
+
+  });
     
 
 

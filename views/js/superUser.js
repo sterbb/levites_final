@@ -47,7 +47,21 @@
               console.log(answer);
 
               $("#superuser_churchID").val(answer[0]);
-              $("#superuser_churchID").val(answer[0]);
+
+              $("#church_name").val(answer[1]);
+
+              $("#church_email").val(answer[2]);
+
+              $("#church_telnum").val(answer[3]);
+
+              $("#church_address").val(answer[4]);
+
+              $("#church_city").val(answer[5]);
+
+              $("#church_reigion").val(answer[6]);
+
+
+              
 
               $('#superuserModal').modal('show'); 
 

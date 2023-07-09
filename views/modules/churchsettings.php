@@ -12,11 +12,24 @@
     <div class="card-body">
     <div class="mt-5 d-flex align-items-start justify-content-between">
         <div class="">
-        <h3 class="mb-2">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h3>
-        <div class="">
-            <span class="badge rounded-pill bg-primary">Mansiligan, Bacolod City</span>
-            <span class="badge rounded-pill bg-primary">Negros Occidenal Philippines</span>
-        </div>
+            
+        <h2 class="mb-2"><?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+             foreach($admin as $key => $value){
+                echo $value['church_name'];
+             }
+        ?></h2>
+            <div class="">
+
+                        <?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                        foreach($admin as $key => $value){
+                            echo '
+                                <span class="badge rounded-pill bg-primary">'.$value['church_address'].', '.$value['church_city'].'</span>
+
+                            ';
+                        }
+                    ?>
+              
+            </div>
         </div>
         <div class="">
                      <a href="javascript:;" class="btn btn-danger"><i class="bi bi-person-x"></i>Deactivate Account</a>
@@ -33,67 +46,96 @@
                         <div class="row mb-3">
                             <label for="input35" class="col-sm-3 col-form-label">Church Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input35" name="yourname" placeholder="Enter Your Name">
+                                <input type="text" class="form-control" id="input35" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_name'];
+                                }
+                                ?>" placeholder="Enter Your Name">
                             </div>
                         </div>
                         <div class="row mb-3">
                                 <label for="inputAddress" class="form-label">Church Address *</label>
-                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St.">
+                                <input type="text" class="form-control border-3" id="tns-churchAddress" name="churchAddress" placeholder="Enter Your Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_address'];
+                                }
+                                ?>">
                         </div>
                         <div class="row mb-3">
                             <label for="input36" class="col-sm-3 col-form-label">Contact Details</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input36" name="phone" placeholder="Phone No">
+                                <input type="text" class="form-control" id="input36" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_num'];
+                                }
+                                ?>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="input37" class="col-sm-3 col-form-label">Username</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input37" name="username" placeholder="Email Address">
+                                <input type="text" class="form-control" id="input37" name="username" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_username'];
+                                }
+                                ?>" >
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="input37a" class="col-sm-3 col-form-label">Email Address</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="input37a" name="email" placeholder="Email Address">
+                                <input type="email" class="form-control" id="input37a" name="email" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_email'];
+                                }
+                                ?>">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="input38" class="col-sm-3 col-form-label"> Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input38" name="password" placeholder="Choose Password">
+                                <input type="text" class="form-control" id="input38" name="password" placeholder="Choose Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_password'];
+                                }
+                                ?>" >
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="input38a" class="col-sm-3 col-form-label">Confirm Password</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control" id="input38a" name="confirm_password" placeholder="Confirm Password">
+                                <input type="text" class="form-control" id="input38a" name="confirm_password" placeholder="Confirm Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_password'];
+                                }
+                                ?>" >
                             </div>
                         </div>
                         <div class="row mb-3">
-                                <label for="inputReligion" class="form-label">Religion *</label>
+                            <label for="inputReligion" class="form-label">Religion *</label>
                                 <select class="form-select border-3" id="tns-religion" name="religion" aria-label="Default select example">
-                                <option selected="" value="Catholic">Catholicism</option>
-                                <option value="Baptist">Baptist</option>
-                                <option value="Baptist">Islam</option>
-                                <option value="Christianity ">Christianity </option>
+                                    <?php
+                                    $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                    $selectedReligion = $admin[0]['religion']; // Assuming there's only one admin in the result
+                                    ?>
+                                    <option value="Catholic" <?php if ($selectedReligion == 'Catholic') echo 'selected'; ?>>Catholicism</option>
+                                    <option value="Baptist" <?php if ($selectedReligion == 'Baptist') echo 'selected'; ?>>Baptist</option>
+                                    <option value="Islam" <?php if ($selectedReligion == 'Islam') echo 'selected'; ?>>Islam</option>
+                                    <option value="Christianity" <?php if ($selectedReligion == 'Christianity') echo 'selected'; ?>>Christianity</option>
                                 </select>
+
+
                         </div>
                         <div class="row mb-3">
                                 <label for="inputCity" class="form-label">City *</label>
-                                <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Bacolod City">
+                                <input type="text" class="form-control border-3" id="tns-city" name="city" placeholder="Enter Your City"  value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_city'];
+                                }
+                                ?>" >
                         </div>
 
-                       <div class="row mb-3">
-                                <label for="inputSelectCountry" class="form-label">Country *</label>
-                                <select class="form-select border-3" id="tns-country" name="country" aria-label="Default select example">
-                                <option selected="" value="Philippines">Philippines</option>
-                                <option  value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="America">America</option>
-                                <option value="Dubai">Dubai</option>
-                                </select>
-                        </div>
+                    
 
     
                         <div class="row">
