@@ -144,6 +144,9 @@
 	<script src="views/assets/plugins/validation/jquery.validate.min.js"></script>
 	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 	
 	
 	<script src="views/assets/plugins/notifications/js/lobibox.min.js"></script>

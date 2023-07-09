@@ -1,4 +1,7 @@
 <!--start main content-->
+<div class="overlay">
+      <div class='loader position-absolute top-50 start-50 translate-middle'><img src="views/images/logoloader.gif" alt=""></div>
+    </div>
 <main class="page-content">
 
     <div class="row  py-3 border border-2">

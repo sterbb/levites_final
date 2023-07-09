@@ -1,4 +1,7 @@
 <body style="background-image: url('views/images/marblebackground.png'); background-size: cover; background-repeat: no-repeat;">
+<div class="overlay">
+      <div class='loader position-absolute top-50 start-50 translate-middle'><img src="views/images/logoloader.gif" alt=""></div>
+    </div>
 <!--authentication-->
 <div class="container-fluid" style="margin-top:130px;">
         <div class="row">

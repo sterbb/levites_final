@@ -1,5 +1,8 @@
 
 <!--Request Password-->
+<div class="overlay">
+      <div class='loader position-absolute top-50 start-50 translate-middle'><img src="views/images/logoloader.gif" alt=""></div>
+    </div>
 <div class="container-fluid my-5">
         <div class="row">
            <div class="col-12 col-md-8 col-lg-6 col-xl-6 col-xxl-4 mx-auto">

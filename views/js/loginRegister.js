@@ -1,14 +1,10 @@
 $(function(){
-
-
     $("#publicRegistrationForm").submit(function(e){
         e.preventDefault();
-        alert("ddd");
 
         var username  = $("#pubUsername").val();
         var password = $("#pubPassword").val();
         var email = $("#pubEmail").val();
-        alert(email + username + password);
     
         
 
@@ -25,6 +21,10 @@ $(function(){
                 contentType: false,
                 processData: false,
                 dataType: "text",
+                beforeSend: function() {
+                  //begin spinner
+                  $('.overlay').show();
+               },
                 success: function(answer) {
                   console.log(answer);
                   window.location.href='verifyEmail';
@@ -39,12 +39,9 @@ $(function(){
     });
 
     $("#churchRegistrationForm").submit(function(e){
-      alert("ddd");
       e.preventDefault();
 
       var church_name = $("#church_name").val();
-   
-
       var username  = $("#church_username").val();
       var password = $("#church_password").val();
       var email = $("#church_email").val();
@@ -63,6 +60,10 @@ $(function(){
         contentType: false,
         processData: false,
         dataType: "text",
+        beforeSend: function() {
+          //begin spinner
+          $('.overlay').show();
+       },
         success: function(answer) {
           console.log(answer);
         },
@@ -102,6 +103,7 @@ $(function(){
               alert("Oops. Something went wrong!");
           },
           complete: function() {
+            $('.overlay').hide();
           }
       });
 
@@ -152,7 +154,14 @@ $(function(){
                 if (answer == "success") {
                   window.location.href = 'login';
                 } else {
-                  alert("Code does not match");
+                  var alertHTML = '<div class="alert alert-container border-0 border-danger border-start border-4 bg-danger-subtle alert-dismissible fade show py-2 m-0 mt-2" style:>';
+                  alertHTML += '<div class="d-flex align-items-center">';
+                  alertHTML += '<div class="fs-3 text-danger"><i class="bx bx-error"></i></div>';
+                  alertHTML += '<div class="ms-3">';
+                  alertHTML += '<div class="text-danger">Code does not match.</div>';
+                  alertHTML += '</div></div><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                   // Append the alert HTML to a container element
+                $('#alertContainer').html(alertHTML);
                 }
               },
               error: function() {
@@ -182,6 +191,10 @@ $(function(){
           contentType: false,
           processData: false,
           dataType: "text",
+          beforeSend: function() {
+            //begin spinner
+            $('.overlay').show();
+         },
           success: function(answer) {
 
                 //islan pa  
@@ -197,8 +210,9 @@ $(function(){
                 }else if(answer == "subuser"){
                 window.location.href='adminhomepage';
                 }else{
+                  $('.overlay').hide();
                    // Show an alert for invalid account
-                  var alertHTML = '<div class="alert alert-container border-0 border-danger border-start border-4 bg-danger-subtle alert-dismissible fade show py-2 m-0" style:>';
+                  var alertHTML = '<div class="alert alert-container border-0 border-danger border-start border-4 bg-danger-subtle alert-dismissible fade show py-2 m-0 mt-2" style:>';
                   alertHTML += '<div class="d-flex align-items-center">';
                   alertHTML += '<div class="fs-3 text-danger"><i class="bx bx-error"></i></div>';
                   alertHTML += '<div class="ms-3">';
@@ -214,6 +228,7 @@ $(function(){
               
           },
           complete: function() {
+            $('.overlay').hide();
           }
         });
       });
@@ -254,6 +269,10 @@ $(function(){
           contentType: false,
           processData: false,
           dataType: "text",
+          beforeSend: function() {
+            //begin spinner
+            $('.overlay').show();
+          },
           success: function(answer) {
             alert(document.cookie);
             console.log(answer);
@@ -265,11 +284,9 @@ $(function(){
               alert("Oops. Something went wrong!");
           },
           complete: function() {
+            $('.overlay').hide();
           }
         });
-
-
-        alert("yiee");  
       });
 
 
@@ -344,6 +361,10 @@ $(function(){
           contentType: false,
           processData: false,
           dataType: "text",
+          beforeSend: function() {
+            //begin spinner
+            $('.overlay').show();
+         },
           success: function(answer) {
             console.log(answer);
             if(answer == "success"){
@@ -354,11 +375,9 @@ $(function(){
               alert("Oops. Something went wrong!");
           },
           complete: function() {
+            $('.overlay').hide();
           }
         });
-
-
-        alert("yiee");  
       });
 });
 

@@ -1,5 +1,8 @@
-
+<div id="alertContainer"></div>
 <!--Request Password-->
+<div class="overlay">
+      <div class='loader position-absolute top-50 start-50 translate-middle'><img src="views/images/logoloader.gif" alt=""></div>
+    </div>
 <body style="background-image: url('views/images/marblebackground.png'); background-size: cover; background-repeat: no-repeat;">
         
 <div class="container-fluid m-0 ">

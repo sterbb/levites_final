@@ -1,12 +1,15 @@
  <!--authentication-->
+ <div class="overlay">
+      <div class='loader position-absolute top-50 start-50 translate-middle'><img src="views/images/logoloader.gif" alt=""></div>
+    </div>
  <body style="background-image: url('views/images/marblebackground.png'); background-size: cover; background-repeat: no-repeat;">
-   
+ 
 
-   <div class="container-fluid" style="margin-top:130px;">
+   <div class="container-fluid" style="">
           <div class="row">
           <div class="d-flex justify-content-center align-items-center">
              <div class="col-12 col-md-8 col-lg-6 col-xl-4 col-sm-10 ">
-              <div class="card border-3 rounded-5">
+              <div class="card border-3 rounded-5 position-absolute top-50 start-50 translate-middle">
                 <div class="card-body p-5">
                  <div class=" text-center">
                     <img src="views/images/try.png" class="align-center mb-4" width="100" alt="">

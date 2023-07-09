@@ -2606,3 +2606,22 @@ color: rgb(192,128,249);
     box-sizing: border-box;
     opacity: 90%;
 }
+
+.loader {
+  z-index: 1002;
+}
+
+.loader img{
+  width: 650px;
+}
+
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /*Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 1001; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  
+}

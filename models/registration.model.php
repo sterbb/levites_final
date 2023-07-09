@@ -207,7 +207,7 @@ class ModelRegister {
 			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress('johncliff.fortaleza04@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
