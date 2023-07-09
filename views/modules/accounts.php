@@ -77,7 +77,7 @@
                 <button class="btn btn-danger">Deactivate</button>
 							</div>
 							<div class="card-body p-4">
-								<form id="jQueryValidationForm">
+								<form role="form" id="UserAccountForm" method="POST" autocomplete="nope" class="UserAccountForm" >
 
                   <div class="row mb-3 mt-3 pb-3">
 										<label for="input37" class="col-sm-3 col-form-label">Members</label>
@@ -93,26 +93,27 @@
                   <hr>
 									
 									<div class="row mb-3 mt-3">
-										<label for="input37" class="col-sm-3 col-form-label">Username</label>
+										<label for="username" class="col-sm-3 col-form-label">Username</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="input37" name="username" placeholder="Username">
+											<input type="text" class="form-control" id="user-name" name="username" placeholder="Username">
 										</div>
 									</div>
 									
 									<div class="row mb-3">
-										<label for="input38" class="col-sm-3 col-form-label">Password</label>
+										<label for="password" class="col-sm-3 col-form-label">Password</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="input38" name="password" placeholder="Password">
+											<input type="text" class="form-control" id="user-password" name="password" placeholder="Password">
 										</div>
 									</div>
 									<div class="row mb-3">
-										<label for="input38a" class="col-sm-3 col-form-label">Confirm Password</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" id="input38a" name="confirm_password" placeholder="Confirm Password">
+										<label for="confirm_password" class="col-sm-3 col-form-label">Confirm Password</label>
+										<div class="col-sm-9 " id="show_hide_password">
+											<input type="text" class="form-control" id="con-password" name="confirm_password" placeholder="Confirm Password">
 										</div>
 									</div>
-								
-									
+
+
+															
 									
 									
                   <h6 class="mb-0 text-uppercase mt-5">Account Access  </h6>
@@ -144,13 +145,6 @@
 											</div>
 										</div>
 									</div>
-
-
-
-
-
-
-
 
 
 								</form>

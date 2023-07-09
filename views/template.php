@@ -175,6 +175,8 @@
 	<script src="views/js/website.js"></script>
 	<script src="views/js/weborganizer.js"></script>
 	<script src="views/js/calendar.js"></script>
+	<script src="views/js/playlist.js"></script>
+	<script src="views/js/UserAccount.js"></script>
 
 
 

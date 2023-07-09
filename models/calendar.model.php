@@ -53,4 +53,45 @@ class ModelCalendar{
 
     }
 
+	public static function mdlAddGroup($data){	
+		$db = new Connection();
+        $pdo = $db->connect();
+
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+
+			//GROUP ID
+
+            // $current_year = substr(date('Y'), -2 );
+			// $current_month = date('n');
+            
+			// $event_id = (new Connection)->connect()->prepare("SELECT CONCAT('CE', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as event_id  FROM calendar FOR UPDATE");
+			// $event_id->execute();
+			// $eventID = $event_id -> fetchAll(PDO::FETCH_ASSOC);
+			
+
+			
+			$stmt = $pdo->prepare("INSERT INTO calendargroup (group_name, memberList, emailList)
+            VALUES (:group_name, :memberList, :emailList)");
+
+			// $stmt->bindParam(":eventID", $eventID[0]['event_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":group_name", $data["group_name"], PDO::PARAM_STR);
+			$stmt->bindParam(":memberList", $data["group_members"], PDO::PARAM_STR);
+			$stmt->bindParam(":emailList", $data["members_email"], PDO::PARAM_STR);
+
+
+			$stmt->execute();		
+		    $pdo->commit();
+			
+		    return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+    }
+
 }

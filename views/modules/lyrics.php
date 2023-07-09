@@ -3,7 +3,7 @@
     <div class="card ">
 	    <div class="card-body ">
 		    <nav class="navbar navbar-expand-xl navbar-light ">
-                <div class="container-fluid"><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
+                <div class="container" ><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
    
                     <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
                         <div class="input-group ">
@@ -25,7 +25,7 @@
 
     <div class="row justify-content-center" >
 
-        <div class="col-12 col-sm-4 col-md-3 col-lg-6 col-xl-6  text-center">
+        <div class="col-12 col-sm-6 col-md-8 col-lg-10 col-xl-12 text-center">
             <button type="button" data-bs-toggle="modal" data-bs-target="#DownloadLyrics" class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download-cloud text-warning"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path></svg></button>
 
             <button type="button"  class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
@@ -40,86 +40,86 @@
 
     <div class="row g-0">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
+            <div class="card m-3 ">
+                <div class="card-body p-sm-10 text-center">
+                    <div class="div-share"><h1>"Living Hope"</h1></div>
+                    <br>
+                        <b>"Phil Wickham"</b>
+                        <br>
+                        <br>
 
-        <div class="card m-3 ">
-            <div class="card-body p-sm-10 text-center">
-                <div class="div-share"><h1>"Living Hope"</h1></div>
-                <br>
-                    <b>"Phil Wickham"</b><br>
-                    <br>
-
-                    <div >
-                    <!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->
-                    How great the chasm that lay between us<br>
-                    How high the mountain I could not climb<br>
-                    In desperation, I turned to heaven<br>
-                    And spoke Your name into the night<br>
-                    Then through the darkness, Your loving-kindness<br> 
-                    Tore through the shadows of my soul<br>
-                    The work is ﬁnished, the end is written<br>
-                    Jesus Christ, my living hope<br>
-                    <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                    
-                    <br>
-                    Who could imagine so great a mercy?<br>
-                    What heart could fathom such boundless grace?<br>
-                    The God of ages stepped down from glory<br>
-                    To wear my sin and bear my shame<br>
-                    The cross has spoken, I am forgiven<br>
-                    The King of kings calls me His own<br>
-                    Beautiful Savior, I'm Yours forever<br>
-                    Jesus Christ, my living hope<br>
-                    <button type="button" class="btn  btn-light  "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                    <br>
-                    Hallelujah, praise the One who set me free<br>
-                    Hallelujah, death has lost its grip on me<br>
-                    You have broken every chain<br>
-                    There's salvation in Your name<br>
-                    Jesus Christ, my living hope<br>
-                    Hallelujah, praise the One who set me free<br>
-                    Hallelujah, death has lost its grip on me<br>
-                    You have broken every chain<br>
-                    There's salvation in Your name<br>
-                    Jesus Christ, my living hope<br>
-                    <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                    <br>
-                    Then came the morning that sealed the promise<br>
-                    Your buried body began to breathe<br>
-                    Out of the silence, the Roaring Lion<br>
-                    Declared the grave has no claim on me<br>
-                    Then came the morning that sealed the promise<br>
-                    Your buried body began to breathe<br>
-                    Out of the silence, the Roaring Lion<br>
-                    Declared the grave has no claim on me<br>
-                    Jesus, Yours is the victory, whoa!<br>
-                    <button type="button" class="btn  btn-light  "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                    <br>
-                    Hallelujah, praise the One who set me free<br>
-                    Hallelujah, death has lost its grip on me<br>
-                    You have broken every chain<br>
-                    There's salvation in Your name<br>
-                    Jesus Christ, my living hope<br>
-                    Hallelujah, praise the One who set me free<br>
-                    Hallelujah, death has lost its grip on me<br>
-                    You have broken every chain<br>
-                    There's salvation in Your name<br>
-                    Jesus Christ, my living hope...<br>
-                    <br>
-                    Jesus Christ, my living hope<br>
-                    Oh God, You are my living hope
-                    <br>
-                    <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>                            
+                        <div >
+                        <!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->
+                        How great the chasm that lay between us<br>
+                        How high the mountain I could not climb<br>
+                        In desperation, I turned to heaven<br>
+                        And spoke Your name into the night<br>
+                        Then through the darkness, Your loving-kindness<br> 
+                        Tore through the shadows of my soul<br>
+                        The work is ﬁnished, the end is written<br>
+                        Jesus Christ, my living hope<br>
+                        <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        
+                        <br>
+                        Who could imagine so great a mercy?<br>
+                        What heart could fathom such boundless grace?<br>
+                        The God of ages stepped down from glory<br>
+                        To wear my sin and bear my shame<br>
+                        The cross has spoken, I am forgiven<br>
+                        The King of kings calls me His own<br>
+                        Beautiful Savior, I'm Yours forever<br>
+                        Jesus Christ, my living hope<br>
+                        <button type="button" class="btn  btn-light  "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        <br>
+                        Hallelujah, praise the One who set me free<br>
+                        Hallelujah, death has lost its grip on me<br>
+                        You have broken every chain<br>
+                        There's salvation in Your name<br>
+                        Jesus Christ, my living hope<br>
+                        Hallelujah, praise the One who set me free<br>
+                        Hallelujah, death has lost its grip on me<br>
+                        You have broken every chain<br>
+                        There's salvation in Your name<br>
+                        Jesus Christ, my living hope<br>
+                        <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        <br>
+                        Then came the morning that sealed the promise<br>
+                        Your buried body began to breathe<br>
+                        Out of the silence, the Roaring Lion<br>
+                        Declared the grave has no claim on me<br>
+                        Then came the morning that sealed the promise<br>
+                        Your buried body began to breathe<br>
+                        Out of the silence, the Roaring Lion<br>
+                        Declared the grave has no claim on me<br>
+                        Jesus, Yours is the victory, whoa!<br>
+                        <button type="button" class="btn  btn-light  "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                        <br>
+                        Hallelujah, praise the One who set me free<br>
+                        Hallelujah, death has lost its grip on me<br>
+                        You have broken every chain<br>
+                        There's salvation in Your name<br>
+                        Jesus Christ, my living hope<br>
+                        Hallelujah, praise the One who set me free<br>
+                        Hallelujah, death has lost its grip on me<br>
+                        You have broken every chain<br>
+                        There's salvation in Your name<br>
+                        Jesus Christ, my living hope...<br>
+                        <br>
+                        Jesus Christ, my living hope<br>
+                        Oh God, You are my living hope
+                        <br>
+                        <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>                            
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
             
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  ">
-                    <div class="card mt-3 ">
-                        <div class="card-body">
+                     <div class="card mt-3 ">
+                        <div class="card-body text-center align-items-center justify-content-center  ">
                             <div class="video-container ">
-                            <iframe width="630" height="300" src="https://www.youtube.com/embed/9f2FXxDVO6w" title="Phil Wickham - Living Hope (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            </div>
+                            <iframe style="width: 100% !important; height: 300px !important;" src="https://www.youtube.com/embed/9f2FXxDVO6w" title="Phil Wickham - Living Hope (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            </div>
                         </div>
                     </div>
 
@@ -128,160 +128,141 @@
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-12 d-flex align-items-center">
                                     <h4 style="font-weight:bold">Playlists</h4>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#AddPlaylist"   class="btn btn-light border border-1 ms-3"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#AddPlaylist"  class="btn btn-transparent border-0">
+                                        
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 30 30" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/>
+                                      
+                                        <defs>
+                                            <linearGradient id="gradient" gradientTransform="rotate(90)">
+                                            <stop offset="0%" stop-color="#c080f9" />
+                                            <stop offset="100%" stop-color="#94c0f2 " />
+                                            </linearGradient>
+                                    </defs>
+                                    </svg>
+                                    
+                                    
+                                    </button>
+                                    
                                 </div> 
                             </div>
                             <hr>                                   
                         
-                             <div class="row">
-                                <div class=" d-flex align-items-center">
-                                    <div class="accordion  col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 " id="accordionExample">
-                                        <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingTwo"> 
-                                             
-                                            <button class="accordion-button collapsed" id="NewItem" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <input class="border-1" placeholder="" value="Sunday Line Up" readonly  style="font-weight:bold"></input>
-                                            </button>
-                                        </h2>
+                        <div class="row">
 
-                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <ul>
-                                                <li class="d-flex justify-content-between align-items-center">
-                                                    <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
-                                                    <div>
-                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                            <?php
+                                $playlist = (new ControllerPlaylist)->ctrShowPlaylist();
+                                foreach ($playlist as $key => $value) {
+                                    $accordionId = 'accordionExample_' . $key; // Unique ID for accordion
+                                    $collapseId = 'collapseTwo_' . $key; // Unique ID for collapse element
+                                    $editId = 'editPlaylist_' . $key; // Unique ID for edit playlist
+                                    $addSongsId = 'addSongs_' . $key; // Unique ID for add songs
+                                    $linkEventId = 'linkEvent_' . $key; // Unique ID for link to event
+                                    $downloadId = 'downloadPlaylist_' . $key; // Unique ID for download playlist
+                                    $deleteId = 'deletePlaylist_' . $key; // Unique ID for delete playlist
+                                    $fadeInAnimatedClass = 'fadeIn animated unique-class-' . $key; // Unique class for each edit-website button
+                                    $minusButtonId = 'minus-playlist unique-class-' . $key; // Unique class for each minus button
+                                    $editPlaylist = 'edit-playlist unique-class-' . $key; // Unique class for each minus button
+
+
+                                    
+
+                                    echo '
+                                        <div class="row mt-2">
+                                            <div class="d-flex align-items-center">
+                                                <div class="accordion col-10 col-sm-8 col-md col-lg col-xl" id="'.$accordionId.'">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header " id="headingTwo">
+                                                            <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#'.$collapseId.'" aria-expanded="false" aria-controls="'.$collapseId.'">
+                                                            <input class="border-0" value="'.$value['playlist_name'].'" readonly style="font-weight:bold; background:transparent">
+                                                            </button>
+                                                        </h2>
+
+                                                        <div id="'.$collapseId.'" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#'.$accordionId.'">
+                                                            <div class="accordion-body">
+                                                                <ul>
+                                                                    <li class="d-flex justify-content-between align-items-center mt-3">
+                                                                        <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
+                                                                        <div>
+                                                                        <button class="btn btn-sm delete-file '.$minusButtonId.'" hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                                    </div>
+                                                                    </li>
+
+                                                                    <li class="d-flex justify-content-between align-items-center mt-3">
+                                                                    <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
+                                                                    <div>
+                                                                    <button class="btn btn-sm delete-file '.$minusButtonId.' " hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                                </div>
+                                                                </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </li> 
+                                                </div>
+                                                <div col col-sm col-md col-lg col-xl>
+                                                    <button type="button" class="btn btn-transparent border-0 ms-3" id="'.$addSongsId.'">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/>
+                                                    <defs>
+                                                        <linearGradient id="gradient" gradientTransform="rotate(90)">
+                                                        <stop offset="0%" stop-color="#c080f9" />
+                                                        <stop offset="100%" stop-color="#94c0f2 " />
+                                                        </linearGradient>
+                                                </defs>
+                                                </svg>
+                                                
                                                     
-    
-                                                <li class="d-flex justify-content-between align-items-center mt-1">
-                                                    <a href=""><span class=" " type="text" value="" id="flexCheckDefault">Artist 5</span></a>      
-                                                    <div>
-                                                        <button class="btn btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                    </div>
-                                                </li>                                       
-                                                
-                                                <li class="d-flex justify-content-between align-items-center mt-1 ">
-                                                    <a href=""><span class=" " type="text" value="" id="flexCheckDefault">Set Stori</span></a>
-                                                    <div>
-                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                    </div>
-                                                </li>   
+                                                    </button>
 
-                                                <li class="d-flex justify-content-between align-items-center mt-1">
-                                                    <a href=""> <p class=" " type="text" value="" id="flexCheckDefault">Angklung Preman Pensiun</p></a>
-                                                    <div>
-                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                    </div>
-                                                </li>   
+                                                    <button type="button" class="btn btn-transparent border-0 " data-bs-toggle="dropdown">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
+                                                    <defs>
+                                                        <linearGradient id="gradient" gradientTransform="rotate(90)">
+                                                        <stop offset="0%" stop-color="#c080f9" />
+                                                        <stop offset="100%" stop-color="#94c0f2 " />
+                                                        </linearGradient>
+                                                </defs>
+                                                </svg>
                                                 
-                                                <li class="d-flex justify-content-between align-items-center mt-1">
-                                                    <a href=""> <span class=" " type="text" value="" id="flexCheckDefault">Canon Rock (JerryC) by Funtwo</span></a>
-                                                    <div>
-                                                        <button class="btn  btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                    </div>
-                                                </li>   
+                                                    
+                                                    </button>
 
-                                                <li class="d-flex justify-content-between align-items-center mt-1">
-                                                    <a href=""><span class=" " type="text" value="" id="flexCheckDefault">105.9 FM Ardan Radio Streaming Radio</span></a>
-                                                    <div>
-                                                        <button class="btn btn-sm delete-file"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                    </div>
-                                                </li>   
-                                                </ul>
-                                            </div>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" id="'.$addSongsId.'">Add Song</a></li>
+                                                        <li><a class="dropdown-item '.$editPlaylist.'" type="button" data-bs-target="#'.$editId.'">Edit Playlist</a></li>
+
+                                                        <li><a class="dropdown-item" type="button" id="'.$linkEventId.'">Link to Event</a></li>
+                                                        <li><a class="dropdown-item" type="button" id="'.$downloadId.'">Download Playlist Songs</a></li>
+                                                        <li><hr class="dropdown-divider"></li>
+                                                        <li><a class="dropdown-item text-danger" type="button" id="'.$deleteId.'">Delete Playlist</a></li>
+                                                    </ul>
+                                                </div>
+
+
+                                            </div>  
                                         </div>
-                                    </div>
-                                </div>
+                                    ';
+                                }
+                                ?>
 
-                                    <button type="button" class="btn d-fixed btn-light border border-1 ms-1" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                    </button>
 
-                                    <button type="button" class="btn btn-light border border-1 ms-1" data-bs-toggle="dropdown"><svg       xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical text-warning"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                    </button>
+                        </div>
+                        
 
-                                
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" >Add Song</a>
-                                        </li>
-                                        <li><a class="dropdown-item" type="button" >Edit Playlist</a>
-                                        </li>
-                                        <li><a class="dropdown-item" type="button" >Link to Event</a>
-                                        </li>
-                                        <li><a class="dropdown-item" type="button" >Dowload Playlist Songs</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" type="button">Delete Paylist</a>
-                                        </li>
-                                    </ul>
-                                </div>  
-                            </div>  
+
+
+                            
                             
 
-                            <div class="row mt-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="accordion col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10" id="accordionExample">
-                                        <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="font-weight:bold">
-                                            The Divine Groove
-                                            </button>
-                                        </h2>
-                                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                                <ul>
-                                                    <a href=""><p class=" " type="text" value="" id="flexCheckDefault">Joy of Jesus</p></a>
-      
-                                                    <a href=""><p class=" " type="text" value="" id="flexCheckDefault">Holy Spirit Grooves</p></a>                                            
-                                                
-                                                    <a href=""><p class=" " type="text" value="" id="flexCheckDefault">Gospel Glory</p></a>
-                                                    
-                                                    <a href=""> <p class=" " type="text" value="" id="flexCheckDefault">God’s Rockin’ Tunes</p></a>
-                                                    
-                                                    <a href=""> <p class=" " type="text" value="" id="flexCheckDefault">Blessed Beats</p></a>
-                                                    
-                                                    <a href=""><p class=" " type="text" value="" id="flexCheckDefault">Songs Of Praise</p></a>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                     </div>
-                                </div>  
+                            
 
-                                    <button type="button" class="btn btn-light border border-1 ms-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                    </button>
-
-                                    <button type="button" class="btn btn-light border border-1 ms-1" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical text-warning"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                    </button>
-
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" >Add Song</a>
-                                            </li>
-                                            <li><a class="dropdown-item" type="button" >Edit Playlist</a>
-                                            </li>
-                                            <li><a class="dropdown-item" type="button" >Link to Event</a>
-                                            </li>
-                                            <li><a class="dropdown-item" type="button" >Dowload Playlist Songs</a>
-                                            </li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" type="button">Delete Paylist</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div> 
-                            </div>
                         </div>  
                     </div>
                     
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -303,7 +284,7 @@
                                             <div class="div-share"><h1>"Living Hope" lyrics</h1></div>
 
                                     <div class="lyrics">
-                                        <h2 ><a href="" class="text-light"><b>Phil Wickham Lyrics</b></a></h2>
+                                        <h2 ><b>Phil Wickham Lyrics</b></h2>
                                     </div>
                                     <b>"Living Hope"</b><br>
                                     <br>
@@ -401,33 +382,44 @@
               
                         
 </main> 
-            <div class="col">
-                  <!-- Button trigger modal -->
-                  <!-- Modal -->
-                  <div class="modal fade" id="AddPlaylist" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header bg-warning">
-                          <h5 class="modal-title">Create Playlist</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">                                       
+
+    <div class="col">
+        <!-- Button trigger modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="AddPlaylist" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+            <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
+                <h5 class="modal-title">Create Playlist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <form role="form" id="addPlaylistForm" method="POST" autocomplete="nope" class="addPlaylistForm">
+                    <div class="modal-body"> 
+
+                        <div class="form-body">                                      
                             <div class="row">
                                 <div class="col-12"> 
-                                    <label for="Collection" class="form-label fw-bold">Name</label>
-                                    <input type="text" class="form-control" id="Collection" placeholder="Enter Playlist Name">
-                                </div>
-                            </div>                       
-                        </div>
-                                    
+                                    <label for="playlist_name" class="form-label fw-bold">Name</label>
+                                    <input type="text" class="form-control"  id="playlist_name" name="playlist_name" placeholder="Enter Playlist Name">
+                                </div>                  
+                            </div>    
+                        </div>                   
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-warning" >Create</button>
+                        <button type="submit" class="btn text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Create</button>
                     </div>
-                    </div>
-                </div>
-                </div>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 
             <div class="col">
@@ -475,8 +467,12 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
+        
+   
 
 <style>
     .newCollapsed {
@@ -554,7 +550,7 @@ function printDiv(divName) {
     searchBar.addEventListener("input", function() {
       var query = this.value;
       var results = search(query);
-      displayResults(results);
+      displayResults(results);no
     });
 
     searchBar.addEventListener("focus", function() {
@@ -568,7 +564,7 @@ function printDiv(divName) {
         searchResults.style.display = "none";
       }
     });
+
+
   </script>
 
-
-                                     

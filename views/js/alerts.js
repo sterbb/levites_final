@@ -210,6 +210,24 @@ $(document).ready(function() {
 	$(".minus-website").attr("hidden",true);
   });
 
+
+  $(document).on('click', '.edit-playlist', function() {
+    $(".edit-playlist").removeClass("btn-outline-success");
+    $(".edit-playlist").addClass("btn-outline-danger");
+    $(".edit-playlist").attr('id', 'editing-playlist');
+	$(".minus-playlist").removeAttr("hidden");
+  });
+
+
+
+  // Attach click event handler to a parent element
+  $(document).on('click', '#editing-playlist', function() {
+    $("#editing-playlist").addClass("btn-outline-success");
+    $("#editing-playlist").removeClass("btn-outline-danger");
+    $("#editing-playlist").attr('id', 'edit-playlist');
+	$(".minus-playlist").attr("hidden",true);
+  });
+
     // Public Folder content
 	$("#public_folder").click(function(){
 		

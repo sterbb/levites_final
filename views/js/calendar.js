@@ -41,6 +41,43 @@ $(function(){
           });
     });
 
+    $("#groupAddBtn").click(function(e){
+      e.preventDefault();
+
+      getGroupMembers(); 
+      var group_name = $("#groupName").val();
+      var group_members = $("#groupEventMembersList").val();
+      var members_email = $("#groupEventEmailList").val();
+
+
+      var groupData = new FormData();
+        
+      groupData.append("group_name", group_name);
+      groupData.append("group_members", group_members);
+      groupData.append("members_email", members_email);
+
+      $.ajax({
+          url: "ajax/calendar_group_add.ajax.php",
+          method: "POST",
+          data: groupData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+            console.log(answer);
+              
+        
+          },
+          error: function() {
+              alert("Oops. Something went wrong!");
+          },
+          complete: function() {
+          }
+        });
+
+    })
+
     
 
     
@@ -66,63 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     nowIndicator: true,
     dayMaxEvents: true, // allow "more" link when too many events
     editable: true,
-    selectable: true,
-    businessHours: true,
-    dayMaxEvents: true, // allow "more" link when too many events
-    events: [{
-      title: 'Instrument Workshop',
-      start: '2023-05-01T10:30:00',
-      end: '2023-05-01T11:30:00'
-    },{
-      title: 'Technical Workshop',
-      start: '2023-05-01T16:30:00',
-    },{
-      title: 'Media Workshop',
-      start: '2023-05-01T13:00:00',
-    }, {
-      title: 'Offering Prayer',
-      start: '2023-05-07',
-      end: '2023-05-10'
-    }, {
-      // groupId: 999,
-      // title: 'Event Time',
-      // start: '2020-09-09T16:00:00'
-    }, {
-      // groupId: 999,
-      // title: 'Event Time',
-      // start: '2020-09-16T16:00:00'
-    }, {
-      title: 'Bible Study',
-      start: '2023-05-11',
-      end: '2023-05-13'
-    }, {
-      title: 'Outreach Program',
-      start: '2023-05-12T10:30:00',
-      end: '2023-05-12T12:30:00'
-    }, {
-      title: 'Media Seminar',
-      start: '2023-05-12T12:00:00'
-    }, {
-      title: 'Instrument Workshop',
-      start: '2023-05-12T14:30:00'
-    }, {
-      title: 'Bible Study',
-      start: '2023-05-12T17:30:00'
-    }, {
-      title: 'Meeting',
-      start: '2023-05-12T20:00:00'
-    }, {
-      // title: 'Event Time',
-      // start: '2020-09-13T07:00:00'
-    }, {
-      title: 'Church Anniversary',
-      url: 'http://google.com/',
-      start: '2023-05-28',
-    }, {
-      title: 'Church Anniversary',
-      id: '2333',
-      start: '2023-07-09',
-    }],
+    events: 'models/loadCalenddar.php',
     eventClick: function(info){
      
       alert(moment(info.event.start ).format("YYYY-MM-DD"));
@@ -130,13 +111,102 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     ,
     dateClick: function(info) {
-
       
+      var event = new Date(info.date);
 
-      alert(info.date);
-      $('#exampleVerticallycenteredModal').modal('show');
+
+
+      const offset = event.getTimezoneOffset();
+
+      event = new Date(event.getTime() - (offset*60*1000));
+      var readableDate = event.toDateString();
+      readableDate = readableDate.slice(4,15);
+      
+      let date = event.toISOString().split('T')[0]
+      date = date.slice(0,11);
+      alert(date);  
+
+      displayEventDetails(readableDate, date);
+
+      $('#displayEventsModal').modal('show');
     }
     
   });
   calendar.render();
 });
+
+function getGroupMembers(){
+  var arrData1 = [];
+  var arrData2 = [];
+
+  $('input[name*="memberName"]').each(function(e)
+  {
+      console.log($(this).val());
+
+      var str = this.value;
+
+
+
+
+      
+      var members = {};
+      members.name = str;
+      arrData1.push(members);
+
+      
+  });
+
+  $("#groupEventMembersList").val(JSON.stringify(arrData1));
+
+  
+  $('input[name*="memberEmail"]').each(function(e)
+  {
+      console.log($(this).val());
+
+      var str = this.value;
+
+
+
+
+      
+      var email = {};
+      email.emaiil = str;
+      arrData2.push(email);
+
+      
+  });
+  
+  $("#groupEventEmailList").val(JSON.stringify(arrData2));
+   
+
+
+}
+
+
+
+
+
+function displayEventDetails(readableDate ,date){
+
+  $("#eventDateModal").text(readableDate);
+
+  // $.ajax({
+  //   url: "ajax/event_add.ajax.php",
+  //   method: "POST",
+  //   data: eventData,
+  //   cache: false,
+  //   contentType: false,
+  //   processData: false,
+  //   dataType: "text",
+  //   success: function(answer) {
+  //     console.log(answer);
+        
+  
+  //   },
+  //   error: function() {
+  //       alert("Oops. Something went wrong!");
+  //   },
+  //   complete: function() {
+  //   }
+  // });
+}
