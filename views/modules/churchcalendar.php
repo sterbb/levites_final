@@ -2,7 +2,7 @@
 <main class="page-content">
     <div class="col ">
       <!-- Modal -->
-      <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+      <div class="modal fade" id="displayEventsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
           <div class="modal-content">
             <div class="modal-body ">
@@ -25,7 +25,7 @@
 
                   <div class="d-flex justify-content-center align-items-center text-center pb-1">
                     <button class="btn btn-white  me-3"><i class="bx bx-chevron-left me-0"></i></button>
-                    <h6>MAY 1, 2023</h6>
+                    <h6 id="eventDateModal">MAY 1, 2023</h6>
                     <button class="btn btn-white  ms-3"><i class="bx bx-chevron-right me-0"></i></button>
                   </div>
 
@@ -51,13 +51,13 @@
                         <div class="col-12 col-lg-3">
 
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Pricing" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Restock" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
-                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Shipping" type="button"><i class="bi bi-truck-front-fill me-2"></i>Workshop</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#GlobalDelivery" type="button"><i class="bi bi-globe me-2"></i>Sunday Worship</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Attributes" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Advanced" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#Add" type="button"><i class="lni lni-plus me-2 "></i>Add Event Type</button>  
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
+                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="bi bi-truck-front-fill me-2"></i>Workshop</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="bi bi-globe me-2"></i>Sunday Worship</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#AddType" type="button"><i class="lni lni-plus me-2 "></i>Add Event Type</button>  
                           </div>
                           
                           <div class="col-12 col-lg-12 text-center mt-5">
@@ -72,7 +72,7 @@
                           
                           <div class="tab-content overflow-auto p-3" style="overflow-x: hidden !important; max-height: 50vh; "> 
 
-                            <div class="tab-pane fade" id="Pricing">
+                            <div class="tab-pane fade" id="BibleStudySection">
                               <div class="row g-3">
                                 <div class="col-12 col-lg-12 text-center ">
                                   <h4 class="mb-2 ">Instrument Workshop</h4>
@@ -81,7 +81,7 @@
                             </div>
 
 
-                            <div class="tab-pane fade" id="Restock">
+                            <div class="tab-pane fade" id="OutreachSection">
                               <h6 class="mb-3">Add to Stock</h6>
                               <div class="row g-3">
                                 <div class="col-sm-7">
@@ -120,7 +120,7 @@
                             </div>
 
 
-                            <div class="tab-pane fade show active" id="Shipping">
+                            <div class="tab-pane fade show active" id="WorkshopSection">
 
                             <!-- event -->
                               <div class="border border-secondary p-3 mb-5">
@@ -347,7 +347,7 @@ We're excited to explore the world of analog mixers together and discover how th
                             </div>
 
 
-                            <div class="tab-pane fade" id="GlobalDelivery">
+                            <div class="tab-pane fade" id="SundayWorshipSection">
                               <div class="d-flex flex-column h-100">
                                 <h6 class="mb-3">Global Delivery</h6>
                                 <div class="flex-1">
@@ -381,7 +381,7 @@ We're excited to explore the world of analog mixers together and discover how th
                                 </div>
                               </div>
                             </div>
-                            <div class="tab-pane fade" id="Attributes">
+                            <div class="tab-pane fade" id="PrayerMeetingSection">
                               <h6 class="mb-3">Attributes</h6>
                               <div class="form-check">
                                 <input class="form-check-input" id="fragileCheck" type="checkbox">
@@ -403,7 +403,7 @@ We're excited to explore the world of analog mixers together and discover how th
                                 <input class="form-control" id="inventory" type="date">
                               </div>
                             </div>
-                            <div class="tab-pane fade" id="Advanced">
+                            <div class="tab-pane fade" id="BaptismalSection">
                               <h6 class="mb-3">Advanced</h6>
                               <div class="row g-3">
                                 <div class="col-12 col-lg-6">
@@ -422,7 +422,7 @@ We're excited to explore the world of analog mixers together and discover how th
                               </div>
                             </div>
 
-                            <div class="tab-pane fade" id="Add">
+                            <div class="tab-pane fade" id="AddType">
                               <div class="row g-3">
                                 <div class="col-12 col-lg-12">
                                   <label class="mt-3">Event Type Name</label>
@@ -531,60 +531,65 @@ We're excited to explore the world of analog mixers together and discover how th
           <h5 class="modal-title">Add Group</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-         <div class="col-12 "> 
-            <label for="Collection" class="form-label fw-bold">Group Name</label>
-            <input type="text" class="form-control" id="Collection" placeholder="">
-          </div>
-          <div class="mt-3">
+        <!-- <form role="form" id="addGroupForm" method="POST" autocomplete="nope" class="addGroupForm row g-3"> -->
+          <div class="modal-body">
+            <div class="col-12 "> 
+              <label for="Collection" class="form-label fw-bold">Group Name</label>
+              <input type="text" class="form-control" id="groupName" placeholder="">
+            </div>
 
-                <!-- Repeater Html Start -->
-            <div id="repeater">
-              <!-- Repeater Heading -->
+            <input type="hidden" name="groupEventMembersList" id="groupEventMembersList">
+            <input type="hidden" name="groupEventEmailList" id="groupEventEmailList">
 
-              <div class="d-flex justify-content-between align-items-center">            
-                <h6 class="mb-0">Members</h6>
-                <button class="me-0 btn btn-success repeater-add-btn"><i class="fadeIn animated bx bx-user-plus"></i></button>
-              </div>
+            <div class="mt-3">
+                  <!-- Repeater Html Start -->
+              <div id="repeater">
+                <!-- Repeater Heading -->
 
-            <hr>
+                <div class="d-flex justify-content-between align-items-center">            
+                  <h6 class="mb-0">Members</h6>
+                  <button class="me-0 btn btn-success repeater-add-btn"><i class="fadeIn animated bx bx-user-plus"></i></button>
+                </div>
 
-              <!-- Repeater Items -->
-              <div class="items" data-group="test"> 
-                <div class="card">
-                  <div class="card-body">
-                    <!-- Repeater Content -->
-                    <div class="item-content">
-                      <div class="d-flex align-items-end  justify-content-end">
-                       <button class="btn btn-danger remove-btn "><i class="fadeIn animated bx bx-user-minus"></i></button>
-                      </div>
-                   
-                      <div class="mb-3">
-                        <label for="inputName1" class="form-label">Name</label>
-                       
-                        <input type="text" class="form-control" id="inputName1" placeholder="Name" data-name="name">
-                      </div>
-                      <div class="mb-3">
-                        <label for="inputEmail1" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="inputEmail1" placeholder="Email" data-skip-name="true"
-                          data-name="email">
+              <hr>
+
+                <!-- Repeater Items -->
+                <div class="items" data-group="members"> 
+                  <div class="card">
+                    <div class="card-body">
+                      <!-- Repeater Content -->
+                      <div class="item-content">
+                        <div class="d-flex align-items-end  justify-content-end">
+                        <button class="btn btn-danger remove-btn "><i class="fadeIn animated bx bx-user-minus"></i></button>
+                        </div>
+                    
+                        <div class="mb-3">
+                          <label for="inputName1" class="form-label">Name</label>
+                        
+                          <input type="text" class="form-control" id="inputName1" placeholder="Name" data-name="memberName">
+                        </div>
+                        <div class="mb-3">
+                          <label for="inputEmail1" class="form-label">Email</label>
+                          <input type="text" class="form-control" id="inputEmail1" placeholder="Email" data-skip-name="true"
+                            data-name="memberEmail">
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
+
+              </div>
+              <!-- Repeater End -->
+            
 
             </div>
-            <!-- Repeater End -->
-          
-
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#AddEvents">Save changes</button>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary"  id="groupAddBtn">Save changes</button>
+          </div>
+        <!-- </form> -->
       </div>
     </div>
   </div>

@@ -65,6 +65,7 @@ $(function(){
         dataType: "text",
         success: function(answer) {
           console.log(answer);
+          alert(answer);
         },
         error: function() {
             alert("Oops. Something went wrong!");

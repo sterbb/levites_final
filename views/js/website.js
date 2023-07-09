@@ -98,4 +98,4 @@ function getWebsites(){
 
      $("#groupWebsiteList").val(JSON.stringify(arrData));
      
-  }
+}
