@@ -630,7 +630,7 @@ We're excited to explore the world of analog mixers together and discover how th
                 <div class="row mt-3">
                     <div class="col-6">
                       <label class="form-label fw-bold">Date Range</label>
-                      <input type="text" class="form-control  date-range" id="event_date" />
+                      <input type="text" class="form-control date-range" id="event_date" />
                     </div>
                     <div class="col-3">
                       <label for="Collection" class="form-label fw-bold">Time Range</label>

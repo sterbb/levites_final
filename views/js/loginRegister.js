@@ -2,7 +2,6 @@ $(function(){
 
   $("#publicRegistrationForm").submit(function(e){
       e.preventDefault();
-      alert("ddd");
 
       var username  = $("#pubUsername").val();
       var password = $("#pubPassword").val();
@@ -10,7 +9,6 @@ $(function(){
       var lname = $("#publname").val();
       var religion = $("#pubReligion").val();
       var email = $("#pubEmail").val();
-      alert(email + username + password);
 
       var registerData = new FormData();
       registerData.append("user_email",email);
@@ -51,7 +49,6 @@ $(function(){
 
 
   $("#churchRegistrationForm").submit(function(e){
-    alert("ddd");
     e.preventDefault();
 
 
@@ -72,9 +69,7 @@ $(function(){
     var password = $("#church_password").val();
     var email = $("#church_email").val();
     var church_proof = $("#church_prof").prop("files");
-    alert(JSON.stringify(church_proof));
     var user_proof = $("#user_prof").prop("files"); 
-    alert(email + username + password);
 
 
       var proofData = new FormData(this);
@@ -416,7 +411,6 @@ $(function(){
 
         var forgot_password= $("#forgot_password").val();
 
-        alert(forgot_password);
 
         var forgotData = new FormData();
         forgotData.append("forgot_password", forgot_password);

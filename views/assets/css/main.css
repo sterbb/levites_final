@@ -2625,3 +2625,9 @@ color: rgb(192,128,249);
   cursor: pointer; /* Add a pointer on hover */
   
 }
+
+.dropdown-cell {
+  vertical-align: middle;
+  text-align: center;
+}
+

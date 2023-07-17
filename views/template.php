@@ -166,6 +166,9 @@
     <script src="views/assets/js/main.js"></script>
 
 	<script src="views/assets/plugins/form-repeater/repeater.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
+
+	
 
 	<!-- customize scripts -->
 	<script src="views/js/alerts.js"></script>
@@ -177,7 +180,13 @@
 	<script src="views/js/calendar.js"></script>
 	<script src="views/js/playlist.js"></script>
 	<script src="views/js/UserAccount.js"></script>
+	<script src="views/js/filestorage.js"></script>
 
+	<!-- <script async defer src="https://apis.google.com/js/api.js"></script>
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+	<script async defer src="https://accounts.google.com/gsi/client"></script> -->
 
 
     <script>

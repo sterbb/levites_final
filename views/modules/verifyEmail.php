@@ -42,15 +42,15 @@
                             </div>
 
                             <div class="col-12 mt-5 m-2">
-                            <a href="login">
+                          
                                 <div class="d-flex">
-                                    <button type="button" class="btn p-3 mb-5"   style="font-weight:bold;  background:linear-gradient(150deg, #AAC4F2, #C9B4ED 100%); border: 1 solid; border-color:black; color:dark; box-shadow: 5px 5px; width: 90%;  margin-left: 10px">
+                                    <button id="resendBtn" type="button" class="btn p-3 mb-5"   style="font-weight:bold;  background:linear-gradient(150deg, #AAC4F2, #C9B4ED 100%); border: 1 solid; border-color:black; color:dark; box-shadow: 5px 5px; width: 90%;  margin-left: 10px">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
                                     class="feather feather-rotate-ccw mx-3 text-white"><polyline points="1 4 1 10 7 10"></polyline>
                                     <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
                                     <span class="text-white ">Send Verification Again</span></button>
-                                </div></a>
+                                </div>
                                 <div class="verify-block">
                                 <a href="publicregistration">
                                 <i class='bx bx-left-arrow-alt fs-1'></i>
