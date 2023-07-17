@@ -624,7 +624,13 @@ body.toggled:not(.sidebar-hovered) .sidebar-wrapper .metismenu .has-arrow:after 
 .chat-toggle-btn {
   display: none!important
 }
+.card-title{
+  z-index: 99999999999999;
+}
 
+}
+.card-title:hover{
+  color: rgba(192,128,249,1);
 }
 
 
@@ -1524,8 +1530,8 @@ color: #4a4b4c
 
 .chat-tab-menu .nav-pills .nav-link.active,
 .chat-tab-menu .nav-pills .show>.nav-link {
-color: #008cff;
-background-color: rgb(0 123 255 / 0%)
+color:rgb(192,128,249);
+background-color: linear-gradient(270deg, rgba(192,128,249,1) 0%, rgba(93,166,254,1) 100%)
 }
 
 .chat-title {

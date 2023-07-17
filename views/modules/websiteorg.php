@@ -27,8 +27,8 @@
                              <div class="col text-center" >
    
                              <a href="'.$value['website_path'].'" target="_blank">
-                                 <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
-                                 <p class="text-dark" style="font-size:1.5em;">'.$value['website_name'].'</p>
+                             <img src="views/images/multimedia.png" alt="">
+                             <p class="text-dark" style="font-size: 1.2em;">'.$value['website_name'].'</p>
                              </a>
                              <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
  
@@ -38,12 +38,13 @@
                             }
                         
                         ?>
+                       
 
                         <div class="col text-center " >
    
                             <a href="https://www.facebook.com" target="_blank">
-                                <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
-                                <p class="text-dark" style="font-size:1.5em;">Facebook</p>
+                            <img src="views/images/socmed.png" alt="">
+                                <p class="text-dark" style="font-size: 1.2em;">Facebook</p>
                             </a>
                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
 
@@ -52,35 +53,8 @@
 
                         <div class="col text-center " >
                             <a href="https://www.youtube.com" target="_blank">
-                                <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;"></i>
-                                
-                                <p class="text-dark" style="font-size:1.5em;">Youtube</p>
-                            </a>
-                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank" >
-                                <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em; color:#144272;"  ></i>        
-                                <p class="text-dark" style="font-size:1.5em;">Google Sheets</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>  
-
-                        <div class="col text-center " >
-                            <a href="https://www.twitter.com" target="_blank">
-                                <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;"></i>
-                                
-                                <p class="text-dark"  style="font-size:1.5em;">Twitter</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                            <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em; color:#144272;"></i>
-                                
-                                <p class="text-black" style="font-size:1.5em;">Google Docs</p>
+                            <img src="views/images/productivity.png" alt="">                                
+                                <p class="text-black" style="font-size:1.2em;">Google Docs</p>
                             </a>
                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
@@ -88,51 +62,20 @@
                 
                         <div class="col text-center " >
                             <a href="https://www.youtube.com" target="_blank">
-                            <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>     
-                                <p class="text-black"class="text-black" style="font-size:1.5em;">Canva</p>
+                            <img src="views/images/multimedia.png" alt="">
+                                <p class="text-black"class="text-black" style="font-size:1.2em;">Canva</p>
                             </a>
                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
                         <div class="col text-center " >
                             <a href="https://www.youtube.com" target="_blank">
-                                <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;    "     ></i>       
-                                <p class="text-black" style="font-size:1.5em;">Google Meet</p>
+                            <img src="views/images/videocon.png" alt="">
+                            <p class="text-black" style="font-size:1.2em;">Google Meet</p>
                             </a>
                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
                         </div>
 
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                            <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>
-                                <p class="text-black" style="font-size:1.5em;">Pixlr</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                                <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;"     ></i>     
-                                <p class="text-black" style="font-size:1.5em;">Prezi</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                                <i class="fadeIn animated bx bx-camera" style="font-size:4em;  color:#205295;"    ></i>    
-                                <p class="text-black" style="font-size:1.5em;">Zoom</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                                <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>       
-                                <p class="text-black" style="font-size:1.5em;">Microsoft Teams</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
 
                        
                     </div><!--end row-->
@@ -304,7 +247,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <input type="hidden" name="groupWebsiteList" id="groupWebsiteList">
+        <input type="hid
+        den" name="groupWebsiteList" id="groupWebsiteList">
 
         <div class="modal-body">
             <div class="row">

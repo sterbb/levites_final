@@ -58,9 +58,7 @@ if(isset($_COOKIE["acc_type"])){
 
                 <li class="admin">
                   <a href="websiteorg">
-                    <div class="parent-icon"><span class="material-symbols-outlined">
-                      calendar_add_on
-                      </span> 
+                    <div class="parent-icon"><i class='bx bx-customize' ></i>
                     </div>
                     <div class="menu-title">Website Organizer</div>
                   </a>
@@ -92,22 +90,15 @@ if(isset($_COOKIE["acc_type"])){
                   </ul>
                 </li>
 
-                <li class="admin-public" >
-                  <a class="has-arrow" href="javascript:;">
+                <li class="admin-public">
+                  <a href="filestorage">
                     <div class="parent-icon"><span class="material-symbols-outlined">
-                    hard_drive
-                    </span>
+                     hard_drive
+                      </span> 
                     </div>
-                    <div class="menu-title ">File Storage</div>
+                    <div class="menu-title hidden">File Storage</div>
                   </a>
-                  <ul>
-                    <li > <a href="filestorage"><span class="material-symbols-outlined">arrow_right</span>File Storage View</a>
-                    </li>
-                  </ul>
                 </li>
-
-
-                
 
                 <li class="admin" >
                   <a href="requests ">
@@ -117,18 +108,16 @@ if(isset($_COOKIE["acc_type"])){
                   </a>
                 </li>
 
-                <li class="admin" >  
-                    <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">rate_review</span>
-                      </div>
-                      <div class="menu-title hidden">Reports</div>
-                    </a>
-                    <ul>
-                      <li > <a href="reportgen"><span class="material-symbols-outlined">arrow_right</span>Report View</a>
-                      </li>
-                  
-                    </ul>
+                <li class="admin">
+                  <a href="reportgen">
+                    <div class="parent-icon"><i class="lni lni-graph"></i>
+                    </div>
+                    <div class="menu-title hidden">Reports</div>
+                  </a>
                 </li>
+
+
+              
 
                 <li class="churchadmin">
                   <a href="accounts">
@@ -137,6 +126,7 @@ if(isset($_COOKIE["acc_type"])){
                     <div class="menu-title hidden">Accounts</div>
                   </a>
                 </li>
+              
 
                 
                  

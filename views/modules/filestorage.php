@@ -140,13 +140,11 @@
                           </div>
                         </div>
                       </div>
-                      
-                      
                       <div class="mt-3 cursor-pointer">
                       <h5 id="upper-title">Folders</h5>
-                      
                     </div>
-                      <div class="row mt-3 folder-preview">
+
+                      <div class="row mt-3 folder-preview" id="allFolders">
                         <div class="col-12 col-lg-4">
                           <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
                           <div class="card-body " id="public_folder" data-bs-target="#folderModal" >
@@ -300,11 +298,13 @@
                         </div>
 
                       <!--end row-->
-                      
-                      <div class="row mt-3" id="foldersContainer">
+                     
+
+                    </div>
+                     
+                    <div class="row mt-3" id="foldersContainer">
                       <!-- Folder cards will be dynamically added here -->
                     </div>
-
                       <!--end row-->
                       <div id="PubFol" class="tablelist">
                       <div class="d-flex align-items-center">

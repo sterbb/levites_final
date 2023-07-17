@@ -22,6 +22,17 @@ require_once "controllers/playlist.controller.php";
 require_once "controllers/churchAdmin.controller.php";
 // require_once "controllers/churchAdmin.controller.php";
 
+require_once "controllers/churchsetting.controller.php";
+// require_once "controllers/churchsetting.controller.php";
+
+
+
+
+require_once "models/churchsetting.model.php";
+// require_once "models/churchsetting.model.php";
+
+
+
 require_once "models/playlist.model.php";
 // require_once "models/palylist.model.php";
 

@@ -5,10 +5,11 @@
 		    <nav class="navbar navbar-expand-xl navbar-light ">
                 <div class="container" ><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
    
-                    <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ">
+                    <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 " method="POST" class="form" id="form">
                         <div class="input-group ">
-                            <input type="text" class="form-control border border-dark " placeholder="" />
-                            <button class="btn border border-dark " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" class="form-control border border-dark " name="searchQuery" placeholder="Search Title" id="searchQuery" />
+                            <input type="text" class="form-control border border-dark " name="searchArtist" placeholder="Search Artist" id="searchArtist" />
+                            <button class="btn border border-dark " name="submit" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                             </button> 
                         </div>
                     </form>
@@ -42,74 +43,72 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
             <div class="card m-3 ">
                 <div class="card-body p-sm-10 text-center">
-                    <div class="div-share"><h1>"Living Hope"</h1></div>
-                    <br>
-                        <b>"Phil Wickham"</b>
-                        <br>
-                        <br>
-
-                        <div >
-                        <!-- Usage of azlyrics.com content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->
-                        How great the chasm that lay between us<br>
-                        How high the mountain I could not climb<br>
-                        In desperation, I turned to heaven<br>
-                        And spoke Your name into the night<br>
-                        Then through the darkness, Your loving-kindness<br> 
-                        Tore through the shadows of my soul<br>
-                        The work is ﬁnished, the end is written<br>
-                        Jesus Christ, my living hope<br>
-                        <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                    <div class="div-share" id="lyricsContainer">
                         
-                        <br>
-                        Who could imagine so great a mercy?<br>
-                        What heart could fathom such boundless grace?<br>
-                        The God of ages stepped down from glory<br>
-                        To wear my sin and bear my shame<br>
-                        The cross has spoken, I am forgiven<br>
-                        The King of kings calls me His own<br>
-                        Beautiful Savior, I'm Yours forever<br>
-                        Jesus Christ, my living hope<br>
-                        <button type="button" class="btn  btn-light  "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                        <br>
-                        Hallelujah, praise the One who set me free<br>
-                        Hallelujah, death has lost its grip on me<br>
-                        You have broken every chain<br>
-                        There's salvation in Your name<br>
-                        Jesus Christ, my living hope<br>
-                        Hallelujah, praise the One who set me free<br>
-                        Hallelujah, death has lost its grip on me<br>
-                        You have broken every chain<br>
-                        There's salvation in Your name<br>
-                        Jesus Christ, my living hope<br>
-                        <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                        <br>
-                        Then came the morning that sealed the promise<br>
-                        Your buried body began to breathe<br>
-                        Out of the silence, the Roaring Lion<br>
-                        Declared the grave has no claim on me<br>
-                        Then came the morning that sealed the promise<br>
-                        Your buried body began to breathe<br>
-                        Out of the silence, the Roaring Lion<br>
-                        Declared the grave has no claim on me<br>
-                        Jesus, Yours is the victory, whoa!<br>
-                        <button type="button" class="btn  btn-light  "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-                        <br>
-                        Hallelujah, praise the One who set me free<br>
-                        Hallelujah, death has lost its grip on me<br>
-                        You have broken every chain<br>
-                        There's salvation in Your name<br>
-                        Jesus Christ, my living hope<br>
-                        Hallelujah, praise the One who set me free<br>
-                        Hallelujah, death has lost its grip on me<br>
-                        You have broken every chain<br>
-                        There's salvation in Your name<br>
-                        Jesus Christ, my living hope...<br>
-                        <br>
-                        Jesus Christ, my living hope<br>
-                        Oh God, You are my living hope
-                        <br>
-                        <button type="button" class="btn  btn-light "><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>                            
-                    </div>
+
+ <?php
+if (isset($_GET['artist']) && isset($_GET['song'])) {
+    $artist = $_GET['artist'];
+    $song = $_GET['song'];
+
+    // Rest of the code to handle the variables
+    // ...
+
+    $apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
+
+    // Search for the song and artist
+    $searchUrl = 'https://api.musixmatch.com/ws/1.1/track.search';
+    $searchParams = [
+        'q_artist' => urlencode($artist),
+        'q_track' => urlencode($song),
+        'apikey' => $apiKey
+    ];
+    $searchUrl .= '?' . http_build_query($searchParams);
+
+    $searchResponse = file_get_contents($searchUrl);
+    $searchData = json_decode($searchResponse, true);
+
+    if (isset($searchData['message']['body']['track_list'][0]['track']['track_id'])) {
+        $trackId = $searchData['message']['body']['track_list'][0]['track']['track_id'];
+
+        // Get lyrics for the track
+        $lyricsUrl = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get';
+        $lyricsParams = [
+            'track_id' => $trackId,
+            'apikey' => $apiKey
+        ];
+        $lyricsUrl .= '?' . http_build_query($lyricsParams);
+
+        $lyricsResponse = file_get_contents($lyricsUrl);
+        $lyricsData = json_decode($lyricsResponse, true);
+
+        if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
+            $lyrics = $lyricsData['message']['body']['lyrics']['lyrics_body'];
+
+            // Remove artist name from the lyrics
+            $lyrics = preg_replace('/\[(.*?)\]/', '', $lyrics);
+
+            // Add spacing between verses
+            $lyrics = preg_replace('/\n{2,}/', '<br><br><br>', $lyrics);
+
+            // Add spacing between each line
+            $lyrics = str_replace("\n", '<br>', $lyrics);
+
+            // Output the lyrics in the designated container
+            echo "<div id='lyricsContainer'>$lyrics</div>";
+        } else {
+            echo 'Lyrics not found.';
+        }
+    } else {
+        echo 'Song not found.';
+    }
+}
+?>
+
+
+                        
+                    </div>                 
+                   
                 </div>
             </div>
         </div>
@@ -567,4 +566,6 @@ function printDiv(divName) {
 
 
   </script>
+
+
 

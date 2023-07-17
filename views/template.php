@@ -181,6 +181,11 @@
 	<script src="views/js/playlist.js"></script>
 	<script src="views/js/UserAccount.js"></script>
 	<script src="views/js/filestorage.js"></script>
+	<script src="views/js/lyrics.js"></script>   
+	<script src="views/js/collaboration.js"></script>   
+	<script src="views/js/churchsetting.js"></script>   
+	<script src="views/js/publichomepage.js"></script>   
+
 
 	<!-- <script async defer src="https://apis.google.com/js/api.js"></script>
 	<script src="https://accounts.google.com/gsi/client" async defer></script>

@@ -42,13 +42,14 @@
         <div class="col-lg-8 mx-auto">
             <div class="card">
                 <div class="card-body p-4">
-                    <form id="jQueryValidationForm">
+                    <form id="UpdateChurchFomr" method="POST">
                         <div class="row mb-3">
                             <label for="input35" class="col-sm-3 col-form-label">Church Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input35" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                <input type="text" class="form-control" id="input35" value="<?php $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
                                     echo $value['church_name'];
+                                    
                                 }
                                 ?>" placeholder="Enter Your Name">
                             </div>
@@ -64,23 +65,46 @@
                         <div class="row mb-3">
                             <label for="input36" class="col-sm-3 col-form-label">Contact Details</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input36" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                <input type="text" class="form-control" id="input36" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
-                                    echo $value['church_num'];
+                                    echo $value['acc_contact'];
                                 }
                                 ?>">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input37" class="col-sm-3 col-form-label">Username</label>
+                            <label for="input37a" class="col-sm-3 col-form-label">First Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input37" name="username" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                <input type="text" class="form-control" id="input37a" name="fname" placeholder="First Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
-                                    echo $value['acc_username'];
+                                    echo $value['fname'];
                                 }
-                                ?>" >
+                                ?>">
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="input37a" class="col-sm-3 col-form-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="input37a" name="lname" placeholder="Last Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['lname'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+
+                        <label for="input37a" class="col-sm-3 col-form-label">Designation</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="input37a" name="Designation" placeholder="Designation" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['designation'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+
+                     
                         <div class="row mb-3">
                             <label for="input37a" class="col-sm-3 col-form-label">Email Address</label>
                             <div class="col-sm-9">
@@ -89,6 +113,17 @@
                                     echo $value['church_email'];
                                 }
                                 ?>">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="input37" class="col-sm-3 col-form-label">Username</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="input37" name="username" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_username'];
+                                }
+                                ?>" >
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -146,7 +181,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    
 
                 </div>
             </div>
@@ -166,19 +201,19 @@
                     <div class="card-body d-flex justify-content-around align-items-center">
                         <div class="row">
                             <div class="col-4">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected="">GCash</option>
-                                    <option value="1">PNB</option>
-                                    <option value="2">BDO</option>
-                                    <option value="3">Metrobank</option>
-                                    <option value="3">BPI</option>
+                                <select class="form-select" aria-label="Default select example" id="donation_category">
+                                    <option selected="" value="GCash">GCash</option>
+                                    <option value="PNB">PNB</option>
+                                    <option value="BDO">BDO</option>
+                                    <option value="Metrobank">Metrobank</option>
+                                    <option value="BPI">BPI</option>
                                 </select>
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" placeholder="" aria-label="default input example">
+                                <input class="form-control" type="text" placeholder="" id="donation_number" aria-label="default input example">
                             </div>
                             <div class="col-1">
-                                <button type="button" class="btn btn-outline-success"><i class="fadeIn animated bx bx-plus"></i></button>
+                                <button type="button" id="addDonation" class="btn btn-outline-success"><i class="fadeIn animated bx bx-plus"></i></button>
                             </div>
                         </div>
                     
@@ -186,9 +221,58 @@
    
                     </div>
 
-                    <ul class="list-group list-group-flush mb-0">
-                        <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent"><img src="views/images/gcash2.png" alt="GCash" style="height:50px; width:100px; "> <p>09772535688</p>
-                        </li>
+                    <ul class="list-group list-group-flush mb-0" style="overflow: scroll; height: 200px;">
+                    <?php  $donation = (new ControllerChurchSetting)->ctrShowDonation();
+                                foreach($donation as $key => $value){
+
+                                    $websiteCategory = $value['donation_category'];
+
+                                    if ($websiteCategory === 'GCash') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="" >
+                                                <img src="views/images/gcash2.png" style="height:50px; width:100px;" alt="GCASH" >
+                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                            </li>';
+                                           
+                                    
+                                        } elseif ($websiteCategory === 'PNB') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <img src="views/images/pnb.png" style="height:50px; width:100px;" alt="PNB" >
+                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                            </li>';
+                                            
+                                    
+                                        } elseif ($websiteCategory === 'BDO') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <img src="views/images/bdo.png" style="height:50px; width:100px;" alt="BDO" >
+                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                            </li>';
+                                           
+                                    
+                                        } elseif ($websiteCategory === 'METROBANK') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <img src="views/images/gcash2.png" style="height:50px; width:100px;" alt="METROBANK" >
+                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                            </li>';
+                                        
+                                    
+                                        }else{
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <img src="views/images/bpi.png" style="height:50px; width:100px;" alt="BPI" >
+                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                            </li>';
+                                        }
+                                    }
+                                    
+                            
+                                    
+                                    
+                                    
+                                    
+                            
+
+                                ?>
+
+                        
     
                      </ul>
                 </div>
@@ -203,7 +287,11 @@
                 <div class="card">
                      <h2 class="text-center pt-3 mb-0   ">MISSION</h2>
                     <div class="card-body d-flex justify-content-around align-items-center">
-                        <textarea class="form-control" id="input11" placeholder="" rows="3" style="height: 250px;"></textarea>
+                        <textarea class="form-control" id="mission" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['mission'];
+                                }
+                                ?>" placeholder="" rows="3" style="height: 250px;"></textarea>
                     </div>
                 </div>
         
@@ -213,13 +301,17 @@
 
         <div class="col">
             <div class="card">
-                    <h2 class="text-center pt-3 mb-0   ">VISION</h2>
+                    <h2 class="text-center pt-3 mb-0 ">VISION</h2>
                 <div class="card-body d-flex justify-content-around align-items-center">
-                    <textarea class="form-control" id="input11" placeholder="" rows="3" style="height: 250px;"></textarea>
+                    <textarea class="form-control" id="vision" placeholder=""  value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['vision'];
+                                }
+                                ?>" rows="3" style="height: 250px;"></textarea>
                 </div>
             </div>
         </div>
     </div>
-
+    </form>
   
 </main>

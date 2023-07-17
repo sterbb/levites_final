@@ -104,7 +104,7 @@ class ModelRegister {
 			<body>
 				<div class="container">
 					<div class="logo">
-						<img src="../~views/images/try.png" alt="Logo">
+						<img src="../views/images/try.png" alt="Logo">
 					</div>
 					<div class="message">
 						<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
@@ -207,7 +207,7 @@ class ModelRegister {
 			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
 
 			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
@@ -402,9 +402,6 @@ class ModelRegister {
 
 
 	}
-
-	
-
 
     
 }
