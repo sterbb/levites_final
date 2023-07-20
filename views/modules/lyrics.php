@@ -47,20 +47,20 @@
                         
 
  <?php
-if (isset($_GET['artist']) && isset($_GET['song'])) {
-    $artist = $_GET['artist'];
-    $song = $_GET['song'];
 
     // Rest of the code to handle the variables
     // ...
-
     $apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
+
+    if (isset($_POST['submit'])) {
+        $searchQuery = $_POST['searchQuery'];
+        $searchArtist = $_POST['searchArtist'];
 
     // Search for the song and artist
     $searchUrl = 'https://api.musixmatch.com/ws/1.1/track.search';
     $searchParams = [
-        'q_artist' => urlencode($artist),
-        'q_track' => urlencode($song),
+        'q_track' => urlencode($searchQuery),
+        'q_artist' => urlencode($searchArtist),
         'apikey' => $apiKey
     ];
     $searchUrl .= '?' . http_build_query($searchParams);
@@ -103,6 +103,7 @@ if (isset($_GET['artist']) && isset($_GET['song'])) {
         echo 'Song not found.';
     }
 }
+
 ?>
 
 

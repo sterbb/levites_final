@@ -16,5 +16,9 @@ class ControllerWebsite{
         return $answer = (new ModelWebsite)->mdlShowGroups();
 	}
     
+	static public function ctrDeletewebsite(){
+        return $answer = (new ModelWebsite)->mdlDeleteWebsite();
+	}
+    
     
 }

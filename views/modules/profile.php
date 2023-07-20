@@ -12,18 +12,36 @@
               <div class="card-body">
                 <div class="mt-5 d-flex align-items-start justify-content-between">
                   <div class="">
-                    <h3 class="mb-2">Our Lady Of Lourdes Parish Church</h3>
-                    <p class="mb-1">Brg. Bata, Bacolod City</p>
-                    <p>Negros Occidental, Philippines</p>
-              
-                  </div>
-                  <div class="row">
+                        
+                    <?php
+                    $churchid = $_COOKIE['profileID'];
+                    // echo $churchid;
+                    $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
+                
+                    foreach($profile as $key => $value){
+
+
+                      echo '<h3 class="mb-2">'.$value["church_name"].'</h3>
+                      <p class="mb-1">'.$value["church_address"].'</p>
+                      <p>'.$value["church_city"].'</p>
+                      </div>
+                        <div class="row">
                     <div class="col">
-                    <a href="javascript:;" class="btn btn-primary btn-hover" onclick="changeButtonText(this)">Ask Membership</a>
-       
+                    <input type="text" name="trans_type" id="church_id" church-name="'.$value["church_name"].'" value='.$value["churchID"].' name="church_id" style="display:none;" required>
+                    <button class="btn btn-primary btn-hover askMembershipBtn">Ask Membership</button>
                     </div>
-                  </div>
-                  <script>
+                  </div>';
+                   }
+         
+                    
+              
+      
+                    
+                    
+                    ?>
+              
+                  
+                  <!-- <script>
                     function changeButtonText(button) {
                       if (button.innerText === "Ask Membership") {
                         button.innerText = "Cancel Membership";
@@ -33,9 +51,7 @@
                         button.classList.remove("btn-danger");
                       }
                     }
-                  </script>
-          
-          
+                  </script> -->
                 </div>
               </div>
             </div>
@@ -47,9 +63,17 @@
                 <div class="card pt-3">
                   <p class="text-center " style="font-size:25px;font-family: 'Montserrat', sans-serif; font-weight:700;">MISSION</p>
                   <div class="card-body">
-                    <div><p class="text-center ">As Christ’s disciples we commit ourselves to, 
-                    LISTEN, LIVE AND SHARE THE WORD OF GOD AND THE TEACHINGS OF THE CHURCH through, a prayerful community life; a proper and  meaningful celebration of the liturgy and the sacraments; building and sustaining a Christian  family life; and, a unified and effective evangelization of the lay faithful.
-                    <br><br>As a community imbued with Marian Spirit, we commit ourselves to, EMULATE THE VIRTUES OF HUMILITY, OBEDIENCE, AND CHARITY through, active involvement in pastoral care, social services and other parish activities; shared talents, abilities and temporal goods; and, proper attire and decorum in the participation of liturgical services. </p>
+                    <div><p class="text-center" style="font-size:15px;"><?php
+                    $churchid = $_COOKIE['profileID'];
+                    // echo $churchid;
+                    $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
+                
+                    foreach($profile as $key => $value){
+
+
+                      echo ''.$value["mission"].'';
+                   }
+                    ?></p>
                     </div>
                   </div>
                 </div>
@@ -59,9 +83,17 @@
                 <div class="card pt-3">
                   <p class="text-center " style="font-size:25px;font-family: 'Montserrat', sans-serif; font-weight:700;">VISION</p>
                   <div class="card-body ">
-                    <div><p class="text-center "style="font-size:15px;">Our Lady of Lourdes Parish envisions
-                        “A Community of Christ’s Disciples Imbued with Marian Spirit”.  
-                        In order to realize this vision the parish values are articulated in our mission.</p>
+                    <div><p class="text-center "style="font-size:15px;"><?php
+                    $churchid = $_COOKIE['profileID'];
+                    // echo $churchid;
+                    $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
+                
+                    foreach($profile as $key => $value){
+
+
+                      echo ''.$value["vision"].'';
+                   }
+                    ?></p>
                     </div>
                   </div>
                 </div>
@@ -89,7 +121,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="mb-3">Location</h5>
-                  <div id="marker-map" class="gmaps"></div>
+                  <div id="profile-map" class="gmaps"></div>
               </div>
             </div>
 
@@ -104,7 +136,17 @@
 
             <div class="card">
               <div class="card-body">
-                <h5 class="mb-3">For Donations and Offerings</h5>
+                <h5 class="mb-3"><?php
+                    $churchid = $_COOKIE['profileID'];
+                    // echo $churchid;
+                    $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
+                
+                    foreach($profile as $key => $value){
+
+
+                      echo ''.$value["donation"].'';
+                   }
+                    ?></h5>
 
                 <div class="row">
                   <div class="col d-flex align-items-end justify-content-start">

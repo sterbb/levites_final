@@ -1216,12 +1216,6 @@ border-radius: .25rem
   background-position: center;
 }
 
-.profile-ourlady {
-  background-image: url(../../images/ch1.2.jpg);
-  background-size: cover;
-  height: 10rem;
-  background-position: center;
-}
 
 .user-profile-avatar {
   background-color: #ffffff;
@@ -2635,5 +2629,15 @@ color: rgb(192,128,249);
 .dropdown-cell {
   vertical-align: middle;
   text-align: center;
+}
+
+.folder-name-hover {
+  cursor: pointer;
+  transition: text-decoration 0.3s ease;
+}
+
+.folder-name-hover:hover {
+  color:rgb(192,128,249);
+
 }
 

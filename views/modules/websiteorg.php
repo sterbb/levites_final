@@ -30,7 +30,7 @@
                              <img src="views/images/multimedia.png" alt="">
                              <p class="text-dark" style="font-size: 1.2em;">'.$value['website_name'].'</p>
                              </a>
-                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
+                             <button class="btn btn-danger mb-3 mt-0 minus-website" id="'.$value['id'].'-deleteWeb" hidden><i class="fadeIn animated bx bx-minus"></i></button >
  
                          
                             </div>
@@ -38,7 +38,7 @@
                             }
                         
                         ?>
-                       
+                    
 
                         <div class="col text-center " >
    

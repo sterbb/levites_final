@@ -3,6 +3,26 @@ require_once "connection.php";
 
 class ModelWebsite{
 
+
+
+	
+    public static function mdlDeleteWebsite(){
+
+		if (isset($_POST['itemId'])) {
+			// Sanitize the input and retrieve the item ID
+			$itemId = filter_var($_POST['itemId'], FILTER_SANITIZE_NUMBER_INT);
+		
+
+
+			$stmt = (new Connection)->connect()->prepare("DELETE * FROM websites WHERE id = :id");
+			$stmt->bindParam(":id",  $itemId , PDO::PARAM_STR);
+			$stmt -> execute();
+			return $stmt -> fetchAll();
+			$stmt -> close();
+			$stmt = null;	
+		}
+    }
+
     
 
     public static function mdlShowWebsites(){
@@ -10,7 +30,7 @@ class ModelWebsite{
         
         $accID = $_COOKIE["acc_id"];
         $stmt = (new Connection)->connect()->prepare("SELECT * FROM websites WHERE accountID = :accountID");
-        $stmt->bindParam(":accountID", $accID, PDO::PARAM_INT);
+        $stmt->bindParam(":accountID", $accID, PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();
@@ -23,7 +43,7 @@ class ModelWebsite{
         
         $accID = $_COOKIE["acc_id"];
         $stmt = (new Connection)->connect()->prepare("SELECT * FROM websitegroups WHERE accID = :accID");
-        $stmt->bindParam(":accID", $accID, PDO::PARAM_INT);
+        $stmt->bindParam(":accID", $accID, PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();

@@ -163,6 +163,24 @@ $(document).ready(function() {
     });
 
 
+	var profileLatLng = {
+		lat: 10.70230,
+		lng: 122.97429, 
+	  };
+	  var newmap = new google.maps.Map(document.getElementById('profile-map'), {
+		zoom: 17,
+		center: profileLatLng
+	  });
+	  var newmarker = new google.maps.Marker({
+		position: profileLatLng,
+		newmap: newmap,
+		title: 'Our Lady Of Lourdes Parish Church '
+	  });
+
+	  newmarker;
+  
+
+
   });
 
   // Public Folder content

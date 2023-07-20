@@ -37,7 +37,7 @@ $(".addWebsiteForm").submit(function(e){
 });
 
 $("#addGroupBtn").on('click', function(){
-    alert("hello")
+    alert("hello");
     getWebsites();
 
     var website_list = $("#groupWebsiteList").val();
@@ -71,7 +71,6 @@ $("#addGroupBtn").on('click', function(){
     
 });
 
-
 function getWebsites(){
     var arrData = [];
     $('input[name="cur_websites"]:checked').each(function() {
@@ -99,3 +98,33 @@ function getWebsites(){
      $("#groupWebsiteList").val(JSON.stringify(arrData));
      
 }
+
+
+
+
+$("#deleteWeb").on('click', function(){
+    alert("hello");
+
+    var id = $id; // Replace with the actual ID of the item you want to delete
+
+    // Make an AJAX request to the server-side script
+    $.ajax({
+      url: 'delete_website.ajax.php', // Replace with the URL of your server-side script
+      method: 'POST',
+      data: { id: id }, // Send the item ID as data
+      success: function(response) {
+        // Handle the response from the server
+        console.log(response);
+        // Refresh the page or update the UI as needed
+      },
+      error: function() {
+        // Handle any error that occurs during the AJAX request
+        alert('Oops! Something went wrong.');
+      }
+    });
+  });
+
+  
+  
+  
+  
