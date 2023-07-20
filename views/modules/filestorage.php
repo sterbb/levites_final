@@ -47,18 +47,61 @@
                 <div class="card-body">
                   <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' ></i></a></h5>
                   <div class="mt-3"></div>
-                  <div class="d-flex align-items-center mt-3">
+
+                  <?php 
+
+                  $requests = (new CollaborationController)->ctrshowAffilatedChurches();
+                  foreach($requests as $key => $value){
+
+                      $churchname;
+                      $churchid;
+
+                      if (array_key_exists("churchid1", $value)) {
+                          // Key exists in the array
+                          $churchid = $value["churchid1"];
+                          $churchname = $value["churchname1"];
+                      } else {
+                          // Key is undefined
+                          $churchid = $value["churchid2"];
+                          $churchname = $value["churchname2"];
+                      }
+
+
+                      echo '
+                          <button class="affiliatesSection border border-0 bg-transparent " value="'.$value['collabID'].'">
+                            <div class="d-flex text-start mt-3">
+                              <div class="fm-file-box bg-light-primary text-primary mr-1">
+                                <img src="views/images/sanseb.jpg" alt="Responsive image" class="img-thumbnail">
+                              </div>
+                              <div class="flex-grow-1 ms-2">
+                                <h6 class="mb-0 cursor-pointer">'.$churchname.'</h6>
+                                <div class="progress mt-1" style="height: 7px; width: 210px;">
+                                  <div id="progress-bar'.$value['collabID'].'" class="progress-bar bg-warning" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                              <h6 class="text-primary mb-0 affiliateStorage" id="'.$value['collabID'].'"></h6>
+                            </div>
+                          </button>
+                        ';
+                      }
+                  
+                  
+                  ?>
+                  <!-- <button class="affiliatesSection border border-0 bg-transparent ">
+                  <div class="d-flex text-start mt-3">
                     <div class="fm-file-box bg-light-primary text-primary mr-1">
                       <img src="views/images/sanseb.jpg" alt="Responsive image" class="img-thumbnail">
                     </div>
                     <div class="flex-grow-1 ms-2">
                       <h6 class="mb-0 cursor-pointer">San Sebastian Cathedral (Bacolod)</h6>
-                      <div class="progress" style="height: 7px; width: 150px;">
+                      <div class="progress mt-1" style="height: 7px; width: 150px;">
                         <div class="progress-bar bg-warning" role="progressbar" style="width: 48%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                     <h6 class="text-primary mb-0"> 930 MB</h6>
                   </div>
+                  </button>
+                  
                   <div class="d-flex align-items-center mt-3">
                     <div class="fm-file-box bg-light-success text-success">
                       <img src="views/images/lupit.jpg" alt="Responsive image" class="img-thumbnail">
@@ -82,7 +125,7 @@
                       </div>
                     </div>
                     <h6 class="text-primary mb-0">1.8 GB</h6>
-                  </div>
+                  </div> -->
                 </div>
             </div>
         </div>
@@ -144,7 +187,7 @@
                       <h5 id="upper-title">Folders</h5>
                     </div>
 
-                      <div class="row mt-3 folder-preview" id="allFolders">
+                      <div class="row mt-3 folder-preview" id="pinnedSection">
                         <div class="col-12 col-lg-4">
                           <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
                           <div class="card-body " id="public_folder" data-bs-target="#folderModal" >

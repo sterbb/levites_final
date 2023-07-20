@@ -120,15 +120,15 @@
 				          <hr>
                   <div class="d-flex align-items-center gap-5 flex-wrap mt-4">
                     <div class="form-check form-switch form-check-success">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault1" checked>
+                      <input class="form-check-input" type="checkbox" role="switch" id="calendar_access" value="C" checked>
                       <label class="form-check-label " for="flexSwitchCheckDefault1" style="font-size:18px">Calendar of Activities</label>
                     </div>
                     <div class="form-check form-switch form-check-success">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckSuccess" checked>
+                      <input class="form-check-input" type="checkbox" role="switch" id="storage_access" value="S" checked>
                       <label class="form-check-label" for="flexSwitchCheckSuccess" style="font-size:18px">File Storage</label>
                     </div>
                     <div class="form-check form-switch form-check-success">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDanger" checked>
+                      <input class="form-check-input" type="checkbox" role="switch" id="request_access" value="R" checked>
                       <label class="form-check-label" for="flexSwitchCheckDanger" style="font-size:18px">Requests</label>
                     </div>
 

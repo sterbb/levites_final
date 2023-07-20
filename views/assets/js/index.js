@@ -4,6 +4,8 @@ $(function () {
 
 	// chart 1
 	var options = {
+
+		
 		series: [{
 			name: 'Sales Overview',
 			data: [10, 25, 42, 12, 55, 30, 63, 27, 20]

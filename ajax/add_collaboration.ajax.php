@@ -2,16 +2,18 @@
 require_once "../controllers/collaboration.controller.php";
 require_once "../models/collaboration.model.php";
 
-class addCollaboration{
+class AddCollaboration{
 
     public $churchName;
-
-    public function searchChurch(){
+    public $churchid2;
+    public function addChurchCollaboration(){
       $churchName = $this->churchName;
 
-       $data = array("churchName"=> $churchName);
-        $answer = (new CollaborationController)->searchChurches($data);
-       echo json_encode($answer);
+      $churchid2 = $this->churchid2;
+
+       $data = array("churchName"=> $churchName,
+       "churchid2"=> $churchid2);
+       return $answer = (new CollaborationController)->ctraddCollaboration($data);
 
     }
 
@@ -19,8 +21,9 @@ class addCollaboration{
 }
  
 
-$addCollab = new addCollaboration();
+$churchCollab = new AddCollaboration();
 
-$addCollab->churchName = $_POST["churchName"];
+$churchCollab -> churchName = $_POST["churchName"];
+$churchCollab -> churchid2 = $_POST["churchid2"];
 
-$result = $addCollab->searchChurch();
+$churchCollab -> addChurchCollaboration();

@@ -20,7 +20,7 @@ public static function mdlShowDonation(){
 }
 
 
-public static function mdlAddDonation($data){	
+	public static function mdlAddDonation($data){	
 		$db = new Connection();
         $pdo = $db->connect();
         $accID = $_COOKIE["acc_id"];

@@ -259,6 +259,7 @@ $(function(){
             $('.overlay').show();
          },
           success: function(answer) {
+            console.log(answer);
 
                 //islan pa  
                 // document.cookie = 'type =' +answer; 

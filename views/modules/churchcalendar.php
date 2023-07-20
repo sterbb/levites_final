@@ -25,7 +25,7 @@
 
                   <div class="d-flex justify-content-center align-items-center text-center pb-1">
                     <button class="btn btn-white  me-3"><i class="bx bx-chevron-left me-0"></i></button>
-                    <h6 id="eventDateModal">MAY 1, 2023</h6>
+                    <h6 id="eventDateModal"></h6>
                     <button class="btn btn-white  ms-3"><i class="bx bx-chevron-right me-0"></i></button>
                   </div>
 
@@ -42,7 +42,7 @@
                 </ul>
 
       
-                
+
             
                 <div class="tab-content py-3" >
 
@@ -121,6 +121,9 @@
 
 
                             <div class="tab-pane fade show active" id="WorkshopSection">
+  
+                              
+
 
                             <!-- event -->
                               <div class="border border-secondary p-3 mb-5">
@@ -173,23 +176,23 @@
                                   <div class="col-12 col-lg-12 mb-3">
                                     <h6 class="mb-2 ">Announcement</h6>
                                     <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-Attention workshop participants!
+                                      Attention workshop participants!
 
-Just a friendly reminder to bring your instruments to the upcomingworkshop.
+                                      Just a friendly reminder to bring your instruments to the upcomingworkshop.
 
-Label your instrument with your name.
-Make sure it's in good working condition and tuned.
-Protect it in a suitable case or bag.
-Don't forget any necessary accessories (extra strings, reeds, picks, etc.).
-If you have an instrument that can be shared, let us know in advance!
+                                      Label your instrument with your name.
+                                      Make sure it's in good working condition and tuned.
+                                      Protect it in a suitable case or bag.
+                                      Don't forget any necessary accessories (extra strings, reeds, picks, etc.).
+                                      If you have an instrument that can be shared, let us know in advance!
 
-Safety first! Handle your instrument with care and be aware of your surroundings.
+                                      Safety first! Handle your instrument with care and be aware of your surroundings.
 
-Get ready to enhance your workshop experience by practicing and applying what you learn in real-time!
+                                      Get ready to enhance your workshop experience by practicing and applying what you learn in real-time!
 
-If you have any questions, feel free to reach out. We're here to help!
+                                      If you have any questions, feel free to reach out. We're here to help!
 
-Looking forward to an amazing workshop with all of you. See you soon!
+                                      Looking forward to an amazing workshop with all of you. See you soon!
                                     </textarea>
               
                                   </div>
@@ -219,131 +222,7 @@ Looking forward to an amazing workshop with all of you. See you soon!
 
                                 </div><!--end row-->
                               </div>
-                            <!-- event -->
-                            <div class="border border-secondary p-3 mb-5">
-                                <div class="d-flex justify-content-end">
-                                  <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
-                                  <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
-                                </div>
-                                <div class="row g-3">
-                                  <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Media Workshop</h4>
-                                  </div>
-                                </div>
-                                <div class="row g-3 mt-2">
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 1, 2023 @1:00pm - 3:30pm</h6>
-
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                    <p></p>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 mb-3 ">
-                                    <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-Instructions for a successful workshop:
-
-Come prepared: Bring your camera, fully charged batteries, memory cards, and any necessary cables.
-Laptop and Software: If you're using editing software or other programs, make sure to bring your laptop and have the software installed beforehand.
-Notebooks and Pens: It's always a good idea to have something for taking notes during the workshop.
-Collaboration: Be ready to work together in teams and share ideas and experiences with fellow participants.
-Questions and Engagement: Feel free to ask questions and actively engage with the workshop content. We're here to learn from each other.
-We're looking forward to a creative and inspiring workshop experience where we can enhance our media skills and use them to serve our church community.
-                                    </textarea>
-                                    <p></p>
-                                  </div>
-                                </div>
-
-                                <h6>Groups</h6>
-                                <div class="row row-cols-1 row-cols-lg-3 g-3">
                               
-
-                                    
-          
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Media Team</h5>
-                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                                        <li class="list-group-item">John Cliff Fortaleza</li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  
-
-                                </div><!--end row-->
-                              </div>
-                              <!-- event -->
-                              <div class="border border-secondary p-3 mb-5">
-                                <div class="d-flex justify-content-end">
-                                  <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
-                                  <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
-                                </div>
-                                <div class="row g-3">
-                                  <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Technical Workshop</h4>
-                                  </div>
-                                </div>
-                                <div class="row g-3 mt-2">
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 1, 2023 @4:00pm - 6:30pm</h6>
-
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                    <p></p>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 mb-3">
-                                    <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-Come prepared to learn: Bring a notebook and pen to take notes during the workshop. This will help you remember key concepts and techniques discussed.
-
-Active participation: Engage in discussions and ask questions. This workshop is designed to be interactive and collaborative, so your active participation will greatly enhance the learning experience.
-
-Familiarize yourself with the church's analog mixer: During the workshop, we will be focusing on the specific analog mixer used by our church. Take some time before the workshop to familiarize yourself with the layout, controls, and features of the mixer.
-
-Hands-on practice: We will provide opportunities for hands-on practice with the analog mixer. Make the most of these practice sessions to develop your skills and gain confidence in operating the mixer.
-
-Collaboration and knowledge sharing: Engage with fellow participants, share your experiences, and learn from one another. This collaborative environment will foster a deeper understanding and appreciation for analog mixers in a church setting.
-
-We're excited to explore the world of analog mixers together and discover how they can enhance our worship services. 
-                                    </textarea>
-                                    <p></p>
-                                  </div>
-                                </div>
-                                <h6>Groups</h6>
-                                <div class="row row-cols-1 row-cols-lg-3 g-3">
-                                  
-        
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Technical Team</h5>
-                                        <button class="font-18 btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                                        <li class="list-group-item">John Cliff Fortaleza</li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  
-
-                                </div><!--end row-->
-                              </div>
-                              <!-- event -->
-
                             </div>
 
 
@@ -463,7 +342,7 @@ We're excited to explore the world of analog mixers together and discover how th
           <div class="card">
             
                 <div class="card-body d-flex justify-content-around align-items-center">
-                    <h6 class="mb-0 text-uppercase" style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:1.5em;">May 1, 2023</h6>
+                    <h6 class="mb-0 text-uppercase" style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:1.5em;" id="church_calendar_date"></h6>
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddEvents"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
                 </div>
 
@@ -631,6 +510,7 @@ We're excited to explore the world of analog mixers together and discover how th
                     <div class="col-6">
                       <label class="form-label fw-bold">Date Range</label>
                       <input type="text" class="form-control date-range" id="event_date" />
+                      
                     </div>
                     <div class="col-3">
                       <label for="Collection" class="form-label fw-bold">Time Range</label>
@@ -664,21 +544,6 @@ We're excited to explore the world of analog mixers together and discover how th
 
                 <div class="row row-cols-1 row-cols-lg-3 g-3 border-bottom pb-3 pt-3" id="add_group_preview">
 
-                  <div class="col">
-                    <div class="card">
-                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                        <h5 class="card-title inline">Worship Team</h5>
-                        <button class="font-18 text-black btn btn-outline-success px-3 inline">	<i class="lni lni-pencil-alt"></i></button>
-                        <button class="font-18 text-black btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                        <li class="list-group-item">John Cliff T. Fortaleza</li>
-                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                      </ul>
-                    </div>
-                  </div>
-
                 </div>
                 
               </div>
@@ -697,3 +562,4 @@ We're excited to explore the world of analog mixers together and discover how th
     </div>
   </div>
 </div>
+

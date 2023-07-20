@@ -414,3 +414,7 @@ function myTimer() {
 	currentDate();
 	setInterval(myTimer, 1000); // Update time every second
   });
+
+
+
+

@@ -6,7 +6,11 @@ class ControllerCalendar{
 
 	static public function ctrAddGroup($data){
 		return $answer = (new ModelCalendar)->mdlAddGroup($data);
- }
+	 }
+
+	static public function ctrShowEvents($data){
+		return $answer = (new ModelCalendar)->mdlShowEvents($data);
+	}
 
 
 }

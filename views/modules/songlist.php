@@ -95,7 +95,129 @@ if (isset($_POST['submit'])) {
 <div class="row" style="font-weight:bold;">
 
 <div class="col-sm-6 col-xl-6 col-md-6 col-lg-6 text-center">
-<a href="lyrics" class="cursor-pointer">Living Hope</a><br>
+
+<?php
+$apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
+
+$searchQuery = 'lilim';
+
+// Search for songs and sort by track rating (popularity)
+$searchUrl = 'https://api.musixmatch.com/ws/1.1/track.search';
+$searchParams = [
+    'q_track' => urlencode($searchQuery),
+    'apikey' => $apiKey,
+    'f_music_genre_id' => 22, // Replace YOUR_GENRE_ID with the desired music genre ID 22
+    's_track_rating' => 'desc', // Sort by track rating in descending order
+];
+$searchUrl .= '?' . http_build_query($searchParams);
+
+$searchResponse = file_get_contents($searchUrl);
+$searchData = json_decode($searchResponse, true);
+
+if (isset($searchData['message']['body']['track_list'])) {
+    // Extract the list of songs and artists with track_ids
+    $songs = [];
+    $artists = [];
+    $trackIds = []; // to store the track_ids
+
+    foreach ($searchData['message']['body']['track_list'] as $track) {
+        $songs[] = $track['track']['track_name'];
+        $artists[] = $track['track']['artist_name'];
+        $trackIds[] = $track['track']['track_id']; // Store the track_id for each song
+    }
+
+    // Output the list of songs and artists with URLs
+    echo 'List of Songs and Artists:<br>';
+    foreach ($songs as $index => $song) {
+        $artist = $artists[$index];
+        $trackId = $trackIds[$index];
+
+        // Create URL parameters for the artist and song
+        $artistParam = urlencode($artist);
+        $songParam = urlencode($song);
+
+        // Generate the URL for the lyrics.php page with track ID as a parameter
+        $lyricsUrl = "lyrics?track_id=$trackId";
+
+        // Output the link to the lyrics.php page with the song ID as a parameter
+        echo "<h6><button class='getLyrics' trackid='$trackId'>$song - $artist</button></h6>";
+    }
+} else {
+    echo 'No songs found.';
+}
+
+
+
+
+// $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
+
+// $searchQuery = 'lilim';
+// // $searchArtist = $_POST['searchArtist'];
+
+// // Search for songs and sort by track rating (popularity)
+// $searchUrl = 'https://api.musixmatch.com/ws/1.1/track.search';
+// $searchParams = [
+//     'q_track' => urlencode($searchQuery),
+//     'apikey' => $apiKey,
+//     'f_music_genre_id' => 22, // Replace YOUR_GENRE_ID with the desired music genre ID 22
+//     's_track_rating' => 'desc', // Sort by track rating in descending order
+// ];
+// $searchUrl .= '?' . http_build_query($searchParams);
+
+// $searchResponse = file_get_contents($searchUrl);
+// $searchData = json_decode($searchResponse, true);
+
+// if (isset($searchData['message']['body']['track_list'])) {
+//     // Extract the list of songs and artists with track_ids
+//     $songs = [];
+//     $artists = [];
+//     $trackIds = []; // to store the track_ids
+
+//     foreach ($searchData['message']['body']['track_list'] as $track) {
+//         $songs[] = $track['track']['track_name'];
+//         $artists[] = $track['track']['artist_name'];
+//         $trackIds[] = $track['track']['track_id']; // Store the track_id for each song
+//     }
+
+//     // Output the list of songs and artists with URLs
+//     echo 'List of Songs and Artists:<br>';
+//     foreach ($songs as $index => $song) {
+//         $artist = $artists[$index];
+//         $trackId = $trackIds[$index];
+
+//         // Create URL parameters for the artist and song
+//         $artistParam = urlencode($artist);
+//         $songParam = urlencode($song);
+
+//         // Generate the URL for the lyrics.php page
+//         $lyricsUrl = "lyrics?artist=$artistParam&song=$songParam";
+
+//         // Output the link to the lyrics.php page
+//         echo "<h6><a href='$lyricsUrl'>$song - $artist</a></h6>";
+
+//         // // Fetch the lyrics for each song using track_id
+//         // $lyricsUrl = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=$trackId&apikey=$apiKey";
+//         // $lyricsResponse = file_get_contents($lyricsUrl);
+//         // $lyricsData = json_decode($lyricsResponse, true);
+
+//         // if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
+//         //     $lyrics = $lyricsData['message']['body']['lyrics']['lyrics_body'];
+//         //     // Output the lyrics for the current song
+//         //     echo "<h6><a song='$lyrics'>$song - $artist</a></h6>";
+//         //     setcookie('lyrics', $lyrics, time() + 3600);
+//         // } else {
+//         //     echo "Lyrics not found for $song - $artist";
+//         // }
+//     }
+// } else {
+//     echo 'No songs found.';
+// }
+
+
+
+
+?>
+<!-- <a href="lyrics" class="cursor-pointer">Living Hope</a><br>
 <a href="f/floyda1bentley.html">Panalangin sa Pagiging Bukas Palad</a><br>
 <a href="a/a1xj1.html">Tanging Yaman</a><br>
 <a href="a/a.html">Awit ng Paghahangad</a><br>
@@ -162,7 +284,7 @@ if (isset($_POST['submit'])) {
 <a href="a/aarontippin.html">You Are Holy (Prince of Peace)g</a><br>
 
 
-      </div>
+      </div> -->
 
 </div>
 </div>

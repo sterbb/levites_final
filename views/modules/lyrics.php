@@ -39,70 +39,59 @@
 
 
 
-    <div class="row g-0">
+<div class="row g-0">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ">
             <div class="card m-3 ">
                 <div class="card-body p-sm-10 text-center">
                     <div class="div-share" id="lyricsContainer">
+
+                    
                         
 
  <?php
-if (isset($_GET['artist']) && isset($_GET['song'])) {
-    $artist = $_GET['artist'];
-    $song = $_GET['song'];
 
-    // Rest of the code to handle the variables
-    // ...
 
-    $apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
 
-    // Search for the song and artist
-    $searchUrl = 'https://api.musixmatch.com/ws/1.1/track.search';
-    $searchParams = [
-        'q_artist' => urlencode($artist),
-        'q_track' => urlencode($song),
-        'apikey' => $apiKey
-    ];
-    $searchUrl .= '?' . http_build_query($searchParams);
+    $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
+    $trackId = $_COOKIE['trackID'];
+    // Fetch track details using the track_id
+    $trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";
+    $trackResponse = file_get_contents($trackUrl);
+    $trackData = json_decode($trackResponse, true);
 
-    $searchResponse = file_get_contents($searchUrl);
-    $searchData = json_decode($searchResponse, true);
 
-    if (isset($searchData['message']['body']['track_list'][0]['track']['track_id'])) {
-        $trackId = $searchData['message']['body']['track_list'][0]['track']['track_id'];
+     $trackInfo = $trackData['message']['body']['track'];
+     $artist = $trackInfo['artist_name'];
+     $song = $trackInfo['track_name'];
 
-        // Get lyrics for the track
-        $lyricsUrl = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get';
-        $lyricsParams = [
-            'track_id' => $trackId,
-            'apikey' => $apiKey
-        ];
-        $lyricsUrl .= '?' . http_build_query($lyricsParams);
+     // Output the artist name and song title
+     echo "<h2>$song - $artist</h2>";
 
-        $lyricsResponse = file_get_contents($lyricsUrl);
-        $lyricsData = json_decode($lyricsResponse, true);
 
-        if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
-            $lyrics = $lyricsData['message']['body']['lyrics']['lyrics_body'];
 
-            // Remove artist name from the lyrics
-            $lyrics = preg_replace('/\[(.*?)\]/', '', $lyrics);
+    // Fetch the lyrics for the selected song using the track_id
+    $lyricsUrl = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=$trackId&apikey=$apiKey";
+    $lyricsResponse = file_get_contents($lyricsUrl);
+    $lyricsData = json_decode($lyricsResponse, true);
 
-            // Add spacing between verses
-            $lyrics = preg_replace('/\n{2,}/', '<br><br><br>', $lyrics);
+    if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
+        $lyrics = $lyricsData['message']['body']['lyrics']['lyrics_body'];
 
-            // Add spacing between each line
-            $lyrics = str_replace("\n", '<br>', $lyrics);
+        // Split the lyrics into sections based on empty lines (markers)
+        $sections = explode("\n\n", $lyrics);
 
-            // Output the lyrics in the designated container
-            echo "<div id='lyricsContainer'>$lyrics</div>";
-        } else {
-            echo 'Lyrics not found.';
+        // Output each section in a separate <div> element
+        echo '<div class="lyrics-container">';
+        foreach ($sections as $section) {
+            echo '<div class="lyrics-section">' . nl2br($section) . ' <button class="copy-button" onclick="copyLyrics(this)">Copy</button> </div>';
+            echo '<div class="section-space"></div>'; // Add space between sections
         }
+        echo '</div>';
     } else {
-        echo 'Song not found.';
+        echo "Lyrics not found for the selected song.";
     }
-}
+
+
 ?>
 
 
@@ -166,63 +155,55 @@ if (isset($_GET['artist']) && isset($_GET['song'])) {
                                     
 
                                     echo '
-                                        <div class="row mt-2">
-                                            <div class="d-flex align-items-center">
-                                                <div class="accordion col-10 col-sm-8 col-md col-lg col-xl" id="'.$accordionId.'">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header " id="headingTwo">
-                                                            <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#'.$collapseId.'" aria-expanded="false" aria-controls="'.$collapseId.'">
-                                                            <input class="border-0" value="'.$value['playlist_name'].'" readonly style="font-weight:bold; background:transparent">
-                                                            </button>
-                                                        </h2>
+                                    <div class="row mt-2">
+                                        <div class="d-flex align-items-center ">
+                                            <div class="accordion col-12 col-xl-12" id="'.$accordionId.'">
+                                           
+                                                <div class="accordion-item" >
+                                                    <h2 class="accordion-header " id="headingTwo">
+                                                        <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#'.$collapseId.'" aria-expanded="false" aria-controls="'.$collapseId.'">
+                                                        <input class="border-0" value="'.$value['playlist_name'].'" readonly style="font-weight:bold; background:transparent">
+                                                        </button>
+                                                        
+                                                    </h2>
 
-                                                        <div id="'.$collapseId.'" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#'.$accordionId.'">
-                                                            <div class="accordion-body">
-                                                                <ul>
-                                                                    <li class="d-flex justify-content-between align-items-center mt-3">
-                                                                        <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
-                                                                        <div>
-                                                                        <button class="btn btn-sm delete-file '.$minusButtonId.'" hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                                    </div>
-                                                                    </li>
+                                                    
 
-                                                                    <li class="d-flex justify-content-between align-items-center mt-3">
+                                                    <div id="'.$collapseId.'" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#'.$accordionId.'">
+                                                        <div class="accordion-body">
+                                                            <ul>
+                                                                <li class="d-flex justify-content-between align-items-center mt-3">
                                                                     <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
-                                                                    <div>
-                                                                    <button class="btn btn-sm delete-file '.$minusButtonId.' " hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                                </div>
+                                                                    
+                                                                    <button class="btn btn-sm delete-file '.$minusButtonId.'" hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                               
                                                                 </li>
-                                                                </ul>
-                                                            </div>
+
+                                                                <li class="d-flex justify-content-between align-items-center mt-3">
+                                                                <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
+                                                               
+                                                                    <button class="btn btn-sm delete-file '.$minusButtonId.' " hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                                                               
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div col col-sm col-md col-lg col-xl>
-                                                    <button type="button" class="btn btn-transparent border-0 ms-3" id="'.$addSongsId.'">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/>
-                                                    <defs>
-                                                        <linearGradient id="gradient" gradientTransform="rotate(90)">
-                                                        <stop offset="0%" stop-color="#c080f9" />
-                                                        <stop offset="100%" stop-color="#94c0f2 " />
-                                                        </linearGradient>
-                                                </defs>
-                                                </svg>
-                                                
                                                     
-                                                    </button>
+                                                </div>            
+                                            </div>
 
+                                            <div class="row ">
+                                                <div class="col-12 col-xl-12"  style="margin-left:-5px">
+                                                            
                                                     <button type="button" class="btn btn-transparent border-0 " data-bs-toggle="dropdown">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
                                                     <defs>
                                                         <linearGradient id="gradient" gradientTransform="rotate(90)">
                                                         <stop offset="0%" stop-color="#c080f9" />
                                                         <stop offset="100%" stop-color="#94c0f2 " />
                                                         </linearGradient>
-                                                </defs>
-                                                </svg>
-                                                
-                                                    
+                                                    </defs>
+                                                    </svg>
                                                     </button>
 
                                                     <ul class="dropdown-menu">
@@ -235,12 +216,14 @@ if (isset($_GET['artist']) && isset($_GET['song'])) {
                                                         <li><a class="dropdown-item text-danger" type="button" id="'.$deleteId.'">Delete Playlist</a></li>
                                                     </ul>
                                                 </div>
+                                            </div>
+                                                    
+                                          
 
-
-                                            </div>  
-                                        </div>
-                                    ';
-                                }
+                                        </div>  
+                                    </div>
+                                ';
+                            }
                                 ?>
 
 

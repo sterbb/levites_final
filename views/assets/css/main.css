@@ -2637,3 +2637,13 @@ color: rgb(192,128,249);
   text-align: center;
 }
 
+.pendcan {
+  margin-right: 50px;
+}
+
+.affiliateStorage{
+  margin-left: 30px;
+  margin-right: 0;
+  text-align: center;
+  margin-top: 15px;
+}

@@ -20,68 +20,52 @@
                    
                     <div class="row row-cols-4 row-cols-lg-6 g-1">
 
-                        <?php 
-                         $websites = (new ControllerWebsite)->ctrShowWebsites();
-                         foreach($websites as $key => $value){
-                             echo '
-                             <div class="col text-center" >
-   
-                             <a href="'.$value['website_path'].'" target="_blank">
-                             <img src="views/images/multimedia.png" alt="">
-                             <p class="text-dark" style="font-size: 1.2em;">'.$value['website_name'].'</p>
-                             </a>
-                             <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
- 
+
+                  
+
+                    <?php 
                          
-                            </div>
-                             ';
+                      
+                            $websites = (new ControllerWebsite)->ctrShowWebsites();
+
+
+                            foreach ($websites as $key => $value) {
+                                echo '<div class="col text-center mt-3">';
+
+                                $Deletewebsites = $value;
+                                
+                            if (isset($_GET['accoutID'])){
+                                $accountID =  $_GET['accountID'];
+                                // $Deletewebsites = mysqli_query($link, "DELETE * FROM websites WHERE accountID = $accountID");
+                              }
+                                
+                                if ($value['website_category'] === 'Social Media') {
+                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
+                                    echo '<img src="views/images/socmed.png">';
+                                } elseif ($value['website_category'] === 'Productivity') {
+                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
+                                    echo '<img src="views/images/Productivity.png">';
+                                } elseif ($value['website_category'] === 'Multimedia') {
+                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
+                                    echo '<img src="views/images/Multimedia.png">';
+                                }else{
+                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
+                                    echo '<img src="views/images/videocon.png">';
+                                }
+                                echo '<p class="text-dark mt-3" style="font-size: 1.5em;">'.$value['website_name'].'</p>';
+                                echo '</a>';
+                                echo '<button class="btn btn-danger mb-3 mt-0 minus-website" id="'.$value['accountID'].'" value="'.$value['website_name'].'" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
+                                
+                                echo '</div>';
                             }
-                        
-                        ?>
-                       
-
-                        <div class="col text-center " >
-   
-                            <a href="https://www.facebook.com" target="_blank">
-                            <img src="views/images/socmed.png" alt="">
-                                <p class="text-dark" style="font-size: 1.2em;">Facebook</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-
-                        
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                            <img src="views/images/productivity.png" alt="">                                
-                                <p class="text-black" style="font-size:1.2em;">Google Docs</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                            <img src="views/images/multimedia.png" alt="">
-                                <p class="text-black"class="text-black" style="font-size:1.2em;">Canva</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
-                        <div class="col text-center " >
-                            <a href="https://www.youtube.com" target="_blank">
-                            <img src="views/images/videocon.png" alt="">
-                            <p class="text-black" style="font-size:1.2em;">Google Meet</p>
-                            </a>
-                            <button class="btn btn-danger mb-3 mt-0 minus-website" hidden><i class="fadeIn animated bx bx-minus"></i></button >
-                        </div>
-
+                            ?>
 
                        
                     </div><!--end row-->
 
                     <hr>
-
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+               
                     <?php 
                    $websites = (new ControllerWebsite)->ctrShowGroups();
                     foreach($websites as $key => $value){
@@ -90,9 +74,11 @@
                         <div class="row mt-4 border border-2 mx-3 px-3">
                             <div class="col pt-3 d-flex justify-content-between align-items-center mb-2">
                                 
-                                <h6 class="mb-0 text-uppercase">'.$value['group_name'].'</h6>
+                                <input class="mb-0 text-uppercase border-0  text-dark h5" id="editing-'.$value['group_name'].'-website-input" value="'.$value['group_name'].'"  disabled></input>
                                 <div>
-                                    <button type="button" class="btn btn-outline-success px-3  radius-30 text-center"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
+                                    <button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  id="'.$value['group_name'].'-website"  onclick="editGroup(this)" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
+                                    <button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" group_name="'.$value['group_name'].'" id="'.$value['accID'].'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button>
+
                                 </div>
                             </div>
                             <hr>
@@ -107,54 +93,68 @@
 
                             $list_websites = json_decode($value['websites_list']);
 
+                      
                             foreach($list_websites as $hello){
-                                echo '
-                                    <div class="col text-center" >
-                            
-                                        <a href="'. $hello-> path.'" target="_blank">
-                                            <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
-                                            <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
+
+                                $images = $hello->category;
+                              
+
+
+                                if ( $images == "Social Media"){
+                                    echo '
+                                    <div class="col text-center mb-3" >
+                                         <a href="'. $hello-> path.'" target="_blank">
+                                         <img src="views/images/socmed.png">
+                                        <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
+                                    </a>
+                                    <button class="btn btn-danger mb-3 mt-0 '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                </div>';
+
+                                }
+                                elseif ($images == "Productivity"){
+                                    echo '
+                                    <div class="col text-center mb-3" >
+                                         <a href="'. $hello-> path.'" target="_blank">
+                                         <img src="views/images/Productivity.png">
+                                        <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
                                         </a>
-                                    </div>
-                            ';
+                                    <button class="btn btn-danger mb-3 mt-0 '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'"  onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                </div>';
+                                }
+                                elseif ($images == "Multimedia"){
+                                    echo '
+                                    <div class="col text-center mb-3" >
+                                         <a href="'. $hello-> path.'" target="_blank">
+                                         <img src="views/images/Multimedia.png">
+                                        <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
+                                    </a>
+                                    <button class="btn btn-danger mb-3 mt-0  '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                </div>';
+
+                                }else{
+                                    echo ' <div class="col text-center mb-3" >
+                                         <a href="'. $hello-> path.'" target="_blank">
+                                         <img src="views/images/videocon.png">
+                                        <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
+                                    </a>
+                                    <button class="btn btn-danger mb-3 mt-0  '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                </div>';
+    
+                                }
+
+                                        
+
+
+                               
                             }
 
 
                         
                             echo' </div> </div>';
                     }
-                        
-                    
-                    
-                    ?>
+                        ?>
                                         
-                    <div class="row mt-4 border border-2 mx-3 px-3">
-                        <div class="col pt-3 d-flex justify-content-between align-items-center mb-2">
-                            
-                            <h6 class="mb-0 text-uppercase">Social Media</h6>
-                            <div>
-                                <button type="button" class="btn btn-outline-success px-3  radius-30 text-center"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row row-cols-4 row-cols-lg-6 g-1 ">
-                            <div class="col text-center     " >
-                       
-                                <a href="https://www.facebook.com" target="_blank">
-                                    <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;" ></i>
-                                    <p class="text-dark" style="font-size:1.5em;">Facebook</p>
-                                </a>
-                            </div>
-
-                            <div class="col text-center " >
-                                <a href="https://www.youtube.com" target="_blank">
-                                    <i class="fadeIn animated bx bx-hash" style="font-size:4em; color:#0A2647;"></i>
-                                    
-                                    <p class="text-dark" style="font-size:1.5em;">Youtube</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    
              
                 </div>
                 
@@ -193,7 +193,7 @@
 <div class="modal fade" id="Application" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
             <h5 class="modal-title">Add Website</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -230,7 +230,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Add Website</button>
+                <button type="submit" class="btn text-white"  style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Add Website</button>
             </div>
         </form>
         </div>
@@ -241,230 +241,196 @@
     <!-- Modal -->
 <div class="modal fade" id="Group" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content px-3">
-        <div class="modal-header">
+        <div class="modal-content">
+        <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
             <h5 class="modal-title">Add Group</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <input type="hid
-        den" name="groupWebsiteList" id="groupWebsiteList">
+        <input type="hidden" name="groupWebsiteList" id="groupWebsiteList">
 
         <div class="modal-body">
             <div class="row">
-                <label for="tns-urlPath" class="form-label">Group Name</label>
-                <input type="text" class="form-control border-3" id="website_groupname" name="urlPath" placeholder="Enter group name">
+                <div class="col-12">
+                    <label for="tns-urlPath" class="form-label">Group Name</label>
+                    <input type="text" class="form-control border-3" id="website_groupname" name="urlPath" placeholder="Enter group name">
+                </div>
+
                 <div class="row mt-3 mb-1">
               
                    
                     <div class=" d-flex justify-content-between align-items-center mt-4">
                         <h6>Social Media</h6>
-                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="SM" onclick="checkAllsm()" style="font-size:2em;">
                      
                        
                     </div>
                     <hr>
-                    <?php 
 
-                        $websites = (new ControllerWebsite)->ctrShowWebsites();
-                        foreach($websites as $key => $value){
-                            echo '
-                            <div class="col-3 text-center">
-
-                                <div class="card">
-                                    <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
-                                    <p style="font-size:1.5em;">'.$value['website_name'].'</p>
-                                    <div class="card-body">
-                                        <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                            <input class="form-check-input border-2 border-success" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'" group="websitesGroup" id="cur_websites" style="font-size:2em;">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                    
-                            </div>
-
-                            ';
-
-                            
-                        }
-                    ?>
-
+                    <div class="row mb-2 ">
 
           
-                    <div class='col-3 text-center'>
+                        <?php 
+                            $websites = (new ControllerWebsite)->ctrShowWebsites();
+                            foreach($websites as $key => $value) {
+                                
+                                $websiteCategory = $value['website_category'];
+                                
+                                if ($websiteCategory === 'Social Media') {
+                                    echo '
+                                    <div class="col-3 text-center">
+                                            <div class="card">
+                                            <img src="views/images/socmed.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                            <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                            <div class="card-body">
+                                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
+                                                    <input class="form-check-input border-2 border-success NewSM" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                }
 
-                        <div class="card">
-                            <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
-                            <p style="font-size:1.5em;">Facebook</p>
-                            <div class="card-body">
-                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                <input class="form-check-input border-2 border-success" name="cur_websites" type="checkbox" value="hello" group="websitesGroup" id="cur_websites" style="font-size:2em;">
+                                
+                           
+                            }
+                    
+                        ?>
+                    </div>
+                </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        
-                 
+           
+                <div class="row mb-2">
+                        <div class=" d-flex justify-content-between align-items-center">
+                        <h6>Productivity</h6>
+                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value=""  id="Pro" onclick="checkAllpro()" style="font-size:2em;">
+                         
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                            
+
+                    <?php 
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value) {
+                      
+                            
+                            $websiteCategory = $value['website_category'];
+                            
+                           if ($websiteCategory === 'Productivity') {
+                            
+                                echo '
+                                <div class="col-3 text-center">
+                                    <div class="card">
+                                        <img src="views/images/Productivity.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                        <div class="card-body">
+                                            <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
+                                                <input class="form-check-input border-2 border-success NewPro"  name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>'
+                                ;
+                            }
+                     
+                            
+                            
+                        }
+                        ?>
                     </div>
 
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                            <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
-                            <p style="font-size:1.5em;">Youtube</p>
-                            <div class="card-body">
-                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                            <i class="fadeIn animated bx bx-hash" style="font-size:3em; color:#A27B5C;"></i>
-                            <p style="font-size:1.5em;">Twitter</p>
-                            <div class="card-body">
-                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
                 </div>
 
                 <div class="row mb-2">
                         <div class=" d-flex justify-content-between align-items-center">
-                        <h6>Productivity</h6>
-                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                     
-                       
-                    </div>
-                    <hr>
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                            <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em;  color:#144272;"  ></i>     
-                            <p style="font-size:1.5em;">Google Docs</p>
-                            <div class="card-body">
-                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </div>
-
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                            <i class="fadeIn animated bx bx-briefcase"  style="font-size:4em;  color:#144272;"  ></i>     
-                            <p style="font-size:1.5em;">Google Sheets</p>
-                            <div class="card-body">
-                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-2">
-                    <div class=" d-flex justify-content-between align-items-center">
                         <h6>Multimedia</h6>
-                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                     
-                       
+                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="Media" onclick="checkAllmedia()" style="font-size:2em;">
+                         
                     </div>
                     <hr>
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                            <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>      
-                            <p style="font-size:1.5em;">Canva</p>
-                            <div class="card-body">
-                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                    <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                </div>
-                            </div>
-                        </div>
-                    
+                    <div class="row mb-2">
+                            
+
+                    <?php 
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value) {
+                      
+                            
+                            $websiteCategory = $value['website_category'];
+                            
+                           if ($websiteCategory === 'Multimedia') {
+                            
+                                echo '
+                                <div class="col-3 text-center">
+                                    <div class="card">
+                                    <img src="views/images/Multimedia.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                        <div class="card-body">
+                                            <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
+                                                <input class="form-check-input border-2 border-success NewMedia" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>'
+                                ;
+                            }
+                     
+                            
+                            
+                        }
+                        ?>
                     </div>
 
-                        <div class='col-3 text-center'>
-                            <div class="card">
-                                <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>      
-                                <p style="font-size:1.5em;">Pixlr</p>
-                                <div class="card-body">
-                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class='col-3 text-center'>
-                            <div class="card">
-                                <i class="fadeIn animated bx bx-photo-album" style="font-size:4em; color:#2C74B3;" ></i>      
-                                <p style="font-size:1.5em;">Prezi</p>
-                                <div class="card-body">
-                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                 </div>
 
                 <div class="row mb-2">
-                    <div class=" d-flex justify-content-between align-items-center">
+                        <div class=" d-flex justify-content-between align-items-center">
                         <h6>Video Conference</h6>
-                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                     
-                       
+                        <input class="form-check-input border-2 border-success mb-3" type="checkbox" value="" id="Vid" onclick="checkAllvid()" style="font-size:2em;">
+                         
                     </div>
                     <hr>
-                    <div class='col-3 text-center'>
-                        <div class="card m">
-                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>      
-                                <p style="font-size:1.5em;">MS Teams</p>
-                                <div class="card-body">
-                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
+                    <div class="row mb-2">
+                            
+
+                    <?php 
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value) {
+                      
+                            
+                            $websiteCategory = $value['website_category'];
+                            
+                           if ($websiteCategory === 'Video Conference') {
+                            
+                                echo '
+                                <div class="col-3 text-center">
+                                    <div class="card">
+                                        <img src="views/images/videocon.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                        <div class="card-body">
+                                            <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
+                                                <input class="form-check-input border-2 border-success NewVid" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div>'
+                                ;
+                            }
+                     
+                            
+                            
+                        }
+                        ?>
                     </div>
 
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"     ></i>      
-                                <p style="font-size:1.5em;">Google Meet</p>
-                                <div class="card-body">
-                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
-                    <div class='col-3 text-center'>
-                        <div class="card">
-                             <i class="fadeIn animated bx bx-camera" style="font-size:4em; color:#205295;"></i>      
-                                <p style="font-size:1.5em;">Zoom</p>
-                                <div class="card-body">
-                                    <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top:-20px;">
-                                        <input class="form-check-input border-2 border-success" type="checkbox" value="" id="flexCheckDefault" style="font-size:2em;">
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
                 </div>
             </div>
         </div>
         
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" id="addGroupBtn">Save</button>
+            <button type="button" class="btn text-white" id="addGroupBtn"  style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Add Group Website</button>
         </div>
         </div>
     </div>
@@ -500,4 +466,8 @@
 <script>
 generateCards();
 generateURLList();
+
+
 </script>
+
+

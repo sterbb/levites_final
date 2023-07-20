@@ -16,9 +16,13 @@
     <link href="views/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
 	<link href="views/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<link rel="stylesheet" href="views/assets/plugins/flatpickr/flatpickr.min.css">
 	<link href="views/assets/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet">
 	<link href="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet">
+	<link href="views/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 
     <!-- loader-->
@@ -87,6 +91,7 @@
 			$_GET["route"] == 'verifyEmail' ||
 			$_GET["route"] == 'verifyForget' ||
 			$_GET["route"] == 'landingpage' ||
+			$_GET["route"] == 'demomusic' ||
 			$_GET["route"] == 'requestPassword'){
 
             include "modules/".$_GET["route"].".php";
@@ -132,7 +137,13 @@
     <script src="views/assets/plugins/metismenu/js/metisMenu.min.js"></script>
     <script src="views/assets/plugins/simplebar/js/simplebar.min.js"></script>
     <script src="views/assets/plugins/fullcalendar/js/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="views/assets/plugins/flatpickr/flatpickr.min.js"></script>
+
+
+
+	
     <script src="views/assets/plugins/input-tags/js/tagsinput.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script src="views/assets/plugins/select2/js/select2-custom.js"></script>
@@ -145,6 +156,9 @@
 	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="views/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+   <script src="views/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
 
 
 	
@@ -168,6 +182,9 @@
 	<script src="views/assets/plugins/form-repeater/repeater.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase.js"></script>
 
+	<script src="views/assets/js/flatpickr.js"></script>
+
+
 	
 
 	<!-- customize scripts -->
@@ -185,13 +202,9 @@
 	<script src="views/js/collaboration.js"></script>   
 	<script src="views/js/churchsetting.js"></script>   
 	<script src="views/js/publichomepage.js"></script>   
+	<script src="views/js/music_demo.js"></script>   
+	<script src="views/js/report.js"></script>   
 
-
-	<!-- <script async defer src="https://apis.google.com/js/api.js"></script>
-	<script src="https://accounts.google.com/gsi/client" async defer></script>
-
-
-	<script async defer src="https://accounts.google.com/gsi/client"></script> -->
 
 
     <script>
@@ -287,8 +300,7 @@
       });
     </script>
 
-<script>
-		
+	<script>
 		$(".datepicker").flatpickr();
 
 		$(".time-picker").flatpickr({
@@ -321,8 +333,7 @@
 			altFormat: "F j, Y",
 			dateFormat: "Y-m-d",
 		});
-
-</script>
+	</script>
 
 <script>
 		$('#fancy-file-upload').FancyFileUpload({

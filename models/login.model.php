@@ -25,7 +25,7 @@ class ModelLogin{
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
 	
-			$stmt = $pdo->prepare("SELECT AccountID, acc_username, acc_password, fname, acc_type, affiliated_church FROM account WHERE verify_status = :verify_status AND acc_username = :acc_username");
+			$stmt = $pdo->prepare("SELECT AccountID, acc_username, acc_password, fname, acc_type, acc_restriction, affiliated_church, affiliated_churchname FROM account WHERE verify_status = :verify_status AND acc_username = :acc_username");
 			$stmt -> bindParam(":acc_username", $data['login_username'], PDO::PARAM_STR);
             $stmt -> bindParam(":verify_status", $status, PDO::PARAM_INT);
 			$stmt->execute();
@@ -35,22 +35,26 @@ class ModelLogin{
 		    foreach($result as $row){
                 $acc_username = $row['acc_username'];
 				$acc_name = $row["fname"];	
-                $acc_type = $row["acc_type"];	
+                $acc_restriction = $row["acc_restriction"];	
+				$acc_type = $row["acc_type"];	
 				$acc_id= $row["AccountID"];
 				$church_id= $row["affiliated_church"];
+				$church_name= $row["affiliated_churchname"];
+				
 
                     if($data['login_password'] == $row["acc_password"]){
 						
-
+						setcookie("acc_restriction", $acc_restriction, time() + (86400 * 30), "/"); // 86400 = 1 day
 						setcookie("acc_type", $acc_type, time() + (86400 * 30), "/"); // 86400 = 1 day
 						setcookie("acc_name", $acc_name, time() + (86400 * 30), "/"); // 86400 = 1 day
 						setcookie("acc_id", $acc_id, time() + (86400 * 30), "/"); // 86400 = 1 day
 						setcookie("church_id", $church_id, time() + (86400 * 30), "/"); // 86400 = 1 day
+						setcookie("church_name", $church_name, time() + (86400 * 30), "/"); // 86400 = 1 day
 						$_SESSION["acc_type"] = $acc_type;
                         $pdo->commit();
                         echo $acc_type;	
 
-                        return "ok";
+                        return "ok";	
                     
 
                     }else{

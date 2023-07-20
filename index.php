@@ -24,7 +24,8 @@ require_once "controllers/churchAdmin.controller.php";
 
 require_once "controllers/churchsetting.controller.php";
 // require_once "controllers/churchsetting.controller.php";
-
+require_once "controllers/collaboration.controller.php";
+// require_once "controllers/churchsetting.controller.php";
 
 
 
@@ -41,6 +42,10 @@ require_once "models/account.model.php";
 
 require_once "models/churchAdmin.model.php";
 // require_once "models/churchAdmin.model.php";
+
+require_once "models/collaboration.model.php";
+// require_once "models/churchAdmin.model.php";
+
 
 
 

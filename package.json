@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "musixmatch": "^0.1.6",
-    "musixmatchlyrics": "^0.0.1"
+    "musixmatchlyrics": "^0.0.1",
+    "node-fetch": "^3.3.1"
   }
 }

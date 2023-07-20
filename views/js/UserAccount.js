@@ -4,6 +4,25 @@ $(".UserAccountForm").submit(function(e) {
     var user_name = $("#user-name").val();
     var user_password = $("#user-password").val();
 
+    var account_type = "";
+
+    var c = $("#calendar_access").val();
+    var s = $("#storage_access").val();
+    var r = $("#request_access").val();
+    
+    if ($("#calendar_access").is(":checked")) {
+        account_type += c;
+      }
+
+      if ($("#storage_access").is(":checked")) {
+        account_type += s;
+      }
+
+      if ($("#request_access").is(":checked")) {
+        account_type += r;
+      }
+
+
 
     if (user_name.trim() === "" || user_password.trim() === "") {
         // Display an error message using SweetAlert
@@ -16,6 +35,7 @@ $(".UserAccountForm").submit(function(e) {
         var userData = new FormData();
         userData.append("user-name", user_name);
         userData.append("user-password", user_password);
+        userData.append("account_type", account_type);
 
 
         $.ajax({
@@ -52,10 +72,13 @@ $(".UserAccountForm").submit(function(e) {
 
 // CLEAR INPUT
 $(".UserAccountForm").reset(function() {
+
+    alert("hello");
     clear();
 });
 
 function clear(){
+    alert("hello");
     $("#user-name").focus();
     swal.fire({
         icon: 'question',

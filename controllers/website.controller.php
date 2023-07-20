@@ -15,6 +15,28 @@ class ControllerWebsite{
 	static public function ctrShowGroups(){
         return $answer = (new ModelWebsite)->mdlShowGroups();
 	}
+
+	static public function ctrdeleteWebsite($data){
+        return $answer = (new ModelWebsite)->mdldeleteWebsite($data);
+	}
+
+	static public function ctrdeleteWebsiteInGroup($data){
+        return $answer = (new ModelWebsite)->mdldeleteWebsiteInGroup($data);
+	}
+
+	static public function ctrdeleteWebsiteGroup($data){
+        return $answer = (new ModelWebsite)->mdldeleteWebsiteGroup($data);
+	}
+
+	static public function ctrupdateWebsiteInGroup($data){
+        return $answer = (new ModelWebsite)->mdlupdateWebsiteInGroup($data);
+	}
+
+
+	
     
+    
+	
+	
     
 }

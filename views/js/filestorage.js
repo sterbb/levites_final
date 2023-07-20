@@ -1,9 +1,61 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 $(document).ready(function(){
-    listFilesInFolder("C1005");
-    listFoldersInFolder("C1005");
+
+
+ var divElements = document.getElementsByClassName('affiliateStorage');
+var currentPath = getCookie('church_id');
+
+// Loop through each div element
+Array.from(divElements).forEach(function (divElement) {
+  var storage = firebase.storage();
+  var folderRef = storage.ref(divElement.id);
+  var totalSize = 0;
+  var totalFiles = 0;
+  var progressBar = document.getElementById('progress-bar' + divElement.id);
+
+  folderRef
+    .listAll()
+    .then(function (result) {
+      var promises = [];
+      totalFiles = result.items.length;
+
+      // Iterate through all the items (files) in the folder
+      result.items.forEach(function (item) {
+        promises.push(
+          item.getMetadata().then(function (metadata) {
+            totalSize += metadata.size;
+
+            // When all files have been processed, update the div element with the total size
+            if (promises.length === totalFiles) {
+              var totalSizeInGB = totalSize / (1024 * 1024 * 1024);
+              var totalSizeInMB = totalSize / (1024 * 1024);
+              var progress = totalSizeInMB >= 200 ? 100 : (totalSizeInMB / 2).toFixed(2);
+              progressBar.style.width = progress + '%';
+              var totalSizeFormatted;
+              if (totalSizeInGB >= 1) {
+                totalSizeFormatted = totalSizeInGB.toFixed(2) + ' GB';
+              } else if (totalSizeInMB >= 1) {
+                totalSizeFormatted = totalSizeInMB.toFixed(2) + ' MB';
+              } else {
+                totalSizeFormatted = (totalSize / 1024).toFixed(2) + ' KB';
+              }
+              divElement.textContent = totalSizeFormatted;
+            }
+          })
+        );
+      });
+
+      // Wait for all the promises to resolve
+      return Promise.all(promises);
+    });
 });
+
+listFilesInFolder(currentPath);
+listFoldersInFolder(currentPath);
+  
+});
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDHkmk1QhuflkF8Vh_w5QC01WXy3-RAdbc",
@@ -16,7 +68,7 @@ const firebaseConfig = {
   };
 firebase.initializeApp(firebaseConfig);
 
-var currentPath = 'C1005/';
+var currentPath = getCookie('church_id');
 
 //For adding note / for folder manipulation
 var currentFile = '';
@@ -30,6 +82,7 @@ function listFoldersInFolder(folderPath) {
       .then(function (result) {
         
         var foldersContainer = document.getElementById('foldersContainer');
+        var pinnedContainer = document.getElementById('pinnedSection');
         foldersContainer.innerHTML = ''; // Clear existing folders
   
         result.prefixes.forEach(function (prefixRef) {
@@ -46,8 +99,6 @@ function listFoldersInFolder(folderPath) {
               console.log('Custom metadata:', metadata.customMetadata);
               console.log('Custom metadata:', metadata.customMetadata.pin);
               if(metadata.customMetadata.pin == 'true'){
-
-
                 var newFolderCard = document.createElement('div');
                 newFolderCard.className = 'col-12 col-lg-4 folder-div';
                 newFolderCard.innerHTML = `
@@ -89,51 +140,48 @@ function listFoldersInFolder(folderPath) {
                     </div>
                 `;
         
-                foldersContainer.appendChild(newFolderCard);
-
+                pinnedContainer.appendChild(newFolderCard);
               }
               
 
             })
             .catch(function (error) {
-              console.log('Error:', error);
-            });
-
-          var newFolderCard = document.createElement('div');
-          newFolderCard.className = 'col-12 col-lg-4 folder-div';
-          newFolderCard.innerHTML = `
-            <div class="card shadow-none border radius-15 " >
-              <div class="card-body folder-div" >
-                <div class="d-flex align-items-center folder-div">
-                  <div>
-          
-                    <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0" style="z-index:999;" value=${folderName} onclick="pinFolder(this)" ><i class="bx bx-pin fs-5"></i></button>
-                    <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info"  onclick="showNote(this)"  value=${folderName}><i class='bx bx-info-circle fs-4 m-3'></i>
+              var newFolderCard = document.createElement('div');
+              newFolderCard.className = 'col-12 col-lg-4 folder-div';
+              newFolderCard.innerHTML = `
+                <div class="card shadow-none border radius-15 " >
+                  <div class="card-body folder-div" >
+                    <div class="d-flex align-items-center folder-div">
+                      <div>
+              
+                        <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0" style="z-index:999;" value=${folderName} onclick="pinFolder(this)" ><i class="bx bx-pin fs-5"></i></button>
+                        <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info"  onclick="showNote(this)"  value=${folderName}><i class='bx bx-info-circle fs-4 m-3'></i>
+                      </div>
+                      <div class="font-30 text-secondary mt-2" ><i class="bx bxs-folder" onclick="handleClick(this)" value=${folderName}></i></div>
+                    </div>
+                    <div class="dropdown ms-auto">
+                      <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i></button>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"  data-bs-target="#createNote"  onclick="setUpFilePath(this)" value=${folderName}><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
+                        <li><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal"  data-bs-target="#editNote" value=${folderName}><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
+                        <hr class="dropdown-divider">
+                        <li><a class="dropdown-item" href="javascript:;" onclick="pinFolder(this)" value=${folderName}><i class='fi bx bx-share' ></i>Pin Folder</a></li>
+                        <hr class="dropdown-divider">
+                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Link to Event</a></li>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
+                      </ul>
+                    </div>
+                    <h6 class="mb-0" onclick="handleClick(this)" value=${folderName}>${folderName}</h6>
+                    <small>0 files</small>
                   </div>
-                  <div class="font-30 text-secondary mt-2" ><i class="bx bxs-folder" onclick="handleClick(this)" value=${folderName}></i></div>
                 </div>
-                <div class="dropdown ms-auto">
-                  <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i></button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"  data-bs-target="#createNote"  onclick="setUpFilePath(this)" value=${folderName}><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
-                    <li><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal"  data-bs-target="#editNote" value=${folderName}><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
-                    <hr class="dropdown-divider">
-                    <li><a class="dropdown-item" href="javascript:;" onclick="pinFolder(this)" value=${folderName}><i class='fi bx bx-share' ></i>Pin Folder</a></li>
-                    <hr class="dropdown-divider">
-                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Link to Event</a></li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
-                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
-                  </ul>
-                </div>
-                <h6 class="mb-0" onclick="handleClick(this)" value=${folderName}>${folderName}</h6>
-                <small>0 files</small>
-              </div>
-            </div>
-          `;
-  
-          foldersContainer.appendChild(newFolderCard);
+              `;
+      
+              foldersContainer.appendChild(newFolderCard);
+            });
           console.log("Folder:", folderName);
         });
       })
@@ -145,36 +193,43 @@ function listFoldersInFolder(folderPath) {
   
 // Function to list files in a folder
 function listFilesInFolder(folderPath) {
-    var storage = firebase.storage();
-    var folderRef = storage.ref(folderPath);
-  
-    folderRef
-      .listAll()
-      .then(function (result) {
-        var fileListBody = document.getElementById('fileListBody');
-        fileListBody.innerHTML = ''; // Clear existing rows
-  
-        result.items.forEach(function (fileRef) {
-          var fileIcon = '';
-          var fileNameClass = '';
-  
-          // Determine file type and set appropriate icon and class
-          if (fileRef.name.endsWith('.pdf')) {
-            fileIcon = 'bx bxs-file-pdf';
-            fileNameClass = 'text-danger';
-          } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
-            fileIcon = 'bx bxs-file';
-            fileNameClass = 'text-primary';
-          } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
-            fileIcon = 'bx bxs-file-doc';
-            fileNameClass = 'text-success';
-          } else {
-            fileIcon = 'bx bxs-file';
-            fileNameClass = '';
-          }
-  
-          var newRowFile = `
-          <tr class="dropdown-cell">
+  var storage = firebase.storage();
+  var folderRef = storage.ref(folderPath);
+
+  folderRef
+    .listAll()
+    .then(function (result) {
+      var fileListBody = document.getElementById('fileListBody');
+      fileListBody.innerHTML = ''; // Clear existing rows
+
+      result.items.forEach(function (fileRef) {
+        // Check if file type is .placeholder, if yes, skip this file
+        if (fileRef.name.endsWith('.placeholder')) {
+          return;
+        }
+
+        var fileIcon = '';
+        var fileNameClass = '';
+
+        // Determine file type and set appropriate icon and class
+        if (fileRef.name.endsWith('.pdf')) {
+          fileIcon = 'bx bxs-file-pdf';
+          fileNameClass = 'text-danger';
+        } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
+          fileIcon = 'bx bxs-file';
+          fileNameClass = 'text-primary';
+        } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
+          fileIcon = 'bx bxs-file-doc';
+          fileNameClass = 'text-success';
+        } else {
+          fileIcon = 'bx bxs-file';
+          fileNameClass = '';
+        }
+        
+        
+
+        var newRowFile = `
+        <tr class="dropdown-cell">
           <td>
             <div class="d-flex align-items-center">
               <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
@@ -197,17 +252,17 @@ function listFilesInFolder(folderPath) {
             </div>
           </td>
         </tr>
-        
-          `;
-  
-          fileListBody.innerHTML += newRowFile;
-          console.log("File:", fileRef.name);
-        });
-      })
-      .catch(function (error) {
-        console.log("Error:", error);
+        `;
+
+        fileListBody.innerHTML += newRowFile;
+        console.log("File:", fileRef.name);
       });
-  }
+    })
+    .catch(function (error) {
+      console.log("Error:", error);
+    });
+}
+
   // Call the function with the desired folder path
 
 
@@ -222,6 +277,7 @@ var cancel = document.getElementsByClassName('cancel')[0];
 
 // create function for select a file
 upload.onclick = function () {
+  alert(getCookie('church_id'));
     hiddenBtn.click();
 }
 
@@ -237,8 +293,7 @@ hiddenBtn.onchange = function () {
     var file = hiddenBtn.files[0];
     // change file name so cannot overwrite
     var name = file.name.split('.').shift() + Math.floor(Math.random() * 10) + 10 + '.' + file.name.split('.').pop();
-    var type = file.type.split('/')[0];
-    var path = "C1005" + '/' + name;
+    var path = currentPath + '/' + name;
 
       // Set metadata
   var metadata = {
@@ -259,27 +314,26 @@ hiddenBtn.onchange = function () {
     null,
     function () {
       // Perform listing after upload
-      listFilesInFolder("C1005");
-      listFoldersInFolder("C1005");
+      listFilesInFolder(currentPath);
+      listFoldersInFolder(currentPath);
     }
   );
 
-    listFilesInFolder("C1005");
-    listFoldersInFolder("C1005");
-
+    listFilesInFolder(currentPath);
+    listFoldersInFolder(currentPath);
 }
 
 $("#createFolderBtn").click(function(){
   var foldername = $("#folderName").val();  
   
 
-  var parentFolderPath = "C1005";
+  var parentFolderPath = currentPath;
   var subfolderName = foldername;
   
   createSubfolder(parentFolderPath, subfolderName);
 
-  listFilesInFolder("C1005");
-  listFoldersInFolder("C1005");
+  listFilesInFolder(currentPath);
+  listFoldersInFolder(currentPath);
 });
 
 
@@ -325,7 +379,7 @@ function deleteFile(element) {
 
   var path = $(element).attr('value');
   var storage = firebase.storage();
-  var fileRef = storage.ref(currentPath + path);
+  var fileRef = storage.ref(currentPath + '/' + path);
 
   fileRef
     .delete()
@@ -342,7 +396,7 @@ function deleteFile(element) {
 function downloadFile(element) {
   var path = $(element).attr('value');
   var storage = firebase.storage();
-  var fileRef = storage.ref(currentPath + path);
+  var fileRef = storage.ref(currentPath  + '/' + path);
 
   fileRef
   .getDownloadURL()
@@ -378,7 +432,7 @@ function getCookie(cookieName) {
 
 function setUpFilePath(element){
   var path = $(element).attr('value');
-  currentFile = 'C1005/' + path;
+  currentFile = currentPath + "/" + path;
 
   $("#editNoteButton").attr("id", "addNoteButton");
   $("#addNoteButton").text("Create");
@@ -465,7 +519,7 @@ function uploadNote(filePath, textContent) {
 
 function setUpFilePathEdit(element){
   var path = $(element).attr('value');
-  currentFile = 'C1005/' + path + '/.placeholder';
+  currentFile = currentPath+ '/' + path + '/.placeholder';
 
   $('#noteField').val('');
   // $("#addNoteButton").removeAttr("hidden");
@@ -532,7 +586,7 @@ function retrieveNote(NotePath){
 
 function pinFolder(element){
   var path = $(element).attr('value');
-  currentFile = 'C1005/' + path + '/.placeholder';
+  currentFile = currentPath+ '/' + path + '/.placeholder';
 
 
   var storage = firebase.storage();
@@ -563,7 +617,7 @@ fileRef
 function showNote(element){
 
   var path = $(element).attr('value');
-  currentFile = 'C1005/' + path + '/.placeholder';
+  currentFile = currentPath+ '/' + path + '/.placeholder';
   alert(currentFile);
 
 
@@ -590,3 +644,14 @@ function showNote(element){
   });
 
 }
+
+
+$('.affiliatesSection').click(function() {
+  var collabID = $(this).val();
+  currentPath = collabID;
+  listFilesInFolder(currentPath);
+  listFoldersInFolder(currentPath);
+  console.log('Clicked Button Value:', buttonValue);
+});
+
+

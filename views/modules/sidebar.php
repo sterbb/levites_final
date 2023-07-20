@@ -9,6 +9,19 @@ if(isset($_COOKIE["acc_type"])){
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
+
+    $acc_res = $_COOKIE['acc_restriction'];
+
+    if(strpos($acc_res, 'C') === false){
+      echo"<style>.calendar{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'S') === false){
+      echo"<style>.storage{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'R') === false  ){
+      echo"<style>.request{display:none !important;}</style>";
+    }
+
   }elseif($_COOKIE["acc_type"] == "superuser"){
     echo"<style>.admin{display:none !important;}</style>";
     echo"<style>.public{display:none !important;}</style>";
@@ -64,7 +77,7 @@ if(isset($_COOKIE["acc_type"])){
                   </a>
                 </li>
                 
-                <li class="admin">
+                <li class="admin calendar">
                   <a href="churchcalendar">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                       calendar_add_on
@@ -90,7 +103,7 @@ if(isset($_COOKIE["acc_type"])){
                   </ul>
                 </li>
 
-                <li class="admin-public">
+                <li class="admin-public storage">
                   <a href="filestorage">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                      hard_drive
@@ -100,7 +113,7 @@ if(isset($_COOKIE["acc_type"])){
                   </a>
                 </li>
 
-                <li class="admin" >
+                <li class="admin request" >
                   <a href="requests ">
                     <div class="parent-icon"><i class="fadeIn animated bx bx-comment-dots"></i>
                     </div>
@@ -140,7 +153,7 @@ if(isset($_COOKIE["acc_type"])){
                       <div class="menu-title ">Public Pages View</div>
                     </a>
                     <ul>
-                      
+    
                       <li> <a href="publichomepage"><span class="material-symbols-outlined">arrow_right</span>Public Homepage</a>
                       </li>
                       <li> <a href="catdetails"><span class="material-symbols-outlined">arrow_right</span>Calendar Details</a>
@@ -163,11 +176,6 @@ if(isset($_COOKIE["acc_type"])){
                       
                     </ul>
                 </li>
-                
-
-             
-                
-
               
               </ul>
               <!--end navigation-->
@@ -176,41 +184,3 @@ if(isset($_COOKIE["acc_type"])){
           </div>
 
 </aside>
-<!--end sidebar-->
-
-
-<!-- user logout -->
-
-<!-- <div class="sidebar-bottom dropdown dropup-center dropdown">
-              <div class="dropdown-toggle d-flex align-items-center px-3 gap-1 w-100 h-100" data-bs-toggle="dropdown">
-                <div class="user-img">
-                   <img src="views/assets/images/avatars/02.png" alt="">
-                </div>
-                <div class="user-info">
-                  <h5 class="mb-0 user-name">Jan Ryan Divinagracia</h5>
-                  <p class="mb-0 user-designation">Community Follower</p>
-                </div>
-              </div>
-              <ul class="dropdown-menu dropdown-menu-right">
-
-                <li hidden><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
-                  settings
-                  </span><span>Church Account Settings</span></a>
-                </li>
-
-                <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
-                  settings
-                  </span><span>Public Account Settings</span></a>
-                </li>
-                <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-
-                
-               
-                <li><a class="dropdown-item" href="login"><span class="material-symbols-outlined me-2">
-                  logout
-                  </span><span>Logout</span></a>
-                </li>
-              </ul>
-          </div> -->

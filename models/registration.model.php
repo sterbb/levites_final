@@ -207,7 +207,7 @@ class ModelRegister {
 			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
 
 			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
@@ -259,7 +259,9 @@ class ModelRegister {
 			$stmt->bindParam(":acc_email", $data["church_email"], PDO::PARAM_STR);
 			$stmt->bindParam(":verify_token", $verify_token, PDO::PARAM_STR);
 			$stmt->bindParam(":acc_type", $account_type, PDO::PARAM_STR);
+
 			$stmt->bindParam(":affiliated_church", $churchid[0]['church_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":affiliated_churchname", $data["church_name"], PDO::PARAM_STR);
 			
 			setcookie("current_email", $data["church_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			$stmt->execute();		

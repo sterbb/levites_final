@@ -22,7 +22,8 @@
                         <div class="mb-3">
                             <label class="form-label">Date Range</label>
                             <!-- <input type="hidden" class="form-control date-range flatpickr-input"> -->
-                            <input class="form-control date-range input" placeholder="" tabindex="0" type="text" readonly="readonly">
+                            <input class="form-control date-range"  id="report-range" placeholder="" tabindex="0" type="text" readonly="readonly">
+                            <!-- <input class="form-control flatpickr" type="text" placeholder="Select Dates.." id="report-range" name="flatpickr-range" required> -->
                         </div>
                     </div>
 
@@ -44,8 +45,8 @@
                             <a href="javascript:;" class="btn btn-danger btn-sm me-2"><i class="bi bi-file-earmark-pdf me-2"></i>Export as PDF</a>
                             <a href="javascript:;" onclick="window.print()" class="btn btn-dark btn-sm"><i class="bi bi-printer-fill me-2"></i>Print</a>
                 </div>
-                <div class="card">
                 
+                <div class="card">
                     <div class="card-body">
                         <table class="table table-bordered mb-0">
                             <thead>
@@ -79,6 +80,42 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="example2" class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Event Title</th>
+                            <th>Category</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Tiger Nixon</td>
+                            <td>Tiger Nixon</td>
+                            <td>Tiger Nixon</td>
+                            <td>Tiger Nixon</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
         <!--end row-->
