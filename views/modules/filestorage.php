@@ -24,18 +24,7 @@
                   <a href="javascript:;" class="btn btn-sm btn-outline-primary justify-content-center mt-4">View all</a>
                 </div>
               </div>
-              <div class="d-flex align-items-center">
-                <div><i class="bx bxs-file-pdf me-2 font-24 text-danger"></i></div>
-                <div class="font-weight-bold">Sermon Details</div>
-              </div>
-              <div class="d-flex align-items-center mt-1">
-                <div><i class="bx bxs-file me-2 font-24 text-primary"></i></div>
-                <div class="font-weight-bold">Daily Reading</div>
-              </div>
-              <div class="d-flex align-items-center mt-1">
-                <div><i class="bx bxs-file-doc me-2 font-24 text-success"></i></div>
-                <div class="font-weight-bold">Note</div>
-              </div>
+              <div id="recentFilesList"></div>
               <div class="mb-3 border-top"></div>
               
               
@@ -277,7 +266,7 @@
                                 </ul>
                               </div>
                               </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000" id="membertooltip">Members Folder</i></h5>
+                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip folderName"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000" id="membertooltip">Members Folder</i></h5>
                               </p>
                             </div>
                           </div>
@@ -341,8 +330,6 @@
                         </div>
 
                       <!--end row-->
-                     
-
                     </div>
                      
                     <div class="row mt-3" id="foldersContainer">

@@ -113,13 +113,17 @@ $(document).ready(function() {
                 $("<div>")
                   .addClass("d-flex align-items-start justify-content-between")
                   .append(
-                    $("<a>").attr("href", "profile").append(
+                    $("<button>")
+                      .addClass("border-0 bg-transparent") // Add the 'border-0' class to the button
+                      .attr("church_id", element.churchID)
+                      .attr("onclick", "openProfile(this)")
+                      .append(
                       $("<div>")
-                        .addClass("text-black")
+                        .addClass("text-black border-0 text-start")
                         .append(
-                          $("<h3>").addClass("mb-2 card-title").text(element.church_name),
-                          $("<span>").addClass("badge bg-success bg-success-subtle text-success border border-opacity-25 border-success").text(element.church_city),
-                          $("<span>").addClass("badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success").text(element.church_address)
+                          $("<h3>").addClass("mb-2 card-title").text(element.church_name).attr("church_id", element.churchID),
+                          $("<span>").addClass("badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-1").text(element.church_city),
+                          $("<span>").addClass("badge bg-primary bg-primary-subtle text-primary border border-opacity-25 mt-2 border-primary").text(element.church_address)
                         )
                     )
                   )
@@ -129,5 +133,25 @@ $(document).ready(function() {
         churchResultsContainer.append(churchCard);
       });
     }
+
+    // function openProfile(element){
+    //   alert("hi");
+    //   var profileid = element.attr("church_id");
+    //   alert(profileid);
+    //   document.cookie = "profileID="+ element.attr("church_id")+";";
+
+    // }
   });
+
+  
+  function openProfile(element){
+    alert(element);
+    var profileid = $(element).attr("church_id");
+    
+    alert(profileid);
+    document.cookie = "profileID="+ profileid+ ";";
+    window.location.href = "profile";
+  }
+
+  
   

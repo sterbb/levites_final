@@ -3,8 +3,11 @@ require_once "../controllers/churchsetting.controller.php";
 require_once "../models/churchsetting.model.php";
 
 class AddDonation{
+class AddDonation{
 
     public $donation_category;
+    public $donation_number;
+    
 
     public function addDonation(){
       $donation_number = $this->donation_number;

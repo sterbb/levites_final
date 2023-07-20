@@ -73,24 +73,61 @@ var currentPath = getCookie('church_id');
 //For adding note / for folder manipulation
 var currentFile = '';
 
-function listFoldersInFolder(folderPath) {
+async function getFilesInFolder(folderName) {
+  try {
+    // Get a reference to the Firebase Cloud Storage
+    var storage = firebase.storage();
+
+    // Replace 'your-folder-path' with the actual path to the folder containing your files
+    var folderRef = storage.ref(currentPath + folderName);
+
+    // List all the items (files) in the folder
+    const result = await folderRef.listAll();
+
+    // 'result' contains an array of files and sub-folders in the folder
+    // We will extract the file names and return them as an array
+    const files = result.items.map((fileRef) => fileRef.name);
+    return files;
+  } catch (error) {
+    console.error('Error retrieving files:', error);
+    throw error;
+  }
+}
+
+function formatFileSize(sizeInBytes) {
+  if (sizeInBytes === 0) return 'No files'; // Handle the case of no files
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(sizeInBytes) / Math.log(1024));
+  return (sizeInBytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
+}
+
+async function getFileSize(fileRef) {
+  try {
+    const metadata = await fileRef.getMetadata();
+    const sizeInBytes = metadata.size;
+    return sizeInBytes;
+  } catch (error) {
+    console.log('Error retrieving file size:', error);
+    throw error;
+  }
+}
+
+async function listFoldersInFolder(folderPath) {
+  try {
     var storage = firebase.storage();
     var folderRef = storage.ref(folderPath);
-  
-    folderRef
-      .listAll()
-      .then(function (result) {
-        
-        var foldersContainer = document.getElementById('foldersContainer');
-        var pinnedContainer = document.getElementById('pinnedSection');
-        foldersContainer.innerHTML = ''; // Clear existing folders
-  
-        result.prefixes.forEach(function (prefixRef) {
-          
-          var folderName = prefixRef.name.replace(/\/$/, ''); // Remove trailing slash if present
-          
-          var storage = firebase.storage();
-          var fileRef = storage.ref(currentPath + folderName + '/.placeholder');
+
+    const result = await folderRef.listAll();
+    var foldersContainer = document.getElementById('foldersContainer');
+    foldersContainer.innerHTML = ''; // Clear existing folders
+    
+
+    await Promise.all(
+      result.prefixes.map(async (prefixRef) => {
+        var folderName = prefixRef.name.replace(/\/$/, ''); // Remove trailing slash if present
+
+        var storage = firebase.storage();
+        var fileRef = storage.ref(currentPath + folderName + '/.placeholder');
 
           fileRef
             .getMetadata()
@@ -99,6 +136,8 @@ function listFoldersInFolder(folderPath) {
               console.log('Custom metadata:', metadata.customMetadata);
               console.log('Custom metadata:', metadata.customMetadata.pin);
               if(metadata.customMetadata.pin == 'true'){
+
+
                 var newFolderCard = document.createElement('div');
                 newFolderCard.className = 'col-12 col-lg-4 folder-div';
                 newFolderCard.innerHTML = `
@@ -140,96 +179,93 @@ function listFoldersInFolder(folderPath) {
                     </div>
                 `;
         
-                pinnedContainer.appendChild(newFolderCard);
+                foldersContainer.appendChild(newFolderCard);
+
               }
               
 
             })
             .catch(function (error) {
-              var newFolderCard = document.createElement('div');
-              newFolderCard.className = 'col-12 col-lg-4 folder-div';
-              newFolderCard.innerHTML = `
-                <div class="card shadow-none border radius-15 " >
-                  <div class="card-body folder-div" >
-                    <div class="d-flex align-items-center folder-div">
-                      <div>
-              
-                        <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0" style="z-index:999;" value=${folderName} onclick="pinFolder(this)" ><i class="bx bx-pin fs-5"></i></button>
-                        <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info"  onclick="showNote(this)"  value=${folderName}><i class='bx bx-info-circle fs-4 m-3'></i>
-                      </div>
-                      <div class="font-30 text-secondary mt-2" ><i class="bx bxs-folder" onclick="handleClick(this)" value=${folderName}></i></div>
-                    </div>
-                    <div class="dropdown ms-auto">
-                      <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i></button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"  data-bs-target="#createNote"  onclick="setUpFilePath(this)" value=${folderName}><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
-                        <li><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal"  data-bs-target="#editNote" value=${folderName}><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
-                        <hr class="dropdown-divider">
-                        <li><a class="dropdown-item" href="javascript:;" onclick="pinFolder(this)" value=${folderName}><i class='fi bx bx-share' ></i>Pin Folder</a></li>
-                        <hr class="dropdown-divider">
-                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Link to Event</a></li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
-                      </ul>
-                    </div>
-                    <h6 class="mb-0" onclick="handleClick(this)" value=${folderName}>${folderName}</h6>
-                    <small>0 files</small>
-                  </div>
-                </div>
-              `;
-      
-              foldersContainer.appendChild(newFolderCard);
+              console.log('Error:', error);
             });
+
+          var newFolderCard = document.createElement('div');
+          newFolderCard.className = 'col-12 col-lg-4 folder-div';
+          newFolderCard.innerHTML = `
+            <div class="card shadow-none border radius-15 " >
+              <div class="card-body folder-div" >
+                <div class="d-flex align-items-center folder-div">
+                  <div>
+          
+                    <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0" style="z-index:999;" value=${folderName} onclick="pinFolder(this)" ><i class="bx bx-pin fs-5"></i></button>
+                    <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info"  onclick="showNote(this)"  value=${folderName}><i class='bx bx-info-circle fs-4 m-3'></i>
+                  </div>
+                  <div class="font-30 text-secondary mt-2" ><i class="bx bxs-folder" onclick="handleClick(this)" value=${folderName}></i></div>
+                </div>
+                <div class="dropdown ms-auto">
+                  <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"  data-bs-target="#createNote"  onclick="setUpFilePath(this)" value=${folderName}><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
+                    <li><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal"  data-bs-target="#editNote" value=${folderName}><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
+                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
+                    <hr class="dropdown-divider">
+                    <li><a class="dropdown-item" href="javascript:;" onclick="pinFolder(this)" value=${folderName}><i class='fi bx bx-share' ></i>Pin Folder</a></li>
+                    <hr class="dropdown-divider">
+                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
+                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Link to Event</a></li>
+                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
+                    <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
+                  </ul>
+                </div>
+                <h6 class="mb-0" onclick="handleClick(this)" value=${folderName}>${folderName}</h6>
+                <small>0 files</small>
+              </div>
+            </div>
+          `;
+  
+          foldersContainer.appendChild(newFolderCard);
           console.log("Folder:", folderName);
         });
       })
       .catch(function (error) {
         console.log("Error:", error);
       });
+      
   }
 
   
 // Function to list files in a folder
 function listFilesInFolder(folderPath) {
-  var storage = firebase.storage();
-  var folderRef = storage.ref(folderPath);
-
-  folderRef
-    .listAll()
-    .then(function (result) {
-      var fileListBody = document.getElementById('fileListBody');
-      fileListBody.innerHTML = ''; // Clear existing rows
-
-      result.items.forEach(function (fileRef) {
-        // Check if file type is .placeholder, if yes, skip this file
-        if (fileRef.name.endsWith('.placeholder')) {
-          return;
-        }
-
-        var fileIcon = '';
-        var fileNameClass = '';
-
-        // Determine file type and set appropriate icon and class
-        if (fileRef.name.endsWith('.pdf')) {
-          fileIcon = 'bx bxs-file-pdf';
-          fileNameClass = 'text-danger';
-        } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
-          fileIcon = 'bx bxs-file';
-          fileNameClass = 'text-primary';
-        } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
-          fileIcon = 'bx bxs-file-doc';
-          fileNameClass = 'text-success';
-        } else {
-          fileIcon = 'bx bxs-file';
-          fileNameClass = '';
-        }
-        
-        
-
-        var newRowFile = `
-        <tr class="dropdown-cell">
+    var storage = firebase.storage();
+    var folderRef = storage.ref(folderPath);
+  
+    folderRef
+      .listAll()
+      .then(function (result) {
+        var fileListBody = document.getElementById('fileListBody');
+        fileListBody.innerHTML = ''; // Clear existing rows
+  
+        result.items.forEach(function (fileRef) {
+          var fileIcon = '';
+          var fileNameClass = '';
+  
+          // Determine file type and set appropriate icon and class
+          if (fileRef.name.endsWith('.pdf')) {
+            fileIcon = 'bx bxs-file-pdf';
+            fileNameClass = 'text-danger';
+          } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
+            fileIcon = 'bx bxs-file';
+            fileNameClass = 'text-primary';
+          } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
+            fileIcon = 'bx bxs-file-doc';
+            fileNameClass = 'text-success';
+          } else {
+            fileIcon = 'bx bxs-file';
+            fileNameClass = '';
+          }
+  
+          var newRowFile = `
+          <tr class="dropdown-cell">
           <td>
             <div class="d-flex align-items-center">
               <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
@@ -252,17 +288,17 @@ function listFilesInFolder(folderPath) {
             </div>
           </td>
         </tr>
-        `;
-
-        fileListBody.innerHTML += newRowFile;
-        console.log("File:", fileRef.name);
+        
+          `;
+  
+          fileListBody.innerHTML += newRowFile;
+          console.log("File:", fileRef.name);
+        });
+      })
+      .catch(function (error) {
+        console.log("Error:", error);
       });
-    })
-    .catch(function (error) {
-      console.log("Error:", error);
-    });
-}
-
+  }
   // Call the function with the desired folder path
 
 
@@ -341,14 +377,51 @@ function createSubfolder(parentFolderPath, subfolderName) {
   var storage = firebase.storage();
   var subfolderRef = storage.ref(parentFolderPath + "/" + subfolderName + "/.placeholder");
 
+  var metadata = {
+    customMetadata: {
+      createdBy: getCookie('acc_name'),
+      // Add more custom metadata properties as needed
+    }
+  };
+
   subfolderRef
-    .putString("", "raw")
+    .putString("", "raw", metadata)
     .then(function () {
       console.log("Subfolder created:", parentFolderPath + "/" + subfolderName);
     })
     .catch(function (error) {
       console.log("Error:", error);
     });
+
+
+   
+    // var fileRef = storage.ref(parentFolderPath + "/" + subfolderName + "/.placeholder");
+  
+    // // Set metadata
+    // var folderMetaData = {
+    //   customMetadata: {
+    //     createdBy: getCookie('acc_name')
+    //   }
+    // };
+  
+  
+    // fileRef
+    //   .getMetadata()
+    //   .then(function (metadata) {
+    //     // Merge existing metadata with updatedMetadata
+    //     var mergedMetadata = Object.assign({}, metadata, folderMetaData);
+  
+    //     return fileRef.updateMetadata(mergedMetadata);
+    //   })
+    //   .then(function (metadata) {
+    //     console.log('Metadata updated:', metadata);
+    //   })
+    //   .catch(function (error) {
+    //     console.log('Error:', error);
+    //   });
+  
+
+
 }
 function handleClick(element) {
 
@@ -360,8 +433,8 @@ function handleClick(element) {
   
   // Get the value of the clicked div
   var value = $(element).attr('value');
-  currentPath += value;
-  console.log(value);
+  currentPath += value ;
+  console.log(currentPath);
   listFilesInFolder(currentPath);
   listFoldersInFolder(currentPath);
 }

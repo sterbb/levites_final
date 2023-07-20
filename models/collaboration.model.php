@@ -202,10 +202,122 @@ class CollaborationModel
 
 }
 
-   
+public function mdladdMembership($data)
+{
+    $db = new Connection();
+    $pdo = $db->connect();
+//account
+    $memberName = $_COOKIE["acc_name"];
+    $memberID = $_COOKIE['acc_id'];
+
+    $current_year = substr(date('Y'), -2 );
+    $current_month = date('n');
+    
+    try{
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->beginTransaction();
+
+        
+        $mship_id = (new Connection)->connect()->prepare("SELECT CONCAT('MEM', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as mship_id  FROM membership FOR UPDATE");
+        $mship_id->execute();
+        $mshipid = $mship_id -> fetchAll(PDO::FETCH_ASSOC);
+
+        
+        $stmt = $pdo->prepare("INSERT INTO membership (mshipID, memberID, memberName, memChurchID, memChurchName) 
+        VALUES (:mshipID, :memberID, :memberName, :memChurchID, :memChurchName)");
+
+        $stmt->bindParam(":mshipID", $mshipid[0]['mship_id'], PDO::PARAM_STR);
+        $stmt->bindParam(":memberID", $memberID, PDO::PARAM_STR);
+        $stmt->bindParam(":memberName", $memberName, PDO::PARAM_STR);
+        $stmt->bindParam(":memChurchID", $data['memChurchID'], PDO::PARAM_STR);
+        $stmt->bindParam(":memChurchName", $data['memChurchName'], PDO::PARAM_STR);
+        $stmt->execute();		
+        $pdo->commit();
+        
+        return "ok";
+    }catch (Exception $e){
+        $pdo->rollBack();
+        return "error";
+    }	
+    $pdo = null;	
+    $stmt = null;
+    
+}
 
 
+static public function mdlshowMembership(){
 
+    $acc_id = $_COOKIE['church_id'];
+    $status = 0;
+
+    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status AND canmship_status = :canmship_status AND membership_status = :membership_status");
+    $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
+    $stmt->bindParam(':rejmship_status', $status, PDO::PARAM_INT);
+    $stmt->bindParam(':membership_status', $status, PDO::PARAM_INT);
+    $stmt->bindParam(':canmship_status', $status, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+}
+
+static public function mdlshowAffilatedMember(){
+
+    $acc_id = $_COOKIE['church_id'];
+    $status = 1;
+
+    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memChurchID, memberName FROM membership WHERE memChurchID = :memChurchID AND membership_status =:membership_status");
+    $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
+    $stmt->bindParam(':membership_status', $status, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+
+static public function mdlMemberAccept($data){
+
+    $accept = 1;
+
+    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status WHERE mshipID = :mshipID ");
+    $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt->bindParam(":membership_status", $accept, PDO::PARAM_INT);
+    $stmt -> execute();
+    return $stmt -> fetch();
+    $stmt -> close();
+    $stmt = null;	
+
+}
+
+static public function mdlMemberReject($data){
+
+    $accept = 1;
+
+    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET rejmship_status = :rejmship_status WHERE mshipID = :mshipID ");
+    $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt->bindParam(":rejmship_status", $accept, PDO::PARAM_INT);
+    $stmt -> execute();
+    return $stmt -> fetch();
+    $stmt -> close();
+    $stmt = null;	
+
+}
+
+
+static public function mdlMemberRemove($data){
+
+    $remove = 0;
+
+    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status WHERE mshipID = :mshipID ");
+    $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt->bindParam(":membership_status", $remove, PDO::PARAM_INT);
+    $stmt -> execute();
+    return $stmt -> fetch();
+    $stmt -> close();
+    $stmt = null;	
+
+}
 
 ?>
-

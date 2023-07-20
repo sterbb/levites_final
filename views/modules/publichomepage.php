@@ -13,6 +13,7 @@
                   <div class="card h-auto">
                     <img src="views/images/ch1.jpg" class="card-img-top" style="height:350px;" alt="...">
                     <div class="card-body" style="height:150px;">
+          
                       <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
                       <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
                       <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>

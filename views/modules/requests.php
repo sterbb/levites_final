@@ -248,40 +248,52 @@
                 </div>
                 </div>
                 <div class="card-body" scrollable-y="true">
-                <div class="team-list">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="">
-                        <img src="views/assets/images/avatars/05.png" alt="" width="50" height="50" class="rounded-circle">
-                        </div>
-                        <div class="flex-grow-1">
-                        <h6 class="mb-1 fw-bold">Jan Ryan A. Divinagracia</h6>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                        </div>
-                        <div class="">
-                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
-                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
-                        </div>
-                    </div>
-                    <hr><div class="d-flex align-items-center gap-3">
-                        <div class="">
-                        <img src="views/assets/images/avatars/06.png" alt="" width="50" height="50" class="rounded-circle">
-                        </div>
-                        <div class="flex-grow-1">
-                        <h6 class="mb-1 fw-bold">John Cliff T. Fortaleza</h6>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                        </div>
-                        <div class="">
-                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3">Accept </button>
-                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Reject </button>
-                        </div>
+                <?php 
+             
+                            $requests = (new CollaborationController)->ctrshowMembership();
+                            foreach($requests as $key => $value){
+                                // $churchname;
+                                // $churchid;
+
+                                // if (array_key_exists("churchid1", $requests)) {
+                                //     // Key exists in the array
+                                //     $churchid = $value["churchid1"];
+                                //     $churchname = $value["churchname1"];
+                                // } else {
+                                //     // Key is undefined
+                                //     $churchid = $value["churchid2"];
+                                //     $churchname = $value["churchname2"];
+                                // }
+
+                                echo '
+                                <div class="team-list churchDiv">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="">
+                                        <img src="views/images/ch1.2.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">'.$value['memberName'].'</h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                                        </div>
+                                        <div class="">
+                                            <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
+                                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
+                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                '
+                                ;
+
+                            }
+                            ?>
                     </div>
                     <hr>
                 </div>
                 </div>
-            </div>
-        </div>
+        
 
         <div class="col-12 col-lg-6 col-xl-5 d-flex">
             <div class="card w-100 mb-0">
@@ -296,23 +308,37 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="team-list">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="">
-                                <img src="views/assets/images/avatars/07.png" alt="" width="50" height="50" class="rounded-circle">
+                    <?php 
+
+                        $requests = (new CollaborationController)->ctrshowAffilatedMember();
+                        foreach($requests as $key => $value){
+                            
+                    
+                            echo '
+                            <div class="team-list">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <img src="views/images/ch1.2.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">'.$value['memberName'].' </h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
+                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                    </div>
+                                    <div class="">
+                                        <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
+                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                    </div>
                                 </div>
-                                <div class="flex-grow-1">
-                                <h6 class="mb-1 fw-bold">JayCobb Andrew D. Moya</h6>
-                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
-                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
-                                <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                <hr>
                             </div>
-                            <div class="">
-                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3">Remove</button>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
+                            '
+                            ;
+                        }
+                        ?>
+
+
                 </div>
             </div>
         </div>

@@ -16,6 +16,22 @@ public static function mdlShowChurchAdmin(){
 
 	
     }
+
+    public static function mdlShowChurchProfile($churchID){
+        
+        
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM churches WHERE churchID = :churchID");
+        $stmt->bindParam(":churchID", $churchID, PDO::PARAM_STR);
+		$stmt -> execute();
+        return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;	
+        // setcookie("church_name", $church_ID, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+	
+    }
+
+
     public static function mdlShowChurchAccount(){
         
         $NewaccID = $_COOKIE["acc_id"];
@@ -63,37 +79,6 @@ public static function mdlShowChurchAdmin(){
     }
 
 
-
-    public static function mdlUpdateChurchDetail($data)
-    {
-
-        try{
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$pdo->beginTransaction();
-
-            $pdo = (new Connection)->connect();
-            $stmt2 = $pdo->prepare("UPDATE churches SET church_name = :church_name, church_num = :church_num, church_address = :church_address, church_city = :church_city, religion = :religion, church_email = :church_email WHERE churchID = :churchID");
-
-            $stmt2->bindParam(":churchID", $churchid[0]['church_id'], PDO::PARAM_STR);
-            $stmt2->bindParam(":church_name", $data["church_name"], PDO::PARAM_STR);
-            $stmt2->bindParam(":church_num", $data["church_cotnum"], PDO::PARAM_STR);
-            $stmt2->bindParam(":church_address", $data["church_address"], PDO::PARAM_STR);
-            $stmt2->bindParam(":church_city", $data["church_city"], PDO::PARAM_STR);
-            $stmt2->bindParam(":religion", $data["church_religion"], PDO::PARAM_STR);
-            $stmt2->bindParam(":church_email", $data["church_email"], PDO::PARAM_STR);
-            
-            $stmt2->execute();
-            $pdo->commit();
-            
-            return "ok";
-        }catch (Exception $e){
-            $pdo->rollBack();
-            return "error";
-        }	
-        $pdo = null;	
-        $stmt = null;
-    }
-    
     
 
 

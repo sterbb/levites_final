@@ -35,6 +35,10 @@ class ControllerWebsite{
 
 	
     
+	static public function ctrDeletewebsite(){
+        return $answer = (new ModelWebsite)->mdlDeleteWebsite();
+	}
+    
     
 	
 	

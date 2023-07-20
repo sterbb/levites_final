@@ -36,7 +36,7 @@ class ModelRegister {
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 			
 			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
 
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
@@ -247,6 +247,8 @@ class ModelRegister {
 
 			$stmt->bindParam(":AccountID", $accountid[0]['account_id'], PDO::PARAM_STR);
 
+			
+
 			$stmt->bindParam(":fname", $data["church_fname"], PDO::PARAM_STR);
 			$stmt->bindParam(":lname", $data["church_lname"], PDO::PARAM_STR);
 			$stmt->bindParam(":designation", $data["church_designation"], PDO::PARAM_STR);
@@ -267,15 +269,18 @@ class ModelRegister {
 			$stmt->execute();		
 
 			
-		
+
 			
 			
 			// add to church database
-			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, church_name,  church_num,  church_address,   church_city,  religion, church_email) 
-            VALUES (:churchID, :church_name, :church_num, :church_address, :church_city, :religion, :church_email)");
+			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, accID, church_name, church_num, church_address,   church_city,  religion, church_email) 
+            VALUES (:churchID, :accID,  :church_name, :church_num, :church_address, :church_city, :religion, :church_email)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
+			
+
+			$stmt2->bindParam(":accID", $accountid[0]['account_id'], PDO::PARAM_STR);
 
 			$stmt2->bindParam(":churchID", $churchid[0]['church_id'], PDO::PARAM_STR);
 			$stmt2->bindParam(":church_name", $data["church_name"], PDO::PARAM_STR);

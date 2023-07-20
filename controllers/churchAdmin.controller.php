@@ -6,6 +6,11 @@ class ControllerAdmin{
         return $answer = (new ModelAdmin)->mdlShowChurchAdmin();
     }
 
+    static public function ctrShowChurchProfile($churchID){
+        return $answer = (new ModelAdmin)->mdlShowChurchProfile($churchID);
+    }
+
+
 
 
     static public function ctrShowChurchAccount(){
