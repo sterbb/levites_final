@@ -1,68 +1,102 @@
 $(function () {
 	"use strict";
 
+// chart 1
+var options = {
+    series: [{
+        name: 'Event Count',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 
+    }],
+    chart: {
+        foreColor: '#9ba7b2',
+        height: 330,
+        type: 'bar',
+        zoom: {
+            enabled: false
+        },
+        toolbar: {
+            show: false
+        },
+    },
+    stroke: {
+        width: 0,
+        curve: 'smooth'
+    },
+    plotOptions: {
+        bar: {
+            horizontal: !1,
+            columnWidth: "30%",
+            endingShape: "rounded"
+        }
+    },
+    grid: {
+        borderColor: 'rgba(255, 255, 255, 0.15)',
+        strokeDashArray: 4,
+        yaxis: {
+            lines: {
+                show: true
+            }
+        }
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            shade: 'light',
+            type: 'vertical',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#01e195'],
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+        }
+    },
+    colors: ['#0d6efd'],
+    dataLabels: {
+        enabled: false,
+        enabledOnSeries: [1]
+    },
+    xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    },
+};
 
-	// chart 1
-	var options = {
-		series: [{
-			name: 'Sales Overview',
-			data: [10, 25, 42, 12, 55, 30, 63, 27, 20]
-		}],
-		chart: {
-			foreColor: '#9ba7b2',
-			height: 330,
-			type: 'bar',
-			zoom: {
-				enabled: false
-			},
-			toolbar: {
-				show: false
-			},
+  // Function to fetch event counts from the server and update the chart data
+  function fetchEventCounts() {
+	$.ajax({
+		url: 'ajax/get_churchReport.ajax.php',
+		method: 'POST',
+		dataType: 'json',
+		success: function(data) {
+			// Data contains the event dates from the server
+			console.log(data); // Check the event dates in the browser console
+
+			var eventCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // Initialize with 0 for each month
+
+			data.forEach(function(event) {
+				var eventDate = new Date(event.event_date);
+				var eventMonth = eventDate.getMonth();
+				eventCounts[eventMonth]++;
+			});
+
+			// Update the 'data' property in the 'options' object with the new event counts
+			options.series[0].data = eventCounts;
+
+			// Update the chart with the new data
+			chart.updateSeries(options.series);
 		},
-		stroke: {
-			width: 0,
-			curve: 'smooth'
-		},
-		plotOptions: {
-			bar: {
-				horizontal: !1,
-				columnWidth: "30%",
-				endingShape: "rounded"
-			}
-		},
-		grid: {
-			borderColor: 'rgba(255, 255, 255, 0.15)',
-			strokeDashArray: 4,
-			yaxis: {
-				lines: {
-					show: true
-				}
-			}
-		},
-		fill: {
-			type: 'gradient',
-			gradient: {
-			  shade: 'light',
-			  type: 'vertical',
-			  shadeIntensity: 0.5,
-			  gradientToColors: ['#01e195'],
-			  inverseColors: true,
-			  opacityFrom: 1,
-			  opacityTo: 1,
-			}
-		  },
-		colors: ['#0d6efd'],
-		dataLabels: {
-			enabled: false,
-			enabledOnSeries: [1]
-		},
-		xaxis: {
-			categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-		},
-	};
-	var chart = new ApexCharts(document.querySelector("#chart1"), options);
-	chart.render();
-	
+		error: function(xhr, status, error) {
+			console.error('Error fetching event counts:', error);
+		}
+	});
+}
+
+// Call the function to fetch event counts and update the chart
+fetchEventCounts();
+
+var chart = new ApexCharts(document.querySelector("#chart1"), options);
+chart.render();
+
+
 
 
 

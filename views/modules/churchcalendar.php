@@ -422,13 +422,11 @@ We're excited to explore the world of analog mixers together and discover how th
                               </div>
                             </div>
 
-                            <div class="tab-pane fade" id="AddType">
+                            <div class="tab-pane fade" id="Add">
                               <div class="row g-3">
                                 <div class="col-12 col-lg-12">
                                   <label class="mt-3">Event Type Name</label>
-                                  <input class="form-control" type="text" placeholder="">
-                                  
-
+                                  <input class="form-control" type="text" placeholder="" id="type_name">
                                 </div>
                                 
                               </div>
@@ -436,10 +434,11 @@ We're excited to explore the world of analog mixers together and discover how th
                               <div class="row mt-3">
                                   <div class="d-flex justify-content-end">
                                   <button type="button" class="btn btn-danger me-3">Clear </button>
-                                  <button type="button" class="btn btn-success me-3">Save</button>
+                                  <button type="button" id="AddEventType" class="btn btn-success me-3">Save</button>
                                   </div>  
                               </div>
                             </div>
+                            
 
                           </div>
                         </div>
@@ -619,6 +618,9 @@ We're excited to explore the world of analog mixers together and discover how th
                       <option value="Praryer Meeting">Praryer Meeting</option>
                       <option value="Baptismal">Baptismal</option>
                       <option value="Wedding">Wedding</option>
+                      
+
+                      
                       </select>
                   </div>  
                   <div class="col-8"> 

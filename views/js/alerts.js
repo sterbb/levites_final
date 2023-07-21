@@ -147,41 +147,198 @@ $(document).ready(function() {
 	var chart = new ApexCharts(document.querySelector("#chart11"), options);
 	chart.render();
 
-    // marker map
-    var myLatLng = {
-      lat: 10.70230,
-      lng: 122.97429, 
-    };
-    var map = new google.maps.Map(document.getElementById('marker-map'), {
-      zoom: 17,
-      center: myLatLng
-    });
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      title: 'Our Lady Of Lourdes Parish Church '
-    });
+	
 
+	function getCookie(cookieName) {
+		// Split the document.cookie string into individual cookies
+		const cookies = document.cookie.split(";");
+	  
+		// Loop through each cookie to find the one with the specified name
+		for (const cookie of cookies) {
+		  // Trim any leading or trailing spaces from the cookie
+		  const trimmedCookie = cookie.trim();
+	  
+		  // Check if the cookie starts with the provided name
+		  if (trimmedCookie.startsWith(cookieName + "=")) {
+			// Extract and return the value of the cookie
+			return trimmedCookie.substring(cookieName.length + 1);
+		  }
+		}
+	  
+		// Return null if the cookie is not found
+		return null;
+	  }
 
-	var profileLatLng = {
-		lat: 10.70230,
-		lng: 122.97429, 
-	  };
-	  var newmap = new google.maps.Map(document.getElementById('profile-map'), {
-		zoom: 17,
-		center: profileLatLng
+	  $('#updateChurch').click(function() {
+		alert("hello");
 	  });
-	  var newmarker = new google.maps.Marker({
-		position: profileLatLng,
-		newmap: newmap,
-		title: 'Our Lady Of Lourdes Parish Church '
-	  });
+	function setMap(){
+	var acc_type = getCookie("acc_type");
+	if(acc_type == "admin"){
 
-	  newmarker;
-  
+		var pass = "";
+		var getMap = new FormData();
+		getMap.set("pass", pass);
+
+		// Make an AJAX request to save the latitude and longitude
+		$.ajax({
+			url: "ajax/get_mapChurch.ajax.php",
+			method: "POST",
+			data: getMap,
+			cache: false,
+			contentType: false,
+			processData: false,
+			dataType: "json",
+			success: function(answer) {
+			  console.log(answer.lat);
+			  var lat = answer.lat;
+			  var lng = answer.lng;
+
+			  if(lat !== null  && lng !== null){
+				lat = 10.657672189514196;
+				lng = 122.9485041461885;
+			  }
+			  
+				var myLatLng = {
+					lat: parseFloat(lat),
+					lng: parseFloat(lng),
+				  };
+
+				  var map = new google.maps.Map(document.getElementById('marker-map'), {
+					zoom: 17,
+					center: myLatLng,
+				  });
+	
+	
+
+				  var marker;
+				  
+				  // Initialize the marker
+				  function initMarker() {
+					marker = new google.maps.Marker({
+					  position: myLatLng,
+					  map: map,
+					  draggable: true,
+					});
+				  
+					google.maps.event.addListener(marker, 'dragend', function(event) {
+					  var latitude = event.latLng.lat();
+					  var longitude = event.latLng.lng();
+				  
+					  // Center of map
+					  map.panTo(new google.maps.LatLng(latitude, longitude));
+				  
+					  // Update marker position
+					  marker.setPosition(new google.maps.LatLng(latitude, longitude));
+					});
+				  }
+				  
+				  // Add a click event listener to the map
+				  google.maps.event.addListener(map, 'click', function(event) {
+					var latitude = event.latLng.lat();
+					var longitude = event.latLng.lng();
+				  
+					// Set the marker position to the clicked location
+					marker.setPosition(event.latLng);
+				  
+					// Center of map
+					map.panTo(event.latLng);
+				  });
+				  
+				  // Handle button click
+				  $('#updateChurch').click(function() {
+					var latitude = marker.getPosition().lat();
+					var longitude = marker.getPosition().lng();
+					alert(latitude);
+					alert(longitude);
+				  
+					var addChurchMap = new FormData();
+					addChurchMap.set("latitude", latitude);
+					addChurchMap.set("longitude", longitude);
+				  
+					// Make an AJAX request to save the latitude and longitude
+					$.ajax({
+					  url: "ajax/church_map.ajax.php",
+					  method: "POST",
+					  data: addChurchMap,
+					  cache: false,
+					  contentType: false,
+					  processData: false,
+					  dataType: "text",
+					  success: function(answer) {
+						console.log(answer);
+						location.reload(answer);
+					  },
+					  error: function() {
+						alert("Oops. Something went wrong!");
+					  },
+					  complete: function() {
+					  }
+					});
+				  });
+				  
+				  // Initialize the marker on page load
+				  initMarker();
+				
+			},
+			error: function() {
+				alert("Oops. Something went wrong!");
+			},
+			complete: function() {
+			}
+		  });
+	
+		}else{
+
+			var pass = "";
+			var getMap = new FormData();
+			getMap.set("pass", pass);
+	
+			// Make an AJAX request to save the latitude and longitude
+			$.ajax({
+				url: "ajax/get_mapChurch.ajax.php",
+				method: "POST",
+				data: getMap,
+				cache: false,
+				contentType: false,
+				processData: false,
+				dataType: "json",
+				success: function(answer) {
+				  console.log(answer);
+					alert(answer.lat);
+					var profilemyLatLng = {
+						lat: parseFloat(answer.lat),
+						lng: parseFloat(answer.lng),
+					  };
+
+					  var Newmap = new google.maps.Map(document.getElementById('profile-map'), {
+						zoom: 17,
+						center: profilemyLatLng
+					  });
+					  var Newmarker = new google.maps.Marker({
+						position: profilemyLatLng,
+						map: Newmap,
+						title: 'Our Lady Of Lourdes Parish Church '
+					  });// marker map
+					  ;
+					
+				},
+				error: function() {
+					alert("Oops. Something went wrong!");
+				},
+				complete: function() {
+				}
+			  });
 
 
-  });
+		}
+	}
+	setMap();
+
+
+
+});
+
 
   // Public Folder content
   $("#public_folder").click(function(){

@@ -79,6 +79,59 @@ public static function mdlShowChurchAdmin(){
     }
 
 
+    public static function mdlAddChurchMap($data){
+
+        $db = new Connection();
+        $pdo = $db->connect();
+        $ChuchID = $_COOKIE["church_id"];
+
+
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->beginTransaction();
+
+
+            $stmt = $pdo->prepare("UPDATE churches SET lat = :lat, lng = :lng WHERE churchID = :churchID");
+
+			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
+            // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
+
+			$stmt->bindParam(":churchID", $ChuchID);
+			$stmt->bindParam(":lat", $data["latitude"]);
+            $stmt->bindParam(":lng", $data["longitude"]);
+
+            $stmt->execute();			
+
+		    $pdo->commit();
+
+            
+		    return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+    
+
+	
+    }
+
+
+    public static function mdlGetChurchMap(){
+        $NewaccID = $_COOKIE['church_id'];
+        $stmt = (new Connection)->connect()->prepare("SELECT lat, lng FROM churches WHERE churchID = :churchID");
+        $stmt->bindParam(":churchID", $NewaccID, PDO::PARAM_STR);
+		$stmt -> execute();
+        return $stmt -> fetch();
+		$stmt -> close();
+		$stmt = null;	
+        // setcookie("church_name", $church_ID, time() + (86400 * 30), "/"); // 86400 = 1 day
+
+        
+    }
+
+
     
 
 

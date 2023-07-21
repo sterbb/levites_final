@@ -8,28 +8,32 @@
                     <div class="card  border-3 rounded-4">
                         <div class="card-body">
                             <div class="form-body g-3  p-4">
-                                <form role="form" id="church-form" method="POST" autocomplete="nope" class="row g-3">
-                            
+                                <form id="updatePublic" method="POST" autocomplete="nope" class="row g-3">
+
+                                    <?php  $public = (new ControllerPublic)->ctrShowPublic();
+                                        foreach($public as $key => $value){                  
+                                        }
+                                            ?>
                                         <div class="row g-2">
                                             <div class="col-12">
-                                                <label for="inputUsername" class="form-label">Username</label>
-                                                <input type="email" class="form-control border-3" id="inputUsername" placeholder="Jhon">
+                                                <label for="pub_username" class="form-label">Username</label>
+                                                <input type="text" class="form-control border-3" id="pub_username" placeholder="Enter Username" value="<?php echo $value['acc_username'] ?>">
                                             </div>
                                             
                                         </div>
 
                                         <div class="row g-2">
                                             <div class="col-6">
-                                                <label for="inputChoosePassword" class="form-label">Password</label>
+                                                <label for="pub_password" class="form-label">Password</label>
                                                 <div class="input-group" id="show_hide_password">
-                                                    <input type="password" class="form-control border-3" id="inputChoosePassword" value="12345678" placeholder="Enter Password">
+                                                    <input type="password" class="form-control border-3" id="pub_password" placeholder="Enter Password" value="<?php echo $value['acc_password'] ?>">
                                                 </div>
                                             </div> 
 
                                             <div class="col-6">
-                                                <label for="inputChoosePassword" class="form-label">Confirm Password</label>
+                                                <label for="pub_password" class="form-label">Confirm Password</label>
                                                 <div class="input-group" id="show_hide_password">
-                                                    <input type="password" class="form-control border-end-0 border-3" id="inputChoosePassword" value="12345678" placeholder="Enter Password">
+                                                    <input type="password" class="form-control border-end-0 border-3" id="pub_password" placeholder="Enter Password" value="<?php echo $value['acc_password'] ?>">
                                                     <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                                 </div>
                                             </div> 
@@ -38,36 +42,42 @@
 
                                         <div class="row g-2">
                                             <div class="col-12">
-                                                <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                                <input type="email" class="form-control border-3" id="inputEmailAddress" placeholder="example@user.com">
+                                                <label for="pub_email" class="form-label">Email Address</label>
+                                                <input type="email" class="form-control border-3" id="pub_email" placeholder="Enter Email Address" value="<?php echo $value['acc_email'] ?>">
                                             </div> 
                                         </div>
                                         
 
                                         <div class="row g-2">
                                             <div class="col-6">
-                                                <label for="inputName" class="form-label">Name</label>
-                                                <input type="text" class="form-control border-3" id="inputName" placeholder="JAY COBB">
+                                                <label for="pub_fname" class="form-label">Name</label>
+                                                <input type="text" class="form-control border-3" id="pub_fname" placeholder="Enter First Name" value="<?php echo $value['fname'] ?>">
                                             </div>
 
                                             <div class="col-6">
-                                                <label for="inputLastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control border-3" id="inputLastName" placeholder="MOYA">
+                                                <label for="pub_lname" class="form-label">Last Name</label>
+                                                <input type="text" class="form-control border-3" id="pub_lname" placeholder="Enter Last Name" value="<?php echo $value['lname'] ?>">
                                             </div>
 
 
                                             <div class="col-6">
-                                                <label for="inputReligion" class="form-label">Religion</label>
-                                                <select class="form-select border-3" id="inputSelectCountry" aria-label="Default select example">
-                                                <option selected="" value="Catholic">Catholic</option>
-                                                <option value="Baptist">Baptist</option>
-                                                <option value="Christian ">Christian</option>
+                                                <label for="pub_religion" class="form-label">Religion</label>
+                                                <select class="form-select border-3" id="pub_religion" aria-label="Default select example" >
+                                                    <?php
+                                                    $public = (new ControllerPublic)->ctrShowPublic();
+                                                    $selectedReligion = $public[0]['religion']; // Assuming there's only one admin in the result
+                                                    ?>
+                                                    <option value="Catholic" <?php if ($selectedReligion == 'Catholic') echo 'selected'; ?>>Catholic</option>
+                                                    <option value="Baptist" <?php if ($selectedReligion == 'Baptist') echo 'selected'; ?>>Baptist</option>
+                                                    <option value="Born Again" <?php if ($selectedReligion == 'Born Again') echo 'selected'; ?>>Born Again</option>
+                                                    <option value="Aglipay" <?php if ($selectedReligion == 'Aglipay') echo 'selected'; ?>>Aglipay</option>
+                                                    <option value="Jehovah's" <?php if ($selectedReligion == 'jehovah') echo 'selected'; ?>>jehovah's</option>
                                                 </select>
                                             </div>
 
                                             <div class="col-6">
-                                                <label for="inputNum" class="form-label">Contact Details</label>
-                                                <input type="text" class="form-control border-3" id="inputNum" placeholder="432-0048">
+                                                <label for="pub_contact" class="form-label">Contact Details</label>
+                                                <input type="text" class="form-control border-3" id="pub_contact" placeholder="Enter Contacts" value="<?php echo $value['acc_contact'] ?>" >
                                             </div>
 
                                         
@@ -79,13 +89,13 @@
 
                                             <div class="col-2">
                                                 <div class="d-grid">
-                                                    <a href="login" class="btn btn-danger border-3">Clear</a>
+                                                    <button type="button" id="pub_clear" class="btn btn-outline-danger border-1">Clear</button>
                                                 </div>
                                             </div>
 
                                             <div class="col-2">
                                                 <div class="d-grid">
-                                                    <a href="login" class="btn btn-success border-3">Save</a>
+                                                    <button type="submit" class="btn btn-outline-success border-1">Save</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -41,7 +41,7 @@ $("#searchBar").on("keyup", function() {
   churchData.append("churchName", churchName);
 
   $.ajax({
-    url: "ajax/searchChurch.ajax.php",
+    url: "ajax/add_collaboration.ajax.php",
     method: "POST",
     data: churchData,
     cache: false,

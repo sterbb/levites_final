@@ -91,7 +91,79 @@ class ModelCalendar{
 		}	
 		$pdo = null;	
 		$stmt = null;
+		
 
     }
+	public static function mdlAddEventType($data){	
+		$db = new Connection();
+        $pdo = $db->connect();
+        $EventTypeID = $_COOKIE["church_id"];
+
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+			
+			
+			$stmt = $pdo->prepare("INSERT INTO eventtype (churchID, type_name)
+            VALUES (:churchID, :type_name)");
+
+			// $stmt->bindParam(":eventID", $eventID[0]['event_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":churchID", $EventTypeID, PDO::PARAM_STR);
+			$stmt->bindParam(":type_name", $data["type_name"], PDO::PARAM_STR);
+
+
+			$stmt->execute();		
+		    $pdo->commit();
+			
+		    return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+    }
+
+
+	public static function mdlShowEventType(){
+        $eventType = $_COOKIE["church_id"];
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM eventtype WHERE churchID = :churchID");
+        $stmt->bindParam(":churchID", $eventType, PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;	
+	
+    }
+
+	public static function mdlDeleteEventType() {
+		$eventId = $_POST["id"]; // Assuming the id is sent through the POST data
+		$stmt = (new Connection)->connect()->prepare("DELETE FROM eventtype WHERE id = :id");
+		$stmt->bindParam(":id", $eventId, PDO::PARAM_INT); // Assuming id is an integer
+		$result = $stmt->execute(); // Execute the delete query
+	
+		if ($result) {
+			// Return true if the deletion was successful
+			return true;
+		} else {
+			// Return false if the deletion failed
+			return false;
+		}
+	}
+
+	
+	public static function mdlGetReportChurch() {
+		$churchID = $_COOKIE['church_id'];
+		$stmt = (new Connection)->connect()->prepare("SELECT event_date FROM calendar WHERE churchID = :churchID");
+		$stmt->bindParam(":churchID", $churchID, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$stmt->closeCursor(); // Close the cursor to free up resources
+		return $result;
+	}
+	
+
+
 
 }

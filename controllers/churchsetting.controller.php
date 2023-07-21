@@ -18,7 +18,11 @@ class ControllerChurchSetting{
         static public function ctrUpdateChurch($data){
         return $answer = (new ModelChurchSetting)->mdlUpdatehurch($data);
         }
-        
+
+        static public function ctrDeleteDonation(){
+        return $answer = (new ModelChurchSetting)->mdlDeleteDonation();
+        }
+                    
 
         
     

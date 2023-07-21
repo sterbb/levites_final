@@ -5,6 +5,8 @@ $(document).ready(function(){
     listFoldersInFolder("C1005");
 });
 
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDHkmk1QhuflkF8Vh_w5QC01WXy3-RAdbc",
     authDomain: "levites-aa257.firebaseapp.com",
@@ -67,6 +69,7 @@ async function listFoldersInFolder(folderPath) {
 
     const result = await folderRef.listAll();
     var foldersContainer = document.getElementById('foldersContainer');
+    var pinnedContainer = document.getElementById('pinnedSection');
     foldersContainer.innerHTML = ''; // Clear existing folders
     
 
