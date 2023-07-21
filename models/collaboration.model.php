@@ -30,21 +30,6 @@ class CollaborationModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        
-        // // Check if there are no results
-        // if ($stmt->rowCount() == 0) {
-
-        //     $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2");
-        //     $stmt2->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
-        //     $stmt2->execute();
-    
-        //     return $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-        // } else {
-          
-        //    return $results;
-        // }
-
 
 
     }
@@ -199,9 +184,6 @@ class CollaborationModel
     }
 
     
-
-}
-
 public function mdladdMembership($data)
 {
     $db = new Connection();
@@ -320,4 +302,8 @@ static public function mdlMemberRemove($data){
 
 }
 
+
+
+
+}
 ?>

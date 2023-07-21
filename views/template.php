@@ -92,11 +92,12 @@
 			$_GET["route"] == 'verifyForget' ||
 			$_GET["route"] == 'landingpage' ||
 			$_GET["route"] == 'demomusic' ||
+			$_GET["route"] == 'dailyreading' ||
 			$_GET["route"] == 'requestPassword'){
 
             include "modules/".$_GET["route"].".php";
 
-			if($_GET["route"] == 'login' || $_GET["route"] == 'logincopy' ||$_GET["route"] == 'verifyEmail' ||	$_GET["route"] == 'verifyForget' || $_GET["route"] == 'churchregistration' || $_GET["route"] == 'requestPassword'  || $_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'||$_GET["route"] == 'landingpage'){
+			if($_GET["route"] == 'dailyreading' || $_GET["route"] == 'login' || $_GET["route"] == 'logincopy' ||$_GET["route"] == 'verifyEmail' ||	$_GET["route"] == 'verifyForget' || $_GET["route"] == 'churchregistration' || $_GET["route"] == 'requestPassword'  || $_GET["route"] == 'publicregistration'  ||$_GET["route"] == 'forgotpassword' ||$_GET["route"] == 'resetpassword'||$_GET["route"] == 'landingpage'){
 			
 			}else{
 				include "modules/header.php";

@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
 <?php
 $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
 
-$searchQuery = 'lilim';
+$searchQuery = $_COOKIE['song_title'];
 
 // Search for songs and sort by track rating (popularity)
 $searchUrl = 'https://api.musixmatch.com/ws/1.1/track.search';

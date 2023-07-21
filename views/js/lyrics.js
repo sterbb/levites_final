@@ -15,6 +15,7 @@ $(document).ready(function() {
         var trackID = $(this).attr('trackid');
         alert(trackID);
         document.cookie = "trackID="+trackID;
+        window.location.href = 'lyrics';
     })
 
 

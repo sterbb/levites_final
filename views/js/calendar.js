@@ -279,6 +279,94 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var calendarEl = document.getElementById('calendar2');
+  let currentDate = new Date().toJSON().slice(0, 10);
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    themeSystem: 'Litera',
+    headerToolbar: {
+      left: 'prev today',
+      center: 'title',
+      right: 'dayGridMonth,listWeek next'
+    },
+    initialView: 'dayGridMonth',
+    initialDate: currentDate,
+    navLinks: true, // can click day/week names to navigate views
+    selectable: true,
+    nowIndicator: true,
+    dayMaxEvents: true, // allow "more" link when too many events
+    editable: true,
+    events: 'models/loadCalenddar.php',
+    eventClick: function(info){
+     
+      alert(moment(info.event.start ).format("YYYY-MM-DD"));
+
+    }
+    ,
+    dateClick: function(info) {
+      
+      var event = new Date(info.date);
+
+      const offset = event.getTimezoneOffset();
+
+      event = new Date(event.getTime() - (offset*60*1000));
+      var readableDate = event.toDateString();
+      readableDate = readableDate.slice(4,15);
+
+
+      let date = event.toISOString().split('T')[0]  
+      date = date.slice(0,11);
+
+      alert(date);
+      
+      document.cookie = "viewDate=" +date;
+
+      window.location.href = "catdetails";
+
+
+      // var eventType = "Bible Study";
+
+      // displayEventDetails(readableDate, date);
+
+      // var eventData = new FormData();
+      // eventData.append("date", date);
+      // eventData.append("eventType", eventType);
+
+      // $.ajax({
+      //     url: "ajax/get_event_details.ajax.php",
+      //     method: "POST",
+      //     data: eventData,
+      //     cache: false,
+      //     contentType: false,
+      //     processData: false,
+      //     dataType: "html",
+      //     success: function(answer) {
+      //       $('#WorkshopSection').html(answer);
+            
+        
+      //     },
+      //     error: function() {
+      //         alert("Oops. Something went wrong!");
+      //     },
+      //     complete: function() {
+      //     }
+      //   });
+
+      
+
+      // $('#displayEventsModal').modal('show');
+    }
+    
+  });
+  calendar.render();
+  
+});
+
+
+
+
 function getGroupMembers(){
   var arrData1 = [];
   var arrData2 = [];

@@ -14,7 +14,7 @@ $(document).ready(function() {
         churchData.append("churchName", churchName);
       
         $.ajax({
-          url: "ajax/add_collaboration.ajax.php",
+          url: "ajax/searchChurch.ajax.php",
           method: "POST",
           data: churchData,
           cache: false,
@@ -25,8 +25,9 @@ $(document).ready(function() {
             displayResults(answer);
       
           },
-          error: function() {
-            alert("Oops. Something went wrong!");
+          error: function(xhr, status, error) {
+            //         var errorMessage = xhr.responseText; // Extract the error message
+            alert("Error: " + error);
           },
           complete: function() {
           }
@@ -134,13 +135,6 @@ $(document).ready(function() {
       });
     }
 
-    // function openProfile(element){
-    //   alert("hi");
-    //   var profileid = element.attr("church_id");
-    //   alert(profileid);
-    //   document.cookie = "profileID="+ element.attr("church_id")+";";
-
-    // }
   });
 
   
@@ -149,7 +143,7 @@ $(document).ready(function() {
     var profileid = $(element).attr("church_id");
     
     alert(profileid);
-    document.cookie = "profileID="+ profileid+ ";";
+    document.cookie = "church_id=" + profileid + ";";
     window.location.href = "profile";
   }
 

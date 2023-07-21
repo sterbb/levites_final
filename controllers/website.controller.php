@@ -32,13 +32,6 @@ class ControllerWebsite{
         return $answer = (new ModelWebsite)->mdlupdateWebsiteInGroup($data);
 	}
 
-
-	
-    
-	static public function ctrDeletewebsite(){
-        return $answer = (new ModelWebsite)->mdlDeleteWebsite();
-	}
-    
     
 	
 	
