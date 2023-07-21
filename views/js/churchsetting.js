@@ -1,6 +1,7 @@
 
 $("#addDonation").on('click', function(e){
     e.preventDefault();
+    alert("dsad");
 
     var donation_number = $("#donation_number").val();
     var donation_category = $("#donation_category").val();
@@ -119,7 +120,7 @@ $('#userAvatar').on('change', function(event) {
 
 $("#updateChurch").submit(function(e) {
   e.preventDefault();
-  alert('hello');
+
 
   var Newchurch_name = $("#NewChurch_name").val();
   var Newchurch_address = $("#Newchurch_address").val();

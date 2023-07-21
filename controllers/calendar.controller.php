@@ -11,7 +11,6 @@ class ControllerCalendar{
 	static public function ctrShowEvents($data){
 		return $answer = (new ModelCalendar)->mdlShowEvents($data);
 	}
- 	}
 	
 	
 	 static public function ctrAddEventType($data){

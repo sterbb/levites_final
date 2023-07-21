@@ -169,9 +169,6 @@ $(document).ready(function() {
 		return null;
 	  }
 
-	  $('#updateChurch').click(function() {
-		alert("hello");
-	  });
 	function setMap(){
 	var acc_type = getCookie("acc_type");
 	if(acc_type == "admin"){
@@ -194,7 +191,7 @@ $(document).ready(function() {
 			  var lat = answer.lat;
 			  var lng = answer.lng;
 
-			  if(lat !== null  && lng !== null){
+			  if(lat == ''  && lng == ''){
 				lat = 10.657672189514196;
 				lng = 122.9485041461885;
 			  }
@@ -237,6 +234,7 @@ $(document).ready(function() {
 				  google.maps.event.addListener(map, 'click', function(event) {
 					var latitude = event.latLng.lat();
 					var longitude = event.latLng.lng();
+					alert(longitude);
 				  
 					// Set the marker position to the clicked location
 					marker.setPosition(event.latLng);
@@ -246,7 +244,7 @@ $(document).ready(function() {
 				  });
 				  
 				  // Handle button click
-				  $('#updateChurch').click(function() {
+				  $('#updateChurchloc').click(function() {
 					var latitude = marker.getPosition().lat();
 					var longitude = marker.getPosition().lng();
 					alert(latitude);

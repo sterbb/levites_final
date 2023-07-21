@@ -7,7 +7,7 @@ class ModelChurchSetting{
 
 public static function mdlShowDonation(){
 	
-	$NewchID = $_COOKIE["acc_id"];
+	$NewchID = $_COOKIE["church_id"];
 	$stmt = (new Connection)->connect()->prepare("SELECT * FROM donation WHERE chID = :chID");
 	$stmt->bindParam(":chID", $NewchID, PDO::PARAM_STR);
 	$stmt -> execute();
@@ -39,7 +39,7 @@ public static function mdlDeleteDonation() {
 	public static function mdlAddDonation($data){	
 		$db = new Connection();
         $pdo = $db->connect();
-        $accID = $_COOKIE["acc_id"];
+        $accID = $_COOKIE["church_id"];
         
         try{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -67,9 +67,8 @@ public static function mdlDeleteDonation() {
 		}	
 		$pdo = null;	
 		$stmt = null;
-
-
     }
+
 	public static function mdlAddChurchImages($data) {
 		$db = new Connection();
 		$pdo = $db->connect();

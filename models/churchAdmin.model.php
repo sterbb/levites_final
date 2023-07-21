@@ -83,7 +83,7 @@ public static function mdlShowChurchAdmin(){
 
         $db = new Connection();
         $pdo = $db->connect();
-        $ChuchID = $_COOKIE["church_id"];
+        $ChurchID = $_COOKIE["church_id"];
 
 
         try{
@@ -96,7 +96,7 @@ public static function mdlShowChurchAdmin(){
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
-			$stmt->bindParam(":churchID", $ChuchID);
+			$stmt->bindParam(":churchID", $ChurchID);
 			$stmt->bindParam(":lat", $data["latitude"]);
             $stmt->bindParam(":lng", $data["longitude"]);
 

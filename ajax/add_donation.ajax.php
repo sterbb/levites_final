@@ -3,7 +3,6 @@ require_once "../controllers/churchsetting.controller.php";
 require_once "../models/churchsetting.model.php";
 
 class AddDonation{
-class AddDonation{
 
     public $donation_category;
     public $donation_number;
@@ -15,7 +14,7 @@ class AddDonation{
 
        $data = array("donation_number"=> $donation_number,
        "donation_category"=> $donation_category);
-       return $answer = (new CollaborationController)->ctrAddDonation($data);
+       return $answer = (new ControllerChurchSetting)->ctrAddDonation($data);
 
     }
 
