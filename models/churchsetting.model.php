@@ -19,6 +19,22 @@ public static function mdlShowDonation(){
 
 }
 
+public static function mdlDeleteDonation() {
+    $NewchID = $_POST["id"]; // Assuming the id is sent through the POST data
+    $stmt = (new Connection)->connect()->prepare("DELETE FROM donation WHERE id = :id");
+    $stmt->bindParam(":id", $NewchID, PDO::PARAM_INT); // Assuming id is an integer
+    $result = $stmt->execute(); // Execute the delete query
+
+    if ($result) {
+        // Return true if the deletion was successful
+        return true;
+    } else {
+        // Return false if the deletion failed
+        return false;
+    }
+}
+
+
 
 	public static function mdlAddDonation($data){	
 		$db = new Connection();

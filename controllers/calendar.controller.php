@@ -11,6 +11,24 @@ class ControllerCalendar{
 	static public function ctrShowEvents($data){
 		return $answer = (new ModelCalendar)->mdlShowEvents($data);
 	}
+ 	}
+	
+	
+	 static public function ctrAddEventType($data){
+		return $answer = (new ModelCalendar)->mdlAddEventType($data);
+ 	}
 
+	 static public function ctrShowEventType(){
+		return $answer = (new ModelCalendar)->mdlShowEventType();
+ 	}
+
+	 static public function ctrDeleteEventType(){
+		return $answer = (new ModelCalendar)->mdlDeleteEventType();
+	 }
+
+
+	 static public function ctrGetReportChurch(){
+		return $answer = (new ModelCalendar)->mdlGetReportChurch();
+	 }
 
 }

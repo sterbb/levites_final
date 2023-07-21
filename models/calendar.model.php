@@ -228,7 +228,50 @@ class ModelCalendar{
 		}	
 		$pdo = null;	
 		$stmt = null;
+		
 
+    }
+	public static function mdlAddEventType($data){	
+		$db = new Connection();
+        $pdo = $db->connect();
+        $EventTypeID = $_COOKIE["church_id"];
+
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+			
+			
+			$stmt = $pdo->prepare("INSERT INTO eventtype (churchID, type_name)
+            VALUES (:churchID, :type_name)");
+
+			// $stmt->bindParam(":eventID", $eventID[0]['event_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":churchID", $EventTypeID, PDO::PARAM_STR);
+			$stmt->bindParam(":type_name", $data["type_name"], PDO::PARAM_STR);
+
+
+			$stmt->execute();		
+		    $pdo->commit();
+			
+		    return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+    }
+
+
+	public static function mdlShowEventType(){
+        $eventType = $_COOKIE["church_id"];
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM eventtype WHERE churchID = :churchID");
+        $stmt->bindParam(":churchID", $eventType, PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;	
+	
     }
 
 	public static function mdlShowEvents($data){

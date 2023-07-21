@@ -165,10 +165,11 @@
                                     $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                     $selectedReligion = $admin[0]['religion']; // Assuming there's only one admin in the result
                                     ?>
-                                    <option value="Catholic" <?php if ($selectedReligion == 'Catholic') echo 'selected'; ?>>Catholicism</option>
+                                    <option value="Catholic" <?php if ($selectedReligion == 'Catholic') echo 'selected'; ?>>Catholic</option>
                                     <option value="Baptist" <?php if ($selectedReligion == 'Baptist') echo 'selected'; ?>>Baptist</option>
-                                    <option value="Islam" <?php if ($selectedReligion == 'Islam') echo 'selected'; ?>>Islam</option>
-                                    <option value="Christianity" <?php if ($selectedReligion == 'Christianity') echo 'selected'; ?>>Christianity</option>
+                                    <option value="Born Again" <?php if ($selectedReligion == 'Born Again') echo 'selected'; ?>>Born Again</option>
+                                    <option value="Aglipay" <?php if ($selectedReligion == 'Aglipay') echo 'selected'; ?>>Aglipay</option>
+                                    <option value="Jehovah's" <?php if ($selectedReligion == 'jehovah') echo 'selected'; ?>>jehovah's</option>
                                 </select>
 
 
@@ -203,8 +204,10 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="mb-3">Location</h5>
+                    <h5 class="mb-3">Location <button type="button" id="updateChurchloc" class="btn btn-outline-success align-items-end justify-content-end"><i class="fadeIn animated bx bx-plus"></i></button></h5>
+
                         <div id="marker-map" class="gmaps"></div>
+
                     </div>
                 </div>
             </div>
@@ -239,27 +242,33 @@
                                         if ($websiteCategory === 'GCash') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/gcash2.png" style="height:50px; width:100px;" alt="GCASH">
-                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;"  onclick="deleteData('.$value["id"].')">
+                                                </button>
+                                                
                                             </li>';
                                         } elseif ($websiteCategory === 'PNB') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/pnb.png" style="height:25px; width:100px;" alt="PNB">
-                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteData('.$value["id"].')">
+                                                </button>
                                             </li>';
                                         } elseif ($websiteCategory === 'BDO') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/bdo.png" style="height:25px; width:100px;" alt="BDO">
-                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                </button>
                                             </li>';
                                         } elseif ($websiteCategory === 'Metrobank') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/metrobank.png" style="height:30px; width:100px;" alt="METROBANK">
-                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                </button>
                                             </li>';
                                         } else {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/bpi.png" style="height:30px; width:100px;" alt="BPI">
-                                                <p style="color:black;">'.$value["donation_number"].'</p>
+                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0"  style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                </button>
                                             </li>';
                                         }
                                         
@@ -320,6 +329,31 @@
     
   
 </main>
+
+<script> 
+
+function deleteData(id) {
+    // Perform the AJAX request to delete data with the specified id
+    $.ajax({
+        url: 'ajax/delete_donation.ajax.php', // Replace with the actual server-side script that handles the delete operation
+        type: 'POST', // Use POST method to send the id to the server
+        data: { id: id }, // Send the id as a parameter to the server
+        dataType: 'json', // Expect JSON data in response (optional, if the server returns JSON)
+        success: function(response) {
+            // Handle the response from the server after successful deletion (if needed)
+            console.log('Data deleted successfully:', response);
+            // Optionally, update the data list or refresh the page here
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            // Handle errors, if any, that occur during the AJAX request
+            console.error('Error deleting data:', error);
+        }
+    });
+}
+
+</script>
+
 
 
 <!-- 
