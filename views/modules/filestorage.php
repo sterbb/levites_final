@@ -7,7 +7,7 @@
       <div class="row ">
         <div class="col-12 col-lg-3 notPublic notMember">
           <div class="card ">
-            <div class="card-body">
+            <div class="card-body cursor-pointer" id="myFileStroage">
               <h5 class="mt-2 mb-0">My Storage</h5>
               <p class="mb-1 mt-2">
                 <span id="myStorageSizeTxt"></span>
@@ -170,9 +170,10 @@
                           </div>
                         </div>
                       </div>
-
+                      <div id="upper-title" class="mt-3"></div>
+                      <hr>
                       <div class="mt-3">
-                        <h5 id="upper-title">Folders</h5>
+                        <h5>Folders</h5>
                       
                     </div>
 

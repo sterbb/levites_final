@@ -43,7 +43,7 @@ $(".addWebsiteForm").submit(function(e) {
       var editingid = "editing-" + $(element).attr('id');
       var groupclass = "." + $(element).attr('id');
       var clickFunction = 'saveeditGroup(this)';
-      alert(editingid);
+    
       $(id).removeClass("btn-outline-success");
       $(id).addClass("btn-outline-danger");
       $(id).attr('onclick', clickFunction);
@@ -76,8 +76,8 @@ $(".addWebsiteForm").submit(function(e) {
      var newgroupname =   $('#editing-' + saveid + "-input").val();  
      var groupid = $(element).attr('groupid');
 
-      alert(groupname);
-      alert(newgroupname);
+   
+
 
       var updateData = new FormData();
       updateData.append("groupname", groupname);

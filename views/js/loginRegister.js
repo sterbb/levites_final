@@ -310,7 +310,7 @@ $(function(){
             $('.overlay').show();
           },
           success: function(answer) {
-            alert(document.cookie);
+
             console.log(answer);
             if(answer == "success"){
               window.location.href= 'verifyForget';

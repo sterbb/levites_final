@@ -1,7 +1,7 @@
 
 $("#updatePublic").submit(function(e) {
     e.preventDefault();
-    alert('hello');
+
   
     var public_username = $("#pub_username").val();
     var public_password = $("#pub_password").val();

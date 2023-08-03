@@ -2,7 +2,6 @@ $(".askMembershipBtn").on("click", function() {
     var memChurchID = $(this).siblings('input').first().val();
     var memChurchName = $(this).siblings('input').first().attr("church-name");
     
-    alert(memChurchName)
 
     var ask = new FormData();
     ask.append("memChurchID", memChurchID);

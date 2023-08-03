@@ -15,7 +15,7 @@ $(".addPlaylistForm").submit(function(e) {
     songdetails.title = title;
 
     song.push(songdetails);
-    alert(songdetails);
+
 
 
     if (playlist_name.trim() === "") {
@@ -60,14 +60,13 @@ function removeSong(element){
     var song_list =  $(element).find('p').text();
     var trackID =  $(element).attr('trackID');
 
-    alert(song_list);
-    alert(trackID);
+
 
     var removesong = JSON.parse(song_list);
 
     var filteredArray = removeItemByTrackID(removesong, trackID);
 
-    alert(filteredArray);
+
 
       
     var playlistData = new FormData();
@@ -110,7 +109,7 @@ function removeSong(element){
 function deletePlaylist(element) {
 
     var playlistID = $(element).attr('id');
-    alert(playlistID);
+   
 
     var playlistData = new FormData();
     playlistData.append("playlistID", playlistID);

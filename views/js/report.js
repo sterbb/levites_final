@@ -8,12 +8,27 @@ $(document).ready(function() {
         return cookieValue || null;
     }
 
+    
+      $('#report-category').on('change', function() {
+        var selectedValue = $(this).val();
+
+        // Clear the current search filter
+        table.search('').draw();
+  
+
+        if (selectedValue) {
+
+          // Apply the new search filter based on the selected option
+          table.search(selectedValue).draw();
+        }
+      });
+
 
 
 
         $("#report-range").change(function(){       
             var daterange = $("#report-range").val();
-            alert(daterange)
+   
             if(daterange.length <= 10){
                 date1=daterange.substring(0,10).split("-").reverse().join("-");
     
@@ -90,6 +105,8 @@ var table = $('#report-table').DataTable( {
 
 table.buttons().container()
     .appendTo( '#report-table_wrapper .col-md-6:eq(0)' );
+
+
 
 // Function to reinitialize the DataTable with new data and header
 function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {

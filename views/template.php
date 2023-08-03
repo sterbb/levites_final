@@ -112,7 +112,7 @@
             include "modules/404.php";
             }
         }else{
-            include "modules/login.php";
+            include "modules/landingpage.php";
         }
 
                 echo '</div>';

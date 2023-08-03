@@ -5,6 +5,8 @@
 $(document).ready(function(){
   var divElements = document.getElementsByClassName('affiliateStorage');
 
+
+
 async function calculateTotalStorage(folderPath) {
   const storage = firebase.storage();
   const rootRef = storage.ref(folderPath);
@@ -134,15 +136,23 @@ var member = getCookie('memberClicked');
 if(public == "true"){
   var currentPath = getCookie('publicPath');
   $(".notPublic").hide();
-
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+$('#upper-title').html(titleContent);
 }else if ( member == "true"){
   var currentPath = getCookie('memberPath');
   $(".notMember").hide();
 
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+$('#upper-title').html(titleContent);
 }else{
   var currentPath = getCookie('church_id');
 
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+$('#upper-title').html(titleContent);
 }
+
+
+
 
 //For adding note / for folder manipulation
 var currentFile = '';
@@ -552,8 +562,8 @@ function listFilesInFolder(folderPath) {
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
-                  <li class="notPublic"><a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#FileExpirationModal" value="${fileRef.name}" onclick="setFiletoExpire(this)"><i class='bx bx-calendar-plus fi'></i>Set File Expiration</a></li>
-                  <li class="notPublic"><a class="dropdown-item cursor-pointer" value="${fileRef.name}" data-bs-toggle="modal" data-bs-target="#linkFileModal" onclick="selectFile(this)" ><i class='bx bx-calendar-plus fi'></i>Link to Event</a></li>
+                  <li class="notPublic"><a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#FileExpirationModal" value="${fileRef.name}" onclick="setFiletoExpire(this)"><i class='bx bx-time fi'></i>Set File Expiration</a></li>
+                  <li class="notPublic"><a class="dropdown-item cursor-pointer" value="${fileRef.name}" data-bs-toggle="modal" data-bs-target="#linkFileModal" onclick="selectFile(this)" ><i class='lni lni-link fi'></i>Link to Event</a></li>
                   <hr class="dropdown-divider">
                   <li class="notPublic"><a class="dropdown-item " href="#" value="${fileRef.name}" onclick="deleteFile(this)"><i class="lni lni-remove-file fi" ></i>Delete</a></li>
                 </ul>
@@ -719,34 +729,87 @@ subfolderRef
 
 }
 
+$('#myFileStroage').click(function() {
+  // Call the handleClick function when the button is clicked
+  currentPath = getCookie('church_id')
+  listFilesInFolder(currentPath); 
+  listFoldersInFolder(currentPath);
+
+});
 
 function handleClick(element) {
+  $('.folder-name-hover').tooltip('hide');
+  $('.folder-div').removeClass('clicked');
+  $(element).addClass('clicked');
 
-$('.folder-name-hover').tooltip('hide');
-// Remove the 'clicked' class from all divs
-$('.folder-div').removeClass('clicked');
+  var value = $(element).attr('value');
+  currentPath = currentPath + "/" + value;
+  var folderNames = currentPath.split('/').filter(Boolean);
 
-// Add the 'clicked' class to the clicked div
-$(element).addClass('clicked');
+  // Update the upper title with clickable spans based on the updated currentPath
+  updateUpperTitle(folderNames.join(' > '));
 
-// Get the value of the clicked div
-var value = $(element).attr('value');
-
-currentPath = currentPath + "/" + value ;
-
-var folderNames = currentPath.split('/').filter(Boolean); // Split the path and remove empty elements
-$('#upper-title').text(folderNames.join(' > ')); // Join folder names with ' > ' separator and set as the title
-
-console.log(currentPath);
-listFilesInFolder(currentPath);
-listFoldersInFolder(currentPath);
+  console.log(currentPath);
+  listFilesInFolder(currentPath);
+  listFoldersInFolder(currentPath);
 }
+
+function handleClickNav(element) {
+  $('.folder-name-hover').tooltip('hide');
+  // $('.folder-div').removeClass('clicked');
+  // $(element).addClass('clicked');
+
+  var value = element;
+  console.log(value + "he");
+  currentPath = value;
+  var folderNames = currentPath.split('/').filter(Boolean);
+
+  // Update the upper title with clickable spans based on the updated currentPath
+  updateUpperTitle(folderNames.join(' > '));
+
+  console.log(currentPath);
+  listFilesInFolder(currentPath);
+  listFoldersInFolder(currentPath);
+}
+
+  // Function to update the upper title with clickable spans
+  function updateUpperTitle(path) {
+    var parts = path.split(' > ');
+
+        // Create the HTML content for the upper title with clickable spans
+        var titleContent = '';
+        var currentPath = '';
+        for (var i = 0; i < parts.length; i++) {
+          var folderName = parts[i];
+          currentPath += folderName;
+          titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>';
+          if (i < parts.length - 1) {
+            titleContent += '<span class="font-weight-bold h4 "> / </span>';
+            currentPath += '/';
+          }
+        }
+
+    // Update the upper title content
+    $('#upper-title').html(titleContent);
+  }
+
+  $(document).on('click', '.clickable-path', function() {
+    var value = $(this).attr('value');
+    console.log(value);
+    // Handle the click action (e.g., call handleClick function)
+    handleClickNav(value);
+  });
+
+
 
 $('.folder-div').click(function() {
 // Get the value of the clicked div
 var value = $(this).attr('value');
 console.log(value);
 });
+
+
+
 
 
 function deleteFile(element) {
@@ -769,7 +832,6 @@ fileRef
 
 function downloadFile(element) {
   var path = $(element).attr('value');
-  alert(path);
   var storage = firebase.storage();
   var fileRef = storage.ref(currentPath + '/' + path);
 
@@ -929,7 +991,7 @@ function deleteNote(element){
   var path = $(element).attr('value');
   currentFile = currentPath + "/" + path;
 
-  alert(currentFile);
+
   deleteNoteMetadata(currentFile + '/.placeholder');
 }
 // Function to delete the note when needed
@@ -953,7 +1015,7 @@ editNote(currentFile, note);
 
 function editNote(path, note){
 console.log(path);
-alert(path);
+
 var storage = firebase.storage();
 var fileRef = storage.ref(path);
 
@@ -1029,7 +1091,7 @@ fileRef
 
 function unpinFolder(element) {
   var path = $(element).attr('value');
-  alert(path);
+
   currentFile = currentPath + '/' + path + '/.placeholder';
 
   var storage = firebase.storage();
@@ -1064,7 +1126,6 @@ function showNote(element){
 
 var path = $(element).attr('value');
 currentFile = currentPath+ '/' + path + '/.placeholder';
-alert(currentFile);
 
 
 var storage = firebase.storage();
@@ -1098,6 +1159,8 @@ $('.affiliatesSection').click(function() {
   listFilesInFolder(currentPath);
   listFoldersInFolder(currentPath);
   console.log('Clicked Button Value:', currentPath);
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+  $('#upper-title').html(titleContent);
 });
 
 
@@ -1138,7 +1201,7 @@ function memberFolder(element){
 function openAffiliateStorage(element){
 
     var collabID = $(element).val();
-    alert(collabID);
+   
     currentPath = collabID;
 
     window.location.href = "filestorage";
@@ -1242,7 +1305,7 @@ function setFiletoExpire(element){
   var file = $(element).attr('value');
 
   $("#fileToExpire").val(file);
-  alert(file);
+
 }
 
 function setFileExpiration(element){
@@ -1250,7 +1313,7 @@ function setFileExpiration(element){
   var expiration =    $("#expireDate").val(); 
 
   currentFile = currentPath+ '/' + path;
-  alert(currentFile + expiration);
+
   
   
   var storage = firebase.storage();

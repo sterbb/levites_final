@@ -11,9 +11,9 @@ $(document).ready(function() {
 
     $(".getLyrics").click(function(){
 
-        alert("hello");
+
         var trackID = $(this).attr('trackid');
-        alert(trackID);
+
         document.cookie = "trackID="+trackID;
         window.location.href = 'lyrics';
     })
@@ -30,7 +30,7 @@ $(".searchSong").submit(function(e) {
 
 function getSong(element){
     var trackID = $(element).attr('trackID');
-    alert(trackID);
+
     document.cookie = "trackID="+trackID;
     window.location.href = 'lyrics';
 }
@@ -226,7 +226,6 @@ function downloadLinkedSong(element) {
 
     var trackID = $(element).attr('value');
 
-    alert(trackID);
 
     // Send the AJAX request to your PHP script
     $.ajax({

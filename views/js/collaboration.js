@@ -78,8 +78,7 @@ $("#searchBar").on("keyup", function() {
 $("#sendRequestBtn").on("click", function() {
   var churchName = $("#searchBar").val();
   var churchID = $("#searchBar").attr("church_id");
-  alert(churchName);
-  alert(churchID);
+
 
   var churchData = new FormData();
   churchData.append("churchName", churchName);

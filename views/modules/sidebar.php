@@ -168,9 +168,9 @@ if(isset($_COOKIE["acc_type"])){
                 
                 <li class="superuser">
                   <a href="superuser">
-                    <div class="parent-icon"><i class="lni lni-graph"></i>
+                    <div class="parent-icon"><i class="bx bx-comment-dots"></i>
                     </div>
-                    <div class="menu-title hidden">Reports</div>
+                    <div class="menu-title hidden">Church Approval</div>
                   </a>
                 </li>
 
@@ -184,7 +184,7 @@ if(isset($_COOKIE["acc_type"])){
 
                 <li class="superuser">
                   <a href="reports">
-                    <div class="parent-icon"><i class="lni lni-graph"></i>
+                    <div class="parent-icon"><i class="fadeIn animated bx bx-comment-error"></i>
                     </div>
                     <div class="menu-title hidden">Reports</div>
                   </a>

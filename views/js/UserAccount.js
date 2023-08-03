@@ -66,7 +66,7 @@ $("#submitMemberBtn").click(function(e) {
     e.preventDefault(); 
 
     var memID = $("#subuserMember").val();
-    alert(memID);
+
 
     var account_type = "publicSub";
     var restriction = "";
@@ -123,12 +123,12 @@ $("#submitMemberBtn").click(function(e) {
 // CLEAR INPUT
 $(".UserAccountForm").reset(function() {
 
-    alert("hello");
+
     clear();
 });
 
 function clear(){
-    alert("hello");
+
     $("#user-name").focus();
     swal.fire({
         icon: 'question',

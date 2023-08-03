@@ -416,7 +416,6 @@ document.addEventListener('DOMContentLoaded', function () {
       let date = event.toISOString().split('T')[0]  
       date = date.slice(0,11);
 
-      alert(date);
       
       document.cookie = "viewDate=" +date;
 
@@ -506,7 +505,6 @@ function displayEventDetails(readableDate ,date){
 
 function sendGroupEmail(element){
   var group_name = $(element).attr('id');
-  alert(group_name);
 
   $("."+group_name+'-items').each(function() {
     var email = $(this).attr("email");
@@ -573,7 +571,6 @@ $('#uploadPodcast').click(function() {
       var file = selectedFile;
       // change file name so cannot overwrite
       var name = podcastDate;
-      alert(name);
       var path = currentPath + "/Podcast/" + name + ".mp3";
 
         // Set metadata
