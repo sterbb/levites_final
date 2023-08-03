@@ -1,3 +1,7 @@
+<style>
+
+</style>
+
 <!--start main content-->
 <main class="page-content">
     <div class="col ">
@@ -51,9 +55,9 @@
                         <div class="col-12 col-lg-3">
 
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
+                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
-                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="bi bi-truck-front-fill me-2"></i>Workshop</button>
+                            <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="bi bi-truck-front-fill me-2"></i>Workshop</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="bi bi-globe me-2"></i>Sunday Worship</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
@@ -62,7 +66,10 @@
                           
                           <div class="col-12 col-lg-12 text-center mt-5">
                             <h5 for="Collection" class="form-label fw-bold mb-3"><i class="lni lni-mic"></i>Podcast</h5>
-                            <input type="file" class="form-control" id="inputGroupFile02">
+                            <h6 id="podcastMessage" class="text-success mt-2" style="display: none;">A podcast already exists</h6>  
+                            <input type="file" class="form-control" id="podcast_file" accept=".mp3, .wav, .ogg">
+
+                            <button type="button" class="btn btn-secondary mt-3" id="uploadPodcast">Upload<i class='upicon bx bx-download'></i>
                           </div>
                           
                         </div>
@@ -72,240 +79,41 @@
                           
                           <div class="tab-content overflow-auto p-3" style="overflow-x: hidden !important; max-height: 50vh; "> 
 
-                            <div class="tab-pane fade" id="BibleStudySection">
-                              <div class="row g-3">
-                                <div class="col-12 col-lg-12 text-center ">
-                                  <h4 class="mb-2 ">Instrument Workshop</h4>
-                                </div>
-                              </div>
+                            <div class="tab-pane fade show active" id="BibleStudySection">
+                             
                             </div>
 
 
                             <div class="tab-pane fade" id="OutreachSection">
-                              <h6 class="mb-3">Add to Stock</h6>
-                              <div class="row g-3">
-                                <div class="col-sm-7">
-                                  <input class="form-control" type="number" placeholder="Quantity">
-                                </div>
-                                <div class="col-sm">
-                                  <button class="btn btn-outline-primary"><i class="bi bi-check2 me-2"></i>Confirm</button>
-                                </div>
-                              </div>
-                              <table class="mt-3">
-                                <thead>
-                                  <tr>
-                                    <th style="width: 200px;"></th>
-                                    <th></th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td class="text-1000 fw-bold py-1">Product in stock now:</td>
-                                    <td class="text-700 fw-semi-bold py-1">$2,059<button class="btn p-0 ms-2" type="button"><i class="bi bi-arrow-clockwise"></i></button></td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-1000 fw-bold py-1">Product in transit:</td>
-                                    <td class="text-700 fw-semi-bold py-1">3000</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-1000 fw-bold py-1">Last time restocked:</td>
-                                    <td class="text-700 fw-semi-bold py-1">25th March, 2020</td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-1000 fw-bold py-1">Total stock over lifetime:</td>
-                                    <td class="text-700 fw-semi-bold py-1">50,000</td>
-                                  </tr>
-                                </tbody>
-                              </table>
+    
                             </div>
 
 
-                            <div class="tab-pane fade show active" id="WorkshopSection">
-  
-                              
+                            <div class="tab-pane fade " id="WorkshopSection">
 
-
-                            <!-- event -->
-                              <div class="border border-secondary p-3 mb-5">
-                                
-                                <div class="row">
-                                  <div class="col d-flex justify-content-start">
-                                    <div class="dropdown">
-                                      <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-music"></i></button>
-                                      <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Broken Vessels</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Raise a Hallelujah</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="lyrics">Living Hope</a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="dropdown">
-                                      <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-file"></i></button>
-                                      <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Chords Chart</a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-
-
-                                  <div class="col d-flex justify-content-end">
-                                    <button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
-                                    <button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
-                                  </div>
-
-                                </div>
-                              
-                                <div class="row g-3">
-                                  <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Instrument Workshop</h4>
-                                  </div>
-                                </div>
-
-                                <div class="row g-3 mt-2 mb-2">
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 1, 2023 @10:00am - 11:30am</h6>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 mb-3">
-                                    <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-                                      Attention workshop participants!
-
-                                      Just a friendly reminder to bring your instruments to the upcomingworkshop.
-
-                                      Label your instrument with your name.
-                                      Make sure it's in good working condition and tuned.
-                                      Protect it in a suitable case or bag.
-                                      Don't forget any necessary accessories (extra strings, reeds, picks, etc.).
-                                      If you have an instrument that can be shared, let us know in advance!
-
-                                      Safety first! Handle your instrument with care and be aware of your surroundings.
-
-                                      Get ready to enhance your workshop experience by practicing and applying what you learn in real-time!
-
-                                      If you have any questions, feel free to reach out. We're here to help!
-
-                                      Looking forward to an amazing workshop with all of you. See you soon!
-                                    </textarea>
-              
-                                  </div>
-
-                                </div>
-
-                                <h6 >Groups</h6>
-                                <div class="row row-cols-1 row-cols-lg-3 g-3">
-                                  
-                                  <div class="col">
-                                    <div class="card mb-0">
-                                      <div class="card-body border-bottom d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title inline">Trainer Team</h5>
-                                        <button class="font-18  btn btn-outline-success px-3 inline">	<i class="fadeIn animated bx bx-mail-send"></i></button>
-                                      </div>
-                                      <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Jan Ryan A. Divinagracia</li>
-                                        <li class="list-group-item">JayCobb Andrew D. Moya</li>
-                                        <li class="list-group-item">John Cliff Fortaleza</li>
-                                      </ul>
-                                    </div>
-
-                                    
-                                  </div>
-              
-                                  
-
-                                </div><!--end row-->
-                              </div>
                               
                             </div>
 
 
                             <div class="tab-pane fade" id="SundayWorshipSection">
-                              <div class="d-flex flex-column h-100">
-                                <h6 class="mb-3">Global Delivery</h6>
-                                <div class="flex-1">
-                                  <div class="mb-4">
-                                    <div class="form-check mb-1">
-                                      <input class="form-check-input" type="radio" name="shippingRadio" id="Worldwidedelivery">
-                                      <label class="form-check-label fw-bold" for="Worldwidedelivery">Worldwide delivery</label>
-                                    </div>
-                                    <div class="ps-4">
-                                      <p class="mb-0">Only available with Shipping method: <a href="#">Fullfilled by Admin</a></p>
-                                    </div>
-                                  </div>
-                                  <div class="mb-4">
-                                    <div class="form-check mb-1">
-                                      <input class="form-check-input" type="radio" name="shippingRadio" id="SelectedCountries" checked="checked">
-                                      <label class="form-check-label fw-bold d-flex align-items-center" for="SelectedCountries">Selected Countries</label>
-                                    </div>
-                                    <div class="ps-4">
-                                      <input class="form-control" type="text" placeholder="Type Country name">
-                                    </div>
-                                  </div>
-                                  <div class="mb-0">
-                                    <div class="form-check mb-1">
-                                      <input class="form-check-input" type="radio" name="shippingRadio" id="Localdelivery">
-                                      <label class="form-check-label fw-bold" for="Localdelivery">Local delivery</label>
-                                    </div>
-                                    <div class="ps-4">
-                                      <p class="mb-0">Only available with Shipping method: <a href="#!">Fullfilled by Admin</a></p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                              
                             </div>
+                            
                             <div class="tab-pane fade" id="PrayerMeetingSection">
-                              <h6 class="mb-3">Attributes</h6>
-                              <div class="form-check">
-                                <input class="form-check-input" id="fragileCheck" type="checkbox">
-                                <label class="form-check-label text-900 fs-0" for="fragileCheck">Fragile Product</label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" id="biodegradableCheck" type="checkbox">
-                                <label class="form-check-label text-900 fs-0" for="biodegradableCheck">Biodegradable</label>
-                              </div>
-                              <div class="mb-3">
-                                <div class="form-check"><input class="form-check-input" id="frozenCheck" type="checkbox" checked="checked">
-                                  <label class="form-check-label text-900 fs-0" for="frozenCheck">Frozen Product</label>
-                                  <input class="form-control" type="text" placeholder="Max. allowed Temperature" style="max-width: 350px;">
-                                </div>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" id="productCheck" type="checkbox" checked="checked">
-                                <label class="form-check-label text-900 fs-0" for="productCheck">Expiry Date of Product</label>
-                                <input class="form-control" id="inventory" type="date">
-                              </div>
-                            </div>
-                            <div class="tab-pane fade" id="BaptismalSection">
-                              <h6 class="mb-3">Advanced</h6>
-                              <div class="row g-3">
-                                <div class="col-12 col-lg-6">
-                                  <label class="mb-2">Product ID Type</label>
-                                  <select class="form-select">
-                                    <option selected="selected">ISBN</option>
-                                    <option value="1">UPC</option>
-                                    <option value="2">EAN</option>
-                                    <option value="3">JAN</option>
-                                  </select>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                  <label class="mb-2">Product ID</label>
-                                  <input class="form-control" type="text" placeholder="ISBN Number">
-                                </div>
-                              </div>
+                
                             </div>
 
-                            <div class="tab-pane fade" id="Add">
+                            <div class="tab-pane fade" id="BaptismalSection">
+                     
+                            </div>
+
+                            <div class="tab-pane fade" id="AddType">
                               <div class="row g-3">
                                 <div class="col-12 col-lg-12">
                                   <label class="mt-3">Event Type Name</label>
-                                  <input class="form-control" type="text" placeholder="" id="type_name">
+                                  <input class="form-control" type="text" placeholder="">
+                                  
+
                                 </div>
                                 
                               </div>
@@ -313,11 +121,10 @@
                               <div class="row mt-3">
                                   <div class="d-flex justify-content-end">
                                   <button type="button" class="btn btn-danger me-3">Clear </button>
-                                  <button type="button" id="AddEventType" class="btn btn-success me-3">Save</button>
+                                  <button type="button" class="btn btn-success me-3">Save</button>
                                   </div>  
                               </div>
                             </div>
-                            
 
                           </div>
                         </div>
@@ -342,16 +149,67 @@
             
                 <div class="card-body d-flex justify-content-around align-items-center">
                     <h6 class="mb-0 text-uppercase" style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:1.5em;" id="church_calendar_date"></h6>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddEvents"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddEvents" id="addEventTodayBtn"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
                 </div>
 
-                <ul class="list-group list-group-flush mb-0">
-                    <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent">Wedding<span class="badge bg-success rounded-pill">7:45 A.M.</span>
-                    </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Baptism<span class="badge bg-primary rounded-pill">8:50 A.M.</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent">Workshop<span class="badge bg-danger rounded-pill">7:45 P.M.</span>
-                </li>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                <script>
+                  // List of Bootstrap background color classes
+                    const colorClasses = [
+                      'bg-primary',
+                      'bg-secondary',
+                      'bg-success',
+                      'bg-danger',
+                      'bg-warning',
+                      'bg-info',
+                      'bg-light',
+                      'bg-dark',
+                    ];
+
+                    function getNextColorClass(currentIndex) {
+                      // Calculate the index of the next color class
+                      const nextIndex = (currentIndex + 1) % colorClasses.length;
+
+                      // Return the next color class
+                      return colorClasses[nextIndex];
+                    }
+
+                    $(document).ready(function() {
+                      // Your Ajax code here
+                      $.ajax({
+                        url: 'models/showCurrentEvents.php',
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                          var eventsList = '';
+                          var currentIndex = -1; // Initialize the index of the current color class
+
+                          $.each(response, function(index, event) {
+                            // Get the next background color class
+                            const nextColorClass = getNextColorClass(currentIndex);
+                            currentIndex = (currentIndex + 1) % colorClasses.length; // Update the current index
+
+                            eventsList +=
+                              '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent">' +
+                              event.event_title +
+                              '<span class="badge rounded-pill ' + nextColorClass + '">' +
+                              event.event_time +
+                              '</span></li>';
+                          });
+
+                          $('#current_eventList').html(eventsList);
+                        },
+                        error: function(xhr, status, error) {
+                          // Handle errors, if any
+                          console.log('Error:', error);
+                        }
+                      });
+                    });
+              </script>
+
+                <ul class="list-group list-group-flush mb-0" id="current_eventList">
+
               </ul>
 
 
@@ -362,20 +220,32 @@
             <div class="card-body">
                 <h6>Calendar Filters</h6>
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Workshops</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Offering Prayer</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                <input class="form-check-input calendar-filter" type="checkbox" id="Bible Study" checked style="background-color: #6CAE75; border: 2px solid #6CAE75;">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Bible Study</label>
             </div>
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Anniversary</label>
+                <input class="form-check-input calendar-filter" type="checkbox" id="Outreach" checked style="background-color: #5285C5; border: 2px solid #5285C5;">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Outreach</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input calendar-filter" type="checkbox" id="Workshop" checked style="background-color: #F9A646; border: 2px solid #F9A646;"> 
+                <label class="form-check-label" for="flexSwitchCheckChecked">Workshop</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input calendar-filter" type="checkbox" id="Sunday Worship" checked style="background-color: #A17EBF; border: 2px solid #A17EBF;">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Sunday Worship</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input calendar-filter" type="checkbox" id="Prayer Meeting" checked style="background-color: #FF7F50; border: 2px solid #FF7F50;">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Prayer Meeting</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input calendar-filter" type="checkbox" id="Baptismal" checked style="background-color: #4FA1D8; border: 2px solid #4FA1D8;">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Baptismal</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input calendar-filter" type="checkbox" id="Wedding" checked style="background-color: #D55C88; border: 2px solid #D55C88;">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Wedding</label>
             </div>
             </div>
           </div>
@@ -396,7 +266,7 @@
       </div>
       <!--end row-->
     </main>
-     <!--end main content-->
+     <!--end main content-->Members
 
 
 
@@ -416,20 +286,40 @@
               <input type="text" class="form-control" id="groupName" placeholder="">
             </div>
 
-            <input type="hidden" name="groupEventMembersList" id="groupEventMembersList">
-            <input type="hidden" name="groupEventEmailList" id="groupEventEmailList">
+            <input type="text" name="groupEventMembersList" id="groupEventMembersList">
+            <input type="text" name="groupEventEmailList" id="groupEventEmailList">
 
             <div class="mt-3">
                   <!-- Repeater Html Start -->
               <div id="repeater">
+       
+              
                 <!-- Repeater Heading -->
 
-                <div class="d-flex justify-content-between align-items-center">            
-                  <h6 class="mb-0">Members</h6>
-                  <button class="me-0 btn btn-success repeater-add-btn"><i class="fadeIn animated bx bx-user-plus"></i></button>
+                <div class="d-flex justify-content-between align-items-center mb-3">            
+                  <h6 class="mb-0">Add Member</h6>
+                  <select name="" id="groupMembersInput" class="form-select border-3" >
+                    <?php
+                    $memBer = (new ControllerUserAccount)->ctrShowUserAccount();
+                    foreach($memBer as $key => $value){
+                      echo '<option selected="" email="'.$value['memberEmail'].'" value="'.$value['memberID'].'">'.$value['memberName'].'</option>';
+                    };
+                    ?>
+                  </select>
+                  <button class="me-0 btn btn-success repeater-add-member-btn"><i class="fadeIn animated bx bx-user-plus"></i></button>
+                </div>
+
+                <div class="addMembertoGroupSection">
+
                 </div>
 
               <hr>
+
+              <div class="d-flex justify-content-between align-items-center mb-3">            
+                  <h6 class="mb-0">Add Person</h6>
+              
+                  <button class="me-0 btn btn-success repeater-add-btn"><i class="fadeIn animated bx bx-user-plus"></i></button>
+              </div>
 
                 <!-- Repeater Items -->
                 <div class="items" data-group="members"> 
@@ -494,12 +384,9 @@
                       <option value="Outreach">Outreach</option>
                       <option value="Workshop">Workshop</option>
                       <option value="Sunday Worship">Sunday Worship</option>
-                      <option value="Praryer Meeting">Praryer Meeting</option>
+                      <option value="Prayer Meeting">Prayer Meeting</option>
                       <option value="Baptismal">Baptismal</option>
                       <option value="Wedding">Wedding</option>
-                      
-
-                      
                       </select>
                   </div>  
                   <div class="col-8"> 

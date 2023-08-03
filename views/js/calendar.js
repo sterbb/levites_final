@@ -1,9 +1,58 @@
 
 $(function(){
 
-  let currentDate = new Date().toJSON().slice(0, 10);
 
-  $(document).ready(function() {
+
+  $(document).ready(function() {     // Add event handler to the "Add Member" button
+
+     $(document).on("change", 'input[name*="memberName"], input[name*="memberEmail"]', function () {
+      getGroupMembers();
+    });
+    
+    $(".repeater-add-member-btn").on("click", function () {
+      // Get the selected option data
+      const selectedOption = $("#groupMembersInput option:selected");
+      const name = selectedOption.text();
+      const email = selectedOption.attr("email");
+      const memberId = selectedOption.val();
+
+      // Create the HTML structure for the member
+      const memberHTML = `
+        <div class="card">
+          <div class="card-body">
+            <!-- Repeater Content -->
+            <div class="item-content">
+              <div class="d-flex align-items-end justify-content-end">
+                <button class="btn btn-danger remove-btn"><i class="fadeIn animated bx bx-user-minus"></i></button>
+              </div>
+              <div class="mb-3">
+                <label for="inputName${memberId}" class="form-label">Name</label>
+                <input type="text" class="form-control memberNamesAddGrop" id="inputName${memberId}" acc_id="${memberId}" placeholder="Name"  data-name="memberName" value="${name}">
+              </div>
+              <div class="mb-3">
+                <label for="inputEmail${memberId}" class="form-label">Email</label>
+                <input type="text" class="form-control memberEmailsAddGrop" id="inputEmail${memberId}" placeholder="Email" data-skip-name="true" data-skip-name="true"
+                data-name="memberEmail" value="${email}">
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Append the member HTML to the addMembertoGroupSection div
+      $(".addMembertoGroupSection").append(memberHTML);
+
+      // getAllMemberNamesAddGroup();
+    });
+
+    // Add event handler for "Remove" buttons (delegated event for dynamically added buttons)
+    $(document).on("click", ".remove-btn", function () {
+      $(this).closest(".card").remove();
+    });
+
+
+
+   
 
     var currentDate = new Date().toLocaleDateString('en-US', {
       year: 'numeric',
@@ -12,6 +61,7 @@ $(function(){
     });
 
     $("#church_calendar_date").text(currentDate);
+    $("#dashboard-currentdate").text(currentDate);
 
   });
 
@@ -210,76 +260,123 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     initialView: 'dayGridMonth',
     initialDate: currentDate,
-    navLinks: true, // can click day/week names to navigate views
+    navLinks: true,
     selectable: true,
     nowIndicator: true,
-    dayMaxEvents: true, // allow "more" link when too many events
+    dayMaxEvents: true,
     editable: true,
-    events: 'models/loadCalenddar.php',
+    events: 'models/loadCalenddar.php',     
+    eventDidMount: function (info) {
+      // Set different colors for different classNames
+      if (info.event.classNames.includes("Bible Study")) {
+        info.el.style.backgroundColor = '#6CAE75'; // Green
+      } else if (info.event.classNames.includes("Outreach")) {
+        info.el.style.backgroundColor = '#5285C5'; // Blue
+      } else if (info.event.classNames.includes("Workshop")) {
+        info.el.style.backgroundColor = '#F9A646'; // Orange
+      } else if (info.event.classNames.includes("Sunday Worship")) {
+        info.el.style.backgroundColor = '#A17EBF'; // Purple
+      } else if (info.event.classNames.includes("Prayer Meeting")) {
+        info.el.style.backgroundColor = '#FF7F50'; // Coral 
+      } else if (info.event.classNames.includes("Wedding")) {
+        info.el.style.backgroundColor = '#D55C88'; // Pinkish-purple
+      } else if (info.event.classNames.includes("Baptismal")) {
+        info.el.style.backgroundColor = '#4FA1D8'; // Pinkish-purple
+      }
+    },
     eventClick: function(info){
-     
       alert(moment(info.event.start ).format("YYYY-MM-DD"));
       $('#exampleVerticallycenteredModal').modal('show');
-
-    }
-    ,
+    },
     dateClick: function(info) {
-      
       var event = new Date(info.date);
-
-
-
       const offset = event.getTimezoneOffset();
-
       event = new Date(event.getTime() - (offset*60*1000));
+
       var readableDate = event.toDateString();
       readableDate = readableDate.slice(4,15);
-      
-      let date = event.toISOString().split('T')[0]  
-      date = date.slice(0,11);
+      let date = event.toISOString().split('T')[0];
+      date = date.slice(0,10);
+  
 
+      $('#event_date').val(date);
+      podcastDate = date;
 
-      var eventType = "Bible Study";
+      var name = podcastDate;
+      var path = currentPath + "/Podcast/" + name + ".mp3";
+      checkFileExistenceAndDisplayMessage(path)
 
-      displayEventDetails(readableDate, date);
+      // Array of event categories
+      var eventCategories = ["Bible Study", "Outreach", "Workshop", "Sunday Worship", "Prayer Meeting", "Baptismal", "Wedding"];
 
-      var eventData = new FormData();
-      eventData.append("date", date);
-      eventData.append("eventType", eventType);
-
-      $.ajax({
+      function fetchEventData(eventType) {
+        var eventData1 = new FormData();
+        eventData1.append("date", date);
+        eventData1.append("eventType", eventType);
+        
+        $.ajax({
           url: "ajax/get_event_details.ajax.php",
           method: "POST",
-          data: eventData,
+          data: eventData1,
           cache: false,
           contentType: false,
           processData: false,
           dataType: "html",
           success: function(answer) {
-            $('#WorkshopSection').html(answer);
-            
-        
+            var event_category =  eventType.replace(/\s/g, '');
+            $('#' +event_category+ 'Section').html(answer);
           },
           error: function() {
-              alert("Oops. Something went wrong!");
-          },
-          complete: function() {
+            alert("Oops. Something went wrong!");
           }
         });
+      }
 
-      
+      // Loop through the event categories and fetch data for each category
+      eventCategories.forEach(function(eventType) {
+        fetchEventData(eventType);
+      });
 
+      displayEventDetails(readableDate, date);
       $('#displayEventsModal').modal('show');
     }
-    
   });
+
   calendar.render();
-  
+
+  // Your filtering functions from the previous response
+  function applyFilters() {
+    var selectedFilters = [];
+    filterCheckboxes.forEach(function (checkbox) {
+      if (checkbox.checked) {
+        selectedFilters.push(checkbox.id);
+      }
+    });
+
+    calendar.getEvents().forEach(function (event) {
+      //gng 100 ko para d mag display bskan wala na filter
+      if (selectedFilters.length === 100 || selectedFilters.includes(event.classNames[0])) {
+        event.setProp('display', '');
+      }
+       else {
+        event.setProp('display', 'none');
+      }
+      
+    });
+    
+  }
+
+  // Get all the filter checkboxes
+  var filterCheckboxes = document.querySelectorAll('.calendar-filter');
+
+  // Add event listener to each checkbox
+  filterCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+      applyFilters();
+    });
+  });
+
 });
-
-
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar2');
@@ -325,38 +422,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       window.location.href = "catdetails";
 
-
-      // var eventType = "Bible Study";
-
-      // displayEventDetails(readableDate, date);
-
-      // var eventData = new FormData();
-      // eventData.append("date", date);
-      // eventData.append("eventType", eventType);
-
-      // $.ajax({
-      //     url: "ajax/get_event_details.ajax.php",
-      //     method: "POST",
-      //     data: eventData,
-      //     cache: false,
-      //     contentType: false,
-      //     processData: false,
-      //     dataType: "html",
-      //     success: function(answer) {
-      //       $('#WorkshopSection').html(answer);
-            
-        
-      //     },
-      //     error: function() {
-      //         alert("Oops. Something went wrong!");
-      //     },
-      //     complete: function() {
-      //     }
-      //   });
-
-      
-
-      // $('#displayEventsModal').modal('show');
     }
     
   });
@@ -367,48 +432,75 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-function getGroupMembers(){
-  var arrData1 = [];
-  var arrData2 = [];
+  function getGroupMembers(){
+    var arrData1 = [];
+    var arrData2 = [];
 
-  $('input[name*="memberName"]').each(function(e)
-  {
+
+  
+      $('.memberNamesAddGrop').each(function () {
+        console.log($(this).val());
+
+        var str = this.value;
+
+        var members = {};
+        members.name = str;
+        arrData1.push(members);
+
+      });
+    
+
+
+    $('input[name*="memberName"]').each(function(e)
+    {
+        console.log($(this).val());
+
+        var str = this.value;
+
+        var members = {};
+        members.name = str;
+        arrData1.push(members);
+
+    });
+
+    $("#groupEventMembersList").val(JSON.stringify(arrData1));
+    console.log( $("#groupEventMembersList").val());
+
+    $('.memberEmailsAddGrop').each(function () {
       console.log($(this).val());
 
       var str = this.value;
 
-      var members = {};
-      members.name = str;
-      arrData1.push(members);
 
-  });
-
-  $("#groupEventMembersList").val(JSON.stringify(arrData1));
-
-  $('input[name*="memberEmail"]').each(function(e)
-  {
-      console.log($(this).val());
-
-      var str = this.value;
-
-
-
-
-      
       var email = {};
       email.email = str;
       arrData2.push(email);
 
-  });
-  
-  $("#groupEventEmailList").val(JSON.stringify(arrData2));
+    });
+    
 
-}
+    $('input[name*="memberEmail"]').each(function(e)
+    {
+        console.log($(this).val());
+
+        var str = this.value;
+
+
+        var email = {};
+        email.email = str;
+        arrData2.push(email);
+
+    });
+    
+    $("#groupEventEmailList").val(JSON.stringify(arrData2));
+    console.log( $("#groupEventEmailList").val());
+  }
 
 
 function displayEventDetails(readableDate ,date){
 
   $("#eventDateModal").text(readableDate);
+  
   
 }
 
@@ -454,6 +546,131 @@ function sendGroupEmail(element){
     // Your email sending logic...
     // Replace the console.log with your actual email sending code
   });
+}
 
+var currentPath = getCookie("church_id");
+var podcastDate;
+
+function getCookie(cookieName) {
+  const cookiePattern = new RegExp(`(?:(?:^|.*;\\s*)${cookieName}\\s*\\=\\s*([^;]*).*$)|^.*$`);
+  const cookieValue = document.cookie.replace(cookiePattern, "$1");
+  return cookieValue || null;
+  }
+
+// Add click event handler to the button
+$('#uploadPodcast').click(function() {
+  // Get the selected file from the file input
+  const fileInput = $('#podcast_file')[0];
+  if (fileInput.files.length > 0) {
+    // Get the selected file
+    const selectedFile = fileInput.files[0];
+    
+    // Get the file name
+    const fileName = selectedFile.name;
+    // Alert the file name
+
+      // get file
+      var file = selectedFile;
+      // change file name so cannot overwrite
+      var name = podcastDate;
+      alert(name);
+      var path = currentPath + "/Podcast/" + name + ".mp3";
+
+        // Set metadata
+    var metadata = {
+      customMetadata: {
+        createdBy: getCookie('acc_name'), 
+      }
+    };
+
+      // now upload
+      var storageRef = firebase.storage().ref(path);
+      var uploadTask = storageRef.put(file, metadata);
+
+      var storage = firebase.storage();
+      var podcastPlaceholder = storage.ref(currentPath + "/Podcast/.placeholder");
+
+      var metadata = {
+        customMetadata: {
+          createdBy: getCookie('acc_name'),
+          // Add more custom metadata properties as needed
+        }
+      };
+
+      podcastPlaceholder
+        .putString("", "raw", metadata)
+        .then(function () {
+          console.log("Subfolder created:", path);
+        })
+        .catch(function (error) {
+          console.log("Error:", error);
+        });
+
+
+  } else {
+    // Alert if no file is selected
+    alert('Please select a file.');
+  }
+});
+
+function checkFileExistenceAndDisplayMessage(filePath) {
+  var storageRef = firebase.storage().ref(filePath);
+
+  return storageRef
+    .getMetadata()
+    .then(function(metadata) {
+      // The file exists, display the message
+      document.getElementById('podcastMessage').style.display = 'block';
+    })
+    .catch(function(error) {
+      // If the file does not exist or an error occurs, handle the error here
+      if (error.code === 'storage/object-not-found') {
+        // The file does not exist, hide the message
+        document.getElementById('podcastMessage').style.display = 'none';
+      } else {
+        console.error('Error getting file metadata:', error);
+        document.getElementById('podcastMessage').style.display = 'none';
+      }
+    });
+}
+
+
+function downloadLinkedFile(element){
+
+
+  var path = $(element).attr('value');
+  var storage = firebase.storage();
+  var fileRef = storage.ref(path);
+
+  fileRef
+  .getDownloadURL()
+  .then(function (downloadURL) {
+    var link = document.createElement('a');
+    link.href = downloadURL;
+    link.setAttribute('download', fileRef.name);
+    link.style.display = 'none';
+
+    // Append the link to the document body
+    document.body.appendChild(link);
+
+    // Programmatically trigger the download
+    link.click();
+
+    // Remove the link from the document body
+    document.body.removeChild(link);
+
+  })
+  .catch(function (error) {
+    console.log('Error:', error);
+  });
 
 }
+
+$('#addEventTodayBtn').click(function(){
+  let currentDate = new Date().toJSON().slice(0, 10);
+$("#event_date").val(currentDate);
+
+});
+
+
+

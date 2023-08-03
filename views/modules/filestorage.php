@@ -4,27 +4,27 @@
       <!--breadcrumb-->
       <div id="particles-js"></div>
       <!--end breadcrumb-->
-      <div class="row">
-        <div class="col-12 col-lg-3">
-          <div class="card">
+      <div class="row ">
+        <div class="col-12 col-lg-3 notPublic notMember">
+          <div class="card ">
             <div class="card-body">
               <h5 class="mt-2 mb-0">My Storage</h5>
               <p class="mb-1 mt-2">
-                <span>1.2 GB</span>
-                <span class="float-end">5  GB</span>
+                <span id="myStorageSizeTxt"></span>
+                <span class="float-end">1 GB</span>
               </p>
               <div class="progress" style="height: 7px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-warning" role="progressbar" id="myStorageSize" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <div class="d-flex align-items-center">
+              <!-- <div class="d-flex align-items-center">
                 <div>
                   <h6 class="mb-0 mt-4">Recent Files</h6>
                 </div>
                 <div class="ms-auto">
                   <a href="javascript:;" class="btn btn-sm btn-outline-primary justify-content-center mt-4">View all</a>
                 </div>
-              </div>
-              <div id="recentFilesList"></div>
+              </div> -->
+              <!-- <div id="recentFilesList"></div> -->
               <div class="mb-3 border-top"></div>
               
               
@@ -32,7 +32,7 @@
             
           </div>
           <!-- Additional content -->
-              <div class="card overflow-hidden">
+              <div class="card overflow-hidden notPublic notMember">
                 <div class="card-body">
                   <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' ></i></a></h5>
                   <div class="mt-3"></div>
@@ -121,19 +121,17 @@
           <div class="col-12 col-lg-9 " >
             <!-- Content for the column on the right -->
             <div class="card">
-                    <div class="card-body cursor-pointer">
+                    <div class="card-body">
                       
                       <div class="fm-search">
                         <div class="mb-0">
-                          <div class="upload-file position-absolute top-0 end-1">
+                          <div class="upload-file position-absolute top-0 end-1 notPublic">
                               <input type="file" id="fileInput" style="display: none;">
                             
                               <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown">Upload<i class='upicon bx bx-download'></i>
                                 </button>
                                 <ul class="dropdown-menu">
                                   <li  class="upload"><a class="dropdown-item button" id="uploadFiles"><i class='upicon bx bxs-file-import' ></i>Upload Files</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='upicon bx bx-folder-open' ></i>Upload Folder</a>
                                   </li>
                                   <hr class="dropdown-divider">
                                   </li>
@@ -172,163 +170,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="mt-3 cursor-pointer">
-                      <h5 id="upper-title">Folders</h5>
+
+                      <div class="mt-3">
+                        <h5 id="upper-title">Folders</h5>
+                      
                     </div>
 
                       <div class="row mt-3 folder-preview" id="pinnedSection">
-                        <div class="col-12 col-lg-4">
-                          <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
-                          <div class="card-body " id="public_folder" data-bs-target="#folderModal" >
-                              <div class="d-flex align-items-center">
-                                <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>
-                                <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
-                                <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
-                                </button>
-  
-             
-                                </div>
-                                <div class="dropdown ms-auto">
-                                <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-add-to-queue' ></i>Add note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x' ></i>Delete note</a>
-                                  </li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="modal" data-delay="2000" data-bs-target="#folderModal"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" >Public Folder</i></h5>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-          
-                        <div class="col-12 col-lg-4">
-                          <div class="card radius-10 border-0 border-bottom border-primary border-4  shadow-sm" >
-                          <div class="card-body ">
-                              <div class="d-flex align-items-center">
-                              <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>                                
-                              <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
-                                <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info " data-bs-toggle="modal" data-bs-target="#2exampleScrollableModal"  id="modalTrigger"><i class='bx bx-info-circle fs-4 m-3'></i>
-                                </button>
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="2exampleScrollableModal" tabindex="-1" aria-hidden="true">
-                                      <div class="modal-dialog modal-dialog-scrollable">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title">Note:</h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                              </div>
-                                              <div class="modal-body">
-                                              <textarea class="form-control" rows="5" placeholder="Enter your notes here"></textarea>
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                                <div class="dropdown ms-auto">
-                                <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-add-to-queue' ></i>Add note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x' ></i>Delete note</a>
-                                  </li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip folderName"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000" id="membertooltip">Members Folder</i></h5>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-12 col-lg-4">
-                          <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
-                          <div class="card-body ">
-                              <div class="d-flex align-items-center">
-                              <div class="font-30 text-primary mt-3" ><i class='bx bxs-folder fs-1'></i>
-                                <button type="button" id="" class="pinned-button cursor-pointer position-absolute top-0 start-0" data-bs-toggle="dropdown"><i class="bx bx-pin fs-4 "></i>
-                                <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info" data-bs-toggle="modal" data-bs-target="#1exampleScrollableModal"  id="modalTrigger" disabled><i class='bx bx-info-circle fs-4 m-3'></i>
-                                </button>
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="1exampleScrollableModal" tabindex="-1" aria-hidden="true">
-                                      <div class="modal-dialog modal-dialog-scrollable">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title">Modal title</h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                              </div>
-                                              <div class="modal-body">
-                                                  <p>xxx</p>
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                  <button type="button" class="btn btn-primary">Save changes</button>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                                <div class="dropdown ms-auto">
-                                <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-add-to-queue' ></i>Add note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit note</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bxs-message-x' ></i>Delete note</a>
-                                  </li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Share Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share' ></i>Link to Event</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt' ></i>Edit Folder</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-folder-minus' ></i>Delete Folder</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              </div>
-                              <h5 class="mt-3 mb-0 cursor-pointer custom-tooltip"  data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="" data-bs-html="true" data-bs-delay="1000">Christmas Carol</i></h5>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
+                        
                       <!--end row-->
                     </div>
                      
@@ -431,4 +280,54 @@
 
     
 
-    
+<!-- Modal -->
+<div class="modal fade" id="linkFileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-small">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Link File</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="linkFilePath" hidden>
+        <input type="text" id="linkFilePathName" hidden>
+              <label for="single-select-clear-field" class="form-label">Event:</label>
+              <select class="form-select border border-dark w-100" id="linkEventInputFile" aria-label="Default select example">
+                <?php
+                $playlist = (new ControllerPlaylist)->ctrShowEventsLinkingPlaylist();
+                foreach ($playlist as $key => $value) {
+                  echo '
+                    <option value="' . $value['eventID'] . '" class="d-flex align-items-center justify-content-between" style="font-weight:bold;">
+                      <span>' . $value['event_title'] . '</span>
+                      <span>(' . $value['event_date'] . ' @ ' . $value['event_time'] . ')</span>
+                    </option>';
+                }
+                ?>
+              </select>
+        <div class="row d-flex justify-content-center mt-3">
+          <button type="button" class="btn btn-outline-warning w-50" id="linkFileBtn">Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>    
+
+<!-- Modal -->
+<div class="modal fade" id="FileExpirationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-small">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title">File Expiration</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input class="form-control" type="text" id="fileToExpire" hidden>
+        <input class="form-control flatpickr flatpickr-input flatpickr-date" type="text" id="expireDate" placeholder="Select Date.." data-id="datetime" readonly="readonly">
+        <div class="row d-flex justify-content-center mt-3">
+          <button type="button" class="btn btn-outline-primary w-50" id="FileExpireBtn" onclick="setFileExpiration(this)">Set</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>    
+

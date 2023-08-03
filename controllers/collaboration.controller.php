@@ -90,6 +90,29 @@ class CollaborationController
         $results = (new CollaborationModel)->mdlMemberRemove($data);
         return $results;
     }
+
+
+    public function ctrMemberReport()
+    {
+        return $results = (new CollaborationModel)->mdlMemberReport();
+       
+    }
+
+
+    public function ctrTotalMember()
+    {
+        return $results = (new CollaborationModel)->mdlTotalMember();
+       
+    }
+
+
+    
+    public function ctrTotalAffiliated()
+    {
+        return $results = (new CollaborationModel)->mdlTotalAffiliated();
+       
+    }
+
     
 }
 ?>

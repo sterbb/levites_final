@@ -43,6 +43,7 @@
     <link href="views/assets/css/shadow-theme.css" rel="stylesheet">
 	<link href="views/assets/css/style.css" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/2cafbb6f68.js" crossorigin="anonymous"></script>
+	
 
 	<!-- Fonts  -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,6 +78,7 @@
             $_GET["route"] == 'catdetails'||
             $_GET["route"] == 'adminhomepage'||
             $_GET["route"] == 'reportgen'||
+			$_GET["route"] == 'adminreportgen'||
             $_GET["route"] == 'churchcalendar' ||
             $_GET["route"] == 'songlist' || 
 			$_GET["route"] == 'filestorage' || 
@@ -172,7 +174,7 @@
 	<script src="views/assets/js/index.js"></script>
 
 	   <!-- google maps api -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&callback=initMap" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZQlkqlLnUDpWOw1Kkbh6t5994OK_10VY&callback=initMap" async defer></script>
 	<script src="views/assets/plugins/gmaps/map-custom-script.js"></script>
 
     
@@ -189,6 +191,7 @@
 	
 
 	<!-- customize scripts -->
+	<script src="views/js/dashboard.js"></script>
 	<script src="views/js/alerts.js"></script>
 	<script src="views/js/deactivate.js"></script>
 	<script src="views/js/loginRegister.js"></script>
@@ -210,6 +213,27 @@
 
 	<script src="views/js/eventtype.js"></script>   
 	<script src="views/js/publicSetting.js"></script>   
+
+
+	
+	<script src="views/js/member.js"></script>   
+	<script src="views/js/affiliated.js"></script>   
+
+	<script>
+        /* Create Repeater */
+        $("#repeater").createRepeater({
+            showFirstItemToDefault: true,
+        });
+    </script>
+
+<script>
+      $(function () {
+        $('[data-bs-toggle="popover"]').popover();
+        // $('[data-bs-toggle="tooltip"]').tooltip();
+      })
+    </script>
+
+
 
 	<!-- <script async defer src="https://apis.google.com/js/api.js"></script>
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -290,7 +314,7 @@
 			calendar.render();
 		});
 	</script>
-
+ -->
 
     <script>
       $(document).ready(function () {
@@ -309,7 +333,7 @@
       });
     </script>
 
-	<script>
+	<!-- <script>
 		$(".datepicker").flatpickr();
 
 		$(".time-picker").flatpickr({
@@ -342,9 +366,9 @@
 			altFormat: "F j, Y",
 			dateFormat: "Y-m-d",
 		});
-	</script>
+	</script> -->
 
-<script>
+<!-- <script>
 		$('#fancy-file-upload').FancyFileUpload({
 			params: {
 				action: 'fileuploader'
@@ -356,20 +380,9 @@
 		$(document).ready(function () {
 			$('#image-uploadify').imageuploadify();
 		})
-	</script>
+	</script> -->
 
-<script>
-        /* Create Repeater */
-        $("#repeater").createRepeater({
-            showFirstItemToDefault: true,
-        });
-    </script>
 
-	<script>
-      $(function () {
-        $('[data-bs-toggle="popover"]').popover();
-      })
-    </script>
 </body>
 
 </html>

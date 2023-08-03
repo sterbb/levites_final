@@ -1,4 +1,4 @@
-$(".UserAccountForm").submit(function(e) {
+$("#submitUser").click(function(e) {
     e.preventDefault();
 
     var user_name = $("#user-name").val();
@@ -47,27 +47,77 @@ $(".UserAccountForm").submit(function(e) {
             processData: false,
             dataType: "text",
             success: function(answer) {
+                console.log(answer);
                 clearFields();
 
-                // Close the modal form
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Playlist added successfully!',
-                });
+ 
             },
             error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                });
+
             },
             complete: function() {
                 // Handle any completion tasks if needed
             }
         });
     }
+});
+
+$("#submitMemberBtn").click(function(e) {
+    e.preventDefault(); 
+
+    var memID = $("#subuserMember").val();
+    alert(memID);
+
+    var account_type = "publicSub";
+    var restriction = "";
+
+    var c = $("#calendar_access").val();
+    var s = $("#storage_access").val();
+    var r = $("#request_access").val();
+    
+    if ($("#calendar_access").is(":checked")) {
+        restriction += c;
+      }
+
+      if ($("#storage_access").is(":checked")) {
+        restriction += s;
+      }
+
+      if ($("#request_access").is(":checked")) {
+        restriction += r;
+      }
+
+
+
+
+    var userData = new FormData();
+    userData.append("memID", memID);
+    userData.append("restriction", restriction);
+    userData.append("account_type", account_type);
+
+
+    $.ajax({
+        url: "ajax/account_MemberSub.ajax.php",
+        method: "POST",
+        data: userData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+            console.log(answer);
+            clearFields();
+
+
+        },
+        error: function() {
+
+        },
+        complete: function() {
+            // Handle any completion tasks if needed
+        }
+    });
+    
 });
 
 // CLEAR INPUT

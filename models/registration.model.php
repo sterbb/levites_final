@@ -136,16 +136,21 @@ class ModelRegister {
 
 
         try{
+
+			
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
+
+			$current_year = substr(date('Y'), -2 );
+			$current_month = date('n');
 
 			$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
 			$account_id->execute();
 			$accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
 			
 			
-			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password,acc_email,verify_token, acc_type) 
-            VALUES (:AccountID, :acc_username, :acc_password, :acc_email, :verify_token, :acc_type)");
+			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username, acc_password, acc_email, fname, lname, religion, verify_token, acc_type) 
+            VALUES (:AccountID, :acc_username, :acc_password, :acc_email, :fname, :lname, :religion, :verify_token, :acc_type)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
@@ -157,6 +162,12 @@ class ModelRegister {
 			$stmt->bindParam(":acc_username", $data["user_username"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_password", $data["user_password"], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_email", $data["user_email"], PDO::PARAM_STR);
+
+			$stmt->bindParam(":fname", $data["user_fname"], PDO::PARAM_STR);
+			$stmt->bindParam(":lname", $data["user_lname"], PDO::PARAM_STR);
+			$stmt->bindParam(":religion", $data["user_religion"], PDO::PARAM_STR);
+
+			
 			$stmt->bindParam(":verify_token", $verify_token, PDO::PARAM_STR);
 			$stmt->bindParam(":acc_type", $account_type, PDO::PARAM_STR);
 			
@@ -239,8 +250,8 @@ class ModelRegister {
 			
 
 			//add to account database
-			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password, fname, lname, designation, religion, acc_contact ,acc_email,verify_token, acc_type, affiliated_church) 
-            VALUES (:AccountID, :acc_username, :acc_password, :fname, :lname, :designation, :acc_contact, :religion, :acc_email, :verify_token, :acc_type, :affiliated_church)");
+			$stmt = $pdo->prepare("INSERT INTO account (AccountID, acc_username,acc_password, fname, lname, designation, religion, acc_contact ,acc_email, verify_token, acc_type, affiliated_church, affiliated_churchname) 
+            VALUES (:AccountID, :acc_username, :acc_password, :fname, :lname, :designation, :religion, :acc_contact,  :acc_email,  :verify_token, :acc_type, :affiliated_church,  :affiliated_churchname)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");

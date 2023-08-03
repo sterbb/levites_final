@@ -6,69 +6,67 @@
     <div class="card-body">
         <div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000">
         <div class="carousel-inner">
+
+        <!-- trapping for items -->
           <div class="carousel-item active">
             <div class="row d-flex">
-              <div class="col-3">
-                <a class="button text-black" href="profile">
-                  <div class="card h-auto">
-                    <img src="views/images/ch1.jpg" class="card-img-top" style="height:350px;" alt="...">
-                    <div class="card-body" style="height:150px;">
+
+            <?php 
+            
+            $churches = (new ControllerPublic)->ctrShowAffiliatedChurches();
+
+            foreach($churches as $key => $value){    
+              
+              echo '
+
+              <style>
+              .col-3.membersChurch.cursor-pointer {
+                  transition: all 0.3s ease;
+                  display: inline-block;
+              }
+      
+              .col-3.membersChurch.cursor-pointer .card {
+                  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                  padding: 10px;
+                  transition: all 0.3s ease;
+              }
+      
+              .col-3.membersChurch.cursor-pointer .card:hover {
+                  transform: scale(1.1);
+                  transform-origin: center;
+                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+              }
+          </style>
+
           
-                      <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
-                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="col-3">
-                <div class="card h-auto">
-                  <img src="views/images/sanseb.jpg" class="card-img-top" style="height:350px;" alt="...">
+          <div class="col-3 membersChurch cursor-pointer" church_id="'.$value['memChurchID'].'" onclick="openProfile(this)">
+          <div class="card h-auto">
+              <img src="views/images/ch1.jpg" class="card-img-top" style="height: 350px;" alt="...">
                   <div class="card-body" style="height:150px;">
-                    <h5 class="card-title">SAN SEBASTIAN CATHEDRAL</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Rizal St., Bacolod City</span>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
+                    <h5 class="card-title">'.$value['memChurchName'].'</h5>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value['churchCity'].'</span>
+                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">'.$value['churchProvince'].'</span>
                   </div>
                 </div>
-              </div>
-              <div class="col-3">
-                <div class="card">
-                  <img src="views/images/lupit.jpg" class="card-img-top" style="height:350px;" alt="...">
-                  <div class="card-body" style="height:150px;">
-                    <h5 class="card-title">LUPIT CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lizares St., Bacolod City</span>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-3">
-                <div class="card">
-                  <img src="views/images/sanAntonio.jpg" class="card-img-top" style="height:350px;" alt="...">
-                  <div class="card-body" style="height:150px;">
-                    <h5 class="card-title">SAN ANTONIO ABAD CHURCH</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Lacson St., Bacolod City</span>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
-                  </div>
-                </div>
-              </div>
+
+            </div>
+              
+              ';
+
+              
+              
+ 
+            }
+            
+            ?>
+
+
+              
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="row d-flex">
-                <div class="col-3">
-                  <a class="button text-black" href="profile">
-                    <div class="card h-auto">
-                      <img src="views/images/ch1.jpg" class="card-img-top" style="height:350px;" alt="...">
-                      <div class="card-body" style="height:150px;">
-                        <h5 class="card-title">OUR LADY OF THE MIRACULOUS MEDAL PARISH</h5>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
+
+          
+
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
@@ -99,5 +97,44 @@
     </div>
 </div>
   
-<div id="churchResults"></div>
+<div id="churchResults">
+
+<?php 
+            
+            $churches = (new ControllerSuperuser)->ctrShowChurchListExplore(1);
+            foreach($churches as $key => $value){
+                echo '
+                
+                <div class="row pt-3">
+                  <div class="col-12 col-lg-12 col-xl-12 cursor-pointer" church_id="'.$value['churchID'].'" onclick="openProfile(this)">
+                    <div class="card overflow-hidden">
+                      <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url(\'views/images/Trimph.jpg\'); height:250px">
+                        <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
+                          <img src="views/images/LogoTrim.jpg" alt="...">
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class=" d-flex align-items-start justify-content-between">
+                          <div class="">
+                            <h3 class="mb-2">'.$value['church_name'].'</h3>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value['church_address']. ',' .$value['church_city'].'</span>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">'.$value['church_num'].'</span>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div><!--end row-->
+                ';
+            }
+
+?>
+
+
+
+
+</div>
 </main>

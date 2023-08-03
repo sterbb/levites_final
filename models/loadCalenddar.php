@@ -14,7 +14,7 @@ foreach($result as $row){
     $data[] = array(
         "title" => $row["event_title"],
         "start" => $row["event_date"],
-        
+        "classNames" => [$row["event_category"]],   
     );
 }
 

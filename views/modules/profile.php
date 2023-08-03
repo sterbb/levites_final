@@ -14,23 +14,43 @@
                   <div class="">
                         
                     <?php
-                    $churchid = $_COOKIE['profileID'];
+                    $churchid = $_COOKIE['church_id'];
                     // echo $churchid;
                     $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
-                
+                    
+          
                     foreach($profile as $key => $value){
 
 
                       echo '<h3 class="mb-2">'.$value["church_name"].'</h3>
-                      <p class="mb-1">'.$value["church_address"].'</p>
-                      <p>'.$value["church_city"].'</p>
+                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value["church_address"].'</span>
+                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value["church_city"].'</span>
                       </div>
                         <div class="row">
                     <div class="col">
-                    <input type="text" name="trans_type" id="church_id" church-name="'.$value["church_name"].'" value='.$value["churchID"].' name="church_id" style="display:none;" required>
-                    <button class="btn btn-primary btn-hover askMembershipBtn">Ask Membership</button>
+                    <input type="text" name="trans_type" id="church_id" church-name="'.$value["church_name"].'" value='.$value["churchID"].' name="church_id" style="display:none;" required>';
+
+                    $membership = (new ControllerPublic)->ctrCheckMembership();
+                      
+                    if (isset($membership['membership_status'])) {
+                      // if($membership['membership_status'] == 1){
+                        echo'
+                        <button class="btn btn-danger btn-hover rejectMembershipBtn">Cancel Membership</button>';
+                      // }else{
+                      //   echo'
+                      //   <button class="btn btn-primary btn-hover askMembershipBtn">Ask Membership</button>';
+                      // }
+                    }else{
+                      echo'
+                      <button class="btn btn-primary btn-hover askMembershipBtn">Ask Membership</button>';
+                    }
+                 
+
+      
+
+                    echo'
                     </div>
-                  </div>';
+                    </div>';
                    }
          
                     
@@ -40,18 +60,7 @@
                     
                     ?>
               
-                  
-                  <!-- <script>
-                    function changeButtonText(button) {
-                      if (button.innerText === "Ask Membership") {
-                        button.innerText = "Cancel Membership";
-                        button.classList.add("btn-danger");
-                      } else {
-                        button.innerText = "Ask Membership";
-                        button.classList.remove("btn-danger");
-                      }
-                    }
-                  </script> -->
+  
                 </div>
               </div>
             </div>
@@ -64,7 +73,7 @@
                   <p class="text-center " style="font-size:25px;font-family: 'Montserrat', sans-serif; font-weight:700;">MISSION</p>
                   <div class="card-body">
                     <div><p class="text-center" style="font-size:15px;"><?php
-                    $churchid = $_COOKIE['profileID'];
+                    $churchid = $_COOKIE['church_id'];
                     // echo $churchid;
                     $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
                 
@@ -84,7 +93,7 @@
                   <p class="text-center " style="font-size:25px;font-family: 'Montserrat', sans-serif; font-weight:700;">VISION</p>
                   <div class="card-body ">
                     <div><p class="text-center "style="font-size:15px;"><?php
-                    $churchid = $_COOKIE['profileID'];
+                    $churchid = $_COOKIE['church_id'];
                     // echo $churchid;
                     $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
                 
@@ -136,45 +145,33 @@
 
             <div class="card">
               <div class="card-body">
-                <h5 class="mb-3"><?php
-                    $churchid = $_COOKIE['profileID'];
-                    // echo $churchid;
-                    $profile = (new ControllerAdmin)->ctrShowChurchProfile($churchid);
-                
-                    foreach($profile as $key => $value){
-
-
-                      echo ''.$value["donation"].'';
-                   }
-                    ?></h5>
-
-                <div class="row">
-                  <div class="col d-flex align-items-end justify-content-start">
-                    <img src="views/images/gcash2.png" alt="GCash" style="height:50px; width:100px; "> 
-                  </div>
-                  <div class="col d-flex align-items-center justify-content-end">
-                    <p class="text-black mb-0" style="font-size:16px;font-family: 'Montserrat', sans-serif; font-weight:600;">09772535688</p>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col d-flex align-items-center justify-content-start">
-                    <img src="views/images/pnb.png" alt="pnb" style="height:30px; width: 80px; "> 
-                  </div>
-                  <div class="col d-flex align-items-end justify-content-end">
-                    <p class="text-black mb-0" style="font-size:16px;font-family: 'Montserrat', sans-serif; font-weight:600;">3079 1003 0797</p>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col d-flex align-items-center justify-content-start">
-                    <img src="views/images/bdo.png" alt="pnb" style="height:30px; width: 80px; "> 
-                  </div>
-                  <div class="col d-flex align-items-end justify-content-end">
-                    <p class="text-black mb-0" style="font-size:16px;font-family: 'Montserrat', sans-serif; font-weight:600;">00-3350-0373-69</p>
-                  </div>
-                </div>
+                <h5 class="mb-3">Donation</h5>
              
+                  
+                  <?php
+                    $churchid = $_COOKIE['church_id'];
+                    // echo $churchid;
+                    $donation = (new ControllerPublic)->ctrGetDonation();
+                
+                    foreach($donation as $key => $value){
+                      echo '
+                      
+                    <div class="row">
+                    <div class="col d-flex align-items-end justify-content-start">
+                      <img src="views/images/'.$value["donation_category"].'.png" alt="GCash" style="height:50px; width:100px; "> 
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                      <p class="text-black mb-0" style="font-size:16px;font-family: "Montserrat", sans-serif; font-weight:600;">  '.$value["donation_number"].'</p>
+                    </div>
+
+                  </div>
+                      
+                    ';
+
+                      
+                   }
+                    ?>
+
              
              
 
@@ -187,31 +184,53 @@
               <div class="mt-3">
                 <div class="">
                   <div class="card shadow-none border radius-2">
-                    <a href="filestorage">
-                      <div class="card-body">
+
+                    <div >
+                      <div class="card-body" onclick="publicFolder(this)">
                         <div class="d-flex align-items-center">
                           <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
                           </div>
-                          
                         </div>
                         <h6 class="mb-0 text-primary">Public folder</h6>
-                        <small>345 files</small>
-                      </div>
-                    </a>
-                  </div>
+                    </div>
+
+                  </div>   
+                </div>
+
                 </div>
                 <div class="">
-                  <div class="card shadow-none border radius-15">
-                    <div class="card-body">
-                      <div class="d-flex align-items-center">
-                        <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
+
+                <?php 
+
+                  $member = (new ControllerPublic)->ctrCheckMembership();
+
+                  if (isset($member['membership_status'])) {
+                      // The 'membership_status' column exists and is not null
+                      $status = $member['membership_status'];
+                      if($status == 1){
+                        echo '
+                        <div class="card shadow-none border radius-15" onclick="memberFolder(this)">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center">
+                            <div class="font-30 text-primary"><i class="bx bxs-folder"></i>
+                            </div>
+                          </div>
+                          <h6 class="mb-0 text-primary">Members Folder</h6>
                         </div>
-                        
-                      </div>
-                      <h6 class="mb-0 text-primary">Member folder</h6>
-                      <small>143 files</small>
-                    </div>
-                  </div>
+                      </div>';
+                      };
+                      // Your code here
+                  } else {
+                      // The 'membership_status' column is either not existing or null
+                      // Handle the case when 'membership_status' is not found or is null
+                  }
+
+
+        
+                
+                ?>
+
+                  
                 </div>
               </div>
               </div>

@@ -2651,3 +2651,7 @@ color: rgb(192,128,249);
 
 }
 
+input[type="checkbox"].calendar-filter:not(:checked) {
+  background-color: #CCCCCC; /* Replace with your desired color for unchecked (gray) */
+  border: 2px solid #CCCCCC; /* Replace with your desired color for unchecked (gray) */
+}

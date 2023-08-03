@@ -8,5 +8,19 @@ class ControllerUserAccount{
         return $answer = (new ModelUserAccount)->mdlShowUserAccount();
 	}
 
+	static public function ctrGetReportChurch(){
+		return $answer = (new ModelUserAccount)->mdlGetReportChurch();
+	 }
+
+	 static public function ctrTotalEvent(){
+		return $answer = (new ModelUserAccount)->mdlTotalEvent();
+	 }
+
+	 static public function ctrAddSubMember($data){
+		return $answer = (new ModelUserAccount)->mdlAddSubMember($data);
+	 }
+	 
+	 
+
     
 }

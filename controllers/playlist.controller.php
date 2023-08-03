@@ -12,7 +12,30 @@ class ControllerPlaylist{
         return $answer = (new ModelPlaylist)->mdlShowPlaylistDelete();
 	}
 
+	static public function ctrAddPlaylistSong($data){
+        return $answer = (new ModelPlaylist)->mdlAddPlaylistSong($data);
+	}
+
+	static public function ctrUpdatePlaylist($data){
+        return $answer = (new ModelPlaylist)->mdlUpdatePlaylist($data);
+	}
+
+	static public function ctrDeletePlaylist($data){
+        return $answer = (new ModelPlaylist)->mdlDeletePlaylist($data);
+	}
 
 
+	static public function ctrShowEventsLinkingPlaylist(){
+		return $answer = (new ModelPlaylist)->mdlShowEventsLinkingCalendar();
+	 }
+
+	//  static public function ctrShowEventsLinkingPlaylist(){
+	// 	return $answer = (new ModelPlaylist)->mdlShowEventsLinkingCalendar();
+	//  }
+	 
+	 
+
+
+	
     
 }

@@ -22,6 +22,19 @@ class ControllerChurchSetting{
         static public function ctrDeleteDonation(){
         return $answer = (new ModelChurchSetting)->mdlDeleteDonation();
         }
+                           
+        static public function ctrAddSocialMedia($data){
+        return $answer = (new ModelChurchSetting)->mdlSocialMedia($data);
+        }
+        
+        static public function ctrShowSocialMedia(){
+        return $answer = (new ModelChurchSetting)->mdlShowSocialMedia();
+        }
+
+
+         static public function ctrDeleteSocial(){
+        return $answer = (new ModelChurchSetting)->mdlDeleteSocial();
+        }
                     
 
         

@@ -7,18 +7,26 @@
                 <div class="overflow-auto align-items-center d-flex justify-content-center text-center">
                 <div class="btn-group position-static text-center align-items-center justify-content-center">
                   <button class="btn btn-white px-2 "><i class="bx bx-chevron-left me-0"></i></button>
-                  <p class="mb-0 ms-3">April 30, 2023</p>
+                  <p class="mb-0 ms-3" id="catdetails_prev"></p>
                 </div>  
                 </div>
 
                 <div class="flex-grow-1 align-self-center text-center">
-                  <h4 class="fw-bold">May 1, 2023</h4>
-                  <p class="mb-0">Our Lady Of Lourdes Parish Church</p>
+                  <h4 class="fw-bold " id="catdetails_calendar_date"></h4>
+                  <p class="mb-0"><?php 
+                       $events = (new ControllerPublic)->ctrGetChurchDetails();
+
+
+                       foreach ($events as $key => $value) {
+                        echo $value['church_name'];
+                       }
+                  
+                  ?></p>
                 </div>
 
                 <div class="overflow-auto">
                 <div class="btn-group position-static  align-items-center justify-content-center text-center">
-                  <p class="pt-3">May 2, 2023</p>
+                  <p class="pt-3" id="catdetails_adv"></p>
                   <button class="btn btn-white px-2 ms-3"><i class="bx bx-chevron-right me-0"></i></button>
                 </div>  
                 </div>
@@ -31,146 +39,89 @@
             <div class="card w-100 py-3" >
               <div class="card-body" >
 
-              
-                
+            
+                 <?php 
                  
 
+                 $events = (new ControllerPublic)->ctrShowEventDetails();
 
-                   <!-- event -->
-                   <div class="border border-3 border-secondary p-3 mb-5">
-                     <div class="row g-3">
+
+                 if (isset($events) && count($events) > 0) {
+  
+                 foreach ($events as $key => $value) {
+                    echo'   <!-- event -->
+                    <div class="border border-3 border-secondary p-3 mb-5">
+                      <div class="row g-3">
+                        <div class="col-12 col-lg-12 text-center d-flex justify-content-between align-items-center">
+                        <p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Tooltip on bottom"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
+                        <h4 class="mb-0">'.$value["event_title"].'</h4>
+                        ';
+
+
+                        $group = (new ControllerPublic)->ctrCheckIfInGroup($value["eventID"]);
+                        foreach ($group as $row) {
+                          // Access individual fields of the row
+                          $emails = $row['emailList'];
+               
+                                                    // Check if the email exists in the array
+                          if (in_array($_COOKIE['acc_email'], json_decode($emails))) {
+                            // echo "Email exists in the array.";
+                            echo'   <p class="mb-0"><button  style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assigned to: '.$row['group_name'].'"><i class="fadeIn animated bx bx-info-circle"></i></button></p>';
+                          } else {
+                            // echo "Email does not exist in the array.";
+                            echo '   <p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Tooltip on bottom"><i class="fadeIn animated bx bx-info-circle"></i></button></p>';
+                          }
+                      
+                        }
                      
-                                  <div class="col-12 col-lg-12 text-center d-flex justify-content-between align-items-center">
-                                  <p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Tooltip on bottom"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
-                                      <h4 class="mb-0">Instrument Workshop</h4>
-                            
-                                      <p class="mb-0"><button  style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assigned to: Guitar"><i class="fadeIn animated bx bx-info-circle"></i></button></p>
+                       
+                       
+                        echo'
+                      </div>
+                    </div>
+                    <div class="row g-3 mt-2">
+                        <div class="col-12 col-lg-12 ">
+                          <h6 class="mb-2 ">When: '.$value["event_date"].' @'.$value["event_time"].'</h6>
+                        </div>
+                        <div class="col-12 col-lg-12 ">
+                          <h6 class="mb-2 ">Where: '.$value["event_venue"].' - '.$value["event_location"].'</h6>
+                          <p></p>
+                        </div>
+                        <div class="col-12 col-lg-12 mb-3">
+                          <h6 class="mb-2 ">Announcement</h6>
+                          <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
+'.$value["event_announcement"].'
+                          </textarea>
+                        </div>
+
+                    </div>
+
+                    </div>';
 
 
-                                  </div>
-                                  
-                                </div>
-                                <div class="row g-3 mt-2">
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 1, 2023 @4:00pm - 6:30pm</h6>
-
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                    <p></p>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 mb-3">
-                                    <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-Attention workshop participants!
-
-Just a friendly reminder to bring your instruments to the upcomingworkshop.
-
-Label your instrument with your name.
-Make sure it's in good working condition and tuned.
-Protect it in a suitable case or bag.
-Don't forget any necessary accessories (extra strings, reeds, picks, etc.).
-If you have an instrument that can be shared, let us know in advance!
-
-Safety first! Handle your instrument with care and be aware of your surroundings.
-
-Get ready to enhance your workshop experience by practicing and applying what you learn in real-time!
-
-If you have any questions, feel free to reach out. We're here to help!
-
-Looking forward to an amazing workshop with all of you. See you soon!
-                                                                          </textarea>
-                                    </div>
-
-                                </div>
-
-                              </div>
-
+                  }
+                 } else {
+        
+                  echo'    <!-- event -->
                   <div class="border border-3 border-secondary p-3 mb-5">
-                 
-                   <div class="row g-3">
-                                  <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Technical Workshop</h4>
-                                  </div>
-                                </div>
-                                <div class="row g-3 mt-2">
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 1, 2023 @4:00pm - 6:30pm</h6>
-
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                    <p></p>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 mb-3">
-                                    <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-Come prepared to learn: Bring a notebook and pen to take notes during the workshop. This will help you remember key concepts and techniques discussed.
-
-Active participation: Engage in discussions and ask questions. This workshop is designed to be interactive and collaborative, so your active participation will greatly enhance the learning experience.
-
-Familiarize yourself with the church's analog mixer: During the workshop, we will be focusing on the specific analog mixer used by our church. Take some time before the workshop to familiarize yourself with the layout, controls, and features of the mixer.
-
-Hands-on practice: We will provide opportunities for hands-on practice with the analog mixer. Make the most of these practice sessions to develop your skills and gain confidence in operating the mixer.
-
-Collaboration and knowledge sharing: Engage with fellow participants, share your experiences, and learn from one another. This collaborative environment will foster a deeper understanding and appreciation for analog mixers in a church setting.
-
-We're excited to explore the world of analog mixers together and discover how they can enhance our worship services. 
-                                                                          </textarea>
-                                    </div>
-
-                                </div>
-
-                              </div>
-
-                            <div>
-                            <!-- event -->
-
-                            <div class="border border-3 border-secondary p-3 mb-5">
-                               
-                                <div class="row g-3">
-                                  <div class="col-12 col-lg-12 text-center ">
-                                    <h4 class="mb-2 ">Media Workshop</h4>
-                                  </div>
-                                </div>
-                                <div class="row g-3 mt-2">
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">When: May 1, 2023 @1:00pm - 3:30pm</h6>
-
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 ">
-                                    <h6 class="mb-2 ">Where: CLGF Church-Henares Rosario Henares, Bacolod CIty, Philippines</h6>
-                                    <p></p>
-                                  </div>
-
-                                  <div class="col-12 col-lg-12 mb-3 ">
-                                    <h6 class="mb-2 ">Announcement</h6>
-                                    <textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
-Instructions for a successful workshop:
-
-Come prepared: Bring your camera, fully charged batteries, memory cards, and any necessary cables.
-Laptop and Software: If you're using editing software or other programs, make sure to bring your laptop and have the software installed beforehand.
-Notebooks and Pens: It's always a good idea to have something for taking notes during the workshop.
-Collaboration: Be ready to work together in teams and share ideas and experiences with fellow participants.
-Questions and Engagement: Feel free to ask questions and actively engage with the workshop content. We're here to learn from each other.
-We're looking forward to a creative and inspiring workshop experience where we can enhance our media skills and use them to serve our church community.
-                                    </textarea>
-                                    <p></p>
-                                  </div>
-                                </div>
-
-                            
-                              </div>
-                              <!-- event -->
-                            
-
-              
+                    <div class="row g-3">
+                      <div class="col-12 col-lg-12 text-center d-flex justify-content-center align-items-center">
+                  
+                      <h4 class="mb-0">There is no event in this date</h4>
+                    
+                    </div>
                   </div>
+                  <div class="row g-3 mt-2">
+
+                  </div>
+
+                  </div> ';
+                 }
+
+                 ?>
+                 
+  
+
               </div>
             </div>
           </div>
@@ -180,10 +131,10 @@ We're looking forward to a creative and inspiring workshop experience where we c
             <div class="w-100">
             <div class="card overflow-auto py-3">
               <div class="card-body " style="max-height:700px;">
-                  <div class="text-center ">
+                  <div class=" ">
 
-                  <h5 class="mb-3 fw-bold ">Daily Readings</h5>
-            <?php
+                  <h5 class="mb-3 fw-bold text-center">Daily Readings</h5>
+                  <?php
               function fetchWebPage($url) {
                 $options = [
                     'http' => [
@@ -195,11 +146,17 @@ We're looking forward to a creative and inspiring workshop experience where we c
                 $response = file_get_contents($url, false, $context);
                 return $response;
               }
+
+                            // Convert the date string to a Unix timestamp
+              $timestamp = strtotime($_COOKIE['viewDate']);
+
+              // Get the day using the 'd' format in date()
+                $day = date('d', $timestamp);
             
                 // URL of the USCCB daily readings page
-                $url = 'https://bible.usccb.org/bible/readings/072023.cfm';
+                $url = 'https://bible.usccb.org/bible/readings/07'.$day.'23.cfm';
                 
-                // Fetch the web page
+                // Fetch the web pages
                 $html = fetchWebPage($url);
                 
                 // Create a DOMDocument object and suppress any warnings for malformed HTML
@@ -235,7 +192,7 @@ We're looking forward to a creative and inspiring workshop experience where we c
                     $content = $dom->saveHTML($xpath->query('.//div[@class="content-body"]', $reading)->item(0));
                 
                     // Format the reading with heading, verses (as a link), and preserved HTML content
-                    $formattedReading = "<h3>$name - <a href=\"$verseLink\">$verse</a></h3>\n$content\n";
+                    $formattedReading = "<h3 class='d-flex justify-content-between pt-3' style='margin-left: -20px; margin-bottom: 20px;'>$name<a  style='font-size: 15px; left:2rem;' href=\"$verseLink\">$verse</a></h3>\n$content\n";
                 
                     // Add the formatted reading to the array
                     $formattedReadings[] = $formattedReading;
@@ -245,8 +202,13 @@ We're looking forward to a creative and inspiring workshop experience where we c
                 $allReadings = implode("\n", $formattedReadings);
                 
                 // Display the title and all the formatted readings
-                echo "<h2>$title</h2>\n";
-                echo $allReadings;
+                echo "
+                <div class='text-center'>
+                <h2 class=''>$title</h2>
+                </div>\n";
+                echo "<div style='margin-left: 30px; margin-bottom: 50px; font-size: 16px; padding-bottom:20px;'>$allReadings
+                </div>"
+                ;
                   
                   
             
@@ -270,7 +232,7 @@ We're looking forward to a creative and inspiring workshop experience where we c
 
 
                   
-                      <h5 class="mb-3 fw-bold ">Daily Readings</h5>
+                      <!-- <h5 class="mb-3 fw-bold ">Daily Readings</h5>
                       <div class="row">
                           <h4> Second Sunday of Easter (or Sunday of Divine Mercy)</h4>
                           <p>Lectionary: 43</p>
@@ -327,7 +289,7 @@ We're looking forward to a creative and inspiring workshop experience where we c
                           or:<br>
                           R. <strong>Alleluia.</strong></p>
             
-                      </div>
+                      </div> -->
                   </div>
 
                 
@@ -335,22 +297,19 @@ We're looking forward to a creative and inspiring workshop experience where we c
               </div>
             </div>
               
-            <div class="col-12 col-lg-4 col-xl-12 d-flex">
+            <div class="col-12 col-lg-12 col-xl-12">
               <div class="card">
-                  <div class="card-body text-center">
+                  <div class="card-body text-center d-flex flex-column align-items-center justify-content-center">
                     <h4 class="card-title fw-bold text-center text-black">Podcast</h4>
-                    <p class="fw-semi-bold " style="margin-top: -8px; ">Bishop Patricio A. Buzon</p>
-                      <audio controls autoplay>
-                          <source src="horse.ogg" type="audio/ogg">
-                          <source src="horse.mp3" type="audio/mpeg">
+                      <audio id="podcastPlayer" controls autoplay>
                           Your browser does not support the audio element.
                       </audio>
-                    <button type="button" class="btn btn-outline-dark mt-3 px-5"><span class="material-symbols-outlined">cloud_download</span>Download</button>
-                      
+                      <button type="button" class="btn btn-outline-dark mt-3 px-5" id="downloadPodcast" onclick="downloadPodcast()"><span class="material-symbols-outlined">cloud_download</span>Download</button>
                   </div>
+                 
                 </div>
             </div>
-          </div>
+   
           
          
 </main>

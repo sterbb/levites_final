@@ -77,13 +77,56 @@ class ModelWebsite{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
 
-			
-			$stmt = $pdo->prepare("DELETE FROM websites WHERE accountID = :accountID AND website_name  = :website_name");
+
+			// Step 1: Fetch all the rows from websites table with the given website name and account ID
+			$stmt = $pdo->prepare("SELECT * FROM websites WHERE accountID = :accountID AND website_name = :website_name");
 			$stmt->bindParam(":accountID",  $data["w_id"], PDO::PARAM_STR);
 			$stmt->bindParam(":website_name", $data["w_name"], PDO::PARAM_STR);
+			$stmt->execute();
+		
+			// Step 2 and 3: Loop through the matching rows and delete websites from website groups
+			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				// Extract the data from the current row
+				$group_name = $row["group_name"];
+				$accountID = $row["accountID"];
+				$websiteName = $row["website_name"];
+		
+				// Fetch the rows from website_groups table that contain the website to be deleted
+				$stmt2 = $pdo->prepare("SELECT * FROM websitegroups WHERE accID = :accID");
+				$stmt2->bindParam(":accID", $accountID, PDO::PARAM_STR);
+				$stmt2->execute();
+		
+				// Loop through the website_groups and update websites_list for each row
+				while ($groupRow = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+					$websitesList = json_decode($groupRow["websites_list"], true);
+					$updatedWebsitesList = [];
+		
+					// Filter out the website to be deleted from the websites_list
+					foreach ($websitesList as $website) {
+						if ($website["name"] !== $websiteName) {
+							$updatedWebsitesList[] = $website;
+						}
+					}
+		
+					// Update the websites_list in the current website_group row
+					$updatedWebsitesListJSON = json_encode($updatedWebsitesList);
+					$stmt3 = $pdo->prepare("UPDATE websitegroups SET websites_list = :websites_list WHERE group_name = :group_name");
+					$stmt3->bindParam(":websites_list", $updatedWebsitesListJSON, PDO::PARAM_STR);
+					$stmt3->bindParam(":group_name", $groupRow["group_name"], PDO::PARAM_INT);
+					$stmt3->execute();
+				}
+		
+				$stmt = $pdo->prepare("DELETE FROM websites WHERE accountID = :accountID AND website_name  = :website_name");
+				$stmt->bindParam(":accountID",  $data["w_id"], PDO::PARAM_STR);
+				$stmt->bindParam(":website_name", $data["w_name"], PDO::PARAM_STR);
+				$stmt->execute();
+			}
 
-			$stmt->execute();		
+
 		    $pdo->commit();
+
+
+
 			
 		    return "ok";
 		}catch (Exception $e){

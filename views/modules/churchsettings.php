@@ -5,10 +5,18 @@
     <div class="position-relative mb-4 border-bottom"   id="userBackground" name="userBackFile" style="background-image: url(views/images/default.png); background-size: cover; background-repeat: no-repeat; height: 10rem;  background-position: center;">
 
 
+        <?php   
+        // $avatarUrl = (new ControllerAdmin)->ctrShowChurchAdmin();
+        //     foreach($avatarUrl as $key => $value){
+        //         $avatarUrl = $value['avatar'];
+        //     }
+            ?>
         <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-            <img id="userProfileImage" src="views/images/default.png">
+            <img id="userProfileImage" src="views/images/default.png" id="image">
         </div>
-        <input type="file" id="userAvatar" name="userAvatarFile" class="position-absolute" style="top: 190px; left: 140px; opacity: 0;">
+
+        <input type="file" id="userAvatar" name="userAvatar" class="position-absolute" style="top: 190px; left: 140px; opacity: 0;" accept=".jpg, .jpeg, .png">
+       
         <label for="userAvatar" class="position-absolute btn btn-secondary rounded-circle" style="top: 190px; left: 140px; font-size: 18px;">
             <i class="fadeIn animated bx bx-upload"></i>
         </label>
@@ -18,6 +26,37 @@
             <i class="fadeIn animated bx bx-upload"></i>
         </label>
     </div>
+
+    
+
+<script>
+    // Get the file input elements
+    // const userBack = document.getElementById('userBack');
+    const userAvatar = document.getElementById('userAvatar');
+
+    // Handle file upload for background image
+    // userBack.addEventListener('change', function (event) {
+    //     const file = event.target.files[0];
+    //     const reader = new FileReader();
+    //     reader.onload = function (e) {
+    //         const backgroundImage = document.getElementById('userBackground');
+    //         backgroundImage.style.backgroundImage = `url(${e.target.result})`;
+    //     }
+    //     reader.readAsDataURL(file);
+    // });
+
+    // Handle file upload for user profile image
+    userAvatar.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const userProfileImage = document.getElementById('userProfileImage');
+            userProfileImage.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    });
+
+</script>
 
     <div class="card-body">
     <div class="mt-5 d-flex align-items-start justify-content-between">
@@ -55,7 +94,7 @@
                 <div class="card-body p-4">
                     <form id="updateChurch" method="POST">
                         <div class="row mb-3">
-                            <label for="input35" class="col-sm-3 col-form-label">Church Name</label>
+                            <label for="NewChurch_name" class="col-sm-3 col-form-label">Church Name *</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="NewChurch_name" value="<?php $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
@@ -67,15 +106,17 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                                <label for="inputAddress" class="form-label">Church Address *</label>
+                                <label for="Newchurch_address" class="col-sm-3 col-form-label">Church Address *</label>
+                                <div class="col-sm-9">
                                 <input type="text" class="form-control border-3" id="Newchurch_address" name="churchAddress" placeholder="Enter Your Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
                                     echo $value['church_address'];
                                 }
                                 ?>">
+                            </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input36" class="col-sm-3 col-form-label">Contact Details</label>
+                            <label for="contact" class="col-sm-3 col-form-label">Contact Details *</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="contact" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -85,7 +126,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input37a" class="col-sm-3 col-form-label">First Name</label>
+                            <label for="fname" class="col-sm-3 col-form-label">First Name *</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -95,7 +136,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input37a" class="col-sm-3 col-form-label">Last Name</label>
+                            <label for="lname" class="col-sm-3 col-form-label">Last Name *</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -106,7 +147,7 @@
                         </div>
                         <div class="row mb-3">
 
-                        <label for="input37a" class="col-sm-3 col-form-label">Designation</label>
+                        <label for="designation" class="col-sm-3 col-form-label">Designation *</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -118,7 +159,7 @@
 
                      
                         <div class="row mb-3">
-                            <label for="input37a" class="col-sm-3 col-form-label">Email Address</label>
+                            <label for="email" class="col-sm-3 col-form-label">Email Address *</label>
                             <div class="col-sm-9">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
@@ -129,9 +170,20 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="input37" class="col-sm-3 col-form-label">Username</label>
+                            <label for="church_num" class="col-sm-3 col-form-label">Church Number *</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                <input type="text" class="form-control" id="church_num" name="church_num" placeholder="Church Number" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_num'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="username" class="col-sm-3 col-form-label">Username *</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
                                     echo $value['acc_username'];
                                 }
@@ -139,7 +191,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input38" class="col-sm-3 col-form-label"> Password</label>
+                            <label for="password" class="col-sm-3 col-form-label"> Password *</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="password" name="password" placeholder="Choose Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -149,9 +201,9 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="input38a" class="col-sm-3 col-form-label">Confirm Password</label>
+                            <label for="conpassword" class="col-sm-3 col-form-label">Confirm Password *</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="password" name="confirm_password" placeholder="Confirm Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                <input type="text" class="form-control" id="conpassword" name="confirm_password" placeholder="Confirm Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
                                     echo $value['acc_password'];
                                 }
@@ -159,7 +211,8 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputReligion" class="form-label">Religion *</label>
+                            <label for="inputReligion"  class="col-sm-3 col-form-label">Religion *</label>
+                            <div class="col-sm-9">
                                 <select class="form-select border-3" id="religion" name="religion" aria-label="Default select example">
                                     <?php
                                     $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
@@ -171,17 +224,33 @@
                                     <option value="Aglipay" <?php if ($selectedReligion == 'Aglipay') echo 'selected'; ?>>Aglipay</option>
                                     <option value="Jehovah's" <?php if ($selectedReligion == 'jehovah') echo 'selected'; ?>>jehovah's</option>
                                 </select>
-
-
+                            </div>
                         </div>
+
+
+                        
                         <div class="row mb-3">
-                                <label for="inputCity" class="form-label">City *</label>
-                                <input type="text" class="form-control border-3" id="city" name="city" placeholder="Enter Your City"  value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                foreach($admin as $key => $value){
-                                    echo $value['church_city'];
-                                }
-                                ?>" >
+                                <label for="city" class="col-sm-3 col-form-label">City *</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control border-3" id="city" name="city" placeholder="Enter Your City"  value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                    foreach($admin as $key => $value){
+                                        echo $value['church_city'];
+                                    }
+                                    ?>" >
+                                </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="church_num" class="col-sm-3 col-form-label">Church Contact *</label>
+                                <div class="col-sm-9">
+                                <input type="text" class="form-control border-3" id="church_num" name="church_num" placeholder="Enter Church Number"  value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                    foreach($admin as $key => $value){
+                                        echo $value['church_num'];
+                                    }
+                                ?>" >
+                            </div>
+                        </div>
+
 
                     
 
@@ -211,6 +280,128 @@
                     </div>
                 </div>
             </div>
+
+            <style>
+  /* Custom CSS to style the icons with different colors */
+  .bi-facebook { color: #1877F2; }
+  .bi-snapchat { color: #FFFC00; }
+  .bi-instagram { color: #E4405F; }
+  .bi-twitter { color: #1DA1F2; }
+  .bi-tiktok { color: #000000; }
+  .bi-youtube { color: #FF0000; }
+  .bi-pinterest { color: #E60023; }
+  .bi-whatsapp { color: #25D366; }
+</style>
+
+
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">  
+                            <div class="col-4">
+                                <select class="form-select" aria-label="Default select example" id="socialMedia_category">
+                                    <option selected="" value="Facebook">Facebook</option>
+                                    <option value="Snapchat">Snapchat</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Twitter">Twitter</option>
+                                    <option value="Tiktok">Tiktok</option>
+                                    <option value="Youtube">Youtube</option>
+                                    <option value="Pinterest">Pinterest</option>
+                                    <option value="WhatsApp">WhatsApp</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-6">
+                                <input class="form-control" type="text" placeholder="Enter Link" id="socialMedia" aria-label="default input example">
+                            </div>
+
+
+                            <div class="col-1">
+                                <button type="button" id="SocialMedia" class="btn btn-outline-success"><i class="fadeIn animated bx bx-plus"></i></button>
+                            </div>
+                        </div>           
+                    </div>
+                    <ul class="list-group list-group-flush mb-0" >
+                    <?php  $social = (new ControllerChurchSetting)->ctrShowSocialMedia();
+                                foreach($social as $key => $value){
+
+                                    $socialcategory = $value['socialmedia_category'];
+
+                                        if ($socialcategory === 'Facebook') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-facebook"></i>                                                
+                                                <p><a href="'.$value['socialmedia'].'"  target="_blank">'.$value['socialmedia'].'</a></p>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                                
+                                            </li>';
+                                        } elseif ($socialcategory === 'Snapchat') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-snapchat"></i>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                            </li>';
+                                        } elseif ($socialcategory === 'Instagram') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-instagram"></i>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                            </li>';
+                                        } elseif ($socialcategory === 'Twitter') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-twitter"></i>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                            </li>';
+
+                                        }elseif ($socialcategory === 'Tiktok') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-tiktok"></i>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                            </li>';
+
+
+                                        }elseif ($socialcategory === 'Youtube') {
+                                                echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                    <i class="bi bi-youtube"></i>
+                                                    <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                    <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                    </button>
+                                                </li>';
+
+                                        }elseif ($socialcategory === 'Pinterest') {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-pinterest"></i>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                            </li>';
+
+                                        } else {
+                                            echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                <i class="bi bi-whatsapp"></i>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
+                                                </button>
+                                            </li>';
+                                        }
+                                        
+                                    }
+                                ?>
+                            </ul>
+
+                </div>
+            </div>
+
+
+
+
             <div class="row">
                 <div class="card">
                     <div class="card-body d-flex justify-content-around align-items-center">
@@ -241,7 +432,7 @@
 
                                         if ($websiteCategory === 'GCash') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
-                                                <img src="views/images/gcash2.png" style="height:50px; width:100px;" alt="GCASH">
+                                                <img src="views/images/gcash.png" style="height:50px; width:100px;" alt="GCASH">
                                                 <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;"  onclick="deleteData('.$value["id"].')">
                                                 </button>
                                                 
@@ -288,6 +479,7 @@
                      </ul>
                 </div>
             </div>
+
         </div>
     </div>
     <!--end row-->
@@ -326,32 +518,6 @@
     </form>
   
 </main>
-
-<script> 
-
-function deleteData(id) {
-    // Perform the AJAX request to delete data with the specified id
-    $.ajax({
-        url: 'ajax/delete_donation.ajax.php', // Replace with the actual server-side script that handles the delete operation
-        type: 'POST', // Use POST method to send the id to the server
-        data: { id: id }, // Send the id as a parameter to the server
-        dataType: 'json', // Expect JSON data in response (optional, if the server returns JSON)
-        success: function(response) {
-            // Handle the response from the server after successful deletion (if needed)
-            console.log('Data deleted successfully:', response);
-            // Optionally, update the data list or refresh the page here
-            location.reload();
-        },
-        error: function(xhr, status, error) {
-            // Handle errors, if any, that occur during the AJAX request
-            console.error('Error deleting data:', error);
-        }
-    });
-}
-
-</script>
-
-
 
 <!-- 
 <script>

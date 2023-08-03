@@ -30,6 +30,8 @@ class ModelCalendar{
             $current_year = substr(date('Y'), -2 );
 			$current_month = date('n');
 
+			$currentMon = date("Y-m-d"); 
+
             
 			$event_id = (new Connection)->connect()->prepare("SELECT CONCAT('CE', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as event_id  FROM calendar FOR UPDATE");
 			$event_id->execute();
@@ -37,8 +39,8 @@ class ModelCalendar{
 			
 
 			
-			$stmt = $pdo->prepare("INSERT INTO calendar (churchID, eventID, event_title, event_category, event_date, event_time, event_venue, event_location, event_announcement)
-            VALUES (:churchID, :eventID, :event_title, :event_category, :event_date, :event_time, :event_venue, :event_location, :event_announcement)");
+			$stmt = $pdo->prepare("INSERT INTO calendar (churchID, eventID, event_title, event_category, event_date, event_time, event_venue, event_location, event_announcement, current_event)
+            VALUES (:churchID, :eventID, :event_title, :event_category, :event_date, :event_time, :event_venue, :event_location, :event_announcement, :current_event)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
@@ -52,6 +54,7 @@ class ModelCalendar{
 			$stmt->bindParam(":event_venue", $data["event_venue"], PDO::PARAM_STR);
 			$stmt->bindParam(":event_location", $data["event_location"], PDO::PARAM_STR);
 			$stmt->bindParam(":event_announcement", $data["event_announcement"], PDO::PARAM_STR);
+			$stmt->bindParam(":current_event", $currentMon, PDO::PARAM_STR);
 
 
 			$stmt->execute();		
@@ -68,6 +71,8 @@ class ModelCalendar{
 		$stmt = null;
 
     }
+
+
 
 	public static function mdlAddGroup($data){	
 		$db = new Connection();
@@ -274,6 +279,83 @@ class ModelCalendar{
 	
     }
 
+	public static function mdlCheckFile($data){
+    
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM calendar WHERE eventID = :eventID");
+        $stmt->bindParam(":eventID", $data['event'], PDO::PARAM_STR);
+		$stmt -> execute();	
+		return $stmt -> fetch();
+		$stmt -> close();
+		$stmt = null;	
+	
+    }
+
+	
+
+	public static function mdlLinkPlaylist($data){
+		$db = new Connection();
+        $pdo = $db->connect();
+
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+			
+
+			
+			$stmt = $pdo->prepare("UPDATE calendar SET linked_playlist = :linked_playlist WHERE eventID = :eventID ");
+
+			$stmt->bindParam(":eventID", $data["event"], PDO::PARAM_STR);
+			$stmt->bindParam(":linked_playlist", $data["playlist"], PDO::PARAM_STR);
+
+			$stmt->execute();		
+		    $pdo->commit();
+			
+		    return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+    }
+
+	public static function mdlLinkFile($data){
+		$db = new Connection();
+        $pdo = $db->connect();
+
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+			
+
+			
+			$stmt = $pdo->prepare("UPDATE calendar SET linked_files = :linked_files WHERE eventID = :eventID ");
+
+			$stmt->bindParam(":eventID", $data["event"], PDO::PARAM_STR);
+			$stmt->bindParam(":linked_files", $data["files"], PDO::PARAM_STR);
+
+			$stmt->execute();		
+		    $pdo->commit();
+			
+		    return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+    }
+
+	
+
+	
+
+
+
+
+
 	public static function mdlShowEvents($data){
         
 		$churchID = $_COOKIE["church_id"];
@@ -285,6 +367,8 @@ class ModelCalendar{
 		$stmt -> execute();
         $events= $stmt -> fetchAll();
 
+		
+
 
 
 
@@ -295,6 +379,25 @@ class ModelCalendar{
 
 		foreach ($events as $event) {
 
+			$songlist;	
+			$playlist = (new Connection)->connect()->prepare("SELECT * FROM playlist WHERE playlistID = :playlistID");
+			$playlist->bindParam(":playlistID", $event['linked_playlist'], PDO::PARAM_STR);
+			$playlist -> execute();
+			$songs = $playlist -> fetch();
+
+			if (is_array($songs)) {
+				// Check if $songs is an array before trying to access its elements
+		
+				if (isset($songs['songs'])) {
+					$songlist = $songs['songs'];
+					// echo "Song ID: " . $songlist . "<br>";
+				} else {
+					// Handle the case when 'playlist_name' key is not set in $songs
+					// echo "Playlist Name is not set.<br>";
+				}	
+			} else {
+				$songlist = '';
+			}
 
 			$stmt2 = (new Connection)->connect()->prepare("SELECT * FROM calendargroup WHERE eventID = :eventID");
 			$stmt2->bindParam(":eventID", $event['eventID'], PDO::PARAM_STR);
@@ -341,20 +444,59 @@ class ModelCalendar{
 			  <div class="col d-flex justify-content-start">
 				<div class="dropdown">
 				  <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-music"></i></button>
-				  <ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">Broken Vessels</a>
-					</li>
-					<li><a class="dropdown-item" href="#">Raise a Hallelujah</a>
-					</li>
-					<li><a class="dropdown-item" href="lyrics">Living Hope</a>
-					</li>
+				  <ul class="dropdown-menu">';
+				  
+	
+					$jsonData = $event['linked_files'];
+
+					// Convert JSON string to PHP array
+					$dataArray = json_decode($jsonData, true);
+
+					// Check if the decoding was successful
+					if (is_array($dataArray)) {
+						// Iterate over each element in the array using a foreach loop
+						foreach ($dataArray as $item) {
+
+							$name = $item['name'];
+							$path = $item['path'];
+
+							// Do whatever processing you need with 'name' and 'path'
+							$html.= '<li><a class="dropdown-item" value="'.$path.'" onclick="downloadLinkedFile(this)">'.$name.'</a>
+							</li>';
+						}
+					} else {
+
+					}
+
+			$html .= '		
 				  </ul>
 				</div>
 				<div class="dropdown">
 				  <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-file"></i></button>
-				  <ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">Chords Chart</a>
-					</li>
+				  <ul class="dropdown-menu">';
+
+				  
+						$songs_songlist = json_decode($songlist, true);
+						if (is_array($songs_songlist)) {
+							foreach ($songs_songlist as $song_inlist) {
+								$html .= '<li><a class="dropdown-item" value="' . $song_inlist['trackID'] .'" onclick="downloadLinkedSong(this)">' . $song_inlist['title'] .' - ' . $song_inlist['artist'] .'</a>
+											</li>';
+							}
+						}
+
+
+				  		// // Check if the decoding was successful and if there are songs data
+						// if (is_array($songs) && count($songs) > 0) {
+						// 	// Loop through the songs and access their properties
+						// 	foreach ($songs as $song) {
+						// 	
+						// 	}
+						// } else {
+						// 	echo "No songs found.";
+						// }
+				
+
+			$html .='
 				  </ul>
 				</div>
 			  </div>
@@ -416,5 +558,6 @@ class ModelCalendar{
 
 	
     }
+
 
 }

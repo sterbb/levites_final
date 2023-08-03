@@ -51,7 +51,7 @@ $(function(){
   $("#churchRegistrationForm").submit(function(e){
     e.preventDefault();
 
-
+    
     var fname  = $("#church_pfname").val();
     var lname  = $("#church_plname").val();
     var designation  = $("#church_designation").val();
@@ -96,35 +96,6 @@ $(function(){
       });
   
       
-      var registerData = new FormData();
-      registerData.append("church_name",church_name);
-      registerData.append("church_email",email);
-      registerData.append("church_username", username);
-      registerData.append("church_password", password);
-      registerData.append("church_proof", church_proof);
-      registerData.append("user_proof", user_proof);
-      
-
-      
-    var proofData = new FormData(this);
-    $.ajax({
-      url: "models/sendChurchProof.php",
-      method: "POST",
-      data: proofData,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "text",
-      success: function(answer) {
-        console.log(answer);
-      },
-      error: function() {
-          alert("Oops. Something went wrong!");
-      },
-      complete: function() {
-      }
-    });
-
     
     var registerData = new FormData();
 
@@ -160,7 +131,7 @@ $(function(){
           dataType: "text",
           success: function(answer) {
             console.log(answer);
-            window.location.href='verifyEmail';
+
 
           },
           error: function() {
@@ -265,7 +236,6 @@ $(function(){
                 // document.cookie = 'type =' +answer; 
 
                 if(answer == "admin"){
-                
                 window.location.href= 'adminhomepage';
                 }else if(answer == "public"){
                 window.location.href='publichomepage';
@@ -273,6 +243,8 @@ $(function(){
                 window.location.href='superuser';
                 }else if(answer == "subuser"){
                 window.location.href='adminhomepage';
+                }else if(answer == "publicSub"){
+                  window.location.href='adminhomepage';
                 }else{
                   $('.overlay').hide();
                    // Show an alert for invalid account

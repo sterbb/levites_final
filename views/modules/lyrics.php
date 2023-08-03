@@ -6,10 +6,9 @@
                 <div class="container" ><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
    
                     <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 " method="POST" class="form" id="form">
-                        <div class="input-group ">
-                            <input type="text" class="form-control border border-dark " name="searchQuery" placeholder="Search Title" id="searchQuery" />
-                            <input type="text" class="form-control border border-dark " name="searchArtist" placeholder="Search Artist" id="searchArtist" />
-                            <button class="btn border border-dark " name="submit" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                             <div class="input-group ">
+                            <input type="text" class="form-control border border-dark " placeholder="" id="song_title"/>
+                            <button class="btn border border-dark " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                             </button> 
                         </div>
                     </form>
@@ -27,11 +26,11 @@
     <div class="row justify-content-center" >
 
         <div class="col-12 col-sm-6 col-md-8 col-lg-10 col-xl-12 text-center">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#DownloadLyrics" class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download-cloud text-warning"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path></svg></button>
+            <button onclick="downloadLyrics()" type="button" class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download-cloud text-warning"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path></svg></button>
 
-            <button type="button"  class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+            <button type="button"  onclick="copyWholeLyrics()" class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
 
-            <button type="button" onclick="printDiv('')" class="btn  btn-light border border-dark" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer text-primary"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></button>
+            <button type="button" onclick="printLyrics()" class="btn  btn-light border border-dark" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer text-primary"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></button>
 
         </div>
     </div>
@@ -47,53 +46,59 @@
 
                     
                         
+                    <?php
 
- <?php
+error_reporting(0);
+ini_set('display_errors', 0);
 
-
-
-    $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
-    $trackId = $_COOKIE['trackID'];
-    // Fetch track details using the track_id
-    $trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";
-    $trackResponse = file_get_contents($trackUrl);
-    $trackData = json_decode($trackResponse, true);
-
-
-     $trackInfo = $trackData['message']['body']['track'];
-     $artist = $trackInfo['artist_name'];
-     $song = $trackInfo['track_name'];
-
-     // Output the artist name and song title
-     echo "<h2>$song - $artist</h2>";
+$apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
+$trackId = $_COOKIE['trackID'];
+// Fetch track details using the track_id
+$trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";
+$trackResponse = file_get_contents($trackUrl);
+$trackData = json_decode($trackResponse, true);
 
 
+$trackInfo = $trackData['message']['body']['track'];
+$artist = $trackInfo['artist_name'];
+$song = $trackInfo['track_name'];
 
-    // Fetch the lyrics for the selected song using the track_id
-    $lyricsUrl = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=$trackId&apikey=$apiKey";
-    $lyricsResponse = file_get_contents($lyricsUrl);
-    $lyricsData = json_decode($lyricsResponse, true);
+// Output the artist name and song title
+echo "<h2 class='font-bold' id='song-title'>$song </h2>
+        <h3 class='mt-3' id='song-artist'>$artist</h3> <br>";
 
-    if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
-        $lyrics = $lyricsData['message']['body']['lyrics']['lyrics_body'];
 
-        // Split the lyrics into sections based on empty lines (markers)
-        $sections = explode("\n\n", $lyrics);
 
-        // Output each section in a separate <div> element
-        echo '<div class="lyrics-container">';
-        foreach ($sections as $section) {
-            echo '<div class="lyrics-section">' . nl2br($section) . ' <button class="copy-button" onclick="copyLyrics(this)">Copy</button> </div>';
-            echo '<div class="section-space"></div>'; // Add space between sections
-        }
-        echo '</div>';
-    } else {
-        echo "Lyrics not found for the selected song.";
+// Fetch the lyrics for the selected song using the track_id
+$lyricsUrl = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=$trackId&apikey=$apiKey";
+$lyricsResponse = file_get_contents($lyricsUrl);
+$lyricsData = json_decode($lyricsResponse, true);
+
+if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
+    $lyrics = $lyricsData['message']['body']['lyrics']['lyrics_body'];
+
+    // Split the lyrics into sections based on empty lines (markers)
+    $sections = explode("\n\n", $lyrics);
+
+    // Output each section in a separate <div> element
+    echo '<div class="lyrics-container">';
+    foreach ($sections as $section) {
+        echo '<div class="lyrics-section">' . nl2br($section) . ' <br><button class="copy-button btn btn-light border border-transparent border-0" onclick="copyLyrics(this)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+    </button> </div>';
+    
+        echo '<div class="section-space"></div>'; // Add space between sections
     }
+    echo '</div>';
+} else {
+    echo "<h1 >Lyrics not found for the selected song.<h1>";
+}
 
 
 ?>
-
 
                         
                     </div>                 
@@ -107,7 +112,52 @@
                      <div class="card mt-3 ">
                         <div class="card-body text-center align-items-center justify-content-center  ">
                             <div class="video-container ">
-                            <iframe style="width: 100% !important; height: 300px !important;" src="https://www.youtube.com/embed/9f2FXxDVO6w" title="Phil Wickham - Living Hope (Lyrics)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            </div>
+
+                            <?php
+                                // lyrics.php
+
+                                if (isset($_COOKIE['trackID'])) {
+                                    $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
+                                    $trackId = $_COOKIE['trackID'];
+
+                                    // Fetch track details using the track_id
+                                    $trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";
+                                    $trackResponse = file_get_contents($trackUrl);
+                                    $trackData = json_decode($trackResponse, true);
+
+                                    if (isset($trackData['message']['body']['track'])) {
+                                        $trackInfo = $trackData['message']['body']['track'];
+                                        $artist = $trackInfo['artist_name'];
+                                        $song = $trackInfo['track_name'];
+
+                                        // Fetch video using the YouTube API
+                                        $youtubeApiKey = 'AIzaSyAV2ETHPyFx0PnRUvRZbEwkGGAR_12Fp4I'; // Replace with your YouTube API key
+
+                                        // Construct the search query based on the artist name and song title
+                                        $searchQuery = urlencode($artist . ' ' . $song);
+
+                                        // // Fetch videos related to the song using the YouTube Data API
+                                        $youtubeSearchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$searchQuery&type=video&key=$youtubeApiKey";
+                                        $youtubeSearchResponse = file_get_contents($youtubeSearchUrl);
+                                        $youtubeSearchData = json_decode($youtubeSearchResponse, true);
+
+                                        if (isset($youtubeSearchData['items'][0]['id']['videoId'])) {
+                                            $videoId = $youtubeSearchData['items'][0]['id']['videoId'];
+
+                                            // Output the embedded video player
+                                            echo '<iframe  style="width: 100% !important; height: 300px !important;" src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                        } else {
+                                            echo "Video not found for the selected song.";
+                                        }
+                                    } else {
+                                        echo "Track details not found for the selected song.";
+                                    }
+                                } else {
+                                    echo "Invalid request.";
+                                }
+                                ?>       
+                            
+                            </div>
                         </div>
                     </div>
 
@@ -142,14 +192,8 @@
                                 foreach ($playlist as $key => $value) {
                                     $accordionId = 'accordionExample_' . $key; // Unique ID for accordion
                                     $collapseId = 'collapseTwo_' . $key; // Unique ID for collapse element
-                                    $editId = 'editPlaylist_' . $key; // Unique ID for edit playlist
-                                    $addSongsId = 'addSongs_' . $key; // Unique ID for add songs
-                                    $linkEventId = 'linkEvent_' . $key; // Unique ID for link to event
-                                    $downloadId = 'downloadPlaylist_' . $key; // Unique ID for download playlist
-                                    $deleteId = 'deletePlaylist_' . $key; // Unique ID for delete playlist
-                                    $fadeInAnimatedClass = 'fadeIn animated unique-class-' . $key; // Unique class for each edit-website button
-                                    $minusButtonId = 'minus-playlist unique-class-' . $key; // Unique class for each minus button
-                                    $editPlaylist = 'edit-playlist unique-class-' . $key; // Unique class for each minus button
+
+
 
 
                                     
@@ -157,34 +201,57 @@
                                     echo '
                                     <div class="row mt-2">
                                         <div class="d-flex align-items-center ">
-                                            <div class="accordion col-12 col-xl-12" id="'.$accordionId.'">
+                                            <div class="accordion col-12 col-xl-12" id="'.$value['playlist_name'].'-list">
                                            
                                                 <div class="accordion-item" >
                                                     <h2 class="accordion-header " id="headingTwo">
                                                         <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#'.$collapseId.'" aria-expanded="false" aria-controls="'.$collapseId.'">
-                                                        <input class="border-0" value="'.$value['playlist_name'].'" readonly style="font-weight:bold; background:transparent">
+                                                        <input class="mb-0 border-0  text-dark h6" id="editing-'.$value['playlistID'].'-playlist-input" value="'.$value['playlist_name'].'"  disabled>
+                   
                                                         </button>
+                       
                                                         
                                                     </h2>
 
                                                     
 
-                                                    <div id="'.$collapseId.'" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#'.$accordionId.'">
+                                                    <div id="'.$collapseId.'" class="accordion-collapse collapse " aria-labelledby="headingTwo" data-bs-parent="#'.$value['playlist_name'].'-list">
                                                         <div class="accordion-body">
-                                                            <ul>
-                                                                <li class="d-flex justify-content-between align-items-center mt-3">
-                                                                    <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
-                                                                    
-                                                                    <button class="btn btn-sm delete-file '.$minusButtonId.'" hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                               
-                                                                </li>
+                                                            <ul> ';
 
-                                                                <li class="d-flex justify-content-between align-items-center mt-3">
-                                                                <a href=""><span class="" type="text" value="" id="flexCheckDefault">Living Hope Phil Wickham</span></a>
-                                                               
-                                                                    <button class="btn btn-sm delete-file '.$minusButtonId.' " hidden><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="'.$fadeInAnimatedClass.' feather feather-minus text-danger"><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                                                               
-                                                                </li>
+
+                                                            $jsonString = $value['songs'];
+
+           
+                                                            // Convert JSON string to PHP array
+                                                            $dataArray = json_decode($jsonString, true);
+
+                                                            // Check if decoding was successful
+                                                            if ($dataArray === null) {
+                                                                // JSON decoding failed, handle the error here
+                                                                echo "Error decoding JSON data.";
+                                                            } else {
+                                                                // Loop through each array in the decoded data
+                                                                foreach ($dataArray as $data) {
+                                                                    $trackID = $data['trackID'];
+                                                                    $artist = $data['artist'];
+                                                                    $title = $data['title'];
+
+                                                                    echo '      
+                                                                    <li class="d-flex justify-content-between align-items-center mt-3 cursor-pointer" >
+                                                                        <span onclick="getSong(this)" trackID="'.$trackID.'" class="" type="text" value="" id="flexCheckDefault" onmouseover="this.style.color=\'blue\';" onmouseout="this.style.color=\'\';">'.$title.'</span>
+                                                                        <button playlist_name="'.$value["playlist_name"].'" trackID="'.$trackID.'" class="btn btn-sm delete-file '.$value['playlistID'].'-playlist" onclick="removeSong(this)" hidden>
+                                                                            <p hidden>'.$jsonString.' </p>
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=" feather feather-minus text-danger">
+                                                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </li>';
+                                                                }
+                                                            }
+                                                         
+
+                                        echo'
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -195,6 +262,9 @@
                                             <div class="row ">
                                                 <div class="col-12 col-xl-12"  style="margin-left:-5px">
                                                             
+      
+                                                    
+                                                    
                                                     <button type="button" class="btn btn-transparent border-0 " data-bs-toggle="dropdown">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
                                                     <defs>
@@ -206,14 +276,17 @@
                                                     </svg>
                                                     </button>
 
-                                                    <ul class="dropdown-menu">
-                                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" id="'.$addSongsId.'">Add Song</a></li>
-                                                        <li><a class="dropdown-item '.$editPlaylist.'" type="button" data-bs-target="#'.$editId.'">Edit Playlist</a></li>
 
-                                                        <li><a class="dropdown-item" type="button" id="'.$linkEventId.'">Link to Event</a></li>
-                                                        <li><a class="dropdown-item" type="button" id="'.$downloadId.'">Download Playlist Songs</a></li>
+
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" id="'.$value['playlist_name'].'" onclick="setPlaylist(this)">Add Song</a><p hidden>'.$jsonString.' </p></li>
+                                            
+                                                        <li><a type="button" class="dropdown-item" id="'.$value['playlistID'].'-playlist"  onclick="editPlaylist(this)" playlistname="'.$value['playlist_name'].'" playlistid="'.$value['playlistID'].'">Edit Playlist</a></li>
+
+                                                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#linkPlayslitModal" onclick="linkPlaylist(this)" songs="'.$value['songs'].'"  playlistname="'.$value['playlist_name'].'" playlistid="'.$value['playlistID'].'">Link to Event</a></li>
+                                                        <li><a class="dropdown-item" type="button" onclick="downloadPlaylist(this)" playlistname="'.$value['playlist_name'].'" playlistid="'.$value['playlistID'].'">Download Playlist Songs</a><p hidden>'.$jsonString.' </p></li>
                                                         <li><hr class="dropdown-divider"></li>
-                                                        <li><a class="dropdown-item text-danger" type="button" id="'.$deleteId.'">Delete Playlist</a></li>
+                                                        <li><a class="dropdown-item text-danger" type="button" id="'.$value['playlistID'].'" onclick="deletePlaylist(this)" playlistid="'.$value['playlistID'].'">Delete Playlist</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -229,7 +302,7 @@
 
                         </div>
                         
-
+<!-- '.$value['playlistID'].'-playlist"  para ni tni sa-->
 
 
                             
@@ -416,35 +489,132 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">  
+                            <input type="text" name="" id="playlist_songlist">
                             <label for="single-select-clear-field" class="form-label">Search Songs</label>
-                            <input type="search" id="searchBar" class="form-control" placeholder="">
-                            <ul id="searchResults"  class="list-group mt-2 dropdown-menu"></ul> 
+                            <div class="input-group ">
+                                <input type="text" class="form-control border border-dark " placeholder="" id="song_title_playlist">
+                                <button class="btn border border-dark " id="search_song_playlist"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            </button> 
+
+                            <button type="button" id="addToPlaylist" class="btn d-fixed btn-light border border-1 ms-3" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                    </button>
+
+                
+                        </div>
+                        <ul id="songList" style="margin-top:30px;">
+                                <!-- The search results will be displayed here -->
+                            </ul>
                         </div>
                         <div class="row">
                                 <div class=" d-flex align-items-center mb-3 mt-3">
-                                    <div class=" col-10 col-sm-10 col-md-10 col-lg-10 col-xl-11" >
-                                    <select class="form-select border border-dark" id="inputSelectCountry" aria-label="Default select example" onchange="location = this.value; ">
-                                    <option selected="" value="disabled" class="" style="font-weight:bold; color:aquamarine;"><span style="color:aquamarine">Sunday Line Up
-                                    </span></option>
-                                    <option value="">The Divine Groove</option>
-                                 
+                                    <div class=" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+                                    <select class="form-select border border-dark" id="addToPlaylistName" aria-label="Default select example">
+
+                                    <?php
+                                        $playlist = (new ControllerPlaylist)->ctrShowPlaylist();
+                                        foreach ($playlist as $key => $value) {
+
+                                            echo'
+                                            <option selected="" value="'.$value['playlist_name'].'" class="" style="font-weight:bold;"><span>'.$value['playlist_name'].'
+                                            </span></option>
+                                            ';
+                                        }
+                                    
+                                    ?>
 
 
-
+            
                                     </select>
                                     
-                                      
+
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">  
-                                <button type="button" class="btn d-fixed btn-light border border-1 ms-1" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                    </button>
-                                </div>
+            
 
                         
                                 </div>
                                 <div class="modal-footer">
-                       
+                 
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+
+
+
+    
+    <div class="col">
+                <!-- Button trigger modal -->
+                <!-- Modal -->
+        <div class="modal fade" id="linkPlayslitModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered moda-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning ">
+                        <h5 class="modal-title">Link Playlist</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    
+                            <div class="row">
+                        
+                            <label for="single-select-clear-field" class="form-label">Playlist: </label>
+                                <select class="form-select border border-dark " id="linkPlaylistInput" >
+                                <?php
+                                    $playlist = (new ControllerPlaylist)->ctrShowPlaylist();
+                                    foreach ($playlist as $key => $value) {
+                                        echo'
+                                        <option value="'.$value['playlistID'].'"  class=" d-flex align-items-center justify-content-between" style="font-weight:bold;"><span>'.$value['playlist_name'].'</span>
+                                        </option>
+                                        ';  
+                                    }
+                                
+                                ?>
+                                </select>
+                                                
+                            </div>
+                        <div class="row">
+                            <div class=" d-flex align-items-center mb-3 mt-3">
+
+
+                                <div class="row">
+
+                                <label for="single-select-clear-field" class="form-label">Event: </label>
+
+                    
+                                    <select class="form-select border border-dark " id="linkEventInput" aria-label="Default select example">
+                                    <?php
+                                        $playlist = (new ControllerPlaylist)->ctrShowEventsLinkingPlaylist();
+                                        foreach ($playlist as $key => $value) {
+
+                                            echo'
+                                            <option value="'.$value['eventID'].'"  class=" d-flex align-items-center justify-content-between " style="font-weight:bold;"><span>'.$value['event_title'].'
+                                            </span><span>('.$value['event_date'].' @ '.$value['event_time'].') 
+                                            </span>
+                                            </option>
+                                            ';
+                                        }
+                                    
+                                    ?>
+                                    </select>
+                                </div>
+                                    
+
+                            </div>
+            
+
+                        
+
+                       
+                        </div>
+
+                        <div class="row d-flex justify-content-center  mt-3">
+                            <button type="button" class="btn btn-outline-warning w-50" id="linkPlaylistBtn">Link</button>
                         </div>
                     </div>
                 </div>

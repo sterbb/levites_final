@@ -7,11 +7,7 @@ $(".addWebsiteForm").submit(function(e) {
   
     if (website_name.trim() === "" || website_path.trim() === "") {
         // Display an error message when the website name or path is empty
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Please fill in the required fields: Website Name and Website Path',
-        });
+
     } else {
         var websiteData = new FormData();
         websiteData.append("website_path", website_path);
@@ -28,22 +24,11 @@ $(".addWebsiteForm").submit(function(e) {
             dataType: "text",
             success: function(answer) {
                 console.log(answer);
-  
-                $('#Application').modal('hide');
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Website added successfully!',
-                }).then(() => {
-                    location.reload();
-                });
+                location.reload();
+
             },
             error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                });
+
             },
             complete: function() {
                 // Handle any completion tasks if needed
@@ -109,6 +94,7 @@ $(".addWebsiteForm").submit(function(e) {
           dataType: "text",
           success: function(answer) {
               console.log(answer);
+              location.reload();
 
           },
           error: function() {
@@ -160,22 +146,11 @@ $(".addWebsiteForm").submit(function(e) {
         dataType: "text",
         success: function(answer) {
             console.log(answer);
-  
-            // Display a success message using SweetAlert
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: 'Website group added successfully!',
-            }).then(() => {
-                location.reload();
-            });
+            location.reload();
+
         },
         error: function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-            });
+
         },
         complete: function() {
             // Handle any completion tasks if needed
@@ -203,6 +178,7 @@ $(".addWebsiteForm").submit(function(e) {
         dataType: "text",
         success: function(answer) {
             console.log(answer);
+            location.reload();
   
            
         },
@@ -237,6 +213,7 @@ $(".addWebsiteForm").submit(function(e) {
         dataType: "text",
         success: function(answer) {
             console.log(answer);
+            location.reload();
   
            
         },
@@ -270,6 +247,7 @@ $(".addWebsiteForm").submit(function(e) {
         dataType: "text",
         success: function(answer) {
             console.log(answer);
+            location.reload();
         },
         error: function() {
 

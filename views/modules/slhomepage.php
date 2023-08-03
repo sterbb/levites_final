@@ -2,7 +2,7 @@
     <div class="card ">
         <div class="card-body ">
             <nav class="navbar navbar-expand-xl navbar-light ">
-                <div class="container"><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
+                <div class="container"><a class="navbar-brand" href="slhomepage"> <span class="h2">LEVITES</span></a>
 
                     <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 searchSong" id="searchSong" method="POST"  role="form">
                         <div class="input-group ">
@@ -22,43 +22,118 @@
  
         <div>
              <div class="col-xs-12 text-left p-4 artist-col d-flex justify-content-between">
-              <h2>DISCOVER SONGS</h2>
-			  <a href="songlist" class="btn btn-outline-secondary ">View more</a>
+                <h2>DISCOVER SONGS</h2>
+
              </div>
              
-            
+             <div class="row justify-content-center p">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-center">
+                    <div class="list-group borders border border-success">
+                        <?php
 
-            <div class="row justify-content-center p" >
-                <!-- hot songs placeholder -->
-                <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-4 text-center pb-3">
-                    <div class="list-group  border border-success  ">
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/ive/iam.html">Marc Heinrich - "Fellowship"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/davidkushner/daylight.html">Bruce Baumgartner - "Stone Upon Stone"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/lewiscapaldi/wishyouthebest.html">John Green - "We Are Your Body"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/drake/searchrescue.html">Isaac Watts - "How Sweet And Awesome Is The Place"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/postmalone/chemical.html">Bill Bennett - "God The Father Son And Spirit"</a>
+                        // $apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
+
+                        function get_random_popular_songs($genre_id, $num_random_songs, $language) {
+                            // Replace 'YOUR_API_KEY' with your actual Musixmatch API key
+                            $api_key = '10d5d6cfd3f1d6b777a1d447a76327de';
+                            $endpoint = "https://api.musixmatch.com/ws/1.1/track.search?f_music_genre_id=$genre_id&f_lyrics_language=$language&s_track_rating=desc&apikey=$api_key&format=json&page_size=50";
+                        
+                            $curl = curl_init($endpoint);
+                            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                            $response = curl_exec($curl);
+                        
+                            if ($response === false) {
+                                echo 'Error: ' . curl_error($curl);
+                                return [];
+                            }
+                        
+                            $data = json_decode($response, true);
+                        
+                            if (isset($data['message']['body']['track_list'])) {
+                                $tracks = $data['message']['body']['track_list'];
+                        
+                                // Get random indices to select random songs
+                                $num_tracks = count($tracks);
+                                $random_indices = array_rand($tracks, min($num_random_songs, $num_tracks));
+                        
+                                // Build the resulting array with track name, artist name, track ID, and genre ID
+                                $result = [];
+                                foreach ($random_indices as $index) {
+                                    $trackName = $tracks[$index]['track']['track_name'];
+                                    $artistName = $tracks[$index]['track']['artist_name'];
+                                    $trackId = $tracks[$index]['track']['track_id'];
+                        
+                                    // Concatenate the track name, artist name, track ID, and genre ID with a delimiter (' - ' in this case)
+                                    $result[] = "$trackName - $artistName - $trackId - $genre_id";
+                                }
+                                return $result;
+                            } else {
+                                echo 'Error: Unable to fetch songs.';
+                                return [];
+                            }
+                        }
+                        
+                        // Example usage
+                        $genre_id = 22; // Replace this with the desired music genre ID
+                        $num_random_songs = 12; // Replace this with the number of random songs you want
+                        
+                        $random_songs = get_random_popular_songs($genre_id, $num_random_songs, "en");
+                        
+                        // Display the random songs in the specified format
+                        foreach ($random_songs as $random_song) {
+                            list($trackName, $artistName, $trackId, $genreId) = explode(' - ', $random_song);
+                            echo "<a class='list-group-item getLyrics' style='cursor: pointer;' trackid='$trackId' genreid='$genreId'>$trackName - $artistName</a>";
+                        }
+                        
+
+                        ?>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-4 text-center">
-                    <div class="list-group  border border-warning">
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/jisoo/flower.html">William Watkins Reid Jr. - "The City Is Alive O God"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/charlottecardin/confetti.html">Geoffrey Bingham - "Life Of Our Life"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/sevendust/fence.html">Pam Noel - "Jesus Went To Church"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/gretavanfleet/meetingthemaster.html">Fred Pratt Green - "What The Spirit Says To The Churches"</a>
-                        <a class="list-group-item" href="//www.azlyrics.com/lyrics/mileycyrus/flowers.html">Fred Pratt Green - "When The Church Of Jesus"</a>
+
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-center">
+                    <div class="list-group border border-warning">
+                            <?php
+                                                // Example usage
+                        $genre_id = 22; // Replace this with the desired music genre ID
+                        $num_random_songs = 12; // Replace this with the number of random songs you want
+                        
+                        $random_songs = get_random_popular_songs($genre_id, $num_random_songs, "tl");
+                        
+                        // Display the random songs in the specified format
+                        foreach ($random_songs as $random_song) {
+                            list($trackName, $artistName, $trackId) = explode(' - ', $random_song);
+                            echo "<a class='list-group-item getLyrics' style='cursor: pointer;' trackid='$trackId'>$trackName - $artistName</a>";
+                        }
+
+                        ?>
                     </div>
                 </div>
             </div>
+            
         </div>
   
 
     
 
 
-    <h2 class="mb-0 text-uppercase p-4 font-4 "><span class=""><spanclass="">Albums</span></h2>
-			
-        <div class=" row row-cols-1 row-cols-lg-4  row-cols-xl-4 p-3 justify-content-center ">
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
+</div>
+
+
+
+
+
+</main>
+
+
+
+
+<script type="text/javascript">
+  function handleSelect(elm)
+  {
+     window.location = elm.href+".php";
+  }
+</script>
+  <!-- <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 ">
                 <div class="card border-warning border-bottom border-3 border-0  h-100">
                     <img src="views/SLimg/c1.png" class="card-img-top" alt="...">
                     <div class="card-body ">
@@ -105,16 +180,4 @@
         
                     </div>
                 </div>
-            </div>
-        </div>
-
-</main>
-
-
-
-<script type="text/javascript">
-  function handleSelect(elm)
-  {
-     window.location = elm.href+".php";
-  }
-</script>
+            </div> -->

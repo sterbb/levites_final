@@ -48,19 +48,22 @@ class CollaborationModel
     
         
         // Check if there are no results
-        if ($stmt->rowCount() == 0) {
+
 
             $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2  AND collab_status =:collab_status");
             $stmt2->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
             $stmt2->bindParam(':collab_status', $collab_status, PDO::PARAM_INT);
             $stmt2->execute();
     
-            return $stmt2->fetchAll(PDO::FETCH_ASSOC);
+            $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-        } else {
+ 
           
-           return $results;
-        }
+            $result2 = array_merge($result2, $results);
+            
+            // Return the array containing results from both queries
+            return $result2;
+
 
     }
 
@@ -86,7 +89,6 @@ class CollaborationModel
     public function mdladdCollaboration($data)
     {
 
-
         $db = new Connection();
         $pdo = $db->connect();
 
@@ -95,6 +97,9 @@ class CollaborationModel
 
         $current_year = substr(date('Y'), -2 );
         $current_month = date('n');
+
+        $collabDate = date('Y-m-d');
+
         
         try{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -106,14 +111,16 @@ class CollaborationModel
 			$collabid = $collab_id -> fetchAll(PDO::FETCH_ASSOC);
 
 			
-			$stmt = $pdo->prepare("INSERT INTO churchcollab (collabID, churchid1, churchname1, churchid2, churchname2) 
-            VALUES (:collabID, :churchid1, :churchname1, :churchid2, :churchname2)");
+			$stmt = $pdo->prepare("INSERT INTO churchcollab (collabID, churchid1, churchname1, churchid2, churchname2, collabdate) 
+            VALUES (:collabID, :churchid1, :churchname1, :churchid2, :churchname2, :collabdate)");
 
 			$stmt->bindParam(":collabID", $collabid[0]['collab_id'], PDO::PARAM_STR);
 			$stmt->bindParam(":churchid1", $churchid1, PDO::PARAM_STR);
             $stmt->bindParam(":churchname1", $churchname1, PDO::PARAM_STR);
             $stmt->bindParam(":churchid2", $data['churchid2'], PDO::PARAM_STR);
             $stmt->bindParam(":churchname2", $data['churchName'], PDO::PARAM_STR);
+            $stmt->bindParam(":collabdate", $collabDate, PDO::PARAM_STR);
+
             $stmt->execute();		
 		    $pdo->commit();
 			
@@ -188,9 +195,10 @@ public function mdladdMembership($data)
 {
     $db = new Connection();
     $pdo = $db->connect();
-//account
+
     $memberName = $_COOKIE["acc_name"];
     $memberID = $_COOKIE['acc_id'];
+    $memberEmail = $_COOKIE['acc_email'];
 
     $current_year = substr(date('Y'), -2 );
     $current_month = date('n');
@@ -205,14 +213,15 @@ public function mdladdMembership($data)
         $mshipid = $mship_id -> fetchAll(PDO::FETCH_ASSOC);
 
         
-        $stmt = $pdo->prepare("INSERT INTO membership (mshipID, memberID, memberName, memChurchID, memChurchName) 
-        VALUES (:mshipID, :memberID, :memberName, :memChurchID, :memChurchName)");
+        $stmt = $pdo->prepare("INSERT INTO membership (mshipID, memberID, memberName, memChurchID, memChurchName, memberEmail) 
+        VALUES (:mshipID, :memberID, :memberName, :memChurchID, :memChurchName, :memberEmail)");
 
         $stmt->bindParam(":mshipID", $mshipid[0]['mship_id'], PDO::PARAM_STR);
         $stmt->bindParam(":memberID", $memberID, PDO::PARAM_STR);
         $stmt->bindParam(":memberName", $memberName, PDO::PARAM_STR);
         $stmt->bindParam(":memChurchID", $data['memChurchID'], PDO::PARAM_STR);
         $stmt->bindParam(":memChurchName", $data['memChurchName'], PDO::PARAM_STR);
+        $stmt->bindParam(":memberEmail", $memberEmail, PDO::PARAM_STR);
         $stmt->execute();		
         $pdo->commit();
         
@@ -261,11 +270,16 @@ static public function mdlshowAffilatedMember(){
 
 static public function mdlMemberAccept($data){
 
+    $membershipDate = date('Y-m-d');
+
+
     $accept = 1;
 
-    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status WHERE mshipID = :mshipID ");
+    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status, membershipDate = :membershipDate WHERE mshipID = :mshipID ");
     $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
     $stmt->bindParam(":membership_status", $accept, PDO::PARAM_INT);
+    $stmt->bindParam(":membershipDate", $membershipDate, PDO::PARAM_STR);
+
     $stmt -> execute();
     return $stmt -> fetch();
     $stmt -> close();
@@ -301,6 +315,84 @@ static public function mdlMemberRemove($data){
     $stmt = null;	
 
 }
+
+static public function mdlMemberReport() {
+    $churchID = $_COOKIE['church_id'];
+    $stmt = (new Connection)->connect()->prepare("SELECT membershipDate FROM membership WHERE memChurchID = :memChurchID ");
+    $stmt->bindParam(":memChurchID", $churchID, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor(); // Close the cursor to free up resources
+    return $result;
+}
+
+
+
+
+static public function mdlTotalMember() {
+    $churchID = $_COOKIE['church_id'];
+
+    try {
+        $stmt = (new Connection)->connect()->prepare("SELECT COUNT(*) as total_member FROM membership WHERE memChurchID = :memChurchID AND membership_status = 1");
+        $stmt->bindParam(":memChurchID", $churchID, PDO::PARAM_STR);
+        $stmt->execute();
+        $totalMember = $stmt->fetch(PDO::FETCH_ASSOC)['total_member'];
+        $stmt->closeCursor(); // Close the cursor to free up resources
+        return $totalMember;
+    } catch (PDOException $e) {
+        // Handle any database connection or query error here
+        return -1;
+    }
+}
+
+
+
+
+static public function mdlTotalAffiliated() {
+
+    $church_id = $_COOKIE['church_id'];
+
+    $collab_status = 1;
+
+    $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2, collabdate FROM churchcollab WHERE churchid1 = :churchid1 AND collab_status =:collab_status ");
+    $stmt->bindParam(':churchid1', $church_id, PDO::PARAM_STR);
+    $stmt->bindParam(':collab_status', $collab_status, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    
+    // Check if there are no results
+
+
+    $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1, collabdate FROM churchcollab WHERE churchid2 = :churchid2  AND collab_status =:collab_status");
+    $stmt2->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
+    $stmt2->bindParam(':collab_status', $collab_status, PDO::PARAM_INT);
+    $stmt2->execute();
+
+    $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+
+    
+    $result2 = array_merge($result2, $results);
+    
+    // Return the array containing results from both queries
+    return $result2;
+
+
+
+
+
+    // $churchID = $_COOKIE['church_id'];
+    // $stmt = (new Connection)->connect()->prepare("SELECT collabdate FROM churchcollab WHERE churchid1 = :churchid1 AND ");
+    // $stmt->bindParam(":churchid1", $churchID, PDO::PARAM_STR);
+    // $stmt->execute();
+    // $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // $stmt->closeCursor(); // Close the cursor to free up resources
+    // return $result;
+
+}
+
 
 
 

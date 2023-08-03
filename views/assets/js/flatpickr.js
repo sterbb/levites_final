@@ -5,9 +5,9 @@ $(function() {
   'use strict';
 
   // date picker 
-  if($('#flatpickr-date').length) {
-    flatpickr("#flatpickr-date", {
-      wrap: true,
+  if($('.flatpickr-date').length) {
+    flatpickr(".flatpickr-date", {
+      minDate: "today",
       dateFormat: "Y-m-d",
     });
   }
@@ -28,6 +28,14 @@ $(function() {
       dateFormat: 'Y-m-d'
     });
   }
+
+  if($('.date-time-range').length) {
+    flatpickr(".date-time-range", {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+    });
+  }
+
 
 
 });

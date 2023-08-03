@@ -22,18 +22,34 @@ if(isset($_COOKIE["acc_type"])){
       echo"<style>.request{display:none !important;}</style>";
     }
 
+  }elseif($_COOKIE["acc_type"]  == "publicSub"){
+    // echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+
+    $acc_res = $_COOKIE['acc_restriction'];
+
+    if(strpos($acc_res, 'C') === false){
+      echo"<style>.calendar{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'S') === false){
+      echo"<style>.storage{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'R') === false  ){
+      echo"<style>.request{display:none !important;}</style>";
+    }
   }elseif($_COOKIE["acc_type"] == "superuser"){
     echo"<style>.admin{display:none !important;}</style>";
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
     echo"<style>.admin-public{display:none !important;}</style>";
+
   }elseif($_COOKIE["acc_type"]  == "public"){
     echo"<style>.admin{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
   }
 
-  echo $_COOKIE['acc_type'];
 }
 
 
@@ -43,6 +59,9 @@ if(isset($_COOKIE["acc_type"])){
 
 ?>
 <aside class="sidebar-wrapper">
+
+
+
           <div class="sidebar-header">
             <div class="logo-icon">
               <img src="views/images/try.png" class="logo-img" alt="">
@@ -69,6 +88,16 @@ if(isset($_COOKIE["acc_type"])){
                   </a>
                 </li>
 
+                <li class="public" >
+                    <a href="publichomepage">
+                      <div class="parent-icon"><span class="material-symbols-outlined">
+                        public
+                        </span>
+                      </div>
+                      <div class="menu-title ">Explore</div>
+                    </a>
+                </li>
+
                 <li class="admin">
                   <a href="websiteorg">
                     <div class="parent-icon"><i class='bx bx-customize' ></i>
@@ -86,24 +115,21 @@ if(isset($_COOKIE["acc_type"])){
                     <div class="menu-title hidden">Calendar of Activities</div>
                   </a>
                 </li>
+
+     
                 
                 
                 <li class="admin-public" >
-                  <a class="has-arrow" href="javascript:;">
+                  <a href="slhomepage">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                     lyrics
                     </span>
                     </div>
                     <div class="menu-title hidden" >Songs and Lyrics</div>
                   </a>
-                  <ul >
-                    <li><a href="slhomepage" ><span class="material-symbols-outlined">arrow_right</span>Song and Lyrics Homepage</a></li>         
-                    <li > <a href="songlist"><span class="material-symbols-outlined">arrow_right</span>Song List</a></li>
-                    <li ><a href="lyrics"><span class="material-symbols-outlined">arrow_right</span>Lyrics</a></li> 
-                  </ul>
                 </li>
 
-                <li class="admin-public storage">
+                <li class="admin storage">
                   <a href="filestorage">
                     <div class="parent-icon"><span class="material-symbols-outlined">
                      hard_drive
@@ -139,44 +165,32 @@ if(isset($_COOKIE["acc_type"])){
                     <div class="menu-title hidden">Accounts</div>
                   </a>
                 </li>
-              
-
                 
-                 
-
-                <li class="public" >
-                    <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">
-                        public
-                        </span>
-                      </div>
-                      <div class="menu-title ">Public Pages View</div>
-                    </a>
-                    <ul>
-    
-                      <li> <a href="publichomepage"><span class="material-symbols-outlined">arrow_right</span>Public Homepage</a>
-                      </li>
-                      <li> <a href="catdetails"><span class="material-symbols-outlined">arrow_right</span>Calendar Details</a>
-                      </li>
-                      
-                    </ul>
+                <li class="superuser">
+                  <a href="superuser">
+                    <div class="parent-icon"><i class="lni lni-graph"></i>
+                    </div>
+                    <div class="menu-title hidden">Reports</div>
+                  </a>
                 </li>
 
-                <li class="superuser" >
-                    <a href="javascript:;" class="has-arrow">
-                      <div class="parent-icon"><span class="material-symbols-outlined">
-                      hdr_auto
-                      </span>
-                      </div>
-                      <div class="menu-title ">Super User View</div>
-                    </a>
-                    <ul>
-                      <li> <a href="superuser"><span class="material-symbols-outlined">arrow_right</span>Church Verification</a>
-                      </li>
-                      
-                    </ul>
+                <li class="superuser">
+                  <a href="adminreportgen">
+                    <div class="parent-icon"><i class="lni lni-graph"></i>
+                    </div>
+                    <div class="menu-title hidden">Data Insights</div>
+                  </a>
                 </li>
-              
+
+                <li class="superuser">
+                  <a href="reports">
+                    <div class="parent-icon"><i class="lni lni-graph"></i>
+                    </div>
+                    <div class="menu-title hidden">Reports</div>
+                  </a>
+                </li>
+                
+
               </ul>
               <!--end navigation-->
            

@@ -1,7 +1,7 @@
 
 $("#addDonation").on('click', function(e){
     e.preventDefault();
-    alert("dsad");
+
 
     var donation_number = $("#donation_number").val();
     var donation_category = $("#donation_category").val();
@@ -33,6 +33,83 @@ $("#addDonation").on('click', function(e){
       });
 
 });
+
+$("#SocialMedia").on('click', function(e){
+  e.preventDefault();
+  
+
+  var socialMedia = $("#socialMedia").val();
+  var socialMedia_category = $("#socialMedia_category").val();
+
+
+  var SocialAdd = new FormData();
+  SocialAdd.append("socialMedia", socialMedia);
+  SocialAdd.append("socialMedia_category", socialMedia_category);
+
+
+  $.ajax({
+      url: "ajax/add_socialMedia.ajax.php",
+      method: "POST",
+      data: SocialAdd,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(answer) {
+        console.log(answer);
+          
+    
+      },
+      error: function() {
+          alert("Oops. Something went wrong!");
+      },
+      complete: function() {
+      }
+    });
+
+});
+
+
+function deleteData(id) {
+  // Perform the AJAX request to delete data with the specified id
+  $.ajax({
+      url: 'ajax/delete_donation.ajax.php', // Replace with the actual server-side script that handles the delete operation
+      type: 'POST', // Use POST method to send the id to the server
+      data: { id: id }, // Send the id as a parameter to the server
+      dataType: 'json', // Expect JSON data in response (optional, if the server returns JSON)
+      success: function(response) {
+          // Handle the response from the server after successful deletion (if needed)
+          console.log('Data deleted successfully:', response);
+          // Optionally, update the data list or refresh the page here
+          location.reload();  
+      },
+      error: function(xhr, status, error) {
+          // Handle errors, if any, that occur during the AJAX request
+          console.error('Error deleting data:', error);
+      }
+  });
+}
+
+function deleteSocial(id) {
+  // Perform the AJAX request to delete data with the specified id
+  $.ajax({
+      url: 'ajax/delete_social.ajax.php', // Replace with the actual server-side script that handles the delete operation
+      type: 'POST', // Use POST method to send the id to the server
+      data: { id: id }, // Send the id as a parameter to the server
+      dataType: 'json', // Expect JSON data in response (optional, if the server returns JSON)
+      success: function(response) {
+          // Handle the response from the server after successful deletion (if needed)
+          console.log('Data deleted successfully:', response);
+          // Optionally, update the data list or refresh the page here
+          location.reload();  
+      },
+      error: function(xhr, status, error) {
+          // Handle errors, if any, that occur during the AJAX request
+          console.error('Error deleting data:', error);
+      }
+  });
+}
+
 
 
  $('#userBack').on('change', function(event) {
@@ -66,7 +143,7 @@ $("#addDonation").on('click', function(e){
       console.log(answer);
     },
     error: function() {
-      alert("Oops. Something went wrong!");
+
     },
     complete: function() {
     }
@@ -90,7 +167,7 @@ $('#userAvatar').on('change', function(event) {
   const fileInput = document.getElementById('userAvatar'); // Replace 'yourFileInput' with the actual ID of your file input element
   const file = fileInput.files[0];
   const fileName = file.name; // Extract the file name
-  alert(fileName)
+
 
   var userAvatarData = new FormData();
   userAvatarData.append("userAvatarFile", fileName);
@@ -128,13 +205,15 @@ $("#updateChurch").submit(function(e) {
   var Newfname = $("#fname").val();
   var Newlname = $("#lname").val();
   var Newdesignation = $("#designation").val();
-  // var Newemail = $("#email").val();
+  var Newemail = $("#email").val();
   var Newusername = $("#username").val();
   var Newpassword = $("#password").val();
-  // var Newreligion = $("#religion").val();
-  // var Newcity = $("#city").val();
-  // var Newmission = $("#mission").val();
-  // var Newvision = $("#vision").val();
+  var Newreligion = $("#religion").val();
+  var Newcity = $("#city").val();
+  var Newmission = $("#mission").val();
+  var Newvision = $("#vision").val();
+
+  var Newchurchnum = $("#church_num").val();
 
 
 
@@ -146,13 +225,16 @@ $("#updateChurch").submit(function(e) {
   updateChurch.set("Newfname", Newfname);
   updateChurch.set("Newlname", Newlname);
   updateChurch.set("Newdesignation", Newdesignation);
-  // updateChurch.set("Newemail", Newemail);
+  updateChurch.set("Newemail", Newemail);
   updateChurch.set("Newusername", Newusername);
   updateChurch.set("Newpassword", Newpassword);
-  // updateChurch.set("Newreligion", Newreligion);
-  // updateChurch.set("Newcity", Newcity);
-  // updateChurch.set("Newmission", Newmission);
-  // updateChurch.set("Newvision", Newvision);
+  updateChurch.set("Newreligion", Newreligion);
+  updateChurch.set("Newcity", Newcity);
+  updateChurch.set("Newmission", Newmission);
+  updateChurch.set("Newvision", Newvision);
+
+  updateChurch.set("Newchurchnum", Newchurchnum);
+
 
 
 

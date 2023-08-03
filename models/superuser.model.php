@@ -24,10 +24,11 @@ class ModelSuperUser{
 	
     }
 
-    public static function mdlShowChurchList1($data){
+    public static function mdlShowChurchListExplore($data){
         
         $rejected_status = 0;
-        $stmt = (new Connection)->connect()->prepare("SELECT * FROM churches WHERE church_status = :church_status AND rejected_status = :rejected_status ORDER BY church_name");
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM churches WHERE church_status = :church_status AND rejected_status = :rejected_status ORDER BY RAND()
+        LIMIT 5");
         $stmt->bindParam(":church_status", $data, PDO::PARAM_INT);
         $stmt->bindParam(":rejected_status", $rejected_status, PDO::PARAM_INT);
 		$stmt -> execute();
@@ -36,6 +37,19 @@ class ModelSuperUser{
 		$stmt = null;	
 	
     }
+
+    public static function mldShowRejectedChurches($data){
+        
+        $rejected_status = 1;
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM churches WHERE rejected_status = :rejected_status ORDER BY church_name");
+        $stmt->bindParam(":rejected_status", $rejected_status, PDO::PARAM_INT);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;	
+	
+    }
+
 
 
 

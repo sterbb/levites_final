@@ -13,20 +13,23 @@ class updateChurch {
 
     public $Newlname;
     public $Newdesignation;
-    // public $Newemail;
+    public $Newemail;
     public $Newusername;
     public $Newpassword;
 
-    // public $Newreligion;
-    // public $Newcity;
+    public $Newreligion;
+    public $Newcity;
 
-    // public $Newmission;
-    // public $Newvision;
+    public $Newmission;
+    public $Newvision;
+
+    
+    public $Newchurchnum;
 
 
 
 
- 
+
 
 
     public function updateChurches(){
@@ -37,18 +40,18 @@ class updateChurch {
 
         $Newlname = $this -> Newlname;
         $Newdesignation = $this -> Newdesignation;
-        // $Newemail = $this -> Newemail;
+        $Newemail = $this -> Newemail;
         $Newusername = $this -> Newusername;
         $Newpassword = $this -> Newpassword;
 
-        // $Newreligion = $this -> Newreligion;
-        // $Newcity = $this -> Newcity;
+        $Newreligion = $this -> Newreligion;
+        $Newcity = $this -> Newcity;
 
+        $Newmission = $this -> Newmission;
+        $Newvision = $this -> Newvision;
 
-        // $Newmission = $this -> Newmission;
-        // $Newvision = $this -> Newvision;
-      
-      
+        $Newchurchnum = $this -> Newchurchnum;
+
 
 
 
@@ -60,22 +63,25 @@ class updateChurch {
 
         "Newlname"=>$Newlname,
         "Newdesignation"=>$Newdesignation,
-        // "Newemail"=>$Newemail,
+        "Newemail"=>$Newemail,
         "Newusername"=>$Newusername,
-        "Newpassword"=>$Newpassword
+        "Newpassword"=>$Newpassword,
 
 
-        // "Newreligion"=>$Newreligion,
-        // "Newcity"=>$Newcity,
+        "Newreligion"=>$Newreligion,
+        "Newcity"=>$Newcity,
 
-        // "Newmission"=>$Newmission,
-        // "Newvision"=>$Newvision
+
+        "Newmission"=>$Newmission,
+        "Newvision"=>$Newvision,
+
+        "Newchurchnum"=>$Newchurchnum
 
     );
-       
+
 
         return $answer = (new ControllerChurchSetting)->ctrUpdateChurch($data);
-     
+
     }
 
 
@@ -97,7 +103,7 @@ $updateChurchDetails -> Newlname = $_POST["Newlname"];
 
 $updateChurchDetails -> Newdesignation = $_POST["Newdesignation"];
 
-// $regisupdateChurchDetailster -> Newemail = $_POST["Newemail"];
+$updateChurchDetails -> Newemail = $_POST["Newemail"];
 
 $updateChurchDetails -> Newusername = $_POST["Newusername"];
 
@@ -105,14 +111,16 @@ $updateChurchDetails -> Newpassword = $_POST["Newpassword"];
 
 
 
-// $updateChurchDetails -> Newreligion = $_POST["Newreligion"];
+$updateChurchDetails -> Newreligion = $_POST["Newreligion"];
 
-// $updateChurchDetails-> Newcity = $_POST["Newcity"];
+$updateChurchDetails-> Newcity = $_POST["Newcity"];
 
+$updateChurchDetails -> Newmission = $_POST["Newmission"];
 
-// $updateChurchDetails -> Newmission = $_POST["Newmission"];
+$updateChurchDetails-> Newvision = $_POST["Newvision"];
 
-// $updateChurchDetails-> Newvision = $_POST["Newvision"];
+$updateChurchDetails-> Newchurchnum = $_POST["Newchurchnum"];
+
 
 
 $updateChurchDetails -> updateChurches();

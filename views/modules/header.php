@@ -1,3 +1,40 @@
+<?php 
+
+if(isset($_COOKIE["acc_type"])){
+  if($_COOKIE["acc_type"]  == "admin"){
+    echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+  }elseif($_COOKIE["acc_type"]  == "subuser"){
+    echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+
+    $acc_res = $_COOKIE['acc_restriction'];
+
+    if(strpos($acc_res, 'C') === false){
+      echo"<style>.calendar{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'S') === false){
+      echo"<style>.storage{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'R') === false  ){
+      echo"<style>.request{display:none !important;}</style>";
+    }
+
+  }elseif($_COOKIE["acc_type"] == "superuser"){
+    echo"<style>.admin{display:none !important;}</style>";
+    echo"<style>.public{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+    echo"<style>.admin-public{display:none !important;}</style>";
+  }elseif($_COOKIE["acc_type"]  == "public"){
+    echo"<style>.admin{display:none !important;}</style>";
+    echo"<style>.superuser{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+  }
+
+}
+
+?>
 <!--start header-->
 <header class="top-header">
       <nav class="navbar navbar-expand justify-content-between">
@@ -19,15 +56,16 @@
                       </span>
                   </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end mt-lg-2">
+                <div class="dropdown-menu dropdown-menu-end mt-lg-2" >
                   <a href="javascript:;">
                     <div class="msg-header">
                       <p class="msg-header-title">Notifications</p>
-                      <p class="msg-header-clear ms-auto">Marks all as read</p>
+    
                     </div>
                   </a>
-                  <div class="header-notifications-list" >
-                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModalDefault">
+                  <div class="header-notifications-list overflow-x-hidden" id="notifications">
+
+                    <a class="dropdown-item" href="requests">
                       <div class="d-flex align-items-center">
                         <div class="notify text-primary border">
                           <span class="material-symbols-outlined">
@@ -35,9 +73,38 @@
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Accounts <span class="msg-time float-end " > 2 min
-                              ago</span></h6>
-                          <p class="msg-info">Created a user with level access in...</p>
+                          <h6 class="msg-name">Membership <span class="msg-time float-end " ></h6>
+
+                            <?php 
+                              $requests = (new CollaborationController)->ctrshowMembership(); 
+
+                              $count = count($requests);
+
+                              echo "<p class='msg-info'>You have ".$count." pending membership request.</p>";
+                            ?>
+                         
+                        </div>
+                      </div>
+                    </a>
+
+                    <a class="dropdown-item" href="requests">
+                      <div class="d-flex align-items-center">
+                        <div class="notify text-primary border">
+                          <span class="material-symbols-outlined">
+                          account_circle
+                            </span>
+                        </div>
+                        <div class="flex-grow-1">
+                          <h6 class="msg-name">Church Collaboration <span class="msg-time float-end " ></h6>
+
+                            <?php 
+                                   $requests = (new CollaborationController)->ctrshowRequests();
+
+                              $count = count($requests);
+
+                              echo "<p class='msg-info'>You have ".$count." pending membership request.</p>";
+                            ?>
+                         
                         </div>
                       </div>
                     </a>
@@ -50,26 +117,12 @@
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Admin<span class="msg-time float-end">3 days
-                              ago</span></h6>
+                          <h6 class="msg-name">Admin(TBD)></h6>
                           <p class="msg-info">We are notifying you that you are having...</p>
                         </div>
                       </div>
                     </a>
-                    <a class="dropdown-item" href="javascript:;">
-                      <div class="d-flex align-items-center">
-                        <div class="notify text-success border">
-                          <span class="material-symbols-outlined">
-                            event_available
-                            </span>
-                        </div>
-                        <div class="flex-grow-1">
-                          <h6 class="msg-name">Calendar of Activities<span class="msg-time float-end">2 weeks
-                              ago</span></h6>
-                          <p class="msg-info">Event added in "Instrument Workshop"..</p>
-                        </div>
-                      </div>
-                    </a>
+                    
                     <a class="dropdown-item" href="javascript:;">
                       <div class="d-flex align-items-center">
                         <div class="notify text-info border">
@@ -78,12 +131,13 @@
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Request<span class="msg-time float-end">1 month ago</span></h6>
-                          <p class="msg-info">Accepted "Our Lady of the Miraculous...</p>
+                          <h6 class="msg-name">Request (TBD)</h6>
+                          <p class="msg-info">Our Lady of the Miraculous accepted collaboration</p>
                         </div>
                       </div>
                     </a>
-                    <a class="dropdown-item" href="javascript:;">
+
+                    <a class="dropdown-item" href="filestorage" id="notificationFileStorage">
                       <div class="d-flex align-items-center">
                         <div class="notify text-warning border">
                           <span class="material-symbols-outlined">
@@ -91,15 +145,14 @@
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">File Storage<span class="msg-time float-end">2 month ago</span></h6>
+                          <h6 class="msg-name">File Storage</h6>
                           <p class="msg-info">There are 500 MB left in your sto...</p>
                         </div>
                       </div>
                     </a>
+
                   </div>
-                  <a href="javascript:;">
-                    <div class="text-center msg-footer">View All</div>
-                  </a>
+
                 </div>
               </li>
               <li class="nav-item dropdown ">
@@ -110,17 +163,17 @@
                       </div>
                       <div class="user-info">
                         <h5 class="mb-0 user-name"><?php echo $_COOKIE["acc_name"]?></h5>
-                        <p class="mb-0 user-designation"><?php echo $_COOKIE["acc_name"]?></p>
+                        <p class="mb-0 user-designation"><?php echo ucfirst($_COOKIE["acc_type"])?></p>
                       </div>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-end">
 
-                      <li><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
+                      <li class="admin"><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
                         settings
                         </span><span>Church Account Settings</span></a>
                       </li>
 
-                      <li><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
+                      <li class="public"><a class="dropdown-item" href="publicsettings"><span class="material-symbols-outlined me-2">
                         settings
                         </span><span>Public Account Settings</span></a>
                       </li>

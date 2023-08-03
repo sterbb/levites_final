@@ -25,9 +25,23 @@ class ControllerCalendar{
 		return $answer = (new ModelCalendar)->mdlDeleteEventType();
 	 }
 
-
-	 static public function ctrGetReportChurch(){
-		return $answer = (new ModelCalendar)->mdlGetReportChurch();
+	 static public function ctrLinkPlaylist($data){
+		return $answer = (new ModelCalendar)->mdlLinkPlaylist($data);
 	 }
+
+	 static public function ctrLinkFile($data){
+		return $answer = (new ModelCalendar)->mdlLinkFile($data);
+	 }
+
+	 static public function ctrCheckFile($data){
+		return $answer = (new ModelCalendar)->mdlCheckFile($data);
+	 }
+
+	 
+
+	 
+	
+
+
 
 }

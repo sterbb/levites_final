@@ -1,5 +1,4 @@
 
-
     $(document).ready(function() {
         if(window.location.href === "superuser"){
 
@@ -25,7 +24,34 @@
 
 
         
+      const firebaseConfig = {
+        apiKey: "AIzaSyDHkmk1QhuflkF8Vh_w5QC01WXy3-RAdbc",
+        authDomain: "levites-aa257.firebaseapp.com",
+        projectId: "levites-aa257",
+        storageBucket: "levites-aa257.appspot.com",
+        messagingSenderId: "126085173959",
+        appId: "1:126085173959:web:0cf848c840596a337a24e2",
+        measurementId: "G-QP1MWVQ7XE"
+      };
+      firebase.initializeApp(firebaseConfig);
+
     });
+
+    $(document).ready(function() {
+      $("#searchChurch").on("keyup", function() {
+        var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+    
+        // Loop through each div with class "church_container"
+        $(".church_container").each(function() {
+          var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+          var isVisible = churchName.includes(searchText); // Check if church name contains search text
+    
+          // Toggle visibility based on search text
+          $(this).toggle(isVisible);
+        });
+      });
+    });
+    
 
     $(".viewBtn").on('click', function(){
         // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
@@ -112,9 +138,10 @@
     }
 
     $(".acceptBtn").on('click', function(){
-        // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
+
         var church_id = $(this).siblings('input').first().val();
-        console.log(church_id);
+
+
         
         var churchData = new FormData();
         churchData.append("church_id", church_id);
@@ -131,9 +158,40 @@
               console.log(answer);
 
               $("superuser_churchID").val(answer[0]);
-              
 
-              location.reload();
+              async function createSubfolder(parentFolderPath, subfolderName) {
+                var storage = firebase.storage();
+                var subfolderRef = storage.ref(parentFolderPath + "/" + subfolderName + "/.placeholder");
+              
+                var metadata = {
+                  customMetadata: {
+                    createdBy: getCookie('acc_name'),
+                    // Add more custom metadata properties as needed
+                  }
+                };
+              
+                try {
+                  await subfolderRef.putString("", "raw", metadata);
+                  console.log("Subfolder created:", parentFolderPath + "/" + subfolderName);
+                } catch (error) {
+                  console.log("Error:", error);
+                  throw error;
+                }
+              }
+              
+              async function createSubfoldersAndReload() {
+                try {
+                  await createSubfolder(church_id, "Public");
+                  await createSubfolder(church_id, "Members");
+                  location.reload();
+                } catch (error) {
+                  console.error("Error creating subfolders:", error);
+                }
+              }
+              
+              // Call the function
+              createSubfoldersAndReload();
+              
           
             },
             error: function() {

@@ -108,18 +108,7 @@
 
                             $requests = (new CollaborationController)->ctrshowRequests();
                             foreach($requests as $key => $value){
-                                // $churchname;
-                                // $churchid;
-
-                                // if (array_key_exists("churchid1", $requests)) {
-                                //     // Key exists in the array
-                                //     $churchid = $value["churchid1"];
-                                //     $churchname = $value["churchname1"];
-                                // } else {
-                                //     // Key is undefined
-                                //     $churchid = $value["churchid2"];
-                                //     $churchname = $value["churchname2"];
-                                // }
+     
 
                                 echo '
                                 <div class="team-list">
@@ -176,6 +165,7 @@
                    <?php 
 
                             $requests = (new CollaborationController)->ctrshowAffilatedChurches();
+                
                             foreach($requests as $key => $value){
                                 $churchname;
                                 $churchid;
