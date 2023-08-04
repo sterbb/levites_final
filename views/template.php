@@ -95,6 +95,7 @@
 			$_GET["route"] == 'landingpage' ||
 			$_GET["route"] == 'demomusic' ||
 			$_GET["route"] == 'dailyreading' ||
+			$_GET["route"] == 'reports' ||
 			$_GET["route"] == 'requestPassword'){
 
             include "modules/".$_GET["route"].".php";
@@ -209,6 +210,7 @@
 <script src="views/js/askmembership.js"></script>   
 <script src="views/js/music_demo.js"></script>   
 	<script src="views/js/report.js"></script>   
+	<script src="views/js/reportsubmission.js"></script>   
 
 
 	<script src="views/js/eventtype.js"></script>   
@@ -229,7 +231,7 @@
 <script>
       $(function () {
         $('[data-bs-toggle="popover"]').popover();
-        // $('[data-bs-toggle="tooltip"]').tooltip();
+        $('[data-bs-toggle="tooltip"]').tooltip();
       })
     </script>
 

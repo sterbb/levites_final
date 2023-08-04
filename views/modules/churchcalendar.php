@@ -286,8 +286,8 @@
               <input type="text" class="form-control" id="groupName" placeholder="">
             </div>
 
-            <input type="text" name="groupEventMembersList" id="groupEventMembersList">
-            <input type="text" name="groupEventEmailList" id="groupEventEmailList">
+            <input type="text" name="groupEventMembersList" id="groupEventMembersList" hidden>
+            <input type="text" name="groupEventEmailList" id="groupEventEmailList" hidden>
 
             <div class="mt-3">
                   <!-- Repeater Html Start -->

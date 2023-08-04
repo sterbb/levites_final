@@ -11,7 +11,6 @@
                         <label class="form-label">Report Type</label>
                         <select class="form-select mb-3" id="report-type" aria-label="Default select example">
                             <option selected="" value="events">Events Held</option>
-                            <option value="churches">Affiliated Churches</option>
                             <option value="members">Affiliated Members</option>
                             <option value="storage">File Storge</option>
                         </select>
@@ -42,17 +41,14 @@
                     </div>
 
                     <div class="col-2">
-                        <label class="form-label">Affiliates</label>
+                        <label class="form-label" id="church-label-change">File Storage</label>
                         <select class="form-select mb-3" aria-label="Default select example" id="report-church" disabled>
-                          <option selected="">All</option>
+                          <option selected="">My Storage</option>
                           <?php 
                                $affiliates = (new CollaborationController)->ctrshowAffilatedChurches();
                                foreach($affiliates as $key => $value){
                                 $churchname;
                                 $churchid;
-
-                                
-
                                 if (array_key_exists("churchid1", $value)) {
                                     // Key exists in the array
                                     $churchid = $value["churchid1"];
@@ -62,7 +58,6 @@
                                     $churchid = $value["churchid2"];
                                     $churchname = $value["churchname2"];
                                 }
-
                                  echo'<option value="'.$churchid.'">'.$churchname.'</option>';
                                }
                           ?>

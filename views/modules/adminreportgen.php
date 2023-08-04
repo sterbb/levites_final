@@ -9,7 +9,7 @@
 
                     <div class="col-2">
                         <label class="form-label">Report Type</label>
-                        <select class="form-select mb-3" id="report-type" aria-label="Default select example">
+                        <select class="form-select mb-3" id="admin_report-type" aria-label="Default select example">
                             <option selected="" value="events">Events Held</option>
                             <option value="churches">Affiliated Churches</option>
                             <option value="members">Affiliated Members</option>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="col-2">
-                        <label class="form-label">Affiliates</label>
+                        <label class="form-label" >Affiliates</label>
                         <select class="form-select mb-3" aria-label="Default select example" id="report-church" disabled>
                           <option selected="">All</option>
                           <?php 

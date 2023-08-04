@@ -12,7 +12,7 @@
 
 //     function resetInactivityTimer() {
 //         clearTimeout(inactivityTimeout); // Clear the timeout
-//         startInactivityTimer(5); 
+//         startInactivityTimer(1); 
 //     }
 
 
@@ -28,7 +28,7 @@
       
 //       // Start the inactivity timer when the page loads or when user activity is detected
 //       document.addEventListener("DOMContentLoaded", function() {
-//         startInactivityTimer(5);
+//         startInactivityTimer(1);
 //       });
       
 //       // Reset the inactivity timer when user activity is detected

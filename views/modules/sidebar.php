@@ -197,4 +197,6 @@ if(isset($_COOKIE["acc_type"])){
 
           </div>
 
+          <!-- <button id="report-button" class="btn btn-danger btn-lg rounded-circle position-fixed" style="bottom: 20px; right: 20px;">Report</button> -->
+
 </aside>

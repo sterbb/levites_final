@@ -261,6 +261,7 @@ try {
         if (metadata.customMetadata.pin == 'true') {
           var newFolderCard = document.createElement('div');
           newFolderCard.className = 'col-12 col-lg-4 folder-div';
+          
 
           if(public == "true" || member =="true"){
             newFolderCard.innerHTML = `
@@ -282,34 +283,33 @@ try {
           }else{
             newFolderCard.innerHTML = `
             <div class="card radius-10 border-0 border-bottom border-primary border-4 shadow-sm" >
+
             <div class="card-body folder-div"  data-bs-target="#folderModal" >
                 <div class="d-flex align-items-center folder-div">
                   <div class="font-30 text-primary mt-3" >
-                
                     <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0 clicked" style="z-index:999; notPublic" value="${folderName}" onclick="pinFolder(this)"><i class="bx bx-pin fs-5"></i></button>
-                  <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info notPublic" onclick="showNote(this)" value="${folderName}"><i class='bx bx-info-circle fs-4 m-3'></i></button>
-                  </button>
+                    <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info notPublic" onclick="showNote(this)" value="${folderName}"><i class='bx bx-info-circle fs-4 m-3'></i></button>
+                    </button>
                   </div>
                   
                   <div class="font-30 text-secondary mt-2  text-primary cursor-pointer" onclick="handleClick(this)" value="${folderName}"><i class="bx bxs-folder fs-1  text-primary "></i></div>
   
                   <div class="dropdown ms-auto">
-                  <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 notPublic" data-bs-toggle="dropdown">         <i class="bi bi-three-dots fs-4 notPublic"></i>
-                  </button>
-         
-  
-                  <ul class="dropdown-menu notPublic">
-                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#createNote" onclick="setUpFilePath(this)" value="${folderName}"><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal" data-bs-target="#editNote" value="${folderName}"><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
-                  <hr class="dropdown-divider">
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;"  onclick="unpinFolder(this)" value="${folderName}"><i class='fi bx bx-share'></i>Unpin Folder</a></li>
-                  <hr class="dropdown-divider">
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteFolder(this)"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
-                  </ul>
-                </div>
+                    <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 notPublic" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4 notPublic"></i>
+                    </button>
+                    <ul class="dropdown-menu notPublic" style="z-index:999;  ">
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#createNote" onclick="setUpFilePath(this)" value="${folderName}"><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal" data-bs-target="#editNote" value="${folderName}"><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
+                    <hr class="dropdown-divider">
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;"  onclick="unpinFolder(this)" value="${folderName}"><i class='fi bx bx-share'></i>Unpin Folder</a></li>
+                    <hr class="dropdown-divider">
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
+                    <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteFolder(this)"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
+                    </ul>
+                  </div>
+                  
                 </div>
                 <h6 class="mb-0 folder-name-hover" onclick="handleClick(this)" value="${folderName}">${folderName}</h6>
                 <small>${numFiles} files</small>
@@ -325,6 +325,7 @@ try {
 
           var newFolderCard = document.createElement('div');
           newFolderCard.className = 'col-12 col-lg-4 folder-div';
+          newFolderCard.style.zIndex = '0';
           if(public == "true" || member =="true"){
 
             newFolderCard.innerHTML = `
@@ -340,7 +341,7 @@ try {
             `;
           }else{
             newFolderCard.innerHTML = `
-            <div class="card shadow-none border radius-15">
+            <div class="card shadow-none border radius-15" style="z-index:0;">
             <div class="card-body folder-div">
               <div class="d-flex align-items-center folder-div">
                 <div>
@@ -349,11 +350,11 @@ try {
                 </div>
                 <div class="font-30 text-secondary mt-2" onclick="handleClick(this)" value="${folderName}"><i class="bx bxs-folder"></i></div>
               </div>
-              <div class="dropdown ms-auto">
-                <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3 class="notPublic" data-bs-toggle="dropdown">
+              <div class="dropdown ms-auto" >
+                <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3 class="notPublic" data-bs-toggle="dropdown" data-bs-placement="top">
                   <i class="bi bi-three-dots fs-4"></i>
                 </button>
-                <ul class="dropdown-menu notPublic" >
+                <ul class="dropdown-menu notPublic"  style="z-index:999;">
                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#createNote" onclick="setUpFilePath(this)" value="${folderName}"><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal" data-bs-target="#editNote" value="${folderName}"><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
@@ -560,7 +561,7 @@ function listFilesInFolder(folderPath) {
                 <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="bx bx-dots-horizontal-rounded"></i>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
                   <li class="notPublic"><a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#FileExpirationModal" value="${fileRef.name}" onclick="setFiletoExpire(this)"><i class='bx bx-time fi'></i>Set File Expiration</a></li>
                   <li class="notPublic"><a class="dropdown-item cursor-pointer" value="${fileRef.name}" data-bs-toggle="modal" data-bs-target="#linkFileModal" onclick="selectFile(this)" ><i class='lni lni-link fi'></i>Link to Event</a></li>

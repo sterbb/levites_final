@@ -5,7 +5,7 @@
 		    <nav class="navbar navbar-expand-xl navbar-light ">
                 <div class="container" ><a class="navbar-brand" href=""> <span class="h2">LEVITES</span></a>
    
-                    <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 " method="POST" class="form" id="form">
+                    <form class="d-flex nav-search col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 searchSong" method="POST" class="form" id="form">
                                              <div class="input-group ">
                             <input type="text" class="form-control border border-dark " placeholder="" id="song_title"/>
                             <button class="btn border border-dark " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -137,9 +137,9 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                                         $searchQuery = urlencode($artist . ' ' . $song);
 
                                         // // Fetch videos related to the song using the YouTube Data API
-                                        $youtubeSearchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$searchQuery&type=video&key=$youtubeApiKey";
-                                        $youtubeSearchResponse = file_get_contents($youtubeSearchUrl);
-                                        $youtubeSearchData = json_decode($youtubeSearchResponse, true);
+                                        // $youtubeSearchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$searchQuery&type=video&key=$youtubeApiKey";
+                                        // $youtubeSearchResponse = file_get_contents($youtubeSearchUrl);
+                                        // $youtubeSearchData = json_decode($youtubeSearchResponse, true);
 
                                         if (isset($youtubeSearchData['items'][0]['id']['videoId'])) {
                                             $videoId = $youtubeSearchData['items'][0]['id']['videoId'];
@@ -489,7 +489,7 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                     </div>
                     <div class="modal-body">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">  
-                            <input type="text" name="" id="playlist_songlist">
+                            <input type="text" name="" id="playlist_songlist" hidden>
                             <label for="single-select-clear-field" class="form-label">Search Songs</label>
                             <div class="input-group ">
                                 <input type="text" class="form-control border border-dark " placeholder="" id="song_title_playlist">

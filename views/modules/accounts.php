@@ -67,13 +67,6 @@
             </div>
            </div>
 
-           <div class="col">
-            <div class="card radius-10 border-0 border-start border-danger border-4" type="button" id="addSubUser">
-              <div class="card-body">
-
-              </div>
-            </div>
-           </div>
 
         </div><!--end row-->
 
@@ -116,7 +109,6 @@
                       <?php   $memBer = (new ControllerUserAccount)->ctrShowUserAccount();
                           foreach($memBer as $key => $value){
                             echo '<option selected="" value="'.$value['memberID'].'">'.$value['memberName'].'</option>';
-
                           };
                           ?>
                         </select>

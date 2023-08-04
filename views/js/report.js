@@ -164,6 +164,8 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
       $("#event-graph-section").attr('hidden', "");
       $("#report-category").attr('disabled', "disabled");
       $("#affiliatesReportContainer").removeAttr("hidden"); 
+      $("#church-label-change").text('File Storage');
+      $("#report-church").removeAttr('disabled');
       const newColumnNames = ['File Name', 'File Type', 'File Size'];
       const folderRef = firebase.storage().ref().child(currentPath);
   
@@ -419,19 +421,8 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
                 console.error('Error calculating folder size:', error);
                 });
 
-
-
-
-
-
-
-
-
-
               });
-
-
-     
+              
             },
             error: function() {
                 alert("Oops. Something went wrong!");
@@ -443,6 +434,8 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
 
 
     }
+
+
   });
 
 

@@ -39,8 +39,8 @@
                         <li><a class="nav-link" href="#eight-banner">Home</a></li>
                         <li><a class="nav-link" href="#feature-eight">About</a></li>
                         <li><a class="nav-link" href="#ei-team">Team</a></li>
-                        <li><a class="nav-link" href="#ei-faq">FAQ</a></li>
-                        <li><a class="nav-link" href="#ei-screenshots">Screenshots</a></li>
+        
+                        <li><a class="nav-link" href="#ei-screenshots">Testimonials</a></li>
                     </ul>
                 </nav>
                 
@@ -67,9 +67,8 @@
                                 <li><a class="nav-link" href="#eight-banner">Home</a></li>
                                 <li><a class="nav-link" href="#feature-eight">Features</a></li>
                                 <li><a class="nav-link" href="#eight-service">Showcase</a></li>
-                                <li><a class="nav-link" href="#ei-team">Team</a></li>
-                                <li><a class="nav-link" href="#ei-faq">FAQ</a></li>
-                                <li><a class="nav-link" href="#ei-screenshots">Screenshots</a></li>
+                                <li><a class="nav-link" href="#ei-team">Testimonials</a></li>
+
                             </ul>
                         </nav>
                     </div>
@@ -255,6 +254,8 @@
                                     </div>
                                 </div>
                             </a>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -325,24 +326,38 @@
                                         <!-- /title -->
                                         <div class="fun-fact-counter position-relative clearfix">
                                             <div class="eg-counter-number pera-content text-center">
-                                                <span class="odometer" data-count="20">00</span><strong>+</strong>
-                                                <p>Awesome
-                                                Integratios</p>
+                                                <span class="odometer" data-count="2000"><?php 
+                                                echo'0';
+                                                ?></span><strong>+</strong>
+                                                <p>Active Users
+                                                </p>
                                             </div>
                                             <div class="eg-counter-number pera-content text-center">
-                                                <span class="odometer" data-count="2000">00</span><strong>+</strong>
-                                                <p>Active
-                                                users</p>
+                                                <span class="odometer" data-count="2000"><?php 
+                                                    $count = (new LandingPageModel)->getTotalUsers();
+                                                    echo count($count);
+                                                ?></span><strong>+</strong>
+                                                <p>Registered Users</p>
                                             </div>
                                             <div class="eg-counter-number pera-content text-center">
-                                                <span class="odometer" data-count="5000">00</span><strong>+</strong>
-                                                <p>Membership Active</p>
+                                                <span class="odometer" data-count="2500">
+                                                <?php 
+                                                    $count = (new LandingPageModel)->getChurches();
+                                                    echo count($count);
+                                                ?>
+                                                </span><strong>+</strong>
+                                                <p>Registered Churches</p>
                                             </div>
                                             <div class="eg-counter-number pera-content text-center">
-                                                <span class="odometer" data-count="2500">00</span><strong>+</strong>
-                                                <p>Profile Views
-                                                ratings</p>
+                                                <span class="odometer" data-count="5000">
+                                                <?php 
+                                                    $count = (new LandingPageModel)->getCollaboration();
+                                                    echo count($count);
+                                                ?>
+                                                </span><strong>+</strong>
+                                                <p>Active Collaborations</p>
                                             </div>
+                                       
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +388,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="ei-footer-widget appeight-headline ul-li-block">
+                        <!-- <div class="ei-footer-widget appeight-headline ul-li-block">
                             <h3 class="ei-widget-title">Useful link:</h3>
                             <ul>
                                 <li><a href="#">Home</a></li>
@@ -387,7 +402,7 @@
                                 <li><a href="#">News</a></li>
                                 <li><a href="#">Portfolio</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-lg-4">
                         <div class="ei-footer-widget appeight-headline  ul-li-block">
@@ -424,9 +439,9 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="ei-copyright-menu">
-                                    <a href="#">Help</a>
+                                    <!-- <a href="#">Help</a> -->
                                     <a href="#">Terms & Conditions </a>
-                                    <a href="#">Privacy </a>
+                                    <!-- <a href="#">Privacy </a> -->
                                 </div>
                             </div>
                         </div>

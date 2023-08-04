@@ -43,6 +43,10 @@ if(isset($_COOKIE["acc_type"])){
           </div>
 
             <ul class="navbar-nav top-right-menu gap-2">
+
+             <li class="nav-item dark-mode">
+                <button class="nav-link" data-bs-toggle="modal" data-bs-target="#ReportModal"><span class="material-symbols-outlined">warning</span></button>
+              </li>
            
               <li class="nav-item dark-mode">
                 <button class="nav-link dark-mode-icon" id="theme-switcher"><span class="material-symbols-outlined">dark_mode</span></button>
@@ -57,7 +61,7 @@ if(isset($_COOKIE["acc_type"])){
                   </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end mt-lg-2" >
-                  <a href="javascript:;">
+                  <a href="javascript:;">f
                     <div class="msg-header">
                       <p class="msg-header-title">Notifications</p>
     
@@ -117,7 +121,7 @@ if(isset($_COOKIE["acc_type"])){
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Admin(TBD)></h6>
+                          <h6 class="msg-name">Admin(TBD)</h6>
                           <p class="msg-info">We are notifying you that you are having...</p>
                         </div>
                       </div>
@@ -137,19 +141,7 @@ if(isset($_COOKIE["acc_type"])){
                       </div>
                     </a>
 
-                    <a class="dropdown-item" href="filestorage" id="notificationFileStorage">
-                      <div class="d-flex align-items-center">
-                        <div class="notify text-warning border">
-                          <span class="material-symbols-outlined">
-                            hard_drive
-                            </span>
-                        </div>
-                        <div class="flex-grow-1">
-                          <h6 class="msg-name">File Storage</h6>
-                          <p class="msg-info">There are 500 MB left in your sto...</p>
-                        </div>
-                      </div>
-                    </a>
+          
 
                   </div>
 
@@ -198,40 +190,68 @@ if(isset($_COOKIE["acc_type"])){
      </header>
      <!--end header-->  
 
-     <!-- Modal -->
-     <div class="modal fade" id="exampleModalDefault" tabindex="-1">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Accounts</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">We are notifying that you created a user with access in file storage. The username is JayCobb and password is ******534. to modify your sub-user credentials, kindly go to your accounts in the sidebar menu. Thank you!</div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalDefault" tabindex="-1">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Accounts</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">We are notifying that you created a user with access in file storage. The username is JayCobb and password is ******534. to modify your sub-user credentials, kindly go to your accounts in the sidebar menu. Thank you!</div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
 
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleDangerModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog">
-                      <div class="modal-content bg-danger">
-                        <div class="modal-header">
-                          <h5 class="modal-title text-white">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body text-white">
-                          <p></p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+<!-- Modal -->
+<div class="modal fade " id="ReportModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content ">
+      
+      <div class="modal-header">
+        <h5 class="modal-title">Report Submission</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-5">
+            <label for="reportSubmissionType" class="form-label fw-bold" >Report Type</label>
+            <select class="form-select border-3" id="reportSubmissionType" aria-label="Default select example">
+            <option value="" disabled selected hidden></option>
+            <optgroup label="User Feedback">
+              <option value="Feedback">Feedback</option>
+              <option value="Bug Report">Bug Report</option>
+            </optgroup>
+            <!-- <option value="" disabled></option> -->
+   
+
+            <optgroup label="Violations">
+              <option value="Inappropriate Content">Inappropriate Content</option>
+              <option value="Offensive Language">Offensive Language</option>
+              <option value="Hate Speech">Hate Speech</option>
+          </optgroup>
+            </select>
+          </div>
+          <div class="col-7">
+            <label for="Collection" class="form-label fw-bold">Subject</label>
+            <input type="text" class="form-control" id="reportSubmissionSubject" placeholder="">
+          </div>
+        </div>
+        <div class="row p-3">
+          <label for="Collection" class="form-label fw-bold">Description</label>
+          <textarea class="form-control py-2" id="reportSubmissionDescription" rows="3" style="height: 124px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" id="reportSubmissionBtn" class="btn btn-light">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
                   <!-- Modal -->
 <div class="modal fade" id="lockScreen" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -245,14 +265,9 @@ if(isset($_COOKIE["acc_type"])){
          </div>
          <p>  We have noticed that there are some reports(explicit content at file storage) on your account . Your account will be private for the moment as we analyze your issue.
          </p>
-         <p>         Rest assured that you can plead to activate your account by contacting us. If you have any further questions or concerns, please contact us on jajajo@gmail.com</p>
+         <p>Rest assured that you can plead to activate your account by contacting us. If you have any further questions or concerns, please contact us on levites@gmail.com</p>
         
       </div>
-      <div class="modal-footer d-flex justify-content-center align-items-center">
-        <div class="text-center d-flex justify-content-center align-items-center">
-            <button type="submit" id="passwordLock"  class="btn btn-danger passwordLock ">close</button>
-        </div>
-    </div>
     </form>
     </div>
   </div>
