@@ -107,9 +107,9 @@ class CollaborationController
 
 
     
-    public function ctrTotalAffiliated()
+    public function ctrAffiliatedMemberReport()
     {
-        return $results = (new CollaborationModel)->mdlTotalAffiliated();
+        return $results = (new CollaborationModel)->mdlAffiliatedMemberReport();
        
     }
 

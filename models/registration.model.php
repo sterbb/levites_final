@@ -36,8 +36,8 @@ class ModelRegister {
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 			
 			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
-
+			// $mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
+		$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');   
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Levites Registration Confirmation';
@@ -104,28 +104,31 @@ class ModelRegister {
 			<body>
 				<div class="container">
 					<div class="logo">
-						<img src="../views/images/try.png" alt="Logo">
+						<img src="cid:logo_cid" alt="Logo">
 					</div>
 					<div class="message">
 						<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
 					</div>
 					<div class="verification-code">' . $verify_token . '</div>
-					<div class="social-media-container">
-						<a class="social-media-link" href="https://www.facebook.com">
-							<img class="social-media-icon" src="facebook_icon.png" alt="Facebook">
-						</a>
-						<a class="social-media-link" href="https://www.twitter.com">
-							<img class="social-media-icon" src="twitter_icon.png" alt="Twitter">
-						</a>
-						<a class="social-media-link" href="https://www.instagram.com">
-							<img class="social-media-icon" src="instagram_icon.png" alt="Instagram">
-						</a>
-					</div>
+					
 				</div>
 			</body>
 			</html>
 		';	
-					
+
+		// <div class="social-media-container">
+		// 				<a class="social-media-link" href="https://www.facebook.com">
+		// 					<img class="social-media-icon" src="facebook_icon.png" alt="Facebook">
+		// 				</a>
+		// 				<a class="social-media-link" href="https://www.twitter.com">
+		// 					<img class="social-media-icon" src="twitter_icon.png" alt="Twitter">
+		// 				</a>
+		// 				<a class="social-media-link" href="https://www.instagram.com">
+		// 					<img class="social-media-icon" src="instagram_icon.png" alt="Instagram">
+		// 				</a>
+		// 			</div>
+		$logoFilePath = '../views/images/try.png';
+		$mail->addEmbeddedImage($logoFilePath, 'logo_cid', 'your_logo.png');
         $mail->Body = $email_template;
         $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();
@@ -223,10 +226,20 @@ class ModelRegister {
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
 			$mail2->Subject = 'Levites Registration Confirmation';
-			$mail2->Body    = '<b>Welcome to Levites</b>
-								<h1>Accept this request if you have registered! Disregard this message if not.</h1>
-								<h1>'. $verify_token.'</h1> ';
+			$mail2->Body    = '<div class="container">
+									<div class="logo">
+										<img src="cid:logo_cid" alt="Logo">
+									</div>
+									<div class="message">
+										<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
+									</div>
+									<div class="verification-code">' . $verify_token . '</div>
+									
+								</div> ';
+								
 			$mail2->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			$logoFilePath = '../views/images/try.png';
+			$mail2->addEmbeddedImage($logoFilePath, 'logo_cid', 'your_logo.png');
 				$mail2->send();
 			echo 'Message has been sent';
 		} catch (Exception $e) {

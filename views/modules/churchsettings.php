@@ -267,7 +267,39 @@
 
                 </div>
             </div>
-        </div>
+
+            <div class="row">
+                    <div class="col-6">
+                            <div class="card">
+                                <h2 class="text-center pt-3 mb-0   ">MISSION</h2>
+                                <div class="card-body d-flex justify-content-around align-items-center">
+                                    <textarea class="form-control" id="mission"  placeholder="" rows="3" style="height: 250px;"><?php   $mission = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                            foreach($mission as $key => $value){
+                                                echo $value['mission'];
+                                            }
+                                            ?></textarea>
+                                </div>
+                            </div>
+                    
+
+                    </div>
+
+
+                    <div class="col-6">
+                        <div class="card">
+                                <h2 class="text-center pt-3 mb-0 ">VISION</h2>
+                            <div class="card-body d-flex justify-content-around align-items-center">
+                                <textarea class="form-control" id="vision" placeholder=""  rows="3" style="height: 250px;"><?php  $vision = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                            foreach($vision as $key => $value){
+                                                echo $value['vision'];
+                                            }
+                                            ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
 
         <div class="col">
             <div class="row">
@@ -322,7 +354,7 @@
                             </div>
                         </div>           
                     </div>
-                    <ul class="list-group list-group-flush mb-0" >
+                    <ul class="list-group list-group-flush mb-0" style="overflow-y: scroll; height: 290px;">
                     <?php  $social = (new ControllerChurchSetting)->ctrShowSocialMedia();
                                 foreach($social as $key => $value){
 
@@ -331,7 +363,7 @@
                                         if ($socialcategory === 'Facebook') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-facebook"></i>                                                
-                                                <p><a href="'.$value['socialmedia'].'"  target="_blank">'.$value['socialmedia'].'</a></p>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                                 
@@ -339,21 +371,21 @@
                                         } elseif ($socialcategory === 'Snapchat') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-snapchat"></i>
-                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } elseif ($socialcategory === 'Instagram') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-instagram"></i>
-                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } elseif ($socialcategory === 'Twitter') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-twitter"></i>
-                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                             </li>';
@@ -361,7 +393,7 @@
                                         }elseif ($socialcategory === 'Tiktok') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-tiktok"></i>
-                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                             </li>';
@@ -370,7 +402,7 @@
                                         }elseif ($socialcategory === 'Youtube') {
                                                 echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                     <i class="bi bi-youtube"></i>
-                                                    <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                    <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                     <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                     </button>
                                                 </li>';
@@ -378,7 +410,7 @@
                                         }elseif ($socialcategory === 'Pinterest') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-pinterest"></i>
-                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                             </li>';
@@ -386,7 +418,7 @@
                                         } else {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <i class="bi bi-whatsapp"></i>
-                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p>'.$value['socialmedia'].'</p></a>
+                                                <a href="'.$value['socialmedia'].'"  target="_blank"><p style="width:250px;">'.$value['socialmedia'].'</p></a>
                                                 <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteSocial('.$value["id"].')">
                                                 </button>
                                             </li>';
@@ -424,7 +456,7 @@
                         </div>
                     </div>
 
-                    <ul class="list-group list-group-flush mb-0" >
+                    <ul class="list-group list-group-flush mb-0" style="overflow-y: scroll; height: 265px;" >
                     <?php  $donation = (new ControllerChurchSetting)->ctrShowDonation();
                                 foreach($donation as $key => $value){
 
@@ -481,40 +513,12 @@
             </div>
 
         </div>
-    </div>
+    
+        </div>
     <!--end row-->
 
-    <div class="row">
-        <div class="col">
+  
 
-                <div class="card">
-                     <h2 class="text-center pt-3 mb-0   ">MISSION</h2>
-                    <div class="card-body d-flex justify-content-around align-items-center">
-                        <textarea class="form-control" id="mission"  placeholder="" rows="3" style="height: 250px;"><?php   $mission = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                foreach($mission as $key => $value){
-                                    echo $value['mission'];
-                                }
-                                ?></textarea>
-                    </div>
-                </div>
-        
-
-        </div>
-
-
-        <div class="col">
-            <div class="card">
-                    <h2 class="text-center pt-3 mb-0 ">VISION</h2>
-                <div class="card-body d-flex justify-content-around align-items-center">
-                    <textarea class="form-control" id="vision" placeholder=""  rows="3" style="height: 250px;"><?php  $vision = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                foreach($vision as $key => $value){
-                                    echo $value['vision'];
-                                }
-                                ?></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
     </form>
   
 </main>

@@ -649,6 +649,20 @@ height: 100%;
 
 }
 
+.pubcard {
+  object-fit: cover;
+  height: 100%;
+
+  
+  }
+
+
+.churchcard {
+  object-fit: cover;
+  height: 100%;
+
+}
+
 .card::before {
 content: "";
 background-image: url("../../images/marblecard.png");
@@ -2625,6 +2639,9 @@ color: rgb(192,128,249);
   z-index: 1001; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
   
+}
+.ppt{
+  color: orange;
 }
 
 .dropdown-cell {

@@ -326,6 +326,19 @@ static public function mdlMemberReport() {
     return $result;
 }
 
+static public function mdlAffiliatedMemberReport() {
+    
+    $memberStatus = 1;
+    $churchID = $_COOKIE['church_id'];
+    $stmt = (new Connection)->connect()->prepare("SELECT membershipDate FROM membership WHERE memChurchID = :memChurchID AND membership_status = :membership_status");
+    $stmt->bindParam(":memChurchID", $churchID, PDO::PARAM_STR);
+    $stmt->bindParam(":membership_status", $memberStatus, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+    
+}
+
 
 
 

@@ -6,7 +6,7 @@ class getAffiliatedMem {
 
 
     public function getAffilReport() {
-        $data = (new CollaborationController)->ctrTotalAffiliated();
+        $data = (new CollaborationController)->ctrAffiliatedMemberReport();
         echo json_encode($data);
         
         

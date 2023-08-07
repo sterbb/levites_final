@@ -36,7 +36,7 @@
           <div class="card mb-0 border-0 rounded-3 logcard">
             <div class="card-body p-sm-10">
 				<div class="text-center">
-			<img src="views/images/try.png" class="align-center mt-5 mb-4"  width="100" alt="">
+			<a href="landingpage"><img src="views/images/try.png" class="align-center mt-5 mb-4"  width="100" alt=""></a>
                            <h1 class="fw-bold" >Welcome to Levites</h1>
                            <p class="mb-0">Enter your credentials to login your account</p>
               <div class="separator section-padding mt-5 mb-5">
@@ -95,7 +95,7 @@
 <p id='head2' class='header'><em>Whatever you do, work at it with all your heart, <br />as working for the Lord, not for human masters</em> <br /><sub>Colossians 3:23</sub></p>
 <p id='head3' class='header'><em>Finally, brothers and sisters,<br /> whatever is true, whatever is noble, whatever is right,whatever is pure, <br /> whatever is lovely, whatever is admirable—if anything <br />is excellent or praiseworthy—think about such things.</em> <br /><sub>Philippians 4:8</sub></p>
 <p id='head4' class='header'><em>And we know that in all things <br />God works for the good of those who love him, <br />who have been called according to his purpose.</em>  <br /><sub>Romans 8:28</sub></p>
-<p id='head5' class='header stl'>LEVITES<br id='head6'><b>"To believe is to connect"</b> <br/><sub id="today_day"></sub><sub id="today_date"></sub>&nbsp;<sub id="today_time"></sub></p>
+<p id='head5' class='header '>LEVITES<br id='head6'><b>"To believe is to connect"</b> <br/><sub id="today_day"></sub><sub id="today_date"></sub>&nbsp;<sub id="today_time"></sub></p>
   <div class='light x1'></div>
   <div class='light x2'></div>
   <div class='light x3'></div>

@@ -9,7 +9,7 @@ class ModelPlaylist{
         
         $newAccID = $_COOKIE["acc_id"];
         $stmt = (new Connection)->connect()->prepare("SELECT * FROM playlist WHERE accID = :accID");
-        $stmt->bindParam(":accID", $newAccID, PDO::PARAM_INT);
+        $stmt->bindParam(":accID", $newAccID, PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();

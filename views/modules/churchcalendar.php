@@ -55,12 +55,13 @@
                         <div class="col-12 col-lg-3">
 
                           <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
-                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="bi bi-tag-fill me-2"></i>Bible Study</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="bi bi-box-seam-fill me-2"></i>Outreach</button>
-                            <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="bi bi-truck-front-fill me-2"></i>Workshop</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="bi bi-globe me-2"></i>Sunday Worship</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="bi bi-hdd-rack-fill me-2"></i>Prayer Meeting</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="bi bi-handbag-fill me-2"></i>Baptismal</button>
+                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="fas fa-book-open me-2"></i>Bible Study</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="fas fa-hands-helping me-2"></i>Outreach</button>
+                            <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="fas fa-tools me-2"></i>Workshop</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="fas fa-church"></i>Sunday Worship</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="fas fa-praying-hands me-2"></i>Prayer Meeting</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="fas fa-water me-2"></i>Baptismal</button>
+                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WeddingSection" type="button"><i class="fas fa-ring me-2"></i>Wedding</button>
                             <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#AddType" type="button"><i class="lni lni-plus me-2 "></i>Add Event Type</button>  
                           </div>
                           
@@ -104,6 +105,10 @@
                             </div>
 
                             <div class="tab-pane fade" id="BaptismalSection">
+                     
+                            </div>
+
+                            <div class="tab-pane fade" id="WeddingSection">
                      
                             </div>
 
@@ -266,7 +271,7 @@
       </div>
       <!--end row-->
     </main>
-     <!--end main content-->Members
+     <!--end main content-->  
 
 
 
@@ -302,7 +307,7 @@
                     <?php
                     $memBer = (new ControllerUserAccount)->ctrShowUserAccount();
                     foreach($memBer as $key => $value){
-                      echo '<option selected="" email="'.$value['memberEmail'].'" value="'.$value['memberID'].'">'.$value['memberName'].'</option>';
+                      echo '<option email="'.$value['memberEmail'].'" value="'.$value['memberID'].'">'.$value['memberName'].'</option>';
                     };
                     ?>
                   </select>

@@ -460,14 +460,17 @@ function listFilesInFolder(folderPath) {
         .then(function (metadata) {
           // Determine file type and set appropriate icon and class
           if (fileRef.name.endsWith('.pdf')) {
-            fileIcon = 'bx bxs-file-pdf';
+            fileIcon = 'bi bi-filetype-pdf';
             fileNameClass = 'text-danger';
           } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
-            fileIcon = 'bx bxs-file';
+            fileIcon = 'bi bi-filetype-doc';
             fileNameClass = 'text-primary';
           } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
-            fileIcon = 'bx bxs-file-doc';
+            fileIcon = 'bi bi-filetype-xls';
             fileNameClass = 'text-success';
+          }else if (fileRef.name.endsWith('.ppt') || fileRef.name.endsWith('.pptx')) {
+            fileIcon = 'bi bi-filetype-ppt';
+            fileNameClass = ' ppt';
           } else {
             fileIcon = 'bx bxs-file';
             fileNameClass = '';

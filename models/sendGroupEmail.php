@@ -36,8 +36,7 @@ use PHPMailer\PHPMailer\Exception;
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Church Registration';
-			$mail->Body    = '<b>ACCOUNT ID: SAMPLEID</b>
-
+			$mail->Body    = '<b>ACCOUNT ID: SAMPLEID</b>	
                                  <h4>YOU ARE ASSIGNED TO: '.$group_name.' </h4>
 								<h4>Event Title: '.$event_title.' </h4>
                                 <h4>Event Date: '.$event_date.' </h4>

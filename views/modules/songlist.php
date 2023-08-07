@@ -27,8 +27,9 @@
 
 <?php
 
+// $apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
 
-$apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
+$apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
 
 $searchQuery = isset($_COOKIE['song_title']) ? $_COOKIE['song_title'] : '';
 

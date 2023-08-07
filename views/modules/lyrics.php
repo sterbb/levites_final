@@ -51,7 +51,7 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 
-$apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
+$apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
 $trackId = $_COOKIE['trackID'];
 // Fetch track details using the track_id
 $trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";

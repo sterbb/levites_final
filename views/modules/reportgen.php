@@ -124,8 +124,8 @@
 
 
 
-           <div class="row" hidden>
-          <div class="col-lg-12">
+           <div class="row" >
+          <div class="col-lg-12 " id="affiliated-graph-section" hidden>
             <div class="card">
               <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center">

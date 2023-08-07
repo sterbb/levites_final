@@ -443,7 +443,7 @@ class ModelCalendar{
 			<div class="row">
 			  <div class="col d-flex justify-content-start">
 				<div class="dropdown">
-				  <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-music"></i></button>
+				  <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-file"></i></button>
 				  <ul class="dropdown-menu">';
 				  
 	
@@ -472,7 +472,7 @@ class ModelCalendar{
 				  </ul>
 				</div>
 				<div class="dropdown">
-				  <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-file"></i></button>
+				  <button class="btn btn-outline-dark me-4 dropdown-toggle"  style="font-size:1.2em;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fadeIn animated bx bx-music"></i></button>
 				  <ul class="dropdown-menu">';
 
 				  
