@@ -282,7 +282,7 @@ try {
 
           }else{
             newFolderCard.innerHTML = `
-            <div class="card radius-10 border-0 border-0 gradient-bottom border-4 shadow-sm" >
+            <div class="card radius-10 border-0 gradient-bottom border-4 shadow-sm" >
 
             <div class="card-body folder-div"  data-bs-target="#folderModal" >
                 <div class="d-flex align-items-center folder-div">
