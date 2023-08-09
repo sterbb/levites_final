@@ -503,8 +503,8 @@ class ModelCalendar{
 
 
 			  <div class="col d-flex justify-content-end">
-				<button class="btn btn-outline-success me-4" style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
-				<button class="btn btn-outline-danger"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+				<button class="btn btn-outline-success me-4" eventid="' . $event['eventID'] . '"  onclick="editEventDetails(this)"  style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
+				<button class="btn btn-outline-danger" id="'.$event['eventID'].'" onclick="deleteEvents(this)" eventID="'.$event['eventID'].'"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
 			  </div>
 
 			</div>
@@ -558,6 +558,83 @@ class ModelCalendar{
 
 	
     }
+	
+	public static function mdlGetEventDetails($data){
+
+		$stmt = (new Connection)->connect()->prepare("SELECT eventID, event_title, event_category, event_date, event_time, event_time2, event_venue, event_location, event_announcement FROM calendar WHERE eventID = :eventID ");
+		$stmt->bindParam(":eventID", $data['event_id'], PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+		$stmt = null;	
+	
+	}
+
+
+	public static function mdlUpdateEvents($data){	
+
+        $db = new Connection();
+        $pdo = $db->connect();
+		$churchID = $_COOKIE["church_id"];
+	
+		try{
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+
+
+            
+            $stmt = $pdo->prepare("UPDATE calendar SET event_title = :event_title, event_date = :event_date, event_category = :event_category, event_venue = :event_venue, event_location = :event_location, event_announcement = :event_announcement, event_time = :event_time WHERE eventID = :eventID AND churchID = :churchID" );
+
+            // $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
+            // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
+
+            $stmt->bindParam(":event_title", $data["new_title"]);
+
+			$stmt->bindParam(":event_date", $data["new_date"]);
+
+			$stmt->bindParam(":event_category", $data["new_category"]);
+
+			$stmt->bindParam(":event_venue", $data["new_venue"]);
+
+			$stmt->bindParam(":event_location", $data["new_location"]);
+	
+			$stmt->bindParam(":event_announcement", $data["new_announcement"]);
+
+			$stmt->bindParam(":event_time", $data["new_eventtime1"]);
+	
+	
+
+			$stmt->bindParam(":eventID", $data["event_id"]);
+
+			$stmt->bindParam(":churchID", $churchID);
+
+            $stmt->execute();
+        
+		
+		
+
+		$pdo->commit();
+		
+			return "ok";
+		}catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+	}
+
+
+
+	public static function mdlDeleteEvents($data) {
+
+        $stmt = (new Connection)->connect()->prepare("DELETE FROM calendar WHERE eventID = :eventID");
+        $stmt->bindParam(":eventID", $data['eventID'], PDO::PARAM_STR);
+        $stmt->execute();
+        
+   
+    }
+
 
 
 }
