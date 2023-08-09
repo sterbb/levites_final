@@ -37,6 +37,22 @@ class ControllerCalendar{
 		return $answer = (new ModelCalendar)->mdlCheckFile($data);
 	 }
 
+	
+	 static public function ctrGetEventDetails($data){
+		return $answer = (new ModelCalendar)->mdlGetEventDetails($data);
+	 }
+
+	 
+	 static public function ctrUpdateEvents($data){
+		return $answer = (new ModelCalendar)->mdlUpdateEvents($data);
+	 }
+
+	 
+
+	 static public function ctrDeleteEvents($data){
+        return $answer = (new ModelCalendar)->mdlDeleteEvents($data);
+	}
+
 	 
 
 	 

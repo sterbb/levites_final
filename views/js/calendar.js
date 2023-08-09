@@ -68,10 +68,45 @@ $(function(){
 
     $(".addEventForm").submit(function(e){
         e.preventDefault();
-   
 
-        var event_time1 = $("#event_time1").val() + " to " + $("#event_time2").val();
-        var event_time2 = $("#event_time1").val() + " to " + $("#event_time2").val();
+
+        function formatTimeWithLeadingZero(time) {
+          return time < 10 ? `0${time}` : time;
+        }
+        
+        var startHour = parseInt($("#event_time1").val().split(':')[0]);
+        var startMinute = parseInt($("#event_time1").val().split(':')[1]);
+        var startAMPM = startHour >= 12 ? 'PM' : 'AM';
+        
+        if (startHour === 0) {
+          startHour = 12;
+        } else if (startHour > 12) {
+          startHour -= 12;
+        }
+        
+        
+        var endHour = parseInt($("#event_time2").val().split(':')[0]);
+        var endMinute = parseInt($("#event_time2").val().split(':')[1]);
+        var endAMPM = endHour >= 12 ? 'PM' : 'AM';
+        
+
+        if (endHour === 0) {
+          endHour = 12;
+        } else if (endHour > 12) {
+          endHour -= 12;
+        }
+       
+        var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
+        var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
+        
+        var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM + ' to ' +
+                             endHour + ':' + formattedEndMinute + ' ' + endAMPM;
+        
+        console.log(event_time1);
+  
+
+        // var event_time1 = $("#event_time1").val() + " to " + $("#event_time2").val();
+        // var event_time2 = $("#event_time1").val() + " to " + $("#event_time2").val();
 
         var daterange = $("#event_date").val();
         var date1; 
@@ -117,6 +152,8 @@ $(function(){
               success: function(answer) {
                 console.log(answer);
                 eventID = answer;
+
+                location.reload(answer);
 
                 
 
@@ -671,3 +708,207 @@ $("#event_date").val(currentDate);
 
 
 
+function editEventDetails(element){
+
+  var event_id = $(element).attr('eventid');
+
+
+  console.log(event_id);
+
+  var eventData = new FormData();
+  eventData.append("event_id", event_id);
+
+  $.ajax({
+    url: "ajax/get_eventDetails.ajax.php",
+    method: "POST",
+    data: eventData,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(answer) {
+    console.log(answer);
+
+
+    $("#churchevent_id").val(answer[0]);
+
+    $("#edit_event_title").val(answer[1]);
+
+    $("#edit_event_type").val(answer[2]);
+
+    $("#edit_event_date").val(answer[3]);
+
+    var timeRange = answer[4]; // Assuming answer[4] contains something like "11:00 AM to 5:00 PM"
+    var times = timeRange.split(" to ");
+    
+    var startTime = times[0]; // "11:00 AM"
+    var endTime = times[1];   // "5:00 PM"
+    
+    // Set the values to the input elements
+    $("#edit_event_time1").val(startTime);
+
+
+    $("#edit_event_time2").val(endTime);
+
+    $("#edit_event_venue").val(answer[6]);
+
+    $("#edit_event_location").val(answer[7]);
+
+    $("#edit_event_announcement").val(answer[8]);
+
+
+
+
+
+    $('#EditEvents').modal('show'); 
+
+    
+
+
+
+    },
+    error: function() {
+        alert("Oops. Something went wrong!");
+    },
+    complete: function() {
+    }
+  });
+
+
+
+};
+
+function NewEditEvent() {
+
+  var event_id = $("#churchevent_id").val() 
+
+
+  var new_title = $("#edit_event_title").val(); 
+
+  var new_date = $("#edit_event_date").val();
+
+  var new_category = $("#edit_event_type").val();
+
+  var new_venue = $("#edit_event_venue").val();
+
+  var new_location = $("#edit_event_location").val();
+
+  var new_announcement = $("#edit_event_announcement").val();
+
+
+  function formatTimeWithLeadingZero(time) {
+    return time < 10 ? `0${time}` : time;
+  }
+  
+  var startHour = parseInt($("#edit_event_time1").val().split(':')[0]);
+  var startMinute = parseInt($("#edit_event_time1").val().split(':')[1]);
+  var startAMPM = startHour >= 12 ? 'PM' : 'AM';
+  
+  if (startHour === 0) {
+    startHour = 12;
+  } else if (startHour > 12) {
+    startHour -= 12;
+  }
+  
+  var endHour = parseInt($("#edit_event_time2").val().split(':')[0]);
+  var endMinute = parseInt($("#edit_event_time2").val().split(':')[1]);
+  var endAMPM = endHour >= 12 ? 'PM' : 'AM';
+  
+  if (endHour === 0) {
+    endHour = 12;
+  } else if (endHour > 12) {
+    endHour -= 12;
+  }
+  
+  var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
+  var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
+  
+  var new_eventtime1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM + ' to ' +
+                       endHour + ':' + formattedEndMinute + ' ' + endAMPM;
+  
+  console.log(new_eventtime1);
+
+
+
+  var updateEvents = new FormData();
+  updateEvents.set("event_id", event_id); 
+
+  updateEvents.set("new_title", new_title);
+
+  updateEvents.set("new_date", new_date);
+
+  updateEvents.set("new_category", new_category);
+
+  updateEvents.set("new_venue", new_venue);
+
+  updateEvents.set("new_location", new_location);
+
+  updateEvents.set("new_announcement", new_announcement);
+
+  updateEvents.set("new_eventtime1", new_eventtime1);
+
+
+
+
+  $.ajax({
+      url: "ajax/update_eventDetails.ajax.php",
+      method: "POST",
+      data: updateEvents,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(answer) {
+          // Load the content into the modal
+          location.reload(answer);
+
+  
+
+
+
+
+        },
+      error: function() {
+          alert("Oops. Something went wrong!");
+      }
+  });
+
+
+};
+
+
+function deleteEvents(element) {
+
+  var eventID = $(element).attr('id');
+
+  var deleteEvent = new FormData();
+  deleteEvent.append("eventID", eventID);
+
+  //it is just the same because it is updating
+  $.ajax({
+      url: "ajax/delete_eventDetails.ajax.php",
+      method: "POST",
+      data: deleteEvent,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(answer) {
+          console.log(answer);
+          location.reload();
+
+
+      },
+      error: function() {
+          Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+          });
+      },
+      complete: function() {
+          // Handle any completion tasks if needed
+      }
+  });
+
+}

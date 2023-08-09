@@ -483,7 +483,7 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                 <div class="modal fade" id="AddSongs" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered moda-lg">
                     <div class="modal-content">
-                    <div class="modal-header bg-warning ">
+                    <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
                         <h5 class="modal-title">Add Songs</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -496,14 +496,28 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                                 <button class="btn border border-dark " id="search_song_playlist"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search text-dark  "><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                             </button> 
 
-                            <button type="button" id="addToPlaylist" class="btn d-fixed btn-light border border-1 ms-3" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus text-success"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                                    </button>
+                                <button type="button" id="addToPlaylist" class="btn d-fixed btn-light border border-1 ms-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/>
+                                      
+                                      <defs>
+                                          <linearGradient id="gradient" gradientTransform="rotate(90)">
+                                          <stop offset="0%" stop-color="#c080f9" />
+                                          <stop offset="100%" stop-color="#94c0f2 " />
+                                          </linearGradient>
+                                  </defs>
+                                    </svg>  
+                                
+                                </button>
 
                 
                         </div>
-                        <ul id="songList" style="margin-top:30px;">
-                                <!-- The search results will be displayed here -->
-                            </ul>
+                        <div class="row">
+                                <div class="col-12 d-flex">
+                                    <ul id="songList" style="list-style:none; margin-top:30px; margin-left:-30px;">
+                                        <!-- The search results will be displayed here -->
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                                 <div class=" d-flex align-items-center mb-3 mt-3">
@@ -554,39 +568,38 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
         <div class="modal fade" id="linkPlayslitModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered moda-lg">
                 <div class="modal-content">
-                    <div class="modal-header bg-warning ">
+                    <div class="modal-headertext-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
                         <h5 class="modal-title">Link Playlist</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
-                    
-                            <div class="row">
-                        
-                            <label for="single-select-clear-field" class="form-label">Playlist: </label>
-                                <select class="form-select border border-dark " id="linkPlaylistInput" >
-                                <?php
-                                    $playlist = (new ControllerPlaylist)->ctrShowPlaylist();
-                                    foreach ($playlist as $key => $value) {
-                                        echo'
-                                        <option value="'.$value['playlistID'].'"  class=" d-flex align-items-center justify-content-between" style="font-weight:bold;"><span>'.$value['playlist_name'].'</span>
-                                        </option>
-                                        ';  
-                                    }
-                                
-                                ?>
-                                </select>
-                                                
-                            </div>
-                        <div class="row">
-                            <div class=" d-flex align-items-center mb-3 mt-3">
+                     <div class="row">
+                                <label for="single-select-clear-field" class="form-label">Playlist: </label>
+                                    <div class="col-12 d-flex align-items-center mb-3 mt-2">
+
+                                    <select class="form-select border border-dark " id="linkPlaylistInput" >
+                                    <?php
+                                        $playlist = (new ControllerPlaylist)->ctrShowPlaylist();
+                                        foreach ($playlist as $key => $value) {
+                                            echo'
+                                            <option value="'.$value['playlistID'].'"  class=" d-flex align-items-center justify-content-between" style="font-weight:bold;"><span>'.$value['playlist_name'].'</span>
+                                            </option>
+                                            ';  
+                                        }
+                                    
+                                    ?>
+                                    </select>
+                                </div>             
+                          
 
 
-                                <div class="row">
+                  
 
                                 <label for="single-select-clear-field" class="form-label">Event: </label>
 
-                    
+                                <div class="col-12 d-flex align-items-center mb-3 mt-2">
+
                                     <select class="form-select border border-dark " id="linkEventInput" aria-label="Default select example">
                                     <?php
                                         $playlist = (new ControllerPlaylist)->ctrShowEventsLinkingPlaylist();
@@ -608,13 +621,8 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                             </div>
             
 
-                        
-
-                       
-                        </div>
-
                         <div class="row d-flex justify-content-center  mt-3">
-                            <button type="button" class="btn btn-outline-warning w-50" id="linkPlaylistBtn">Link</button>
+                        	<button type="button" class="btn text-white btn-light w-50 custom-button" id="linkPlaylistBtn"  style="background: linear-gradient(to right, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Link</button>
                         </div>
                     </div>
                 </div>
