@@ -292,7 +292,7 @@ try {
                     </button>
                   </div>
                   
-                  <div class="font-30 text-secondary mt-2  text-primary cursor-pointer" onclick="handleClick(this)" value="${folderName}"><i class="bx bxs-folder fs-1 gradient-text" ><i></div>
+                  <div class="font-30 text-secondary mt-2  text-primary cursor-pointer" onclick="handleClick(this)" value="${folderName}"><i class="bx bxs-folder fs-1 gradient-text" ></i></div>
   
                   <div class="dropdown ms-auto">
                     <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 notPublic" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4 notPublic"></i>
