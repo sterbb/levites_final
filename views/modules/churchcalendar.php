@@ -154,7 +154,7 @@
             
                 <div class="card-body d-flex justify-content-around align-items-center">
                     <h6 class="mb-0 text-uppercase" style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:1.5em;" id="church_calendar_date"></h6>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddEvents" id="addEventTodayBtn"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
+                    <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Add Event" data-bs-toggle="modal" data-bs-target="#AddEvents" id="addEventTodayBtn"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
                 </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

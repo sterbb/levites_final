@@ -4,6 +4,12 @@
       <!--breadcrumb-->
       <div id="particles-js"></div>
       <!--end breadcrumb-->
+      <div class="progress">
+    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <p id="statusMessage"></p>
+  
+    </div>
       <div class="row ">
         <div class="col-12 col-lg-3 notPublic notMember">
           <div class="card ">
@@ -34,7 +40,7 @@
           <!-- Additional content -->
               <div class="card overflow-hidden notPublic notMember">
                 <div class="card-body">
-                  <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' ></i></a></h5>
+                  <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' data-toggle="tooltip" data-placement="top" title="Add Affiliates"></i></a></h5>
                   <div class="mt-3"></div>
 
                   <?php 
@@ -132,6 +138,8 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                   <li  class="upload"><a class="dropdown-item button" id="uploadFiles"><i class='upicon bx bxs-file-import' ></i>Upload Files</a>
+                                  <div id="uploadProgressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
                                   </li>
                                   <hr class="dropdown-divider">
                                   </li>
@@ -332,3 +340,19 @@
   </div>
 </div>    
 
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="modalErrorMessage">Invalid file type. Only PDF, TXT, DOCX, PPTX, MP4, JPG, and PNG files are allowed.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,7 +35,7 @@
 
                         function get_random_popular_songs($genre_id, $num_random_songs, $language) {
                             // Replace 'YOUR_API_KEY' with your actual Musixmatch API key
-                            $api_key = '7a089ceadb3e1e9367a4a5f5d5e5a343';
+                            $api_key = '4a66ea62568120729edc2aab041c6b91';
                             $endpoint = "https://api.musixmatch.com/ws/1.1/track.search?f_music_genre_id=$genre_id&f_lyrics_language=$language&s_track_rating=desc&apikey=$api_key&format=json&page_size=50";
                         
                             $curl = curl_init($endpoint);

@@ -9,9 +9,9 @@
                             <h6 class="mb-0 text-uppercase">Website Organizer</h6>
                         </div>
                         <div class="col d-flex justify-content-end gap-3">
-                            <button type="button" class="btn btn-outline-success px-3  radius-30 text-center" id="edit-website"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
-                            <button type="button"  data-bs-toggle="modal" data-bs-target="#Application" class="btn btn-outline-dark px-3  radius-30 text-center"><i class="fadeIn animated bx bx-plus" style="font-size:1.2em;"></i> <i class="fadeIn animated bx bx-globe" style="font-size:1.2em; margin-left:-5px;"></i></button>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Group" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button>
+                            <button type="button" class="btn btn-outline-success px-3  radius-30 text-center" data-toggle="tooltip" data-placement="left" title="Edit Website" id="edit-website"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
+                            <button type="button"  data-bs-toggle="modal" data-bs-target="#Application" class="btn btn-outline-dark px-3  radius-30 text-center" data-toggle="tooltip" data-placement="top" title="Add Website"><i class="fadeIn animated bx bx-plus" style="font-size:1.2em;"></i> <i class="fadeIn animated bx bx-globe" style="font-size:1.2em; margin-left:-5px;"></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#Group" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;" data-toggle="tooltip" data-placement="top" title="Add Group"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button>
                         </div>
                         <div class="my-3 border-top"></div>
                     </div>
@@ -24,41 +24,35 @@
                   
 
                     <?php 
-                         
-                      
-                            $websites = (new ControllerWebsite)->ctrShowWebsites();
+                    $websites = (new ControllerWebsite)->ctrShowWebsites();
 
+                    foreach ($websites as $key => $value) {
+                        echo '<div class="col text-center mt-3 website">';
+                        $Deletewebsites = $value;
 
-                            foreach ($websites as $key => $value) {
-                                echo '<div class="col text-center mt-3">';
+                        if (isset($_GET['accoutID'])) {
+                            $accountID =  $_GET['accountID'];
+                        }
 
-                                $Deletewebsites = $value;
-                                
-                            if (isset($_GET['accoutID'])){
-                                $accountID =  $_GET['accountID'];
-                                // $Deletewebsites = mysqli_query($link, "DELETE * FROM websites WHERE accountID = $accountID");
-                              }
-                                
-                                if ($value['website_category'] === 'Social Media') {
-                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
-                                    echo '<img src="views/images/socmed.png">';
-                                } elseif ($value['website_category'] === 'Productivity') {
-                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
-                                    echo '<img src="views/images/Productivity.png">';
-                                } elseif ($value['website_category'] === 'Multimedia') {
-                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
-                                    echo '<img src="views/images/Multimedia.png">';
-                                }else{
-                                    echo '<a href="'.$value['website_path'].'" target="_blank">';
-                                    echo '<img src="views/images/videocon.png">';
-                                }
-                                echo '<p class="text-dark mt-3" style="font-size: 1.5em;">'.$value['website_name'].'</p>';
-                                echo '</a>';
-                                echo '<button class="btn btn-danger mb-3 mt-0 minus-website" id="'.$value['accountID'].'" value="'.$value['website_name'].'" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
-                                
-                                echo '</div>';
-                            }
-                            ?>
+                        echo '<a href="' . $value['website_path'] . '" target="_blank">';
+                        
+                        if ($value['website_category'] === 'Social Media') {
+                            echo '<img src="views/images/socmed.png">';
+                        } elseif ($value['website_category'] === 'Productivity') {
+                            echo '<img src="views/images/Productivity.png">';
+                        } elseif ($value['website_category'] === 'Multimedia') {
+                            echo '<img src="views/images/Multimedia.png">';
+                        } else {
+                            echo '<img src="views/images/videocon.png">';
+                        }
+                        
+                        echo '<p class="text-dark mt-3" style="font-size: 1.5em;">' . $value['website_name'] . '</p>';
+                        echo '</a>';
+                        echo '<button class="btn btn-danger mb-3 mt-0 minus-website" id="' . $value['accountID'] . '" value="' . $value['website_name'] . '" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
+                        echo '</div>';
+                    }
+                    ?>
+
 
                        
                     </div><!--end row-->

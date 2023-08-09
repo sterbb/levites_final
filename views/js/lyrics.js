@@ -266,3 +266,11 @@ function downloadLinkedSong(element) {
       }
     });
 }
+
+function copyLyrics(section) {
+    var modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML = '<div class="lyrics-section">' + section + '</div>';
+  
+    var modal = new bootstrap.Modal(document.getElementById('lyricsInfo'));
+    modal.show();
+  }

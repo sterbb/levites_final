@@ -37,7 +37,7 @@ class ModelRegister {
 			
 			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
 			// $mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
-		$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');   
+		$mail->addAddress('johncliff.fortaleza04@gmail.com', 'Joe User');   
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Levites Registration Confirmation';
@@ -47,90 +47,109 @@ class ModelRegister {
 			$email_template = '
 			<html>
 			<head>
-				<style>
-					body {
-						font-family: Arial, sans-serif;
-						background-color: #f1f1f1;
-					}
-					
-					.container {
-						max-width: 600px;
-						margin: 0 auto;
-						padding: 20px;
-						background-color: #f8f8f8;
-						border-radius: 5px;
-					}
-					
-					.logo {
-						text-align: center;
-						margin-bottom: 20px;
-					}
-					
-					.logo img {
-						max-width: 200px;
-					}
-					
-					.message {
-						margin-bottom: 20px;
-					}
-					
-					.verification-code {
-						margin: 0;
-						text-align: center;
-						margin-bottom: 20px;
-						background-color: white;
-						font-size: 32px;
-						font-weight: bold;
-						color: rgb(192, 128, 249);
-					}
-					
-					.social-media-container {
-						text-align: center;
-						margin-top: 20px;
-					}
-					
-					.social-media-link {
-						display: inline-block;
-						margin-right: 10px;
-						text-decoration: none;
-					}
-					
-					.social-media-icon {
-						width: 30px;
-						height: 30px;
-					}
-				</style>
+			<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f1f1f1;
+			}
+			
+			.container {
+				max-width: 350px;
+				margin: 0 auto;
+				height: 380px;
+				padding: 20px;
+				background-color: #6D7987;
+				border-radius: 10px;
+			}
+			
+			.logo {
+				text-align: center;
+				margin-bottom: 10px;
+				margin-left: 55px;
+			}
+			
+			.logo img {
+				text-align: center;
+				max-width: 250px;
+			}
+			
+			.message {
+				margin-bottom: 20px;
+				text-align: center;
+				color: #E1E1E8;
+
+			}
+			
+			.verification-code {
+				margin: 0;
+				border-radius: 5px;
+				text-align: center;
+				margin-bottom: 20px;
+				background-color: #E1E1E8;
+				font-size: 32px;
+				font-weight: bold;
+				color: #e3aafb;
+			}
+			
+			.social-media-container {
+				text-align: center;
+				margin-top: 20px;
+			}
+			
+			.social-media-link {
+				display: inline-block;
+				margin-right: 10px;
+				text-decoration: none;
+			}
+			
+			.social-media-icon {
+				width: 30px;
+				height: 30px;
+			}
+			
+		</style>
 			</head>
 			<body>
 				<div class="container">
-					<div class="logo">
-						<img src="cid:logo_cid" alt="Logo">
-					</div>
+						<a class="logo" href="https://www.levites.net"><img src="cid:logo_cid" alt="Logo"></a>
+
 					<div class="message">
 						<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
 					</div>
 					<div class="verification-code">' . $verify_token . '</div>
-					
+					<div class="social-media-container">
+									<a class="social-media-link" href="https://www.facebook.com/levites.2023">
+										<img class="social-media-icon" src="cid:facebook_cid" alt="Facebook">
+									</a>
+									<a class="social-media-link" href="mailto:jajajoenterprise@gmail.com">
+										<img class="social-media-icon" src="cid:gmail_cid" alt="Gmail">
+									</a>
+									<a class="social-media-link" href="https://youtube.com/@levites2023">
+										<img class="social-media-icon" src="cid:youtube_cid" alt="Youtube">
+									</a>
+									
+								</div>
 				</div>
 			</body>
 			</html>
 		';	
 
-		// <div class="social-media-container">
-		// 				<a class="social-media-link" href="https://www.facebook.com">
-		// 					<img class="social-media-icon" src="facebook_icon.png" alt="Facebook">
-		// 				</a>
-		// 				<a class="social-media-link" href="https://www.twitter.com">
-		// 					<img class="social-media-icon" src="twitter_icon.png" alt="Twitter">
-		// 				</a>
-		// 				<a class="social-media-link" href="https://www.instagram.com">
-		// 					<img class="social-media-icon" src="instagram_icon.png" alt="Instagram">
-		// 				</a>
-		// 			</div>
-		$logoFilePath = '../views/images/try.png';
+	
+		$logoFilePath = '../views/images/logo.png';
+		$facebookIconPath = '../views/images/facebook.png';
+		$gmailIconPath = '../views/images/gmail.png';
+		$youtubeIconPath = '../views/images/youtube.png';
+
+
+
 		$mail->addEmbeddedImage($logoFilePath, 'logo_cid', 'your_logo.png');
+		$mail->addEmbeddedImage($facebookIconPath, 'facebook_cid', 'facebook_icon.png');
+		$mail->addEmbeddedImage($gmailIconPath, 'gmail_cid', 'gmail_icon.png');
+		$mail->addEmbeddedImage($youtubeIconPath, 'youtube_cid', 'youtube_icon.png');
+
+
         $mail->Body = $email_template;
-        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->AltBody = 'Check for verification code';
 				$mail->send();
 			echo 'Message has been sent';
 		} catch (Exception $e) {
@@ -221,30 +240,125 @@ class ModelRegister {
 			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
 
 			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress('johncliff.fortaleza04@gmail.com', 'Joe User');     //Add a recipient
 
-			//Content
-			$mail2->isHTML(true);                                  //Set email format to HTML
-			$mail2->Subject = 'Levites Registration Confirmation';
-			$mail2->Body    = '<div class="container">
-									<div class="logo">
-										<img src="cid:logo_cid" alt="Logo">
-									</div>
-									<div class="message">
-										<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
-									</div>
-									<div class="verification-code">' . $verify_token . '</div>
+			$mail->isHTML(true);                                  //Set email format to HTML
+			$mail->Subject = 'Levites Registration Confirmation';
+			
+			
+			// Email Template
+			$email_template = '
+			<html>
+			<head>
+			<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f1f1f1;
+			}
+			
+			.container {
+				max-width: 350px;
+				margin: 0 auto;
+				height: 380px;
+				padding: 20px;
+				background-color: #6D7987;
+				border-radius: 10px;
+			}
+			
+			.logo {
+				text-align: center;
+				margin-bottom: 10px;
+				margin-left: 55px;
+			}
+			
+			.logo img {
+				text-align: center;
+				max-width: 250px;
+			}
+			
+			.message {
+				margin-bottom: 20px;
+				text-align: center;
+				color: #E1E1E8;
+
+			}
+			
+			.verification-code {
+				margin: 0;
+				border-radius: 5px;
+				text-align: center;
+				margin-bottom: 20px;
+				background-color: #E1E1E8;
+				font-size: 32px;
+				font-weight: bold;
+				color: #e3aafb;
+			}
+			
+			.social-media-container {
+				text-align: center;
+				margin-top: 20px;
+			}
+			
+			.social-media-link {
+				display: inline-block;
+				margin-right: 10px;
+				text-decoration: none;
+			}
+			
+			.social-media-icon {
+				width: 30px;
+				height: 30px;
+			}
+			
+		</style>
+			</head>
+			<body>
+				<div class="container">
+						<a class="logo" href="https://www.levites.net"><img src="cid:logo_cid" alt="Logo"></a>
+
+					<div class="message">
+						<p>Welcome to Levites! Please verify your email address by entering the verification code below:</p>
+					</div>
+					<div class="verification-code">' . $verify_token . '</div>
+					<div class="social-media-container">
+									<a class="social-media-link" href="https://www.facebook.com/levites.2023">
+										<img class="social-media-icon" src="cid:facebook_cid" alt="Facebook">
+									</a>
+									<a class="social-media-link" href="mailto:jajajoenterprise@gmail.com">
+										<img class="social-media-icon" src="cid:gmail_cid" alt="Gmail">
+									</a>
+									<a class="social-media-link" href="https://youtube.com/@levites2023">
+										<img class="social-media-icon" src="cid:youtube_cid" alt="Youtube">
+									</a>
 									
-								</div> ';
-								
-			$mail2->AltBody = 'This is the body in plain text for non-HTML mail clients';
-			$logoFilePath = '../views/images/try.png';
-			$mail2->addEmbeddedImage($logoFilePath, 'logo_cid', 'your_logo.png');
-				$mail2->send();
+								</div>
+				</div>
+			</body>
+			</html>
+		';	
+
+	
+		$logoFilePath = '../views/images/logo.png';
+		$facebookIconPath = '../views/images/facebook.png';
+		$gmailIconPath = '../views/images/gmail.png';
+		$youtubeIconPath = '../views/images/youtube.png';
+
+
+
+		$mail->addEmbeddedImage($logoFilePath, 'logo_cid', 'your_logo.png');
+		$mail->addEmbeddedImage($facebookIconPath, 'facebook_cid', 'facebook_icon.png');
+		$mail->addEmbeddedImage($gmailIconPath, 'gmail_cid', 'gmail_icon.png');
+		$mail->addEmbeddedImage($youtubeIconPath, 'youtube_cid', 'youtube_icon.png');
+
+
+        $mail->Body = $email_template;
+        $mail->AltBody = 'Check for verification code';
+				$mail->send();
 			echo 'Message has been sent';
 		} catch (Exception $e) {
-			echo "Message could not be sent. Mailer Error: {$mail2->ErrorInfo}";
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}
+
 
         try{	
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -397,7 +511,7 @@ class ModelRegister {
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress('johncliff.fortaleza04@gmail.com', 'Joe User');     //Add a recipient
 
 			 // Content
 			 $mail->isHTML(true); // Set email format to HTML
