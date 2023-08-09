@@ -16,6 +16,29 @@ a {
 }
 
 
+.gradient-text {
+  background: linear-gradient(to right, rgba(192, 128, 249, 1) 0%, rgba(148, 191, 242, 1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-bottom {
+  position: relative;
+}
+
+.gradient-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(to right, rgba(192, 128, 249, 1) 0%, rgba(148, 191, 242, 1) 100%);
+}
+
+
 /* header */
 
 .top-header .navbar {
