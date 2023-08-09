@@ -117,6 +117,12 @@ class CollaborationController
        
     }
 
+    public function ctrRejectMembership()
+    {
+        $results = (new CollaborationModel)->mdlRejectMembership();
+        return $results;
+    }
+
     
 }
 ?>

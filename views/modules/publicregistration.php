@@ -100,13 +100,19 @@
                                 <label for="inputReligion" class="form-label">Religion<sup style='color:red;'>  *</sup></label>
                                 <select class="form-select border-3" id="pubReligion" aria-label="Default select example" >
                                 <option value="" hidden selected></option>
-                                <option value="Aglipay">Aglipay</option>
-                                <option value="Ang Dating Daan">Ang Dating Daan</option>
-                                <option value="Baptist">Baptist</option>
-                                <option  value="Catholic">Catholic</option>
-                                <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
-                                <option value="Jehovah's Witnesses">Jehovah's Witnesses</option>
-                                          
+                                <optgroup label="Christianity">
+                                  <option value="Aglipay">Aglipay</option>
+                                  <option value="Ang Dating Daan">Ang Dating Daan</option>
+                                  <option value="Baptist">Baptist</option>
+                                  <option  value="Catholic">Catholic</option>
+                                  <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
+                                  <option value="Jehovah's Witnesses">Jehovah's Witnesses</option>
+                                </optgroup>
+                                <optgroup label="Islam">
+                                  <option value="Sunni Islam">Sunni Islam</option>
+                                  <option value="Shia Islam">Shia Islam</option>
+                                </optgroup>
+
                                 </select>
                             </div>
 

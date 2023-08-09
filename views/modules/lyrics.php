@@ -568,7 +568,7 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
         <div class="modal fade" id="linkPlayslitModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered moda-lg">
                 <div class="modal-content">
-                    <div class="modal-headertext-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
+                    <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
                         <h5 class="modal-title">Link Playlist</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>

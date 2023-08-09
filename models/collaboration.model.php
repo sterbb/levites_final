@@ -386,6 +386,21 @@ static public function mdlshowMembership(){
 
 }
 
+    static public function mdlRejectMembership(){
+
+        $acc_id = $_COOKIE['church_id'];
+        $status = 1;
+
+        $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status");
+        $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
+        $stmt->bindParam(':rejmship_status', $status, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    }
+
 static public function mdlshowAffilatedMember(){
 
     $acc_id = $_COOKIE['church_id'];
@@ -420,13 +435,15 @@ static public function mdlMemberAccept($data){
 
     $membershipDate = date('Y-m-d');
 
-
+    $reject = 0;
     $accept = 1;
 
-    $stmt2 = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status, membershipDate = :membershipDate WHERE mshipID = :mshipID ");
+    $stmt2 = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status, membershipDate = :membershipDate, rejmship_status = :rejmship_status  WHERE mshipID = :mshipID ");
     $stmt2->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
     $stmt2->bindParam(":membership_status", $accept, PDO::PARAM_INT);
     $stmt2->bindParam(":membershipDate", $membershipDate, PDO::PARAM_STR);
+    $stmt2->bindParam(":rejmship_status", $reject, PDO::PARAM_STR);
+
     $stmt2 -> execute();
     $stmt2 = null;	
 

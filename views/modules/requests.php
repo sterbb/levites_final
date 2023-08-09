@@ -384,6 +384,73 @@
     </div>
     
 
+    <div class="row py-3 mt-5">
+        <div class="col-12 col-lg-6 col-xl-7 d-flex ">  
+            <div class="card w-100 mx-10 mb-0">
+                <div class="card-header bg-transparent">
+                <div class="d-flex align-items-center py-2 px-2">
+                    <div class="px-2">
+                       <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-plus m-2"></i>Rejected Membership</h6>
+                    </div>
+                    <div class="ms-auto me-2">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Name">
+                        </div>
+                    <div class="">
+                        <button class="btn btn-outline-success rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-check"></i></button>
+                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
+                    </div>
+                </div>
+                </div>
+                <div class="card-body" scrollable-y="true">
+                <?php 
+             
+                            $reject = (new CollaborationController)->ctrRejectMembership();
+                            foreach($reject as $key => $value){
+                                // $churchname;
+                                // $churchid;
+
+                                // if (array_key_exists("churchid1", $requests)) {
+                                //     // Key exists in the array
+                                //     $churchid = $value["churchid1"];
+                                //     $churchname = $value["churchname1"];
+                                // } else {
+                                //     // Key is undefined
+                                //     $churchid = $value["churchid2"];
+                                //     $churchname = $value["churchname2"];
+                                // }
+
+                                echo '
+                                <div class="team-list churchDiv">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="">
+                                        <img src="views/images/ch1.2.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">'.$value['memberName'].'</h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                                        </div>
+                                        <div class="">
+                                            <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
+                                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
+                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                '
+                                ;
+
+                            }
+                            ?>
+                    </div>
+                    <hr>
+                </div>
+                </div>
+        
+
+                </div>
+
 
 
 
