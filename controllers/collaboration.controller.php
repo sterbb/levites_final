@@ -25,6 +25,12 @@ class CollaborationController
         return $results;
     }
 
+    public function ctrshowRejected()
+    {
+        $results = (new CollaborationModel)->mdlshowRejected();
+        return $results;
+    }
+
     public function ctrshowAffilatedChurches()
     {
         $results = (new CollaborationModel)->mdlshowAffilatedChurches();
@@ -105,8 +111,6 @@ class CollaborationController
        
     }
 
-
-    
     public function ctrAffiliatedMemberReport()
     {
         return $results = (new CollaborationModel)->mdlAffiliatedMemberReport();

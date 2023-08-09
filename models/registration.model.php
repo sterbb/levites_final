@@ -28,16 +28,15 @@ class ModelRegister {
 		    //Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
 			$mail->isSMTP();                                            //Send using SMTP
-			$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+			$mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-			$mail->Username   = 'testclgf@gmail.com';                     //SMTP username
-			$mail->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
+			$mail->Username   = 'levites@levites.net';                     //SMTP username islan pa
+			$mail->Password   = 'Levitespass1234!';                               //SMTP password 
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-			
-			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
+			$mail->setFrom('levites@levites.net', 'Levites');
 			// $mail->addAddress('uvuvwefor1@gmail.com', 'Joe User');     //Add a recipient
-		$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');   
+			$mail->addAddress($data['user_email'], $data['user_fname'] . $data['user_lname'] );   
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
 			$mail->Subject = 'Levites Registration Confirmation';
@@ -157,9 +156,9 @@ class ModelRegister {
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
-				$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
-			$account_id->execute();
-			$accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
+			// 	$account_id = (new Connection)->connect()->prepare("SELECT CONCAT('A', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as account_id  FROM account FOR UPDATE");
+			// $account_id->execute();
+			// $accountid = $account_id -> fetchAll(PDO::FETCH_ASSOC);
 			
 			$stmt->bindParam(":AccountID", $accountid[0]['account_id'], PDO::PARAM_STR);
 			$stmt->bindParam(":acc_username", $data["user_username"], PDO::PARAM_STR);
@@ -175,6 +174,7 @@ class ModelRegister {
 			$stmt->bindParam(":acc_type", $account_type, PDO::PARAM_STR);
 			
 			setcookie("current_email", $data["user_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
+			setcookie("current_name", $data["user_fname"] . $data["user_lname"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			
 			$stmt->execute();			
 
@@ -213,15 +213,15 @@ class ModelRegister {
 		    //Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
 			$mail2->isSMTP();                                            //Send using SMTP
-			$mail2->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+			$mail2->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
 			$mail2->SMTPAuth   = true;                                   //Enable SMTP authentication
-			$mail2->Username   = 'testclgf@gmail.com';                     //SMTP username
-			$mail2->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
+			$mail2->Username   = 'levites@levites.net';                     //SMTP username islan pa
+			$mail2->Password   = 'Levitespass1234!';                               //SMTP password 
 			$mail2->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
+			$mail2->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			$mail2->setFrom('levites@levites.net', 'Levites');
 
-			$mail2->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail2->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail2->addAddress($data['church_email'], $data['church_name']);     //Add a recipient
 
 			//Content
 			$mail2->isHTML(true);                                  //Set email format to HTML
@@ -290,6 +290,7 @@ class ModelRegister {
 			$stmt->bindParam(":affiliated_churchname", $data["church_name"], PDO::PARAM_STR);
 			
 			setcookie("current_email", $data["church_email"], time() + (86400 * 30), "/"); // 86400 = 1 day
+			setcookie("current_name", $data["church_name"], time() + (86400 * 30), "/"); // 86400 = 1 day
 			$stmt->execute();		
 
 			
@@ -389,15 +390,15 @@ class ModelRegister {
 		    //Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
 			$mail->isSMTP();                                            //Send using SMTP
-			$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+			$mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-			$mail->Username   = 'testclgf@gmail.com';                     //SMTP username
-			$mail->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
+			$mail->Username   = 'levites@levites.net';                     //SMTP username islan pa
+			$mail->Password   = 'Levitespass1234!';                               //SMTP password 
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			$mail->setFrom('levites@levites.net', 'Levites');
 
-			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress($_COOKIE['current_email'], $_COOKIE['current_name']);     //Add a recipient
 
 			 // Content
 			 $mail->isHTML(true); // Set email format to HTML

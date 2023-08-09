@@ -34,11 +34,15 @@ $(".askMembershipBtn").on("click", function() {
   $(".acceptMember").on('click', function(){
     // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
     var mshipID = $(this).siblings('input').first().val();
-    console.log(mshipID);
+    var acc_id = $(this).siblings('input').first().attr('acc_id');
+    var acc_name = $(this).siblings('input').first().attr('acc_name');
+
   
     
     var acceptMember = new FormData();
     acceptMember.append("mshipID", mshipID);
+    acceptMember.append("acc_id", acc_id);
+    acceptMember.append("acc_name", acc_name);
   
     $.ajax({
         url: "ajax/add_member.ajax.php",
@@ -65,11 +69,15 @@ $(".askMembershipBtn").on("click", function() {
   $(".rejectMember").on('click', function(){
     // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
     var mshipID = $(this).siblings('input').first().val();
-    console.log(mshipID);
-    
+    var acc_id = $(this).siblings('input').first().attr('acc_id');
+    var acc_name = $(this).siblings('input').first().attr('acc_name');
+
+  
     
     var rejectMember = new FormData();
     rejectMember.append("mshipID", mshipID);
+    rejectMember.append("acc_id", acc_id);
+    rejectMember.append("acc_name", acc_name);
     
     $.ajax({
         url: "ajax/reject_member.ajax.php",
@@ -87,7 +95,7 @@ $(".askMembershipBtn").on("click", function() {
           // // $(".accepted_churches").load(location.href + ' .accepted_churches');
           // // $(".registration_churches").load(location.href + ' .registration_churches');
     
-          location.reload();
+          // location.reload();
     
           
       

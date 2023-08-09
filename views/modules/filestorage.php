@@ -57,7 +57,7 @@
 
 
                       echo '
-                          <button class="affiliatesSection border border-0 bg-transparent " value="'.$value['collabID'].'">
+                          <button class="affiliatesSection border border-0 bg-transparent " value="'.$value['collabID'].'" church_name="'.$churchname.'">
                             <div class="d-flex text-start mt-3">
                               <div class="fm-file-box bg-light-primary text-primary mr-1">
                                 <img src="views/images/sanseb.jpg" alt="Responsive image" class="img-thumbnail">

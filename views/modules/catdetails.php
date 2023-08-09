@@ -60,22 +60,37 @@
 
                         $group = (new ControllerPublic)->ctrCheckIfInGroup($value["eventID"]);
 
+                        $assignedGroups =[];
+
                         //if else para kng wala may echo dyapon
                         foreach ($group as $row) {
                           // Access individual fields of the row
                        
                           $emails = $row['emailList'];
-                          echo $emails;
                                                     // Check if the email exists in the array
                           if (in_array($_COOKIE['acc_email'], json_decode($emails))) {
                             // echo "Email exists in the array.";
-                            echo'   <p class="mb-0"><button  style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assigned to:'.$row['group_name'].'"><i class="fadeIn animated bx bx-info-circle"></i></button></p>';
+                            $assignedGroups[] = $row['group_name'];
+
                           } else {
                             // echo "Email does not exist in the array.";
-                            echo '<p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" ><i class="fadeIn animated bx bx-info-circle"></i></button></p>';
                           }
                         }
-                        echo '<p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" ><i class="fadeIn animated bx bx-info-circle"></i></button></p>'; 
+                        if (empty($assignedGroups)) {
+                          echo '<p class="mb-0"><button  style="font-size:25px;opacity:0%;" type="button" class="btn btn-success" ><i class="fadeIn animated bx bx-info-circle"></i></button></p>'; 
+                        } else {
+                          $assignedGroupNames ='';
+                          foreach ($assignedGroups as $index => $names) {
+                            if ($index > 0) {
+                                $assignedGroupNames .= ", ";
+                            }
+                            $assignedGroupNames .= $names;
+                          }
+                        
+                        echo'<p class="mb-0"><button  style="font-size:18px;" type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assigned to:  '.$assignedGroupNames.'"><i class="fadeIn animated bx bx-info-circle"></i></button></p>';
+                        }
+                      
+                       
                        
                        
                         echo'

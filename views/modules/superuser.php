@@ -10,7 +10,7 @@
             <div class="row">
 
               <div class="col-12  d-flex ">  
-                    <div class="card w-100 mx-10 shadow p-3 mb-5 bg-body rounded">
+                    <div class="card w-100 mx-10 shadow p-3 mb-5 bg-body rounded  scrollable-left-superuser">
                     <div class="background-image"></div>
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body" scrollable-y="true">
+                        <div class="card-body " scrollable-y="true">
                         <div>
                         
 
@@ -70,7 +70,7 @@
 
 
                 <div class="col-12  d-flex ">  
-                    <div class="card w-100 mx-10 shadow p-3 mb-5 bg-body rounded">
+                    <div class="card w-100 mx-10 shadow p-3 mb-5 bg-body rounded  scrollable-left-superuser">
                     <div class="background-image"></div>
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
@@ -94,7 +94,7 @@
                         <div>
                         
 
-                            <div class="registration_churches" id="registration_churches">
+                            <div class="registration_churches scrollable-left-superuser" id="registration_churches">
                                 <?php
                                     $churches = (new ControllerSuperuser)->ctrShowRejectedChurches(0);
                                     foreach($churches as $key => $value){
@@ -140,7 +140,7 @@
 
 
         <div class="col-12 col-lg-6 col-xl-5 d-flex">
-            <div class="card w-100 shadow p-3 mb-5 bg-body rounded">
+            <div class="card w-100 shadow p-3 mb-5 bg-body rounded  scrollable-right-superuser">
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">

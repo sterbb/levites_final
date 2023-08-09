@@ -88,21 +88,21 @@ class ModelLogin{
 			//Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
 			$mail->isSMTP();                                            //Send using SMTP
-			$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+			$mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-			$mail->Username   = 'testclgf@gmail.com';                     //SMTP username
-			$mail->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
+			$mail->Username   = 'levites@levites.net';                     //SMTP username islan pa
+			$mail->Password   = 'Levitespass1234!';                               //SMTP password 
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			$mail->setFrom('levites@levites.net', 'Levites');
 
-			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress( $data["forgot_email"], '');     //Add a recipient
 
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
-			$mail->Subject = 'Levites Registration Confirmation';
+			$mail->Subject = 'Forgot Password';
 			$mail->Body    = '<b>Welcome to Levites</b>
-								<h1>Accept this request if you have registered! Disregard this message if not.</h1>
+								<h1>Accept this request if you have clicked the forgot password button! Disregard this message if not.</h1>
 								<h1>'. $verify_token.'</h1> ';
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();

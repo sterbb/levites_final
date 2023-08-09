@@ -2673,3 +2673,27 @@ input[type="checkbox"].calendar-filter:not(:checked) {
   background-color: #CCCCCC; /* Replace with your desired color for unchecked (gray) */
   border: 2px solid #CCCCCC; /* Replace with your desired color for unchecked (gray) */
 }
+
+.scrollable-left-superuser {
+  min-height: 100px; /* Set the desired height for the scrollable area */
+  max-height: 500px; /* Set the desired height for the scrollable area */
+  overflow: auto; /* This enables scrolling when content overflows the div's dimensions */
+}
+
+.scrollable-right-superuser {
+  min-height: 400px; /* Set the desired height for the scrollable area */
+  max-height: 1000px; /* Set the desired height for the scrollable area */ 
+  overflow: auto; /* This enables scrolling when content overflows the div's dimensions */
+}
+
+.scrollable-left-churchadmin {
+  min-height: 200px; /* Set the desired height for the scrollable area */
+  max-height: 500px; /* Set the desired height for the scrollable area */
+  overflow: auto; /* This enables scrolling when content overflows the div's dimensions */
+}
+
+.scrollable-right-churchadmin {
+  min-height: 200px; /* Set the desired height for the scrollable area */
+  max-height: 1500px; /* Set the desired height for the scrollable area */
+  overflow: auto; /* This enables scrolling when content overflows the div's dimensions */
+}

@@ -142,11 +142,15 @@ $('.cancelPending').on('click', function(){
 $(".acceptCollab").on('click', function(){
   // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
   var collabID = $(this).siblings('input').first().val();
-  console.log(collabID);
+  var churchID = $(this).siblings('input').first().attr("churchid");
+  var church_name = $(this).siblings('input').first().attr("churchname");
+
 
   
   var acceptCollab = new FormData();
   acceptCollab.append("collabID", collabID);
+  acceptCollab.append("churchID", churchID);
+  acceptCollab.append("church_name", church_name);
 
   $.ajax({
       url: "ajax/accept_collaboration.ajax.php",
@@ -155,23 +159,23 @@ $(".acceptCollab").on('click', function(){
       cache: false,
       contentType: false,
       processData: false,
-      dataType: "json",
+      dataType: "text",
       success: function(answer) {
-        console.log(collabID);
+        console.log(answer);
 
-        var storage = firebase.storage();
-        var folderRef = storage.ref(collabID + "/.placeholder");
+        // var storage = firebase.storage();
+        // var folderRef = storage.ref(collabID + "/.placeholder");
       
-        folderRef
-          .putString("", "raw")
-          .then(function () {
-            console.log("Folder created:", collabID + "/.placeholder");
-          })
-          .catch(function (error) {
-            console.log("Error:", error);
-          });
+        // folderRef
+        //   .putString("", "raw")
+        //   .then(function () {
+        //     console.log("Folder created:", collabID + "/.placeholder");
+        //   })
+        //   .catch(function (error) {
+        //     console.log("Error:", error);
+        //   });
 
-          // location.reload();
+        //   // location.reload();
 
         
     
@@ -188,11 +192,15 @@ $(".acceptCollab").on('click', function(){
 $(".rejectCollab").on('click', function(){
 // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
 var collabID = $(this).siblings('input').first().val();
-console.log(collabID);
+var churchID = $(this).siblings('input').first().attr("churchid");
+var church_name = $(this).siblings('input').first().attr("churchname");
+console.log(church_name);
 
 
 var rejectCollab = new FormData();
 rejectCollab.append("collabID", collabID);
+rejectCollab.append("churchID", churchID);
+rejectCollab.append("church_name", church_name);  
 
 $.ajax({
     url: "ajax/reject_collaboration.ajax.php",
@@ -201,7 +209,7 @@ $.ajax({
     cache: false,
     contentType: false,
     processData: false,
-    dataType: "json",
+    dataType: "text",
     success: function(answer) {
       console.log(answer);
 
@@ -210,7 +218,7 @@ $.ajax({
       // // $(".accepted_churches").load(location.href + ' .accepted_churches');
       // // $(".registration_churches").load(location.href + ' .registration_churches');
 
-      location.reload();
+      // location.reload();
 
       
   
@@ -263,3 +271,52 @@ $.ajax({
   });
 });
 
+$(".viewBtnAdmin").on('click', function(){
+  // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
+  var church_id = $(this).siblings('input').first().attr('churchid');
+  console.log(church_id);
+
+
+var churchData = new FormData();
+churchData.append("church_id", church_id);
+
+
+$.ajax({
+    url: "ajax/get_churchDetails.ajax.php",
+    method: "POST",
+    data: churchData,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType: "json",
+    success: function(answer) {
+      console.log(answer);
+
+      $("#admin_churchID").val(answer[0]);
+
+      $("#admin_church_name").val(answer[1]);
+
+      $("#admin_church_email").val(answer[2]);
+
+      $("#admin_church_telnum").val(answer[3]);
+
+      $("#admin_church_address").val(answer[4]);
+
+      $("#admin_church_city").val(answer[5]);
+
+      $("#admin_church_religion").val(answer[6]);
+
+
+      
+
+      $('#churchAdminModal').modal('show'); 
+
+    },
+    error: function() {
+        alert("Oops. Something went wrong!");
+    },
+    complete: function() {
+    }
+  });
+
+});

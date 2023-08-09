@@ -141,9 +141,12 @@ $(document).ready(function() {
   function openProfile(element){
 
     var profileid = $(element).attr("church_id");
-    
+    var profilename= $(element).attr("church_name");
 
     document.cookie = "church_id=" + profileid + ";";
+    document.cookie = "church_name=" + profilename + ";";
+
+    
     window.location.href = "profile";
   }
 

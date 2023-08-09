@@ -366,13 +366,8 @@ class ModelCalendar{
 		$stmt->bindParam(":event_category", $data['eventType'], PDO::PARAM_STR);
 		$stmt -> execute();
         $events= $stmt -> fetchAll();
-
 		
-
-
-
-
-
+		
 		$html = '';
 
 	
@@ -403,8 +398,10 @@ class ModelCalendar{
 			$stmt2->bindParam(":eventID", $event['eventID'], PDO::PARAM_STR);
 			$stmt2 -> execute();
 			$groups = $stmt2 -> fetchAll();
+			
 
 			$html2 = '';
+
 			foreach($groups as $group){
 				$html2.='
 				<div class="col">
@@ -485,16 +482,6 @@ class ModelCalendar{
 						}
 
 
-				  		// // Check if the decoding was successful and if there are songs data
-						// if (is_array($songs) && count($songs) > 0) {
-						// 	// Loop through the songs and access their properties
-						// 	foreach ($songs as $song) {
-						// 	
-						// 	}
-						// } else {
-						// 	echo "No songs found.";
-						// }
-				
 
 			$html .='
 				  </ul>

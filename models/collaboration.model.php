@@ -81,8 +81,41 @@ class CollaborationModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    }
+
+    static public function mdlshowRejected(){
+
+        $church_id = $_COOKIE['church_id'];
+        $rejected_status = 1;
+
+        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2 FROM churchcollab WHERE churchid1 = :churchid1 AND reject_status =:reject_status ");
+        $stmt->bindParam(':churchid1', $church_id, PDO::PARAM_STR);
+        $stmt->bindParam(':reject_status', $rejected_status, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        
+        // Check if there are no results
+
+
+            $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2  AND reject_status =:reject_status ");
+            $stmt2->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
+            $stmt2->bindParam(':reject_status', $rejected_status, PDO::PARAM_INT);
+            $stmt2->execute();
+    
+            $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+ 
+          
+            $result2 = array_merge($result2, $results);
+            
+            // Return the array containing results from both queries
+            return $result2;
 
     }
+
+    
 
 
 
@@ -149,30 +182,130 @@ class CollaborationModel
 
     static public function mdlAcceptCollab($data){
 
+        
+        $db = new Connection();
+        $pdo = $db->connect();
+
+
+        $current_year = substr(date('Y'), -2 );
+        $current_month = date('n');
+
+        $collabDate = date('Y-m-d');
+
+        $title = "Request Accepted";
+        $type = 'Accepted';
+        $notification = $_COOKIE['church_name'] . " accepted the collaboration.";
+
+
+
+      
         $accept = 1;
     
-        $stmt = (new Connection)->connect()->prepare("UPDATE churchcollab SET collab_status = :collab_status WHERE collabID = :collabID ");
-        $stmt->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
-        $stmt->bindParam(":collab_status", $accept, PDO::PARAM_INT);
-        $stmt -> execute();
-        return $stmt -> fetch();
-        $stmt -> close();
-        $stmt = null;	
+        $stmt2 = (new Connection)->connect()->prepare("UPDATE churchcollab SET collab_status = :collab_status WHERE collabID = :collabID ");
+        $stmt2->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
+        $stmt2->bindParam(":collab_status", $accept, PDO::PARAM_INT);
+        $stmt2 -> execute();
+        $stmt2 = null;	
     
+
+                
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+
+            
+			$notif_id = (new Connection)->connect()->prepare("SELECT CONCAT('N', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as notif_id  FROM notifications FOR UPDATE");
+			$notif_id->execute();
+			$notifid = $notif_id -> fetchAll(PDO::FETCH_ASSOC);
+            
+
+			
+			$stmt = $pdo->prepare("INSERT INTO notifications (notificationID, recipientID, recipient_name, notification_title, notification_type, notification_text) 
+            VALUES (:notificationID, :recipientID, :recipient_name, :notification_title, :notification_type, :notification_text)");
+
+			$stmt->bindParam(":notificationID", $notifid[0]['notif_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":recipientID", $data['churchID'], PDO::PARAM_STR);
+            $stmt->bindParam(":recipient_name", $data['church_name'], PDO::PARAM_STR);
+            $stmt->bindParam(":notification_title", $title, PDO::PARAM_STR);
+            $stmt->bindParam(":notification_type", $type, PDO::PARAM_STR);
+            $stmt->bindParam(":notification_text", $notification, PDO::PARAM_STR);
+  
+
+            $stmt->execute();		
+		    $pdo->commit();
+            return "ok";
+		}catch (Exception $e){
+            return "Error: " . $e->getMessage();
+			$pdo->rollBack();
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+
+        
+
     }
 
 
     static public function mdlRejectCollab($data){
 
+        
+        $db = new Connection();
+        $pdo = $db->connect();
+
+
+        $current_year = substr(date('Y'), -2 );
+        $current_month = date('n');
+
+        $collabDate = date('Y-m-d');
+
+        $title = "Request Rejected";
+        $type = 'Rejected';
+        $notification = $_COOKIE['church_name'] . " rejected the collaboration.";
+
+
+
         $accept = 1;
     
-        $stmt = (new Connection)->connect()->prepare("UPDATE churchcollab SET reject_status = :reject_status WHERE collabID = :collabID ");
-        $stmt->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
-        $stmt->bindParam(":reject_status", $accept, PDO::PARAM_INT);
-        $stmt -> execute();
-        return $stmt -> fetch();
-        $stmt -> close();
-        $stmt = null;	
+        $stmt2 = (new Connection)->connect()->prepare("UPDATE churchcollab SET reject_status = :reject_status WHERE collabID = :collabID ");
+        $stmt2->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
+        $stmt2->bindParam(":reject_status", $accept, PDO::PARAM_INT);
+        $stmt2 -> execute();
+        $stmt2 = null;	
+
+                
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+
+            
+			$notif_id = (new Connection)->connect()->prepare("SELECT CONCAT('N', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as notif_id  FROM notifications FOR UPDATE");
+			$notif_id->execute();
+			$notifid = $notif_id -> fetchAll(PDO::FETCH_ASSOC);
+            
+
+			
+			$stmt = $pdo->prepare("INSERT INTO notifications (notificationID, recipientID, recipient_name, notification_title, notification_type, notification_text) 
+            VALUES (:notificationID, :recipientID, :recipient_name, :notification_title, :notification_type, :notification_text)");
+
+			$stmt->bindParam(":notificationID", $notifid[0]['notif_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":recipientID", $data['churchID'], PDO::PARAM_STR);
+            $stmt->bindParam(":recipient_name", $data['church_name'], PDO::PARAM_STR);
+            $stmt->bindParam(":notification_title", $title, PDO::PARAM_STR);
+            $stmt->bindParam(":notification_type", $type, PDO::PARAM_STR);
+            $stmt->bindParam(":notification_text", $notification, PDO::PARAM_STR);
+  
+
+            $stmt->execute();		
+		    $pdo->commit();
+            return "ok";
+		}catch (Exception $e){
+            return "Error: " . $e->getMessage();
+			$pdo->rollBack();
+		}	
+		$pdo = null;	
+		$stmt = null;
+
     
     }
 
@@ -270,34 +403,137 @@ static public function mdlshowAffilatedMember(){
 
 static public function mdlMemberAccept($data){
 
+     
+    $db = new Connection();
+    $pdo = $db->connect();
+
+
+    $current_year = substr(date('Y'), -2 );
+    $current_month = date('n');
+
+    $collabDate = date('Y-m-d');
+
+    $title = "Membership Accepted";
+    $type = 'Accepted';
+    $notification = $_COOKIE['church_name'] . " accepted your membership request.";
+
+
     $membershipDate = date('Y-m-d');
 
 
     $accept = 1;
 
-    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status, membershipDate = :membershipDate WHERE mshipID = :mshipID ");
-    $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
-    $stmt->bindParam(":membership_status", $accept, PDO::PARAM_INT);
-    $stmt->bindParam(":membershipDate", $membershipDate, PDO::PARAM_STR);
+    $stmt2 = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status, membershipDate = :membershipDate WHERE mshipID = :mshipID ");
+    $stmt2->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt2->bindParam(":membership_status", $accept, PDO::PARAM_INT);
+    $stmt2->bindParam(":membershipDate", $membershipDate, PDO::PARAM_STR);
+    $stmt2 -> execute();
+    $stmt2 = null;	
 
-    $stmt -> execute();
-    return $stmt -> fetch();
-    $stmt -> close();
-    $stmt = null;	
+
+
+            
+    try{
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->beginTransaction();
+
+        
+        $notif_id = (new Connection)->connect()->prepare("SELECT CONCAT('N', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as notif_id  FROM notifications FOR UPDATE");
+        $notif_id->execute();
+        $notifid = $notif_id -> fetchAll(PDO::FETCH_ASSOC);
+        
+
+        
+        $stmt = $pdo->prepare("INSERT INTO notifications (notificationID, recipientID, recipient_name, notification_title, notification_type, notification_text) 
+        VALUES (:notificationID, :recipientID, :recipient_name, :notification_title, :notification_type, :notification_text)");
+
+        $stmt->bindParam(":notificationID", $notifid[0]['notif_id'], PDO::PARAM_STR);
+        $stmt->bindParam(":recipientID", $data['acc_id'], PDO::PARAM_STR);
+        $stmt->bindParam(":recipient_name", $data['acc_name'], PDO::PARAM_STR);
+        $stmt->bindParam(":notification_title", $title, PDO::PARAM_STR);
+        $stmt->bindParam(":notification_type", $type, PDO::PARAM_STR);
+        $stmt->bindParam(":notification_text", $notification, PDO::PARAM_STR);
+
+
+        $stmt->execute();		
+        $pdo->commit();
+        return "ok";
+    }catch (Exception $e){
+        return "Error: " . $e->getMessage();
+        $pdo->rollBack();
+    }	
+    $pdo = null;	
+    $stmt = null;
+
+
 
 }
 
 static public function mdlMemberReject($data){
 
+    
+     
+    $db = new Connection();
+    $pdo = $db->connect();
+
+
+    $current_year = substr(date('Y'), -2 );
+    $current_month = date('n');
+
+    $collabDate = date('Y-m-d');
+
+    $title = "Membership Rejected";
+    $type = 'Rejected';
+    $notification = $_COOKIE['church_name'] . " rejected your membership request.";
+
+
+    $membershipDate = date('Y-m-d');
+
+
     $accept = 1;
 
-    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET rejmship_status = :rejmship_status WHERE mshipID = :mshipID ");
-    $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
-    $stmt->bindParam(":rejmship_status", $accept, PDO::PARAM_INT);
-    $stmt -> execute();
-    return $stmt -> fetch();
-    $stmt -> close();
-    $stmt = null;	
+    $stmt2 = (new Connection)->connect()->prepare("UPDATE membership SET rejmship_status = :rejmship_status WHERE mshipID = :mshipID ");
+    $stmt2->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt2->bindParam(":rejmship_status", $accept, PDO::PARAM_INT);
+    $stmt2 -> execute();
+    $stmt2 = null;	
+
+
+
+            
+    try{
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->beginTransaction();
+
+        
+        $notif_id = (new Connection)->connect()->prepare("SELECT CONCAT('N', LPAD((count(id)+1),4,'0'), '$current_month','$current_year') as notif_id  FROM notifications FOR UPDATE");
+        $notif_id->execute();
+        $notifid = $notif_id -> fetchAll(PDO::FETCH_ASSOC);
+        
+
+        
+        $stmt = $pdo->prepare("INSERT INTO notifications (notificationID, recipientID, recipient_name, notification_title, notification_type, notification_text) 
+        VALUES (:notificationID, :recipientID, :recipient_name, :notification_title, :notification_type, :notification_text)");
+
+        $stmt->bindParam(":notificationID", $notifid[0]['notif_id'], PDO::PARAM_STR);
+        $stmt->bindParam(":recipientID", $data['acc_id'], PDO::PARAM_STR);
+        $stmt->bindParam(":recipient_name", $data['acc_name'], PDO::PARAM_STR);
+        $stmt->bindParam(":notification_title", $title, PDO::PARAM_STR);
+        $stmt->bindParam(":notification_type", $type, PDO::PARAM_STR);
+        $stmt->bindParam(":notification_text", $notification, PDO::PARAM_STR);
+
+
+        $stmt->execute();		
+        $pdo->commit();
+        return "ok";
+    }catch (Exception $e){
+        return "Error: " . $e->getMessage();
+        $pdo->rollBack();
+    }	
+    $pdo = null;	
+    $stmt = null;
+
+
 
 }
 

@@ -133,21 +133,24 @@ firebase.initializeApp(firebaseConfig);
 var public = getCookie('publicClicked');
 var member = getCookie('memberClicked');
 
+
+
 if(public == "true"){
   var currentPath = getCookie('publicPath');
   $(".notPublic").hide();
-  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+  var currentNameTitle = getCookie('path_name');
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + decodeURIComponent(currentNameTitle)  + '</span>';
 $('#upper-title').html(titleContent);
 }else if ( member == "true"){
   var currentPath = getCookie('memberPath');
   $(".notMember").hide();
-
-  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+  var currentNameTitle = getCookie('path_name');
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + decodeURIComponent(currentNameTitle) + '</span>';
 $('#upper-title').html(titleContent);
 }else{
   var currentPath = getCookie('church_id');
-
-  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+  var currentNameTitle = getCookie('church_name');
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' +  decodeURIComponent(currentNameTitle) + '</span>';
 $('#upper-title').html(titleContent);
 }
 
@@ -244,15 +247,18 @@ try {
 
  
 
-      var metadata = {
-        customMetadata: {
-          createdBy: getCookie('acc_name'),
-          createdDate: new Date().toLocaleDateString(),
-          createdTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),            
-          overallSize: formatFileSize(overallSize),
-          // Add more custom metadata properties as needed
-        }
-      };
+      // var metadata = {
+      //   customMetadata: {
+      //     // createdBy: getCookie('acc_name'),
+      //     // createdDate: new Date().toLocaleDateString(),
+      //     // createdTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),            
+      //     overallSize: formatFileSize(overallSize),
+      //     // Add more custom metadata properties as needed
+      //   }
+      // };
+      var metadata = await fileRef.getMetadata();
+      const creationTime = metadata.timeCreated; // Timestamp of creation time
+      const creationDate = new Date(creationTime); // Convert timestamp to Date object
 
       try {
         const metadata = await fileRef.getMetadata();
@@ -389,16 +395,13 @@ try {
       try {
         const fileNames = await getFilesInFolder(folderName);
 
-        // Now, we will display the file names as tooltips when hovering over '.folder-name-hover'
-        // You can use any tooltip library or custom logic for displaying tooltips,
-        // but here, I'll show you how to use Bootstrap's tooltip as an example
 
         $(newFolderCard).find('.folder-name-hover').tooltip({
           title: function () {
             let fileListHTML = `<div>Added By: ${metadata.customMetadata.createdBy}</div>`;
             fileListHTML += `<div>Date Created: ${metadata.customMetadata.createdDate}</div>`;
             fileListHTML += `<div>Time Created: ${metadata.customMetadata.createdTime}</div>`;
-            fileListHTML += `<div>Folder Size: ${metadata.customMetadata.overallSize}</div>`;
+            fileListHTML += `<div>Folder Size: ${ formatFileSize(overallSize)}</div>`;
             fileListHTML += `<div>Uploaded Files:</div>`;
         
             fileListHTML += '<ul>';
@@ -718,6 +721,8 @@ var subfolderRef = storage.ref(parentFolderPath + "/" + subfolderName + "/.place
 var metadata = {
   customMetadata: {
     createdBy: getCookie('acc_name'),
+    createdDate: new Date().toLocaleDateString(),
+    createdTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),            
     // Add more custom metadata properties as needed
   }
 };
@@ -735,7 +740,9 @@ subfolderRef
 
 $('#myFileStroage').click(function() {
   // Call the handleClick function when the button is clicked
-  currentPath = getCookie('church_id')
+  currentPath = getCookie('church_id');
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' +  decodeURIComponent(currentNameTitle) + '</span>';
+  $('#upper-title').html(titleContent);
   listFilesInFolder(currentPath); 
   listFoldersInFolder(currentPath);
 
@@ -786,9 +793,17 @@ function handleClickNav(element) {
         for (var i = 0; i < parts.length; i++) {
           var folderName = parts[i];
           currentPath += folderName;
-          titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>';
+          if(folderName.substring(0, 2) == "C0"){
+            folderName =  decodeURIComponent(getCookie('church_name'));
+            titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>';
+          }else if(folderName.substring(0, 3) == "COL"){  
+            folderName =  currentNameTitle;
+            titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>';
+          }else{
+          titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>';          
+          }
           if (i < parts.length - 1) {
-            titleContent += '<span class="font-weight-bold h4 "> / </span>';
+            titleContent += '<span class="font-weight-bold h4 "> > </span>';
             currentPath += '/';
           }
         }
@@ -837,6 +852,7 @@ fileRef
 function downloadFile(element) {
   var path = $(element).attr('value');
   var storage = firebase.storage();
+  console.log(currentPath);
   var fileRef = storage.ref(currentPath + '/' + path);
 
   fileRef
@@ -1160,10 +1176,11 @@ fileRef
 $('.affiliatesSection').click(function() {
   var collabID = $(this).val();
   currentPath = collabID;
+  currentNameTitle = $(this).attr('church_name');
   listFilesInFolder(currentPath);
   listFoldersInFolder(currentPath);
   console.log('Clicked Button Value:', currentPath);
-  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentPath + '</span>';
+  var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + currentNameTitle + '</span>';
   $('#upper-title').html(titleContent);
 });
 
@@ -1174,10 +1191,13 @@ $('.affiliatesSection').click(function() {
 
 function publicFolder(element){
   var path = getCookie('church_id');
+  var path_name = getCookie('church_name') +" > Public";
 
  currentPath = path + "/Public";
  document.cookie = "publicClicked=true; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
  document.cookie = "publicPath=" + currentPath + "; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
+ document.cookie = "path_name=" + path_name  +"; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
+ 
 
  document.cookie = "memberClicked=false; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
 
@@ -1188,10 +1208,12 @@ function publicFolder(element){
 // for member
 function memberFolder(element){
   var path = getCookie('church_id');
+  var path_name = getCookie('church_name') +" > Members";
 
  currentPath = path + "/Members";
  document.cookie = "memberClicked=true; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
  document.cookie = "memberPath=" + currentPath + "; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
+ document.cookie = "path_name=" + path_name  +"; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
 
  document.cookie = "publicClicked=false; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
 

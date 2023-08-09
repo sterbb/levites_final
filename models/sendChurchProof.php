@@ -13,6 +13,13 @@ if($_FILES['church_prof']){
 	$file_tmp2 =   $_FILES['church_pprof']['tmp_name'];
     $file_name2 =    $_FILES['church_pprof']['name'];
 	$church_name = $_POST['church_name'];
+	$church_address = $_POST['church_address'];
+	$church_num = $_POST['church_num'];
+	$church_pfname = $_POST['church_pfname'];
+	$church_plname = $_POST['church_plname'];
+	$church_designation = $_POST['church_designation'];
+	$church_pnum = $_POST['church_pnum'];
+	
     echo  $file_tmp . $file_tmp2;
 
 
@@ -23,15 +30,15 @@ if($_FILES['church_prof']){
 		    //Server settings
 			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
 			$mail->isSMTP();                                            //Send using SMTP
-			$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+			$mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
 			$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-			$mail->Username   = 'testclgf@gmail.com';                     //SMTP username
-			$mail->Password   = 'hggcmqxkxorglsrr';                               //SMTP password
+			$mail->Username   = 'levites@levites.net';                     //SMTP username islan pa
+			$mail->Password   = 'Levitespass1234!';                               //SMTP password 
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 			$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			$mail->setFrom('levites@levites.net', 'Levites');
 
-			$mail->setFrom('jajajo@gmail.com', 'JAJAJo');
-			$mail->addAddress('janryanadivinagracia25@gmail.com', 'Joe User');     //Add a recipient
+			$mail->addAddress('levites@levites.net', 'Levites');     //Add a recipient
 
 			
 			//Attachments
@@ -46,12 +53,12 @@ if($_FILES['church_prof']){
 			$mail->Body    = '<b>ACCOUNT ID: SAMPLEID</b>
 
 								<h4>Church Name: '.$church_name.' </h4>
-								<h4>Church Name: CHURCH ADDRESS </h4>
-								<h4>Church Name: CHURCH CONTACT NUMBER </h4>
+								<h4>Church Address: '.$church_address.' </h4>
+								<h4>Church Number: '.$church_num.' </h4>
 
-								<h4>Church Name: USER NAME </h4>
-								<h4>Church Name: USER DESIGNATION </h4>
-								<h4>Church Name: USER CONTACT NUMBER </h4>';
+								<h4>Registree Name: '.$church_pfname . ' '. $church_plname.' </h4>
+								<h4>Registree Designation: '.$church_designation.' </h4>
+								<h4>Registree Number: '.$church_pnum.' </h4>';
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();
 			echo 'Message has been sent';

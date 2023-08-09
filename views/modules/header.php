@@ -8,6 +8,8 @@ if(isset($_COOKIE["acc_type"])){
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
+    echo"<style>.admin_settings{display:none !important;}</style>";
+    
 
     $acc_res = $_COOKIE['acc_restriction'];
 
@@ -69,7 +71,7 @@ if(isset($_COOKIE["acc_type"])){
                   </a>
                   <div class="header-notifications-list overflow-x-hidden" id="notifications">
 
-                    <a class="dropdown-item" href="requests">
+                    <a class="dropdown-item admin" href="requests">
                       <div class="d-flex align-items-center">
                         <div class="notify text-primary border">
                           <span class="material-symbols-outlined">
@@ -80,6 +82,7 @@ if(isset($_COOKIE["acc_type"])){
                           <h6 class="msg-name">Membership <span class="msg-time float-end " ></h6>
 
                             <?php 
+                            
                               $requests = (new CollaborationController)->ctrshowMembership(); 
 
                               $count = count($requests);
@@ -91,7 +94,7 @@ if(isset($_COOKIE["acc_type"])){
                       </div>
                     </a>
 
-                    <a class="dropdown-item" href="requests">
+                    <a class="dropdown-item admin" href="requests">
                       <div class="d-flex align-items-center">
                         <div class="notify text-primary border">
                           <span class="material-symbols-outlined">
@@ -113,33 +116,54 @@ if(isset($_COOKIE["acc_type"])){
                       </div>
                     </a>
                     
-                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleDangerModal">
-                      <div class="d-flex align-items-center">
-                        <div class="notify text-danger border">
+             
+                
+                    <?php 
+                    if($_COOKIE["acc_type"]  == "public"){
+                      $notif = (new ControllerNotifications)->ctrGetCollaborationNotifPUblic();
+                    }else{
+                      $notif = (new ControllerNotifications)->ctrGetCollaborationNotif();
+                    }
+             
+                    foreach($notif as $key => $value){
+
+                      if($value['notification_type'] == "Rejected"){
+                        echo '         <a class="dropdown-item" href="javascript:;">
+                        <div class="d-flex align-items-center">
+                          <div class="notify text-danger border">
                           <span class="material-symbols-outlined">
-                            report
-                            </span>
+                          do_not_disturb_on
+                          </span>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="msg-name">Request</h6>
+                            <p class="msg-info">'.$value['notification_text'].'</p>
+                          </div>
                         </div>
-                        <div class="flex-grow-1">
-                          <h6 class="msg-name">Admin(TBD)</h6>
-                          <p class="msg-info">We are notifying you that you are having...</p>
+                      </a>
+                      ';
+                      }else if ($value['notification_type'] == "Accepted"){
+                        echo '         <a class="dropdown-item" href="javascript:;">
+                        <div class="d-flex align-items-center">
+                          <div class="notify text-success border">
+                          <span class="material-symbols-outlined">
+                          check_circle
+                          </span>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="msg-name">Request</h6>
+                            <p class="msg-info">'.$value['notification_text'].'</p>
+                          </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                      ';
+                      }else{
+                        echo 'hehe';
+                      }
+
+                    }
                     
-                    <a class="dropdown-item" href="javascript:;">
-                      <div class="d-flex align-items-center">
-                        <div class="notify text-info border">
-                          <span class="material-symbols-outlined">
-                            approval_delegation
-                            </span>
-                        </div>
-                        <div class="flex-grow-1">
-                          <h6 class="msg-name">Request (TBD)</h6>
-                          <p class="msg-info">Our Lady of the Miraculous accepted collaboration</p>
-                        </div>
-                      </div>
-                    </a>
+                    ?>
 
           
 
@@ -160,7 +184,7 @@ if(isset($_COOKIE["acc_type"])){
                     </div>
                     <ul class="dropdown-menu dropdown-menu-end">
 
-                      <li class="admin"><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
+                      <li class="admin admin_settings"><a class="dropdown-item" href="churchsettings"><span class="material-symbols-outlined me-2">
                         settings
                         </span><span>Church Account Settings</span></a>
                       </li>

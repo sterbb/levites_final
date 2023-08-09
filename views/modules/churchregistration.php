@@ -67,21 +67,21 @@
                     <h5>Personal Information</h5>
                     <div class="col-12">
                       <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_pfname" name="name" placeholder="" >
+                      <input type="text" class="form-control border-3" id="church_pfname" name="church_pfname" placeholder="" >
                     </div>
                     <div class="col-12">
                       <label for="username" class="form-label">Last Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_plname" name="lname" placeholder="" >
+                      <input type="text" class="form-control border-3" id="church_plname" name="church_plname" placeholder="" >
                     </div>
                     <div class="row mt-4">
                     <div class="col-6">
                       <label for="username" class="form-label">Designation<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
-                      <input type="text" class="form-control border-3" id="church_designation" name="role" placeholder="e.g. secretary" >
+                      <input type="text" class="form-control border-3" id="church_designation" name="church_designation" placeholder="e.g. secretary" >
                     </div>
 
                     <div class="col-6">
                       <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_pnum" name="telnum" placeholder="Landline or phone number " >
+                      <input type="text" class="form-control border-3" id="church_pnum" name="church_pnum" placeholder="Landline or phone number " >
                     </div>
                     </div>
 
@@ -94,17 +94,17 @@
 
                     <div class="col-12">
                       <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
-                      <input type="email" class="form-control border-3" id="church_email" name="email" placeholder="example@user.com">
+                      <input type="email" class="form-control border-3" id="church_email" name="church_email" placeholder="example@user.com">
                     </div>
 
                     <div class="col-12">
                       <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Alice St." >
+                      <input type="text" class="form-control border-3" id="church_address" name="church_address" placeholder="Brgy. Singcang Airport, Alice St." >
                     </div>
 
                     <div class="col-12">
                       <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
-                      <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example" >
+                      <select class="form-select border-3" id="church_religion" name="church_religion" aria-label="Default select example" >
                       <option value="" hidden selected></option>
                       <option value="Aglipay">Aglipay</option>
                       <option value="Ang Dating Daan">Ang Dating Daan</option>
@@ -118,11 +118,11 @@
                     <div class="row mt-2 mb-2">
                       <div class="col-6">
                         <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
-                        <input type="text" class="form-control border-3" id="church_city" name="city" placeholder="Bacolod City">
+                        <input type="text" class="form-control border-3" id="church_city" name="church_city" placeholder="Bacolod City">
                       </div>
                       <div class="col-6">
                           <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                          <input type="text" class="form-control border-3" id="church_num" name="telnum" placeholder="Landline or phone number ">
+                          <input type="text" class="form-control border-3" id="church_num" name="church_num" placeholder="Landline or phone number ">
                       </div>
                     </div>
                 

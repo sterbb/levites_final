@@ -29,8 +29,11 @@ require_once "controllers/collaboration.controller.php";
 // require_once "controllers/churchsetting.controller.php";
 require_once "controllers/public.controller.php";
 require_once "controllers/reportsubmission.controller.php";
+require_once "controllers/notification.controller.php";
 
 
+
+require_once "models/notification.model.php";
 require_once "models/reportsubmission.model.php";
 
 require_once "models/churchsetting.model.php";

@@ -39,7 +39,7 @@
           </style>
 
           
-          <div class="col-3 membersChurch cursor-pointer" church_id="'.$value['memChurchID'].'" onclick="openProfile(this)">
+          <div class="col-3 membersChurch cursor-pointer" church_id="'.$value['memChurchID'].'" church_name="'.$value['memChurchName'].'" onclick="openProfile(this)">
           <div class="card h-auto">
               <img src="views/images/ch1.jpg" class="card-img-top" style="height: 350px;" alt="...">
                   <div class="card-body" style="height:150px;">
@@ -106,7 +106,7 @@
                 echo '
                 
                 <div class="row pt-3">
-                  <div class="col-12 col-lg-12 col-xl-12 cursor-pointer" church_id="'.$value['churchID'].'" onclick="openProfile(this)">
+                  <div class="col-12 col-lg-12 col-xl-12 cursor-pointer" church_id="'.$value['churchID'].'" church_name="'.$value['church_name'].'" onclick="openProfile(this)">
                     <div class="card overflow-hidden">
                       <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url(\'views/images/Trimph.jpg\'); height:250px">
                         <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
