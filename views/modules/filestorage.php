@@ -134,7 +134,7 @@
                           <div class="upload-file position-absolute top-0 end-1 notPublic">
                               <input type="file" id="fileInput" style="display: none;">
                             
-                              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown">Upload<i class='upicon bx bx-download'></i>
+                              <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-nocaret cursor-pointer" style="border-right: 0px; background: linear-gradient(to right, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;"  data-bs-toggle="dropdown">Upload<i class='upicon bx bx-download'></i>
                                 </button>
                                 <ul class="dropdown-menu">
                                   <li  class="upload"><a class="dropdown-item button" id="uploadFiles"><i class='upicon bx bxs-file-import' ></i>Upload Files</a>

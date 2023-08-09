@@ -70,7 +70,7 @@
                             <h6 id="podcastMessage" class="text-success mt-2" style="display: none;">A podcast already exists</h6>  
                             <input type="file" class="form-control" id="podcast_file" accept=".mp3, .wav, .ogg">
 
-                            <button type="button" class="btn btn-secondary mt-3" id="uploadPodcast">Upload<i class='upicon bx bx-download'></i>
+                            <button type="button" class="btn btn-secondary mt-3 border-0" style="background: linear-gradient(to right, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%);" id="uploadPodcast">Upload<i class='upicon bx bx-download' ></i>
                           </div>
                           
                         </div>
@@ -376,7 +376,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Event</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  data-bs-toggle="modal" data-bs-target="#addEventModal" ></button>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#displayEventsModal"></button>
         </div>
         <form role="form" id="addEventForm" method="POST" autocomplete="nope" class="addEventForm">
           <div class="modal-body" style="overflow-y:scroll; height: 60vh; ">
@@ -402,7 +402,7 @@
               </div>
                 <div class="row mt-3">
                     <div class="col-6">
-                      <label class="form-label fw-bold">Date Range</label>
+                      <label class="form-label fw-bold">Date Range </label><span class="text-grey" style="font-size: 11px"> (Double click the day to add Date)</span>
                       <input type="text" class="form-control date-range" id="event_date" />
                       
                     </div>
@@ -456,4 +456,98 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="col" >
+  <!-- Modal -->
+  <div class="modal fade" id="EditEvents" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Event</h5>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#displayEventsModal"></button>
+        </div>
+        <form role="form" id="" method="POST" autocomplete="nope" class="">
+          <div class="modal-body" style="overflow-y:scroll; height: 60vh; ">
+            <div >
+              <div class="row">
+
+              <input type="text" class="form-control" id="churchevent_id"  placeholder="" style="display:none;">
+
+                <div class="col-4">
+                      <label for="inputReligion" class="form-label fw-bold" >Event Type</label>
+                      <select class="form-select border-3" id="edit_event_type" aria-label="Default select example">
+                      <option selected="" value="Bible Study">Bible Study</option>
+                      <option value="Outreach">Outreach</option>
+                      <option value="Workshop">Workshop</option>
+                      <option value="Sunday Worship">Sunday Worship</option>
+                      <option value="Prayer Meeting">Prayer Meeting</option>
+                      <option value="Baptismal">Baptismal</option>
+                      <option value="Wedding">Wedding</option>
+                      </select>
+                  </div>  
+                  <div class="col-8"> 
+                      <label for="Collection" class="form-label fw-bold">Event Title</label>
+                      <input type="text" class="form-control " id="edit_event_title" placeholder="">
+                  </div>
+
+              </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                      <label class="form-label fw-bold">Date Range </label><span class="text-grey" style="font-size: 11px"> (Double click the day to add Date)</span>
+                      <input type="text" class="form-control date-range" id="edit_event_date" />
+                      
+                    </div>
+                    <div class="col-3">
+                      <label for="Collection" class="form-label fw-bold">Time Range</label>
+                      <input type="text" class="form-control time-picker" id="edit_event_time1"/>
+                    </div>
+                    <div class="col-3">
+                      <label for="Collection" class="form-label fw-bold">&nbsp</label>
+                      <input type="text" class="form-control time-picker" id="edit_event_time2"/>
+                    </div>    
+                </div>
+                <div class="row">
+                  <div class="col-6 "> 
+                      <label for="Collection" class="form-label fw-bold">Venue</label>
+                      <input type="text" class="form-control" id="edit_event_venue" placeholder="">
+                  </div>
+
+                  <div class="col-6 "> 
+                      <label for="event_location" class="form-label fw-bold">Location</label>
+                      <input type="text" class="form-control" id="edit_event_location" placeholder="">
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-12 ">
+                      <label for="event_announcement" class="form-label fw-bold">Announcement</label>
+                      <textarea class="form-control" id="edit_event_announcement" rows="5"></textarea>
+                  </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end mt-3">
+                  <button type="button" class="btn btn-outline-dark px-5 radius-30 text-center" data-bs-toggle="modal" data-bs-target="#addGroupModal"><i class="fadeIn animated bx bx-plus"></i><i class="fadeIn animated bx bx-group"></i>&nbsp;Add Group</button>
+                </div>
+
+                <div class="row row-cols-1 row-cols-lg-3 g-3 border-bottom pb-3 pt-3" id="add_group_preview">
+
+                </div>
+                
+              </div>
+          </div>
+
+          <div class="modal-footer">
+            <div class="row pt-3">
+              <div class="col d-flex justify-content-end">
+                <button type="button" class="btn btn-danger me-3">Clear </button>
+                <button type="button" onclick="NewEditEvent(this)"  class="btn btn-success me-3">Save</button>
+              </div>     
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
