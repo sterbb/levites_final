@@ -32,14 +32,16 @@
 
                     $membership = (new ControllerPublic)->ctrCheckMembership();
                       
-                    if (isset($membership['membership_status'])) {
+                    if (isset($membership['membership_status']) && $membership['membership_status'] == 1) {
                       // if($membership['membership_status'] == 1){
                         echo'
-                        <button class="btn btn-danger btn-hover rejectMembershipBtn">Cancel Membership</button>';
-                      // }else{
-                      //   echo'
-                      //   <button class="btn btn-primary btn-hover askMembershipBtn">Ask Membership</button>';
-                      // }
+                        <button class="btn btn-danger btn-hover removeMembershipBtn" value="'.$membership['mshipID'].'">Remove Membership</button>';
+        
+                    }else if (isset($membership['membership_status'])  && $membership['membership_status'] == 0   && $membership['canmship_status'] == 0) {
+                      // && ( $membership['rejmship_status'] == 1   || $membership['canmship_status'] == 0) 
+                      // if($membership['membership_status'] == 1){
+                        echo'
+                        <button class="btn btn-danger btn-hover cancelMembershipBtn" value="'.$membership['mshipID'].'">Cancel Request</button>';
                     }else{
                       echo'
                       <button class="btn btn-primary btn-hover askMembershipBtn">Ask Membership</button>';
@@ -112,19 +114,60 @@
                         
             </div>
 
-            <div class="card">
-              <div class="card-body">
-                  <h5 class="mb-2">Calendar of Activities</h5>
-                </div>
+            <div class="row">
+
+              <div class="col-2">
                 <div class="card">
-					<div class="card-body">
-						<div class="table-responsive">
-							<div id='calendar2' class="calendar2"></div>
-						</div>
-					</div>
-				</div>
+                  <div class="card-body">
+                      <h6 class="pb-3">Calendar Filters</h6>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Bible Study" checked style="background-color: #6CAE75; border: 2px solid #6CAE75;">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Bible Study</label>
+                  </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Outreach" checked style="background-color: #5285C5; border: 2px solid #5285C5;">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Outreach</label>
+                  </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Workshop" checked style="background-color: #F9A646; border: 2px solid #F9A646;"> 
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Workshop</label>
+                  </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Sunday Worship" checked style="background-color: #A17EBF; border: 2px solid #A17EBF;">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Sunday Worship</label>
+                  </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Prayer Meeting" checked style="background-color: #FF7F50; border: 2px solid #FF7F50;">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Prayer Meeting</label>
+                  </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Baptismal" checked style="background-color: #4FA1D8; border: 2px solid #4FA1D8;">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Baptismal</label>
+                  </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input calendar-filter2" type="checkbox" id="Wedding" checked style="background-color: #D55C88; border: 2px solid #D55C88;">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Wedding</label>
+                  </div>
+                  </div>
+                </div>
               </div>
+
+               <div class="col-10">
+                    <div class="card">
+                     
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <div id='calendar2' class="calendar2"></div>
+                            </div>
+                          </div>
+                  
+                      </div>
+                    </div>
+                </div>
+              
             </div>
+
+     
             
           <div class="col-12 col-lg-4 col-xl-3">
             <div class="card">

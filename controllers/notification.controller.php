@@ -10,6 +10,10 @@ class ControllerNotifications{
         return $answer = (new ModelNotifications)->mdlGetCollaborationNotifPublic();
     }
 
+    static public function ctrclearNotification($data){
+        return $answer = (new ModelNotifications)->mdlclearNotifications($data);
+    }
+
 
 }
 

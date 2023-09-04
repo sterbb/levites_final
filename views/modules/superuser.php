@@ -51,9 +51,9 @@
                                     </div>
                                     <div class="church_div">
                                         <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:none;" required>
-                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" value="hello">View Details</button>
-                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" onclick="changeButtonText(this)">Accept</button>
-                                        <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn">Reject</button>
+                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="'.$value["church_name"].'" onclick="changeButtonText(this)">Accept</button>
+                                        <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="'.$value["church_name"].'">Reject</button>
                                     </div>
                                     </div>
                                     <hr> <!-- Add hr within the container -->
@@ -111,7 +111,7 @@
                                             </div>
                                             <div class="church_div">
                                                 <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:none;" required>
-                                                <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" value="hello">View Details </button>
+                                                <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
                                                 <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" onclick="changeButtonText(this)">Accept </button>
                                             </div>
                                         </div>

@@ -33,8 +33,30 @@ if(isset($_COOKIE["acc_type"])){
     echo"<style>.superuser{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
   }
+  elseif($_COOKIE["acc_type"]  == "publicSub"){
+  
+    echo"<style>.superuser{display:none !important;}</style>";
+    echo"<style>.churchadmin{display:none !important;}</style>";
+    echo"<style>.admin_settings{display:none !important;}</style>";
+    
+
+    $acc_res = $_COOKIE['acc_restriction'];
+
+    if(strpos($acc_res, 'C') === false){
+      echo"<style>.calendar{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'S') === false){
+      echo"<style>.storage{display:none !important;}</style>";
+    }
+    if(strpos($acc_res, 'R') === false  ){
+      echo"<style>.request{display:none !important;}</style>";
+    }
+
+  }
 
 }
+
+//publicSub kulang 
 
 ?>
 <!--start header-->
@@ -46,24 +68,42 @@ if(isset($_COOKIE["acc_type"])){
 
             <ul class="navbar-nav top-right-menu gap-2">
 
-             <li class="nav-item dark-mode">
+             <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="modal" data-bs-target="#ReportModal"><span class="material-symbols-outlined">warning</span></button>
               </li>
            
               <li class="nav-item dark-mode">
                 <button class="nav-link dark-mode-icon" id="theme-switcher"><span class="material-symbols-outlined">dark_mode</span></button>
               </li>
+
               <li class="nav-item dropdown dropdown-large">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
+                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret notification-btn"  data-bs-toggle="dropdown">
                   <div class="position-relative">
-                    <span class="notify-badge">3</span>
+                    <span class="notify-badge">
+                      <?php
+                        if($_COOKIE["acc_type"]  == "public"){
+                          $notif = (new ControllerNotifications)->ctrGetCollaborationNotifPUblic();
+                        }else{
+                          $notif = (new ControllerNotifications)->ctrGetCollaborationNotif();
+                        }
+
+                        $count = 0;
+                        foreach($notif as $key => $value){
+                          if($value['notification_status'] == 0){
+                            $count++;
+                          }
+                        }
+                  
+                        echo $count;
+                      ?>
+                  </span>
                     <span class="material-symbols-outlined">
                       notifications_none
                       </span>
                   </div>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end mt-lg-2" >
-                  <a href="javascript:;">f
+                <div class="dropdown-menu dropdown-menu-end mt-2" >
+                  <a href="javascript:;">
                     <div class="msg-header">
                       <p class="msg-header-title">Notifications</p>
     
@@ -79,15 +119,25 @@ if(isset($_COOKIE["acc_type"])){
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Membership <span class="msg-time float-end " ></h6>
+                        
 
                             <?php 
+                                if($_COOKIE["acc_type"]  != "public" && $_COOKIE["acc_type"]  != "superuser"){
+    
+                                  $requests = (new CollaborationController)->ctrshowMembership(); 
+
+                                  $count = count($requests);
+
+                                  if($count == 0){
+                                    echo '<h6 class="msg-name">Membership <span class="msg-time float-end"></h6>';
+                                  }else{
+                                    echo '<h6 class="msg-name">Membership <sup style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: blue; text-align: center; line-height: 20px; color: white;">
+                                    </sup><span class="msg-time float-end " ></h6>';
                             
-                              $requests = (new CollaborationController)->ctrshowMembership(); 
+                                  }
 
-                              $count = count($requests);
-
-                              echo "<p class='msg-info'>You have ".$count." pending membership request.</p>";
+                                  echo "<p class='msg-info'>You have ".$count." pending membership request.</p>";
+                                }
                             ?>
                          
                         </div>
@@ -102,19 +152,29 @@ if(isset($_COOKIE["acc_type"])){
                             </span>
                         </div>
                         <div class="flex-grow-1">
-                          <h6 class="msg-name">Church Collaboration <span class="msg-time float-end " ></h6>
-
+                        
                             <?php 
-                                   $requests = (new CollaborationController)->ctrshowRequests();
+                              if($_COOKIE["acc_type"]  != "public" && $_COOKIE["acc_type"]  != "superuser"){
+                                $requests = (new CollaborationController)->ctrshowRequests();
 
-                              $count = count($requests);
+                                $count = count($requests);
 
-                              echo "<p class='msg-info'>You have ".$count." pending membership request.</p>";
+                                if($count == 0){
+                                    echo '<h6 class="msg-name">Church Collaboration <span class="msg-time float-end"></h6>';
+                                }else{
+                                  echo '<h6 class="msg-name">Church Collaboration <sup style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: blue; text-align: center; line-height: 20px; color: white;">
+                                  </sup><span class="msg-time float-end"></h6>';
+                                }
+                                
+                                echo "<p class='msg-info'>You have ".$count." pending membership request.</p>";
+                              }
                             ?>
                          
                         </div>
                       </div>
                     </a>
+
+                    <div id="notifications-storage"></div>
                     
              
                 
@@ -128,20 +188,38 @@ if(isset($_COOKIE["acc_type"])){
                     foreach($notif as $key => $value){
 
                       if($value['notification_type'] == "Rejected"){
-                        echo '         <a class="dropdown-item" href="javascript:;">
-                        <div class="d-flex align-items-center">
+                        if(str_contains($value['notification_title'], 'Request') || str_contains($value['notification_title'], 'Church')){
+                          echo'<a class="dropdown-item" href="requests">';
+                        }else if(str_contains($value['notification_title'], 'Membership')){
+                          echo'<a class="dropdown-item" href="membership">';
+                        }
+                        echo '
+                          <div class="d-flex align-items-center" >
                           <div class="notify text-danger border">
                           <span class="material-symbols-outlined">
                           do_not_disturb_on
                           </span>
                           </div>
-                          <div class="flex-grow-1">
-                            <h6 class="msg-name">Request</h6>
-                            <p class="msg-info">'.$value['notification_text'].'</p>
-                          </div>
-                        </div>
-                      </a>
-                      ';
+                          <div class="flex-grow-1" >';
+                          if($value['notification_status'] == 0){
+                            echo'
+                                  <h6 class="msg-name">'.$value['notification_title'].' <sup style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: blue; text-align: center; line-height: 20px; color: white;">
+                                  </sup></h6>
+                                  <p class="msg-info">'.$value['notification_text'].'</p>
+                                </div>
+                              </div>
+                            </a>
+                            ';
+                          }else{
+                            echo'
+                                  <h6 class="msg-name">'.$value['notification_title'].'</h6>
+                                  <p class="msg-info">'.$value['notification_text'].'</p>
+                                </div>
+                              </div>
+                            </a>
+                            ';
+                          }
+                       
                       }else if ($value['notification_type'] == "Accepted"){
                         echo '         <a class="dropdown-item" href="javascript:;">
                         <div class="d-flex align-items-center">
@@ -150,13 +228,25 @@ if(isset($_COOKIE["acc_type"])){
                           check_circle
                           </span>
                           </div>
-                          <div class="flex-grow-1">
-                            <h6 class="msg-name">Request</h6>
-                            <p class="msg-info">'.$value['notification_text'].'</p>
-                          </div>
-                        </div>
-                      </a>
-                      ';
+                          <div class="flex-grow-1">';
+                          if($value['notification_status'] == 0){
+                            echo'
+                                  <h6 class="msg-name">'.$value['notification_title'].' <sup style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: blue; text-align: center; line-height: 20px; color: white;">
+                                  </sup></h6>
+                                  <p class="msg-info">'.$value['notification_text'].'</p>
+                                </div>
+                              </div>
+                            </a>
+                            ';
+                          }else{
+                            echo'
+                                  <h6 class="msg-name">'.$value['notification_title'].'</h6>
+                                  <p class="msg-info">'.$value['notification_text'].'</p>
+                                </div>
+                              </div>
+                            </a>
+                            ';
+                          }
                       }else{
                         echo 'hehe';
                       }
@@ -178,8 +268,23 @@ if(isset($_COOKIE["acc_type"])){
                         <img src="views/images/ch3.3.png" alt="">
                       </div>
                       <div class="user-info">
-                        <h5 class="mb-0 user-name"><?php echo $_COOKIE["acc_name"]?></h5>
-                        <p class="mb-0 user-designation"><?php echo ucfirst($_COOKIE["acc_type"])?></p>
+                        <h5 class="mb-0 user-name"><?php
+                          if($_COOKIE['acc_type'] == "superuser" ){
+                            echo "Levites";
+                          }else{
+                            echo $_COOKIE["acc_name"];
+                          }
+                          ?>
+                         
+                        </h5>
+                        <?php
+                        if($_COOKIE['acc_type'] == "admin" || $_COOKIE['acc_type'] == "subuser" ||$_COOKIE['acc_type'] == "publicSub" ){
+                            echo '<p class="mb-0 user-designation">'.$_COOKIE['church_name'] .' - '. ucfirst($_COOKIE["acc_type"]).'</p>';
+                        }else{
+                          echo '<p class="mb-0 user-designation">'.ucfirst($_COOKIE["acc_type"]).'</p>';
+                        }
+                        ?>
+                
                       </div>
                     </div>
                     <ul class="dropdown-menu dropdown-menu-end">

@@ -293,8 +293,8 @@ try {
             <div class="card-body folder-div"  data-bs-target="#folderModal" >
                 <div class="d-flex align-items-center folder-div">
                   <div class="font-30 text-primary mt-3" >
-                    <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0 clicked" style="z-index:999; notPublic" value="${folderName}" onclick="pinFolder(this)"><i class="bx bx-pin fs-5"></i></button>
-                    <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info notPublic" onclick="showNote(this)" value="${folderName}"><i class='bx bx-info-circle fs-4 m-3'></i></button>
+                    <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0 clicked" style="z-index:999; notPublic" data-toggle="tooltip" data-placement="left" title="Click to Unpin" value="${folderName}" onclick="pinFolder(this)"><i class="bx bx-pin fs-5"></i></button>
+                    <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info notPublic" onclick="showNote(this)" data-toggle="tooltip" data-placement="left" title="Click To See Note" value="${folderName}"><i class='bx bx-info-circle fs-4 m-3'></i></button>
                     </button>
                   </div>
                   
@@ -303,7 +303,7 @@ try {
                   <div class="dropdown ms-auto">
                     <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 notPublic" data-bs-toggle="dropdown"><i class="bi bi-three-dots fs-4 notPublic"></i>
                     </button>
-                    <ul class="dropdown-menu notPublic" style="z-index:999;  ">
+                    <ul class="dropdown-menu notPublic float-end" style="z-index:999;  ">
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#createNote" onclick="setUpFilePath(this)" value="${folderName}"><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal" data-bs-target="#editNote" value="${folderName}"><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
@@ -351,8 +351,8 @@ try {
             <div class="card-body folder-div">
               <div class="d-flex align-items-center folder-div">
                 <div>
-                  <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0" style="z-index:999;" value="${folderName}" onclick="pinFolder(this)"><i class="bx bx-pin fs-5"></i></button>
-                  <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info notPublic" onclick="showNote(this)" value="${folderName}"><i class='bx bx-info-circle fs-4 m-3'></i></button>
+                  <button type="button" id="pinButton" class="pinned-button cursor-pointer position-absolute top-0 start-0" style="z-index:999;" data-toggle="tooltip" data-placement="left" title="Click to Pin Folder" value="${folderName}" onclick="pinFolder(this)"><i class="bx bx-pin fs-5"></i></button>
+                  <button type="button" id="" class="info-mod cursor-pointer position-absolute bottom-0 end-0 text-info notPublic" onclick="showNote(this)" data-toggle="tooltip" data-placement="left" title="Click To See Note" value="${folderName}"><i class='bx bx-info-circle fs-4 m-3'></i></button>
                 </div>
                 <div class="font-30 text-secondary mt-2" onclick="handleClick(this)" value="${folderName}"><i class="bx bxs-folder"></i></div>
               </div>
@@ -637,28 +637,73 @@ hiddenBtn.onchange = function () {
     // Set metadata
 var metadata = {
   customMetadata: {
-    createdBy: getCookie('acc_name')
+    createdBy: decodeURIComponent(getCookie('acc_name')),
   }
 };
 
   // now upload
   var storageRef = firebase.storage().ref(path);
-  var uploadTask = storageRef.put(file, metadata);
 
-   // Listen for upload completion
-uploadTask.on(
-    'state_changed',
-    null,
-    null,
-    function () {
-      // Perform listing after upload
-      listFilesInFolder(currentPath);
-      listFoldersInFolder(currentPath);
-    }
-  );
+  // Check the file type before uploading
+  var allowedFileTypes = [
+    'application/pdf',
+    'text/plain',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    'video/mp4',
+    'image/jpeg',
+    'image/png',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
+    'application/vnd.ms-excel' 
+  ];
+  
+  if (allowedFileTypes.includes(file.type)) {
+    var uploadTask = storageRef.put(file, metadata);
+  
+    // Get references to the progress bar and status elements
+    var progressBar = document.getElementById('progressBar');
+    var statusMessage = document.getElementById('statusMessage');
+    var successMessage = 'File uploaded successfully!';
 
-    // listFilesInFolder(currentPath);
-    // listFoldersInFolder(currentPath);
+  
+    // Listen for upload state changes
+    uploadTask.on(
+      'state_changed',
+      function (snapshot) {
+        // Update progress bar and status message
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        progressBar.style.width = progress + '%';
+        statusMessage.textContent = 'Uploading... ' + Math.round(progress) + '%';
+      },
+      function (error) {
+        // Handle upload error
+        console.error('Upload error:', error);
+      },
+      function () {
+        // Perform listing after upload
+        listFilesInFolder(currentPath);
+        listFoldersInFolder(currentPath);
+  
+        // Reset progress bar and status message
+        progressBar.style.width = '0%';
+        statusMessage.textContent = successMessage;
+  
+        // Optionally, display a success message or close the progress bar
+        // Display success message to the user or close the progress bar
+        // You can modify this part based on your UI design
+      }
+    );
+  } else {
+    // Display the error modal
+    var modalErrorMessage = 'Invalid file type. Only PDF, TXT, DOCX, PPTX, MP4, JPG, PNG, XLSX, and XLS files are allowed.';
+    var modalBody = document.getElementById('modalErrorMessage');
+    modalBody.textContent = modalErrorMessage;
+  
+    var modal = new bootstrap.Modal(document.getElementById('errorModal'));
+    modal.show();
+  }
+  
+
 }
 
 $("#createFolderBtn").click(function(){
@@ -720,7 +765,7 @@ var subfolderRef = storage.ref(parentFolderPath + "/" + subfolderName + "/.place
 
 var metadata = {
   customMetadata: {
-    createdBy: getCookie('acc_name'),
+    createdBy: decodeURIComponent(getCookie('acc_name')),
     createdDate: new Date().toLocaleDateString(),
     createdTime: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),            
     // Add more custom metadata properties as needed
@@ -1192,7 +1237,7 @@ $('.affiliatesSection').click(function() {
 
 function publicFolder(element){
   var path = getCookie('church_id');
-  var path_name = getCookie('church_name') +" > Public";
+  var path_name =  decodeURIComponent(getCookie('church_name')) +" > Public";
 
  currentPath = path + "/Public";
  document.cookie = "publicClicked=true; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";
@@ -1209,7 +1254,7 @@ function publicFolder(element){
 // for member
 function memberFolder(element){
   var path = getCookie('church_id');
-  var path_name = getCookie('church_name') +" > Members";
+  var path_name =  decodeURIComponent(getCookie('church_name')) +" > Members";
 
  currentPath = path + "/Members";
  document.cookie = "memberClicked=true; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/";

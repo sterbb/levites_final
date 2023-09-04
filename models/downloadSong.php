@@ -5,7 +5,7 @@ if (isset($_POST['track_id'])) {
     $track_id = $_POST['track_id'];
 
 // Replace 'YOUR_API_KEY' with your actual MusicMatch API key
-$api_key = '7a089ceadb3e1e9367a4a5f5d5e5a343';
+$api_key = '10d5d6cfd3f1d6b777a1d447a76327de';
 
 // API endpoint URLs
 $lyrics_endpoint = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?apikey=$api_key&track_id=$track_id";

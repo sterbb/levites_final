@@ -87,7 +87,7 @@ $(function(){
        },
         success: function(answer) {
           console.log(answer);
-          // window.location.href='verifyEmail';
+          window.location.href='verifyEmail';
         },
         error: function() {
             alert("Oops. Something went wrong!");

@@ -86,7 +86,7 @@ public static function mdlShowPublic(){
         $church_id = $_COOKIE["church_id"];
         $date = $_COOKIE["viewDate"];
 
-        $stmt = (new Connection)->connect()->prepare("SELECT * FROM calendar WHERE churchID = :churchID AND event_date = :event_date");
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM calendar WHERE churchID = :churchID AND (:event_date BETWEEN event_date AND event_date2)");
         $stmt->bindParam(":churchID", $church_id, PDO::PARAM_STR);
         $stmt->bindParam(":event_date", $date, PDO::PARAM_STR);
 		$stmt -> execute();

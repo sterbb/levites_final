@@ -6,7 +6,7 @@ class CollaborationModel
     {
         $church_name =  $query["churchName"] . '%';
 
-        $stmt = (new Connection)->connect()->prepare("SELECT * FROM churches WHERE church_name LIKE :query");
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM churches WHERE church_name LIKE :query AND church_status = 1");
         $stmt->bindParam(':query', $church_name, PDO::PARAM_STR);
         $stmt->execute();
 
@@ -19,7 +19,7 @@ class CollaborationModel
         $status = 0;
         
 
-        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2 FROM churchcollab WHERE churchid1 = :churchid1 AND reject_status = :reject_status AND cancel_status = :cancel_status AND collab_status = :collab_status");
+        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2 FROM churchcollab WHERE churchid1 = :churchid1 AND reject_status = :reject_status AND cancel_status = :cancel_status AND collab_status = :collab_status ORDER BY collabdate DESC");
         $stmt->bindParam(':churchid1', $church_id, PDO::PARAM_STR);
         $stmt->bindParam(':reject_status', $status, PDO::PARAM_INT);
         $stmt->bindParam(':collab_status', $status, PDO::PARAM_INT);
@@ -39,7 +39,7 @@ class CollaborationModel
         $church_id = $_COOKIE['church_id'];
         $collab_status = 1;
 
-        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2 FROM churchcollab WHERE churchid1 = :churchid1 AND collab_status =:collab_status ");
+        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2, collabdate FROM churchcollab WHERE churchid1 = :churchid1 AND collab_status =:collab_status ORDER BY collabdate DESC");
         $stmt->bindParam(':churchid1', $church_id, PDO::PARAM_STR);
         $stmt->bindParam(':collab_status', $collab_status, PDO::PARAM_INT);
         $stmt->execute();
@@ -50,7 +50,7 @@ class CollaborationModel
         // Check if there are no results
 
 
-            $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2  AND collab_status =:collab_status");
+            $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1, collabdate  FROM churchcollab WHERE churchid2 = :churchid2  AND collab_status =:collab_status ORDER BY collabdate DESC");
             $stmt2->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
             $stmt2->bindParam(':collab_status', $collab_status, PDO::PARAM_INT);
             $stmt2->execute();
@@ -60,7 +60,9 @@ class CollaborationModel
  
           
             $result2 = array_merge($result2, $results);
-            
+            usort($result2, function($a, $b) {
+                return strtotime($b['collabdate']) - strtotime($a['collabdate']);
+            });
             // Return the array containing results from both queries
             return $result2;
 
@@ -72,7 +74,7 @@ class CollaborationModel
         $church_id = $_COOKIE['church_id'];
         $status = 0;
 
-        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2 AND reject_status = :reject_status AND cancel_status = :cancel_status AND collab_status = :collab_status");
+        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2 AND reject_status = :reject_status AND cancel_status = :cancel_status AND collab_status = :collab_status ORDER BY collabdate DESC");
         $stmt->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
         $stmt->bindParam(':reject_status', $status, PDO::PARAM_INT);
         $stmt->bindParam(':collab_status', $status, PDO::PARAM_INT);
@@ -88,7 +90,7 @@ class CollaborationModel
         $church_id = $_COOKIE['church_id'];
         $rejected_status = 1;
 
-        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2 FROM churchcollab WHERE churchid1 = :churchid1 AND reject_status =:reject_status ");
+        $stmt = (new Connection)->connect()->prepare("SELECT collabID, churchid2, churchname2, collabdate  FROM churchcollab WHERE churchid1 = :churchid1 AND reject_status =:reject_status ORDER BY collabdate DESC");
         $stmt->bindParam(':churchid1', $church_id, PDO::PARAM_STR);
         $stmt->bindParam(':reject_status', $rejected_status, PDO::PARAM_INT);
         $stmt->execute();
@@ -99,7 +101,7 @@ class CollaborationModel
         // Check if there are no results
 
 
-            $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1 FROM churchcollab WHERE churchid2 = :churchid2  AND reject_status =:reject_status ");
+            $stmt2 = (new Connection)->connect()->prepare("SELECT collabID, churchid1, churchname1, collabdate  FROM churchcollab WHERE churchid2 = :churchid2  AND reject_status =:reject_status ORDER BY collabdate DESC");
             $stmt2->bindParam(':churchid2', $church_id, PDO::PARAM_STR);
             $stmt2->bindParam(':reject_status', $rejected_status, PDO::PARAM_INT);
             $stmt2->execute();
@@ -109,6 +111,9 @@ class CollaborationModel
  
           
             $result2 = array_merge($result2, $results);
+            usort($result2, function($a, $b) {
+                return strtotime($b['collabdate']) - strtotime($a['collabdate']);
+            });
             
             // Return the array containing results from both queries
             return $result2;
@@ -169,9 +174,11 @@ class CollaborationModel
     static public function mdlCancelRequest($data){
 
         $cancel = 1;
-    
-        $stmt = (new Connection)->connect()->prepare("UPDATE churchcollab SET cancel_status = :cancel_status WHERE collabID = :collabID ");
+        $collabDate = date('Y-m-d');
+
+        $stmt = (new Connection)->connect()->prepare("UPDATE churchcollab SET cancel_status = :cancel_status, collabdate =:collabdate WHERE collabID = :collabID ");
         $stmt->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
+        $stmt->bindParam(":collabdate", $collabDate, PDO::PARAM_STR);
         $stmt->bindParam(":cancel_status", $cancel, PDO::PARAM_INT);
         $stmt -> execute();
         return $stmt -> fetch();
@@ -192,7 +199,7 @@ class CollaborationModel
 
         $collabDate = date('Y-m-d');
 
-        $title = "Request Accepted";
+        $title = "Collaboration Accepted";
         $type = 'Accepted';
         $notification = $_COOKIE['church_name'] . " accepted the collaboration.";
 
@@ -201,8 +208,9 @@ class CollaborationModel
       
         $accept = 1;
     
-        $stmt2 = (new Connection)->connect()->prepare("UPDATE churchcollab SET collab_status = :collab_status WHERE collabID = :collabID ");
+        $stmt2 = (new Connection)->connect()->prepare("UPDATE churchcollab SET collab_status = :collab_status, collabdate =:collabdate  WHERE collabID = :collabID ");
         $stmt2->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
+        $stmt2->bindParam(":collabdate", $collabDate, PDO::PARAM_STR);
         $stmt2->bindParam(":collab_status", $accept, PDO::PARAM_INT);
         $stmt2 -> execute();
         $stmt2 = null;	
@@ -259,7 +267,7 @@ class CollaborationModel
 
         $collabDate = date('Y-m-d');
 
-        $title = "Request Rejected";
+        $title = "Collaboration Rejected";
         $type = 'Rejected';
         $notification = $_COOKIE['church_name'] . " rejected the collaboration.";
 
@@ -267,8 +275,9 @@ class CollaborationModel
 
         $accept = 1;
     
-        $stmt2 = (new Connection)->connect()->prepare("UPDATE churchcollab SET reject_status = :reject_status WHERE collabID = :collabID ");
+        $stmt2 = (new Connection)->connect()->prepare("UPDATE churchcollab SET reject_status = :reject_status, collabdate =:collabdate  WHERE collabID = :collabID ");
         $stmt2->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
+        $stmt2->bindParam(":collabdate", $collabDate, PDO::PARAM_STR);
         $stmt2->bindParam(":reject_status", $accept, PDO::PARAM_INT);
         $stmt2 -> execute();
         $stmt2 = null;	
@@ -313,8 +322,9 @@ class CollaborationModel
 
         $remove = 0;
     
-        $stmt = (new Connection)->connect()->prepare("UPDATE churchcollab SET collab_status = :collab_status WHERE collabID = :collabID ");
+        $stmt = (new Connection)->connect()->prepare("UPDATE churchcollab SET collab_status = :collab_status, collabdate =:collabdate  WHERE collabID = :collabID ");
         $stmt->bindParam(":collabID", $data['collabID'], PDO::PARAM_STR);
+        $stmt->bindParam(":collabdate", $collabDate, PDO::PARAM_STR);
         $stmt->bindParam(":collab_status", $remove, PDO::PARAM_INT);
         $stmt -> execute();
         return $stmt -> fetch();
@@ -335,6 +345,8 @@ public function mdladdMembership($data)
 
     $current_year = substr(date('Y'), -2 );
     $current_month = date('n');
+
+
     
     try{
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -374,7 +386,7 @@ static public function mdlshowMembership(){
     $acc_id = $_COOKIE['church_id'];
     $status = 0;
 
-    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status AND canmship_status = :canmship_status AND membership_status = :membership_status");
+    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status AND canmship_status = :canmship_status AND membership_status = :membership_status ORDER BY membershipDate DESC");
     $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
     $stmt->bindParam(':rejmship_status', $status, PDO::PARAM_INT);
     $stmt->bindParam(':membership_status', $status, PDO::PARAM_INT);
@@ -391,6 +403,8 @@ static public function mdlshowMembership(){
         $acc_id = $_COOKIE['church_id'];
         $status = 1;
 
+  
+
         $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status");
         $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
         $stmt->bindParam(':rejmship_status', $status, PDO::PARAM_INT);
@@ -406,7 +420,7 @@ static public function mdlshowAffilatedMember(){
     $acc_id = $_COOKIE['church_id'];
     $status = 1;
 
-    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memChurchID, memberName FROM membership WHERE memChurchID = :memChurchID AND membership_status =:membership_status");
+    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memChurchID, memberName FROM membership WHERE memChurchID = :memChurchID AND membership_status =:membership_status ORDER BY membershipDate DESC");
     $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
     $stmt->bindParam(':membership_status', $status, PDO::PARAM_INT);
     $stmt->execute();
@@ -425,8 +439,6 @@ static public function mdlMemberAccept($data){
 
     $current_year = substr(date('Y'), -2 );
     $current_month = date('n');
-
-    $collabDate = date('Y-m-d');
 
     $title = "Membership Accepted";
     $type = 'Accepted';
@@ -497,7 +509,7 @@ static public function mdlMemberReject($data){
     $current_year = substr(date('Y'), -2 );
     $current_month = date('n');
 
-    $collabDate = date('Y-m-d');
+
 
     $title = "Membership Rejected";
     $type = 'Rejected';
@@ -509,8 +521,9 @@ static public function mdlMemberReject($data){
 
     $accept = 1;
 
-    $stmt2 = (new Connection)->connect()->prepare("UPDATE membership SET rejmship_status = :rejmship_status WHERE mshipID = :mshipID ");
+    $stmt2 = (new Connection)->connect()->prepare("UPDATE membership SET rejmship_status = :rejmship_status, membershipDate = :membershipDate WHERE mshipID = :mshipID ");
     $stmt2->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt2->bindParam(":membershipDate", $membershipDate, PDO::PARAM_STR);
     $stmt2->bindParam(":rejmship_status", $accept, PDO::PARAM_INT);
     $stmt2 -> execute();
     $stmt2 = null;	
@@ -559,8 +572,9 @@ static public function mdlMemberRemove($data){
 
     $remove = 0;
 
-    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status WHERE mshipID = :mshipID ");
+    $stmt = (new Connection)->connect()->prepare("UPDATE membership SET membership_status = :membership_status, membershipDate = :membershipDate WHERE mshipID = :mshipID ");
     $stmt->bindParam(":mshipID", $data['mshipID'], PDO::PARAM_STR);
+    $stmt->bindParam(":membershipDate", $membershipDate, PDO::PARAM_STR);
     $stmt->bindParam(":membership_status", $remove, PDO::PARAM_INT);
     $stmt -> execute();
     return $stmt -> fetch();
@@ -571,12 +585,13 @@ static public function mdlMemberRemove($data){
 
 static public function mdlMemberReport() {
     $churchID = $_COOKIE['church_id'];
-    $stmt = (new Connection)->connect()->prepare("SELECT membershipDate FROM membership WHERE memChurchID = :memChurchID ");
+    $stmt = (new Connection)->connect()->prepare("SELECT membershipDate, memberName, memberEmail FROM membership WHERE memChurchID = :memChurchID ");
     $stmt->bindParam(":memChurchID", $churchID, PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $stmt->closeCursor(); // Close the cursor to free up resources
     return $result;
+    $stmt -> close();
+
 }
 
 static public function mdlAffiliatedMemberReport() {

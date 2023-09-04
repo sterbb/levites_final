@@ -8,13 +8,16 @@
     <link rel="icon" href="views/images/try2.png" type="image/x-icon" alt="Favicon">
 
 
+
+
 	<!--plugins-->
+
 	<link href="views/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
     <link href="views/assets/plugins/fullcalendar/css/main.min.css" rel="stylesheet">
     <link href="views/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
     <link href="views/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
     <link href="views/assets/plugins/input-tags/css/tagsinput.css" rel="stylesheet">
-	<link href="views/css/style.css" rel="stylesheet">
+	<link href="views/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -25,14 +28,18 @@
 	<link href="views/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
 
+
+
     <!-- loader-->
     <link href="views/assets/css/pace.min.css" rel="stylesheet">
     <script src="views/assets/js/pace.min.js"></script>
     <!--Styles-->
     <link href="views/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="views/assets/css/icons.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="views/assets/css/extra-icons.css" rel="stylesheet">
@@ -51,8 +58,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="views/assets/plugins/notifications/css/lobibox.min.css">
 
-   
 
+	
 
 
     
@@ -93,6 +100,7 @@
 			$_GET["route"] == 'verifyEmail' ||
 			$_GET["route"] == 'verifyForget' ||
 			$_GET["route"] == 'landingpage' ||
+			$_GET["route"] == 'membership' ||
 			$_GET["route"] == 'demomusic' ||
 			$_GET["route"] == 'dailyreading' ||
 			$_GET["route"] == 'reports' ||
@@ -131,6 +139,7 @@
     ?>
 	
 <!-- Font Awesome -->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -147,10 +156,10 @@
 
 
 
+
 	
     <script src="views/assets/plugins/input-tags/js/tagsinput.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-	<script src="views/assets/plugins/select2/js/select2-custom.js"></script>
+
 
 	<script src="views/assets/plugins/fancy-file-uploader/jquery.ui.widget.js"></script>
 	<script src="views/assets/plugins/fancy-file-uploader/jquery.fileupload.js"></script>
@@ -159,10 +168,16 @@
 	<script src="views/assets/plugins/validation/jquery.validate.min.js"></script>
 	<script src="views/assets/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	
 
 	<script src="views/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
    <script src="views/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+
+
+
 
 
 	
@@ -194,7 +209,6 @@
 	<!-- customize scripts -->
 	<script src="views/js/dashboard.js"></script>
 	<script src="views/js/alerts.js"></script>
-	<script src="views/js/deactivate.js"></script>
 	<script src="views/js/loginRegister.js"></script>
 	<script src="views/js/superUser.js"></script>
 	<script src="views/js/website.js"></script>
@@ -211,15 +225,22 @@
 <script src="views/js/music_demo.js"></script>   
 	<script src="views/js/report.js"></script>   
 	<script src="views/js/reportsubmission.js"></script>   
-
+	<script src="views/js/membership.js"></script>   	
 
 	<script src="views/js/eventtype.js"></script>   
 	<script src="views/js/publicSetting.js"></script>   
+	<script src="views/js/adminreport.js"></script>   
 
 
 	
 	<script src="views/js/member.js"></script>   
 	<script src="views/js/affiliated.js"></script>   
+
+	
+
+
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script src="views/assets/plugins/select2/js/select2-custom.js"></script>
 
 	<script>
         /* Create Repeater */
@@ -334,6 +355,7 @@
         });
       });
     </script>
+
 
 	<!-- <script>
 		$(".datepicker").flatpickr();

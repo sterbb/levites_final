@@ -25,7 +25,7 @@ $(document).ready(function() {
           var freesize = 1024-(totalSize / 1048576).toFixed(2)
           if(freesize < 500){
             var warn = '<a class="dropdown-item" href="filestorage" id="notificationFileStorage"><div class="d-flex align-items-center"><div class="notify text-warning border"><span class="material-symbols-outlined">hard_drive</span></div><div class="flex-grow-1"><h6 class="msg-name">Local Storage</h6><p class="msg-info">You only have ' +freesize.toFixed(2) +' MB left.</p></div></div></a>';
-            $("#notifications").append(warn);
+            $("#notifications-storage").append(warn);
           }
 
           console.log(freesize + "iya ka?");
@@ -71,11 +71,9 @@ $(document).ready(function() {
 
       const totalSizeInMB = !isNaN(totalSize) ? (totalSize / (1024 * 1024)).toFixed(2) : 'N/A'; // Convert bytes to megabytes with 2 decimal places or show 'N/A'
 
-      console.log("Total Size:", totalSizeInMB);
       $("#consumedSpace").text(totalSizeInMB + " MB");
 
-      // fileSizeByExtension contains the size per file extension
-      console.log("File Size by Extension:", fileSizeByExtension);
+  
       })
       .catch((error) => {
       console.error('Error calculating folder size:', error);
@@ -141,7 +139,7 @@ $(document).ready(function() {
 
                   if(freesize < 100){
                     var warn = '<a class="dropdown-item" href="filestorage" id="notificationFileStorage"><div class="d-flex align-items-center"><div class="notify text-warning border"><span class="material-symbols-outlined">hard_drive</span></div><div class="flex-grow-1"><h6 class="msg-name">'+churchname +'</h6><p class="msg-info">You only have ' +freesize.toFixed(2) +' MB left in your collaboration.</p></div></div></a>';
-                    $("#notifications").append(warn);
+                    $("#notifications-storage").append(warn);
                   }
                   console.log(freesize);
               
@@ -351,22 +349,42 @@ async function getFilesInfo(prefixRef) {
   return filesInfo;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
 
+
+$(".notification-btn").click(function(){
+
+  var recipient_id = '';
+  if(getCookie('acc_type') == 'public'){
+    recipient_id = getCookie('acc_id');
+  }else{
+    recipient_id  = getCookie('church_id');
+  }
+
+  alert(recipient_id);
+
+  var clear = new FormData();
+  clear.append("recipient_id", recipient_id);
+
+    $.ajax({
+        url: "ajax/clear_notifications.ajax.php",
+        method: "POST",
+        data: clear,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+            console.log(answer);
+           
+        },
+        error: function() {
+           
+        },
+        complete: function() {
+            // Handle any completion tasks if needed
+        }
+    });
+});
+
+  

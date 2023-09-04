@@ -111,7 +111,7 @@
                                         <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
                                         </div>
                                         <div class="">
-                                            <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid1'].' churchname="'.$value['churchname1'].'"  style="display:hidden;">
+                                            <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid1'].' churchname="'.$value['churchname1'].'"  style="display:none;">
                                             <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button>
                                             <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptCollab">Accept </button>
                                             <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectCollab">Reject </button>
@@ -386,7 +386,7 @@
 
     <div class="row py-3 mt-5">
         <div class="col-12 col-lg-6 col-xl-7 d-flex ">  
-            <div class="card w-100 mx-10 mb-0">
+            <div class="card w-100 mx-10 mb-0 scrollable-left-churchadmin">
                 <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center py-2 px-2">
                     <div class="px-2">
@@ -449,7 +449,7 @@
                 </div>
         
 
-                </div>
+            </div>
 
 
 

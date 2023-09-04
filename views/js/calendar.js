@@ -99,14 +99,10 @@ $(function(){
         var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
         var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
         
-        var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM + ' to ' +
-                             endHour + ':' + formattedEndMinute + ' ' + endAMPM;
-        
-        console.log(event_time1);
+        var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM
+                          
   
-
-        // var event_time1 = $("#event_time1").val() + " to " + $("#event_time2").val();
-        // var event_time2 = $("#event_time1").val() + " to " + $("#event_time2").val();
+        var event_time2 =    endHour + ':' + formattedEndMinute + ' ' + endAMPM;
 
         var daterange = $("#event_date").val();
         var date1; 
@@ -114,12 +110,12 @@ $(function(){
 
         //tba
         if(daterange.length <= 10){
-          date1=daterange.substring(0,10).split("-").reverse().join("-");
+          date1=daterange.substring(0,10);
+          date2=daterange.substring(0,10);
         }else{
-            date1=daterange.substring(0,10).split("-").reverse().join("-");
-            date2=daterange.substring(14,24).split("-").reverse().join("-");
+            date1=daterange.substring(0,10);
+            date2=daterange.substring(14,24);
         }
-  
 
         var event_title = $("#event_title").val();
         var event_type = $("#event_type").val();
@@ -133,9 +129,11 @@ $(function(){
           
           eventData.append("event_title", event_title);
           eventData.append("event_type", event_type);
-          eventData.append("event_time", event_time1);
+          eventData.append("event_time1", event_time1);
+          eventData.append("event_time2", event_time2);
           //tbc
-          eventData.append("event_date", daterange);
+          eventData.append("event_date1", date1);
+          eventData.append("event_date2", date2);
           eventData.append("event_venue", event_venue);
           eventData.append("event_location", event_location);
           eventData.append("event_announcement", event_announcement);
@@ -153,9 +151,6 @@ $(function(){
                 console.log(answer);
                 eventID = answer;
 
-                location.reload(answer);
-
-                
 
                   // Select all elements with the class "add_group_event"
                   $(".add_group_event").each(function () {
@@ -192,8 +187,10 @@ $(function(){
                   groupDataSet.append("group_members", JSON.stringify(groupData.names));
                   groupDataSet.append("members_email", JSON.stringify(groupData.emails));
                   //tbc
-                  groupDataSet.append("event_date", daterange);
-                  groupDataSet.append("event_time", event_time1);
+                  groupDataSet.append("event_date1", date1);
+                  groupDataSet.append("event_time1", event_time1);
+                  groupDataSet.append("event_date2", date2);
+                  groupDataSet.append("event_time2", event_time2);
                   groupDataSet.append("event_title", event_title);
                   groupDataSet.append("event_venue", event_venue);
                   groupDataSet.append("event_location", event_location);
@@ -433,9 +430,26 @@ document.addEventListener('DOMContentLoaded', function () {
     dayMaxEvents: true, // allow "more" link when too many events
     editable: true,
     events: 'models/loadCalenddar.php',
+    eventDidMount: function (info) {
+      // Set different colors for different classNames
+      if (info.event.classNames.includes("Bible Study")) {
+        info.el.style.backgroundColor = '#6CAE75'; // Green
+      } else if (info.event.classNames.includes("Outreach")) {
+        info.el.style.backgroundColor = '#5285C5'; // Blue
+      } else if (info.event.classNames.includes("Workshop")) {
+        info.el.style.backgroundColor = '#F9A646'; // Orange
+      } else if (info.event.classNames.includes("Sunday Worship")) {
+        info.el.style.backgroundColor = '#A17EBF'; // Purple
+      } else if (info.event.classNames.includes("Prayer Meeting")) {
+        info.el.style.backgroundColor = '#FF7F50'; // Coral 
+      } else if (info.event.classNames.includes("Wedding")) {
+        info.el.style.backgroundColor = '#D55C88'; // Pinkish-purple
+      } else if (info.event.classNames.includes("Baptismal")) {
+        info.el.style.backgroundColor = '#4FA1D8'; // Pinkish-purple
+      }
+    },
     eventClick: function(info){
      
-      alert(moment(info.event.start ).format("YYYY-MM-DD"));
 
     }
     ,
@@ -462,6 +476,39 @@ document.addEventListener('DOMContentLoaded', function () {
     
   });
   calendar.render();
+
+  
+  // Your filtering functions from the previous response
+  function applyFilters() {
+    var selectedFilters = [];
+    filterCheckboxes.forEach(function (checkbox) {
+      if (checkbox.checked) {
+        selectedFilters.push(checkbox.id);
+      }
+    });
+
+    calendar.getEvents().forEach(function (event) {
+      //gng 100 ko para d mag display bskan wala na filter
+      if (selectedFilters.length === 100 || selectedFilters.includes(event.classNames[0])) {
+        event.setProp('display', '');
+      }
+       else {
+        event.setProp('display', 'none');
+      }
+      
+    });
+    
+  }
+
+  // Get all the filter checkboxes
+  var filterCheckboxes = document.querySelectorAll('.calendar-filter2');
+
+  // Add event listener to each checkbox
+  filterCheckboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+      applyFilters();
+    });
+  });
   
 });
 
@@ -544,18 +591,25 @@ function sendGroupEmail(element){
   var group_name = $(element).attr('id');
 
   $("."+group_name+'-items').each(function() {
-    var email = $(this).attr("email");
+    var name = $(this).text();
+    var emails = $(this).attr("email");
     var event_date = $(this).attr("event_date");
-    var event_title = $(this).attr("event_title");
     var event_time = $(this).attr("event_time");
-    console.log("Email:", email);
+    var event_date2 = $(this).attr("event_date2");
+    var event_time2 = $(this).attr("event_time2");
+    var event_title = $(this).attr("event_title");
+
 
     var email = new FormData();
-    email.append("email",email);
+    email.append("name",name);
+    email.append("email",emails);
     email.append("group_name",group_name);
     email.append("event_date",event_date);
-    email.append("event_title",event_title);
     email.append("event_time",event_time);
+    email.append("event_date2",event_date2);
+    email.append("event_time2",event_time2);
+    email.append("event_title",event_title);
+ 
 
 
     
@@ -757,9 +811,7 @@ function editEventDetails(element){
     $("#edit_event_announcement").val(answer[8]);
 
 
-
-
-
+    $('#displayEventsModal').modal('hide'); 
     $('#EditEvents').modal('show'); 
 
     

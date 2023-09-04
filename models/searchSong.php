@@ -2,7 +2,7 @@
 if ($_POST['search']) {
 
     $searchQuery = $_POST['search'];
-    $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343';
+    $apiKey = '10d5d6cfd3f1d6b777a1d447a76327de';
     $genreId = 22; // Replace with the desired music genre ID (numeric value)
 
     // Construct the API URL

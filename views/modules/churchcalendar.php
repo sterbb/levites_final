@@ -154,7 +154,7 @@
             
                 <div class="card-body d-flex justify-content-around align-items-center">
                     <h6 class="mb-0 text-uppercase" style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:1.5em;" id="church_calendar_date"></h6>
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddEvents" id="addEventTodayBtn"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
+                    <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="left" title="Add Event" data-bs-toggle="modal" data-bs-target="#AddEvents" id="addEventTodayBtn"><i class="fadeIn animated bx bx-calendar-plus"></i></button>
                 </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -282,7 +282,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add Group</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" aria-label="Close" data-bs-toggle="modal" data-bs-target="#AddEvents"></button>
         </div>
         <!-- <form role="form" id="addGroupForm" method="POST" autocomplete="nope" class="addGroupForm row g-3"> -->
           <div class="modal-body">
@@ -359,7 +359,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" aria-label="Close" data-bs-toggle="modal" data-bs-target="#AddEvents">Close</button>
             <button type="button" class="btn btn-primary"  id="groupAddBtn">Save changes</button>
           </div>
         <!-- </form> -->

@@ -10,7 +10,7 @@
                     <div class="col-2">
                         <label class="form-label">Report Type</label>
                         <select class="form-select mb-3" id="report-type" aria-label="Default select example">
-                            <option selected="" value="events">Events Held</option>
+                            <option value="events">Events Held</option>
                             <option value="members">Affiliated Members</option>
                             <option value="storage">File Storge</option>
                         </select>
@@ -29,7 +29,7 @@
                     <div class="col-2">
                         <label class="form-label">Category</label>
                         <select class="form-select mb-3" aria-label="Default select example" id="report-category">
-                            <option selected="">All</option>
+                            <option selected="" value="">All</option>
                             <option value="Bible Study">Bible Study</option>
                             <option value="Outreach">Outreach</option>
                             <option value="Workshop">Workshop</option>
@@ -43,7 +43,7 @@
                     <div class="col-2">
                         <label class="form-label" id="church-label-change">File Storage</label>
                         <select class="form-select mb-3" aria-label="Default select example" id="report-church" disabled>
-                          <option selected="">My Storage</option>
+                          <option value="">My Storage</option>
                           <?php 
                                $affiliates = (new CollaborationController)->ctrshowAffilatedChurches();
                                foreach($affiliates as $key => $value){
@@ -58,7 +58,7 @@
                                     $churchid = $value["churchid2"];
                                     $churchname = $value["churchname2"];
                                 }
-                                 echo'<option value="'.$churchid.'">'.$churchname.'</option>';
+                                 echo'<option value="'.$value["collabID"].'">'.$churchname.'</option>';
                                }
                           ?>
                         </select>
@@ -79,6 +79,8 @@
                             <th>Time</th>
                             <th>Event Title</th>
                             <th>Category</th>
+                            <th>Venue</th>
+                            <th>Location</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -144,30 +146,65 @@
 
        </div><!--end row-->
 
-    <div class="row" id="affiliatesReportContainer" hidden>
+       
+    <div class="row" id="currentStorageReport" hidden >
+      <div class="col">
 
-    
-      <div class="col-lg-4">
-              <div class="card">
-                <div class="card-header bg-transparent">
-                  <div class="d-flex align-items-center">
-                    <div class="">
-                      <h6 class="mb-0 fw-bold">My Storage</h6>
-                    </div>
+            <div class="card">
+              <div class="card-header bg-transparent">
+                <div class="d-flex align-items-center">
+                  <div class="">
+                    <h6 class="mb-0 fw-bold" id="currentStorageName">My Storage</h6>
                   </div>
                 </div>
-                
-                <div class="card-body">
-                    <div id="churchStorageReport" style="width: 100%; max-width: 600px;"></div>
-                </div>
-                <div class="card-header bg-transparent" style="overflow-y: scroll; height:200px;">
+              </div>
+              
+              <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
+                  <div id="currentchurchStorageReport" style="width: 100%; max-width: 600px;"></div>
+              </div>
 
-                    <ul class="list-group list-group-flush mb-0" id="churchStorageReportList">
-                    </ul>
-                  
+            
+              <div class="card-header bg-transparent" style="overflow-y: scroll; height:200px;">
+
+                <ul class="list-group list-group-flush mb-0" id="currentchurchStorageReportList">
+                </ul>
+
+              </div>
+
+
+
+            </div>
+
+      </div>
+    </div>
+
+    <div class="row" id="affiliatesReportContainer" hidden>
+      <h1>FILE STORAGE OVERVIEW</h1>
+    
+      <div class="col-lg-4">
+    
+          <div class="card">
+            <div class="card-header bg-transparent">
+              <div class="d-flex align-items-center">
+                <div class="">
+                  <h6 class="mb-0 fw-bold">My Storage</h6>
                 </div>
               </div>
             </div>
+            
+            <div class="card-body" style="display: flex; justify-content: center; align-items: center;">
+                <div id="churchStorageReport" style="width: 100%; max-width: 600px;"></div>
+            </div>
+
+
+          <div class="card-header bg-transparent" style="overflow-y: scroll; height:200px;">
+
+              <ul class="list-group list-group-flush mb-0" id="churchStorageReportList">
+              </ul>
+            
+          </div>
+        </div>
+      </div>
 
 
     </div><!--end row-->

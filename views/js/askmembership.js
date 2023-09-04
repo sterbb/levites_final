@@ -29,6 +29,69 @@ $(".askMembershipBtn").on("click", function() {
     
   });
 
+  $(".cancelMembershipBtn").on("click", function() {
+
+
+    var membershipID = $(".cancelMembershipBtn").val();
+
+
+    var cancel = new FormData();
+    cancel.append("membershipID", membershipID);
+
+    $.ajax({
+      url: "ajax/cancel_membership.ajax.php",
+      method: "POST",
+      data: cancel,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(answer) {
+        console.log(answer);
+        location.reload();
+
+      },
+      error: function() {
+          alert("Oops. Something went wrong!");
+      },
+      complete: function() {
+      }
+    });
+    
+  });
+
+  $(".removeMembershipBtn").on("click", function() {
+    
+
+    var membershipID = $(".removeMembershipBtn").val();
+
+
+    var cancel = new FormData();
+    cancel.append("membershipID", membershipID);
+
+    $.ajax({
+      url: "ajax/cancel_membership.ajax.php",
+      method: "POST",
+      data: cancel,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "text",
+      success: function(answer) {
+        console.log(answer);
+        location.reload();
+
+      },
+      error: function() {
+          alert("Oops. Something went wrong!");
+      },
+      complete: function() {
+      }
+    });
+    
+    
+  });
+
   
 
   $(".acceptMember").on('click', function(){

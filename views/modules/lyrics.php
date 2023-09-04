@@ -26,11 +26,10 @@
     <div class="row justify-content-center" >
 
         <div class="col-12 col-sm-6 col-md-8 col-lg-10 col-xl-12 text-center">
-            <button onclick="downloadLyrics()" type="button" class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download-cloud text-warning"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path></svg></button>
+        <button onclick="downloadLyrics()" type="button" class="btn  btn-light border border-dark" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Download Lyrics"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download-cloud text-warning"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path></svg></button>
+            <button type="button"  onclick="copyWholeLyrics()" class="btn  btn-light border border-dark" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Copy All Lyrics"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
 
-            <button type="button"  onclick="copyWholeLyrics()" class="btn  btn-light border border-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
-
-            <button type="button" onclick="printLyrics()" class="btn  btn-light border border-dark" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer text-primary"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></button>
+            <button type="button" onclick="printLyrics()" class="btn  btn-light border border-dark" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Print Lyrics"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer text-primary"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg></button>
 
         </div>
     </div>
@@ -51,7 +50,7 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 
-$apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
+$apiKey = '10d5d6cfd3f1d6b777a1d447a76327de'; // Replace with your Musixmatch API key
 $trackId = $_COOKIE['trackID'];
 // Fetch track details using the track_id
 $trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";
@@ -82,16 +81,23 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
 
     // Output each section in a separate <div> element
     echo '<div class="lyrics-container">';
+    echo '<div class="icon-notifier">';
+    echo '<button class="notifInformation border border-0 bg-transparent position-absolute bottom-0 start-0 " data-toggle="tooltip" data-placement="left" title="About Lyrics" data-bs-toggle="modal" data-bs-target="#lyricsInformation"><span class="ly material-symbols-outlined fs-2 m-2">
+    contact_support
+    </span></button>
+    ';
+
     foreach ($sections as $section) {
-        echo '<div class="lyrics-section">' . nl2br($section) . ' <br><button class="copy-button btn btn-light border border-transparent border-0" onclick="copyLyrics(this)">
+        echo '<div class="lyrics-section" >' . nl2br($section) . '  <br><button class="copy-button btn btn-light border border-transparent border-0" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Copy Stanza" onclick="copyLyrics(this)" >
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy text-success">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
         </svg>
     </button> </div>';
     
-        echo '<div class="section-space"></div>'; // Add space between sections
+        echo '<div class="section-space my-4"></div>'; // Add space between sections
     }
+    echo '</div>';
     echo '</div>';
 } else {
     echo "<h1 >Lyrics not found for the selected song.<h1>";
@@ -108,65 +114,246 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
         </div>
 
             
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  ">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  ">
                      <div class="card mt-3 ">
                         <div class="card-body text-center align-items-center justify-content-center  ">
-                            <div class="video-container ">
+                            <div class="video-container " id="videoContainer">
 
-                            <?php
-                                // lyrics.php
-
-                                if (isset($_COOKIE['trackID'])) {
-                                    $apiKey = '7a089ceadb3e1e9367a4a5f5d5e5a343'; // Replace with your Musixmatch API key
-                                    $trackId = $_COOKIE['trackID'];
-
-                                    // Fetch track details using the track_id
-                                    $trackUrl = "https://api.musixmatch.com/ws/1.1/track.get?track_id=$trackId&apikey=$apiKey";
-                                    $trackResponse = file_get_contents($trackUrl);
-                                    $trackData = json_decode($trackResponse, true);
-
-                                    if (isset($trackData['message']['body']['track'])) {
-                                        $trackInfo = $trackData['message']['body']['track'];
-                                        $artist = $trackInfo['artist_name'];
-                                        $song = $trackInfo['track_name'];
-
-                                        // Fetch video using the YouTube API
-                                        $youtubeApiKey = 'AIzaSyAV2ETHPyFx0PnRUvRZbEwkGGAR_12Fp4I'; // Replace with your YouTube API key
-
-                                        // Construct the search query based on the artist name and song title
-                                        $searchQuery = urlencode($artist . ' ' . $song);
-
-                                        // // Fetch videos related to the song using the YouTube Data API
-                                        // $youtubeSearchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$searchQuery&type=video&key=$youtubeApiKey";
-                                        // $youtubeSearchResponse = file_get_contents($youtubeSearchUrl);
-                                        // $youtubeSearchData = json_decode($youtubeSearchResponse, true);
-
-                                        if (isset($youtubeSearchData['items'][0]['id']['videoId'])) {
-                                            $videoId = $youtubeSearchData['items'][0]['id']['videoId'];
-
-                                            // Output the embedded video player
-                                            echo '<iframe  style="width: 100% !important; height: 300px !important;" src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
-                                        } else {
-                                            echo "Video not found for the selected song.";
-                                        }
-                                    } else {
-                                        echo "Track details not found for the selected song.";
-                                    }
-                                } else {
-                                    echo "Invalid request.";
-                                }
-                                ?>       
-                            
+            
                             </div>
                         </div>
                     </div>
+
+                    <script>
+                        // Function to update the YouTube video based on song title
+                        function updateYouTubeVideo(songTitle) {
+                            var videoContainer = document.getElementById('videoContainer');
+                            var youtubeIframeCode;
+
+                            if (songTitle === 'Sing Your Praise To The Lord') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/CIPRSzVHfCM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                            } else if (songTitle === 'Lilim (In Your Shelter)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/sBum0Prrnmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'I Will Follow') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/1ohvhmGSfxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'I Know') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/j25JqWgjDF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'Too Faitful') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/-1vSWgDTQ00" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'See A Victory') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/YNd-PbVhnvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === "The Father's House") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/lHWRlRkkvV0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'Who Am I') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3rT8Re1EIQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'Who You Say I Am') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/lKw6uqtGFfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'Come Now Is Time To Worship') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Za4roZrWpc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'Goodness Of God(Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/n0FBb6hnwTo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';        
+                                } else if (songTitle === 'What A Beautiful Name') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/r5L6QlAH3L4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                } else if (songTitle === 'Oceans (Where Feet May Fail)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/FBJJJkiRukY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === '10,000 Reasons (Bless the Lord)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XtwIT8JjddM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Living Hope') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/u-1fwZtKJSM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Touch The Sky') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3OBn7fKYk_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Need You') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/IE6Zp_BDYiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Every Giant Will Fall') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/iQOsD4Sou6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Battle Belongs') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/qtvQNzPHn-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Surrounded (Fight My Battles)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/YBl84oZxnJ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Made a Way') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/MimVg0OMGvA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'On My Own') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/sG--g1gMrGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Do It Again') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ZOBIPb-6PTc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Jesus, Take the Wheel') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/lydBPm2KRaU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'King Of Kings') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/dQl4izxPeNU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Good Good Father') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/CqybaIesbuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "Hallelujah Nkateko (Lihle's Version)") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HUrnIYOpR-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Intentional') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/VH3f0ellNv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Way Maker') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/1kBvpS3z9Qo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Promises (feat. Joe L Barnes)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q5m09rqOoxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'You Are God (feat. Chigozie Achugo)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/euUoYhj52JA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'TOGETHER') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/lR1Hk0FVi_k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'There Was Jesus') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/37wV6D49iEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Run to the Father') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HcpeLDp0Foo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Holy Spirit') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/UvBBC7-PSHo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Famous For (I Believe)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/o15X2yZ1LT8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Love Theory') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/3aD8OK07iIY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Our God') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/NJpt1hSYf2o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'God, Turn It Around') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/h7-IAFogxcM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'O Come to the Altar (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/rYQ5yXCc_CA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'This I Believe (The Creed)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/FtUNQpu2b7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Raise a Hallelujah') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/GzKzEknglME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Lord, I Need You') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/vG5O5TSIaE4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Bo Noo Ni') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/JiFM6t0k8JU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'So Will I (100 Billion X)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/pB_hNYp-a68" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Broken Vessels (Amazing Grace)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Meyeuq4uaBw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "God's Not Dead (Like a Lion)") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/S_OTz-lpDjw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Every Praise') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/UuuZMg6NVeA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Shepherd') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/xMxfBbr2FTM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Battle Hymn of the Republic') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HkFjFIR-xIc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    
+                                    //Tagalog
+
+                                }else if (songTitle === 'Banal Mong Tahanan') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/D0MM_9cXmqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Awit Sa Ina Ng Sto. Rosario') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/SEV3zAUMBfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Diyos Ka Sa Amin') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/X2DWxYpTQpQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Hindi Ka Nagkulang') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HH-G0rQY7-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Kataas-Taasan') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/IXCnx1vxIVw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pananagutan') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/VTA0zTaUliI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Malaya Na') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/DmpK6Ua1kBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pinagdiriwang (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/_VWNb13GIkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Panibagong Sigla (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/tLroH0SMxEA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Mahiwaga') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/8WSWq687rak" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Sumigaw Sa Galak') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Q7USrkrYZK8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Unang Alay') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/cQ8D-KEHzIk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Mahal Na Mahal Kita Panginoon') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/h-vdzizpKnE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "Sa'yo Lamang") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Ugjxr6GNJSs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Munting Tinig') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/LBQOJ86VNCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Purihin Pangalan Niya') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/_4TH7UVfjuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Karapat-Dapat') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/pAu_0tkd330" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Ikaw Lamang (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/oa1Feo0zsWU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Kay Buti-Buti Mo Panginoon') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/oQohvmpbtzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Napakabuti Mo (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/H4JjPKrjJpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Dakilang Pag-Ibig') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/CEBoxu65YCQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Walang Katulad') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/PXrrT1aM8Z0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Tagumpay') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/fShTsUSk61A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Minamahal Kita') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/9KN3bkzlcRw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pananagutan') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Jx8AeaJUH6s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Sukdulang Biyaya (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Ce6oT3vTxpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "Halina't Sama-Sama") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/mbkpV9VR9zU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Diyos Ng Kabutihan') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/tJWsI2XqHoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Ligtas') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Wj73fKzQEsY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Walang Katulad') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/PXrrT1aM8Z0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Tanging Yaman') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/hKL8c7wgQQo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "Sa 'Yo") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/yBD6uCVj6P8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Ang Tanging Alay ko') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ziJPJKmVxqE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'May Galak') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/y4-1iMxGFyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Kahanga-Hanga') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/J5SqPuWJ7xM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Di Mag-Iisa (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/wJ05VFjsIbQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "Halina't Sama-Sama") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/mbkpV9VR9zU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Maghari Ka (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/eAw7kXhx7a4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Luwalhatiin Ka (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/s7bwoguQ8Yw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Walang Katulad') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/PXrrT1aM8Z0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pag-Ibig Na Kay Ganda') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/pcKTlsH9SwM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pagbabalik') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/LOPQZfojseU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Sapat Na at Higit Pa (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/S_JYpxVzDBk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === "Halina't Sama-Sama") {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/mbkpV9VR9zU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Sino Ako?') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Le_VwVZKbM0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Ako Ay Lalapit') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Rr-r1slydL0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pag-Ibig Na Kay Ganda') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/pcKTlsH9SwM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Awit Ng Pagsamba') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/9FuclCwqlNc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pupurihin Ka Sa Awit (Live)') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/r-KJgwzNMro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                                }else if (songTitle === 'Pasasalamat') {
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Dobn1zrTfms" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    
+                                } else {
+                                // Default video URL if no match is found
+                                youtubeIframeCode = '<iframe width="560" height="315" src="https://www.youtube.com/embed/DEFAULT_VIDEO_ID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+                            }
+
+                            // Update the video container with the new YouTube video
+                            videoContainer.innerHTML = youtubeIframeCode;                            
+                        }
+
+                        // Call the function to update the YouTube video based on the initial song title
+                        var initialSongTitle = '<?php echo $song; ?>';
+                        updateYouTubeVideo(initialSongTitle);
+                    </script>
 
                     <div class="card  ">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-12 d-flex align-items-center">
                                     <h4 style="font-weight:bold">Playlists</h4>
-                                    <button type="button" data-bs-toggle="modal" data-bs-target="#AddPlaylist"  class="btn btn-transparent border-0">
+                                    <button type="button"  data-bs-toggle="modal" data-bs-target="#AddPlaylist"  class="btn btn-transparent border-0">
                                         
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 30 30" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11 11h-7.25c-.414 0-.75.336-.75.75s.336.75.75.75h7.25v7.25c0 .414.336.75.75.75s.75-.336.75-.75v-7.25h7.25c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-7.25v-7.25c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/>
                                       
@@ -263,15 +450,15 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                                                 <div class="col-12 col-xl-12"  style="margin-left:-5px">
                                                             
       
-                                                    
+                                                
                                                     
                                                     <button type="button" class="btn btn-transparent border-0 " data-bs-toggle="dropdown">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info "><path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M10 10h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4z"></path>
                                                     <defs>
-                                                        <linearGradient id="gradient" gradientTransform="rotate(90)">
-                                                        <stop offset="0%" stop-color="#c080f9" />
-                                                        <stop offset="100%" stop-color="#94c0f2 " />
-                                                        </linearGradient>
+                                                    <linearGradient id="gradient" gradientTransform="rotate(90)">
+                                                    <stop offset="0%" stop-color="#c080f9" />
+                                                    <stop offset="100%" stop-color="#94c0f2 " />
+                                                    </linearGradient>
                                                     </defs>
                                                     </svg>
                                                     </button>
@@ -632,7 +819,26 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
         </div>
     </div>
         
-   
+    <!-- Modal -->
+<div class="modal fade" id="lyricsInformation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">About Lyrics</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="recommendation">
+          <p>Looking to explore more song lyrics? While we diligently work on enhancing your lyrics experience, we recommend checking out well-established platforms like <a href="https://www.musixmatch.com/explore" target="_blank" rel="noopener noreferrer">Musixmatch</a> and <a href="https://www.azlyrics.com" target="_blank" rel="noopener noreferrer">AZLyrics</a>. These platforms offer an extensive collection of song lyrics across a wide range of genres. Although we're focused on delivering an exceptional lyrics service, we encourage you to indulge in these alternatives for your lyrical exploration. Your continued support fuels our commitment to excellence, and we eagerly anticipate unveiling an enhanced lyrics experience in the near future.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <style>
     .newCollapsed {

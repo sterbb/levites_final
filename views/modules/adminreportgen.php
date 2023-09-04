@@ -10,61 +10,64 @@
                     <div class="col-2">
                         <label class="form-label">Report Type</label>
                         <select class="form-select mb-3" id="admin_report-type" aria-label="Default select example">
-                            <option selected="" value="events">Events Held</option>
-                            <option value="churches">Affiliated Churches</option>
-                            <option value="members">Affiliated Members</option>
-                            <option value="storage">File Storge</option>
+                            <option selected="" value="users">Registered Users</option>
+                            <option value="churches">Churches</option>
+                            <option value="members">Collaboration</option>
                         </select>
                     </div>
 
-
-                    <div class="col-3">
-                        <div class="mb-3">
-                            <label class="form-label">Date Range</label>
-                            <!-- <input type="hidden" class="form-control date-range flatpickr-input"> -->
-                            <input class="form-control date-range"  id="report-range" placeholder="" tabindex="0" type="text" readonly="readonly">
-                            <!-- <input class="form-control flatpickr" type="text" placeholder="Select Dates.." id="report-range" name="flatpickr-range" required> -->
-                        </div>
-                    </div>
-
-                    <div class="col-2">
-                        <label class="form-label">Category</label>
-                        <select class="form-select mb-3" aria-label="Default select example" id="report-category">
-                            <option selected="">All</option>
-                            <option value="Bible Study">Bible Study</option>
-                            <option value="Outreach">Outreach</option>
-                            <option value="Workshop">Workshop</option>
-                            <option value="Sunday Worship">Sunday Worship</option>
-                            <option value="Prayer Meeting">Prayer Meeting</option>
-                            <option value="Baptismal">Baptismal</option>
-                            <option value="Wedding">Wedding</option>
+                    <div class="col-3 cursor-pointer">
+                 
+                        <label for="month_report" class="form-label">Month</label>
+                        <select class="form-select" id="month_report" multiple>
+                          <option value="">All</option>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
                         </select>
+                
                     </div>
 
                     <div class="col-2">
-                        <label class="form-label" >Affiliates</label>
-                        <select class="form-select mb-3" aria-label="Default select example" id="report-church" disabled>
-                          <option selected="">All</option>
+                        <label for="year_report" class="form-label">Year</label>
+                        <select class="form-select" id="year_report" multiple>
+                        <option value="">All</option>
                           <?php 
-                               $affiliates = (new CollaborationController)->ctrshowAffilatedChurches();
-                               foreach($affiliates as $key => $value){
-                                $churchname;
-                                $churchid;
 
-                                
+                          $year = 2023;
+                          $todayYear = date("Y");
+                          $availableYear = $todayYear - $year;
 
-                                if (array_key_exists("churchid1", $value)) {
-                                    // Key exists in the array
-                                    $churchid = $value["churchid1"];
-                                    $churchname = $value["churchname1"];
-                                } else {
-                                    // Key is undefined
-                                    $churchid = $value["churchid2"];
-                                    $churchname = $value["churchname2"];
-                                }
+                          do{
+                            echo '<option value="' . $year . '">' . $year . '</option>';
+                            $year++;
+                            $availableYear--;
+                          }
+                          while($availableYear >=0);
+                          
 
-                                 echo'<option value="'.$churchid.'">'.$churchname.'</option>';
-                               }
+                          ?>
+                        </select>
+                    </div>
+
+                    <div class="col-2">
+                        <label class="form-label" >Status</label>
+                        <select class="form-select mb-3" aria-label="Default select example" id="church_status_adminreport" disabled>
+                          <option >All</option>
+                          <option value="accepted">Accepted</option>
+                          <option value="rejected">Rejected</option>
+                          <option value="waitlist">Waitlist</option>
+                          <?php 
+      
                           ?>
                         </select>
                     </div>
@@ -77,13 +80,13 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table id="report-table" class="table table-striped table-bordered">
+                      <table id="adminreport-table" class="table table-striped table-bordered">
                         <thead>
                           <tr>
                             <th>Date</th>
-                            <th>Time</th>
-                            <th>Event Title</th>
-                            <th>Category</th>
+                            <th>Name</th>
+                            <th>Religion</th>
+                            <th>Email Address</th>
                           </tr>
                         </thead>
                         <tbody>

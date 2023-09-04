@@ -2,51 +2,107 @@
 
 
    
-<div class="row py-3">
-        <div class="col-12 col-lg-6 col-xl-6 d-flex ">  
-            <div class="card w-100 mx-10 mb-0">
-                <div class="card-header bg-transparent">
-                <div class="d-flex align-items-center">
-                    <div class="">
-                       <h6 class="mb-0 fw-bold"><i class="fadeIn animated lni lni-warning m-2"></i>Violations</h6>
-                    </div>
-                    <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search">
-                        </div>
-                </div>
-                </div>
-                <div class="card-body" scrollable-y="true">
-                <?php 
-                            
-                            $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
+    <div class="row py-3">
 
-                            foreach($reports as $key => $value){
-                                echo '
-                                        <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                            <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
-                                        </div>
-                                        <div class="church_div">
-                                            <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" style="display:none;" required="">
-                                            <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnReport" value="hello">View Details </button>
-                                            <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 acceptBtn" onclick="deleteReport(this)">Delete </button>
-                                            <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 actionBtnReport">Take Action </button>
-                                        </div>
+        <div class="col-12 col-lg-6 col-xl-6 d-flex "> 
+
+            <div class="row">
+                <div class="col-12 col-lg-12 col-xl-12 d-flex ">  
+                    <div class="card w-100 mx-10 mb-0">
+                        <div class="card-header bg-transparent">
+                            <div class="d-flex align-items-center">
+                                <div class="">
+                                <h6 class="mb-0 fw-bold"><i class="fadeIn animated lni lni-warning m-2"></i>Violations</h6>
+                                </div>
+                                <div class="ms-auto me-2">
+                                        <input class="form-control px-2 " type="search"  placeholder="Search">
                                     </div>
-                                    <hr>
-                                ';
+                            </div>
+                        </div>
+                        <div class="card-body" scrollable-y="true">
+                            <?php 
+                                    
+                                $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
 
-                            }
-                            
-                            
-                            ?>
+                                foreach($reports as $key => $value){
+                                    echo '
+                                            <div class="d-flex align-items-center gap-3">
+                                            <div class="">
+                                                <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
+                                            </div>
+                                            <div class="church_div">
+                                                <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" style="display:none;" required="">
+                                                <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnReport" value="hello">View Details </button>
+                                                <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 acceptBtn" onclick="deleteReport(this)">Delete </button>
+                                                <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 actionBtnReport">Take Action </button>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    ';
+
+                                }
+                                
+                                
+                                ?>
+                        </div>
                     </div>
+                </div>
 
+            <div class="col-12 col-lg-12 col-xl-12 d-flex mt-5">  
+                <div class="card w-100 mx-10 mb-0">
+                    <div class="card-header bg-transparent">
+                        <div class="d-flex align-items-center">
+                            <div class="">
+                            <h6 class="mb-0 fw-bold"><i class="fadeIn animated lni lni-warning m-2"></i>Violations</h6>
+                            </div>
+                            <div class="ms-auto me-2">
+                                    <input class="form-control px-2 " type="search"  placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" scrollable-y="true">
+                        <?php 
+                            
+                        $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
+
+                        foreach($reports as $key => $value){
+                            echo '
+                                    <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
+                                    </div>
+                                    <div class="church_div">
+                                        <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" style="display:none;" required="">
+                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnReport" value="hello">View Details </button>
+                                        <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 acceptBtn" onclick="deleteReport(this)">Delete </button>
+                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 actionBtnReport">Take Action </button>
+                                    </div>
+                                </div>
+                                <hr>
+                            ';
+
+                        }
+                        
+                        
+                        ?>
+                    </div>
                 </div>
-                </div>
+            </div>
+            
+
+            
+            </div>
+        </div>
+
+  
+
+        
         
 
         <div class="col-12 col-lg-6 col-xl-6 d-flex">

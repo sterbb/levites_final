@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 
     var currentPath = getCookie('church_id');
@@ -9,105 +11,424 @@ $(document).ready(function() {
     }
 
     
-      $('#report-category').on('change', function() {
-        var selectedValue = $(this).val();
-
-        // Clear the current search filter
-        table.search('').draw();
+    $("#report-range").change(function() {
+      var daterange = $("#report-range").val();
   
+      if (daterange.length <= 10) {
+        date1 = daterange.substring(0, 10);
+        date2 = daterange.substring(0, 10);
+      } else {
+        date1 = daterange.substring(0, 10);
+        date2 = daterange.substring(14, 24);
+      }
 
-        if (selectedValue) {
+      alert(date1 + date2);
+    
+      var reportData = new FormData();
+      reportData.append("date1", date1);
+      reportData.append("date2", date2);
+  
+      $.ajax({
+        url: "ajax/get_event_report.ajax.php",
+        method: "POST",
+        data: reportData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer) {
+          console.log(answer);
+          const newColumnNames = ['Date', 'Time', 'Event Title', 'Category', 'Venue', 'Location'];
+          const data = answer; // Assuming your AJAX response contains file information
 
-          // Apply the new search filter based on the selected option
-          table.search(selectedValue).draw();
-        }
+          reinitializeDataTableEvents(newColumnNames, data);
+        },
+        error: function(xhr, status, error) {
+          console.log(error);
+          alert("Oops. Something went wrong!");
+        },
+        complete: function() {}
       });
+    });
+} );
+
+
+$('#report-category').on('change', function() {
+  var selectedValue = $(this).val();
+  
+  var daterange = $("#report-range").val();
+  
+      if (daterange.length <= 10) {
+        date1 = daterange.substring(0, 10).split("-").reverse().join("-");
+      } else {
+        date1 = daterange.substring(0, 10).split("-").reverse().join("-");
+        date2 = daterange.substring(14, 24).split("-").reverse().join("-");
+      }
+  
+      var reportData = new FormData();
+      reportData.append("date1", daterange);
+      reportData.append("selectedValue", selectedValue);
+  
+      $.ajax({
+        url: "ajax/get_event_report_category.ajax.php",
+        method: "POST",
+        data: reportData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer) {
+          console.log(answer);
+
+          const newColumnNames = ['Date', 'Time', 'Event Title', 'Category', 'Venue', 'Location'];
+          const data = answer; // Assuming your AJAX response contains file information
+
+          reinitializeDataTableEvents(newColumnNames, data);
+        },
+        error: function(xhr, status, error) {
+          console.log(error);
+          alert("Oops. Something went wrong!");
+        },
+        complete: function() {}
+      });
+});
+
+function getReportTextTitle(){
+  var reportType = $("#report-type").val();
+
+    console.log(reportType);
+    if(reportType === "events"){
+      return   "Events Held";
+    }else if( reportType === "members"){
+      return  "Affiliated Members";
+    }else{
+      return "File Storage Report";
+    }
+
+}
 
 
 
 
-        $("#report-range").change(function(){       
-            var daterange = $("#report-range").val();
-   
-            if(daterange.length <= 10){
-                date1=daterange.substring(0,10).split("-").reverse().join("-");
-    
-            }else{
-                date1=daterange.substring(0,10).split("-").reverse().join("-");
-                date2=daterange.substring(14,24).split("-").reverse().join("-");
-            }
-    
-    
-        
-             var reportData = new FormData();
-            reportData.append("date1", daterange);
-    
-            $.ajax({
-            url: "ajax/get_event_report.ajax.php",
-            method: "POST",
-            data: reportData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            success: function(answer) {
-                table.clear().draw();
-                
-                const newColumnNames = ['Date', 'Time', 'Event Title', 'Category'];
+var table = $('#report-table').DataTable({
+  
+  lengthChange: false,
+  buttons: [
+    {
+      extend: 'excel', // Add the Excel export button
+      text: 'Export to Excel',
+      title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title for Excel file
+      // ... (customize Excel export settings if needed)
+    },
+      {
+          extend: 'pdf',
+          text: 'Export to PDF',
+          sAutoWidth: true, // Automatically adjust column widths
+          title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title of the PDF
+          customize: function (doc) {
+              // For example, you can adjust margins, page size, etc.
+              doc.pageMargins = [60, 60, 60, 60]; // top, left, bottom, right
+              doc.defaultStyle.fontSize = 10; // adjust font size
 
-                                    // Remove any existing header
-                    $('#report-table thead').remove();
+         // Move the title to the top of the content
+                doc.content.splice(0, 1);
 
-                    var existingHeader = $('#report-table thead');
-
-                    // Create a new header row with the updated column names
-                    var headerRow = $('<thead>').append(
-                        $('<tr>').append(
-                        newColumnNames.map((columnName) => $('<th>').text(columnName))
-                        )
-                    );
-
-                                        // Replace the existing header with the new one
-                    if (existingHeader.length) {
-                        existingHeader.replaceWith(headerRow);
-                    } else {
-                        // If no existing header, simply append the new one
-                        $('#report-table').append(headerRow);
-                    }
-    
-                // Populate the DataTable with new data
-                answer.forEach(function(row) {
-
-    
-                    table.row.add([row.event_date, row.event_time, row.event_title, row.event_category]);
+                // Add the title back with custom styling
+                doc.content.unshift({
+                    text: getReportTextTitle() + " Report",
+                    style: 'title', // You can define a custom style for the title
+                    margin: [0, 0, 0, 0] // Top, right, bottom, left margin
                 });
-    
-                table.draw();
-                $("#event-graph-section").removeAttr("hidden"); 
-                
-    
-            },
-            error: function(xhr, status, error) {
-                console.log(error)
-                alert("Oops. Something went wrong!");
-            },
-            complete: function() {
-            }
+
+                // Add additional text below the title
+                doc.content.splice(1, 0, {
+                  text: "(" +$("#report-range").val() + ")",
+                  style: 'subheader', // You can define a custom style for the text
+                  alignment: 'center', // Center the text horizontally
+                  margin: [0, 0, 0, 15] // Top, right, bottom, left margin
+                  
+              });
+
+            doc.styles.tableHeader = {
+              fillColor: 'gray', // Change header background color to blue
+              bold: true, // make header text bold
+              color: 'white', // header text color
+              alignment: 'center', // header text alignment
+              margin: [0, 10, 0, 10], // top, left, bottom, right margin
+              border: [0, 1, 1, 1], // Add a border to the header cells (top, left, right, bottom)
+              borderColor: 'blue', // Border color
+              fontSize: 12, // Increase the font size (adjust as needed)
+              cellVerticalAlignment: 'middle', // Center the header cells vertically
+            };
+
+            doc.styles.tableBody = {  
+              alignment: 'center', // Center the content horizontally
+              cellVerticalAlignment: 'middle', // Center the content vertically
+              // margin: [10, 5, 10, 5], // top, left, bottom, right margin
+              padding: [10, 30, 10, 30], // Add padding (top, right, bottom, left)
+            };
+      
+
+            // Apply styles to table header
+            doc.content[2].table.headerRows = 1; // Update the index to 2
+            doc.content[2].table.body[0].forEach(function (cell, cellIndex) {
+              cell.style = 'tableHeader'; // Apply the table header style to the first row of the body
             });
-        });
-} );
 
+            // Apply styles to table body cells (excluding header row)
+            doc.content[2].table.body.slice(1).forEach(function (row) {
+              row.forEach(function (cell) {
+                  cell.style = 'tableBody'; // Apply the table body style to all cells in the body (excluding header row)
+              });
+            });
 
-var table = $('#report-table').DataTable( {
-    lengthChange: false,
-    buttons: [ 'copy', 'excel', 'pdf', 'print']
-} );
+              var objLayout = {};
+              objLayout['hLineWidth'] = function(i) { return .5; };
+              objLayout['vLineWidth'] = function(i) { return .5; };
+              objLayout['hLineColor'] = function(i) { return '#aaa'; };
+              objLayout['vLineColor'] = function(i) { return '#aaa'; };
+              objLayout['paddingLeft'] = function(i) { return 8; };
+              objLayout['paddingRight'] = function(i) { return 8; };
+              doc.content[2].layout = objLayout;
+
+              
+
+              // Create a data URL for the local image
+              var img = new Image();
+              img.src = 'views/images/try.png';
+
+              var maxWidth = 100; // Set the maximum width for the image
+              var maxHeight = 50; // Set the maximum height for the image
+
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+
+              // Calculate the aspect ratio of the original image
+              var aspectRatio = img.width / img.height;
+
+              // Calculate the new dimensions while maintaining aspect ratio
+              if (aspectRatio > 1) {
+                  canvas.width = maxWidth;
+                  canvas.height = maxWidth / aspectRatio;
+              } else {
+                  canvas.width = maxHeight * aspectRatio;
+                  canvas.height = maxHeight;
+              }
+
+              // Draw the resized image onto the canvas
+              var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
+              var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
+              ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+
+              var dataURL = canvas.toDataURL('image/png');
+
+              // Add title with centered and resized image data URL
+              doc.content.splice(0, 0, {
+                  margin: [0, 0, 0, 10], // Add margin to the image
+                  alignment: 'center', // Center the image
+                  image: dataURL
+              });
+
+                // Define custom styles for the borders
+                doc.styles.leftBorder = {
+                border: [1, 0, 0, 0], // left, top, right, bottom
+                borderColor: 'black'
+            };
+            doc.styles.bottomBorder = {
+                border: [0, 0, 0, 1], // left, top, right, bottom
+                borderColor: 'black'
+            };
+
+                // Define a custom footer with logo and text
+                var footer = function (currentPage, pageCount) {
+                  return {
+                      columns: [
+                          { text: 'Levites', alignment: 'left' },
+                          { text: 'Page ' + currentPage.toString() + ' of ' + pageCount.toString(), alignment: 'right' }
+                      ],
+                      margin: [40, 10, 40, 0]
+                  };
+              };
+
+              // Assign the custom footer to the doc
+              doc.footer = footer;
+          }
+      }
+  ]
+});
 
 table.buttons().container()
     .appendTo( '#report-table_wrapper .col-md-6:eq(0)' );
 
 
+    function reinitializeDataTableEmpty(newColumnNames) {
+      // Step 1: Destroy the existing DataTable instance
+      if ($.fn.DataTable.isDataTable('#report-table')) {
+          $('#report-table').DataTable().destroy();
+      }
+  
+      // Step 2: Build the new header
+      $('#report-table thead').remove();
+      const headerRow = $('<thead>').append(
+          $('<tr>').append(
+              newColumnNames.map((columnName) => $('<th>').text(columnName)) // Append the newColumnNames here
+          )
+      );
+      $('#report-table').append(headerRow);
+  
+      // Step 3: Create rows with the updated content
+      $('#report-table tbody').empty();
+  
+      // ... Add your new rows and data here
+  
+      // Step 4: Reinitialize the DataTable with the updated data and header
+      $('#report-table').DataTable({
+          
+  lengthChange: false,
+  buttons: [
+        {
+          extend: 'excel', // Add the Excel export button
+          text: 'Export to Excel',
+          title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title for Excel file
+          // ... (customize Excel export settings if needed)
+      },
+      {
+          extend: 'pdf',
+          text: 'Export to PDF',
+          sAutoWidth: true, // Automatically adjust column widths
+          title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title of the PDF
+          customize: function (doc) {
+              // For example, you can adjust margins, page size, etc.
+              doc.pageMargins = [60, 60, 60, 60]; // top, left, bottom, right
+              doc.defaultStyle.fontSize = 10; // adjust font size
 
+         // Move the title to the top of the content
+                doc.content.splice(0, 1);
+
+                // Add the title back with custom styling
+                doc.content.unshift({
+                    text: getReportTextTitle() + " Report",
+                    style: 'title', // You can define a custom style for the title
+                    margin: [0, 0, 0, 0] // Top, right, bottom, left margin
+                });
+
+                // Add additional text below the title
+                doc.content.splice(1, 0, {
+                  text: "(" +$("#report-range").val() + ")",
+                  style: 'subheader', // You can define a custom style for the text
+                  alignment: 'center', // Center the text horizontally
+                  margin: [0, 0, 0, 15] // Top, right, bottom, left margin
+                  
+              });
+
+            doc.styles.tableHeader = {
+              fillColor: 'gray', // Change header background color to blue
+              bold: true, // make header text bold
+              color: 'white', // header text color
+              alignment: 'center', // header text alignment
+              margin: [0, 10, 0, 10], // top, left, bottom, right margin
+              border: [0, 1, 1, 1], // Add a border to the header cells (top, left, right, bottom)
+              borderColor: 'blue', // Border color
+              fontSize: 12, // Increase the font size (adjust as needed)
+              cellVerticalAlignment: 'middle', // Center the header cells vertically
+            };
+
+            doc.styles.tableBody = {  
+              alignment: 'center', // Center the content horizontally
+              cellVerticalAlignment: 'middle', // Center the content vertically
+              // margin: [10, 5, 10, 5], // top, left, bottom, right margin
+              padding: [10, 30, 10, 30], // Add padding (top, right, bottom, left)
+            };
+      
+
+            // Apply styles to table header
+            doc.content[2].table.headerRows = 1; // Update the index to 2
+            doc.content[2].table.body[0].forEach(function (cell, cellIndex) {
+              cell.style = 'tableHeader'; // Apply the table header style to the first row of the body
+            });
+
+            // Apply styles to table body cells (excluding header row)
+            doc.content[2].table.body.slice(1).forEach(function (row) {
+              row.forEach(function (cell) {
+                  cell.style = 'tableBody'; // Apply the table body style to all cells in the body (excluding header row)
+              });
+            });
+
+              var objLayout = {};
+              objLayout['hLineWidth'] = function(i) { return .5; };
+              objLayout['vLineWidth'] = function(i) { return .5; };
+              objLayout['hLineColor'] = function(i) { return '#aaa'; };
+              objLayout['vLineColor'] = function(i) { return '#aaa'; };
+              objLayout['paddingLeft'] = function(i) { return 8; };
+              objLayout['paddingRight'] = function(i) { return 8; };
+              doc.content[2].layout = objLayout;
+
+              
+
+              // Create a data URL for the local image
+              var img = new Image();
+              img.src = 'views/images/try.png';
+
+              var maxWidth = 100; // Set the maximum width for the image
+              var maxHeight = 50; // Set the maximum height for the image
+
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+
+              // Calculate the aspect ratio of the original image
+              var aspectRatio = img.width / img.height;
+
+              // Calculate the new dimensions while maintaining aspect ratio
+              if (aspectRatio > 1) {
+                  canvas.width = maxWidth;
+                  canvas.height = maxWidth / aspectRatio;
+              } else {
+                  canvas.width = maxHeight * aspectRatio;
+                  canvas.height = maxHeight;
+              }
+
+              // Draw the resized image onto the canvas
+              var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
+              var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
+              ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+
+              var dataURL = canvas.toDataURL('image/png');
+
+              // Add title with centered and resized image data URL
+              doc.content.splice(0, 0, {
+                  margin: [0, 0, 0, 10], // Add margin to the image
+                  alignment: 'center', // Center the image
+                  image: dataURL
+              });
+
+                // Define custom styles for the borders
+                doc.styles.leftBorder = {
+                border: [1, 0, 0, 0], // left, top, right, bottom
+                borderColor: 'black'
+            };
+            doc.styles.bottomBorder = {
+                border: [0, 0, 0, 1], // left, top, right, bottom
+                borderColor: 'black'
+            };
+
+                // Define a custom footer with logo and text
+                var footer = function (currentPage, pageCount) {
+                  return {
+                      columns: [
+                          { text: 'Levites', alignment: 'left' },
+                          { text: 'Page ' + currentPage.toString() + ' of ' + pageCount.toString(), alignment: 'right' }
+                      ],
+                      margin: [40, 10, 40, 0]
+                  };
+              };
+
+                // Assign the custom footer to the doc
+                doc.footer = footer;
+            }
+        }
+      ]
+      }).buttons().container().appendTo('#report-table_wrapper .col-md-6:eq(0)');
+  }
 // Function to reinitialize the DataTable with new data and header
 function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
     // Step 1: Destroy the existing DataTable instance
@@ -150,23 +471,531 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
     // Step 4: Reinitialize the DataTable with the updated data and header
     $('#report-table').DataTable({
       lengthChange: false,
-      buttons: ['copy', 'excel', 'pdf', 'print']
+      buttons: [
+        {
+            extend: 'excel', // Add the Excel export button
+            text: 'Export to Excel',
+            title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title for Excel file
+            // ... (customize Excel export settings if needed)
+        },
+        {
+            extend: 'pdf',
+            text: 'Export to PDF',
+            sAutoWidth: true, // Automatically adjust column widths
+            title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title of the PDF
+            customize: function (doc) {
+                // For example, you can adjust margins, page size, etc.
+                doc.pageMargins = [60, 60, 60, 60]; // top, left, bottom, right
+                doc.defaultStyle.fontSize = 10; // adjust font size
+  
+          
+                  // Move the title to the top of the content
+                  doc.content.splice(0, 1);
+
+                  // Add the title back with custom styling
+                  doc.content.unshift({
+                      text: getReportTextTitle() + " Report",
+                      style: 'title', // You can define a custom style for the title
+                      margin: [0, 0, 0, 0] // Top, right, bottom, left margin
+                  });
+
+                  // Add additional text below the title
+                  doc.content.splice(1, 0, {
+                    text: "(" +$("#report-range").val() + ")",
+                    style: 'subheader', // You can define a custom style for the text
+                    alignment: 'center', // Center the text horizontally
+                    margin: [0, 0, 0, 15] // Top, right, bottom, left margin
+                    
+                });
+
+              doc.styles.tableHeader = {
+                fillColor: 'gray', // Change header background color to blue
+                bold: true, // make header text bold
+                color: 'white', // header text color
+                alignment: 'center', // header text alignment
+                margin: [0, 10, 0, 10], // top, left, bottom, right margin
+                border: [0, 1, 1, 1], // Add a border to the header cells (top, left, right, bottom)
+                borderColor: 'blue', // Border color
+                fontSize: 12, // Increase the font size (adjust as needed)
+              };
+  
+              doc.styles.tableBody = {  
+                alignment: 'center', // Center the content horizontally
+                cellVerticalAlignment: 'middle', // Center the content vertically
+                // margin: [10, 5, 10, 5], // top, left, bottom, right margin
+                padding: [10, 30, 10, 30], // Add padding (top, right, bottom, left)
+              };
+  
+              // Apply styles to table header
+              doc.content[2].table.headerRows = 1; // Update the index to 2
+              doc.content[2].table.body[0].forEach(function (cell, cellIndex) {
+                cell.style = 'tableHeader'; // Apply the table header style to the first row of the body
+              });
+  
+              // Apply styles to table body cells (excluding header row)
+              doc.content[2].table.body.slice(1).forEach(function (row) {
+                row.forEach(function (cell) {
+                    cell.style = 'tableBody'; // Apply the table body style to all cells in the body (excluding header row)
+                });
+              });
+  
+                var objLayout = {};
+                objLayout['hLineWidth'] = function(i) { return .5; };
+                objLayout['vLineWidth'] = function(i) { return .5; };
+                objLayout['hLineColor'] = function(i) { return '#aaa'; };
+                objLayout['vLineColor'] = function(i) { return '#aaa'; };
+                objLayout['paddingLeft'] = function(i) { return 35; };
+                objLayout['paddingRight'] = function(i) { return 35; };
+                doc.content[2].layout = objLayout;
+  
+                
+  
+                // Create a data URL for the local image
+                var img = new Image();
+                img.src = 'views/images/try.png';
+  
+                var maxWidth = 100; // Set the maximum width for the image
+                var maxHeight = 50; // Set the maximum height for the image
+  
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+  
+                // Calculate the aspect ratio of the original image
+                var aspectRatio = img.width / img.height;
+  
+                // Calculate the new dimensions while maintaining aspect ratio
+                if (aspectRatio > 1) {
+                    canvas.width = maxWidth;
+                    canvas.height = maxWidth / aspectRatio;
+                } else {
+                    canvas.width = maxHeight * aspectRatio;
+                    canvas.height = maxHeight;
+                }
+  
+                // Draw the resized image onto the canvas
+                var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
+                var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
+                ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+  
+                var dataURL = canvas.toDataURL('image/png');
+  
+                // Add title with centered and resized image data URL
+                doc.content.splice(0, 0, {
+                    margin: [0, 0, 0, 10], // Add margin to the image
+                    alignment: 'center', // Center the image
+                    image: dataURL
+                });
+  
+                  // Define custom styles for the borders
+                  doc.styles.leftBorder = {
+                  border: [1, 0, 0, 0], // left, top, right, bottom
+                  borderColor: 'black'
+              };
+              doc.styles.bottomBorder = {
+                  border: [0, 0, 0, 1], // left, top, right, bottom
+                  borderColor: 'black'
+              };
+  
+                  // Define a custom footer with logo and text
+                  var footer = function (currentPage, pageCount) {
+                    return {
+                        columns: [
+                            { text: 'Levites', alignment: 'left' },
+                            { text: 'Page ' + currentPage.toString() + ' of ' + pageCount.toString(), alignment: 'right' }
+                        ],
+                        margin: [40, 10, 40, 0]
+                    };
+                };
+  
+                // Assign the custom footer to the doc
+                doc.footer = footer;
+            }
+        }
+    ]
     }).buttons().container().appendTo('#report-table_wrapper .col-md-6:eq(0)');
   }
+
+
+  function reinitializeDataTableEvents(newColumnNames, eventsInfo) {
+    // Step 1: Destroy the existing DataTable instance
+    if ($.fn.DataTable.isDataTable('#report-table')) {
+      $('#report-table').DataTable().destroy();
+    }
+  
+    // Step 2: Build the new header
+    $('#report-table thead').remove();
+    const headerRow = $('<thead>').append(
+      $('<tr>').append(
+        newColumnNames.map((columnName) => $('<th>').text(columnName))
+      )
+    );
+    $('#report-table').append(headerRow);
+  
+    // Step 3: Create rows with the updated content
+    $('#report-table tbody').empty();
+    const tableBody = $('#report-table tbody');
+    eventsInfo.forEach((event) => {
+        const { event_date, event_time, event_title, event_category, event_venue, event_location } = event;
+        const tableRow = $('<tr>').append(
+            $('<td>').text(event_date),
+            $('<td>').text(event_time),
+            $('<td>').text(event_title),
+            $('<td>').text(event_category),
+            $('<td>').text(event_venue),
+            $('<td>').text(event_location)
+        );
+        tableBody.append(tableRow);
+    });
+  
+    // Step 4: Reinitialize the DataTable with the updated data and header
+    $('#report-table').DataTable({
+          
+  lengthChange: false,
+  buttons: [
+        {
+          extend: 'excel', // Add the Excel export button
+          text: 'Export to Excel',
+          title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title for Excel file
+          // ... (customize Excel export settings if needed)
+      },
+      {
+          extend: 'pdf',
+          text: 'Export to PDF',
+          sAutoWidth: true, // Automatically adjust column widths
+          title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title of the PDF
+          customize: function (doc) {
+              // For example, you can adjust margins, page size, etc.
+              doc.pageMargins = [60, 60, 60, 60]; // top, left, bottom, right
+              doc.defaultStyle.fontSize = 10; // adjust font size
+
+         // Move the title to the top of the content
+                doc.content.splice(0, 1);
+
+                // Add the title back with custom styling
+                doc.content.unshift({
+                    text: getReportTextTitle() + " Report",
+                    style: 'title', // You can define a custom style for the title
+                    margin: [0, 0, 0, 0] // Top, right, bottom, left margin
+                });
+
+                // Add additional text below the title
+                doc.content.splice(1, 0, {
+                  text: "(" +$("#report-range").val() + ")",
+                  style: 'subheader', // You can define a custom style for the text
+                  alignment: 'center', // Center the text horizontally
+                  margin: [0, 0, 0, 15] // Top, right, bottom, left margin
+                  
+              });
+
+            doc.styles.tableHeader = {
+              fillColor: 'gray', // Change header background color to blue
+              bold: true, // make header text bold
+              color: 'white', // header text color
+              alignment: 'center', // header text alignment
+              margin: [0, 10, 0, 10], // top, left, bottom, right margin
+              border: [0, 1, 1, 1], // Add a border to the header cells (top, left, right, bottom)
+              borderColor: 'blue', // Border color
+              fontSize: 12, // Increase the font size (adjust as needed)
+              cellVerticalAlignment: 'middle', // Center the header cells vertically
+            };
+
+            doc.styles.tableBody = {  
+              alignment: 'center', // Center the content horizontally
+              cellVerticalAlignment: 'middle', // Center the content vertically
+              // margin: [10, 5, 10, 5], // top, left, bottom, right margin
+              padding: [10, 30, 10, 30], // Add padding (top, right, bottom, left)
+            };
+      
+
+            // Apply styles to table header
+            doc.content[2].table.headerRows = 1; // Update the index to 2
+            doc.content[2].table.body[0].forEach(function (cell, cellIndex) {
+              cell.style = 'tableHeader'; // Apply the table header style to the first row of the body
+            });
+
+            // Apply styles to table body cells (excluding header row)
+            doc.content[2].table.body.slice(1).forEach(function (row) {
+              row.forEach(function (cell) {
+                  cell.style = 'tableBody'; // Apply the table body style to all cells in the body (excluding header row)
+              });
+            });
+
+              var objLayout = {};
+              objLayout['hLineWidth'] = function(i) { return .5; };
+              objLayout['vLineWidth'] = function(i) { return .5; };
+              objLayout['hLineColor'] = function(i) { return '#aaa'; };
+              objLayout['vLineColor'] = function(i) { return '#aaa'; };
+              objLayout['paddingLeft'] = function(i) { return 8; };
+              objLayout['paddingRight'] = function(i) { return 8; };
+              doc.content[2].layout = objLayout;
+
+              
+
+              // Create a data URL for the local image
+              var img = new Image();
+              img.src = 'views/images/try.png';
+
+              var maxWidth = 100; // Set the maximum width for the image
+              var maxHeight = 50; // Set the maximum height for the image
+
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+
+              // Calculate the aspect ratio of the original image
+              var aspectRatio = img.width / img.height;
+
+              // Calculate the new dimensions while maintaining aspect ratio
+              if (aspectRatio > 1) {
+                  canvas.width = maxWidth;
+                  canvas.height = maxWidth / aspectRatio;
+              } else {
+                  canvas.width = maxHeight * aspectRatio;
+                  canvas.height = maxHeight;
+              }
+
+              // Draw the resized image onto the canvas
+              var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
+              var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
+              ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+
+              var dataURL = canvas.toDataURL('image/png');
+
+              // Add title with centered and resized image data URL
+              doc.content.splice(0, 0, {
+                  margin: [0, 0, 0, 10], // Add margin to the image
+                  alignment: 'center', // Center the image
+                  image: dataURL
+              });
+
+                // Define custom styles for the borders
+                doc.styles.leftBorder = {
+                border: [1, 0, 0, 0], // left, top, right, bottom
+                borderColor: 'black'
+            };
+            doc.styles.bottomBorder = {
+                border: [0, 0, 0, 1], // left, top, right, bottom
+                borderColor: 'black'
+            };
+
+                // Define a custom footer with logo and text
+                var footer = function (currentPage, pageCount) {
+                  return {
+                      columns: [
+                          { text: 'Levites', alignment: 'left' },
+                          { text: 'Page ' + currentPage.toString() + ' of ' + pageCount.toString(), alignment: 'right' }
+                      ],
+                      margin: [40, 10, 40, 0]
+                  };
+              };
+
+                // Assign the custom footer to the doc
+                doc.footer = footer;
+            }
+        }
+      ]
+    }).buttons().container().appendTo('#report-table_wrapper .col-md-6:eq(0)');
+  }
+
+
+  function reinitializeDataTableMembers(newColumnNames, filesInfo) {
+    // Step 1: Destroy the existing DataTable instance
+    if ($.fn.DataTable.isDataTable('#report-table')) {
+      $('#report-table').DataTable().destroy();
+    }
+  
+    // Step 2: Build the new header
+    $('#report-table thead').remove();
+    const headerRow = $('<thead>').append(
+      $('<tr>').append(
+        newColumnNames.map((columnName) => $('<th>').text(columnName))
+      )
+    );
+    $('#report-table').append(headerRow);
+  
+    // Step 3: Create rows with the updated content
+    $('#report-table tbody').empty();
+    const tableBody = $('#report-table tbody');
+    filesInfo.forEach((fileInfo) => {
+      const { membershipDate, memberName, memberEmail } = fileInfo;
+      const tableRow = $('<tr>').append(
+        $('<td>').text(membershipDate),
+        $('<td>').text(memberName),
+        $('<td>').text(memberEmail)
+      );
+      tableBody.append(tableRow);
+    });
+  
+
+    // Step 4: Reinitialize the DataTable with the updated data and header
+    $('#report-table').DataTable({
+      lengthChange: false,
+      buttons: [
+        {
+            extend: 'excel', // Add the Excel export button
+            text: 'Export to Excel',
+            title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title for Excel file
+            // ... (customize Excel export settings if needed)
+        },
+        {
+            extend: 'pdf',
+            text: 'Export to PDF',
+            sAutoWidth: true, // Automatically adjust column widths
+            title: new Date().toISOString().slice(0, 10) + "-levites-report", // Set the title of the PDF
+            customize: function (doc) {
+                // For example, you can adjust margins, page size, etc.
+                doc.pageMargins = [60, 60, 60, 60]; // top, left, bottom, right
+                doc.defaultStyle.fontSize = 10; // adjust font size
+  
+          
+                  // Move the title to the top of the content
+                  doc.content.splice(0, 1);
+
+                  // Add the title back with custom styling
+                  doc.content.unshift({
+                      text: getReportTextTitle() + " Report",
+                      style: 'title', // You can define a custom style for the title
+                      margin: [0, 0, 0, 0] // Top, right, bottom, left margin
+                  });
+
+                  // Add additional text below the title
+                  doc.content.splice(1, 0, {
+                    text: "(" +$("#report-range").val() + ")",
+                    style: 'subheader', // You can define a custom style for the text
+                    alignment: 'center', // Center the text horizontally
+                    margin: [0, 0, 0, 15] // Top, right, bottom, left margin
+                    
+                });
+
+              doc.styles.tableHeader = {
+                fillColor: 'gray', // Change header background color to blue
+                bold: true, // make header text bold
+                color: 'white', // header text color
+                alignment: 'center', // header text alignment
+                margin: [0, 8, 0, 8], // top, left, bottom, right margin
+                border: [0, 1, 1, 1], // Add a border to the header cells (top, left, right, bottom)
+                borderColor: 'blue', // Border color
+                fontSize: 12, // Increase the font size (adjust as needed)
+              };
+  
+              doc.styles.tableBody = {  
+                alignment: 'center', // Center the content horizontally
+                cellVerticalAlignment: 'middle', // Center the content vertically
+                margin: [5, 5, 5, 5], // top, left, bottom, right margin
+                padding: [10, 10, 10, 10], // Add padding (top, right, bottom, left)
+              };
+  
+              // Apply styles to table header
+              doc.content[2].table.headerRows = 1; // Update the index to 2
+              doc.content[2].table.body[0].forEach(function (cell, cellIndex) {
+                cell.style = 'tableHeader'; // Apply the table header style to the first row of the body
+              });
+  
+              // Apply styles to table body cells (excluding header row)
+              doc.content[2].table.body.slice(1).forEach(function (row) {
+                row.forEach(function (cell) {
+                    cell.style = 'tableBody'; // Apply the table body style to all cells in the body (excluding header row)
+                });
+              });
+  
+                var objLayout = {};
+                objLayout['hLineWidth'] = function(i) { return .5; };
+                objLayout['vLineWidth'] = function(i) { return .5; };
+                objLayout['hLineColor'] = function(i) { return '#aaa'; };
+                objLayout['vLineColor'] = function(i) { return '#aaa'; };
+                objLayout['paddingLeft'] = function(i) { return 35; };
+                objLayout['paddingRight'] = function(i) { return 35; };
+                doc.content[2].layout = objLayout;
+  
+                
+  
+                // Create a data URL for the local image
+                var img = new Image();
+                img.src = 'views/images/try.png';
+  
+                var maxWidth = 100; // Set the maximum width for the image
+                var maxHeight = 50; // Set the maximum height for the image
+  
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+  
+                // Calculate the aspect ratio of the original image
+                var aspectRatio = img.width / img.height;
+  
+                // Calculate the new dimensions while maintaining aspect ratio
+                if (aspectRatio > 1) {
+                    canvas.width = maxWidth;
+                    canvas.height = maxWidth / aspectRatio;
+                } else {
+                    canvas.width = maxHeight * aspectRatio;
+                    canvas.height = maxHeight;
+                }
+  
+                // Draw the resized image onto the canvas
+                var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
+                var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
+                ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+  
+                var dataURL = canvas.toDataURL('image/png');
+  
+                // Add title with centered and resized image data URL
+                doc.content.splice(0, 0, {
+                    margin: [0, 0, 0, 10], // Add margin to the image
+                    alignment: 'center', // Center the image
+                    image: dataURL
+                });
+  
+                  // Define custom styles for the borders
+                  doc.styles.leftBorder = {
+                  border: [1, 0, 0, 0], // left, top, right, bottom
+                  borderColor: 'black'
+              };
+              doc.styles.bottomBorder = {
+                  border: [0, 0, 0, 1], // left, top, right, bottom
+                  borderColor: 'black'
+              };
+  
+                  // Define a custom footer with logo and text
+                  var footer = function (currentPage, pageCount) {
+                    return {
+                        columns: [
+                            { text: 'Levites', alignment: 'left' },
+                            { text: 'Page ' + currentPage.toString() + ' of ' + pageCount.toString(), alignment: 'right' }
+                        ],
+                        margin: [40, 10, 40, 0]
+                    };
+                };
+  
+                // Assign the custom footer to the doc
+                doc.footer = footer;
+            }
+        }
+    ]
+    }).buttons().container().appendTo('#report-table_wrapper .col-md-6:eq(0)');
+  }
+
+
+  
   
   // Inside the $("#report-type").change event handler:
   $("#report-type").change(function (event) {
 
     var reportType = $("#report-type").val();
   
+  
     if (reportType === "storage") {
 
       $("#event-graph-section").attr('hidden', "");
+      $("#report-range").val("");
+      $("#report-range").attr('disabled', "disabled");
       $("#report-category").attr('disabled', "disabled");
       $("#affiliatesReportContainer").removeAttr("hidden"); 
+      $("#currentStorageReport").removeAttr("hidden"); 
+
       $("#church-label-change").text('File Storage');
       $("#report-church").removeAttr('disabled');
       const newColumnNames = ['File Name', 'File Type', 'File Size'];
+
+        // for my storage
       const folderRef = firebase.storage().ref().child(currentPath);
   
       Promise.all([
@@ -197,53 +1026,37 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
             });
 
             var freesize = 1024-(totalSize / 1048576).toFixed(2)
-            console.log(freesize);
         
             valuesList.push(parseFloat(freesize)); 
 
-            console.log(keysList);
-
-            console.log(valuesList);
-
             var options = {
-                series: valuesList,
-                chart: {
-                    height: 255,
-                    type: 'donut',
-                },
-                legend: {
-                    position: 'bottom',
-                    show: false,
-                },
-                plotOptions: {
-                    pie: {
-                        // customScale: 0.8,
-                        donut: {
-                            size: '80%'
-                        }
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                labels: keysList,
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            height: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
+              series: valuesList,
+              chart: {
+                foreColor: '#9ba7b2',
+                height: 500,
+                type: 'pie',
+                toolbar: {
+                  show: false // Hide the default toolbar (if not needed)
+                }
+              },
+              labels: keysList,
+              legend: {
+                position: 'right', // Position the legend at the bottom
+                fontSize: '14px', // Set the font size for the legend
+                offsetY: 8 // Adjust the offset for better spacing
+              },
+              responsive: [{
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    height: 360
+                  },
+                  legend: {
+                    position: 'bottom'
+                  }
+                }
+              }]
             };
- 
-            var churchStorageReportList = document.getElementById('churchStorageReportList');
-
-            // Clear any existing content in the list before populating it.
-            churchStorageReportList.innerHTML = '';
 
             // Create the ApexCharts instance with the same options you have.
             var chart = new ApexCharts(document.querySelector("#churchStorageReport"), options);
@@ -251,6 +1064,17 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
             // Render the chart to ensure the colors are computed.
             chart.render();
 
+                  // Create the ApexCharts instance with the same options you have.
+            var chart2 = new ApexCharts(document.querySelector("#currentchurchStorageReport"), options);
+
+            // Render the chart to ensure the colors are computed.
+            chart2.render();
+
+                     
+            var churchStorageReportList = document.getElementById('currentchurchStorageReportList');
+        
+            // Clear any existing content in the list before populating it.
+            churchStorageReportList.innerHTML = '';
             // Get the colors set by ApexCharts for the data points.
             var apexChartColors = chart.w.globals.colors;
 
@@ -312,14 +1136,6 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
 
 
                 var collabID = value.collabID;
-
-
-
-        
-                // Process or display the data as needed for each object
-                console.log("CollabID: " + collabID);
-                console.log("Church ID 2: " + churchid);
-                console.log("Church Name 2: " + churchname);
 
                 createCard(collabID, churchname);
 
@@ -431,12 +1247,39 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
 
     }else if (reportType === "members") {
 
-        alert("hello");
+
         $("#event-graph-section").attr('hidden', "");
-        $("#report-table").attr('hidden', true);
+        $("#currentStorageReport").attr('hidden', "");
+        $("#affiliatesReportContainer").attr('hidden', "");
         $("#report-category").attr('disabled', "disabled");
         $("#report-range").attr('disabled', "disabled");
+        $("#report-church").attr('disabled', "disabled");
         $("#affiliated-graph-section").removeAttr("hidden");   
+
+
+        var reportData = new FormData();
+   
+    
+        $.ajax({
+          url: "ajax/get_memberReport.ajax.php",
+          method: "POST",
+          data: reportData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "json",
+          success: function(answer) {
+            const newColumnNames = ['Date', 'Name', 'Email'];
+            const data = answer; // Assuming your AJAX response contains file information
+  
+            reinitializeDataTableMembers(newColumnNames, data);
+          },
+          error: function(xhr, status, error) { 
+            console.log(error);
+            alert("Oops. Something went wrong!");
+          },
+          complete: function() {}
+        });
 
 
         $(function () {
@@ -548,19 +1391,160 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
           
           // Call the function to fetch event counts and update the chart
           fetchEventCounts();
-        
-        
-        
         });
         
-      
-      
-    
-      }
+    }else{
+   
+
+        $("#event-graph-section").attr('hidden', '');
+        $("#affiliated-graph-section").attr('hidden', "");
+        $("#affiliatesReportContainer").attr('hidden', "");
+        $("#currentStorageReport").attr('hidden', "");
+        
+        
+        $("#report-category").removeAttr('disabled');
+        $("#report-range").removeAttr('disabled');
+
+        $("#church-label-change").text('File Storage');
+        $("#church-label-change").attr('disabled', 'disabled');
+        $("#report-church").attr('disabled', 'disabled');
+
+        $('#report-table tbody').empty();
+        const newColumnNames = ['Date', 'Time', 'Event Title', 'Category', 'Venue', 'Location'];
+        reinitializeDataTableEmpty(newColumnNames);
+
+
+    }
 
 
   });
 
+  $("#report-church").change(function(e){
+    const newColumnNames = ['File Name', 'File Type', 'File Size'];
+     
+    if($("#report-church").val() == ""){
+      var selectedFolderStorage = getCookie('church_id');
+    }else{
+      var selectedFolderStorage = $("#report-church").val();
+
+    }
+
+    $("#currentStorageName").text($("#report-church option:selected").text());
+    
+
+    $("#currentchurchStorageReport").empty();
+
+
+    const selectedStorage = firebase.storage().ref().child(selectedFolderStorage);
+
+    Promise.all([
+      getFilesInfo(selectedStorage),
+      calculateSubfolderSizeReport(selectedStorage)
+    ])
+      .then(([filesInfo, { totalSize }]) => {
+        reinitializeDataTable(newColumnNames, filesInfo, totalSize);
+      })
+      .catch((error) => {
+        console.error('Error retrieving files information:', error);
+      });
+
+      calculateSubfolderSizeReport(selectedStorage)
+      .then(({ totalSize, fileSizeByExtension }) => {
+
+          var keysList = [];
+          $.each(fileSizeByExtension, function(key) {
+            keysList.push(key.toUpperCase());
+          });
+          keysList.push("Free Space");
+      
+
+          var valuesList = [];
+          $.each(fileSizeByExtension, function(key, value) {
+              var valueInMB = (value / 1048576).toFixed(2); // Convert bytes to megabytes and fix to 2 decimal places
+              valuesList.push(parseFloat(valueInMB)); 
+          });
+
+          var freesize = 1024-(totalSize / 1048576).toFixed(2)
+      
+          valuesList.push(parseFloat(freesize)); 
+
+          var options = {
+            series: valuesList,
+            chart: {
+              foreColor: '#9ba7b2',
+              height: 500,
+              type: 'pie',
+              toolbar: {
+                show: false // Hide the default toolbar (if not needed)
+              }
+            },
+            labels: keysList,
+            legend: {
+              position: 'right', // Position the legend at the bottom
+              fontSize: '14px', // Set the font size for the legend
+              offsetY: 8 // Adjust the offset for better spacing
+            },
+            responsive: [{
+              breakpoint: 480,
+              options: {
+                chart: {
+                  height: 360
+                },
+                legend: {
+                  position: 'bottom'
+                }
+              }
+            }]
+          };
+
+                      // Destroy the existing chart instance (if it exists)
+
+
+            // Create the ApexCharts instance with the same options you have.
+            var chart_current = new ApexCharts(document.querySelector("#currentchurchStorageReport"), options);
+
+            // Render the chart to ensure the colors are computed.
+            chart_current.render();
+        
+          var churchStorageReportList = document.getElementById('currentchurchStorageReportList');
+
+          // Clear any existing content in the list before populating it.
+          churchStorageReportList.innerHTML = '';
+
+        
+
+          // Get the colors set by ApexCharts for the data points.
+          var apexChartColors = chart_current.w.globals.colors;
+
+          // Loop through the keysList and valuesList arrays to create li elements and append them to the ul element.
+          for (var i = 0; i < keysList.length; i++) {
+          var li = document.createElement('li');
+          li.classList.add('list-group-item', 'border-top', 'd-flex', 'justify-content-between', 'align-items-center', 'bg-transparent');
+
+          var spanKey = document.createElement('span');
+          spanKey.textContent = keysList[i];
+
+          var spanValue = document.createElement('span');
+          spanValue.classList.add('badge', 'rounded-pill');
+
+          // Set the background color of the spanValue based on the color from ApexCharts.
+          spanValue.style.backgroundColor = apexChartColors[i % apexChartColors.length];
+
+          spanValue.textContent = valuesList[i].toFixed(1) + ' MB';
+
+          li.appendChild(spanKey);
+          li.appendChild(spanValue);
+          churchStorageReportList.appendChild(li);
+          }    
+          
+
+ 
+      })
+      .catch((error) => {
+      console.error('Error calculating folder size:', error);
+      });
+
+  });
 
   function createCard(churchid, churchname) {
     var card = $('<div></div>').addClass('col-lg-4').append(

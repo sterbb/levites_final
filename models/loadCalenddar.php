@@ -10,12 +10,23 @@ $stmt->bindParam(":churchID", $churchID, PDO::PARAM_STR);
 $stmt -> execute();
 $result = $stmt -> fetchAll();
 
-foreach($result as $row){
-    $data[] = array(
+foreach ($result as $row) {
+    $event = array(
         "title" => $row["event_title"],
-        "start" => $row["event_date"],
-        "classNames" => [$row["event_category"]],   
+        "classNames" => [$row["event_category"]]
     );
+
+    if ($row["event_date"]) {
+        $event["start"] = $row["event_date"];
+        $event["borderColor"] = 'white';
+        if ($row["event_date2"] && $row["event_date2"] !== $row["event_date"]) {
+            $eventEndDate = new DateTime($row["event_date2"]);
+            $eventEndDate->modify('+1 day'); // Add one day to the end date
+            $event["end"] = $eventEndDate->format('Y-m-d');
+        }
+    }
+
+    $data[] = $event;
 }
 
 

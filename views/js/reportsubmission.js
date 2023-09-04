@@ -5,6 +5,9 @@ $(document).ready(function() {
         var report_type = $("#reportSubmissionType").val();
         var report_subject = $("#reportSubmissionSubject").val();
         var report_description = $("#reportSubmissionDescription").val();
+        console.log(report_type);
+        console.log(report_subject);
+        console.log(report_description);
 
         var reportData = new FormData();
 

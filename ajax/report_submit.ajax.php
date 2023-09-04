@@ -16,7 +16,7 @@ class SubmitReport{
        "report_subject"=> $report_subject,
        "report_description"=> $report_description);
        $answer = (new ControllerReportSubmission)->ctrSubmitReport($data);
-       echo json_encode($answer);
+       echo ($answer);
     }
 }
  

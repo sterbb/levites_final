@@ -4,6 +4,12 @@
       <!--breadcrumb-->
       <div id="particles-js"></div>
       <!--end breadcrumb-->
+      <div class="progress">
+    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <p id="statusMessage"></p>
+  
+    </div>
       <div class="row ">
         <div class="col-12 col-lg-3 notPublic notMember">
           <div class="card ">
@@ -34,7 +40,7 @@
           <!-- Additional content -->
               <div class="card overflow-hidden notPublic notMember">
                 <div class="card-body">
-                  <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' ></i></a></h5>
+                  <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' data-toggle="tooltip" data-placement="top" title="Add Affiliates"></i></a></h5>
                   <div class="mt-3"></div>
 
                   <?php 
@@ -126,12 +132,14 @@
                       <div class="fm-search">
                         <div class="mb-0">
                           <div class="upload-file position-absolute top-0 end-1 notPublic">
-                              <input type="file" id="fileInput" style="display: none;">
+                          <input type="file" id="fileInput" style="display: none;" accept=".pdf,.txt,.docx,.doc,.pptx,.mp4,.jpg,.jpeg,.png,.xlsx,.xls">
                             
                               <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-nocaret cursor-pointer bg-secondary" style="border-right: 0px; font-weight:bold;"  data-bs-toggle="dropdown">Upload<i class='upicon bx bx-download'></i>
                                 </button>
                                 <ul class="dropdown-menu">
                                   <li  class="upload"><a class="dropdown-item button" id="uploadFiles"><i class='upicon bx bxs-file-import' ></i>Upload Files</a>
+                                  <div id="uploadProgressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
                                   </li>
                                   <hr class="dropdown-divider">
                                   </li>
@@ -191,9 +199,7 @@
                         <div>
                           <h5 class="mb-0">Uploaded Files</h5>
                         </div>
-                        <div class="ms-auto">
-                          <a href="javascript:;" class="btn btn-sm btn-outline-secondary">View all</a>
-                        </div>
+       
                       </div>
                       <div class="table-responsive mt-3 mb-3">
                         <table class="table table-striped table-hover table-sm border-bottom listOfFiles" id="listOfFiles">
@@ -332,3 +338,19 @@
   </div>
 </div>    
 
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="modalErrorMessage">Invalid file type. Only PDF, TXT, DOCX, PPTX, MP4, JPG, and PNG files are allowed.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

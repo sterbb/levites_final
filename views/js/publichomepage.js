@@ -34,38 +34,6 @@ $(document).ready(function() {
         });
       });
 
-
-
-      
-    // // Event handler for search input keyup
-    // $("#searchQuery").on("keyup", function() {
-    //   var query = $(this).val().trim();
-  
-    //   alert(query);
-    //   if (query === "") {
-    //     $("#searchResults").empty().hide();
-    //     return;
-    //   }
-  
-    //   // Perform the search
-    //   search(query);
-    // });
-  
-    // function search(query) {
-    //   $.ajax({
-    //     url: "publichomepage.controller.php",
-    //     method: "POST",
-    //     data: { query: query },
-    //     dataType: "json",
-    //     success: function(response) {
-    //       displayResults(response);
-    //     },
-    //     error: function(xhr, status, error) {
-    //         var errorMessage = xhr.responseText; // Extract the error message
-    //         alert("Error: " + errorMessage);
-    //       }
-    //   });
-    // }
   
     function displayResults(results) {
       var searchResultsContainer = $("#searchResults");

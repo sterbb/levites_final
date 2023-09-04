@@ -98,6 +98,16 @@ if(isset($_COOKIE["acc_type"])){
                     </a>
                 </li>
 
+                <li class="public" >
+                    <a href="membership">
+                      <div class="parent-icon"><span class="material-symbols-outlined">
+                        public
+                        </span>
+                      </div>
+                      <div class="menu-title ">Membership</div>
+                    </a>
+                </li>
+
                 <li class="admin">
                   <a href="websiteorg">
                     <div class="parent-icon"><i class='bx bx-customize' ></i>

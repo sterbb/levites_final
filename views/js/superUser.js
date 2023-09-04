@@ -9,9 +9,6 @@
             processData: false,
             dataType: "text",
             success: function(answer) {
-
-                console.log(answer);
-  
             },
             error: function() {
                 alert("Oops. Something went wrong!");
@@ -56,7 +53,7 @@
     $(".viewBtn").on('click', function(){
         // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
         var church_id = $(this).siblings('input').first().val();
-        console.log(church_id);
+    
         var churchData = new FormData();
         churchData.append("church_id", church_id);
 
@@ -70,7 +67,7 @@
             processData: false,
             dataType: "json",
             success: function(answer) {
-              console.log(answer);
+         
 
               $("#superuser_churchID").val(answer[0]);
 
@@ -107,7 +104,7 @@
     function myFunction(){
         // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
         var church_id = $(this).siblings('input').first().val();
-        console.log(church_id);
+
         
         var churchData = new FormData();
         churchData.append("church_id", church_id);
@@ -121,7 +118,7 @@
             processData: false,
             dataType: "json",
             success: function(answer) {
-              console.log(answer);
+  
 
               $("superuser_churchID").val(answer[0]);
               
@@ -129,7 +126,8 @@
               $("#registration_churches").load('superuser' + ' #registration_churches');
           
             },
-            error: function() {
+            error: function(e) {
+       
                 alert("Oops. Something went wrong!");
             },
             complete: function() {
@@ -140,11 +138,13 @@
     $(".acceptBtn").on('click', function(){
 
         var church_id = $(this).siblings('input').first().val();
+        var church_name = $(this).val();
 
 
         
         var churchData = new FormData();
         churchData.append("church_id", church_id);
+        churchData.append("church_name", church_name);
 
         $.ajax({
             url: "ajax/accept_church.ajax.php",
@@ -155,7 +155,7 @@
             processData: false,
             dataType: "json",
             success: function(answer) {
-              console.log(answer);
+
 
               $("superuser_churchID").val(answer[0]);
 
@@ -172,9 +172,7 @@
               
                 try {
                   await subfolderRef.putString("", "raw", metadata);
-                  console.log("Subfolder created:", parentFolderPath + "/" + subfolderName);
                 } catch (error) {
-                  console.log("Error:", error);
                   throw error;
                 }
               }
@@ -185,7 +183,7 @@
                   await createSubfolder(church_id, "Members");
                   location.reload();
                 } catch (error) {
-                  console.error("Error creating subfolders:", error);
+
                 }
               }
               
@@ -195,7 +193,7 @@
           
             },
             error: function() {
-                alert("Oops. Something went wrong!");
+
             },
             complete: function() {
           
@@ -207,12 +205,14 @@
     });
 
     $(".rejectBtn").on('click', function(){
-        // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
-        var church_id = $(this).siblings('input').first().val();
-        console.log(church_id);
-        
-        var churchData = new FormData();
-        churchData.append("church_id", church_id);
+      var church_id = $(this).siblings('input').first().val();
+      var church_name = $(this).val();
+      alert(church_name);
+
+      
+      var churchData = new FormData();
+      churchData.append("church_id", church_id);
+      churchData.append("church_name", church_name);
 
         $.ajax({
             url: "ajax/reject_church.ajax.php",
@@ -223,20 +223,16 @@
             processData: false,
             dataType: "json",
             success: function(answer) {
-              console.log(answer);
+     
 
               $("#superuser_churchID").val(answer[0]);
-
-              // $(".accepted_churches").load(location.href + ' .accepted_churches');
-              // $(".registration_churches").load(location.href + ' .registration_churches');
 
               location.reload();
 
               
-          
-          
             },
-            error: function() {
+            error: function(e) {
+              console.log(e);
                 alert("Oops. Something went wrong!");
             },
             complete: function() {
