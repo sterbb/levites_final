@@ -25,16 +25,17 @@ class ModelReportSubmission
             $report_id->execute();
             $reportID = $report_id -> fetchAll(PDO::FETCH_ASSOC);
             
-
             
-            $stmt = $pdo->prepare("INSERT INTO reports (reportID, memID, violation_type, violation, violation_description)
-            VALUES (:reportID, :memID, :violation_type, :violation, :violation_description)");
+            $stmt = $pdo->prepare("INSERT INTO reports (reportID, memID, churchID, violation_type, violation, violation_description)
+            VALUES (:reportID, :memID, :churchID, :violation_type, :violation, :violation_description)");
 
             // $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
             $stmt->bindParam(":memID", $accID, PDO::PARAM_STR);
             $stmt->bindParam(":reportID", $reportID[0]['report_id'], PDO::PARAM_STR);
+            $stmt->bindParam(":churchID", $data['report_account'], PDO::PARAM_STR);
+            
             $stmt->bindParam(":violation_type", $data["report_type"], PDO::PARAM_STR);
             $stmt->bindParam(":violation", $data["report_subject"], PDO::PARAM_STR);
             $stmt->bindParam(":violation_description", $data["report_description"], PDO::PARAM_STR);

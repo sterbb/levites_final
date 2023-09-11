@@ -127,23 +127,22 @@
 
 
            <div class="row" >
-          <div class="col-lg-12 " id="affiliated-graph-section" hidden>
-            <div class="card">
-              <div class="card-header bg-transparent">
-                <div class="d-flex align-items-center">
-                  <div class="">
-                    <h6 class="mb-0 fw-bold">Report Overview</h6>
-                  </div>
+              <div class="col-lg-12 " id="affiliated-graph-section" hidden>
+                <div class="card">
+                  <div class="card-header bg-transparent">
+                    <div class="d-flex align-items-center">
+                      <div class="">
+                        <h6 class="mb-0 fw-bold">Report Overview</h6>
+                      </div>
 
+                    </div>
+                  </div>
+                  <div class="card-body">
+                      <div id="AffMem"></div>
+                  </div>
                 </div>
               </div>
-              <div class="card-body">
-                   <div id="AffMem"></div>
-              </div>
-            </div>
-          </div>
-          
-
+      
        </div><!--end row-->
 
        

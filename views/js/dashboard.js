@@ -361,8 +361,6 @@ $(".notification-btn").click(function(){
     recipient_id  = getCookie('church_id');
   }
 
-  alert(recipient_id);
-
   var clear = new FormData();
   clear.append("recipient_id", recipient_id);
 

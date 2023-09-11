@@ -112,19 +112,19 @@
         <!--end row-->
 
         <div class="row" >
-          <div class="col-lg-12"  id="event-graph-section" hidden>
+          <div class="col-lg-12"  id="event-graph-section" >
             <div class="card">
               <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center">
                   <div class="">
-                    <h6 class="mb-0 fw-bold">Events Overview</h6>
+                    <h6 class="mb-0 fw-bold">Report Overview</h6>
                   </div>
 
                 </div>
               </div>
             
               <div class="card-body">
-                   <div id="report"></div>
+                   <div id="adminChart"></div>
               </div>
             </div>
           </div>

@@ -56,13 +56,13 @@
                     <div class="card-header bg-transparent">
                         <div class="d-flex align-items-center">
                             <div class="">
-                            <h6 class="mb-0 fw-bold"><i class="fadeIn animated lni lni-warning m-2"></i>Violations</h6>
+                            <h6 class="mb-0 fw-bold"><i class="fadeIn animated m-2 material-symbols-outlined">flag</i>Warned Accounts</h6>
                             </div>
                             <div class="ms-auto me-2">
                                     <input class="form-control px-2 " type="search"  placeholder="Search">
                             </div>
                         </div>
-                    </div>
+                    </div>  
                     <div class="card-body" scrollable-y="true">
                         <?php 
                             

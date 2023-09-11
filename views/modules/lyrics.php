@@ -346,6 +346,7 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                         // Call the function to update the YouTube video based on the initial song title
                         var initialSongTitle = '<?php echo $song; ?>';
                         updateYouTubeVideo(initialSongTitle);
+                        // butang pdi ang youtube chuchu
                     </script>
 
                     <div class="card  ">

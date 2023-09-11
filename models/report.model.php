@@ -100,7 +100,7 @@ class ModelReport
         } elseif ($church_status == 'rejected') {
             $conditions[] = "rejected_status = 1";
         } elseif ($church_status == 'waitlist') {
-            $conditions[] = "(rejected_status = 0 AND church_status = 1)";
+            $conditions[] = "(rejected_status = 0 AND church_status = 0)";
         }
         
         if ($month[0] != '') {
@@ -132,5 +132,53 @@ class ModelReport
          return $stmt->fetchAll(PDO::FETCH_ASSOC);
         
     }
+
+    public function mdlgetCollaborationStatus($data)
+    {
+        $month = json_decode($data['month'], true);
+        $year = json_decode($data['year'], true);
+        $church_status = $data['church_status'];
+
+        $conditions = [];
+
+        if ($church_status == 'accepted') {
+            $conditions[] = "collab_status = 1";
+        } elseif ($church_status == 'rejected') {
+            $conditions[] = "reject_status = 1";
+        } elseif ($church_status == 'waitlist') {
+            $conditions[] = "(reject_status = 0 AND collab_status = 0)";
+        }
+        
+        if ($month[0] != '') {
+            $monthConditions = [];
+            foreach ($month as $m) {
+                $monthConditions[] = "MONTH(collabdate) = $m";
+            }
+            $conditions[] = "(" . implode(' OR ', $monthConditions) . ")";
+        }
+        
+        if ($year[0] != '') {
+            $yearConditions = [];
+            foreach ($year as $y) {
+                $yearConditions[] = "YEAR(collabdate) = $y";
+            }
+            $conditions[] = "(" . implode(' OR ', $yearConditions) . ")";
+        }
+        
+        // Build the WHERE clause
+        $whereClause = (!empty($conditions)) ? "WHERE " . implode(' AND ', $conditions) : '';
+        
+        // Construct the SQL query
+        $sql = "SELECT * FROM churchcollab $whereClause";
+        
+        $conn = (new Connection)->connect();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+    
+         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+    }
+
+
 }
 ?>

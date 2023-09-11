@@ -22,13 +22,17 @@
                     foreach($profile as $key => $value){
 
 
-                      echo '<h3 class="mb-2">'.$value["church_name"].'</h3>
+                      echo '<h3 class="mb-2">'.$value["church_name"].'<sup> <button class=" m-0 p-0 rem_notif btn-primary-outline border-0 bg-transparent text-danger report_spefact" data-bs-toggle="modal" data-bs-target="#ReportModal"><span class="material-symbols-outlined">report</span></button> 
+                      <input type="text" name="trans_type" id="church_id" church-name="'.$value["church_name"].'" value='.$value["churchID"].' name="church_id" style="display:none;" required>
+                      </sup></h3>
+
                       <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value["church_address"].'</span>
                       <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value["church_city"].'</span>
                       </div>
                         <div class="row">
                     <div class="col">
-                    <input type="text" name="trans_type" id="church_id" church-name="'.$value["church_name"].'" value='.$value["churchID"].' name="church_id" style="display:none;" required>';
+
+                   ';
 
                     $membership = (new ControllerPublic)->ctrCheckMembership();
                       
@@ -303,11 +307,7 @@
                                     }
                                     
                             
-                                    
-                                    
-                                    
-                                    
-                            
+                  
 
                                 ?>
 

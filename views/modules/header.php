@@ -28,6 +28,7 @@ if(isset($_COOKIE["acc_type"])){
     echo"<style>.public{display:none !important;}</style>";
     echo"<style>.churchadmin{display:none !important;}</style>";
     echo"<style>.admin-public{display:none !important;}</style>";
+    echo"<style>.rem_notif{display:none !important;}</style>";
   }elseif($_COOKIE["acc_type"]  == "public"){
     echo"<style>.admin{display:none !important;}</style>";
     echo"<style>.superuser{display:none !important;}</style>";
@@ -69,14 +70,14 @@ if(isset($_COOKIE["acc_type"])){
             <ul class="navbar-nav top-right-menu gap-2">
 
              <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="modal" data-bs-target="#ReportModal"><span class="material-symbols-outlined">warning</span></button>
+                <button class="nav-link rem_notif" data-bs-toggle="modal" data-bs-target="#ReportModal"><span class="material-symbols-outlined">warning</span></button>
               </li>
            
               <li class="nav-item dark-mode">
                 <button class="nav-link dark-mode-icon" id="theme-switcher"><span class="material-symbols-outlined">dark_mode</span></button>
               </li>
 
-              <li class="nav-item dropdown dropdown-large">
+              <li class="nav-item dropdown dropdown-large rem_notif">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret notification-btn"  data-bs-toggle="dropdown">
                   <div class="position-relative">
                     <span class="notify-badge">
@@ -347,6 +348,7 @@ if(isset($_COOKIE["acc_type"])){
       </div>
       <div class="modal-body">
         <div class="row">
+        <input type="text" class="form-control" id="report_accountID" placeholder="" hidden>
           <div class="col-5">
             <label for="reportSubmissionType" class="form-label fw-bold" >Report Type</label>
             <select class="form-select border-3" id="reportSubmissionType" aria-label="Default select example">
@@ -355,9 +357,6 @@ if(isset($_COOKIE["acc_type"])){
               <option value="Feedback">Feedback</option>
               <option value="Bug Report">Bug Report</option>
             </optgroup>
-            <!-- <option value="" disabled></option> -->
-   
-
             <optgroup label="Violations">
               <option value="Inappropriate Content">Inappropriate Content</option>
               <option value="Offensive Language">Offensive Language</option>
@@ -376,7 +375,7 @@ if(isset($_COOKIE["acc_type"])){
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="button" id="reportSubmissionBtn" class="btn btn-light">Submit</button>
+        <button type="button" id="reportSubmissionBtn" class="btn btn-danger">Submit</button>
       </div>
     </div>
   </div>

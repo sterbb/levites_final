@@ -21,8 +21,6 @@ $(document).ready(function() {
         date1 = daterange.substring(0, 10);
         date2 = daterange.substring(14, 24);
       }
-
-      alert(date1 + date2);
     
       var reportData = new FormData();
       reportData.append("date1", date1);
@@ -50,7 +48,7 @@ $(document).ready(function() {
         complete: function() {}
       });
     });
-} );
+
 
 
 $('#report-category').on('change', function() {
@@ -193,37 +191,25 @@ var table = $('#report-table').DataTable({
 
               
 
+          
               // Create a data URL for the local image
               var img = new Image();
               img.src = 'views/images/try.png';
 
-              var maxWidth = 100; // Set the maximum width for the image
-              var maxHeight = 50; // Set the maximum height for the image
-
               var canvas = document.createElement('canvas');
               var ctx = canvas.getContext('2d');
 
-              // Calculate the aspect ratio of the original image
-              var aspectRatio = img.width / img.height;
-
-              // Calculate the new dimensions while maintaining aspect ratio
-              if (aspectRatio > 1) {
-                  canvas.width = maxWidth;
-                  canvas.height = maxWidth / aspectRatio;
-              } else {
-                  canvas.width = maxHeight * aspectRatio;
-                  canvas.height = maxHeight;
-              }
-
-              // Draw the resized image onto the canvas
-              var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
-              var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
-              ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+                  canvas.width = img.width;
+                  canvas.height = img.height;
+  
+              ctx.drawImage(img, 0, 0);
 
               var dataURL = canvas.toDataURL('image/png');
 
               // Add title with centered and resized image data URL
               doc.content.splice(0, 0, {
+                  width: 80, // Set the width of the image
+                  height: 50, // Set the height of the image
                   margin: [0, 0, 0, 10], // Add margin to the image
                   alignment: 'center', // Center the image
                   image: dataURL
@@ -365,37 +351,25 @@ table.buttons().container()
 
               
 
+             
               // Create a data URL for the local image
               var img = new Image();
               img.src = 'views/images/try.png';
 
-              var maxWidth = 100; // Set the maximum width for the image
-              var maxHeight = 50; // Set the maximum height for the image
-
               var canvas = document.createElement('canvas');
               var ctx = canvas.getContext('2d');
 
-              // Calculate the aspect ratio of the original image
-              var aspectRatio = img.width / img.height;
-
-              // Calculate the new dimensions while maintaining aspect ratio
-              if (aspectRatio > 1) {
-                  canvas.width = maxWidth;
-                  canvas.height = maxWidth / aspectRatio;
-              } else {
-                  canvas.width = maxHeight * aspectRatio;
-                  canvas.height = maxHeight;
-              }
-
-              // Draw the resized image onto the canvas
-              var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
-              var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
-              ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+                  canvas.width = img.width;
+                  canvas.height = img.height;
+  
+              ctx.drawImage(img, 0, 0);
 
               var dataURL = canvas.toDataURL('image/png');
 
               // Add title with centered and resized image data URL
               doc.content.splice(0, 0, {
+                  width: 80, // Set the width of the image
+                  height: 50, // Set the height of the image
                   margin: [0, 0, 0, 10], // Add margin to the image
                   alignment: 'center', // Center the image
                   image: dataURL
@@ -499,9 +473,15 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
                       margin: [0, 0, 0, 0] // Top, right, bottom, left margin
                   });
 
+                  var currentDate = new Date();
+
+                  // You can format the date as needed, for example, to get the current date in ISO format (YYYY-MM-DD):
+                  var currentISODate = currentDate.toISOString().slice(0, 10);
+
+
                   // Add additional text below the title
                   doc.content.splice(1, 0, {
-                    text: "(" +$("#report-range").val() + ")",
+                    text: "(" +currentISODate+ ")",
                     style: 'subheader', // You can define a custom style for the text
                     alignment: 'center', // Center the text horizontally
                     margin: [0, 0, 0, 15] // Top, right, bottom, left margin
@@ -546,45 +526,34 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
                 objLayout['vLineColor'] = function(i) { return '#aaa'; };
                 objLayout['paddingLeft'] = function(i) { return 35; };
                 objLayout['paddingRight'] = function(i) { return 35; };
-                doc.content[2].layout = objLayout;
+                  doc.content[2].layout = objLayout;
+      
   
                 
   
-                // Create a data URL for the local image
-                var img = new Image();
-                img.src = 'views/images/try.png';
+               
+              // Create a data URL for the local image
+              var img = new Image();
+              img.src = 'views/images/try.png';
+
+              var canvas = document.createElement('canvas');
+              var ctx = canvas.getContext('2d');
+
+                  canvas.width = img.width;
+                  canvas.height = img.height;
   
-                var maxWidth = 100; // Set the maximum width for the image
-                var maxHeight = 50; // Set the maximum height for the image
-  
-                var canvas = document.createElement('canvas');
-                var ctx = canvas.getContext('2d');
-  
-                // Calculate the aspect ratio of the original image
-                var aspectRatio = img.width / img.height;
-  
-                // Calculate the new dimensions while maintaining aspect ratio
-                if (aspectRatio > 1) {
-                    canvas.width = maxWidth;
-                    canvas.height = maxWidth / aspectRatio;
-                } else {
-                    canvas.width = maxHeight * aspectRatio;
-                    canvas.height = maxHeight;
-                }
-  
-                // Draw the resized image onto the canvas
-                var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
-                var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
-                ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
-  
-                var dataURL = canvas.toDataURL('image/png');
-  
-                // Add title with centered and resized image data URL
-                doc.content.splice(0, 0, {
-                    margin: [0, 0, 0, 10], // Add margin to the image
-                    alignment: 'center', // Center the image
-                    image: dataURL
-                });
+              ctx.drawImage(img, 0, 0);
+
+              var dataURL = canvas.toDataURL('image/png');
+
+              // Add title with centered and resized image data URL
+              doc.content.splice(0, 0, {
+                  width: 80, // Set the width of the image
+                  height: 50, // Set the height of the image
+                  margin: [0, 0, 0, 10], // Add margin to the image
+                  alignment: 'center', // Center the image
+                  image: dataURL
+              });
   
                   // Define custom styles for the borders
                   doc.styles.leftBorder = {
@@ -635,14 +604,22 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
     $('#report-table tbody').empty();
     const tableBody = $('#report-table tbody');
     eventsInfo.forEach((event) => {
-        const { event_date, event_time, event_title, event_category, event_venue, event_location } = event;
+        const { event_date, event_date2, event_time, event_time2, event_title, event_category, event_venue, event_location } = event;
+        var date;
+
+        var time = event_time +" - "+ event_time2;
+        if(event_date == event_date2){
+          date = event_date;
+        }else{
+          date = event_date + " to " +event_date2; 
+        }
         const tableRow = $('<tr>').append(
-            $('<td>').text(event_date),
-            $('<td>').text(event_time),
+            $('<td>').text(date),
+            $('<td>').text(time),
             $('<td>').text(event_title),
             $('<td>').text(event_category),
             $('<td>').text(event_venue),
-            $('<td>').text(event_location)
+            $('<td>').text(event_location),
         );
         tableBody.append(tableRow);
     });
@@ -692,7 +669,7 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
               bold: true, // make header text bold
               color: 'white', // header text color
               alignment: 'center', // header text alignment
-              margin: [0, 10, 0, 10], // top, left, bottom, right margin
+              margin: [5, 10, 5, 10], // top, left, bottom, right margin
               border: [0, 1, 1, 1], // Add a border to the header cells (top, left, right, bottom)
               borderColor: 'blue', // Border color
               fontSize: 12, // Increase the font size (adjust as needed)
@@ -702,7 +679,7 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
             doc.styles.tableBody = {  
               alignment: 'center', // Center the content horizontally
               cellVerticalAlignment: 'middle', // Center the content vertically
-              // margin: [10, 5, 10, 5], // top, left, bottom, right margin
+              margin: [0, 10, 0, 10], // top, left, bottom, right margin
               padding: [10, 30, 10, 30], // Add padding (top, right, bottom, left)
             };
       
@@ -731,37 +708,25 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
 
               
 
+              
               // Create a data URL for the local image
               var img = new Image();
               img.src = 'views/images/try.png';
 
-              var maxWidth = 100; // Set the maximum width for the image
-              var maxHeight = 50; // Set the maximum height for the image
-
               var canvas = document.createElement('canvas');
               var ctx = canvas.getContext('2d');
 
-              // Calculate the aspect ratio of the original image
-              var aspectRatio = img.width / img.height;
-
-              // Calculate the new dimensions while maintaining aspect ratio
-              if (aspectRatio > 1) {
-                  canvas.width = maxWidth;
-                  canvas.height = maxWidth / aspectRatio;
-              } else {
-                  canvas.width = maxHeight * aspectRatio;
-                  canvas.height = maxHeight;
-              }
-
-              // Draw the resized image onto the canvas
-              var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
-              var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
-              ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
+                  canvas.width = img.width;
+                  canvas.height = img.height;
+  
+              ctx.drawImage(img, 0, 0);
 
               var dataURL = canvas.toDataURL('image/png');
 
               // Add title with centered and resized image data URL
               doc.content.splice(0, 0, {
+                  width: 80, // Set the width of the image
+                  height: 50, // Set the height of the image
                   margin: [0, 0, 0, 10], // Add margin to the image
                   alignment: 'center', // Center the image
                   image: dataURL
@@ -857,9 +822,14 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
                       margin: [0, 0, 0, 0] // Top, right, bottom, left margin
                   });
 
+                  var currentDate = new Date();
+
+                  // You can format the date as needed, for example, to get the current date in ISO format (YYYY-MM-DD):
+                  var currentISODate = currentDate.toISOString().slice(0, 10);
+
                   // Add additional text below the title
                   doc.content.splice(1, 0, {
-                    text: "(" +$("#report-range").val() + ")",
+                    text: "(" +currentISODate + ")",
                     style: 'subheader', // You can define a custom style for the text
                     alignment: 'center', // Center the text horizontally
                     margin: [0, 0, 0, 15] // Top, right, bottom, left margin
@@ -908,37 +878,25 @@ function reinitializeDataTable(newColumnNames, filesInfo, totalSize) {
   
                 
   
+               
                 // Create a data URL for the local image
                 var img = new Image();
                 img.src = 'views/images/try.png';
-  
-                var maxWidth = 100; // Set the maximum width for the image
-                var maxHeight = 50; // Set the maximum height for the image
-  
+
                 var canvas = document.createElement('canvas');
                 var ctx = canvas.getContext('2d');
-  
-                // Calculate the aspect ratio of the original image
-                var aspectRatio = img.width / img.height;
-  
-                // Calculate the new dimensions while maintaining aspect ratio
-                if (aspectRatio > 1) {
-                    canvas.width = maxWidth;
-                    canvas.height = maxWidth / aspectRatio;
-                } else {
-                    canvas.width = maxHeight * aspectRatio;
-                    canvas.height = maxHeight;
-                }
-  
-                // Draw the resized image onto the canvas
-                var xOffset = (maxWidth - canvas.width) / 2; // Center horizontally
-                var yOffset = (maxHeight - canvas.height) / 2; // Center vertically
-                ctx.drawImage(img, xOffset, yOffset, canvas.width, canvas.height);
-  
+
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+    
+                ctx.drawImage(img, 0, 0);
+
                 var dataURL = canvas.toDataURL('image/png');
-  
+
                 // Add title with centered and resized image data URL
                 doc.content.splice(0, 0, {
+                    width: 80, // Set the width of the image
+                    height: 50, // Set the height of the image
                     margin: [0, 0, 0, 10], // Add margin to the image
                     alignment: 'center', // Center the image
                     image: dataURL
@@ -1811,3 +1769,5 @@ async function calculateSubfolderSizeReport(prefixRef) {
     
     
     });
+
+} );

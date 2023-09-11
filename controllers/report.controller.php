@@ -17,6 +17,11 @@ class ControllerReport{
 		return $answer = (new ModelReport)->mdlgetChurchStatus($data);
 	}
 
+	static public function ctrgetCollaborationStatus($data){
+		return $answer = (new ModelReport)->mdlgetCollaborationStatus($data);
+	}
+
+
 
 
 

@@ -1,19 +1,26 @@
 $(document).ready(function() {
 
+  
+    $(".report_spefact").click(function(){
+      var reportID = $(this).siblings('input').first().val();
+      $("#report_accountID").val(reportID);
+    })
+
     $("#reportSubmissionBtn").click(function(){
 
         var report_type = $("#reportSubmissionType").val();
         var report_subject = $("#reportSubmissionSubject").val();
         var report_description = $("#reportSubmissionDescription").val();
-        console.log(report_type);
-        console.log(report_subject);
-        console.log(report_description);
+
+        var report_account = $("#report_accountID").val();
+
 
         var reportData = new FormData();
 
         reportData.append("report_type", report_type);
         reportData.append("report_subject", report_subject);
         reportData.append("report_description", report_description);
+        reportData.append("report_account", report_account);
       
         $.ajax({
           url: "ajax/report_submit.ajax.php",
@@ -25,7 +32,7 @@ $(document).ready(function() {
           dataType: "text",
           success: function(answer) {
                 console.log(answer);
-      
+                $("#report_accountID").val('');
           },
           error: function(xhr, status, error) {
             //         var errorMessage = xhr.responseText; // Extract the error message
