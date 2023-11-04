@@ -9,9 +9,9 @@
                             <h6 class="mb-0 text-uppercase">Website Organizer</h6>
                         </div>
                         <div class="col d-flex justify-content-end gap-3">
-                            <button type="button" class="btn btn-outline-success px-3  radius-30 text-center" data-toggle="tooltip" data-placement="left" title="Edit Website" id="edit-website"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
+                            <button type="button" class="btn btn-outline-success px-3 radius-30 text-center" data-toggle="tooltip" data-placement="left" title="Edit Website" id="edit-website"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
                             <button type="button"  data-bs-toggle="modal" data-bs-target="#Application" class="btn btn-outline-dark px-3  radius-30 text-center" data-toggle="tooltip" data-placement="top" title="Add Website"><i class="fadeIn animated bx bx-plus" style="font-size:1.2em;"></i> <i class="fadeIn animated bx bx-globe" style="font-size:1.2em; margin-left:-5px;"></i></button>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Group" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;" data-toggle="tooltip" data-placement="top" title="Add Group"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#Group" class="btn btn-outline-dark px-3 radius-30 text-center" data-toggle="tooltip" data-placement="left" title="Make a Group-Website" ><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;" data-toggle="tooltip" data-placement="top" title="Add Group"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button>
                         </div>
                         <div class="my-3 border-top"></div>
                     </div>
@@ -34,7 +34,7 @@
                             $accountID =  $_GET['accountID'];
                         }
 
-                        echo '<a href="' . $value['website_path'] . '" target="_blank">';
+                        echo '<a href="' . $value['website_path'] . '" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $value['website_description'] . '">';
                         
                         if ($value['website_category'] === 'Social Media') {
                             echo '<img src="views/images/socmed.png">';
@@ -48,7 +48,7 @@
                         
                         echo '<p class="text-dark mt-3" style="font-size: 1.5em;">' . $value['website_name'] . '</p>';
                         echo '</a>';
-                        echo '<button class="btn btn-danger mb-3 mt-0 minus-website" id="' . $value['accountID'] . '" value="' . $value['website_name'] . '" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
+                        echo '<button class="btn btn-danger mb-3 mt-0 minus-website"  data-toggle="tooltip" data-placement="left" title="Delete Website" id="' . $value['accountID'] . '" value="' . $value['website_name'] . '" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
                         echo '</div>';
                     }
                     ?>
@@ -70,8 +70,9 @@
                                 
                                 <input class="mb-0 text-uppercase border-0  text-dark h5" id="editing-'.$value['group_name'].'-website-input" value="'.$value['group_name'].'"  disabled></input>
                                 <div>
-                                    <button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  id="'.$value['group_name'].'-website"  onclick="editGroup(this)" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
-                                    <button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" group_name="'.$value['group_name'].'" id="'.$value['accID'].'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button>
+                                    <button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  data-toggle="tooltip"  title="Edit Group" data-placement="left"  id="'.$value['group_name'].'-website"  onclick="editGroup(this)" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button>
+                                   
+                                    <button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" data-toggle="tooltip"  title="Delete Group" data-placement="right" group_name="'.$value['group_name'].'" id="'.$value['accID'].'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button>
 
                                 </div>
                             </div>
@@ -86,52 +87,53 @@
                             // echo $list2;
 
                             $list_websites = json_decode($value['websites_list']);
+                          
 
                       
                             foreach($list_websites as $hello){
 
                                 $images = $hello->category;
+                                
                               
-
 
                                 if ( $images == "Social Media"){
                                     echo '
-                                    <div class="col text-center mb-3" >
-                                         <a href="'. $hello-> path.'" target="_blank">
-                                         <img src="views/images/socmed.png">
+                                    <div class="col text-center website mb-3" >
+                                         <a href="'. $hello-> path.'"  target="_blank">
+                                         <img src="views/images/socmed.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $hello->description . '">
                                         <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
                                     </a>
-                                    <button class="btn btn-danger mb-3 mt-0 '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                    <button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
                                 </div>';
 
                                 }
                                 elseif ($images == "Productivity"){
                                     echo '
-                                    <div class="col text-center mb-3" >
+                                    <div class="col text-center website mb-3" >
                                          <a href="'. $hello-> path.'" target="_blank">
-                                         <img src="views/images/productivity.png">
+                                         <img src="views/images/productivity.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $hello->description . '">
                                         <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
                                         </a>
-                                    <button class="btn btn-danger mb-3 mt-0 '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'"  onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                    <button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger mb-3 mt-0 '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'"  onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
                                 </div>';
                                 }
                                 elseif ($images == "Multimedia"){
                                     echo '
-                                    <div class="col text-center mb-3" >
+                                    <div class="col text-center website mb-3" >
                                          <a href="'. $hello-> path.'" target="_blank">
-                                         <img src="views/images/multimedia.png">
+                                         <img src="views/images/multimedia.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $hello->description . '">
                                         <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
                                     </a>
-                                    <button class="btn btn-danger mb-3 mt-0  '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                    <button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger mb-3 mt-0  '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
                                 </div>';
 
                                 }else{
-                                    echo ' <div class="col text-center mb-3" >
+                                    echo ' <div class="col text-center website mb-3" >
                                          <a href="'. $hello-> path.'" target="_blank">
-                                         <img src="views/images/videocon.png">
+                                         <img src="views/images/videocon.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $hello->description . '">
                                         <p class="text-dark" style="font-size:1.5em;">'. $hello ->name.'</p>
                                     </a>
-                                    <button class="btn btn-danger mb-3 mt-0  '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
+                                    <button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger mb-3 mt-0  '.$value['group_name'].'-website" value="'. $hello ->name.'" groupname="'.$value['group_name'].'" groupid="'.$value['accID'].'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button>
                                 </div>';
     
                                 }
@@ -170,7 +172,7 @@
                         </div>
                         <div class="card align-items-center justify-content-center pt-3 p-1 border-1 border Newcard">
                         <div class="col-12 col-lg-10 Newcard">
-                            <div class="row row-cols-2 " id="cardContainer">
+                            <div class="row row-cols-2 website " id="cardContainer">
                             </div>
                         </div>
                         </div>
@@ -197,7 +199,7 @@
                 
                 
                             <div class="row g-3 mb-3"> 
-                            <div class="col-12">
+                                <div class="col-12">
                                     <label for="tns-urlPath" class="form-label">Website Name</label>
                                     <input type="text" class="form-control border-3" id="website_name" name="urlPath" placeholder="Enter website name">
                                     </div>  
@@ -215,6 +217,15 @@
                                         <option value="Video Conference">Video Conference</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="row g-3 mb-3"> 
+                                <div class="col-12">
+                                    <label for="tns-urlPath" class="form-label">Website Description</label>
+                                    <textarea type="text" class="form-control border-3" id="website_desc" name="urlPath" placeholder="Enter website Description"></textarea>
+                                </div>  
+                       
+        
                             </div>
             
         
@@ -272,13 +283,13 @@
                                 
                                 if ($websiteCategory === 'Social Media') {
                                     echo '
-                                    <div class="col-3 text-center">
+                                    <div class="col-3 website text-center">
                                             <div class="card">
-                                            <img src="views/images/socmed.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                            <img src="views/images/socmed.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $value['website_description'] . '">
                                             <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
                                             <div class="card-body">
                                                 <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
-                                                    <input class="form-check-input border-2 border-success NewSM" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                                    <input class="form-check-input border-2 border-success NewSM" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'#'. $value['website_description'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
                                                 </div>
                                             </div>
                                         </div>
@@ -314,13 +325,13 @@
                            if ($websiteCategory === 'Productivity') {
                             
                                 echo '
-                                <div class="col-3 text-center">
+                                <div class="col-3 text-center website">
                                     <div class="card">
-                                        <img src="views/images/productivity.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <img src="views/images/productivity.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $value['website_description'] . '">
                                         <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
                                         <div class="card-body">
                                             <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
-                                                <input class="form-check-input border-2 border-success NewPro"  name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                                <input class="form-check-input border-2 border-success NewPro" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'#'. $value['website_description'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
                                             </div>
                                         </div>
                                     </div>
@@ -356,13 +367,13 @@
                            if ($websiteCategory === 'Multimedia') {
                             
                                 echo '
-                                <div class="col-3 text-center">
+                                <div class="col-3 text-center website">
                                     <div class="card">
-                                    <img src="views/images/multimedia.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                    <img src="views/images/multimedia.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' .$value['website_description']. '">
                                         <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
                                         <div class="card-body">
                                             <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
-                                                <input class="form-check-input border-2 border-success NewMedia" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                            <input class="form-check-input border-2 border-success NewMedia" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'#'. $value['website_description'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
                                             </div>
                                         </div>
                                     </div>
@@ -398,13 +409,13 @@
                            if ($websiteCategory === 'Video Conference') {
                             
                                 echo '
-                                <div class="col-3 text-center">
+                                <div class="col-3 text-center website">
                                     <div class="card">
-                                        <img src="views/images/videocon.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <img src="views/images/videocon.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $value['website_description'] .'">
                                         <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
                                         <div class="card-body">
                                             <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">
-                                                <input class="form-check-input border-2 border-success NewVid" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
+                                                <input class="form-check-input border-2 border-success NewVid" name="cur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'#'. $value['website_description'].'" group="websitesGroup" id="cur_websites" style="font-size: 2em;">
                                             </div>
                                         </div>
                                     </div>

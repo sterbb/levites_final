@@ -49,8 +49,7 @@ class ModelReportSubmission
             return "error";
         }	
         $pdo = null;	
-        $stmt = null;
-        
+        $stmt = null;  
     }
 
     public function mdlgetSubmissions($choice)
@@ -60,8 +59,8 @@ class ModelReportSubmission
         }else{
             $statement = "WHERE violation_type = 'Feedback' OR violation_type = 'Bug Report' ";
         }
-
-        $stmt = (new Connection)->connect()->prepare("SELECT * FROM reports $statement");
+        $status = 0;
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM reports $statement AND display_status = 1");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -74,5 +73,42 @@ class ModelReportSubmission
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function mdlWarnedAccounts()
+    {
+        $warning = "Warning";
+        $stmt = (new Connection)->connect()->prepare("SELECT * FROM notifications WHERE notification_type = :notification_type");
+        $stmt->bindParam(":notification_type", $warning, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function mdldeleteReport($data)
+    {
+        $stmt = (new Connection)->connect()->prepare("DELETE FROM reports WHERE reportID = :reportID");
+        $stmt->bindParam(":reportID", $data['report_id'], PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function mdldeleteWarningReport($data)
+    {
+        $stmt = (new Connection)->connect()->prepare("DELETE FROM notifications WHERE recipientID = :recipientID AND notification_type = 'Warning' ");
+        $stmt->bindParam(":recipientID", $data['report_id'], PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    
+
+
+
+
+
+
+    
+
+
+
+
+
 }
 ?>

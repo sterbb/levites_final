@@ -250,18 +250,16 @@ class ModelCalendar{
 	public static function mdlAddEventType($data){	
 		$db = new Connection();
         $pdo = $db->connect();
-        $EventTypeID = $_COOKIE["church_id"];
-
+		$eventType = $_COOKIE["church_id"];
         try{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
 			
 			
-			$stmt = $pdo->prepare("INSERT INTO eventtype (churchID, type_name)
-            VALUES (:churchID, :type_name)");
+			$stmt = $pdo->prepare("INSERT INTO eventtype (churchID, type_name) VALUES (:churchID, :type_name)");
 
 			// $stmt->bindParam(":eventID", $eventID[0]['event_id'], PDO::PARAM_STR);
-			$stmt->bindParam(":churchID", $EventTypeID, PDO::PARAM_STR);
+			$stmt->bindParam(":churchID", $eventType, PDO::PARAM_STR);
 			$stmt->bindParam(":type_name", $data["type_name"], PDO::PARAM_STR);
 
 
@@ -634,6 +632,19 @@ class ModelCalendar{
         
    
     }
+
+	
+	public static function mdlDeleteEventType($data) {
+
+		$churchID = $_COOKIE["church_id"];
+        $stmt = (new Connection)->connect()->prepare("DELETE FROM eventtype WHERE churchID = :churchID AND type_name = :type_name");
+        $stmt->bindParam(":churchID", $churchID, PDO::PARAM_STR);
+		$stmt->bindParam(":type_name", $data['type'], PDO::PARAM_STR);
+        $stmt->execute();
+        
+   
+    }
+
 
 
 

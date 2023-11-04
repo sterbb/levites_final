@@ -1,157 +1,54 @@
 <!--start main content-->
 <main class="page-content">
 
-        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-xl-3 row-cols-xxl-3">
-          <div class="col">
-            <div class="card radius-10 border-0 border-start border-primary border-4" type="button" id="user1">
-              <div class="card-body">
-                <div class="d-flex align-items-center ">
-                  <div class="">
-                            <?php
-                            $user1 = (new ControllerUserAccount)->ctrShowUserAccount();
+      <div class=" overflow-auto">
+        <div class="row row-cols-4 overflow-auto">
+          <?php
+            $users = (new ControllerUserAccount)->ctrShowUserAccount();
+            $manual = (new ControllerUserAccount)->ctrShowManualAccount();
 
-                            if (!empty($user1) && isset($user1[0])) {
-                                $memberToShow1 = $user1[0]; // You can change the index to choose a different member
 
-                                echo '<h4 class="mb-0 text-primary">' . $memberToShow1['memberName'] . '</h4>';
+            if (!empty($users) && isset($users[0])) {
 
-                                if ($memberToShow1['membership_status'] == 1) {
-                                    echo '<p class="mb-1">Activated</p>';
-                                } else {
-                                    echo '<p class="mb-1">Deactivated</p>';
-                                }
-                            } else {
-                                echo '<p>No member data available.</p>';
-                            }
-                            ?>
+                foreach ($users as $membership) {
+                  echo '
+                   <div class="col">
+                      <div class="card radius-10 border-0 border-start border-primary border-4" type="button" id="user1">
+                        <div class="card-body">
+                          <div class="d-flex align-items-center ">
+
+                            <div class="">';
+                        
+                              echo '<h4 class="mb-0 text-primary">' . $membership['memberName'] . '</h4>
+                            </div>
+
+                            <div class="ms-auto">
+                       
+                              <div class="widget-icon bg-primary text-white">
+                              <i class="fadeIn animated bx bx-user"></i>
+                              </div>
+                            </div>
+
+                          </div>
                         </div>
-
-                        <div class="ms-auto">
-                            <?php
-                            if (!empty($memberToShow1) && isset($memberToShow1['membership_status'])) {
-                                if ($memberToShow1['membership_status'] == 1) {
-                                    echo '<div class="widget-icon bg-primary text-white">
-                                            <i class="fadeIn animated bx bx-user"></i>
-                                          </div><p class="mb-0 text-primary">Online</p>';
-                                } else {
-                                    echo '<div class="widget-icon bg-primary text-white">
-                                            <i class="fadeIn animated bx bx-user"></i>
-                                          </div><p class="mb-0 text-primary">Offline</p>';
-                                }
-                            } else {
-                                echo '<p>Status data unavailable.</p>';
-                            }
-                            ?>
-                        </div>
-
-                </div>
-              </div>
-            </div>
-           </div>
-
-           <div class="col">
-            <div class="card radius-10 border-0 border-start border-success border-4 " type="button" id="user2">
-              <div class="card-body">
-                <div class="d-flex align-items-center">
-                <div class="">
-
-                      <?php
-                          $user2 = (new ControllerUserAccount)->ctrShowUserAccount();
-
-                          if (!empty($user2) && isset($user2[1])) {
-                              $memberToShow2 = $user2[1]; // You can change the index to choose a different member
-
-                              echo '<h4 class="mb-0 text-success">' . $memberToShow2['memberName'] . '</h4>';
-
-                              if ($memberToShow2['membership_status'] == 1) {
-                                  echo '<p class="mb-1">Activated</p>';
-                              } else {
-                                  echo '<p class="mb-1">Deactivated</p>';
-                              }
-                          } else {
-                              echo '<p>No member data available.</p>';
-                          }
-                          ?>
                       </div>
+                    </div> ';
 
-                      <div class="ms-auto">
-                          <?php
-                          if (!empty($memberToShow2) && isset($memberToShow2['membership_status'])) {
-                              if ($memberToShow2['membership_status'] == 1) {
-                                  echo '<div class="widget-icon bg-success text-white">
-                                          <i class="fadeIn animated bx bx-user"></i>
-                                        </div><p class="mb-0 text-success">Online</p>';
-                              } else {
-                                  echo '<div class="widget-icon bg-success text-white">
-                                          <i class="fadeIn animated bx bx-user"></i>
-                                        </div><p class="mb-0 text-success">Offline</p>';
-                              }
-                          } else {
-                              echo '<p>Status data unavailable.</p>';
-                          }
-                          ?>
-                      </div>
+                }
+   
+              }
+          ?>
 
-                </div>
-              </div>
-            </div>
-           </div>
-
-           <div class="col">
-            <div class="card radius-10 border-0 border-start border-danger border-4" type="button" id="user3">
-              <div class="card-body">
-                <div class="d-flex align-items-center">
-                  <div class="">
-                  <?php
-                      $user3 = (new ControllerUserAccount)->ctrShowUserAccount();
-
-                      if (!empty($user3) && isset($user3[2])) {
-                          $memberToShow3 = $user3[2]; // You can change the index to choose a different member
-
-                          echo '<h4 class="mb-0 text-danger">' . $memberToShow3['memberName'] . '</h4>';
-
-                          if ($memberToShow3['membership_status'] == 1) {
-                              echo '<p class="mb-1">Activated</p>';
-                          } else {
-                              echo '<p class="mb-1">Deactivated</p>';
-                          }
-                      } else {
-                          echo '<p>No member data available.</p>';
-                      }
-                      ?>
-                  </div>
-
-                  <div class="ms-auto">
-                      <?php
-                      if (!empty($memberToShow3) && isset($memberToShow3['membership_status'])) {
-                          if ($memberToShow3['membership_status'] == 1) {
-                              echo '<div class="widget-icon bg-danger text-white">
-                                      <i class="fadeIn animated bx bx-user"></i>
-                                    </div><p class="mb-0 text-danger">Online</p>';
-                          } else {
-                              echo '<div class="widget-icon bg-danger text-white">
-                                      <i class="fadeIn animated bx bx-user"></i>
-                                    </div><p class="mb-0 text-danger">Offline</p>';
-                          }
-                      } else {
-                          echo '<p>Status data unavailable.</p>';
-                      }
-                      ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-           </div>
 
 
         </div><!--end row-->
-
+        </div>
 
         <div class="row mt-5">
             <div class="col-lg-8 mx-auto">
 						<div class="card">
 							<div class="card-header px-4 py-3 bg-transparent d-flex justify-content-between align-items-center">
-								<h5 class="mb-0">Edit User 2 Account</h5>
+								<h5 class="mb-0">Add Account</h5>
                 <button class="btn btn-danger">Deactivate</button>
 							</div>
 							<div class="card-body p-4">

@@ -410,8 +410,8 @@ class ModelRegister {
 			
 			
 			// add to church database
-			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, accID, church_name, church_num, church_address,   church_city,  religion, church_email) 
-            VALUES (:churchID, :accID,  :church_name, :church_num, :church_address, :church_city, :religion, :church_email)");
+			$stmt2 = $pdo->prepare("INSERT INTO churches (churchID, accID, church_name, church_num, church_city, church_region, church_province, church_barangay, church_street,  religion, church_email) 
+            VALUES (:churchID, :accID,  :church_name, :church_num, :church_city,  :church_region, :church_province, :church_barangay, :church_street,  :religion, :church_email)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
@@ -422,8 +422,13 @@ class ModelRegister {
 			$stmt2->bindParam(":churchID", $churchid[0]['church_id'], PDO::PARAM_STR);
 			$stmt2->bindParam(":church_name", $data["church_name"], PDO::PARAM_STR);
 			$stmt2->bindParam(":church_num", $data["church_cotnum"], PDO::PARAM_STR);
-			$stmt2->bindParam(":church_address", $data["church_address"], PDO::PARAM_STR);
+
 			$stmt2->bindParam(":church_city", $data["church_city"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_region", $data["church_region"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_province", $data["church_province"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_barangay", $data["church_barangay"], PDO::PARAM_STR);
+			$stmt2->bindParam(":church_street", $data["church_street"], PDO::PARAM_STR);
+
 			$stmt2->bindParam(":religion", $data["church_religion"], PDO::PARAM_STR);
 
 			$stmt2->bindParam(":church_email", $data["church_email"], PDO::PARAM_STR);

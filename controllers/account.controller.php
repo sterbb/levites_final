@@ -8,6 +8,11 @@ class ControllerUserAccount{
         return $answer = (new ModelUserAccount)->mdlShowUserAccount();
 	}
 
+	static public function ctrShowManualAccount(){
+        return $answer = (new ModelUserAccount)->mdlShowManualAccount();
+	}
+	
+
 	static public function ctrGetReportChurch(){
 		return $answer = (new ModelUserAccount)->mdlGetReportChurch();
 	 }

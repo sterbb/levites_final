@@ -157,6 +157,7 @@ $('#upper-title').html(titleContent);
 
 
 
+
 //For adding note / for folder manipulation
 var currentFile = '';
 
@@ -242,10 +243,13 @@ try {
       
 
       const fileRefs = await prefixRef.listAll();
-      const numFiles = fileRefs.items.length; // Get the number of files in the folder
+      const fileTypeToExclude = '.placeholder'; // Include the full filename you want to exclude
+      const filteredFiles = fileRefs.items.filter(file => !file.name.endsWith(fileTypeToExclude));
+      const numFiles = filteredFiles.length;
+
+
       let overallSize = await calculateSubfolderSize(prefixRef);
 
- 
 
       // var metadata = {
       //   customMetadata: {
@@ -306,13 +310,13 @@ try {
                     <ul class="dropdown-menu notPublic float-end" style="z-index:999;  ">
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#createNote" onclick="setUpFilePath(this)" value="${folderName}"><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal" data-bs-target="#editNote" value="${folderName}"><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
-                    <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
+                    <li class="notPublic"><a class="dropdown-item text-danger" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x text-danger'></i>Delete note</a></li>
                     <hr class="dropdown-divider">
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;"  onclick="unpinFolder(this)" value="${folderName}"><i class='fi bx bx-share'></i>Unpin Folder</a></li>
                     <hr class="dropdown-divider">
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-share'></i>Share Folder</a></li>
                     <li class="notPublic"><a class="dropdown-item" href="javascript:;"><i class='fi bx bx-edit-alt'></i>Edit Folder</a></li>
-                    <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteFolder(this)"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
+                    <li class="notPublic"><a class="dropdown-item text-danger" href="javascript:;" value="${folderName}" onclick="deleteFolder(this)"><i class='fi bx bx-folder-minus text-danger'></i>Delete Folder</a></li>
                     </ul>
                   </div>
                   
@@ -360,14 +364,14 @@ try {
                 <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0 mb-3 p-3 class="notPublic" data-bs-toggle="dropdown" data-bs-placement="top">
                   <i class="bi bi-three-dots fs-4"></i>
                 </button>
-                <ul class="dropdown-menu notPublic"  style="z-index:999;">
+                <ul class="dropdown-menu notPublic"  ">
                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#createNote" onclick="setUpFilePath(this)" value="${folderName}"><i class='fi bx bx-add-to-queue'></i>Add note</a></li>
                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="setUpFilePathEdit(this)" data-bs-toggle="modal" data-bs-target="#editNote" value="${folderName}"><i class='fi bx bx-edit-alt'></i>Edit note</a></li>
-                  <li class="notPublic"><a class="dropdown-item" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x'></i>Delete note</a></li>
+                  <li class="notPublic"><a class="dropdown-item text-danger" href="javascript:;" value="${folderName}" onclick="deleteNote(this)"><i class='fi bx bxs-message-x text-danger'></i>Delete note</a></li>
                   <hr class="dropdown-divider">
                   <li class="notPublic"><a class="dropdown-item" href="javascript:;" onclick="pinFolder(this)" value="${folderName}"><i class='fi bx bx-share'></i>Pin Folder</a></li>
                   <hr class="dropdown-divider">
-                  <li class="notPublic"><a class="dropdown-item  href="javascript:;" value="${folderName}" onclick="deleteFolder(this)"><i class='fi bx bx-folder-minus'></i>Delete Folder</a></li>
+                  <li class="notPublic"><a class="dropdown-item text-danger"  href="javascript:;" value="${folderName}" onclick="deleteFolder(this)"><i class='fi bx bx-folder-minus text-danger'></i>Delete Folder</a></li>
                 </ul>
               </div>
               <h6 class="mb-0 folder-name-hover" onclick="handleClick(this)" value="${folderName}">${folderName}</h6>
@@ -417,7 +421,7 @@ try {
           html: true,
           placement: 'left',
           trigger: 'hover',
-          delay: { "show": 500, "hide": 0 },
+          delay: { "show": 500, "hide": 100 },
           container: 'body'
         });
       } catch (error) {
@@ -437,171 +441,390 @@ try {
 }
 }
 
+var lastSearchTerm = '';
 
-
-
-
-// Function to list files in a folder
-function listFilesInFolder(folderPath) {
+function listFilesInFolder(folderPath, searchTerm) {
+  
+  document.getElementById('searchInput').addEventListener('keyup', function() {
+    var searchTerm = this.value.toLowerCase();
+    var foldersContainer = document.getElementById('foldersContainer');
+    var pinnedSection = document.getElementById('pinnedSection');
+    var folderTitle = document.getElementById('folderTitle');
+    if (searchTerm.trim() === '') {
+      if (foldersContainer) {
+        foldersContainer.style.display = 'flex';
+      }
+      if (pinnedSection) {
+        pinnedSection.style.display = 'flex';
+      }
+      if (folderTitle) {
+        folderTitle.style.display = 'flex';
+      }
+      return; // If the input is blank, do nothing
+      
+    }
+    if (searchTerm === lastSearchTerm) {
+      return;
+    }
+  
+    lastSearchTerm = searchTerm;
+    listFilesInFolder(folderPath, searchTerm);
+  
+    var foldersContainer = document.getElementById('foldersContainer');
+    var pinnedSection = document.getElementById('pinnedSection');
+    var folderTitle = document.getElementById('folderTitle');
+  
+    
+    if (foldersContainer) {
+      foldersContainer.style.display = 'none';
+    }
+    
+    if (pinnedSection) {
+      pinnedSection.style.display = 'none';
+    }
+  
+    if (folderTitle) {
+      folderTitle.style.display = 'none';
+    }
+  });
+  
   var storage = firebase.storage();
   var folderRef = storage.ref(folderPath);
-
+  console.log('Search Term:', searchTerm);
   checkAndDeleteExpiredFiles(folderPath);
 
   folderRef
     .listAll()
     .then(function (result) {
       var fileListBody = document.getElementById('fileListBody');
-      fileListBody.innerHTML = ''; // Clear existing rows
-
       var currentDate = new Date();
+
+      fileListBody.innerHTML = '';
+      // Clear existing rows if there's a search term
+      if (searchTerm && fileListBody.innerHTML !== '') {
+        fileListBody.innerHTML = '';
+      }
+
       result.items.forEach(function (fileRef) {
         var fileIcon = '';
         var fileNameClass = '';
 
         fileRef.getMetadata()
-        .then(function (metadata) {
-          // Determine file type and set appropriate icon and class
-          if (fileRef.name.endsWith('.pdf')) {
-            fileIcon = 'bi bi-filetype-pdf';
-            fileNameClass = 'text-danger';
-          } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
-            fileIcon = 'bi bi-filetype-doc';
-            fileNameClass = 'text-primary';
-          } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
-            fileIcon = 'bi bi-filetype-xls';
-            fileNameClass = 'text-success';
-          }else if (fileRef.name.endsWith('.ppt') || fileRef.name.endsWith('.pptx')) {
-            fileIcon = 'bi bi-filetype-ppt';
-            fileNameClass = ' ppt';
-          } else {
-            fileIcon = 'bx bxs-file';
-            fileNameClass = '';
-          }
-
-          if (metadata && metadata.customMetadata && metadata.customMetadata.expirationDate) {
-            var expirationDate = new Date(metadata.customMetadata.expirationDate);
-            if (currentDate >= expirationDate) {
-              // If the file is expired, skip adding it to the list
-              console.log("File is expired and will not be listed:", fileRef.name);
-              return; // Return here to skip adding the expired file
+          .then(function (metadata) {
+            if (fileRef.name.endsWith('.pdf')) {
+              fileIcon = 'bi bi-filetype-pdf';
+              fileNameClass = 'text-danger';
+            } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
+              fileIcon = 'bi bi-filetype-doc';
+              fileNameClass = 'text-primary';
+            } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
+              fileIcon = 'bi bi-filetype-xls';
+              fileNameClass = 'text-success';
+            } else if (fileRef.name.endsWith('.ppt') || fileRef.name.endsWith('.pptx')) {
+              fileIcon = 'bi bi-filetype-ppt';
+              fileNameClass = 'ppt';
+            } else if (fileRef.name.endsWith('.jpg') || fileRef.name.endsWith('.png')) {
+              fileIcon = 'bi bi-file-earmark-image';
+              fileNameClass = 'pic';
+            } else if (fileRef.name.endsWith('.mp4') || fileRef.name.endsWith('.mov') || fileRef.name.endsWith('.avi') || fileRef.name.endsWith('.wmv')) {
+              fileIcon = 'bi bi-film';
+              fileNameClass = 'vid';
+            } else if (fileRef.name.endsWith('.mp3') || fileRef.name.endsWith('.mpc') || fileRef.name.endsWith('.msv') || fileRef.name.endsWith('.nmf') || fileRef.name.endsWith('.wav')) {
+              fileIcon = 'bi bi-file-earmark-music';
+              fileNameClass = 'aud';
+            } else {
+              fileIcon = 'bx bxs-file';
+              fileNameClass = '';
             }
-          }
+            if (metadata && metadata.customMetadata && metadata.customMetadata.expirationDate) {
+              var expirationDate = new Date(metadata.customMetadata.expirationDate);
+              if (currentDate >= expirationDate) {
+                // If the file is expired, skip adding it to the list
+                console.log("File is expired and will not be listed:", fileRef.name);
+                return; // Return here to skip adding the expired file
+              }
+            }
 
-          const timeCreated = metadata.timeCreated;
-          const date = new Date(timeCreated);
-          const formattedTimeCreated = date.toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
+            const timeCreated = metadata.timeCreated;
+            const date = new Date(timeCreated);
+            const formattedTimeCreated = date.toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            });
+
+            if (!searchTerm || fileRef.name.toLowerCase().includes(searchTerm)) { // Check if the file name contains the search term
+              // Add the file to the list
+
+              if(public == "true"){
+                var newRowFile = `
+                <tr class="dropdown-cell">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
+                      <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
+                  </td>
+                  <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                `;
+              } else if (member == "true") {
+                var newRowFile = `
+                <tr class="dropdown-cell">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
+                      <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
+                  </td>
+                  <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
+                `;
+                if (metadata.customMetadata.createdBy == getCookie('acc_name')) {
+                  newRowFile += ` <li ><a class="dropdown-item text-danger" href="#" value="${fileRef.name}" onclick="deleteFile(this)"><i class="lni lni-remove-file fi text-danger" ></i>Delete</a></li>`;
+                }
+                newRowFile += `
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                `;
+              } else {
+                var newRowFile = `
+                <tr class="dropdown-cell">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
+                      <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
+                  </td>
+                  <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
+                        <li class="notPublic"><a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#FileExpirationModal" value="${fileRef.name}" onclick="setFiletoExpire(this)"><i class='bx bx-time fi'></i>Set File Expiration</a></li>
+                        <li class="notPublic"><a class="dropdown-item cursor-pointer" value="${fileRef.name}" data-bs-toggle="modal" data-bs-target="#linkFileModal" onclick="selectFile(this)" ><i class='lni lni-link fi'></i>Link to Event</a></li>
+                        <hr class="dropdown-divider">
+                        <li class="notPublic"><a class="dropdown-item text-danger" href="#" value="${fileRef.name}" onclick="deleteFile(this)"><i class="lni lni-remove-file fi text-danger" ></i>Delete</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                `;
+              }
+
+              fileListBody.innerHTML += newRowFile;
+            }
+
+            console.log("File:", fileRef.name);
+          })
+          .catch(function (error) {
+            console.log('Error:', error);
           });
-
-          if(public == "true"){
-            var newRowFile = `
-            <tr class="dropdown-cell">
-            <td>
-              <div class="d-flex align-items-center">
-                <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
-                <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
-              </div>
-            </td>
-            <td>
-            <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
-            </td>
-            <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
-            <td>
-              <div class="dropdown">
-                <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-horizontal-rounded"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          
-            `;
-          }else if (member == "true"){
-
-            var newRowFile = `
-            <tr class="dropdown-cell">
-            <td>
-              <div class="d-flex align-items-center">
-                <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
-                <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
-              </div>
-            </td>
-            <td>
-            <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
-            </td>
-            <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
-            <td>
-              <div class="dropdown">
-                <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-horizontal-rounded"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-            `;
-
-          }else{
-            var newRowFile = `
-            <tr class="dropdown-cell">
-            <td>
-              <div class="d-flex align-items-center">
-                <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
-                <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
-              </div>
-            </td>
-            <td>
-            <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
-            </td>
-            <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
-            <td>
-              <div class="dropdown">
-                <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-horizontal-rounded"></i>
-                </button>
-                <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
-                  <li class="notPublic"><a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#FileExpirationModal" value="${fileRef.name}" onclick="setFiletoExpire(this)"><i class='bx bx-time fi'></i>Set File Expiration</a></li>
-                  <li class="notPublic"><a class="dropdown-item cursor-pointer" value="${fileRef.name}" data-bs-toggle="modal" data-bs-target="#linkFileModal" onclick="selectFile(this)" ><i class='lni lni-link fi'></i>Link to Event</a></li>
-                  <hr class="dropdown-divider">
-                  <li class="notPublic"><a class="dropdown-item " href="#" value="${fileRef.name}" onclick="deleteFile(this)"><i class="lni lni-remove-file fi" ></i>Delete</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          
-            `;
-
-
-          }
-
-          fileListBody.innerHTML += newRowFile;
-          console.log("File:", fileRef.name);
-         
-        })
-        .catch(function (error) {
-          console.log('Error:', error);
-        });
-
- 
-
-
       });
     })
     .catch(function (error) {
       console.log("Error:", error);
     });
-
-    
 }
+
+document.querySelectorAll('.filter-link').forEach(function(link) {
+  link.addEventListener('click', function() {
+    var selectedFilter = this.dataset.filter;
+    updateDisplayedFiles(selectedFilter);
+  });
+});
+
+function updateDisplayedFiles(filter) {
+  // Implement the code to filter and display the files based on the selected filter
+  var fileList = document.getElementById('fileListBody');
+  var storage = firebase.storage();
+  const folderPath = currentPath;
+  var folderRef = storage.ref(folderPath);
+  
+  folderRef
+    .listAll()
+    .then(function(result) {
+      var currentDate = new Date();
+      fileListBody.innerHTML = '';
+
+      result.items.forEach(function(fileRef) {
+        var fileIcon = '';
+        var fileNameClass = '';
+
+        fileRef.getMetadata()
+          .then(function(metadata) {
+            if (fileRef.name.endsWith('.pdf')) {
+              fileIcon = 'bi bi-filetype-pdf';
+              fileNameClass = 'text-danger';
+            } else if (fileRef.name.endsWith('.doc') || fileRef.name.endsWith('.docx')) {
+              fileIcon = 'bi bi-filetype-doc';
+              fileNameClass = 'text-primary';
+            } else if (fileRef.name.endsWith('.xls') || fileRef.name.endsWith('.xlsx')) {
+              fileIcon = 'bi bi-filetype-xls';
+              fileNameClass = 'text-success';
+            } else if (fileRef.name.endsWith('.ppt') || fileRef.name.endsWith('.pptx')) {
+              fileIcon = 'bi bi-filetype-ppt';
+              fileNameClass = 'ppt';
+            } else if (fileRef.name.endsWith('.jpg') || fileRef.name.endsWith('.png')) {
+              fileIcon = 'bi bi-file-earmark-image';
+              fileNameClass = 'pic'; 
+            } else if (fileRef.name.endsWith('.mp4') || fileRef.name.endsWith('.mov') || fileRef.name.endsWith('.avi') || fileRef.name.endsWith('.wmv')) {
+              fileIcon = 'bi bi-film';
+              fileNameClass = 'vid';
+            } else if (fileRef.name.endsWith('.mp3') || fileRef.name.endsWith('.mpc') || fileRef.name.endsWith('.msv') || fileRef.name.endsWith('.nmf') || fileRef.name.endsWith('.wav')) {
+              fileIcon = 'bi bi-file-earmark-music';
+              fileNameClass = 'aud';
+            } else {
+              fileIcon = 'bx bxs-file';
+              fileNameClass = '';
+            }
+            if (metadata && metadata.customMetadata && metadata.customMetadata.expirationDate) {
+              var expirationDate = new Date(metadata.customMetadata.expirationDate);
+              if (currentDate >= expirationDate) {
+                // If the file is expired, skip adding it to the list
+                console.log("File is expired and will not be listed:", fileRef.name);
+                return;
+              }
+            }
+
+            const timeCreated = metadata.timeCreated;
+            const date = new Date(timeCreated);
+            const formattedTimeCreated = date.toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            });
+            if(filter === "all" || filter.split(',').some(ext => fileRef.name.endsWith(ext))) {
+              if(public == "true"){
+                var newRowFile = `
+                <tr class="dropdown-cell">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
+                      <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
+                  </td>
+                  <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                `;
+              } else if (member == "true") {
+                var newRowFile = `
+                <tr class="dropdown-cell">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
+                      <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
+                  </td>
+                  <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
+                `;
+                if (metadata.customMetadata.createdBy == getCookie('acc_name')) {
+                  newRowFile += ` <li ><a class="dropdown-item text-danger" href="#" value="${fileRef.name}" onclick="deleteFile(this)"><i class="lni lni-remove-file fi text-danger" ></i>Delete</a></li>`;
+                }
+                newRowFile += `
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                `;
+              } else {
+                var newRowFile = `
+                <tr class="dropdown-cell">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div><i class="${fileIcon} me-2 font-24 ${fileNameClass}"></i></div>
+                      <div class="font-weight-bold ${fileNameClass}">${fileRef.name}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="font-weight-bold">${metadata.customMetadata.createdBy}</div>
+                  </td>
+                  <td><div class="font-weight-bold">${formattedTimeCreated}</div></td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-dots-horizontal-rounded"></i>
+                      </button>
+                      <ul class=" dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li ><a class="dropdown-item" href="#" value="${fileRef.name}" onclick="downloadFile(this)"><i class='bx bx-download fi'></i>Download</a></li>
+                        <li class="notPublic"><a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#FileExpirationModal" value="${fileRef.name}" onclick="setFiletoExpire(this)"><i class='bx bx-time fi'></i>Set File Expiration</a></li>
+                        <li class="notPublic"><a class="dropdown-item cursor-pointer" value="${fileRef.name}" data-bs-toggle="modal" data-bs-target="#linkFileModal" onclick="selectFile(this)" ><i class='lni lni-link fi'></i>Link to Event</a></li>
+                        <hr class="dropdown-divider">
+                        <li class="notPublic"><a class="dropdown-item text-danger" href="#" value="${fileRef.name}" onclick="deleteFile(this)"><i class="lni lni-remove-file fi text-danger" ></i>Delete</a></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                `;
+              }
+
+              fileList.innerHTML += newRowFile;
+            }
+          })
+          .catch(function(error) {
+            console.log('Error:', error);
+          });
+      });
+    })
+    .catch(function(error) {
+      console.log("Error:", error);
+    });
+}
+
+
 // Call the function with the desired folder path
 
 
@@ -609,27 +832,20 @@ function listFilesInFolder(folderPath) {
 var upload = document.getElementsByClassName('upload')[0];
 var hiddenBtn = document.getElementsByClassName('hidden-upload-btn')[0];
 var progress = document.getElementsByClassName('progress')[0];
-var percent = document.getElementsByClassName('percent')[0];
-var pause = document.getElementsByClassName('pause')[0];
-var resume = document.getElementsByClassName('resume')[0];
-var cancel = document.getElementsByClassName('cancel')[0];
+var progressBar = document.getElementById('progressBar');
+var statusMessage = document.getElementById('statusMessage');
+var pauseBtn = document.getElementById('pauseBtn');
+var resumeBtn = document.getElementById('resumeBtn');
+var cancelBtn = document.getElementById('cancelBtn');
+var successMessage = 'File uploaded successfully!';
+var uploadTask = null; // Declare uploadTask globally to access it for cancel, pause, and resume
 
-// create function for select a file
 upload.onclick = function () {
   hiddenBtn.click();
 }
 
-// // also store files path in localstorage or in database for further use
-// if(!localStorage.getItem("uploaded-metadata")){
-//     var metadata = '[]';
-//     localStorage.setItem('uploaded-metadata', metadata)
-// }
-
-// get selected file and upload function
 hiddenBtn.onchange = function () {
-  // get file
   var file = hiddenBtn.files[0];
-  // change file name so cannot overwrite
   var name = file.name.split('.').shift() + Math.floor(Math.random() * 10) + 10 + '.' + file.name.split('.').pop();
   var type = file.type.split('/')[0];
   var path = currentPath + "/" + name;
@@ -641,70 +857,135 @@ var metadata = {
   }
 };
 
-  // now upload
   var storageRef = firebase.storage().ref(path);
 
-  // Check the file type before uploading
   var allowedFileTypes = [
     'application/pdf',
     'text/plain',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'application/vnd.openxmlformats-officedocument.presentationml.presentation',
     'video/mp4',
+    'video/quicktime', // .mov
+    'video/x-msvideo', // .avi
+    'video/x-ms-wmv',
     'image/jpeg',
     'image/png',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
-    'application/vnd.ms-excel' 
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'application/vnd.ms-excel',
+    'audio/mp3',       // .mp3
+    'audio/x-musepack', // .mpc
+    'audio/x-ms-wma',  // .msv
+    'application/x-nmf',
+    'audio/wav'  // .nmf
   ];
-  
-  if (allowedFileTypes.includes(file.type)) {
-    var uploadTask = storageRef.put(file, metadata);
-  
-    // Get references to the progress bar and status elements
-    var progressBar = document.getElementById('progressBar');
-    var statusMessage = document.getElementById('statusMessage');
-    var successMessage = 'File uploaded successfully!';
 
-  
-    // Listen for upload state changes
+
+
+  if (allowedFileTypes.includes(file.type)) {
+
+    if (uploadTask !== null) {
+      uploadTask.cancel().catch(function (error) {
+        console.error('Cancel error:', error);
+      });
+    }
+    uploadTask = storageRef.put(file, metadata);
+
+    pauseBtn.style.display = 'inline-block';
+    cancelBtn.style.display = 'inline-block';
+
     uploadTask.on(
       'state_changed',
       function (snapshot) {
-        // Update progress bar and status message
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         progressBar.style.width = progress + '%';
         statusMessage.textContent = 'Uploading... ' + Math.round(progress) + '%';
+
+        
       },
       function (error) {
-        // Handle upload error
         console.error('Upload error:', error);
       },
       function () {
         // Perform listing after upload
         listFilesInFolder(currentPath);
         listFoldersInFolder(currentPath);
-  
-        // Reset progress bar and status message
+
         progressBar.style.width = '0%';
         statusMessage.textContent = successMessage;
-  
-        // Optionally, display a success message or close the progress bar
-        // Display success message to the user or close the progress bar
-        // You can modify this part based on your UI design
+
+        // Hide pause and cancel buttons
+        pauseBtn.style.display = 'none';
+        cancelBtn.style.display = 'none';
+        resumeBtn.style.display = 'none';
+
+        uploadTask = null; // Reset uploadTask here
+
+        setTimeout(function () {
+          statusMessage.textContent = '';
+        }, 3000); // 3000 milliseconds (3 seconds)
       }
     );
   } else {
-    // Display the error modal
     var modalErrorMessage = 'Invalid file type. Only PDF, TXT, DOCX, PPTX, MP4, JPG, PNG, XLSX, and XLS files are allowed.';
     var modalBody = document.getElementById('modalErrorMessage');
     modalBody.textContent = modalErrorMessage;
-  
+
     var modal = new bootstrap.Modal(document.getElementById('errorModal'));
     modal.show();
   }
-  
-
 }
+
+cancelBtn.addEventListener('click', function () {
+  if (uploadTask !== null) {
+    Swal.fire({
+      title: 'Cancel Upload?',
+      text: 'Are you sure you want to cancel the upload?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, cancel it',
+      cancelButtonText: 'No, keep uploading'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        uploadTask.cancel();
+
+        // Reset progress bar and status message
+        progressBar.style.width = '0%';
+        statusMessage.textContent = '';
+        // Hide cancel button and pause/resume buttons
+        cancelBtn.style.display = 'none';
+        pauseBtn.style.display = 'none';
+        resumeBtn.style.display = 'none';
+        uploadTask = null; // Reset uploadTask here
+
+        Swal.fire(
+          'Cancelled!',
+          'The upload has been cancelled.',
+          'info'
+        );
+      }
+    });
+  }
+});
+
+
+
+pauseBtn.addEventListener('click', function () {
+  if (uploadTask) {
+    uploadTask.pause();
+    pauseBtn.style.display = 'none';
+    resumeBtn.style.display = 'inline-block';
+  }
+});
+
+resumeBtn.addEventListener('click', function () {
+  if (uploadTask) {
+    uploadTask.resume();
+    resumeBtn.style.display = 'none';
+    pauseBtn.style.display = 'inline-block';
+  }
+});
 
 $("#createFolderBtn").click(function(){
   var foldername = $("#folderName").val();  
@@ -789,8 +1070,10 @@ $('#myFileStroage').click(function() {
    currentNameTitle = getCookie('church_name');
   var titleContent = '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' +  decodeURIComponent(currentNameTitle) + '</span>';
   $('#upper-title').html(titleContent);
+  
   listFilesInFolder(currentPath); 
   listFoldersInFolder(currentPath);
+
 
 });
 
@@ -833,14 +1116,46 @@ function handleClickNav(element) {
   function updateUpperTitle(path) {
     var parts = path.split(' > ');
 
+    
+    if(public == "true"){ 
+      // var replacedPath = path.replace(parts.slice(0, 2).join(' > '), combined);
+      parts[0] = parts[0] + '/' + parts[1];
+      parts.splice(1, 1); // Remove the second part
+    }else if (member == "true"){
+      parts[0] = parts[0] + '/' + parts[1];
+      parts.splice(1, 1); // Remove the second part
+    }
+    console.log(parts);
+
         // Create the HTML content for the upper title with clickable spans
         var titleContent = '';
         var currentPath = '';
+
         for (var i = 0; i < parts.length; i++) {
           var folderName = parts[i];
+
+          console.log(folderName);
+
+          
           currentPath += folderName;
+
+          if (folderName.includes("/Public") || folderName.includes("/Member")) {
+            folderName = folderName.replace(/\//g, " > ");
+          }
+
+          console.log(folderName);
+
+        
           if(folderName.substring(0, 2) == "C0"){
-            folderName =  decodeURIComponent(getCookie('church_name'));
+            if(folderName.includes(" > Public")){
+              folderName =  decodeURIComponent(getCookie('church_name')) + " > Public";
+              // titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>'; 
+            }else if (folderName.includes(" > Member")){
+              folderName =  decodeURIComponent(getCookie('church_name')) + " > Member";
+            }else{
+              folderName =  decodeURIComponent(getCookie('church_name'));
+            }
+
             titleContent += '<span class="clickable-path font-weight-bold h4 cursor-pointer" value="' + currentPath + '">' + folderName + '</span>';
           }else if(folderName.substring(0, 3) == "COL"){  
             folderName =  currentNameTitle;
@@ -878,22 +1193,50 @@ console.log(value);
 
 
 function deleteFile(element) {
+  var path = $(element).attr('value');
+  var storage = firebase.storage();
+  var fileRef = storage.ref(currentPath + '/' + path);
 
-var path = $(element).attr('value');
-var storage = firebase.storage();
-var fileRef = storage.ref(currentPath + '/' + path);
-
-fileRef
-  .delete()
-  .then(function () {
-    console.log("File deleted:", path);
-    listFilesInFolder(currentPath);
-    listFoldersInFolder(currentPath);
-  })
-  .catch(function (error) {
-    console.log("Error:", error);
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this file!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fileRef
+        .delete()
+        .then(function () {
+          console.log("File deleted:", path);
+          listFilesInFolder(currentPath);
+          listFoldersInFolder(currentPath);
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          );
+        })
+        .catch(function (error) {
+          console.log("Error:", error);
+          Swal.fire(
+            'Error!',
+            'An error occurred while deleting the file.',
+            'error'
+          );
+        });
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire(
+        'Cancelled',
+        'Your file is safe :)',
+        'info'
+      );
+    }
   });
 }
+
 
 function downloadFile(element) {
   var path = $(element).attr('value');

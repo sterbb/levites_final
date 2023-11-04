@@ -60,6 +60,42 @@ if(isset($_COOKIE["acc_type"])){
 //publicSub kulang 
 
 ?>
+
+
+<?php 
+require_once "././models/connection.php";
+
+$db = new Connection();
+$pdo = $db->connect();
+$accID = $_COOKIE['acc_id'];
+
+if (isset($_COOKIE["acc_type"])) {
+    if ($_COOKIE['acc_type'] == 'admin') {
+        // Check if 'church_id' cookie is set
+        if (isset($_COOKIE['church_id'])) {
+            $churchID = $_COOKIE['church_id'];
+            // If the user is an admin and 'church_id' is set, fetch the admin's avatar
+            $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+            $stmt->bindParam(':churchID', $churchID, PDO::PARAM_STR);
+        } else {
+            // Handle the case where 'church_id' is not set
+            // You can set a default value or handle the situation differently
+        }
+    } else {
+        // If the user is not an admin, fetch the user's avatar
+        $stmt = $pdo->prepare("SELECT Avatar FROM account WHERE AccountID = :AccountID");
+        $stmt->bindParam(':AccountID', $accID, PDO::PARAM_STR);
+    }
+    
+    if (isset($stmt)) {
+        $stmt->execute();
+        $Profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+    }
+}
+?>
+
+
+
 <!--start header-->
 <header class="top-header">
       <nav class="navbar navbar-expand justify-content-between">
@@ -248,8 +284,33 @@ if(isset($_COOKIE["acc_type"])){
                             </a>
                             ';
                           }
-                      }else{
-                        echo 'hehe';
+                      }else if ($value['notification_type'] == "Warning"){
+                        echo '<a class="dropdown-item" href="javascript:;">
+                        <div class="d-flex align-items-center">
+                          <div class="notify text-warning border">
+                          <span class="material-symbols-outlined">
+                          check_circle
+                          </span>
+                          </div>
+                          <div class="flex-grow-1">';
+                          if($value['notification_status'] == 0){
+                            echo'
+                                  <h6 class="msg-name">'.$value['notification_title'].' <sup style="display: inline-block; width: 5px; height: 5px; border-radius: 50%; background-color: yellow; text-align: center; line-height: 20px; color: white;">
+                                  </sup></h6>
+                                  <p class="msg-info">'.$value['notification_text'].'</p>
+                                </div>
+                              </div>
+                            </a>
+                            ';
+                          }else{
+                            echo'
+                                  <h6 class="msg-name">'.$value['notification_title'].'</h6>
+                                  <p class="msg-info">'.$value['notification_text'].'</p>
+                                </div>
+                              </div>
+                            </a>
+                            ';
+                          }
                       }
 
                     }
@@ -266,7 +327,7 @@ if(isset($_COOKIE["acc_type"])){
                 <div class="dropdown dropdown-center dropdown navbar-upperright">
                     <div class="dropdown-toggle d-flex align-items-center px-3 gap-3" data-bs-toggle="dropdown">
                       <div class="user-img">
-                        <img src="views/images/ch3.3.png" alt="">
+                        <img  src="<?php echo "./views/UploadAvatar/" . $Profile['Avatar']; ?>" style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat; background-position: center;" alt="" >
                       </div>
                       <div class="user-info">
                         <h5 class="mb-0 user-name"><?php
@@ -391,7 +452,7 @@ if(isset($_COOKIE["acc_type"])){
         <i class="bx bx-lock-alt" style="font-size:80px;"></i>
          <p class="">YOUR ACCOUNT HAS BEEN DEACTIVATED!</p>
          </div>
-         <p>  We have noticed that there are some reports(explicit content at file storage) on your account . Your account will be private for the moment as we analyze your issue.
+         <p>  We have noticed that your account violated the web application's policies and community standards multiple times. Your account will be deactivated for the moment as we analyze your issue.
          </p>
          <p>Rest assured that you can plead to activate your account by contacting us. If you have any further questions or concerns, please contact us on levites@gmail.com</p>
         

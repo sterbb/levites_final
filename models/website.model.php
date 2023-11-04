@@ -43,8 +43,8 @@ class ModelWebsite{
 			$pdo->beginTransaction();
 
 			
-			$stmt = $pdo->prepare("INSERT INTO websites (accountID,website_name,website_path, website_category) 
-            VALUES (:accountID,:website_name, :website_path, :website_category)");
+			$stmt = $pdo->prepare("INSERT INTO websites (accountID,website_name,website_path, website_category, website_description) 
+            VALUES (:accountID,:website_name, :website_path, :website_category, :website_description)");
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
@@ -53,6 +53,8 @@ class ModelWebsite{
 			$stmt->bindParam(":website_name", $data["website_name"], PDO::PARAM_STR);
 			$stmt->bindParam(":website_path", $data["website_path"], PDO::PARAM_STR);
 			$stmt->bindParam(":website_category", $data["website_category"], PDO::PARAM_STR);
+			$stmt->bindParam(":website_description", $data["website_desc"], PDO::PARAM_STR);
+
 
 
 			$stmt->execute();		
@@ -66,6 +68,7 @@ class ModelWebsite{
 		$pdo = null;	
 		$stmt = null;
 
+		
     }
 
 
@@ -281,6 +284,149 @@ class ModelWebsite{
 
     }
 
-    
+
+	public static function mdlBookmarkWebsite($data){	
+		$db = new Connection();
+        $pdo = $db->connect();
+        $accID = $_COOKIE["acc_id"];
+		$bookmark = 1;
+		$nobookmark = 0;
+        
+        try{
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$pdo->beginTransaction();
+
+			
+			$bookmark_list = json_decode($data["website"]);
+
+			$stmt2 = $pdo->prepare("UPDATE websites SET bookmark = :bookmark WHERE accountID = :accountID");
+			$stmt2 -> bindParam(":accountID", $accID, PDO::PARAM_STR);
+			$stmt2 -> bindParam(":bookmark", $nobookmark, PDO::PARAM_STR);
+			$stmt2->execute();
+
+			//attendees
+			foreach($bookmark_list as $website){
+				$stmt = $pdo->prepare("UPDATE websites SET bookmark = :bookmark WHERE accountID = :accountID AND website_name = :website_name");
+				$stmt -> bindParam(":accountID", $accID, PDO::PARAM_STR);
+				$stmt -> bindParam(":website_name", $website, PDO::PARAM_STR);
+				$stmt -> bindParam(":bookmark", $bookmark, PDO::PARAM_STR);
+				$stmt->execute();
+			}
+			$pdo->commit();
+			
+			return "ok";
+		}
+		catch (Exception $e){
+			$pdo->rollBack();
+			return "error";
+		}	
+		$pdo = null;	
+		$stmt = null;
+
+
+
+
+
+	}
+	public static function mdlCheckWebsite(){	
+
+		$db = new Connection(); // Replace this with your actual database connection code
+		$pdo = $db->connect();
+
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$website_name = $_POST['website_name'];
+
+			// Check if the website name already exists in the database
+			$stmt = $pdo->prepare("SELECT COUNT(*) FROM websites WHERE website_name = :website_name");
+			$stmt->bindParam(':website_name', $website_name, PDO::PARAM_STR);
+			$stmt->execute();
+			$count = $stmt->fetchColumn();
+
+			if ($count > 0) {
+				// Website name is already taken
+				echo "taken";
+			} else {
+				// Website name is available
+				echo "available";
+			}
+		} else {
+			// Handle invalid requests or other cases if needed
+			echo "Invalid request";
+		}
+
+		// Close the database connection if necessary
+		$pdo = null;
+	
+    }
+
+
+	public static function mdlCheckGroupWebsite(){	
+
+		$db = new Connection(); // Replace this with your actual database connection code
+		$pdo = $db->connect();
+		
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$website_groupname = $_POST['website_groupname'];
+
+			// Check if the website name already exists in the database
+			$stmt = $pdo->prepare("SELECT COUNT(*) FROM websitegroups WHERE group_name = :group_name");
+			$stmt->bindParam(':group_name', $website_groupname, PDO::PARAM_STR);
+			$stmt->execute();
+			$count = $stmt->fetchColumn();
+
+			if ($count > 0) {
+				// Website name is already taken
+				echo "taken";
+			} else {
+				// Website name is available
+				echo "available";
+			}
+		} else {
+			// Handle invalid requests or other cases if needed
+			echo "Invalid request";
+		}
+
+		// Close the database connection if necessary
+		$pdo = null;
+	
+    }
+
+
+	public static function mdlCheckUpdateWebsite(){	
+
+		$db = new Connection(); // Replace this with your actual database connection code
+		$pdo = $db->connect();
+		
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$newgroupname = $_POST['newgroupname'];
+
+			// Check if the website name already exists in the database
+			$stmt = $pdo->prepare("SELECT COUNT(*) FROM websitegroups WHERE group_name = :group_name");
+			$stmt->bindParam(':group_name', $newgroupname, PDO::PARAM_STR);
+			$stmt->execute();
+			$count = $stmt->fetchColumn();
+
+			if ($count > 0) {
+				// Website name is already taken
+				echo "taken";
+			} else {
+				// Website name is available
+				echo "available";
+			}
+		} else {
+			// Handle invalid requests or other cases if needed
+			echo "Invalid request";
+		}
+
+		// Close the database connection if necessary
+		$pdo = null;
+	
+    }
+
+
+
     
 }

@@ -59,11 +59,14 @@ $(function(){
 
 
     var churchName  = $("#church_name").val();
-    var churchAddress  = $("#church_address").val();
-    var religion  = $("#church_religion").val();
-    var city  = $("#church_city").val();
-    var contactNum  = $("#church_num").val();
 
+    var religion  = $("#church_religion").val();
+    var region  = $("#church_region_text").val();
+    var province  = $("#church_province_text").val();
+    var city  = $("#church_city_text").val();
+    var barangay  = $("#church_barangay_text").val();
+    var street  = $("#church_street").val();
+    var contactNum  = $("#church_num").val();
 
     var username  = $("#church_username").val();
     var password = $("#church_password").val();
@@ -87,6 +90,7 @@ $(function(){
        },
         success: function(answer) {
           console.log(answer);
+          document.cookie = "current_email=" + email + ";";
           window.location.href='verifyEmail';
         },
         error: function() {
@@ -107,10 +111,15 @@ $(function(){
 
 
     registerData.append("church_name",churchName);
-    registerData.append("church_address",churchAddress);
-    registerData.append("church_city", city);
     registerData.append("church_religion",religion);
     registerData.append("church_cotnum",contactNum);
+
+    registerData.append("church_region",region);
+    registerData.append("church_province", province);
+    registerData.append("church_city", city);
+    registerData.append("church_barangay", barangay);
+    registerData.append("church_street", street);
+
 
 
 
@@ -208,67 +217,86 @@ $(function(){
       });
     });
 
-      $("#loginForm").submit(function(e){
-        e.preventDefault();
-        var login_username =  $("#login_username").val();
-        var login_password = $("#login_password").val();
-      
-
-        var loginData = new FormData();
-        loginData.append("login_username", login_username);
-        loginData.append("login_password", login_password);
-
-        $.ajax({
-          url: "ajax/login_authenticate_account.ajax.php",
-          method: "POST",
-          data: loginData,
-          cache: false,
-          contentType: false,
-          processData: false,
-          dataType: "text",
-          beforeSend: function() {
-            //begin spinner
-            $('.overlay').show();
-         },
-          success: function(answer) {
-            console.log(answer);
-
-                //islan pa  
-                // document.cookie = 'type =' +answer; 
-
-                if(answer == "admin"){
-                window.location.href= 'adminhomepage';
-                }else if(answer == "public"){
-                window.location.href='publichomepage';
-                }else if(answer == "superuser"){
-                window.location.href='superuser';
-                }else if(answer == "subuser"){
-                window.location.href='adminhomepage';
-                }else if(answer == "publicSub"){
-                  window.location.href='adminhomepage';
-                }else{
-                  $('.overlay').hide();
-                   // Show an alert for invalid account
-                  var alertHTML = '<div class="alert alert-container border-0 border-danger border-start border-4 bg-danger-subtle alert-dismissible fade show py-2 m-0 mt-2" style:>';
-                  alertHTML += '<div class="d-flex align-items-center">';
-                  alertHTML += '<div class="fs-3 text-danger"><i class="bx bx-error"></i></div>';
-                  alertHTML += '<div class="ms-3">';
-                  alertHTML += '<div class="text-danger">Invalid account credentials. Please try again.</div>';
-                  alertHTML += '</div></div><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                   // Append the alert HTML to a container element
-                $('#alertContainer').html(alertHTML);
-                }
-          },
-          error: function() {
-              alert("Oops. Something went wrong!");
-              
-              
-          },
-          complete: function() {
-            $('.overlay').hide();
+    $("#loginForm").submit(function(e) {
+      e.preventDefault();
+      var login_username = $("#login_username").val();
+      var login_password = $("#login_password").val();
+    
+      var loginData = new FormData();
+      loginData.append("login_username", login_username);
+      loginData.append("login_password", login_password);
+    
+      $.ajax({
+        url: "ajax/login_authenticate_account.ajax.php",
+        method: "POST",
+        data: loginData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        beforeSend: function() {
+          // Begin spinner
+          $('.overlay').show();
+        },
+        success: function(answer) {
+          console.log(answer);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+        
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully'
+          });
+        
+    
+          if (answer == "admin") {
+            window.location.href = 'adminhomepage';
+          } else if (answer == "public") {
+            window.location.href = 'publichomepage';
+          } else if (answer == "superuser") {
+            window.location.href = 'superuser';
+          } else if (answer == "subuser" || answer == "publicSub") {
+            window.location.href = 'adminhomepage';
+          } else {
+            // Show a compact Swal alert for invalid account
+            Swal.fire({
+              icon: 'error',
+              title: 'Invalid Credentials',
+              text: 'Please check your username and password and try again.',
+              position: 'top',
+              toast: true,
+              width: '700px', // Set the desired width here
+              timer: 3000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+              showCloseButton: true,
+              customClass: {
+                popup: 'animated slideInDown'
+              },
+              onClose: () => {
+                Swal.close(); 
+              }
+            });
           }
-        });
+          
+        },
+        error: function() {
+          alert("Oops. Something went wrong!");
+        },
+        complete: function() {
+          $('.overlay').hide();
+        }
       });
+    });
 
       $("#resendBtn").click(function(){
 

@@ -1,4 +1,8 @@
 
+<?php 
+require_once "././models/connection.php";
+?>
+
     <!--start main content-->
 <main class="page-content">
   <h4 class="mb-3 text-uppercase text-center" style="font-family: 'Montserrat', sans-serif; font-weight:700;">Affiliated Churches</h4>
@@ -13,10 +17,40 @@
 
             <?php 
             
+          
+         
             $churches = (new ControllerPublic)->ctrShowAffiliatedChurches();
 
+            $db = new Connection();
+            $pdo = $db->connect();
+          
+            // Fetch the current avatar file name from the database
+          
+
             foreach($churches as $key => $value){    
-              
+              $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+              $stmt->bindParam(':churchID', $value['memChurchID'], PDO::PARAM_STR);
+              $stmt->execute();
+
+              if ($stmt) {
+                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+            
+                if ($profile) {
+                    $Avatar = "./views/UploadAvatar/".$profile['Avatar'];            
+                    // Check if the church has a custom image, if not, use a default image
+                    if (empty($profile['Avatar']) || !file_exists($Avatar)) {
+                        $Avatar = "./views/images/default.png";
+                    }
+                } else {
+                    // No results found for the given churchID, handle this case
+                    echo "No profile found for the specified churchID";
+                }
+            } else {
+                // Handle the case where the query execution failed
+                echo "Query execution failed.";
+            }
+            
+            
               echo '
 
               <style>
@@ -41,19 +75,20 @@
           
           <div class="col-3 membersChurch cursor-pointer" church_id="'.$value['memChurchID'].'" church_name="'.$value['memChurchName'].'" onclick="openProfile(this)">
           <div class="card h-auto">
-              <img src="views/images/ch1.jpg" class="card-img-top" style="height: 350px;" alt="...">
+              <img src='.$Avatar.' class="card-img-top" style="height: 350px;" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">'.$value['memChurchName'].'</h5>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value['churchCity'].'</span>
-                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">'.$value['churchProvince'].'</span>
-                  </div>
+                    
+                    </div>
                 </div>
 
             </div>
               
               ';
 
-              
+              // <span  class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-1"><i class="fas fa-map-marker-alt"></i> '.$chDetail['church_address'].'</span>
+              //       <span  class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-1"><i class="fas fa-map-marker-alt"></i> '.$chDetail['church_city'].'</span>
+              //       <span  class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-2"><i class="fas fa-phone"></i> '.$chDetail['church_num'].'</span>
               
  
             }
@@ -103,23 +138,55 @@
             
             $churches = (new ControllerSuperuser)->ctrShowChurchListExplore(1);
             foreach($churches as $key => $value){
+              $db = new Connection();
+              $pdo = $db->connect();
+              
+              $stmt = $pdo->prepare("SELECT Avatar, Back FROM churches WHERE churchID = :churchID");
+              $stmt->bindParam(':churchID', $value['churchID'], PDO::PARAM_STR);
+              $stmt->execute();
+              
+              if ($stmt) {
+                  $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+              
+                  if ($profile) {
+                      $Avatar = "./views/UploadAvatar/".$profile['Avatar'];
+                      $Back = "./views/uploadBack/".$profile['Back'];
+              
+                      // Check if the church has a custom image, if not, use a default image
+                      if (empty($profile['Avatar']) || !file_exists($Avatar)) {
+                          $Avatar = "./views/images/default.png";
+                      } elseif (empty($profile['Back']) || !file_exists($Back)) {
+                          $Back = "./views/images/default.png";
+                      }
+                  } else {
+                      // No results found for the given churchID, handle this case
+                      echo "No profile found for the specified churchID";
+                  }
+              } else {
+                  // Handle the case where the query execution failed
+                  echo "Query execution failed.";
+              }
+              
+      
                 echo '
                 
                 <div class="row pt-3">
                   <div class="col-12 col-lg-12 col-xl-12 cursor-pointer" church_id="'.$value['churchID'].'" church_name="'.$value['church_name'].'" onclick="openProfile(this)">
                     <div class="card overflow-hidden">
-                      <div class="profile-cover bg-dark position-relative mb-4 " style="background-image: url(\'views/images/Trimph.jpg\'); height:250px">
-                        <div class="user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x">
-                          <img src="views/images/LogoTrim.jpg" alt="...">
+                    <img class="profile-cover bg-dark position-relative mb-4" src="'.$Back.'" style="background-image: url(./views/images/default.png); background-size: cover; background-repeat: no-repeat; height: 15rem; background-position: center;">
+                    <div class="user-profile-avatar shadow position-absolute start-0 translate-middle-x" style="top: 110px;">
+                        <img src='.$Avatar.' width="50" height="50" class="rounded-circle"  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+
                         </div>
-                      </div>
+                      
                       <div class="card-body">
                         <div class=" d-flex align-items-start justify-content-between">
                           <div class="">
                             <h3 class="mb-2">'.$value['church_name'].'</h3>
-                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">'.$value['church_address']. ',' .$value['church_city'].'</span>
-                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">Negros Occidental, Philippines</span>
-                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 mt-2 border-success">'.$value['church_num'].'</span>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$value["church_province"].', '.$value["church_city"].'</span>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$value["church_barangay"].', '.$value["church_street"].'</span>
+                            <span class="badge bg-danger bg-danger-subtle text-danger border border-opacity-25 border-danger"><i class="bx bx-phone"> </i>    '.$value["church_num"].'</span>
+                            <span class="badge bg-primary bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bx bx-envelope"> </i>    '.$value["church_email"].'</span>
                           </div>
 
                         </div>
@@ -133,7 +200,20 @@
 
 ?>
 
-
+                                                                
+<script>
+        // Fetch the current avatar and background file names from PHP
+    var avatarPath = <?php echo json_encode($profile['Avatar']); ?>;
+    var backgroundPath = <?php echo json_encode($profile['Back']); ?>;
+    
+    // Now you can use the JavaScript variables 'avatarPath' and 'backgroundPath' in your JavaScript code
+    // For example, you can update an image element's 'src' attribute with these values
+    var avatarImage = document.getElementById('avatarImage');
+    var backgroundImage = document.getElementById('backgroundImage');
+    
+    avatarImage.src = './views/UploadAvatar/' + avatarPath; // Update the avatar image source
+    backgroundImage.style.backgroundImage = 'url("./views/UploadBack/' + backgroundPath + '")'; // Update the background image style
+</script>
 
 
 </div>

@@ -357,9 +357,10 @@ public function mdladdMembership($data)
         $mship_id->execute();
         $mshipid = $mship_id -> fetchAll(PDO::FETCH_ASSOC);
 
+        // $membershipid = $mshipid[0]['mship_id'];
         
-        $stmt = $pdo->prepare("INSERT INTO membership (mshipID, memberID, memberName, memChurchID, memChurchName, memberEmail) 
-        VALUES (:mshipID, :memberID, :memberName, :memChurchID, :memChurchName, :memberEmail)");
+        $stmt = $pdo->prepare("INSERT INTO membership (mshipID, memberID, memberName, memChurchID, memChurchName, memberEmail, churchCity, churchProvince) 
+        VALUES (:mshipID, :memberID, :memberName, :memChurchID, :memChurchName, :memberEmail, :churchCity, :churchProvince)");
 
         $stmt->bindParam(":mshipID", $mshipid[0]['mship_id'], PDO::PARAM_STR);
         $stmt->bindParam(":memberID", $memberID, PDO::PARAM_STR);
@@ -367,10 +368,13 @@ public function mdladdMembership($data)
         $stmt->bindParam(":memChurchID", $data['memChurchID'], PDO::PARAM_STR);
         $stmt->bindParam(":memChurchName", $data['memChurchName'], PDO::PARAM_STR);
         $stmt->bindParam(":memberEmail", $memberEmail, PDO::PARAM_STR);
+        $stmt->bindParam(":churchCity", $data['city'], PDO::PARAM_STR);
+        $stmt->bindParam(":churchProvince", $data['province'], PDO::PARAM_STR);
         $stmt->execute();		
         $pdo->commit();
-        
-        return "ok";
+
+        echo $mshipid[0]['mship_id'];
+       // return "ok";
     }catch (Exception $e){
         $pdo->rollBack();
         return "error";
@@ -420,7 +424,7 @@ static public function mdlshowAffilatedMember(){
     $acc_id = $_COOKIE['church_id'];
     $status = 1;
 
-    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memChurchID, memberName FROM membership WHERE memChurchID = :memChurchID AND membership_status =:membership_status ORDER BY membershipDate DESC");
+    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memChurchID, memberName, membershipDate, memberEmail, memberID FROM membership WHERE memChurchID = :memChurchID AND membership_status =:membership_status ORDER BY membershipDate DESC");
     $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
     $stmt->bindParam(':membership_status', $status, PDO::PARAM_INT);
     $stmt->execute();

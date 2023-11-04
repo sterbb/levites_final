@@ -241,6 +241,7 @@
               processData: false,
               dataType: "json",
               success: function(answer) {
+       
                 const newColumnNames = ['Date', 'Name', 'Religion', 'Email'];
                 const data = answer; // Assuming your AJAX response contains file information
       

@@ -19,62 +19,33 @@
     <link rel="stylesheet" href="views/assets2/css/flaticon.css">
     <link rel="stylesheet" href="views/assets2/css/style.css">
     <link rel="stylesheet" href="views/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+
+<!-- *******  Owl Carousel Links  ******* -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 
 </head>
 
-<body class="app-eight-home" data-spy="scroll" data-target=".navigation-eight" data-offset="80">
+<body class="app-eight-home" >
     <!-- preloader - start -->
-    <div class="ei-up">
-        <a href="#" id="scrollup" class="ei-scrollup text-center"><i class="fas fa-angle-up"></i></a>
+    <div class="up">
+        <a href="#" id="scrollup" class="scrolling text-center"><i class='bx bx-up-arrow-alt' style='color:#ffffff'  ></i></a>
     </div>
     <!-- Start of header section
         ============================================= -->
-        <header id="header-eight" class="main-header-eight" >
-            <div class="appheader-content">
-                <div class="site-logo float-left " style="font-size: 24px; font-weight: bold; color: white;">
-                    <a href="#" class="glow" data-text="LEVITES"><img src="views/images/try.png" class="hlogo" alt=""> LEVITES</a>
-                </div>
-                <nav class="navigation-eight ul-li saasio_one_click">
-                    <ul>
-                        <li><a class="nav-link" href="#eight-banner">Home</a></li>
-                        <li><a class="nav-link" href="#feature-eight">About</a></li>
-                        <li><a class="nav-link" href="#ei-team">Team</a></li>
-        
-                        <li><a class="nav-link" href="#ei-screenshots">Testimonials</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="sign-up-btn-eight text-center float-right clearfix shake-animation"  id="sign-up-link">
-                    <a href="login" id="sign-up-link" >Login</a>
-                </div>
-            </div>
-            <!-- /desktop-menu -->
-            <div class="appi-ei-mobile_menu relative-position">
-                <div class="appi-ei-mobile_menu_button appi-ei-open_mobile_menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="appi-ei-mobile_menu_wrap">
-                    <div class="mobile_menu_overlay appi-ei-open_mobile_menu"></div>
-                    <div class="appi-ei-mobile_menu_content">
-                        <div class="appi-ei-mobile_menu_close appi-ei-open_mobile_menu">
-                            <i class="far fa-times-circle"></i>
-                        </div>
-                        <div class="m-brand-logo text-center">
-                            <img src="views/images/try.png" alt="">
-                        </div>
-                        <nav class="appi-ei-mobile-main-navigation saasio_one_click  clearfix ul-li">
-                            <ul id="main-nav" class="navbar-nav text-capitalize clearfix">
-                                <li><a class="nav-link" href="#eight-banner">Home</a></li>
-                                <li><a class="nav-link" href="#feature-eight">Features</a></li>
-                                <li><a class="nav-link" href="#eight-service">Showcase</a></li>
-                                <li><a class="nav-link" href="#ei-team">Testimonials</a></li>
-
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <!-- /mobile-menu -->
+        <header class="newheader">
+            <a href="" class="newlogo"><img src="views/images/try1.png"  class="newimage" alt="">Levites</a>
+  <!-- Navbar content goes here -->
+        <nav class="newnavbar">
+            <a href="#eight-banner">Home</a>
+            <a href="#feature-eight">About</a>
+            <a href="#team">Team</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#ei-footer">Contacts</a>
+        </nav>
+        <a href="login"><button class="newheaderbtn">Login</button></a>
         </header>
     <!-- End of header section
         ============================================= -->
@@ -99,11 +70,13 @@
                                     </span>
                                 </h1>
                                 <P>"To believe is to connect." </P>
-                                <div class="ei-banner-btn">
-                                    <a href="churchregistration"><i class="fas fa-solid fa-arrow-right"></i> Register Now</a>
-                                   
+                                <div class="">
+                                    <button class="custom-btn btn-2" href="#" id="registerNowBtn"><i class="fas fa-solid fa-arrow-right"></i> Register Now</button>
                                 </div>
-                                
+                                <div class="registerdown" id="registrationButtons" style="display:none;">
+                                    <a  href="churchregistration"><button class="hddnbtn btn-16" id="churchBtn">Church</button></a>
+                                    <a  href="publicregistration"><button class="hddnbtn btn-16" id="publicBtn">Public</button></a>
+                                </div>
                             </div>
                             <div class="ei-banner-mbl-mockup wow fadeInRight" data-wow-delay="600ms" data-wow-duration="1500ms">
                                 <img src="views/images/med.mjpg" class="bann" alt="">
@@ -368,8 +341,271 @@
                 </section>
     <!-- End of Fun fact  section
         ============================================= --> 
+        <!-- Ads Section -->
+        <section id="team" class="team">
+            <div class="container">
+                <div class="teamspace"></div>
+                <div class="eight-section-title appeight-headline pera-content text-center">
+                        <span class="eg-title-tag">Team<i class="square-shape"><i></i><i></i><i></i><i></i></i></span>
+                        <h2>
+                            <span>The</span>
+                            JAJAJO
+                            <span>Enterprise.</span>
+                        </h2>
+                        <p>As JAJAJO developers, We help you collaborate with other believers.</p>
+                 </div>
+                 <div class="teamslide">
+                         <div class="team-pic">
+                            <div class="team-imagemar position-relative">
+                                <div class="team-image text-center position-relative">
+                                    <img src="views/images/docupicJA.png" alt="">
+                                    <span class="mshape-bg shape-bg1"><img src="views/assets2/img/app-landing/team/msbg1.png" alt=""></span>
+                                    <span class="mshape-bg shape-bg2"><img src="views/assets2/img/app-landing/team/msbg2.png" alt=""></span>
+                                </div>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-facebook-f "></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text appeight-headline text-center pera-content">
+                                <h3>Jay Cobb Andrew Moya</h3>
+                                <p>Front-end Developer</p>
+                            </div>
+                         </div>
+                          <div class="team-pic">
+                            <div class="team-imagemar position-relative">
+                                <div class="team-image text-center position-relative">
+                                    <img src="views/images/docupicRY.png" alt="">
+                                    <span class="mshape-bg shape-bg1"><img src="views/assets2/img/app-landing/team/msbg1.png" alt=""></span>
+                                    <span class="mshape-bg shape-bg2"><img src="views/assets2/img/app-landing/team/msbg2.png" alt=""></span>
+                                </div>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-facebook-f "></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text appeight-headline text-center pera-content">
+                                <h3>Jan Ryan Divinagracia</h3>
+                                <p>Back-end Developer</p>
+                            </div>
+                         </div>
+                         <div class="team-pic">
+                            <div class="team-imagemar position-relative">
+                                <div class="team-image text-center position-relative">
+                                    <img src="views/images/docupicCL.png" alt="">
+                                    <span class="mshape-bg shape-bg1"><img src="views/assets2/img/app-landing/team/msbg1.png" alt=""></span>
+                                    <span class="mshape-bg shape-bg2"><img src="views/assets2/img/app-landing/team/msbg2.png" alt=""></span>
+                                </div>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-facebook-f "></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-text appeight-headline text-center pera-content">
+                                <h3>John Cliff Fortaleza</h3>
+                                <p>Project Manager</p>
+                            </div>
+                         </div>
+                 </div>
+            </div>
+        </section>
+        <section id="testimonials" class="testimonials">
+        <div class="container">
+        <div class="teamspace"></div>
 
-    
+            <div class="eight-section-title appeight-headline pera-content text-center">
+                <span class="eg-title-tag">
+                    Testimonials<i class="square-shape"> <i></i><i></i><i></i><i></i> </i>
+                </span>
+                <h2>
+                    Client’s review for
+                    <span>work satisfaction.</span>
+                </h2>
+            </div>
+            <!-- /title -->
+                    <div class="owl-carousel owl-theme testimonials-container">
+                <!-- Item1 Starts -->
+                <div class="item testimonial-card">
+                    <div class="test-card-body">
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Awesome Coding</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="image1.jpg">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Person Name</span>
+                            <span>Description</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item1 Ends -->
+
+                <!-- Item2 Starts -->
+                <div class="item testimonial-card">
+                    <div class="test-card-body">
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Efficient Workflow</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="image2.jpg">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Person Name</span>
+                            <span>Description</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item2 Ends -->
+
+                <!-- Item3 Starts -->
+                <div class="item testimonial-card">
+                    <div class="test-card-body">
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Awesome Coding</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="image3.jpg">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Person Name</span>
+                            <span>Description</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item3 Ends -->
+
+                <!-- Item4 Starts -->
+                <div class="item testimonial-card">
+                    <div class="test-card-body">
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Collaborative Platform</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="image4.jpg">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Person Name</span>
+                            <span>Description</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item4 Ends -->
+
+                <!-- Item5 Starts -->
+                <div class="item testimonial-card">
+                    <div class="test-card-body">
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Efficient Workflow</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="image5.jpg">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Person Name</span>
+                            <span>Description</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item5 Ends -->
+
+                <!-- Item6 Starts -->
+                <div class="item testimonial-card">
+                    <div class="test-card-body">
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i>
+                            <h2>Collaborative Platform</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <div class="ratings">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img src="image6.jpg">
+                        </div>
+                        <div class="profile-desc">
+                            <span>Person Name</span>
+                            <span>Description</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item6 Ends -->
+
+            </div>
+            <!-- Owl Carousel Slider Ends -->
+
+        </div>
+        <div class="teamspace"></div>
+
+        </section>
+
 
       <!-- Start of Footer  section
         ============================================= -->
@@ -419,9 +655,9 @@
                             </h4>
                             
                             <div class="ei-footer-social">
-                                <a href="#"><i class="fab fa-facebook-f "></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-dribbble"></i></a>
+                                <a href="https://www.facebook.com/levites.2023"><i class="fab fa-facebook-f "></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/@levites2023"><i class="fab fa-youtube"></i></a>
                                 <a href="#"><i class="fab fa-behance"></i></a>
                             </div>
                         </div>
@@ -451,6 +687,7 @@
             <div class="ei-footer-shape1 position-absolute" data-parallax='{"x" : 60}'><img src="views/assets2/img/app-landing/shape/fo-shape1.png" alt=""></div>
             <div class="ei-footer-shape2 position-absolute" data-parallax='{"y" : 60}'><img src="views/assets2/img/app-landing/shape/fo-shape2.png" alt=""></div>
             <div class="ei-footer-shape3 position-absolute"><img src="views/assets2/img/app-landing/shape/eimap.png" alt=""></div>
+            
         </section>
       <!-- End of Footer  section
         ============================================= -->            
@@ -463,6 +700,7 @@
         <script src="views/assets2/js/appear-2.js"></script>
         <script src="views/assets2/js/owl.js"></script>
         <script src="views/assets2/js/wow.min.js"></script>
+        
         <script src="views/assets2/js/aos.js"></script>
         <script src="views/assets2/js/slick.js"></script>
         <script src="views/assets2/js/pagenav.js"></script>
@@ -474,5 +712,10 @@
         <script src="views/assets2/js/typer-new.js"></script>
 		<script src="views/assets2/js/odometer.js"></script>
         <script src="views/assets2/js/script.js"></script>
+        <script src="views/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<!--   *****   Owl Carousel js Link  *****  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     </body>
     </html>

@@ -14,7 +14,11 @@ class ControllerNotifications{
         return $answer = (new ModelNotifications)->mdlclearNotifications($data);
     }
 
+    static public function ctrAddWarningNotif($data){
+        return $answer = (new ModelNotifications)->mdlAddWarningNotif($data);
+    }
 
+    
 }
 
 ?>

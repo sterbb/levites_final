@@ -21,9 +21,9 @@ class ControllerCalendar{
 		return $answer = (new ModelCalendar)->mdlShowEventType();
  	}
 
-	 static public function ctrDeleteEventType(){
-		return $answer = (new ModelCalendar)->mdlDeleteEventType();
-	 }
+	//  static public function ctrDeleteEventType(){
+	// 	return $answer = (new ModelCalendar)->mdlDeleteEventType();
+	//  }
 
 	 static public function ctrLinkPlaylist($data){
 		return $answer = (new ModelCalendar)->mdlLinkPlaylist($data);
@@ -53,7 +53,11 @@ class ControllerCalendar{
         return $answer = (new ModelCalendar)->mdlDeleteEvents($data);
 	}
 
-	 
+	static public function ctrDeleteEventType($data){
+        return $answer = (new ModelCalendar)->mdlDeleteEventType($data);
+	}
+
+	
 
 	 
 	

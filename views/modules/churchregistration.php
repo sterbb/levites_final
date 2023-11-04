@@ -64,6 +64,83 @@
                   <form class="row g-3 " role="form" id="churchRegistrationForm" method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
                     <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" >
 
+                    <h5>Church Information</h5>
+                  
+                    <div class="col-12">
+                      <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
+                      <input type="text" class="form-control border-3" id="church_name" name="church_name" placeholder="Our Lady of Peace and Good Voyage" >
+                    </div>  
+
+                    <div class="col-12">
+                      <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
+                      <input type="email" class="form-control border-3" id="church_email" name="church_email" placeholder="example@user.com">
+                    </div>
+
+                    <div class="col-12">
+                      <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
+                      <select class="form-select border-3" id="church_religion" name="church_religion" aria-label="Default select example" >
+                      <option value="" hidden selected></option>
+                      <optgroup label="Christianity">
+                        <option value="Aglipay">Aglipay</option>
+                        <option value="Ang Dating Daan">Ang Dating Daan</option>
+                        <option value="Baptist">Baptist</option>
+                        <option  value="Catholic">Catholic</option>
+                        <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
+                        <option value="Jehovah's Witnesses">Jehovah's Witnesses</option>
+                        <option value="Jehovah's Witnesses">Born Again</option>
+                      </optgroup>
+                      <optgroup label="Islam">
+                        <option value="Sunni Islam">Sunni Islam</option>
+                        <option value="Shia Islam">Shia Islam</option>
+                      </optgroup>
+
+                      </select>
+                    </div>
+  
+                    <div class="row mt-2 mb-2">
+                      <div class="col-6">
+                        <label for="church_region" class="form-label">Region <sup style='color:red;'>  *</sup></label>
+                        <select name="church_region" class="form-select  border-3" id="church_region" required></select>
+                        <input type="hidden" class="form-control border-3" name="church_region_text" id="church_region_text" required>
+                      </div>
+                      <div class="col-6">
+                          <label for="church_province" class="form-label">Province <sup style='color:red;'>  *</sup></label>
+                          <select name="church_province" class="form-select border-3" id="church_province" required></select>
+                          <input type="hidden" class="form-control border-3" name="church_province_text" id="church_province_text" required>
+                      </div>
+                    </div>
+
+                    <div class="row mt-2 mb-2">
+                      <div class="col-6">
+                        <label for="church_city" class="form-label">City <sup style='color:red;'>  *</sup></label>
+                        <select name="church_city" class="form-select border-3" id="church_city" required></select>
+                        <input type="hidden" class="form-control border-3" name="church_city_text" id="church_city_text" required>
+                      </div>
+                      <div class="col-6">
+                          <label for="church_barangay" class="form-label">Barangay <sup style='color:red;'>  *</sup></label>
+                          <select name="church_barangay" class="form-select border-3" id="church_barangay" required></select>
+                          <input type="hidden" class="form-control border-3" name="church_barangay_text" id="church_barangay_text" required>
+                      </div>
+                    </div>
+
+                    <div class="row mt-2 mb-2  justify-content-between d-flex">
+                      <div class="col-6">
+                        <label for="church_street" class="form-label">Street <sup style='color:red;'>  *</sup></label>
+                        <input type="text" class="form-control border-3" id="church_street" name="church_street" placeholder="e.g. Henares">
+                      </div>
+                      <div class="col-6">
+                          <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
+                          <input type="text" class="form-control border-3" id="church_num" name="church_num" placeholder="Landline or phone number ">
+                      </div>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                      <label for="church_prof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
+                      <input class="form-control form-control-ml" id="church_prof" name="church_prof" type="file" accept="image/*" >      
+                    </div>
+
+                
+
                     <h5>Personal Information</h5>
                     <div class="col-12">
                       <label for="username" class="form-label">First Name<sup style='color:red;'>  <sup style='color:red;'>  *</sup></sup></label>
@@ -85,54 +162,14 @@
                     </div>
                     </div>
 
-                    <h5>Church Information</h5>
-                  
-                    <div class="col-12">
-                      <label for="inputChurchName" class="form-label">Church Name <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_name" name="church_name" placeholder="Our Lady of Peace and Good Voyage" >
-                    </div>  
-
-                    <div class="col-12">
-                      <label for="inputEmailAddress" class="form-label">Church Email Address <sup style='color:red;'>  *</sup></label>
-                      <input type="email" class="form-control border-3" id="church_email" name="church_email" placeholder="example@user.com">
+                    <div class="col-12 mb-2">
+                      <label for="church_pprof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
+                      <input class="form-control form-control-ml" id="church_pprof" name="church_pprof" type="file" accept="image/*" >
                     </div>
 
-                    <div class="col-12">
-                      <label for="inputAddress" class="form-label">Church Address <sup style='color:red;'>  *</sup></label>
-                      <input type="text" class="form-control border-3" id="church_address" name="church_address" placeholder="Brgy. Singcang Airport, Alice St." >
-                    </div>
+                    
 
-                    <div class="col-12">
-                      <label for="inputReligion" class="form-label">Religion <sup style='color:red;'>  *</sup></label>
-                      <select class="form-select border-3" id="church_religion" name="church_religion" aria-label="Default select example" >
-                      <option value="" hidden selected></option>
-                      <optgroup label="Christianity">
-                        <option value="Aglipay">Aglipay</option>
-                        <option value="Ang Dating Daan">Ang Dating Daan</option>
-                        <option value="Baptist">Baptist</option>
-                        <option  value="Catholic">Catholic</option>
-                        <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
-                        <option value="Jehovah's Witnesses">Jehovah's Witnesses</option>
-                      </optgroup>
-                      <optgroup label="Islam">
-                        <option value="Sunni Islam">Sunni Islam</option>
-                        <option value="Shia Islam">Shia Islam</option>
-                      </optgroup>
-
-                      </select>
-                    </div>
-
-                    <div class="row mt-2 mb-2">
-                      <div class="col-6">
-                        <label for="inputCity" class="form-label">City <sup style='color:red;'>  *</sup></label>
-                        <input type="text" class="form-control border-3" id="church_city" name="church_city" placeholder="Bacolod City">
-                      </div>
-                      <div class="col-6">
-                          <label for="inputNum" class="form-label">Contact Number <sup style='color:red;'>  *</sup></label>
-                          <input type="text" class="form-control border-3" id="church_num" name="church_num" placeholder="Landline or phone number ">
-                      </div>
-                    </div>
-                
+                    
                     <h5>Account Information</h5>
 
                     <div class="col-12">
@@ -150,17 +187,10 @@
                         <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                       </div>
                     </div>
-                    <h5>Upload Verification</h5>
+              
                   
-                    <div class="col-12 mt-3">
-                      <label for="church_prof" class="form-label">Church Proof of Legitimacy <sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#Churchid" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                      <input class="form-control form-control-ml" id="church_prof" name="church_prof" type="file" accept="image/*" >      
-                    </div>
-
-                    <div class="col-12 mt-2">
-                      <label for="church_pprof" class="form-label">User Identifications<sup style='color:red;'>  *</sup> <a type="button" data-bs-toggle="modal" data-bs-target="#UserIds" style=" background-image: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;  -webkit-background-clip: text; -webkit-text-fill-color: transparent;" ><i class="lni lni-question-circle text-primary"></i></a></label>
-                      <input class="form-control form-control-ml" id="church_pprof" name="church_pprof" type="file" accept="image/*" >
-                    </div>
+             
+     
 
                     <div class="col-12 mt-3">
                       <div class="form-check form-check-info border-3">

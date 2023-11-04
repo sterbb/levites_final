@@ -40,12 +40,72 @@ use PHPMailer\PHPMailer\Exception;
 
 			//Content
 			$mail->isHTML(true);                                  //Set email format to HTML
-			$mail->Subject = 'Group Designation';
-			$mail->Body    = '<b>ACCOUNT ID: SAMPLEID</b>	
-                                 <h4>YOU ARE ASSIGNED TO: '.$group_name.' </h4>
-								<h4>Event Title: '.$event_title.' </h4>
-                                <h4>Event Date: '.$event_date.' - '.$event_date2.'</h4>
-                                <h4>Event Time: '.$event_time.' - '.$event_time2.' </h4>';
+			$mail->Subject = 'Levites Group Designation';
+			$email_template = '<html>
+			<head>
+				<style>
+					body {
+						font-family: Arial, sans-serif;
+						background-color: #f1f1f1;
+					}
+			
+					.container {
+						max-width: 350px;
+						margin: 0 auto;
+						height: 380px;
+						padding: 20px;
+						background-color: #6D7987;
+						border-radius: 10px;
+					}
+			
+					.header {
+						text-align: center;
+						margin-bottom: 20px;
+					}
+			
+					.header h1 {
+						color: #E1E1E8;
+						font-size: 28px;
+					}
+			
+					.logo img {
+						max-width: 250px;
+						text-align: center;
+						margin: 0 auto;
+						display: block;
+					}
+			
+					.event-details p {
+						margin-bottom: 10px;
+						color: #E1E1E8;
+					}
+				</style>
+			</head>
+			<body>
+				<div class="container">
+					<div class="logo">
+						<a class="logo" href="https://www.levites.net"><img src="cid:logo_cid" alt="Logo"></a>
+
+					</div>
+					<div class="header">
+						<h1>Group Designation</h1>
+					</div>
+					<div class="event-details">
+						<p><strong>YOU ARE ASSIGNED TO:</strong> '.$group_name.'</p>
+						<p><strong>Event Title:</strong> '.$event_title.'</p>
+						<p><strong>Event Date:</strong> '.$event_date.' - '.$event_date2.'</p>
+						<p><strong>Event Time:</strong> '.$event_time.' - '.$event_time2.'</p>
+					</div>
+				</div>
+			</body>
+			</html>';
+
+			$logoFilePath = '../views/images/logo.png';
+			
+			$mail->addEmbeddedImage($logoFilePath, 'logo_cid', 'your_logo.png');
+
+
+			$mail->Body    = $email_template;
                                 
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 				$mail->send();

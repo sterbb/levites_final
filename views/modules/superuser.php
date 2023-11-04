@@ -155,6 +155,30 @@
 
 
                         <div class="accepted_churches" id="accepted_churches">
+
+                            <?php
+                                $churches = (new ControllerSuperuser)->ctrShowDeactivatedChurch();
+                                foreach($churches as $key => $value){
+                                    echo '
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="">
+                                            <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
+                                            <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                        </div>
+                                        <div class="">
+                                            <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="'.$value["churchID"].'" >Activate</button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    ';
+                                }
+                            ?>
+
                
                             <?php
                             $churches = (new ControllerSuperuser)->ctrShowChurchList(1);
@@ -171,15 +195,16 @@
                                         <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
                                     </div>
                                     <div class="">
-                                        <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover" onclick="changeButtonText(this)">Activate</button>
+                                        <button href="javascript:;"  class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="'.$value["churchID"].'">Deactivate</button>
                                     </div>
                                 </div>
                                 <hr>
                                 ';
                             }
-                            
-                            
                             ?>
+
+       
+
                         </div>
 
                     </div>
@@ -236,51 +261,60 @@
                         </div>
 
                         <div class="row g-3">        
-                            <div class="col-12">
+                            <div class="col-8">
                                 <label for="inputChurchName" class="form-label">Church Name</label>
                                 <input type="text" class="form-control border-3" id="church_name" name="churchName" placeholder="Our Lady of Peace and Good Voyage" value="Our Lady of Peace and Good Voyage" readonly>
-                            </div>             
+                            </div>    
+
+                            <div class="col-4">
+                                <label for="inputReligion" class="form-label">Religion</label>
+                                <input type="text" class="form-control border-3" id="church_religion" name="religion" aria-label="Default select example" readonly>
+                            </div>
+         
                         </div>
                         
                         <div class="row g-3">     
 
-                            <div class="col-6">
-                                <label for="inputEmailAddress" class="form-label">Church Email Address</label>
+                            <div class="col-8">
+                                <label for="inputEmailAddress" class="form-label">Email Address</label>
                                 <input type="email" class="form-control border-3" id="church_email" name="email" placeholder="example@user.com" value="ourladyofpeaceandgoodvoyage001@gmail.com" readonly>
                             </div> 
 
-                            <div class="col-6">
-                                <label for="inputReligion" class="form-label">Religion</label>
-                                <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example" disabled>
-                                <option selected="" value="Catholic">Catholic</option>
-                                <option value="Baptist">Baptist</option>
-                                <option value="Born Again">Born Again </option>
-                                </select>
+                
+                            <div class="col-4">
+                                <label for="inputNum" class="form-label">Telephone Number</label>
+                                <input type="text" class="form-control border-3" id="church_telnum" name="telnum" placeholder="432-0048" value="432-0048" readonly>
                             </div>
 
-                            
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Church Address</label>
-                                <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Raquel St." value="Brgy. Singcang Airport, Raquel St." readonly>
-                            </div>
-                        
                         </div>
 
 
                         <div class="row g-3">
-                            <div class="col-6">
-                            <label for="inputSelectCountry" class="form-label">City</label>
-                                <select class="form-select border-3" id="church_city" name="country" aria-label="Default select example" disabled>
-                                <option selected="" value="Philippines">Bacolod City</option>
-                                <option value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="America">America</option>
-                                <option value="Dubai">Dubai</option>
-                                </select>
+                            <div class="col-4">
+                                <label for="church_region" class="form-label">Region</label>
+                                <input type="text" class="form-control border-3" id="church_region" name="church_region" readonly>
                             </div>
-                            <div class="col-6">
-                                <label for="inputNum" class="form-label">Telephone Number</label>
-                                <input type="text" class="form-control border-3" id="church_telnum" name="telnum" placeholder="432-0048" value="432-0048">
+
+                            <div class="col-4">
+                                <label for="church_province" class="form-label">Province</label>
+                                <input type="text" class="form-control border-3" id="church_province" name="country"  readonly>
+                            </div>
+
+                            <div class="col-4">
+                                <label for="City" class="form-label">City</label>
+                                <input type="text" class="form-control border-3" id="church_city" name="country" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-4">
+                                <label for="church_barangay" class="form-label">Barangay</label>
+                                <input type="text" class="form-control border-3" id="church_barangay" name="church_barangay"  readonly>
+                            </div>
+
+                            <div class="col-8">
+                                <label for="church_street" class="form-label">Street</label>
+                                <input type="text" class="form-control border-3" id="church_street" name="church_street"readonly>
                             </div>
                         </div>
 

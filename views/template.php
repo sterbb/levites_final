@@ -142,6 +142,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <!--plugins-->
@@ -203,8 +204,16 @@
 
 	<script src="views/assets/js/flatpickr.js"></script>
 
+	
+
+
+	<script src="extensions/philippines-selector/ph-address-selector.js"></script>
+
 
 	
+    <!--BS SWALL-->
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!-- customize scripts -->
 	<script src="views/js/dashboard.js"></script>

@@ -328,3 +328,83 @@ if (document.querySelector('#simp')) {
   ap_simp.insertBefore(simp_player, simp_playlist);
   simp_startScript();
 }
+
+window.addEventListener('scroll', function () {
+  const header = document.querySelector('.newheader');
+  if (window.scrollY > 0) {
+    header.classList.add('scrolling-header');
+  } else {
+    header.classList.remove('scrolling-header');
+  }
+});
+
+const scrollupButton = document.getElementById('scrollup');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollupButton.style.display = 'block';
+  } else {
+    scrollupButton.style.display = 'none';
+  }
+});
+
+// This is script file
+
+$('.testimonials-container').owlCarousel({
+  loop:true,
+  autoplay:true,
+  autoplayTimeout:6000,
+  margin:10,
+  nav:true,
+  navText:["<i class='fa-solid fa-arrow-left'></i>",
+           "<i class='fa-solid fa-arrow-right'></i>"],
+  responsive:{
+      0:{
+          items:1,
+          nav:false
+      },
+      600:{
+          items:1,
+          nav:true
+      },
+      768:{
+          items:2
+      },
+  }
+})
+document.addEventListener('DOMContentLoaded', function() {
+  // Your JavaScript code here
+
+  const btn = document.querySelector('.newheaderbtn');
+
+  function playAnimation() {
+    btn.style.animation = 'tada 1s steps(2) forwards';
+  }
+  
+  function stopAnimation() {
+    btn.style.animation = 'none';
+  }
+  
+  function delayThenPlay() {
+    playAnimation();
+    setTimeout(() => {
+      stopAnimation();
+      setTimeout(delayThenPlay, 5000); // Adjust this value for the delay between animations
+    }, 5000); // Adjust this value for the duration of the animation
+  }
+  
+  delayThenPlay();
+});
+
+var registrationButtons = document.getElementById('registrationButtons');
+var registerNowBtn = document.getElementById('registerNowBtn');
+var isVisible = false;
+
+registerNowBtn.addEventListener('click', function() {
+    if (isVisible) {
+        registrationButtons.style.display = 'none';
+    } else {
+        registrationButtons.style.display = 'block';
+    }
+    isVisible = !isVisible;
+});

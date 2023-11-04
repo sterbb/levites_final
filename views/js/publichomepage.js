@@ -35,73 +35,113 @@ $(document).ready(function() {
       });
 
   
-    function displayResults(results) {
-      var searchResultsContainer = $("#searchResults");
-      var churchResultsContainer = $("#churchResults");
-  
-      searchResultsContainer.empty(); // Clear existing search results
-      churchResultsContainer.empty(); // Clear existing church results
-  
-      if (results.length === 0) {
-        searchResultsContainer.hide();
-        return;
-      }
-  
-      results.forEach(function(element) {
-        // Create the search result list item
-        var listItem = $("<li>")
-          .addClass("list-group-item")
-          .text(element.church_name)
-          .on("click", function() {
-            $("#searchQuery").val($(this).text());
+      function displayResults(results) {
+        var searchResultsContainer = $("#searchResults");
+        var churchResultsContainer = $("#churchResults");
+    
+        searchResultsContainer.empty(); // Clear existing search results
+        churchResultsContainer.empty(); // Clear existing church results
+    
+        if (results.length === 0) {
             searchResultsContainer.hide();
-          });
-  
-        searchResultsContainer.append(listItem);
-      });
-  
-      searchResultsContainer.show();
-  
-      // Populate church results
-      results.forEach(function(element) {
-        var churchCard = $("<div>")
-          .addClass("card overflow-hidden")
-          .append(
-            $("<div>")
-              .addClass("profile-cover bg-dark position-relative mb-4")
-              .css("background-image", "url('views/images/SanNic.jpg')")
-              .css("height", "250px")
-              .append(
-                $("<div>")
-                  .addClass("user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x")
-                  .append($("<img>").attr("src", "views/images/LogoTal.jpg").attr("alt", "..."))
-              ),
-            $("<div>")
-              .addClass("card-body")
-              .append(
-                $("<div>")
-                  .addClass("d-flex align-items-start justify-content-between")
-                  .append(
-                    $("<button>")
-                      .addClass("border-0 bg-transparent") // Add the 'border-0' class to the button
-                      .attr("church_id", element.churchID)
-                      .attr("onclick", "openProfile(this)")
-                      .append(
-                      $("<div>")
-                        .addClass("text-black border-0 text-start")
+            return;
+        }
+    
+        results.forEach(function (element) {
+            // Create the search result list item
+            var listItem = $("<li>")
+                .addClass("list-group-item")
+                .text(element.church_name)
+                .on("click", function () {
+                    $("#searchQuery").val($(this).text());
+                    searchResultsContainer.hide();
+                });
+    
+            searchResultsContainer.append(listItem);
+        });
+    
+        searchResultsContainer.show();
+    
+        // Populate church results
+        results.forEach(function (element) {
+            var churchCard = $("<div>")
+                .addClass("card overflow-hidden")
+                .append(
+                  $("<div>")
+                        .addClass("profile-cover bg-dark position-relative mb-4")
+                        .css("background-image", function() {
+                            if (element.Back) {
+                                return "url('./views/uploadBack/" + element.Back + "')";
+                            } else {
+                                return "url('./views/images/default.png')";
+                            }
+                        })
+                        .css("height", "15rem")
+                        .css("background-size", "cover")
+                        .css("background-repeat", "no-repeat")
+                        .css("background-position", "center")
                         .append(
-                          $("<h3>").addClass("mb-2 card-title").text(element.church_name).attr("church_id", element.churchID),
-                          $("<span>").addClass("badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-1").text(element.church_city),
-                          $("<span>").addClass("badge bg-primary bg-primary-subtle text-primary border border-opacity-25 mt-2 border-primary").text(element.church_address)
+                            $("<div>")
+                                .addClass("user-profile-avatar shadow position-absolute top-50 start-0 translate-middle-x")
+                                .append($("<img>").attr("src", function() {
+                                    if (element.Avatar) {
+                                        return "./views/UploadAvatar/" + element.Avatar;
+                                    } else {
+                                        return "./views/images/default.png";
+                                    }
+                                }).attr("alt", "...")
+                                )
+                        ),
+                    $("<div>")
+                        .addClass("card-body")
+                        .append(
+                            $("<div>")
+                                .addClass("d-flex align-items-start justify-content-between")
+                                .append(
+                                    $("<button>")
+                                        .addClass("border-0 bg-transparent")
+                                        .attr("church_id", element.churchID)
+                                        .attr("onclick", "openProfile(this)")
+                                        .append(
+                                            $("<div>")
+                                                .addClass("text-black border-0 text-start")
+                                                .append(
+                                                    $("<h3>").addClass("mb-2 card-title").text(element.church_name).attr("church_id", element.churchID),
+                                                    $("<span>").addClass("badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-1")
+                                                        .append(
+                                                            $("<i>").addClass("bx bx-map-pin mr-1"),
+                                                            " " + element.church_province + ", " + element.church_city
+                                                        ),
+                                                    $("<span>").addClass("badge bg-success bg-success-subtle text-success border border-opacity-25 border-success m-1")
+                                                        .append(
+                                                            $("<i>").addClass("bx bx-map-pin mr-1"),
+                                                            " "+ element.church_barangay + ", " + element.church_street
+                                                        ),
+                                                    $("<span>").addClass("badge bg-danger bg-danger-subtle text-danger border border-opacity-25 border-danger m-1")
+                                                    .append(
+                                                        $("<i>").addClass("bx bx-phone mr-1"),
+                                                        " "+ element.church_num
+                                                    ),
+                                                    $("<span>").addClass("badge bg-primary bg-primary-subtle text-primary border border-opacity-25 border-primary m-1")
+                                                    .append(
+                                                        $("<i>").addClass("bx bx-envelope"),
+                                                        " "+ element.church_email
+                                                    )
+
+
+                                                       
+    
+                                                )
+                                        )
+                                )
                         )
-                    )
-                  )
-              )
-          );
-  
-        churchResultsContainer.append(churchCard);
-      });
+                );
+    
+            churchResultsContainer.append(churchCard);
+        });
     }
+    
+
 
   });
 
@@ -136,8 +176,33 @@ $(document).ready(function() {
       const options = { year: 'numeric', month: 'long', day: '2-digit' };
 
 
-      const previousDate = new Date(dateString); // Create a new Date object to avoid modifying the original one
+      var previousDate = new Date(dateString); // Create a new Date object to avoid modifying the original one
       previousDate.setDate(dateObject.getDate() - 1);
+
+
+      var event = new Date(dateString);
+      const offset = event.getTimezoneOffset();
+      event = new Date(event.getTime() - (offset*60*1000));
+
+      var nxtDay = new Date(event);
+      nxtDay.setDate(event.getDate() + 1);
+
+      var prevDay = new Date(event);
+      prevDay.setDate(event.getDate() - 1);
+
+
+      let prevdate = prevDay.toISOString().split('T')[0];
+      prevdate = prevdate.slice(0,10);
+
+      let nxtdate = nxtDay.toISOString().split('T')[0];
+      nxtdate = nxtdate.slice(0,10);
+
+ 
+
+      $('#pubPrevDate').val(prevdate);
+      $('#pubNxtDate').val(nxtdate);
+  
+
       const formattedPreviousDate = previousDate.toLocaleDateString('en-US', options);
       console.log(formattedPreviousDate);
 
@@ -229,6 +294,13 @@ function downloadPodcast() {
       console.error('Error downloading file:', error);
     }); 
 }
+
+$("#pubPrevDate, #pubNxtDate").on('click', function(){
+
+  document.cookie = "viewDate=" +$(this).val();
+
+  window.location.href = "catdetails";
+});
 
 
 // function getLocation() {

@@ -101,7 +101,7 @@ if(isset($_COOKIE["acc_type"])){
                 <li class="public" >
                     <a href="membership">
                       <div class="parent-icon"><span class="material-symbols-outlined">
-                        public
+                        groups
                         </span>
                       </div>
                       <div class="menu-title ">Membership</div>

@@ -15,6 +15,7 @@ class ModelUserAccount{
 		$church_name = $_COOKIE['church_name'];
 		$acc_type = 'subuser';
 		$user_name = 'Subuser-' . $church_id;
+		
         try{
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->beginTransaction();
@@ -56,17 +57,29 @@ class ModelUserAccount{
 
 	public static function mdlShowUserAccount(){
         
-        $memID = $_COOKIE["church_id"];
-        $stmt = (new Connection)->connect()->prepare("SELECT * FROM membership WHERE memChurchID = :memChurchID AND membership_status = 1" );
-        $stmt->bindParam(":memChurchID", $memID, PDO::PARAM_INT);
-		$stmt -> execute();
-		return $stmt -> fetchAll();
-		$stmt -> close();
-		$stmt = null;	
-	
-
+		$memID = $_COOKIE["church_id"];
+		$subuser = "subuser";
+		$stmt = (new Connection)->connect()->prepare("SELECT * FROM membership WHERE memChurchID = :memChurchID AND membership_status = 1");
+		$stmt->bindParam(":memChurchID", $memID, PDO::PARAM_STR);
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->closeCursor();
 		
     }
+
+	public static function mdlShowManualAccount(){
+
+		$memID = $_COOKIE["church_id"];
+		$subuser = "subuser";
+		$stmt2 = (new Connection)->connect()->prepare("SELECT * FROM account WHERE affiliated_church = :affiliated_church AND acc_type = :acc_type");
+		$stmt2->bindParam(":affiliated_church", $memID, PDO::PARAM_STR);
+		$stmt2->bindParam(":acc_type", $subuser, PDO::PARAM_STR);
+		$stmt2->execute();
+		return $stmt2->fetchAll();
+	
+		$stmt2->closeCursor();
+	
+	}
 
 
 	public static function mdlGetReportChurch() {
@@ -122,6 +135,7 @@ class ModelUserAccount{
 			$stmt->bindParam(":affiliated_churchname", $church_name, PDO::PARAM_STR);
 			$stmt->bindParam(":affiliated_church", $church_id, PDO::PARAM_STR);
 			$stmt->execute();		
+
 		    $pdo->commit();
 			
 		    return "ok";

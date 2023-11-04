@@ -32,6 +32,26 @@ class ControllerWebsite{
         return $answer = (new ModelWebsite)->mdlupdateWebsiteInGroup($data);
 	}
 
+	static public function ctrBookmarkWebsite($data){
+        return $answer = (new ModelWebsite)->mdlBookmarkWebsite($data);
+	}
+
+
+	static public function checkWebsiteName(){
+        return $answer = (new ModelWebsite)->mdlCheckWebsite();
+	}
+
+
+	static public function checkWebsiteGroup(){
+        return $answer = (new ModelWebsite)->mdlCheckGroupWebsite();
+	}
+
+	
+	static public function checkWebsiteUpdate(){
+        return $answer = (new ModelWebsite)->mdlCheckUpdateWebsite();
+	}
+
+
     
 	
 	

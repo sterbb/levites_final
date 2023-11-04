@@ -56,6 +56,7 @@
     
         var churchData = new FormData();
         churchData.append("church_id", church_id);
+        alert(church_id);
 
 
         $.ajax({
@@ -68,28 +69,27 @@
             dataType: "json",
             success: function(answer) {
          
+              console.log(answer);
 
               $("#superuser_churchID").val(answer[0]);
-
               $("#church_name").val(answer[1]);
-
               $("#church_email").val(answer[2]);
-
               $("#church_telnum").val(answer[3]);
+              $("#church_religion").val(answer[5]);
 
-              $("#church_address").val(answer[4]);
+              $("#church_city").val(answer[4]);
+              $("#church_region").val(answer[6]);
+              $("#church_province").val(answer[7]);
+              $("#church_barangay").val(answer[8]); 
+              $("#church_street").val(answer[9]);
 
-              $("#church_city").val(answer[5]);
-
-              $("#church_reigion").val(answer[6]);
 
 
-              
 
               $('#superuserModal').modal('show'); 
 
             },
-            error: function() {
+            error: function(answer) {
                 alert("Oops. Something went wrong!");
             },
             complete: function() {
@@ -154,9 +154,9 @@
             contentType: false,
             processData: false,
             dataType: "json",
-            success: function(answer) {
+            success: function(answer) { 
 
-
+              console.log(answer);
               $("superuser_churchID").val(answer[0]);
 
               async function createSubfolder(parentFolderPath, subfolderName) {
@@ -239,4 +239,67 @@
             }
           });
     });
+
+
+    $(".superuser_deactivate").on('click', function(){
+      var church_id = $(this).val();
+
+      alert(church_id);
+    
+      var reportData = new FormData();
+      reportData.append("church_id", church_id);
+  
+      $.ajax({
+        url: "ajax/deactivate_account.ajax.php",
+        method: "POST",
+        data: reportData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+          alert(answer);
+        },
+        error: function(xhr, status, error) {
+          //         var errorMessage = xhr.responseText; // Extract the error message
+          console.log("Error: " + error);
+        },
+        complete: function() {
+        }
+      });
+  
+    });
+
+    
+    $(".superuser_activate").on('click', function(){
+      var church_id = $(this).val();
+
+      alert(church_id);
+    
+      var reportData = new FormData();
+      reportData.append("church_id", church_id);
+  
+      $.ajax({
+        url: "ajax/activate_account.ajax.php",
+        method: "POST",
+        data: reportData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+          alert(answer);
+        },
+        error: function(xhr, status, error) {
+          //         var errorMessage = xhr.responseText; // Extract the error message
+          console.log("Error: " + error);
+        },
+        complete: function() {
+        }
+      });
+  
+    });
+
+
+
 

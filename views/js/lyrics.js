@@ -191,36 +191,46 @@ function downloadPlaylist(element){
     form.submit();
 }
 
-
 function printLyrics() {
-
     const lyricsContainer = document.querySelector('#lyricsContainer').cloneNode(true);
 
     // Remove all elements with the copy-button class from the cloned container
     const copyButtons = lyricsContainer.querySelectorAll('.copy-button');
     copyButtons.forEach(button => button.remove());
-    
+
+    // Remove the contact_support button from the cloned container
+    const contactSupportButton = lyricsContainer.querySelector('.contact-support-button');
+    if (contactSupportButton) {
+        contactSupportButton.remove();
+    }
+
+    const dots = lyricsContainer.querySelector('.dots');
+    if (dots) {
+        dots.remove();
+    }
+
     // Create a new window for printing
     const printWindow = window.open('', '_blank');
-    
+
     // Write the lyrics content to the print window
     printWindow.document.write('<html><head><title>Lyrics</title></head><body>');
-    
-    // Add CSS to center the lyrics content in the print window
-    printWindow.document.write('<style>body { text-align: center; }</style>');
-    
+
+    // Add CSS to center the lyrics content in the print window and add space between stanzas
+    printWindow.document.write('<style>body { text-align: center; } .lyrics-section { margin-bottom: 20px; }</style>');
+
     // Append the cloned lyrics container to the print window
     printWindow.document.body.appendChild(lyricsContainer);
-    
+
     printWindow.document.write('</body></html>');
     printWindow.document.close();
-    
+
     // Trigger the print dialog in the new window
     printWindow.onload = function () {
         printWindow.print();
         printWindow.close();
     }
 }
+
 
 function downloadLinkedSong(element) {
 
@@ -267,7 +277,7 @@ function downloadLinkedSong(element) {
     });
 }
 
-function copyLyrics(section) {
+function lyricsInfo(section) {
     var modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = '<div class="lyrics-section">' + section + '</div>';
   

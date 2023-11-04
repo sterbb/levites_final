@@ -15,6 +15,19 @@ class ControllerReportSubmission{
 		return $answer = (new ModelReportSubmission)->mdlReportDetails($data);
 	}
 
+	static public function ctrWarnedAccounts(){
+		return $answer = (new ModelReportSubmission)->mdlWarnedAccounts();
+	}
+
+	static public function ctrdeleteReport($data){
+		return $answer = (new ModelReportSubmission)->mdldeleteReport($data);
+	}
+
+	static public function ctrdeleteWarningReport($data){
+		return $answer = (new ModelReportSubmission)->mdldeleteWarningReport($data);
+	}
+
+
 
 
 	

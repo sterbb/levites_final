@@ -6,7 +6,7 @@
 
                 <div class="overflow-auto align-items-center d-flex justify-content-center text-center">
                 <div class="btn-group position-static text-center align-items-center justify-content-center">
-                  <button class="btn btn-white px-2 "><i class="bx bx-chevron-left me-0"></i></button>
+                  <button class="btn btn-white px-2 " id="pubPrevDate"><i class="bx bx-chevron-left me-0"></i></button>
                   <p class="mb-0 ms-3" id="catdetails_prev"></p>
                 </div>  
                 </div>
@@ -27,7 +27,7 @@
                 <div class="overflow-auto">
                 <div class="btn-group position-static  align-items-center justify-content-center text-center">
                   <p class="pt-3" id="catdetails_adv"></p>
-                  <button class="btn btn-white px-2 ms-3"><i class="bx bx-chevron-right me-0"></i></button>
+                  <button class="btn btn-white px-2 ms-3" id="pubNxtDate"><i class="bx bx-chevron-right me-0"></i></button>
                 </div>  
                 </div>
             </div>

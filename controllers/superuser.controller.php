@@ -5,6 +5,26 @@ class ControllerSuperuser{
         return $answer = (new ModelSuperUser)->mdlShowChurchList($data);
 	}
 
+	static public function ctrShowDeactivatedChurch(){
+        return $answer = (new ModelSuperUser)->mdlShowDeactivatedChurch();
+	}
+
+	static public function ctrShowDeactivated(){
+        return $answer = (new ModelSuperUser)->mdlShowDeactivated();
+	}
+
+	static public function ctrDeactivateAccount($data){
+        return $answer = (new ModelSuperUser)->mdlDeactivateAccount($data);
+	}
+
+	static public function ctrActivateAccount($data){
+        return $answer = (new ModelSuperUser)->mdlActivateAccount($data);
+	}
+
+
+
+
+
 	static public function ctrShowChurchListExplore($data){
         return $answer = (new ModelSuperUser)->mdlShowChurchListExplore($data);
 	}

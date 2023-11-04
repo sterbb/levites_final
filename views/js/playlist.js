@@ -3,57 +3,79 @@ $(".addPlaylistForm").submit(function(e) {
 
     var playlist_name = $("#playlist_name").val();
 
-    var song =  [];
+    var song = [];
     var trackID = getCookie("trackID");
     var artist = $("#song-artist").text();
-    var title =  $("#song-title").text();
+    var title = $("#song-title").text();
 
-      
     var songdetails = {};
-    songdetails.trackID = trackID;
-    songdetails.artist = artist;
-    songdetails.title = title;
+        songdetails.trackID = trackID;
+        songdetails.artist = artist;
+        songdetails.title = title;
+    
 
     song.push(songdetails);
 
-
+    var playlistData = new FormData();
+    playlistData.append("playlist_name", playlist_name);
+    playlistData.append("songs", JSON.stringify(song));
 
     if (playlist_name.trim() === "") {
-        // Display an error message using SweetAlert
-
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Playlist name is required in this field.',
+        });
     } else {
-
-        
-        var playlistData = new FormData();
-        playlistData.append("playlist_name", playlist_name);
-        playlistData.append("songs", JSON.stringify(song));
-
-
-        $.ajax({
-            url: "ajax/playlist_add.ajax.php",
-            method: "POST",
-            data: playlistData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "text",
-            success: function(answer) {
-                console.log(answer);    
-                location.reload();
-            },
-            error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
+        // Show a confirmation dialog
+        Swal.fire({
+            title: 'Confirm',
+            text: 'Are you sure you want to add this playlist?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "ajax/playlist_add.ajax.php",
+                    method: "POST",
+                    data: playlistData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(answer) {
+                        console.log(answer);
+                        // Display a success Swal notification with a confirm button
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Playlist added successfully!',
+                            confirmButtonText: 'OK',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Reload the system when the "OK" button is clicked
+                                location.reload();
+                            }
+                        });
+                    },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        });
+                    },
+                    complete: function() {
+                        // Handle any completion tasks if needed
+                    }
                 });
-            },
-            complete: function() {
-                // Handle any completion tasks if needed
             }
         });
     }
 });
+
+
 
 function removeSong(element){
     var playlist_name = $(element).attr('playlist_name');
@@ -104,43 +126,57 @@ function removeSong(element){
 
 }
 
-
-
 function deletePlaylist(element) {
-
     var playlistID = $(element).attr('id');
-   
 
-    var playlistData = new FormData();
-    playlistData.append("playlistID", playlistID);
+    // Show a confirmation dialog
+    Swal.fire({
+        title: 'Confirm',
+        text: 'Are you sure you want to delete this playlist?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var playlistData = new FormData();
+            playlistData.append("playlistID", playlistID);
 
-    //it is just the same because it is updating
-    $.ajax({
-        url: "ajax/delete_playlist.ajax.php",
-        method: "POST",
-        data: playlistData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "text",
-        success: function(answer) {
-            console.log(answer);
-            location.reload();
-
-
-        },
-        error: function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
+            $.ajax({
+                url: "ajax/delete_playlist.ajax.php",
+                method: "POST",
+                data: playlistData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "text",
+                success: function(answer) {
+                    console.log(answer);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Delete Playlist successfully!',
+                        confirmButtonText: 'OK',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Reload the system when the "OK" button is clicked
+                            location.reload();
+                        }
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                    });
+                },
+                complete: function() {
+                    // Handle any completion tasks if needed
+                }
             });
-        },
-        complete: function() {
-            // Handle any completion tasks if needed
         }
     });
-
 }
 
 // Function to remove an item with matching trackID
@@ -250,19 +286,14 @@ function setPlaylist(element){
         });
 
     });
-
-$('#addToPlaylist').click(function(){
-
-
+    
+$('#addToPlaylist').click(function() {
     var trackID =  $("#song_title_playlist").attr('track-id');
     var song_title =  $("#song_title_playlist").attr('song-title');
     var song_artist =  $("#song_title_playlist").attr('song-artist');
     var playlist =  $("#addToPlaylistName").val();
-    
-    var new_songlist =JSON.parse($("#playlist_songlist").val());
-    
+    var new_songlist = JSON.parse($("#playlist_songlist").val());
 
-      
     var songdetails = {};
     songdetails.trackID = trackID;
     songdetails.artist = song_artist;
@@ -270,44 +301,51 @@ $('#addToPlaylist').click(function(){
 
     new_songlist.push(songdetails);
 
-
-
     if (playlist.trim() === "") {
-        // Display an error message using SweetAlert
-
+        // Display an error message using SweetAlert or other method
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please provide a playlist name.',
+        });
     } else {
+        Swal.fire({
+            title: 'Confirmation',
+            text: 'Are you sure you want to add this song to your playlist?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var playlistData = new FormData();
+                playlistData.append("playlist_name", playlist);
+                playlistData.append("songs", JSON.stringify(new_songlist));
 
-        
-        var playlistData = new FormData();
-        playlistData.append("playlist_name", playlist);
-        playlistData.append("songs", JSON.stringify(new_songlist));
-
-
-        $.ajax({
-            url: "ajax/playlist_add_song.ajax.php",
-            method: "POST",
-            data: playlistData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "text",
-            success: function(answer) {
-                console.log(answer);
-
-                location.reload();
-            },
-            error: function() {
-
-            },
-            complete: function() {
-                // Handle any completion tasks if needed
+                $.ajax({
+                    url: "ajax/playlist_add_song.ajax.php",
+                    method: "POST",
+                    data: playlistData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "text",
+                    success: function(answer) {
+                        console.log(answer);
+                        location.reload();
+                    },
+                    error: function() {
+                        // Handle the error case if needed
+                    },
+                    complete: function() {
+                        // Handle any completion tasks if needed
+                    }
+                });
             }
         });
     }
-
-
-
 });
+    
 
 function editPlaylist(element) {
     var id = "#" + $(element).attr('id');

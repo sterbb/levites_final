@@ -2,16 +2,100 @@
   <main class="page-content">   
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 row-cols-xxl-4 justify-content-around">
         <div class="col">
-            <div class="card radius-10">
+            <div class="card radius-10 ">
               <div class="card-body">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center justify-items-between">
+
+
                   <div class="">
-                    <p class="mb-1">Total Views</p>
-                    <h4 class="mb-0 text-primary">1,045</h4>
+                      <p class="mb-1">Bookmarks</p>
+                      <h4 class="mb-0 text-warning">
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#dashboardWebsite" class="btn btn-outline-warning radius-30 text-center" style=" display: flex; align-items: center; justify-content: center;" data-toggle="tooltip" data-placement="top" title="Manage Bookmark">
+                            <i class="fadeIn animated lni lni-bookmark" style="font-size: 0.8em;"></i>
+                        </button>
+                                     <!-- <i class="lni lni-bookmark" style="font-size:.8em;"></i> -->
+                      </h4>
                   </div>
-                  <div class="ms-auto fs-2 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye text-primary"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+
+                
+                  <div class="ms-auto fs-2 text-danger d-flex align-items-center justify-items-between">
+                      <?php 
+                          $websites = (new ControllerWebsite)->ctrShowWebsites();
+
+                          $count = 0;
+
+                          foreach ($websites as $key => $value) {
+
+                            if($count == 3){
+                                break;
+                            }else{
+                                if($value['bookmark'] == 1){
+                                    echo'<div class="text-center">';
+            
+                                    echo '<a href="' . $value['website_path'] . '" target="_blank" data-toggle="tooltip" data-placement="bottom" title="'. $value['website_name'].'">';
+                                  
+                                    if ($value['website_category'] === 'Social Media') {
+                                        echo '<img src="views/images/socmed.png" width="60" height="55" >';
+                                    } elseif ($value['website_category'] === 'Productivity') {
+                                        echo '<img src="views/images/productivity.png" width="60" height="55" >';
+                                    } elseif ($value['website_category'] === 'Multimedia') {
+                                        echo '<img src="views/images/multimedia.png" width="60" height="55" >';
+                                    } else {
+                                        echo '<img src="views/images/videocon.png" width="50" height="45" > ';
+                                    }
+                                    
+                                    echo '</a>';
+    
+                                  echo '</div>';
+                                  $count++;
+                                };
+                            }
+                          }
+
+                          if($count == 0){
+                            echo '<p class="mb-1 text-warning" style="font-size:.4em;">No available bookmarks</p>';
+                            // echo ' <button type="button" data-bs-toggle="modal" data-bs-target="#dashboardWebsite" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;" data-toggle="tooltip" data-placement="top" title="Manage Bookmark"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button> ';
+                          }
+
+
+                      ?>
+     
                   </div>
+                  
+                  <?php 
+                      // $websites = (new ControllerWebsite)->ctrShowWebsites();
+
+                      // foreach ($websites as $key => $value) {
+                      
+                      //   if($value['bookmark'] == 1){
+                      //       echo'<div class="text-center">';
+
+                      //       echo '<a href="' . $value['website_path'] . '" target="_blank">';
+                          
+                      //       if ($value['website_category'] === 'Social Media') {
+                      //           echo '<img src="views/images/socmed.png" width="60" height="55" >';
+                      //       } elseif ($value['website_category'] === 'Productivity') {
+                      //           echo '<img src="views/images/productivity.png" width="60" height="55" >';
+                      //       } elseif ($value['website_category'] === 'Multimedia') {
+                      //           echo '<img src="views/images/multimedia.png" width="60" height="55" >';
+                      //       } else {
+                      //           echo '<img src="views/images/videocon.png" width="50" height="45" > ';
+                      //       }
+                            
+                         
+                      //       echo '</a>';
+
+                      //     echo '</div>';
+                      //   };
+
+                        
+                      // }
+                  ?>
+
+                  <!-- <div class="ms-auto fs-2 text-warning d-flex align-items-start">
+                    <i class="lni lni-bookmark mb-3" style="font-size:.8em;"></i>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#dashboardWebsite" class="btn btn-outline-dark px-3 radius-30 text-center"><i class="fadeIn animated bx bx-list-plus" style="font-size:1.2em;" data-toggle="tooltip" data-placement="top" title="Manage Bookmark"></i><i class="fadeIn animated bx bx-globe" style="font-size:1.2em; "></i></button> 
+                  </div> -->
                 </div>
                 <hr class="my-2">
 
@@ -19,7 +103,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10">
+            <div class="card radius-10" style="max-height:155px;">
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="">
@@ -43,9 +127,11 @@
 
                     </h4>
                   </div>
+
                   <div class="ms-auto fs-2 text-danger">
                     <i class="lni lni-users" style="font-size:1.3em;"></i>
                   </div>
+
                 </div>
                 <hr class="my-2">
          
@@ -53,7 +139,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10">
+            <div class="card radius-10" style="max-height:155px;">
               <div class="card-body">
                 <div class="d-flex align-items-center">
                   <div class="">
@@ -117,7 +203,7 @@
                     <div class="card-header bg-transparent h-100">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
-                                <h6 class="mb-0 fw-bold">Monthly Views</h6>
+                                <h6 class="mb-0 fw-bold">Monthly Events</h6>
                             </div>
                         </div>
                     </div>
@@ -275,3 +361,224 @@
 </main>
 <!--end main content-->
 
+<div class="modal fade" id="dashboardWebsite" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
+            <h5 class="modal-title">Manage Bookmarks</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <input type="hidden" name="dashgroupWebsiteList" id="dashgroupWebsiteList">
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="row mt-3 mb-1">
+              
+                   
+                    <div class=" d-flex justify-content-between align-items-center mt-4">
+                        <h6>Social Media</h6>
+                     
+                       
+                    </div>
+                    <hr>
+
+                    <div class="row mb-2 ">
+
+          
+                        <?php 
+                            $websites = (new ControllerWebsite)->ctrShowWebsites();
+                            foreach($websites as $key => $value) {
+                                
+                                $websiteCategory = $value['website_category'];
+                                
+                                if ($websiteCategory === 'Social Media') {
+
+                                    echo '
+                                    <div class="col-3 text-center">
+                                        <div class="card">
+                                            <img src="views/images/socmed.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                            <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                            <div class="card-body">
+                                                <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">';
+    
+                                                if($value['bookmark'] == 0){
+                                                    echo'  <input class="form-check-input border-2 border-success dashNewSM" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;">';
+                                                }else{
+                                                    echo' <input class="form-check-input border-2 border-success dashNewSM" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;" checked>';
+                                                }
+                                                   
+                                    echo'
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>'
+                                    ;
+                                }
+
+                                
+                           
+                            }
+                    
+                        ?>
+                    </div>
+                </div>
+
+           
+                <div class="row mb-2">
+                        <div class=" d-flex justify-content-between align-items-center">
+                        <h6>Productivity</h6>
+                         
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                            
+
+                    <?php 
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value) {
+                      
+                            
+                            $websiteCategory = $value['website_category'];
+                            
+                           if ($websiteCategory === 'Productivity') {
+                            
+
+                                echo '
+                                <div class="col-3 text-center">
+                                    <div class="card">
+                                        <img src="views/images/productivity.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                        <div class="card-body">
+                                            <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">';
+
+                                            if($value['bookmark'] == 0){
+                                                echo'  <input class="form-check-input border-2 border-success NewPro" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;">';
+                                            }else{
+                                                echo' <input class="form-check-input border-2 border-success NewPro" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;" checked>';
+                                            }
+                                               
+                                echo'
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>'
+                                ;
+                                
+                            }
+                     
+                            
+                            
+                        }
+                        ?>
+                    </div>
+
+                </div>
+
+                <div class="row mb-2">
+                        <div class=" d-flex justify-content-between align-items-center">
+                        <h6>Multimedia</h6>
+ 
+                         
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                            
+
+                    <?php 
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value) {
+                      
+                            
+                            $websiteCategory = $value['website_category'];
+                            
+                           if ($websiteCategory === 'Multimedia') {
+                            
+
+                                echo '
+                                <div class="col-3 text-center">
+                                    <div class="card">
+                                        <img src="views/images/multimedia.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                        <div class="card-body">
+                                            <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">';
+
+                                            if($value['bookmark'] == 0){
+                                                echo'  <input class="form-check-input border-2 border-success dashNewMedia" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;">';
+                                            }else{
+                                                echo' <input class="form-check-input border-2 border-success dashNewMedia" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;" checked>';
+                                            }
+                                               
+                                echo'
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>'
+                                ;
+                            }
+                     
+                            
+                            
+                        }
+                        ?>
+                    </div>
+
+                </div>
+
+                <div class="row mb-2">
+                        <div class=" d-flex justify-content-between align-items-center">
+                        <h6>Video Conference</h6>
+                    </div>
+                    <hr>
+                    <div class="row mb-2">
+                            
+
+                    <?php 
+                        $websites = (new ControllerWebsite)->ctrShowWebsites();
+                        foreach($websites as $key => $value) {
+                      
+                            
+                            $websiteCategory = $value['website_category'];
+                            
+                           if ($websiteCategory === 'Video Conference') {
+                            
+                                echo '
+                                <div class="col-3 text-center">
+                                    <div class="card">
+                                        <img src="views/images/videocon.png" class="mx-auto d-block mt-3"  style="width:90px; height:90px;">
+                                        <p style="font-size: 1.5em;"  class="mt-3" >'.$value['website_name'].'</p>
+                                        <div class="card-body">
+                                            <div class="form-check text-center d-flex align-items-center justify-content-center ms-3" style="margin-top: -20px;">';
+
+                                            if($value['bookmark'] == 0){
+                                                echo'  <input class="form-check-input border-2 border-success dashNewVid" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;">';
+                                            }else{
+                                                echo' <input class="form-check-input border-2 border-success dashNewVid" name="dashcur_websites" type="checkbox" value="'.$value['website_name'].'#'.$value['website_path'].'#'. $value['website_category'].'" group="dashwebsitesGroup" id="dashcur_websites" style="font-size: 2em;" checked>';
+                                            }
+                                               
+                                echo'
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>'
+                                ;
+                            }
+                     
+                            
+                            
+                        }
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn text-white" id="dashaddGroupBtn"  style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Save</button>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

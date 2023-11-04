@@ -126,3 +126,25 @@ jQuery(document).ready(function (){
 });
 
 })();
+
+const btn = document.querySelector('.newheaderbtn');
+
+function playAnimation() {
+  btn.style.animationPlayState = 'running';
+}
+
+function stopAnimation() {
+  btn.style.animationPlayState = 'paused';
+}
+
+function delayThenPlay() {
+  setTimeout(() => {
+    playAnimation();
+    setTimeout(() => {
+      stopAnimation();
+      delayThenPlay();
+    }, 6000); // Adjust this value for the delay between animations
+  }, 5000); // Adjust this value for the initial delay
+}
+
+delayThenPlay();

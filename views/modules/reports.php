@@ -34,9 +34,9 @@
                                                 <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
                                             </div>
                                             <div class="church_div">
-                                                <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" style="display:none;" required="">
+                                                <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" churchIDwarning="'.$value['churchID'].'" violationtype="'.$value['violation_type'].'" style="display:none;" required="">
                                                 <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnReport" value="hello">View Details </button>
-                                                <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 acceptBtn" onclick="deleteReport(this)">Delete </button>
+                                                <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 deleteReport" >Delete </button>
                                                 <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 actionBtnReport">Take Action </button>
                                             </div>
                                         </div>
@@ -66,29 +66,42 @@
                     <div class="card-body" scrollable-y="true">
                         <?php 
                             
-                        $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
+                        $reports  = (new ControllerReportSubmission)->ctrWarnedAccounts();
 
-                        foreach($reports as $key => $value){
+                        $recipientDict = [];
+
+                        foreach ($reports as $report) {
+                            $recipientID = $report['recipientID'];
+                            if (!array_key_exists($recipientID, $recipientDict)) {
+                                $recipientDict[$recipientID] = [
+                                    'Count' => 0,
+                                    'Violation' => [],
+                                ];
+                            }
+
+                            $recipientDict[$recipientID]['Count']++;
+                            $recipientDict[$recipientID]['Violation'][] = $report['notification_text'];
+                        }
+
+        
+                        foreach($recipientDict as $key => $value){
                             echo '
                                     <div class="d-flex align-items-center gap-3">
                                     <div class="">
                                         <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
+                                        <h6 class="mb-1 fw-bold">'.$key.'<sup class="badge rounded-circle bg-warning " style="font-size:.8em; margin-left:.5em;">'.$value['Count'].'</sup></h6> 
                                     </div>
                                     <div class="church_div">
-                                        <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" style="display:none;" required="">
-                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnReport" value="hello">View Details </button>
-                                        <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 acceptBtn" onclick="deleteReport(this)">Delete </button>
-                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 actionBtnReport">Take Action </button>
+                                        <input type="text" name="trans_type" id="warned_report_id" value="'.$key.'" style="display:none;" required="">
+                                        <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 deleteWarningBtn">Delete </button>
+                                        <button type="button" class="btn btn-outline-warning rounded-5 btn-sm pr-3 deactivateBtn">Deactivate </button>
                                     </div>
                                 </div>
                                 <hr>
                             ';
-
                         }
-                        
                         
                         ?>
                     </div>
@@ -101,10 +114,6 @@
         </div>
 
   
-
-        
-        
-
         <div class="col-12 col-lg-6 col-xl-6 d-flex">
             <div class="card w-100 mb-0">
                 <div class="card-header bg-transparent">
@@ -137,14 +146,13 @@
                                         <div class="church_div">
                                             <input type="text" name="trans_type" id="report_id" value="'.$value['reportID'].'" style="display:none;" required="">
                                             <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnReport" value="hello">View Details </button>
-                                            <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 acceptBtn">Delete </button>
+                                            <button type="button" class="btn btn-outline-danger rounded-5 btn-sm pr-3 deleteFeedbackBtn">Delete </button>
                                         </div>
                                     </div>
                                     <hr>
                                 ';
 
                             }
-                            
                             
                             ?>
 
@@ -204,73 +212,13 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Church Details</h5>
+                <h5 class="modal-title title_report_ban">Take Action</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body church_details_div">
-                <div class="form-body g-3">
-                    <form role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
-                        <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
-                        <div class="col-md-2 form-group pt-3 pr-3" style="display:block;">
-                                <label for="churchID" class="form-label">ID</label>
-                                <input id="superuser_churchID" class="form-control" name="superuser_churchID" type="text" style="font-size:1em;"readonly >
-                        </div>
-
-                        <div class="row g-3">        
-                            <div class="col-12">
-                                <label for="inputChurchName" class="form-label">Church Name</label>
-                                <input type="text" class="form-control border-3" id="church_name" name="churchName" placeholder="Our Lady of Peace and Good Voyage" value="Our Lady of Peace and Good Voyage" readonly>
-                            </div>             
-                        </div>
-                        
-                        <div class="row g-3">     
-
-                            <div class="col-6">
-                                <label for="inputEmailAddress" class="form-label">Church Email Address</label>
-                                <input type="email" class="form-control border-3" id="church_email" name="email" placeholder="example@user.com" value="ourladyofpeaceandgoodvoyage001@gmail.com" readonly>
-                            </div> 
-
-                            <div class="col-6">
-                                <label for="inputReligion" class="form-label">Religion</label>
-                                <select class="form-select border-3" id="church_religion" name="religion" aria-label="Default select example" disabled>
-                                <option selected="" value="Catholic">Catholic</option>
-                                <option value="Baptist">Baptist</option>
-                                <option value="Born Again">Born Again </option>
-                                </select>
-                            </div>
-
-                            
-                            <div class="col-12">
-                                <label for="inputAddress" class="form-label">Church Address</label>
-                                <input type="text" class="form-control border-3" id="church_address" name="churchAddress" placeholder="Brgy. Singcang Airport, Raquel St." value="Brgy. Singcang Airport, Raquel St." readonly>
-                            </div>
-                        
-                        </div>
-
-
-                        <div class="row g-3">
-                            <div class="col-6">
-                            <label for="inputSelectCountry" class="form-label">City</label>
-                                <select class="form-select border-3" id="church_city" name="country" aria-label="Default select example" disabled>
-                                <option selected="" value="Philippines">Bacolod City</option>
-                                <option value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="America">America</option>
-                                <option value="Dubai">Dubai</option>
-                                </select>
-                            </div>
-                            <div class="col-6">
-                                <label for="inputNum" class="form-label">Telephone Number</label>
-                                <input type="text" class="form-control border-3" id="church_telnum" name="telnum" placeholder="432-0048" value="432-0048">
-                            </div>
-                        </div>
-
-                        
-
-
-                        </div>
-                    </form>
-                </div>
+            <div class="modal-body d-flex justify-content-center gap-2 m-3">
+                <input type="text" id="reportedAccountDetails" hidden>
+                <button type="button" class="btn btn-warning rounded-5 btn-lg pr-3 giveWarningBtn text-white">Give Warning</button>
+                <button type="button" class="btn btn-danger rounded-5 btn-lg pr-3 deactivateWrnReportBtn">Deactivate Account</button>
             </div>
         
             </div>

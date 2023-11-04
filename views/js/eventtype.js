@@ -1,7 +1,9 @@
 $('#AddEventType').click(function(e) {
     e.preventDefault();
+   
 
     var type_name = $("#type_name").val();
+    alert(type_name);
 
     var addEventType = new FormData();
 

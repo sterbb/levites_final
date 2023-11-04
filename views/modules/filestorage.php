@@ -10,6 +10,11 @@
   <p id="statusMessage"></p>
   
     </div>
+    <div class="btn-container">
+    <button class="pause" id="pauseBtn" style="display: none;">Pause</button>
+    <button class="resume" id="resumeBtn" style="display: none;">Resume</button>
+    <button class="cancel" id="cancelBtn" style="display: none;">Cancel</button>
+    </div>
       <div class="row ">
         <div class="col-12 col-lg-3 notPublic notMember">
           <div class="card ">
@@ -130,9 +135,29 @@
                     <div class="card-body">
                       
                       <div class="fm-search">
+                      <div class="input-group input-group-md" style="width: 70%">
+                                    <span class="input-group-text bg-transparent"><i class="bx bx-search "></i></span>
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Search files here">
+                                    <div class="dropdown ms-auto " id="filterDropdown">
+                                        <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute " data-bs-toggle="dropdown">
+                                            <i class="bx bx-filter fs-5 filbut" style="right: 50px; position: relative;"></i>
+                                        </button>
+                                        <ul class="dropdown-menu " id="filterLinks">
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".doc,.docx"><i class='si bx bxs-file-doc'></i>Documents</a></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".xlsx,.xls"><i class='si bx bxs-spreadsheet' ></i>Spreadsheets</a></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".pptx,.ppt"><i class='si bx bxs-slideshow' ></i>Presentation</a></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".pdf"> <i class='si bx bxs-file-pdf' ></i>PDFs</a></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".mp4,.mov,.avi,.wmv"><i class='si bx bxs-videos' ></i>Videos</a></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".png,.jpg"><i class='si bx bx-images' ></i>Images</a></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter=".mp3,.mpc,.msv,.nmf,.wav"><i class='si bx bxs-music' ></i>Audios</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item filter-link" href="javascript:;" data-filter="all">All files</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                         <div class="mb-0">
                           <div class="upload-file position-absolute top-0 end-1 notPublic">
-                          <input type="file" id="fileInput" style="display: none;" accept=".pdf,.txt,.docx,.doc,.pptx,.mp4,.jpg,.jpeg,.png,.xlsx,.xls">
+                          <input type="file" id="fileInput" style="display: none;" accept=".pdf,.txt,.docx,.pptx,.mp4,.jpeg,.png,.xlsx,.xls,.mov,.avi,.wmv,.mp3,.mpc,.msv,.nmf">
                             
                               <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-nocaret cursor-pointer bg-secondary" style="border-right: 0px; font-weight:bold;"  data-bs-toggle="dropdown">Upload<i class='upicon bx bx-download'></i>
                                 </button>
@@ -148,39 +173,12 @@
                                 </ul>
                           </div>
 
-                          <div class="input-group input-group-md w-75">	<span class="input-group-text bg-transparent"><i class="bx bx-search "></i></span>
-                            <input type="text" class="form-control" placeholder="Search the files">
-                            <div class="dropdown ms-auto ">
-                                <button type="button" class="btn-option dropdown-toggle dropdown-toggle-nocaret cursor-pointer position-absolute bottom-0 end-0" data-bs-toggle="dropdown"><i class="bx bx-filter fs-5"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bxs-file-doc'></i>Documents</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bxs-spreadsheet' ></i>Spreadsheets</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bxs-slideshow' ></i>Presentation</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bxs-file-pdf' ></i>PDFs</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bxs-videos' ></i>Videos</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bx-images' ></i>Images</a>
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;"><i class='si bx bxs-music' ></i>Audios</a>
-                                  </li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item" href="javascript:;">All files</a>
-                                  </li>
-                                </ul>
-                              </div>
-                          </div>
+                          
                         </div>
                       </div>
                       <div id="upper-title" class="mt-3"></div>
                       <hr>
-                      <div class="mt-3">
+                      <div class="mt-3 " id="folderTitle">
                         <h5>Folders</h5>
                       
                     </div>
@@ -195,36 +193,29 @@
                     </div>
                       <!--end row-->
                       <div id="PubFol" class="tablelist">
-                      <div class="d-flex align-items-center">
-                        <div>
-                          <h5 class="mb-0">Uploaded Files</h5>
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h5 class="mb-0">Uploaded Files</h5>
+                            </div>
                         </div>
-       
-                      </div>
-                      <div class="table-responsive mt-3 mb-3">
-                        <table class="table table-striped table-hover table-sm border-bottom listOfFiles" id="listOfFiles">
-                          <thead>
-                            <input type="file" class="hidden-upload-btn" style="display: none;">
-                            <tr class="mb-5 fs-6">
-                              <th>Name<i class=""></i></th>
-                              <th class="dropdown-cell">Uploaded by<i class=""></i></th>
-                              <th class="dropdown-cell">Date uploaded</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody id="fileListBody">
-                            <!-- Dynamic rows will be inserted here -->
-                          </tbody>
-                        </table>
-                      </div>
+                        <div class="table-responsive mt-3 mb-3">
+                            <table class="table table-striped table-hover table-sm border-bottom listOfFiles" id="listOfFiles">
+                                <thead>
+                                    <input type="file" class="hidden-upload-btn" style="display: none;">
+                                    <tr class="mb-5 fs-6">
+                                        <th>Name<i class=""></i></th>
+                                        <th class="dropdown-cell">Uploaded by<i class=""></i></th>
+                                        <th class="dropdown-cell">Date uploaded</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="fileListBody">
+                                    <!-- Dynamic rows will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                   
 
-                </div>
-              </div>
-            </div>
-      </div>  
-    </div>
 
     </main>
      <!--end main content-->

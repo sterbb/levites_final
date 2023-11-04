@@ -62,7 +62,7 @@
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center p-2">
                         <div class="">
-                            <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-circle m-2"></i>Affiliated Churches</h6>
+                            <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-church m-2"></i>Affiliated Churches</h6>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="">
                                         <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].'  church_id="'.$value['memChurchID'].'" church_name="'.$value['memChurchName'].'" style="display:none;" required>
-                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">View Church</button>
+                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove Affiliation</button>
                                     </div>
                                 </div>
                                 <hr>

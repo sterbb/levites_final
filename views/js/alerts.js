@@ -1,6 +1,50 @@
 $(function(){
 // jQuery
 $(document).ready(function() {
+
+
+
+	function checkDeactivated(){
+		
+
+		var activate = new FormData();
+
+		$.ajax({
+		  url: "ajax/check_deactivation.ajax.php",
+		  method: "POST",
+		  data: activate,
+		  cache: false,
+		  contentType: false,
+		  processData: false,
+		  dataType: "text",	
+		  success: function(answer) {
+			console.log(answer);		
+			if(answer['church_status'] == 1 && answer['rejected_status'] == 1){
+					$('#lockScreen').modal({
+						backdrop: 'static',
+						keyboard: false
+					})
+					
+					$('#lockScreen').modal('show');
+			}
+	
+		  },
+		  error: function(xhr, status, error) {
+			alert(xhr);
+				console.log(xhr);
+				console.log(error);
+			  alert("Oops. Something went wrong! ayuga");
+		  },
+		  complete: function() {
+		  }
+		});
+		
+	}
+    
+	if(getCookie('acc_type') == "admin" || getCookie('acc_type') == "subuser" || getCookie('acc_type') == "publicSub"){
+		checkDeactivated();
+	}
+
     
     const themeSwitcher = $('#theme-switcher');
     const root = $('html');
@@ -267,7 +311,7 @@ $(document).ready(function() {
 						location.reload(answer);
 					  },
 					  error: function() {
-						alert("Oops. Something went wrong!");
+						alert("Oops. Something went wrong! diri");
 					  },
 					  complete: function() {
 					  }
@@ -279,7 +323,7 @@ $(document).ready(function() {
 				
 			},
 			error: function() {
-				alert("Oops. Something went wrong!");
+				alert("Oops. Something went wrong! diri");
 			},
 			complete: function() {
 			}
@@ -303,21 +347,30 @@ $(document).ready(function() {
 				success: function(answer) {
 				  console.log(answer);
 		
+				  if (answer && answer.lat && answer.lng) {
 					var profilemyLatLng = {
-						lat: parseFloat(answer.lat),
-						lng: parseFloat(answer.lng),
-					  };
-
-					  var Newmap = new google.maps.Map(document.getElementById('profile-map'), {
-						zoom: 17,
-						center: profilemyLatLng
-					  });
-					  var Newmarker = new google.maps.Marker({
-						position: profilemyLatLng,
-						map: Newmap,
-						title: 'Our Lady Of Lourdes Parish Church '
-					  });// marker map
-					  ;
+					  lat: parseFloat(answer.lat),
+					  lng: parseFloat(answer.lng),
+					};
+				  
+					var Newmap = new google.maps.Map(document.getElementById('profile-map'), {
+					  zoom: 17,
+					  center: profilemyLatLng
+					});
+					var Newmarker = new google.maps.Marker({
+					  position: profilemyLatLng,
+					  map: Newmap,
+					  title: 'Our Lady Of Lourdes Parish Church'
+					});
+				  } else {
+					// If no data is available, display a message
+					var mapElement = document.getElementById('profile-map');
+					mapElement.innerHTML = 'No data available.';
+					mapElement.style.fontSize = '24px'; // Set the font size to make it bigger
+					mapElement.style.textAlign = 'center'; // Center the text
+					mapElement.style.paddingTop = '50%'; // Center vertically (adjust as needed)
+				  }
+				  
 					
 				},
 				error: function() {
@@ -500,7 +553,7 @@ $(document).ready(function() {
 		   
 			},
 			error: function() {
-				alert("Oops. Something went wrong!");
+				alert("Oops. Something went wrong! diri");
 			},
 			complete: function() {
 			}

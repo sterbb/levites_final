@@ -119,7 +119,6 @@ $(function(){
 
         var event_title = $("#event_title").val();
         var event_type = $("#event_type").val();
-
         var event_venue = $("#event_venue").val();
         var event_location = $("#event_location").val();
         var event_announcement = $("#event_announcement").val();
@@ -209,8 +208,9 @@ $(function(){
                           
                     
                       },
-                      error: function() {
-                          alert("Oops. Something went wrong!");
+                      error: function(xhr, status, error) {
+                        alert(error);
+                        console.log(error);
                       },
                       complete: function() {
                       }
@@ -221,8 +221,9 @@ $(function(){
                   
             
               },
-              error: function() {
-                  alert("Oops. Something went wrong!");
+              error: function(xhr, status, error) {
+                alert(error);
+                console.log(error);
               },
               complete: function() {
               }
@@ -277,6 +278,7 @@ $(function(){
     
 
     
+   
 
 
 });
@@ -285,6 +287,73 @@ $(function(){
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
   let currentDate = new Date().toJSON().slice(0, 10);
+
+
+  
+  var randomColors = [
+    "#E9967A",
+    "#4B0082",
+    "#8B4513",
+    "#DDA0DD",
+    "#20B2AA",
+    "#B0C4DE",
+    "#00FF00",
+    "#FF00FF",
+    "#800000",
+    "#008080",
+    "#FFD700",
+    "#ADFF2F",
+    "#FFE4B5",
+    "#FA8072",
+    "#00FA9A",
+    "#D2691E",
+    "#800080",
+    "#008000",
+    "#2E8B57",
+    "#C71585"
+  ];
+  var eventtypes = [];
+
+  $.ajax({
+    url: 'models/showEventTypes.php',
+    method: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      response.forEach((type) =>{
+        eventtypes.push(type.type_name);
+
+      });
+    },
+    error: function(xhr, status, error) {
+      // Handle errors, if any
+
+      console.log('Error:', error);
+    }
+  });
+
+
+  console.log(eventtypes);
+
+        // Array of event categories
+        var eventCategories = ["Bible Study", "Outreach", "Workshop", "Sunday Worship", "Prayer Meeting", "Baptismal", "Wedding"];
+
+        $.ajax({
+          url: 'models/showEventTypes.php',
+          method: 'GET',
+          dataType: 'json',
+          success: function(response) {
+            response.forEach((type) =>{ 
+              eventCategories.push(type.type_name.replace(/\s/g, ''));          
+            });
+          },
+          error: function(xhr, status, error) {
+            // Handle errors, if any
+            console.log('Error:', error);
+          }
+        });
+  
+        console.log(eventCategories);
+
   var calendar = new FullCalendar.Calendar(calendarEl, {
     themeSystem: 'Litera',
     headerToolbar: {
@@ -301,6 +370,8 @@ document.addEventListener('DOMContentLoaded', function () {
     editable: true,
     events: 'models/loadCalenddar.php',     
     eventDidMount: function (info) {
+
+      console.log(info.event.classNames[0]);
       // Set different colors for different classNames
       if (info.event.classNames.includes("Bible Study")) {
         info.el.style.backgroundColor = '#6CAE75'; // Green
@@ -316,16 +387,26 @@ document.addEventListener('DOMContentLoaded', function () {
         info.el.style.backgroundColor = '#D55C88'; // Pinkish-purple
       } else if (info.event.classNames.includes("Baptismal")) {
         info.el.style.backgroundColor = '#4FA1D8'; // Pinkish-purple
+      }else{
+        var indexColor = eventtypes.indexOf(info.event.classNames[0]);
+        info.el.style.backgroundColor = randomColors[indexColor]; // Pinkish-purple
+
       }
     },
     eventClick: function(info){
-      alert(moment(info.event.start ).format("YYYY-MM-DD"));
-      $('#exampleVerticallycenteredModal').modal('show');
+
     },
     dateClick: function(info) {
       var event = new Date(info.date);
       const offset = event.getTimezoneOffset();
       event = new Date(event.getTime() - (offset*60*1000));
+      var nxtDay = new Date(event);
+      nxtDay.setDate(event.getDate() + 1);
+
+      var prevDay = new Date(event);
+      prevDay.setDate(event.getDate() - 1);
+
+
 
       var readableDate = event.toDateString();
       readableDate = readableDate.slice(4,15);
@@ -334,19 +415,24 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
       $('#event_date').val(date);
+      $('#nextDateCalendar').val(nxtDay);
+      $('#prevDateCalendar').val(prevDay);
+
       podcastDate = date;
 
       var name = podcastDate;
       var path = currentPath + "/Podcast/" + name + ".mp3";
       checkFileExistenceAndDisplayMessage(path)
 
-      // Array of event categories
-      var eventCategories = ["Bible Study", "Outreach", "Workshop", "Sunday Worship", "Prayer Meeting", "Baptismal", "Wedding"];
+
 
       function fetchEventData(eventType) {
         var eventData1 = new FormData();
         eventData1.append("date", date);
         eventData1.append("eventType", eventType);
+
+        
+
         
         $.ajax({
           url: "ajax/get_event_details.ajax.php",
@@ -360,8 +446,9 @@ document.addEventListener('DOMContentLoaded', function () {
             var event_category =  eventType.replace(/\s/g, '');
             $('#' +event_category+ 'Section').html(answer);
           },
-          error: function() {
-            alert("Oops. Something went wrong!");
+          error: function(xhr, status, error) {
+            alert(error);
+            console.log(error);
           }
         });
       }
@@ -387,7 +474,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
+      console.log(selectedFilters);
     calendar.getEvents().forEach(function (event) {
+
       //gng 100 ko para d mag display bskan wala na filter
       if (selectedFilters.length === 100 || selectedFilters.includes(event.classNames[0])) {
         event.setProp('display', '');
@@ -401,8 +490,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Get all the filter checkboxes
-  var filterCheckboxes = document.querySelectorAll('.calendar-filter');
-
+  var filterCheckboxes = document.querySelectorAll('#calendar_filter_section input.calendar-filter');
+  console.log(filterCheckboxes)
+  
   // Add event listener to each checkbox
   filterCheckboxes.forEach(function (checkbox) {
     checkbox.addEventListener('change', function () {
@@ -415,6 +505,71 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar2');
   let currentDate = new Date().toJSON().slice(0, 10);
+
+    
+  var randomColors = [
+    "#E9967A",
+    "#4B0082",
+    "#8B4513",
+    "#DDA0DD",
+    "#20B2AA",
+    "#B0C4DE",
+    "#00FF00",
+    "#FF00FF",
+    "#800000",
+    "#008080",
+    "#FFD700",
+    "#ADFF2F",
+    "#FFE4B5",
+    "#FA8072",
+    "#00FA9A",
+    "#D2691E",
+    "#800080",
+    "#008000",
+    "#2E8B57",
+    "#C71585"
+  ];
+
+  var eventtypes = [];
+
+  $.ajax({
+    url: 'models/showEventTypes.php',
+    method: 'GET',
+    dataType: 'json',
+    success: function(response) {
+      response.forEach((type) =>{
+        eventtypes.push(type.type_name);
+
+      });
+    },
+    error: function(xhr, status, error) {
+      // Handle errors, if any
+      console.log('Error:', xhr);
+      console.log('Error:', error);
+    }
+  });
+
+      // Array of event categories
+      var eventCategories = ["Bible Study", "Outreach", "Workshop", "Sunday Worship", "Prayer Meeting", "Baptismal", "Wedding"];
+
+      $.ajax({
+        url: 'models/showEventTypes.php',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          response.forEach((type) =>{ 
+            eventCategories.push(type.type_name.replace(/\s/g, ''));          
+          });
+        },
+        error: function(xhr, status, error) {
+          // Handle errors, if any
+          console.log('Error:', error);
+        }
+      });
+
+      console.log(eventCategories);
+
+
   var calendar = new FullCalendar.Calendar(calendarEl, {
     themeSystem: 'Litera',
     headerToolbar: {
@@ -446,6 +601,10 @@ document.addEventListener('DOMContentLoaded', function () {
         info.el.style.backgroundColor = '#D55C88'; // Pinkish-purple
       } else if (info.event.classNames.includes("Baptismal")) {
         info.el.style.backgroundColor = '#4FA1D8'; // Pinkish-purple
+      }else{
+        var indexColor = eventtypes.indexOf(info.event.classNames[0]);
+        info.el.style.backgroundColor = randomColors[indexColor]; // Pinkish-purple
+
       }
     },
     eventClick: function(info){
@@ -480,15 +639,18 @@ document.addEventListener('DOMContentLoaded', function () {
   
   // Your filtering functions from the previous response
   function applyFilters() {
+
     var selectedFilters = [];
-    filterCheckboxes.forEach(function (checkbox) {
+    filterCheckboxes2.forEach(function (checkbox) {
       if (checkbox.checked) {
         selectedFilters.push(checkbox.id);
       }
     });
-
     calendar.getEvents().forEach(function (event) {
       //gng 100 ko para d mag display bskan wala na filter
+      console.log(event.classNames[0]);
+
+      console.log(event);
       if (selectedFilters.length === 100 || selectedFilters.includes(event.classNames[0])) {
         event.setProp('display', '');
       }
@@ -501,10 +663,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Get all the filter checkboxes
-  var filterCheckboxes = document.querySelectorAll('.calendar-filter2');
+  var filterCheckboxes2 = document.querySelectorAll('.calendar-filter2');
+
+  console.log(filterCheckboxes2);
 
   // Add event listener to each checkbox
-  filterCheckboxes.forEach(function (checkbox) {
+  filterCheckboxes2.forEach(function (checkbox) {
     checkbox.addEventListener('change', function () {
       applyFilters();
     });
@@ -590,50 +754,61 @@ function displayEventDetails(readableDate ,date){
 function sendGroupEmail(element){
   var group_name = $(element).attr('id');
 
-  $("."+group_name+'-items').each(function() {
-    var name = $(this).text();
-    var emails = $(this).attr("email");
-    var event_date = $(this).attr("event_date");
-    var event_time = $(this).attr("event_time");
-    var event_date2 = $(this).attr("event_date2");
-    var event_time2 = $(this).attr("event_time2");
-    var event_title = $(this).attr("event_title");
+  Swal.fire({
+    title: 'Send Group Email?',
+    text: 'This will send an email to the selected group. Continue?',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, send email',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $("."+group_name+'-items').each(function() {
+        var name = $(this).text();
+        var emails = $(this).attr("email");
+        var event_date = $(this).attr("event_date");
+        var event_time = $(this).attr("event_time");
+        var event_date2 = $(this).attr("event_date2");
+        var event_time2 = $(this).attr("event_time2");
+        var event_title = $(this).attr("event_title");
 
+        var email = new FormData();
+        email.append("name",name);
+        email.append("email",emails);
+        email.append("group_name",group_name);
+        email.append("event_date",event_date);
+        email.append("event_time",event_time);
+        email.append("event_date2",event_date2);
+        email.append("event_time2",event_time2);
+        email.append("event_title",event_title);
 
-    var email = new FormData();
-    email.append("name",name);
-    email.append("email",emails);
-    email.append("group_name",group_name);
-    email.append("event_date",event_date);
-    email.append("event_time",event_time);
-    email.append("event_date2",event_date2);
-    email.append("event_time2",event_time2);
-    email.append("event_title",event_title);
- 
-
-
-    
-  $.ajax({
-    url: "models/sendGroupEmail.php",
-    method: "POST",
-    data: email,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "text",
-    success: function(answer) {
-      console.log(answer);
-    },
-    error: function() {
-        alert("Oops. Something went wrong!");
-    },
-    complete: function() {
+        $.ajax({
+          url: "models/sendGroupEmail.php",
+          method: "POST",
+          data: email,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+            console.log(answer);
+            // Add success message here
+            Swal.fire({
+              title: 'Email Sent!',
+              text: 'The email has been sent successfully.',
+              icon: 'success'
+            });
+          },
+          error: function(xhr, status, error) {
+            alert(error);
+            console.log(error);
+          },
+          complete: function() {
+            // Your complete logic (if any)
+          }
+        });
+      });
     }
-  });
-
-
-    // Your email sending logic...
-    // Replace the console.log with your actual email sending code
   });
 }
 
@@ -819,8 +994,9 @@ function editEventDetails(element){
 
 
     },
-    error: function() {
-        alert("Oops. Something went wrong!");
+    error: function(xhr, status, error) {
+      alert(error);
+      console.log(error);
     },
     complete: function() {
     }
@@ -920,9 +1096,10 @@ function NewEditEvent() {
 
 
         },
-      error: function() {
-          alert("Oops. Something went wrong!");
-      }
+        error: function(xhr, status, error) {
+          alert(error);
+          console.log(error);
+        }
   });
 
 
@@ -962,5 +1139,129 @@ function deleteEvents(element) {
           // Handle any completion tasks if needed
       }
   });
-
 }
+
+  // Event delegation for dynamically added elements
+  $('.created_eventtypes_section').on('click', '.deleteEventType', function() {
+      var value = $(this).val();
+
+      var type = new FormData();
+      type.append("type", value);
+    
+      $.ajax({
+        url: "ajax/delete_eventType.ajax.php",
+        method: "POST",
+        data: type,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+            console.log(answer);
+
+
+
+        },
+        error: function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
+        },
+        complete: function() {
+            // Handle any completion tasks if needed
+        }
+    });
+  });
+
+  $("#prevDateCalendar, #nextDateCalendar").on('click', function(){
+
+    displayEventsInCalendar($(this).val())
+  })
+
+  ,
+  function displayEventsInCalendar(clickedDate){
+      // Array of event categories
+      var eventCategories = ["Bible Study", "Outreach", "Workshop", "Sunday Worship", "Prayer Meeting", "Baptismal", "Wedding"];
+
+      $.ajax({
+        url: 'models/showEventTypes.php',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          response.forEach((type) =>{ 
+            eventCategories.push(type.type_name.replace(/\s/g, ''));          
+          });
+        },
+        error: function(xhr, status, error) {
+          // Handle errors, if any
+
+          console.log('Error:', error);
+        }
+      });
+
+      var event = new Date(clickedDate);
+      const offset = event.getTimezoneOffset();
+      event = new Date(event.getTime());
+      var nxtDay = new Date(event);
+      nxtDay.setDate(event.getDate() + 1);
+
+      var prevDay = new Date(event);
+      prevDay.setDate(event.getDate() - 1);
+
+      var readableDate = event.toDateString();
+      readableDate = readableDate.slice(4,15);
+      let date = event.toISOString().split('T')[0];
+      date = date.slice(0,10);
+  
+
+      $('#event_date').val(date);
+      $('#nextDateCalendar').val(nxtDay);
+      $('#prevDateCalendar').val(prevDay);
+
+      podcastDate = date;
+
+      var name = podcastDate;
+      var path = currentPath + "/Podcast/" + name + ".mp3";
+      checkFileExistenceAndDisplayMessage(path)
+
+
+
+      function fetchEventData(eventType) {
+        var eventData1 = new FormData();
+        eventData1.append("date", date);
+        eventData1.append("eventType", eventType);
+
+        
+
+        
+        $.ajax({
+          url: "ajax/get_event_details.ajax.php",
+          method: "POST",
+          data: eventData1,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "html",
+          success: function(answer) {
+            var event_category =  eventType.replace(/\s/g, '');
+            $('#' +event_category+ 'Section').html(answer);
+          },
+          error: function(xhr, status, error) {
+            alert(error);
+            console.log(error);
+          }
+        });
+      }
+
+      // Loop through the event categories and fetch data for each category
+      eventCategories.forEach(function(eventType) {
+        fetchEventData(eventType);
+      });
+
+      displayEventDetails(readableDate, date);
+      $('#displayEventsModal').modal('show');
+
+
+  }

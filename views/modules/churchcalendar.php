@@ -28,9 +28,9 @@
                   </li>
 
                   <div class="d-flex justify-content-center align-items-center text-center pb-1">
-                    <button class="btn btn-white  me-3"><i class="bx bx-chevron-left me-0"></i></button>
+                    <button class="btn btn-white  me-3" id="prevDateCalendar"><i class="bx bx-chevron-left me-0"></i></button>
                     <h6 id="eventDateModal"></h6>
-                    <button class="btn btn-white  ms-3"><i class="bx bx-chevron-right me-0"></i></button>
+                    <button class="btn btn-white  ms-3" id="nextDateCalendar"><i class="bx bx-chevron-right me-0"></i></button>
                   </div>
 
                   <li class="nav-item mr-1" role="presentation" style="float:right; margin-right:20px;">
@@ -54,16 +54,56 @@
                     <div class="row g-3">
                         <div class="col-12 col-lg-3">
 
-                          <div class="nav flex-column nav-pills border rounded vertical-pills overflow-hidden">
-                            <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="fas fa-book-open me-2"></i>Bible Study</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="fas fa-hands-helping me-2"></i>Outreach</button>
-                            <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="fas fa-tools me-2"></i>Workshop</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="fas fa-church"></i>Sunday Worship</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="fas fa-praying-hands me-2"></i>Prayer Meeting</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="fas fa-water me-2"></i>Baptismal</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WeddingSection" type="button"><i class="fas fa-ring me-2"></i>Wedding</button>
-                            <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#AddType" type="button"><i class="lni lni-plus me-2 "></i>Add Event Type</button>  
-                          </div>
+       
+                        <div class="nav flex-column nav-pills border rounded vertical-pills event_type_list d-flex flex-column overflow-auto" style="max-height: 350px;">
+                              <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="fas fa-book-open me-2"></i>Bible Study</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="fas fa-hands-helping me-2"></i>Outreach</button>
+                              <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="fas fa-tools me-2"></i>Workshop</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="fas fa-church me-2"></i>Sunday Worship</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="fas fa-praying-hands me-2"></i>Prayer Meeting</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="fas fa-water me-2"></i>Baptismal</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WeddingSection" type="button"><i class="fas fa-ring me-2"></i>Wedding</button>
+
+                        
+                      
+                                  <!-- // $eventype = (new ControllerCalendar)->ctrShowEventType();
+                                  // foreach($eventype as $key => $value){
+                                  //   echo ' <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#'.$value["type_name"].'" type="button"><i class="fas fa-ring me-2"></i>'.$value["type_name"].'</button>';
+                                  // }; -->
+                                  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                                <script>
+            
+                                    $(document).ready(function() {
+                                      // Your Ajax code here
+                                      $.ajax({
+                                        url: 'models/showEventTypes.php',
+                                        method: 'GET',
+                                        dataType: 'json',
+                                        success: function(response) {
+                                                            
+                                          var eventsList = '';
+                          
+                                          response.forEach((type) =>{
+                                            eventsList +=
+                                            '<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#'+ type.type_name.replace(/\s/g, '') +'Section" type="button"><i class="fas fa-regular fa-calendar-days me-2"></i>'+ type.type_name +'</button>';
+
+                                          });
+
+                                          $('.event_type_list').find('[data-bs-target="#WeddingSection"]').after(eventsList);
+                                        },
+                                        error: function(xhr, status, error) {
+                                          // Handle errors, if any
+                                          console.log('Error:', error);
+                                        }
+                                      });
+                                    });
+                              </script>
+                  
+                          
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#AddType" type="button"><i class="lni lni-plus me-2 "></i>Manage Event Types</button>  
+                            </div>
+            
                           
                           <div class="col-12 col-lg-12 text-center mt-5">
                             <h5 for="Collection" class="form-label fw-bold mb-3"><i class="lni lni-mic"></i>Podcast</h5>
@@ -78,7 +118,7 @@
 
                          
                           
-                          <div class="tab-content overflow-auto p-3" style="overflow-x: hidden !important; max-height: 50vh; "> 
+                          <div class="tab-content overflow-auto p-3" id="event_details_section" style="overflow-x: hidden !important; max-height: 50vh; "> 
 
                             <div class="tab-pane fade show active" id="BibleStudySection">
                              
@@ -112,28 +152,99 @@
                      
                             </div>
 
+                            <script>
+            
+                              $(document).ready(function() {
+                                // Your Ajax code here
+                                $.ajax({
+                                  url: 'models/showEventTypes.php',
+                                  method: 'GET',
+                                  dataType: 'json',
+                                  success: function(response) {
+                                    response.forEach((type) =>{           
+                                      $('#event_details_section').append('<div class="tab-pane fade" id="'+ type.type_name.replace(/\s/g, '') +'Section"></div>');
+                                    });
+                                  },
+                                  error: function(xhr, status, error) {
+                                    // Handle errors, if any
+                                    console.log('Error:', error);
+                                  }
+                                });
+                              });
+                            </script>
+
+
+
                             <div class="tab-pane fade" id="AddType">
-                              <div class="row g-3">
-                                <div class="col-12 col-lg-12">
-                                  <label class="mt-3">Event Type Name</label>
-                                  <input class="form-control" type="text" placeholder="">
-                                  
+
+  
+                                <div class="row g-3 ">
+
+                                  <div class="col d-flex flex-column justify-content-center border border-2 overflow-hidden">
+                                    <p>Add Event Type</p>
+                                    <label class="mt-3">Event Type Name</label>
+                                    <input id= "type_name" class="form-control" type="text" placeholder="">
+                                    <div class="d-flex justify-content-center mt-3">
+                                      <button type="button" class="btn btn-danger me-3">Clear </button>
+                                      <button id="AddEventType" type="button" class="btn btn-success me-3">Add</button>  
+                                    </div>
+                 
+                                  </div>
+
+                                  <div class="col  border border-2 overflow-auto created_eventtypes_section" style="max-height:500px;">
+                                    <p>Created Event Types</p>
+
+                                      <script>
+              
+                                      $(document).ready(function() {
+                                        // Your Ajax code here
+                                        $.ajax({
+                                          url: 'models/showEventTypes.php',
+                                          method: 'GET',
+                                          dataType: 'json',
+                                          success: function(response) {
+                                            response.forEach((type) =>{           
+                                              $('.created_eventtypes_section').append('<div class="d-flex align-items-center justify-content-between py-2 px-2 border-bottom"><div class="px-2"><h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>'+ type.type_name+'</h6></div><button class="btn btn-outline-danger rounded-5 btn-sm px-3 deleteEventType" value="'+ type.type_name+'"><i class="fadeIn animated bx bx-x"></i></button></div></div>');
+                                            });
+                                          },
+                                          error: function(xhr, status, error) {
+                                            // Handle errors, if any
+                                            console.log('Error:', error);
+                                          }
+                                        });
+                                      });
+                                    </script>
+
+                                    <div class="d-flex align-items-center justify-content-between py-2 px-2 border-bottom">
+                                        <div class="px-2">
+                                            <h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>Church Collaboration</h6>
+                                        </div>
+                                        <!-- ALIGN SA CENTER -->
+                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
+                                        </div>
+                                    </div>
+                            
+
+                                 
+                                  </div>
 
                                 </div>
+
+                             
                                 
                               </div>
 
-                              <div class="row mt-3">
-                                  <div class="d-flex justify-content-end">
-                                  <button type="button" class="btn btn-danger me-3">Clear </button>
-                                  <button type="button" class="btn btn-success me-3">Save</button>
-                                  </div>  
-                              </div>
+                       
+                            </div>
+
+                             
+
+                           
                             </div>
 
                           </div>
                         </div>
-                       </div>
+                      </div>
 
                   </div>
 
@@ -222,36 +333,92 @@
           
 
           <div class="card">
-            <div class="card-body">
+            <div class="card-body" id="calendar_filter_section">
                 <h6>Calendar Filters</h6>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Bible Study" checked style="background-color: #6CAE75; border: 2px solid #6CAE75;">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Bible Study</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Outreach" checked style="background-color: #5285C5; border: 2px solid #5285C5;">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Outreach</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Workshop" checked style="background-color: #F9A646; border: 2px solid #F9A646;"> 
-                <label class="form-check-label" for="flexSwitchCheckChecked">Workshop</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Sunday Worship" checked style="background-color: #A17EBF; border: 2px solid #A17EBF;">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Sunday Worship</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Prayer Meeting" checked style="background-color: #FF7F50; border: 2px solid #FF7F50;">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Prayer Meeting</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Baptismal" checked style="background-color: #4FA1D8; border: 2px solid #4FA1D8;">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Baptismal</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input calendar-filter" type="checkbox" id="Wedding" checked style="background-color: #D55C88; border: 2px solid #D55C88;">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Wedding</label>
-            </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Bible Study" checked style="background-color: #6CAE75; border: 2px solid #6CAE75;">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Bible Study</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Outreach" checked style="background-color: #5285C5; border: 2px solid #5285C5;">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Outreach</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Workshop" checked style="background-color: #F9A646; border: 2px solid #F9A646;"> 
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Workshop</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Sunday Worship" checked style="background-color: #A17EBF; border: 2px solid #A17EBF;">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Sunday Worship</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Prayer Meeting" checked style="background-color: #FF7F50; border: 2px solid #FF7F50;">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Prayer Meeting</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Baptismal" checked style="background-color: #4FA1D8; border: 2px solid #4FA1D8;">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Baptismal</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input calendar-filter" type="checkbox" id="Wedding" checked style="background-color: #D55C88; border: 2px solid #D55C88;">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Wedding</label>
+                </div>
+
+              <script>
+                $(document).ready(function() {
+                  // Your Ajax code here
+                  $.ajax({
+                    url: 'models/showEventTypes.php',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+
+                      var randomColors = [
+                        "#E9967A",
+                        "#4B0082",
+                        "#8B4513",
+                        "#DDA0DD",
+                        "#20B2AA",
+                        "#B0C4DE",
+                        "#00FF00",
+                        "#FF00FF",
+                        "#800000",
+                        "#008080",
+                        "#FFD700",
+                        "#ADFF2F",
+                        "#FFE4B5",
+                        "#FA8072",
+                        "#00FA9A",
+                        "#D2691E",
+                        "#800080",
+                        "#008000",
+                        "#2E8B57",
+                        "#C71585"
+                      ];
+                                        
+                      var colorIndex = 0;
+
+                      response.forEach((type) =>{
+
+                        if(colorIndex == randomColors.length){
+                          colorIndex = 0;
+                        }
+
+                        var current_color = randomColors[colorIndex];
+
+                        $('#calendar_filter_section').append('<div class="form-check form-switch"><input class="form-check-input calendar-filter" type="checkbox" id="'+ type.type_name+'" checked style="background-color: '+current_color+'; border: 2px solid '+current_color+'  ;"><label class="form-check-label" for="flexSwitchCheckChecked">'+ type.type_name+'</label></div>');
+
+                        colorIndex++;
+                      });
+                    },
+                    error: function(xhr, status, error) {
+                      // Handle errors, if any
+                      console.log('Error:', error);
+                    }
+                  });
+                });
+                </script>
+
             </div>
           </div>
         </div>
@@ -392,6 +559,29 @@
                       <option value="Prayer Meeting">Prayer Meeting</option>
                       <option value="Baptismal">Baptismal</option>
                       <option value="Wedding">Wedding</option>
+
+                      <script>
+                            $(document).ready(function() {
+                              // Your Ajax code here
+                              $.ajax({
+                                url: 'models/showEventTypes.php',
+                                method: 'GET',
+                                dataType: 'json',
+                                success: function(response) {
+                                                    
+                                  response.forEach((type) =>{
+                                    $('#event_type').append('<option value="'+type.type_name+'"> '+type.type_name+' </option>');
+
+                                  });
+                                },
+                                error: function(xhr, status, error) {
+                                  // Handle errors, if any
+                                  console.log('Error:', error);
+                                }
+                              });
+                            });
+                      </script>
+
                       </select>
                   </div>  
                   <div class="col-8"> 
@@ -446,7 +636,7 @@
           <div class="modal-footer">
             <div class="row pt-3">
               <div class="col d-flex justify-content-end">
-                <button type="button" class="btn btn-danger me-3">Clear </button>
+              <button type="button" id="clearFields" class="btn btn-danger me-3">Clear </button>
                 <button type="submit" class="btn btn-success me-3">Save</button>
               </div>     
             </div>
@@ -485,6 +675,28 @@
                       <option value="Prayer Meeting">Prayer Meeting</option>
                       <option value="Baptismal">Baptismal</option>
                       <option value="Wedding">Wedding</option>
+
+                      <script>
+                            $(document).ready(function() {
+                              // Your Ajax code here
+                              $.ajax({
+                                url: 'models/showEventTypes.php',
+                                method: 'GET',
+                                dataType: 'json',
+                                success: function(response) {
+                                                    
+                                  response.forEach((type) =>{
+                                    $('#edit_event_type').append('<option value="'+type.type_name+'"> '+type.type_name+' </option>');
+
+                                  });
+                                },
+                                error: function(xhr, status, error) {
+                                  // Handle errors, if any
+                                  console.log('Error:', error);
+                                }
+                              });
+                            });
+                      </script>
                       </select>
                   </div>  
                   <div class="col-8"> 
@@ -539,7 +751,7 @@
           <div class="modal-footer">
             <div class="row pt-3">
               <div class="col d-flex justify-content-end">
-                <button type="button" class="btn btn-danger me-3">Clear </button>
+                <button type="button" id="clearFields" class="btn btn-danger me-3">Clear </button>
                 <button type="button" onclick="NewEditEvent(this)"  class="btn btn-success me-3">Save</button>
               </div>     
             </div>

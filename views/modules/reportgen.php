@@ -28,7 +28,7 @@
 
                     <div class="col-2">
                         <label class="form-label">Category</label>
-                        <select class="form-select mb-3" aria-label="Default select example" id="report-category">
+                        <select class="form-select mb-3 additional_report_event_category" aria-label="Default select example" id="report-category">
                             <option selected="" value="">All</option>
                             <option value="Bible Study">Bible Study</option>
                             <option value="Outreach">Outreach</option>
@@ -37,7 +37,30 @@
                             <option value="Prayer Meeting">Prayer Meeting</option>
                             <option value="Baptismal">Baptismal</option>
                             <option value="Wedding">Wedding</option>
+
                         </select>
+
+                              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                              <script>
+                          
+                                  console.log("l;kaesjf;lkasef");$.ajax({
+                                    url: 'models/showEventTypes.php',
+                                    method: 'GET',
+                                    dataType: 'json',
+                                    success: function(response) {
+            
+                                      response.forEach((type) =>{
+                                        $('.additional_report_event_category').append('<option value="'+type.type_name+'"> '+type.type_name+' </option>');
+
+                                      });
+                                    },
+                                    error: function(xhr, status, error) {
+                                      // Handle errors, if any
+                                      console.log('Error:', error);
+                                    }
+                                  });
+                                
+                            </script>
                     </div>
 
                     <div class="col-2">
@@ -86,6 +109,10 @@
                         <tbody>
 
                         </tbody>
+
+                        <tfoot>
+                          
+                        </tfoot>
                       </table>
                     </div>
                   </div>

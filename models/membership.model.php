@@ -8,7 +8,7 @@ class ModelMembership{
     public function mdlGetPendingMembership()
     {
         $accID =  $_COOKIE['acc_id'];
-        $status =  1;
+        $status =  0;
 
         $stmt = (new Connection)->connect()->prepare("SELECT * FROM membership WHERE memberID = :memberID AND membership_status = 0 AND canmship_status = 0");   
         $stmt->bindParam(':memberID', $accID, PDO::PARAM_STR);
