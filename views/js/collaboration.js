@@ -75,25 +75,84 @@ $("#searchBar").on("keyup", function() {
   });
 });
 
+// $("#sendRequestBtn").on("click", function() {
+//   var churchName = $("#searchBar").val();
+//   var churchID = $("#searchBar").attr("church_id");
+
+
+//   var churchData = new FormData();
+//   churchData.append("churchName", churchName);
+//   churchData.append("churchid2", churchID);
+
+//   $.ajax({
+//     url: "ajax/add_collaboration.ajax.php",
+//     method: "POST",
+//     data: churchData,
+//     cache: false,
+//     contentType: false,
+//     processData: false,
+//     dataType: "text",
+//     success: function(answer) {
+//       console.log(answer);
+
+//     },
+//     error: function() {
+//         alert("Oops. Something went wrong!");
+//     },
+//     complete: function() {
+//     }
+//   });
+  
+// });
+
 $("#sendRequestBtn").on("click", function() {
   var churchName = $("#searchBar").val();
   var churchID = $("#searchBar").attr("church_id");
-
 
   var churchData = new FormData();
   churchData.append("churchName", churchName);
   churchData.append("churchid2", churchID);
 
-  $.ajax({
-    url: "ajax/add_collaboration.ajax.php",
-    method: "POST",
-    data: churchData,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "text",
-    success: function(answer) {
-      console.log(answer);
+
+
+  // Show a SweetAlert confirmation dialog
+  Swal.fire({
+    title: 'Confirmation',
+    text: 'Are you sure you want to send a collaboration request to this church?',
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, send request',
+    cancelButtonText: 'No, cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // The user clicked the confirm button
+      $.ajax({
+        url: "ajax/add_collaboration.ajax.php",
+        method: "POST",
+        data: churchData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+          
+            const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                });
+              
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Request submitted successfully.'
+                });
+                console.log(answer);
 
       const Toast = Swal.mixin({
         toast: true,
@@ -134,50 +193,78 @@ $("#sendRequestBtn").on("click", function() {
         }
       });
 
+                $("#report_accountID").val('');
+                location.reload();
 
-    },
-    error: function() {
-        alert("Oops. Something went wrong!");
-    },
-    complete: function() {
+          // You can handle the response as needed
+        },
+        error: function() {
+          alert("Oops. Something went wrong!");
+        },
+        complete: function() {
+          // You can add any completion logic here
+        }
+      });
     }
   });
-  
 });
+
   
-$('.cancelPending').on('click', function(){
+$('.cancelPending').on('click', function() {
   var collabID = $(this).siblings('input').first().val();
-  console.log(collabID);
 
-  var cancelStatus = new FormData();
-  cancelStatus.append("collabID", collabID);
+  // Show a SweetAlert confirmation dialog
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Do you really want to cancel this request?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, cancel it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // The user clicked the confirm button
+      var cancelStatus = new FormData();
+      cancelStatus.append("collabID", collabID);
 
-  $.ajax({
-    url: "ajax/cancel_request.ajax.php",
-    method: "POST",
-    data: cancelStatus,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function(answer) {
-      console.log(answer);
-
-      // $("superuser_churchID").val(answer[0]);
-      
-
-      location.reload();
-  
-    },
-    error: function() {
-        alert("Oops. Something went wrong!");
-    },
-    complete: function() {
-  
+      $.ajax({
+        url: "ajax/cancel_request.ajax.php",
+        method: "POST",
+        data: cancelStatus,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(answer) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+        
+          Toast.fire({
+            icon: 'success',
+            title: 'Cancel submitted successfully.'
+          });
+          console.log(answer);
+          $("#report_accountID").val('');
+          location.reload();
+        },
+        error: function() {
+          alert("Oops. Something went wrong!");
+        },
+        complete: function() {
+        }
+      });
     }
   });
-}
-)
+});
 
 $(document).ready(function() {
   $(".acceptAll").on('click', function() {
@@ -186,8 +273,6 @@ $(document).ready(function() {
       text: 'Are you sure you want to accept all collaboration requests?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, accept all!',
       cancelButtonText: 'No, decline'
     }).then((result) => {
@@ -232,8 +317,6 @@ $(document).ready(function() {
             text: 'Are you sure you want to accept this collaboration request?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, accept it!',
             cancelButtonText: 'No, decline'
         }).then((result) => {
@@ -373,8 +456,6 @@ function rejectCollab(collabID, churchID, church_name) {
     text: 'Are you sure you want to reject this collaboration request?',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
     confirmButtonText: 'Yes, reject it!',
     cancelButtonText: 'No, keep it'
   }).then((result) => {
@@ -430,8 +511,6 @@ function rejectCollabs(dataArray) {
     text: 'Are you sure you want to reject all collaboration requests?',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
     confirmButtonText: 'Yes, reject all!',
     cancelButtonText: 'No, keep them'
   }).then((result) => {
@@ -447,6 +526,7 @@ function rejectCollabs(dataArray) {
         dataType: "text",
         success: function(answer) {
           console.log(answer);
+          
           
 
           // Show success toast notification
@@ -479,44 +559,68 @@ function rejectCollabs(dataArray) {
   });
 }
 
-$(".removeCollab").on('click', function(){
-// var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
-var collabID = $(this).siblings('input').first().val();
-console.log(collabID);
+$(".removeCollab").on('click', function () {
+  var collabID = $(this).siblings('input').first().val();
 
+  // Show a SweetAlert confirmation dialog
+  Swal.fire({
+      title: 'Confirmation',
+      text: 'Are you sure you want to remove this collaboration?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, remove collaboration',
+      cancelButtonText: 'No, cancel'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          // The user clicked the confirm button
 
-var removeCollab = new FormData();
-removeCollab.append("collabID", collabID);
+          var removeCollab = new FormData();
+          removeCollab.append("collabID", collabID);
 
-$.ajax({
-    url: "ajax/remove_collaboration.ajax.php",
-    method: "POST",
-    data: removeCollab,
-    cache: false,
-    contentType: false,
-    processData: false,
-    dataType: "json",
-    success: function(answer) {
-      console.log(answer);
-
-      // $("#superuser_churchID").val(answer[0]);
-
-      // // $(".accepted_churches").load(location.href + ' .accepted_churches');
-      // // $(".registration_churches").load(location.href + ' .registration_churches');
-
-      location.reload();
-
-      
-  
-  
-    },
-    error: function() {
-        alert("Oops. Something went wrong!");
-    },
-    complete: function() {
-    }
+          $.ajax({
+              url: "ajax/remove_collaboration.ajax.php",
+              method: "POST",
+              data: removeCollab,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "json",
+              success: function (answer) {
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                });
+              
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Remove submitted successfully.'
+                });
+                console.log(answer);
+                $("#report_accountID").val('');
+                  location.reload();
+              },
+              error: function () {
+                  alert("Oops. Something went wrong!");
+              },
+              complete: function () {
+                  // You can add any completion logic here
+              }
+          });
+      }
   });
 });
+
+
+
+
+
 
 $(".viewBtnAdmin").on('click', function(){
   // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
@@ -591,3 +695,79 @@ function searchChurches() {
       }
   }
 }
+
+// Church Collaboration Search
+$(document).ready(function() {
+  $("#searchChurchCollab").on("keyup", function() {
+    var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+
+    // Loop through each div with class "church_container"
+    $(".church_Collab").each(function() {
+      var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+      var isVisible = churchName.includes(searchText); // Check if church name contains search text
+
+      // Toggle visibility based on search text
+      $(this).toggle(isVisible);
+    });
+  });
+});
+
+
+// Church Rejected Search
+
+$(document).ready(function() {
+  $("#searchChurchRejectCollab").on("keyup", function() {
+    var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+
+    // Loop through each div with class "church_container"
+    $(".Reject_church_Collab").each(function() {
+      var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+      var isVisible = churchName.includes(searchText); // Check if church name contains search text
+
+      // Toggle visibility based on search text
+      $(this).toggle(isVisible);
+    });
+  });
+});
+
+// Church Affilliated Search
+
+$(document).ready(function() {
+  $("#searchAffillChurch").on("keyup", function() {
+    var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+
+    // Loop through each div with class "church_container"
+    $(".Affill_church_Collab").each(function() {
+      var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+      var isVisible = churchName.includes(searchText); // Check if church name contains search text
+
+      // Toggle visibility based on search text
+      $(this).toggle(isVisible);
+    });
+  });
+});
+
+// Church Request Search
+
+$(document).ready(function() {
+  $("#search_Request").on("keyup", function() {
+    var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+
+    // Loop through each div with class "church_container"
+    $(".searchRequestChurch").each(function() {
+      var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+      var isVisible = churchName.includes(searchText); // Check if church name contains search text
+
+      // Toggle visibility based on search text
+      $(this).toggle(isVisible);
+    });
+  });
+});
+
+
+
+
+
+
+
+

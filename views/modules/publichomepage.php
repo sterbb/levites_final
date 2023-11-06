@@ -75,7 +75,7 @@ require_once "././models/connection.php";
           
           <div class="col-3 membersChurch cursor-pointer" church_id="'.$value['memChurchID'].'" church_name="'.$value['memChurchName'].'" onclick="openProfile(this)">
           <div class="card h-auto">
-              <img src='.$Avatar.' class="card-img-top" style="height: 350px;" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+              <img src='.$Avatar.' class="card-img-top" style="height: 350px;" alt="..."  background-size: cover ; background-repeat: no-repeat;   background-position: center;">
                   <div class="card-body" style="height:150px;">
                     <h5 class="card-title">'.$value['memChurchName'].'</h5>
                     
@@ -187,6 +187,8 @@ require_once "././models/connection.php";
                             <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$value["church_barangay"].', '.$value["church_street"].'</span>
                             <span class="badge bg-danger bg-danger-subtle text-danger border border-opacity-25 border-danger"><i class="bx bx-phone"> </i>    '.$value["church_num"].'</span>
                             <span class="badge bg-primary bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bx bx-envelope"> </i>    '.$value["church_email"].'</span>
+                            <span class="badge bg-primary bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bx bx-church"> </i>    '.$value["religion"].'</span>
+
                           </div>
 
                         </div>

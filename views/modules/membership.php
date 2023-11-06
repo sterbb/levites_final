@@ -23,19 +23,38 @@
                 <?php 
              
                             $requests = (new ControllerMembership)->ctrGetPendingMembership();
+                            $db = new Connection();
+                            $pdo = $db->connect();
+    
                             foreach($requests as $key => $value){
-        
+                                $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                                $stmt->bindParam(':churchID', $value['memChurchID'], PDO::PARAM_STR);
+                                $stmt->execute();
+                                $Memprofile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+    
+                                $churchid = $value['memChurchID'];
+    
+                            
+                                $imagePath = "views/images/default.png"; // Default value
+    
+                                if (!empty($Memprofile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
+                                }
+    
+                                $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
+    
+    
 
                                 echo '
                                 <div class="team-list churchDiv">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="">
-                                        <img src="views/images/ch1.2.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                        <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
                                         </div>
                                         <div class="flex-grow-1">
                                         <h6 class="mb-1 fw-bold">'.$value['memChurchName'].'</h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>  
                                         </div>
                                         <div class="">
                                             <input type="text"  value="'.$value['mshipID'].'"  church_id="'.$value['memChurchID'].'" church_name="'.$value['memChurchName'].'" style="display:none;" required>
@@ -70,20 +89,39 @@
                     <?php 
 
                         $requests = (new ControllerMembership)->ctrGetAcceptedMembership();
+                        $db = new Connection();
+                        $pdo = $db->connect();
+
                         foreach($requests as $key => $value){
-                            
+                            $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                            $stmt->bindParam(':churchID', $value['memChurchID'], PDO::PARAM_STR);
+                            $stmt->execute();
+                            $Memprofile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+
+                            $churchid = $value['memChurchID'];
+
+                        
+                            $imagePath = "views/images/default.png"; // Default value
+
+                            if (!empty($Memprofile['Avatar']) && file_exists($imagePath)) {
+                                $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
+                            }
+
+                            $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
+
                     
                             echo '
                             <div class="team-list">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="">
-                                        <img src="views/images/ch1.2.jpg" alt="" width="50" height="50" class="rounded-circle">
-                                        </div>
+                                    <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
                                         <div class="flex-grow-1">
                                         <h6 class="mb-1 fw-bold">'.$value['memChurchName'].' </h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
-                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>  
+                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">'.$value['membershipDate'].'</span>    
+  
                                     </div>
                                     <div class="">
                                         <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].'  church_id="'.$value['memChurchID'].'" church_name="'.$value['memChurchName'].'" style="display:none;" required>

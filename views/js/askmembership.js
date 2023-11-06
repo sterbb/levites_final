@@ -20,7 +20,6 @@ $(document).on("click", ".askMembershipBtn", function() {
       processData: false,
       dataType: "text",
       success: function(answer) {
-        alert(answer);
         console.log(answer);
 
         var askBtn = $(".askMembershipBtn");
@@ -65,7 +64,24 @@ $(document).on("click", ".askMembershipBtn", function() {
       processData: false,
       dataType: "text",
       success: function(answer) {
-        console.log(answer);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+        
+          Toast.fire({
+            icon: 'success',
+            title: 'Cancel submitted successfully.'
+          });
+          console.log(answer);
+          $("#report_accountID").val('');
         location.reload();
 
       },
@@ -96,7 +112,24 @@ $(document).on("click", ".askMembershipBtn", function() {
       processData: false,
       dataType: "text",
       success: function(answer) {
-        console.log(answer);
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+        
+          Toast.fire({
+            icon: 'success',
+            title: 'Remove submitted successfully.'
+          });
+          console.log(answer);
+          $("#report_accountID").val('');
         location.reload();
 
       },
@@ -119,7 +152,7 @@ $(document).on("click", ".askMembershipBtn", function() {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, accept all',
-        cancelButtonText: 'Cancel'
+        cancelButtonText: 'No, cancel'
     }).then((result) => {
         if (result.isConfirmed) {
             var acceptAllData = [];
@@ -150,7 +183,7 @@ $(".rejectAllMembers").on('click', function() {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, reject all',
-        cancelButtonText: 'Cancel'
+        cancelButtonText: 'No, cancel'
     }).then((result) => {
         if (result.isConfirmed) {
             var rejectAllData = [];
@@ -190,7 +223,24 @@ function acceptAllMembers(dataArray) {
             processData: false,
             dataType: "text",
             success: function(answer) {
-                console.log(answer);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Accept all submitted successfully.'
+                  });
+                  console.log(answer);
+                  $("#report_accountID").val('');
                 location.reload();
               },
             error: function() {
@@ -216,7 +266,24 @@ function rejectAllMembers(dataArray) {
             processData: false,
             dataType: "text",
             success: function(answer) {
-                console.log(answer);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Reject all submitted successfully.'
+                  });
+                  console.log(answer);
+                  $("#report_accountID").val('');
                 location.reload();
               },
             error: function() {
@@ -237,7 +304,7 @@ $(".acceptMember").on('click', function() {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, accept',
-        cancelButtonText: 'Cancel'
+        cancelButtonText: 'No, cancel'
     }).then((result) => {
         if (result.isConfirmed) {
             var acceptMember = new FormData();
@@ -254,7 +321,24 @@ $(".acceptMember").on('click', function() {
                 processData: false,
                 dataType: "text",
                 success: function(answer) {
-                    console.log(answer);
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      });
+                    
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Accept submitted successfully.'
+                      });
+                      console.log(answer);
+                      $("#report_accountID").val('');
                     location.reload();
                 },
                 error: function() {
@@ -277,7 +361,7 @@ $(".rejectMember").on('click', function() {
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, reject',
-        cancelButtonText: 'Cancel'
+        cancelButtonText: 'No, cancel'
     }).then((result) => {
         if (result.isConfirmed) {
             var rejectMember = new FormData();
@@ -294,7 +378,24 @@ $(".rejectMember").on('click', function() {
                 processData: false,
                 dataType: "text",
                 success: function(answer) {
-                    console.log(answer);
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      });
+                    
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Reject submitted successfully.'
+                      });
+                      console.log(answer);
+                      $("#report_accountID").val('');
                     location.reload();
                 },
                 error: function() {
@@ -307,42 +408,116 @@ $(".rejectMember").on('click', function() {
 
 
 
-    $(".removeMember").on('click', function(){
-        // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
-        var mshipID = $(this).siblings('input').first().val();
-        console.log(mshipID);
-        
-        
-        var removeMember = new FormData();
-        removeMember.append("mshipID", mshipID);
-        
-        $.ajax({
-            url: "ajax/remove_member.ajax.php",
-            method: "POST",
-            data: removeMember,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            success: function(answer) {
-              console.log(answer);
-        
-              // $("#superuser_churchID").val(answer[0]);
-        
-              // // $(".accepted_churches").load(location.href + ' .accepted_churches');
-              // // $(".registration_churches").load(location.href + ' .registration_churches');
-        
-              location.reload();
-        
-              
-          
-          
-            },
-            error: function() {
-                alert("Oops. Something went wrong!");
-            },
-            complete: function() {
-            }
-          });
-        });
-        
+$(".removeMember").on('click', function () {
+    var mshipID = $(this).siblings('input').first().val();
+
+    // Show a SweetAlert confirmation dialog
+    Swal.fire({
+        title: 'Confirmation',
+        text: 'Are you sure you want to remove this member?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, remove member',
+        cancelButtonText: 'No, cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // The user clicked the confirm button
+
+            var removeMember = new FormData();
+            removeMember.append("mshipID", mshipID);
+
+            $.ajax({
+                url: "ajax/remove_member.ajax.php",
+                method: "POST",
+                data: removeMember,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "text",
+                success: function (answer) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      });
+                    
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Remove submitted successfully.'
+                      });
+                      console.log(answer);
+                      $("#report_accountID").val('');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr);
+                    alert("Oops. Something went wrong!");
+                },
+                complete: function () {
+                    // You can add any completion logic here
+                }
+            });
+        }
+    });
+});
+
+
+
+
+// Member Request Search
+
+$(document).ready(function() {
+    $("#searchMem").on("keyup", function() {
+      var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+  
+      // Loop through each div with class "church_container"
+      $(".searchMemReq").each(function() {
+        var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+        var isVisible = churchName.includes(searchText); // Check if church name contains search text
+  
+        // Toggle visibility based on search text
+        $(this).toggle(isVisible);
+      });
+    });
+  });
+
+
+// Member Only Search
+  $(document).ready(function() {
+    $("#memberSearch").on("keyup", function() {
+      var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+  
+      // Loop through each div with class "church_container"
+      $(".memSearch").each(function() {
+        var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+        var isVisible = churchName.includes(searchText); // Check if church name contains search text
+  
+        // Toggle visibility based on search text
+        $(this).toggle(isVisible);
+      });
+    });
+  });
+
+// Member Rejected Search
+  $(document).ready(function() {
+    $("#rejectMemSearch").on("keyup", function() {
+      var searchText = $(this).val().toLowerCase(); // Get the text entered in the search input
+  
+      // Loop through each div with class "church_container"
+      $(".RejectSearchMem").each(function() {
+        var churchName = $(this).find(".flex-grow-1 .fw-bold").text().toLowerCase(); // Get the church name
+        var isVisible = churchName.includes(searchText); // Check if church name contains search text
+  
+        // Toggle visibility based on search text
+        $(this).toggle(isVisible);
+      });
+    });
+  });
+
+  

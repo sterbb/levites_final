@@ -16,7 +16,7 @@
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
-                               
+                                    <input class="form-control px-2 " type="search"  placeholder="Search Church" id="search_Request">
                                 </div>
                                 <!-- ALIGN SA CENTER -->
                                 <div class="">  
@@ -37,38 +37,39 @@
 
                             foreach($requests as $key => $value){
                                 $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
-                                $stmt->bindParam(':churchID', $value['churchid2'], PDO::PARAM_STR);
+                                $stmt->bindParam(':churchID', $value['churchid1'], PDO::PARAM_STR);
                                 $stmt->execute();
                                 $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                               
         
-                                $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
-                                // Check if the church has a custom image, if not, use a default image
-                                if (empty($profile['Avatar']) || !file_exists($imagePath)) {
-                                    $imagePath = "./views/images/default.png";
-                                }
                                 
+                                $imagePath = "views/images/default.png"; // Default value
+
+                                if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
+                                }
 
                                 echo '
-                                <div class="team-list reqlist">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                        <img src='.$imagePath.' width="50" height="50" class="rounded-circle" style=" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+                                <div class="searchRequestChurch">
+                                    <div class="team-list reqlist m-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="">
+                                            <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value['churchname2'].'</h6>
+                                            <span class="badge bg-warning bg-warning-subtle text-warning border border-opacity-25 border-warning">Pending Request</span>
+                                            
+                                            </div>
+                                            <div class="">
+                                                <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid2'].' churchname='.$value['churchname2'].' style="display:none;">
+                                                <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button>
+                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 pendcan cancelPending">Cancel </button>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value['churchname2'].'</h6>
-                                        <span class="badge bg-warning bg-warning-subtle text-warning border border-opacity-25 border-warning">Pending Request</span>
-                                        
-                                        </div>
-                                        <div class="">
-                                            <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid2'].' churchname='.$value['churchname2'].' style="display:none;">
-                                            <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button>
-                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 pendcan cancelPending">Cancel </button>
-                                        </div>
+                                        <hr>
                                     </div>
-                                    <hr>
-                                </div>
-                                '
+                                </div>'
                                 ;
 
                             }
@@ -96,7 +97,7 @@
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
-                                <input class="form-control px-2 " type="search"  id="searchChurch" placeholder="Search Church">
+                                <input class="form-control px-2 " type="search"  id="searchChurchCollab" placeholder="Search Church">
                                 </div>
                                 <!-- ALIGN SA CENTER -->
                                 <div class="">  
@@ -110,6 +111,10 @@
 
                         <?php 
 
+                         
+                          
+                            
+
                             $requests = (new CollaborationController)->ctrshowRequests();
 
                             
@@ -121,32 +126,40 @@
                                 $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
                                 $stmt->bindParam(':churchID', $value['churchid1'], PDO::PARAM_STR);
                                 $stmt->execute();
-                                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data    
 
-                                $Avatar = "./views/UploadAvatar/".$profile['Avatar'];
-                                // Check if the church has a custom image, if not, use a default image
-                                if (empty($profile['Avatar']) || !file_exists($imagePath)) {
-                                    $imagePath = "./views/images/default.png";
+                                $imagePath = "views/images/default.png"; // Default value
+
+                                if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
                                 }
-     
+
+                                $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($value['churchid1']);
+                                
 
                                 echo '
-                                <div class="team-list border-bottom m-3" data-churchname="'.$value['churchname1'].'">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                        <img src='.$imagePath.' width="50" height="50" class="rounded-circle" style=" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+                                <div class="church_Collab">
+                                    <div class="team-list m-3" data-churchname="'.$value['churchname1'].'">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="">
+                                            <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value['churchname1'].'</h6>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>
+
+                                            </div>
+                                            <div class="">
+                                                <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid1'].' churchname="'.$value['churchname1'].'"  style="display:none;">
+
+
+                                                <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button>
+                                                <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptCollab">Accept </button>
+                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectCollab">Reject </button>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value['churchname1'].'</h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                                        </div>
-                                        <div class="">
-                                            <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid1'].' churchname="'.$value['churchname1'].'"  style="display:none;">
-                                            <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button>
-                                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptCollab">Accept </button>
-                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectCollab">Reject </button>
-                                        </div>
+                                        <hr>
                                     </div>
                                 </div>
 
@@ -174,7 +187,7 @@
                                 </div>  
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
-                                    <input class="form-control px-2 " type="search"  placeholder="Search Church">
+                                    <input class="form-control px-2 " type="search"  placeholder="Search Church" id="searchChurchRejectCollab">
                                 </div>
                                 <!-- ALIGN SA CENTER -->
                             </div>
@@ -216,32 +229,37 @@
                                 if (is_array($profile) && isset($profile['Avatar'])) {
                                     $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
                                     if (empty($profile['Avatar']) || !file_exists($imagePath)) {
-                                        $imagePath = "./views/images/default.png";
+                                        $imagePath = "views/images/default.png";
                                     }
                                 } else {
                                     // Handle the case where $profile is not an array or doesn't contain 'Avatar'
                                     // You can set a default image or handle the error as needed.
                                     $imagePath = "./views/images/default.png";
                                 }
+                                $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
 
                 
                                 echo '
-                                <div class="team-list">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                        <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$churchname.'</h6>
-                           
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                                        </div>
-                                        <div class="">
-                                        <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$churchid.' style="display:none;">
-                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button> 
+                                <div class="Reject_church_Collab">
+                                    <div class="team-list pb-2 m-3">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="">
+                                            <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$churchname.'</h6>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>
+                                            <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">'.$value['collabdate'].'</span>    
+
+                                            </div>
+                                            <div class="">
+                                            <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$churchid.' style="display:none;">
+                                            <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button> 
+                                            </div>
                                         </div>
                                     </div>
+                                    <hr>
                                 </div>
                                 '
                                 ;
@@ -269,7 +287,7 @@
                         <h6 class="mb-0 fw-bold"><i class="lni lni-users m-2"></i>Affilliated Churches</h6>
                         </div>
                         <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Church">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Church" id="searchAffillChurch">
                         </div>
                     </div>
                 </div>
@@ -307,29 +325,41 @@
                                                             $churchname = $value['churchname2'];
                                                         }
 
-                                                        $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
-                                                        // Check if the church has a custom image, if not, use a default image
-                                                        if (empty($profile['Avatar']) || !file_exists($imagePath)) {
+                                                        if (is_array($profile) && isset($profile['Avatar'])) {
+                                                            $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                                            if (empty($profile['Avatar']) || !file_exists($imagePath)) {
+                                                                $imagePath = "views/images/default.png";
+                                                            }
+                                                        } else {
+                                                            // Handle the case where $profile is not an array or doesn't contain 'Avatar'
+                                                            // You can set a default image or handle the error as needed.
                                                             $imagePath = "./views/images/default.png";
                                                         }
 
+                                                        $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
+
                                                         echo '
-                                                        <div class="team-list">
-                                                            <div class="d-flex align-items-center gap-3">
-                                                                <div class="">
-                                                                    <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                        <div class="Affill_church_Collab">
+                                                            <div class="team-list m-3">
+                                                                <div class="d-flex  align-items-center gap-3">
+                                                                    <div class="">
+                                                                        <img src='.$imagePath.' width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                                    </div>
+                                                                    <div class="flex-grow-1">
+                                                                        <h6 class="mb-1 fw-bold">'.$churchname.' </h6>
+                                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>                            
+                                                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i>  '.$value['collabdate'].'</span>    
+                                                                    </div>
+                                                                    <div class="">
+                                                                        <input type="text" name="trans_type" id="church_id" value='.$value['collabID'].' name="church_id" style="display:none;" required>
+                                                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeCollab">Remove</button>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="flex-grow-1">
-                                                                    <h6 class="mb-1 fw-bold">'.$churchname.' </h6>
-                                                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">'.$value['collabdate'].'</span>    
-                                                                </div>
-                                                                <div class="">
-                                                                    <input type="text" name="trans_type" id="church_id" value='.$value['collabID'].' name="church_id" style="display:none;" required>
-                                                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeCollab">Remove</button>
-                                                                </div>
+                                                                <hr>
                                                             </div>
-                                                            <hr>
-                                                        </div>';
+                                                        </div>   
+                                                        ';
                                                     }
                                                     ?>
 
@@ -355,7 +385,7 @@
                        <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-plus m-2"></i>Membership Request</h6>
                     </div>
                     <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Name">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Name" id="searchMem">
                         </div>
                     <div class="">
                     <button class="btn btn-outline-success rounded-5 btn-sm px-3 acceptAllMembers"><i class="fadeIn animated bx bx-check"></i></button>
@@ -374,42 +404,43 @@
                                 $stmt = $pdo->prepare("SELECT Avatar FROM account WHERE AccountID = :AccountID");
                                 $stmt->bindParam(':AccountID', $value['memberID'], PDO::PARAM_STR);
                                 $stmt->execute();
-                                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                                $Memprofile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                               
         
-                                $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
-                                // Check if the church has a custom image, if not, use a default image
-                                if (empty($profile['Avatar']) || !file_exists($imagePath)) {
-                                    $imagePath = "./views/images/default.png";
+                                $imagePath = "views/images/default.png"; // Default value
+
+                                if (!empty($Memprofile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
                                 }
 
-                                echo '
-                                <div class="team-list churchDiv">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                        <img src='.$imagePath.' width="50" height="50" class="rounded-circle" style=" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+                                echo '<div class="searchMemReq">
 
+                                    <div class="team-list m-3 churchDiv">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="">
+                                            <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value['memberName'].'</h6>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success "><i class="bx bx-envelope"> </i>  '.$value['memberEmail'].'</span>
+                                            </div>
+                                            <div class="">
+                                                <input type="text"  value="'.$value['mshipID'].'"  acc_id="'.$value['memberID'].'" acc_name="'.$value['memberName'].'" style="display:none;" required>
+                                                <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
+                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value['memberName'].'</h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                                        </div>
-                                        <div class="">
-                                            <input type="text"  value="'.$value['mshipID'].'"  acc_id="'.$value['memberID'].'" acc_name="'.$value['memberName'].'" style="display:none;" required>
-                                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
-                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
-                                        </div>
+                                        <hr>
                                     </div>
                                 </div>
-
                                 '
                                 ;
 
                             }
                             ?>
                     </div>
-                    <hr>
+                   
                 </div>
             </div>
         
@@ -422,7 +453,7 @@
                             <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-circle m-2"></i>Members</h6>
                         </div>
                         <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Name">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Name" id="memberSearch">
                         </div>
                     </div>
                 </div>
@@ -440,30 +471,33 @@
                             $Memprofile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
 
 
-                            
-                            $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
-                            // Check if the church has a custom image, if not, use a default image
-                            if (empty($Memprofile['Avatar']) || !file_exists($imagePath)) {
-                                $imagePath = "./views/images/default.png";
+                        
+                            $imagePath = "views/images/default.png"; // Default value
+
+                            if (!empty($Memprofile['Avatar']) && file_exists($imagePath)) {
+                                $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
                             }
 
+
                             echo '
-                            <div class="team-list">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="">
-                                        <img src='.$imagePath.' width="50" height="50" class="rounded-circle" style=" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+                            <div class="memSearch">
+                                <div class="team-list  m-3">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="">
+                                        <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border " alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
                                         </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value['memberName'].' </h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">'.$value['memberEmail'].'</span>
-                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">'.$value['membershipDate'].'</span>    
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value['memberName'].' </h6>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success "><i class="bx bx-envelope"> </i>  '.$value['memberEmail'].'</span>
+                                            <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary "><i class="bi bi-calendar-check-fill"></i> '.$value['membershipDate'].'</span>    
+                                        </div>
+                                        <div class="">
+                                            <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
+                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
-                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
-                                    </div>
+                                    <hr>
                                 </div>
-                                <hr>
                             </div>
                             '
                             ;
@@ -486,7 +520,7 @@
                        <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-plus m-2"></i>Rejected Membership</h6>
                     </div>
                     <div class="ms-auto me-2">
-                            <input class="form-control px-2 " type="search"  placeholder="Search Name">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Name" id="rejectMemSearch">
                         </div>
                     <!-- <div class="">
                         <button class="btn btn-outline-success rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-check"></i></button>
@@ -507,10 +541,10 @@
                                 $stmt->execute();
                                 $Memprofile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
     
-                                $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
-                                // Check if the church has a custom image, if not, use a default image
-                                if (empty($Memprofile['Avatar']) || !file_exists($imagePath)) {
-                                    $imagePath = "./views/images/default.png";
+                                $imagePath = "views/images/default.png"; // Default value
+
+                                if (!empty($Memprofile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$Memprofile['Avatar'];
                                 }
     
 
@@ -528,32 +562,32 @@
                                 //     $churchname = $value["churchname2"];
                                 // }
 
-                                echo '
-                                <div class="team-list churchDiv">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                        <img src='.$imagePath.' width="50" height="50" class="rounded-circle" style=" alt="..."  style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;">
+                                echo ' <div class="RejectSearchMem">
+                                    <div class="team-list m-3 churchDiv">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="">
+                                            <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value['memberName'].'</h6>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success "><i class="bx bx-envelope"> </i>  '.$value['memberEmail'].'</span>
+                                            </div>
+                                            <div class="">
+                                                <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
+                                                <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
+                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value['memberName'].'</h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                                        </div>
-                                        <div class="">
-                                            <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
-                                            <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
-                                            <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
-                                        </div>
+                                        <hr>
                                     </div>
                                 </div>
-
                                 '
                                 ;
 
                             }
                             ?>
                     </div>
-                    <hr>
+                   
                 </div>
                 </div>
         
@@ -607,9 +641,9 @@
                 <div class="form-body g-3">
                     <form role="form" id="viewrequestdetails-form " method="POST" autocomplete="nope" class="viewrequestdetailsForm row g-3">
                         <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
-                        <div class="col-md-2 form-group pt-3 pr-3" style="display:block;">
-                                <label for="churchID" class="form-label">ID</label>
-                                <input id="admin_churchID" class="form-control" name="admin_churchID" type="text" style="font-size:1em;"readonly >
+                        <div class="col-md-2 form-group pt-3 pr-3" style="display:block;" hidden>
+                                <label hidden for="churchID" class="form-label">ID</label>
+                                <input hidden id="admin_churchID" class="form-control" name="admin_churchID" type="text" style="font-size:1em;"readonly >
                         </div>
 
                         <div class="row g-3">        

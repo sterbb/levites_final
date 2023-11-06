@@ -19,13 +19,12 @@
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-3">
-                                    <input class="form-control px-2 " type="search" id="searchChurch" placeholder="Search Church">
+                                    <input class="form-control px-2 " type="search" id="AccountApprove" placeholder="Search Church">
                                 </div>
                                 <!-- ALIGN SA CENTER -->
                                 <div class="">  
-                                <button class="btn btn-outline-success rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-check"></i></button>
-                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
-
+                                        <button class="btn btn-outline-success rounded-5 btn-sm px-3 AccoutAllAccept"><i class="fadeIn animated bx bx-check"></i></button>
+                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 AccoutAllReject"><i class="fadeIn animated bx bx-x"></i></button>
                                     
                                 </div>
                             </div>
@@ -37,17 +36,37 @@
                             <div class="registration_churches" id="registration_churches">
                             <?php
                                 $churches = (new ControllerSuperuser)->ctrShowChurchList(0);
+                                $db = new Connection();
+                                $pdo = $db->connect();
+
                                 foreach($churches as $key => $value){
+                                $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                                $stmt->bindParam(':churchID', $value['churchID'], PDO::PARAM_STR);
+                                $stmt->execute();
+                                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                            
+        
+                                
+                                $imagePath = "views/images/default.png"; // Default value
+
+                                if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
+                                }
+
+                                
+                                $churchid = $value["churchID"] ;
+                                $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
                                 echo '
-                                <div class="church_container"> <!-- Wrap each church entry in a container -->
+                                <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
                                     <div class="d-flex align-items-center approval_churches gap-3">
-                                    <div class="">
-                                        <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                    <div class="team-lis">
+                                    <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 fw-bold">'.$value["church_name"].'</h6> 
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>
+
                                     </div>
                                     <div class="church_div">
                                         <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:none;" required>
@@ -79,14 +98,11 @@
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-3">
-                                    <input class="form-control px-2 " type="search"  placeholder="Search Church">
+                                    <input class="form-control px-2 " type="search"  placeholder="Search Church" id="RejectAccount">
                                 </div>
                                 <!-- ALIGN SA CENTER -->
                                 <div class="">  
-                                <button class="btn btn-outline-success rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-check"></i></button>
-                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
-
-                                    
+                            
                                 </div>
                             </div>
                         </div>
@@ -97,25 +113,46 @@
                             <div class="registration_churches scrollable-left-superuser" id="registration_churches">
                                 <?php
                                     $churches = (new ControllerSuperuser)->ctrShowRejectedChurches(0);
-                                    foreach($churches as $key => $value){
-                                        echo '
+                                
+                                        $db = new Connection();
+                                        $pdo = $db->connect();
+        
+                                        foreach($churches as $key => $value){
+                                        $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                                        $stmt->bindParam(':churchID', $value['churchID'], PDO::PARAM_STR);
+                                        $stmt->execute();
+                                        $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                                    
+                
+                                        
+                                        $imagePath = "views/images/default.png"; // Default value
+        
+                                        if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                            $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
+                                        }
+                                        
+                                        $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($value["churchID"]);
 
-                                        <div class="d-flex align-items-center gap-3">
-                                            <div class="">
-                                                <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+
+                                        echo '
+                                        <div class="AccountReject">
+                                            <div class="d-flex align-items-center gap-3 ">
+                                                <div class="team-list">
+                                                    <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">'.$value["church_name"].'</h6> 
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>
+                                                </div>
+                                                <div class="church_div">
+                                                    <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:none;" required>
+                                                    <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
+                                                    <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtnRjct" onclick="changeButtonText(this)">Accept </button>
+                                                </div>
                                             </div>
-                                            <div class="flex-grow-1">
-                                                <h6 class="mb-1 fw-bold">'.$value["church_name"].'</h6> 
-                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Bata, Bacolod City</span>
-                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">Negros Occidental, Philippines</span>
-                                            </div>
-                                            <div class="church_div">
-                                                <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:none;" required>
-                                                <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
-                                                <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" onclick="changeButtonText(this)">Accept </button>
-                                            </div>
+                                            <hr>
                                         </div>
-                                        <hr>
                                         ';
                                     }
                                     // first view button
@@ -147,7 +184,9 @@
                         <h6 class="mb-2 mt-2 fw-bold">Approved Churches</h6>
                         </div>
 
-
+                        <div class="ms-auto me-3">
+                            <input class="form-control px-2 " type="search"  placeholder="Search Church" id="ApproveChurch">
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -158,23 +197,43 @@
 
                             <?php
                                 $churches = (new ControllerSuperuser)->ctrShowDeactivatedChurch();
+                                $db = new Connection();
+                                $pdo = $db->connect();
+    
                                 foreach($churches as $key => $value){
-                                    echo '
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="">
-                                            <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                                $stmt->bindParam(':churchID', $value['churchID'], PDO::PARAM_STR);
+                                $stmt->execute();
+                                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                              
+        
+                                
+                                $imagePath = "views/images/default.png"; // Default value
+
+                                if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                    $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
+                                }
+
+                                    $churchid = $value["churchID"] ;
+                                    $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
+                                    
+                                    echo '<div class="deactivatedChurch">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <div class="team-list">
+                                                <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>
+
                                             </div>
-                                            <div class="flex-grow-1">
-                                            <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
-                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
-                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
-                                            <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                            <div class="">
+                                                <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="'.$value["churchID"].'" >Activate</button>
+                                            </div>
                                         </div>
-                                        <div class="">
-                                            <button href="javascript:;"  class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="'.$value["churchID"].'" >Activate</button>
-                                        </div>
+                                        <hr>
                                     </div>
-                                    <hr>
                                     ';
                                 }
                             ?>
@@ -182,23 +241,46 @@
                
                             <?php
                             $churches = (new ControllerSuperuser)->ctrShowChurchList(1);
+                            $db = new Connection();
+                            $pdo = $db->connect();
+
                             foreach($churches as $key => $value){
+                            $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                            $stmt->bindParam(':churchID', $value['churchID'], PDO::PARAM_STR);
+                            $stmt->execute();
+                            $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                          
+    
+                            
+                            $imagePath = "views/images/default.png"; // Default value
+
+                            if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
+                            }
+
+                                
+                                $churchid = $value["churchID"] ;
+                                $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
                                 echo '
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="">
-                                        <img src="views/images/ch1.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                <div class="churchApprove">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="team-list">
+                                            <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_province"].', '.$details["church_city"].'</span>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-map-pin"> </i>    '.$details["church_barangay"].', '.$details["church_street"].'</span>
+                                                <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i>  '.$value['status_date'].'</span>    
+
+
                                         </div>
-                                        <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-bold">'.$value["church_name"].' </h6>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Mansilingan, Bacolod City</span>
-                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success ">Negros Occidental, Philippines</span>
-                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary ">May 15, 2023</span>    
+                                        <div class="">
+                                            <button href="javascript:;"  class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="'.$value["churchID"].'">Deactivate</button>
+                                        </div>
                                     </div>
-                                    <div class="">
-                                        <button href="javascript:;"  class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="'.$value["churchID"].'">Deactivate</button>
-                                    </div>
+                                    <hr>
                                 </div>
-                                <hr>
                                 ';
                             }
                             ?>
@@ -255,7 +337,7 @@
                 <div class="form-body g-3">
                     <form role="form" id="churchAccounts-form " method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
                         <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
-                        <div class="col-md-2 form-group pt-3 pr-3" style="display:block;">
+                        <div class="col-md-2 form-group pt-3 pr-3" style="display:block;" hidden>
                                 <label for="churchID" class="form-label">ID</label>
                                 <input id="superuser_churchID" class="form-control" name="superuser_churchID" type="text" style="font-size:1em;"readonly >
                         </div>

@@ -15,6 +15,8 @@ class updateEvents {
 
     public $new_eventtime1;
 
+    public $new_eventtime2;
+
 
 
 
@@ -35,6 +37,9 @@ class updateEvents {
 
         $new_eventtime1 = $this -> new_eventtime1;
 
+        $new_eventtime2 = $this -> new_eventtime2;
+
+
         
      
 
@@ -48,7 +53,9 @@ class updateEvents {
                     "new_venue"=>$new_venue,
                     "new_location"=>$new_location,
                     "new_announcement"=>$new_announcement,
-                    "new_eventtime1"=>$new_eventtime1
+                    "new_eventtime1"=>$new_eventtime1,
+
+                    "new_eventtime2"=>$new_eventtime2
   
   
   
@@ -80,6 +87,9 @@ $updateEventDetails -> new_location = $_POST["new_location"];
 $updateEventDetails -> new_announcement = $_POST["new_announcement"];
 
 $updateEventDetails -> new_eventtime1 = $_POST["new_eventtime1"];
+
+$updateEventDetails -> new_eventtime2 = $_POST["new_eventtime2"];
+
 
 
 

@@ -180,14 +180,23 @@ public static function mdlDeleteSocial() {
 			$pdo->beginTransaction();
 
 			
-			$stmt = $pdo->prepare("UPDATE churches SET church_name = :church_name, church_address = :church_address, church_email = :church_email, church_city = :church_city, religion = :religion, mission = :mission, vision = :vision, church_num = :church_num  WHERE churchID = :churchID" );
+			$stmt = $pdo->prepare("UPDATE churches SET church_name = :church_name, church_region = :church_region, church_province = :church_province, church_barangay = :church_barangay, church_street = :church_street,
+			
+			 church_email = :church_email, church_city = :church_city, religion = :religion, mission = :mission, vision = :vision, church_num = :church_num  WHERE churchID = :churchID" );
 
 			// $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
 			// VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
 
 			$stmt->bindParam(":church_name", $data["Newchurch_name"]);
 
-			$stmt->bindParam(":church_address", $data["Newchurch_address"]);
+			$stmt->bindParam(":church_region", $data["Newregion"]);
+
+			$stmt->bindParam(":church_province", $data["Newprovince"]);
+			$stmt->bindParam(":church_barangay", $data["Newbarangay"]);
+
+			$stmt->bindParam(":church_street", $data["Newstreet"]);
+
+
 
 			$stmt->bindParam(":church_email", $data["Newemail"]);
 

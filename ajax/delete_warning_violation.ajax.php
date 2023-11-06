@@ -4,7 +4,8 @@ require_once "../models/reportsubmission.model.php";
 
 class DeleteReport{
 
-
+    public $report_id;
+    
     public function deleteReport(){
 
       $report_id = $this->report_id;

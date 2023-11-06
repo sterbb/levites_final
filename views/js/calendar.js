@@ -298,8 +298,212 @@ $(function(){
   });
 
   calendar.render();
+  $(".addEventForm").submit(function(e){
+    e.preventDefault();
+    Swal.fire({
+      title: 'Confirm Submission',
+      text: 'Are you sure you want to save this event information?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, save',
+      cancelButtonText: 'No, cancel'
+  }).then((result) => {
+      if (result.isConfirmed) {
+
+    function formatTimeWithLeadingZero(time) {
+      return time < 10 ? `0${time}` : time;
+    }
+    
+      var startHour = parseInt($("#event_time1").val().split(':')[0]);
+      var startMinute = parseInt($("#event_time1").val().split(':')[1]);
+      var startAMPM = startHour >= 12 ? 'PM' : 'AM';
+
+      if (startHour === 0) {
+          startHour = 12;
+      } else if (startHour > 12) {
+          startHour -= 12;
+      }
+
+      var endHour = parseInt($("#event_time2").val().split(':')[0]);
+      var endMinute = parseInt($("#event_time2").val().split(':')[1]);
+      var endAMPM = endHour >= 12 ? 'PM' : 'AM';
+
+      if (endHour === 0) {
+          endHour = 12;
+      } else if (endHour > 12) {
+          endHour -= 12;
+      }
+
+   
+    if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
+      Swal.fire({
+          title: 'Invalid Time Range',
+          text: 'The start time should be earlier than the end time.',
+          icon: 'error',
+      });
+      return; // Prevent form submission
+  }
+
+   
+    var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
+    var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
+    
+    var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM
+                      
+    var event_time2 =    endHour + ':' + formattedEndMinute + ' ' + endAMPM;
+
+    var daterange = $("#event_date").val();
+    var date1; 
+    var date2;
+
+    //tba
+    if(daterange.length <= 10){
+      date1=daterange.substring(0,10);
+      date2=daterange.substring(0,10);
+    }else{
+        date1=daterange.substring(0,10);
+        date2=daterange.substring(14,24);
+    }
+
+    var event_title = $("#event_title").val();
+    var event_type = $("#event_type").val();
+    var event_venue = $("#event_venue").val();
+    var event_location = $("#event_location").val();
+    var event_announcement = $("#event_announcement").val();
+    var eventID;
+
+      var eventData = new FormData();
+      
+      eventData.append("event_title", event_title);
+      eventData.append("event_type", event_type);
+      eventData.append("event_time1", event_time1);
+      eventData.append("event_time2", event_time2);
+      //tbc
+      eventData.append("event_date1", date1);
+      eventData.append("event_date2", date2);
+      eventData.append("event_venue", event_venue);
+      eventData.append("event_location", event_location);
+      eventData.append("event_announcement", event_announcement);
+
+
+      $.ajax({
+          url: "ajax/event_add.ajax.php",
+          method: "POST",
+          data: eventData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              });
+            
+              Toast.fire({
+                icon: 'success',
+                title: 'Add event successfully.'
+              });
+              console.log(answer);
+              $("#report_accountID").val('');
+            eventID = answer;
+
+
+              // Select all elements with the class "add_group_event"
+              $(".add_group_event").each(function () {
+                // Initialize arrays to store the names and emails for each group
+                var groupNames = [];
+                var groupEmails = [];
+
+                // Get the group name for the current card
+                var groupName = $(this).find(".card-title").text().trim();
+
+                // Loop through the list items within the current card
+                $(this).find("."+groupName+"-items").each(function () {
+                  // Get the name for each list item
+                  var name = $(this).text().trim();
+                  groupNames.push(name);
+
+                  // Get the email from the "data-email" attribute for each list item
+                  var email = $(this).attr("email");
+                  groupEmails.push(email);
+                });
+
+                // Create an object to store the data for the current group
+                var groupData = {
+                  groupName: groupName,
+                  names: groupNames,
+                  emails: groupEmails,
+                };
+
+
+
+              var groupDataSet = new FormData();
+              groupDataSet.append("eventID", eventID);
+              groupDataSet.append("group_name", groupData.groupName);
+              groupDataSet.append("group_members", JSON.stringify(groupData.names));
+              groupDataSet.append("members_email", JSON.stringify(groupData.emails));
+              //tbc
+              groupDataSet.append("event_date1", date1);
+              groupDataSet.append("event_time1", event_time1);
+              groupDataSet.append("event_date2", date2);
+              groupDataSet.append("event_time2", event_time2);
+              groupDataSet.append("event_title", event_title);
+              groupDataSet.append("event_venue", event_venue);
+              groupDataSet.append("event_location", event_location);
+
+
+              $.ajax({
+                  url: "ajax/calendar_group_add.ajax.php",
+                  method: "POST",
+                  data: groupDataSet,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "text",
+                  success: function(answer) {
+                    console.log(answer);
+                    
+                      
+                
+                  },
+                  error: function(xhr, status, error) {
+                    alert(error);
+                    console.log(error);
+                  },
+                  complete: function() {
+                  }
+                });
+                
+              });
+
+              
+        
+          },
+          error: function(xhr, status, error) {
+            alert(error);
+            console.log(error);
+          },
+          complete: function() {
+          }
+      });
+    
+    }
+  });
+
+    
+});
 
   $(".addEventForm").submit(function(e){
+
+    
     e.preventDefault();
   
   
@@ -1128,103 +1332,113 @@ function editEventDetails(element){
 };
 
 function NewEditEvent() {
+  Swal.fire({
+      title: 'Confirm Submission',
+      text: 'Are you sure you want to edit this event information?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, save',
+      cancelButtonText: 'No, cancel'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          var event_id = $("#churchevent_id").val();
+          var new_title = $("#edit_event_title").val();
+          var new_date = $("#edit_event_date").val();
+          var new_category = $("#edit_event_type").val();
+          var new_venue = $("#edit_event_venue").val();
+          var new_location = $("#edit_event_location").val();
+          var new_announcement = $("#edit_event_announcement").val();
 
-  var event_id = $("#churchevent_id").val() 
+          function formatTimeWithLeadingZero(time) {
+              return time < 10 ? `0${time}` : time;
+          }
 
+          var startHour = parseInt($("#edit_event_time1").val().split(':')[0]);
+          var startMinute = parseInt($("#edit_event_time1").val().split(':')[1]);
+          var startAMPM = startHour >= 12 ? 'PM' : 'AM';
 
-  var new_title = $("#edit_event_title").val(); 
+          if (startHour === 0) {
+              startHour = 12;
+          } else if (startHour > 12) {
+              startHour -= 12;
+          }
 
-  var new_date = $("#edit_event_date").val();
+          var endHour = parseInt($("#edit_event_time2").val().split(':')[0]);
+          var endMinute = parseInt($("#edit_event_time2").val().split(':')[1]);
+          var endAMPM = endHour >= 12 ? 'PM' : 'AM';
 
-  var new_category = $("#edit_event_type").val();
+          if (endHour === 0) {
+              endHour = 12;
+          } else if (endHour > 12) {
+              endHour -= 12;
+          }
 
-  var new_venue = $("#edit_event_venue").val();
+          var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
+          var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
 
-  var new_location = $("#edit_event_location").val();
+          var new_eventtime1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM;
+          var new_eventtime2 = endHour + ':' + formattedEndMinute + ' ' + endAMPM;
 
-  var new_announcement = $("#edit_event_announcement").val();
+          if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
+              Swal.fire({
+                  title: 'Invalid Time Range',
+                  text: 'The start time should be earlier than the end time.',
+                  icon: 'error'
+              });
+              return; // Prevent form submission
+          }
 
+          console.log(new_eventtime1);
 
-  function formatTimeWithLeadingZero(time) {
-    return time < 10 ? `0${time}` : time;
-  }
-  
-  var startHour = parseInt($("#edit_event_time1").val().split(':')[0]);
-  var startMinute = parseInt($("#edit_event_time1").val().split(':')[1]);
-  var startAMPM = startHour >= 12 ? 'PM' : 'AM';
-  
-  if (startHour === 0) {
-    startHour = 12;
-  } else if (startHour > 12) {
-    startHour -= 12;
-  }
-  
-  var endHour = parseInt($("#edit_event_time2").val().split(':')[0]);
-  var endMinute = parseInt($("#edit_event_time2").val().split(':')[1]);
-  var endAMPM = endHour >= 12 ? 'PM' : 'AM';
-  
-  if (endHour === 0) {
-    endHour = 12;
-  } else if (endHour > 12) {
-    endHour -= 12;
-  }
-  
-  var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
-  var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
-  
-  var new_eventtime1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM + ' to ' +
-                       endHour + ':' + formattedEndMinute + ' ' + endAMPM;
-  
-  console.log(new_eventtime1);
+          var updateEvents = new FormData();
+          updateEvents.set("event_id", event_id);
+          updateEvents.set("new_title", new_title);
+          updateEvents.set("new_date", new_date);
+          updateEvents.set("new_category", new_category);
+          updateEvents.set("new_venue", new_venue);
+          updateEvents.set("new_location", new_location);
+          updateEvents.set("new_announcement", new_announcement);
+          updateEvents.set("new_eventtime1", new_eventtime1);
+          updateEvents.set("new_eventtime2", new_eventtime2);
 
+          $.ajax({
+              url: "ajax/update_eventDetails.ajax.php",
+              method: "POST",
+              data: updateEvents,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "text",
+              success: function (answer) {
+                  const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer);
+                          toast.addEventListener('mouseleave', Swal.resumeTimer);
+                      }
+                  });
 
+                  Toast.fire({
+                      icon: 'success',
+                      title: 'Edit event successfully.'
+                  });
 
-  var updateEvents = new FormData();
-  updateEvents.set("event_id", event_id); 
-
-  updateEvents.set("new_title", new_title);
-
-  updateEvents.set("new_date", new_date);
-
-  updateEvents.set("new_category", new_category);
-
-  updateEvents.set("new_venue", new_venue);
-
-  updateEvents.set("new_location", new_location);
-
-  updateEvents.set("new_announcement", new_announcement);
-
-  updateEvents.set("new_eventtime1", new_eventtime1);
-
-
-
-
-  $.ajax({
-      url: "ajax/update_eventDetails.ajax.php",
-      method: "POST",
-      data: updateEvents,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "text",
-      success: function(answer) {
-          // Load the content into the modal
-          location.reload(answer);
-
-  
-
-
-
-
-        },
-        error: function(xhr, status, error) {
-          alert(error);
-          console.log(error);
-        }
+                  console.log(answer);
+                  $("#report_accountID").val('');
+                  location.reload();
+              },
+              error: function (xhr, status, error) {
+                  alert(error);
+                  console.log(error);
+              }
+          });
+      }
   });
-
-
-};
+}
 
 
 

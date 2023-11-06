@@ -98,6 +98,17 @@ class ModelSuperUser{
 	
     }
 
+    public static function mdlGetChurchDetailsOnly($data){
+        
+
+        $stmt = (new Connection)->connect()->prepare("SELECT churchID, church_name, church_email, church_num, church_city, religion, church_region, church_province, church_barangay, church_street FROM churches WHERE churchID = :churchID ");
+        $stmt->bindParam(":churchID", $data, PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+		$stmt = null;	
+    }
+
 
     public static function mdlAcceptChurch($data){
 
@@ -127,6 +138,7 @@ class ModelSuperUser{
             // $result2 is not null
             
             $accept = 1;
+            $reject = 0;
             $current_date = date('Y-m-d');
             
             $current_year = substr(date('Y'), -2 );
@@ -139,10 +151,11 @@ class ModelSuperUser{
                     return "maypareyas";
                 }else{
 
-                    $stmt = (new Connection)->connect()->prepare("UPDATE churches SET church_status = :church_status, status_date = :status_date
+                    $stmt = (new Connection)->connect()->prepare("UPDATE churches SET church_status = :church_status, rejected_status = :rejected_status, status_date = :status_date
                      WHERE churchID = :churchID");
                     $stmt->bindParam(":churchID", $data['church_id'], PDO::PARAM_STR);
                     $stmt->bindParam(":church_status", $accept, PDO::PARAM_INT);
+                    $stmt->bindParam(":rejected_status", $reject, PDO::PARAM_INT);
                     $stmt->bindParam(":status_date", $current_date, PDO::PARAM_STR);
                     $stmt -> execute();
                     $stmt = null;	
@@ -189,14 +202,16 @@ class ModelSuperUser{
             // $result2 is null
             
             $accept = 1;
+            $reject = 0;
             $current_date = date('Y-m-d');
             
             $current_year = substr(date('Y'), -2 );
             $current_month = date('n');
 
-            $stmt = (new Connection)->connect()->prepare("UPDATE churches SET church_status = :church_status, status_date = :status_date WHERE churchID = :churchID ");
+            $stmt = (new Connection)->connect()->prepare("UPDATE churches SET church_status = :church_status, status_date = :status_date,  rejected_status = :rejected_status WHERE churchID = :churchID ");
             $stmt->bindParam(":churchID", $data['church_id'], PDO::PARAM_STR);
             $stmt->bindParam(":church_status", $accept, PDO::PARAM_INT);
+            $stmt->bindParam(":rejected_status", $reject, PDO::PARAM_INT);
             $stmt->bindParam(":status_date", $current_date, PDO::PARAM_STR);
             $stmt -> execute();
             $stmt = null;	

@@ -103,7 +103,7 @@ $pubProfile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                             <div class="col-6">
                                                 <label for="pub_password" class="form-label">Confirm Password</label>
                                                 <div class="input-group" id="show_hide_password">
-                                                    <input type="password" class="form-control border-end-0 border-3" id="pub_password" placeholder="Enter Password" value="<?php echo $value['acc_password'] ?>">
+                                                    <input type="password" class="form-control border-end-0 border-3" id="pub_conpassword" placeholder="Enter Password" value="<?php echo $value['acc_password'] ?>">
                                                     <a href="javascript:;" class="input-group-text bg-transparent border-3"><i class="bi bi-eye-slash-fill"></i></a>
                                                 </div>
                                             </div> 
@@ -137,11 +137,18 @@ $pubProfile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                                     $public = (new ControllerPublic)->ctrShowPublic();
                                                     $selectedReligion = $public[0]['religion']; // Assuming there's only one admin in the result
                                                     ?>
-                                                    <option value="Catholic" <?php if ($selectedReligion == 'Catholic') echo 'selected'; ?>>Catholic</option>
-                                                    <option value="Baptist" <?php if ($selectedReligion == 'Baptist') echo 'selected'; ?>>Baptist</option>
-                                                    <option value="Born Again" <?php if ($selectedReligion == 'Born Again') echo 'selected'; ?>>Born Again</option>
-                                                    <option value="Aglipay" <?php if ($selectedReligion == 'Aglipay') echo 'selected'; ?>>Aglipay</option>
-                                                    <option value="Jehovah's" <?php if ($selectedReligion == 'jehovah') echo 'selected'; ?>>jehovah's</option>
+                                                    <optgroup label="Christianity">
+                                                        <option value="Aglipay" <?php if ($selectedReligion == 'Aglipay') echo 'selected'; ?>>Aglipay</option>
+                                                        <option value="Ang Dating Daan" <?php if ($selectedReligion == 'Ang Dating Daan') echo 'selected'; ?>>Ang Dating Daan</option>
+                                                        <option value="Baptist" <?php if ($selectedReligion == 'Baptist') echo 'selected'; ?>>Baptist</option>
+                                                        <option value="Catholic" <?php if ($selectedReligion == 'Catholic') echo 'selected'; ?>>Catholic</option>
+                                                        <option value="Iglesia ni Cristo" <?php if ($selectedReligion == 'Iglesia ni Cristo') echo 'selected'; ?>>Iglesia ni Cristo</option>
+                                                        <option value="Jehovah's Witnesses" <?php if ($selectedReligion == "Jehovah's Witnesses") echo 'selected'; ?>>Jehovah's Witnesses</option>
+                                                    </optgroup>
+                                                    <optgroup label="Islam">
+                                                        <option value="Sunni Islam" <?php if ($selectedReligion == 'Sunni Islam') echo 'selected'; ?>>Sunni Islam</option>
+                                                        <option value="Shia Islam" <?php if ($selectedReligion == 'Shia Islam') echo 'selected'; ?>>Shia Islam</option>
+                                                    </optgroup>
                                                 </select>
                                             </div>
 
