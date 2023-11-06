@@ -95,6 +95,46 @@ $("#sendRequestBtn").on("click", function() {
     success: function(answer) {
       console.log(answer);
 
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      });
+    
+      Toast.fire({
+        icon: 'success',
+        title: 'Collaboration Request sent succesfully.'
+      });
+
+      var asyncCollab = new FormData();
+      asyncCollab.append("collabfunction", "request_collab");
+      $.ajax({
+        url: "ajax/async_collaboration.ajax.php",
+        method: "POST",
+        data: asyncCollab,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+          alert(answer);
+  
+    
+        },
+        error: function() {
+            alert("Oops. Something went wrong!");
+        },
+        complete: function() {
+        }
+      });
+
+
     },
     error: function() {
         alert("Oops. Something went wrong!");

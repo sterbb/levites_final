@@ -653,6 +653,7 @@ Sticky Menu
   font-family: "Poppins";
   display: inline-block;
   transition: 0.3s all ease-in-out;
+    cursor: pointer;
 }
 
 .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(1) {
@@ -679,11 +680,35 @@ Sticky Menu
   background-color: rgba(93,166,254,1);
   border-top-right-radius: 50px;
   border-bottom-left-radius: 0px;
+  cursor: pointer;
 }
 
+.eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2):hover {
+  background-color: rgba(93,166,254,1);
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 0px;
+  cursor: pointer;
+}
+
+
 .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2) {
-  color: #4ce7f3;
+  height: 55px;
+  color: #fff;
+  width: 175px;
+  line-height: 55px;
+  text-align: center;
+  border-radius: 50px;
+  margin-right: 20px;
+  border-top-right-radius: 0;
+  background-color: rgb(192,128,249);
+}
+
+.eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2) i {
+  top: 5px;
+  color: #000;
+  font-size: 25px;
   position: relative;
+  margin-right: 10px;
 }
 
 .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2) span {
@@ -691,7 +716,7 @@ Sticky Menu
   margin-right: 2px;
 }
 
-.eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2):after {
+/* .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2):after {
   width: 0%;
   content: "";
   position: absolute;
@@ -701,7 +726,7 @@ Sticky Menu
   left: auto;
   right: 0;
   transition: 0.3s all ease-in-out;
-}
+} */
 
 .eight-banner-section .eight-banner-content .banner-content-box .ei-banner-btn a:nth-child(2):hover:after {
   left: 22px;
@@ -1205,7 +1230,7 @@ Sticky Menu
 
 .ei-service-slide-mbl {
   position: absolute;
-  right: -440px;
+  right: -360px;
   top: -75px;
   width: 460px;
   height: 505px;
@@ -1991,7 +2016,7 @@ Sticky Menu
 .ei-screenshots-section .swiper-slider-area .container {
   position: relative;
 }
-
+desktop.png
 .ei-screenshots-section .swiper-wrapper {
   height: 630px;
   width: 320px;

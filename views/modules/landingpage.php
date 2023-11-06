@@ -69,13 +69,11 @@
                                         <b>File Storage</b>
                                     </span>
                                 </h1>
-                                <P>"To believe is to connect." </P>
-                                <div class="">
-                                    <button class="custom-btn btn-2" href="#" id="registerNowBtn"><i class="fas fa-solid fa-arrow-right"></i> Register Now</button>
-                                </div>
-                                <div class="registerdown" id="registrationButtons" style="display:none;">
-                                    <a  href="churchregistration"><button class="hddnbtn btn-16" id="churchBtn">Church</button></a>
-                                    <a  href="publicregistration"><button class="hddnbtn btn-16" id="publicBtn">Public</button></a>
+                                <P style="font-size:1.6em;">"To believe is to connect." </P>
+                                <div class="ei-banner-btn">
+                                    <!-- <button class="custom-btn btn-2" href="#" id="registerNowBtn"><i class="fas fa-solid fa-arrow-right"></i> Register Now</button> -->
+                                    <a href="churchregistration"><i class="fa-solid fa-church text-white"></i> Register Now</a>
+                                    <a href="publicregistration"><i class="fa-solid fa-person-praying text-white"></i>Register Now</a>
                                 </div>
                             </div>
                             <div class="ei-banner-mbl-mockup wow fadeInRight" data-wow-delay="600ms" data-wow-duration="1500ms">
@@ -126,9 +124,9 @@
                                         <h3>Utilities Organizer</h3>
                                         <p>A storage solution that helps individuals efficiently organize and store their various utilities and related items in a systematic and accessible manner. </p>
                                     </div>
-                                    <div class="ei-feature-more">
+                                    <!-- <div class="ei-feature-more">
                                         <a href="#"><i class="fas fa-plus"></i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 wow fadeFromUp" data-wow-delay="300ms" data-wow-duration="1500ms">
@@ -141,9 +139,9 @@
                                         <h3>Songs and Lyrics</h3>
                                         <p> a collection of songs and their corresponding lyrics, providing an immersive musical experience with the convenience of on-screen lyrics for easy sing-along or appreciation.    </p>
                                     </div>
-                                    <div class="ei-feature-more">
+                                    <!-- <div class="ei-feature-more">
                                         <a href="#"><i class="fas fa-plus"></i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 wow fadeFromUp" data-wow-delay="900ms" data-wow-duration="1500ms">
@@ -156,9 +154,9 @@
                                         <h3>File Storage</h3>
                                         <p>Enables seamless sharing, and access to files among team members, promoting effective communication and productivity in a shared workspace. </p>
                                     </div>
-                                    <div class="ei-feature-more">
+                                    <!-- <div class="ei-feature-more">
                                         <a href="#"><i class="fas fa-plus"></i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 wow fadeFromUp" data-wow-delay="1200ms" data-wow-duration="1500ms">
@@ -171,9 +169,9 @@
                                         <h3>Calendar of Activities</h3>
                                         <p>Provides a comprehensive schedule of events, programs, and gatherings that are open to and intended for the participation of the general public. </p>
                                     </div>
-                                    <div class="ei-feature-more">
+                                    <!-- <div class="ei-feature-more">
                                         <a href="#"><i class="fas fa-plus"></i></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -233,7 +231,7 @@
                     </div>
                 </div>
                 <div class="eight-service-text position-relative appeight-headline wow fadeFromRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="ei-service-slide-mbl" data-background="views/images/desktop.png">
+                    <div class="ei-service-slide-mbl" data-background="views/images/landingpage1.png">
                         <div class="slide-inner">
                             <div class="ei-service-slide">
                                 <div class="slide-item">
@@ -293,14 +291,15 @@
                                     <span class="eg-title-tag"> Fun facts
                                         <i class="square-shape"><i></i><i></i><i></i><i></i></i></span>
                                         <h2>We have some awesome
-                                            <span>funfacts for clients.</span></h2>
-                                            <p>As a app web crawler expert, I help organizations adjust to the expanding significance of internet promoting.</p>
+                                            <span>funfacts for you.</span></h2>
+                                            <p>As a web platform for churches, the application provides a handful of useful features and functions that can be used on churhces' daily operations.</p>
                                         </div>
                                         <!-- /title -->
                                         <div class="fun-fact-counter position-relative clearfix">
                                             <div class="eg-counter-number pera-content text-center">
                                                 <span class="odometer" data-count="2000"><?php 
-                                                echo'0';
+                                                   $count = (new LandingPageModel)->getTotalUsers();
+                                                   echo count($count);
                                                 ?></span><strong>+</strong>
                                                 <p>Active Users
                                                 </p>
@@ -363,7 +362,7 @@
                                     <span class="mshape-bg shape-bg2"><img src="views/assets2/img/app-landing/team/msbg2.png" alt=""></span>
                                 </div>
                                 <div class="team-social">
-                                    <a href="#"><i class="fab fa-facebook-f "></i></a>
+                                    <a href="https://www.facebook.com/Luffoy"><i class="fab fa-facebook-f "></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-linkedin"></i></a>
                                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -382,7 +381,7 @@
                                     <span class="mshape-bg shape-bg2"><img src="views/assets2/img/app-landing/team/msbg2.png" alt=""></span>
                                 </div>
                                 <div class="team-social">
-                                    <a href="#"><i class="fab fa-facebook-f "></i></a>
+                                    <a href="https://www.facebook.com/jarielleyuan/"><i class="fab fa-facebook-f "></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-linkedin"></i></a>
                                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -401,7 +400,7 @@
                                     <span class="mshape-bg shape-bg2"><img src="views/assets2/img/app-landing/team/msbg2.png" alt=""></span>
                                 </div>
                                 <div class="team-social">
-                                    <a href="#"><i class="fab fa-facebook-f "></i></a>
+                                    <a href="https://www.facebook.com/unexisteduser"><i class="fab fa-facebook-f "></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-linkedin"></i></a>
                                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -424,8 +423,8 @@
                     Testimonials<i class="square-shape"> <i></i><i></i><i></i><i></i> </i>
                 </span>
                 <h2>
-                    Client’s review for
-                    <span>work satisfaction.</span>
+                    User's review about
+                    <span>the application.</span>
                 </h2>
             </div>
             <!-- /title -->
@@ -435,24 +434,24 @@
                     <div class="test-card-body">
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <h2>Awesome Coding</h2>
+                            <h2>Blessing for our Church</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <p>This application has been a blessing for our church, streamlining our daily operations and helping us effortlessly manage everything from event scheduling to communication with our congregation. It has made our administrative tasks more efficient and allowed us to focus on what truly matters – our spiritual mission.</p>
                         <div class="ratings">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
                         </div>
                     </div>
                     <div class="profile">
                         <div class="profile-image">
-                            <img src="image1.jpg">
+                            <img src="views/images/testimonial1.jpg">
                         </div>
                         <div class="profile-desc">
-                            <span>Person Name</span>
-                            <span>Description</span>
+                            <span>Sarah Johnson</span>
+                            <span>Church Administrator</span>
                         </div>
                     </div>
                 </div>
@@ -463,24 +462,24 @@
                     <div class="test-card-body">
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <h2>Efficient Workflow</h2>
+                            <h2>Revolutionized our Operations</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <p>As the Director of Youth Ministries at our church, I can't emphasize enough how this application has revolutionized our operations. It's made it incredibly easy to coordinate youth events, communicate with parents, and manage our resources efficiently. This application has become an invaluable tool in our ministry.</p>
                         <div class="ratings">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
                         </div>
                     </div>
                     <div class="profile">
                         <div class="profile-image">
-                            <img src="image2.jpg">
+                            <img src="views/images/testimonial2.jpg">
                         </div>
                         <div class="profile-desc">
-                            <span>Person Name</span>
-                            <span>Description</span>
+                            <span>Mark Anderson</span>
+                            <span>Director of Youth Ministries</span>
                         </div>
                     </div>
                 </div>
@@ -491,24 +490,24 @@
                     <div class="test-card-body">
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <h2>Awesome Coding</h2>
+                            <h2>Easy Access to Information</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <p>As a senior member of our congregation, I have truly appreciated the simplicity and convenience this application brings to our daily church life. It allows us to easily access important information, stay connected with our church family, and participate in events and services, all with just a few clicks. It's been a wonderful tool for helping me and many of my fellow 'oldies' stay engaged and connected with the church community, even in this digital age.</p>
                         <div class="ratings">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                             <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
                         </div>
                     </div>
                     <div class="profile">
                         <div class="profile-image">
-                            <img src="image3.jpg">
+                            <img src="views/images/testimonial6.jpg">
                         </div>
                         <div class="profile-desc">
-                            <span>Person Name</span>
-                            <span>Description</span>
+                            <span>Marites Deleonio</span>
+                            <span>Senior Church Member</span>
                         </div>
                     </div>
                 </div>
@@ -519,24 +518,24 @@
                     <div class="test-card-body">
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <h2>Collaborative Platform</h2>
+                            <h2>Simplified Church's Daily Operations</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <p>As a software developer and a member of our church, I can't help but appreciate the thoughtful design and functionality of this application. It has greatly simplified our church's daily operations, from managing member records to organizing events. </p>
                         <div class="ratings">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
                         </div>
                     </div>
                     <div class="profile">
                         <div class="profile-image">
-                            <img src="image4.jpg">
+                            <img src="views/images/testimonial4.jpg">
                         </div>
                         <div class="profile-desc">
-                            <span>Person Name</span>
-                            <span>Description</span>
+                            <span>Emily Sevilleno</span>
+                            <span>Software Developer and Church Member</span>
                         </div>
                     </div>
                 </div>
@@ -547,24 +546,24 @@
                     <div class="test-card-body">
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <h2>Efficient Workflow</h2>
+                            <h2>Game Changer</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <p>As a young member of our church's youth group, I've found this application to be a game-changer in our daily interactions. It keeps us informed about upcoming events and activities, facilitates communication with our peers, and even provides resources for our spiritual growth. It's made getting involved and staying engaged with the church so much more accessible and enjoyable.</p>
                         <div class="ratings">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
                         </div>
                     </div>
                     <div class="profile">
                         <div class="profile-image">
-                            <img src="image5.jpg">
+                            <img src="views/images/testimonial5.jpg">
                         </div>
                         <div class="profile-desc">
-                            <span>Person Name</span>
-                            <span>Description</span>
+                            <span>Ethan Fedirizo</span>
+                            <span>Youth Member</span>
                         </div>
                     </div>
                 </div>
@@ -575,24 +574,24 @@
                     <div class="test-card-body">
                         <div class="quote">
                             <i class="fa fa-quote-left"></i>
-                            <h2>Collaborative Platform</h2>
+                            <h2>Well Designed and User-Friendly</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                        <p>As a programmer and a member of our church's tech team, I was pleasantly surprised by how well-designed and user-friendly this application is. It's not only helped us automate various administrative tasks but also provides a solid platform for customization to meet our unique needs. Its flexibility and robust features have made my job as a programmer significantly easier, and it has truly enhanced our church's daily operations.</p>
                         <div class="ratings">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
                         </div>
                     </div>
                     <div class="profile">
                         <div class="profile-image">
-                            <img src="image6.jpg">
+                            <img src="views/images/testimonial3.jpg">
                         </div>
                         <div class="profile-desc">
-                            <span>Person Name</span>
-                            <span>Description</span>
+                            <span>Alex Abila</span>
+                            <span>Programmer and Tech Team Member</span>
                         </div>
                     </div>
                 </div>

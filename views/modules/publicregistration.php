@@ -104,6 +104,7 @@
                                   <option value="Aglipay">Aglipay</option>
                                   <option value="Ang Dating Daan">Ang Dating Daan</option>
                                   <option value="Baptist">Baptist</option>
+                                  <option value="Born Again">Born Again</option>
                                   <option  value="Catholic">Catholic</option>
                                   <option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
                                   <option value="Jehovah's Witnesses">Jehovah's Witnesses</option>

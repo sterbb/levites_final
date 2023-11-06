@@ -23,7 +23,7 @@ async function calculateTotalStorage(folderPath) {
   var totalSizeInMB = totalSize / (1024 * 1024);
   var progress;
   
-  if (totalSizeInMB >= 1024) {
+  if (totalSizeInMB >= 300) {
     // Limit progress to 100% if total size is greater than or equal to 1024 MB
     progress = 100;
   } else {

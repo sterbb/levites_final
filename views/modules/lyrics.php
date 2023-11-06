@@ -403,18 +403,13 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                             </div>
                             <hr>                                   
                         
-                        <div class="row">
+                        <div class="row playlist_section">
 
                             <?php
                                 $playlist = (new ControllerPlaylist)->ctrShowPlaylist();
                                 foreach ($playlist as $key => $value) {
                                     $accordionId = 'accordionExample_' . $key; // Unique ID for accordion
                                     $collapseId = 'collapseTwo_' . $key; // Unique ID for collapse element
-
-
-
-
-                                    
 
                                     echo '
                                     <div class="row mt-2">
@@ -468,7 +463,6 @@ if (isset($lyricsData['message']['body']['lyrics']['lyrics_body'])) {
                                                                 }
                                                             }
                                                          
-
                                         echo'
                                                             </ul>
                                                         </div>

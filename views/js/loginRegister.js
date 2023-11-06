@@ -17,7 +17,9 @@ $(function(){
       registerData.append("user_fname", fname);
       registerData.append("user_lname", lname);
       registerData.append("user_religion", religion);
-      registerData.append("user_email", email);
+
+      alert(email);
+     
 
 
         $.ajax({
@@ -196,14 +198,41 @@ $(function(){
               success: function(answer) {
                 console.log(answer);
                 if (answer == "success") {
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Account Created'
+                  });
+                
                   window.location.href = 'login';
                 } else {
-                  var alertHTML = '<div class="alert alert-container border-0 border-danger border-start border-4 bg-danger-subtle alert-dismissible fade show py-2 m-0 mt-2" style:>';
-                  alertHTML += '<div class="d-flex align-items-center">';
-                  alertHTML += '<div class="fs-3 text-danger"><i class="bx bx-error"></i></div>';
-                  alertHTML += '<div class="ms-3">';
-                  alertHTML += '<div class="text-danger">Code does not match.</div>';
-                  alertHTML += '</div></div><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                  const Toast = Swal.mixin({
+                    toast: true,  
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Verification does not match.'
+                  });
                    // Append the alert HTML to a container element
                 $('#alertContainer').html(alertHTML);
                 }
@@ -239,6 +268,7 @@ $(function(){
           $('.overlay').show();
         },
         success: function(answer) {
+          
           console.log(answer);
           const Toast = Swal.mixin({
             toast: true,
@@ -307,6 +337,23 @@ $(function(){
           processData: false,
           dataType: "text",
           success: function(answer) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            });
+          
+            Toast.fire({
+              icon: 'success',
+              title: 'Verification resend successfully'
+            });
+          
             console.log(answer);
           },
           error: function() {
@@ -342,6 +389,8 @@ $(function(){
 
             console.log(answer);
             if(answer == "success"){
+
+
               window.location.href= 'verifyForget';
             }
           },
@@ -396,7 +445,23 @@ $(function(){
                   if (answer == "success") {
                     window.location.href = 'resetpassword';
                   } else {
-                    alert("Code does not match");
+                    const Toast = Swal.mixin({
+                      toast: true,  
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 6000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    });
+                  
+                    Toast.fire({
+                      icon: 'error',
+                      title: 'Verification does not match.'
+                    });
+        
                   }
                 },
                 error: function() {
@@ -431,6 +496,23 @@ $(function(){
          },
           success: function(answer) {
             console.log(answer);
+            const Toast = Swal.mixin({
+              toast: true,  
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 6000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            });
+          
+            Toast.fire({
+              icon: 'success',
+              title: 'Changed password successfully'
+            });
+
             if(answer == "success"){
               window.location.href= 'login';
             }

@@ -56,13 +56,16 @@
 
        
                         <div class="nav flex-column nav-pills border rounded vertical-pills event_type_list d-flex flex-column overflow-auto" style="max-height: 350px;">
-                              <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="fas fa-book-open me-2"></i>Bible Study</button>
-                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="fas fa-hands-helping me-2"></i>Outreach</button>
-                              <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="fas fa-tools me-2"></i>Workshop</button>
-                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="fas fa-church me-2"></i>Sunday Worship</button>
-                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="fas fa-praying-hands me-2"></i>Prayer Meeting</button>
-                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="fas fa-water me-2"></i>Baptismal</button>
-                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WeddingSection" type="button"><i class="fas fa-ring me-2"></i>Wedding</button>
+                              <button class="nav-link active px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BibleStudySection" type="button"><i class="fas fa-book-open me-2" style="color:#6CAE75;"></i>Bible Study</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#OutreachSection" type="button"><i class="fas fa-hands-helping me-2" style="color:#5285C5;"></i>Outreach</button>
+                              <button class="nav-link  px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WorkshopSection" type="button"><i class="fas fa-tools me-2" style="color:#F9A646;"></i>Workshop</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#SundayWorshipSection" type="button"><i class="fas fa-church me-2" style="color:#A17EBF;"></i>Sunday Worship</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#PrayerMeetingSection" type="button"><i class="fas fa-praying-hands me-2" style="color:#FF7F50;"></i>Prayer Meeting</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#BaptismalSection" type="button"><i class="fas fa-water me-2" style="color:#4FA1D8;"></i>Baptismal</button>
+                              <button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#WeddingSection" type="button"><i class="fas fa-ring me-2" style="color:#D55C88;"></i>Wedding</button>
+
+
+
 
                         
                       
@@ -75,6 +78,35 @@
                                 <script>
             
                                     $(document).ready(function() {
+
+                                      
+                                        var randomColors = [
+                                          "#E9967A",
+                                          "#4B0082",
+                                          "#8B4513",
+                                          "#DDA0DD",
+                                          "#20B2AA",
+                                          "#B0C4DE",
+                                          "#00FF00",
+                                          "#FF00FF",
+                                          "#800000",
+                                          "#008080",
+                                          "#FFD700",
+                                          "#ADFF2F",
+                                          "#FFE4B5",
+                                          "#FA8072",
+                                          "#00FA9A",
+                                          "#D2691E",
+                                          "#800080",
+                                          "#008000",
+                                          "#2E8B57",
+                                          "#C71585"
+                                        ];
+                                                          
+                                        var colorIndex = 0;
+
+      
+                                      
                                       // Your Ajax code here
                                       $.ajax({
                                         url: 'models/showEventTypes.php',
@@ -85,9 +117,17 @@
                                           var eventsList = '';
                           
                                           response.forEach((type) =>{
-                                            eventsList +=
-                                            '<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#'+ type.type_name.replace(/\s/g, '') +'Section" type="button"><i class="fas fa-regular fa-calendar-days me-2"></i>'+ type.type_name +'</button>';
 
+                                            if(colorIndex == randomColors.length){
+                                            colorIndex = 0;
+                                          }
+
+                                          var current_color = randomColors[colorIndex];
+
+                                            eventsList +=
+                                            '<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#'+ type.type_name.replace(/\s/g, '') +'Section" type="button"><i class="fas fa-regular fa-calendar-days me-2" style="color:'+current_color+ ';"></i>'+ type.type_name +'</button>';
+
+                                            colorIndex++;
                                           });
 
                                           $('.event_type_list').find('[data-bs-target="#WeddingSection"]').after(eventsList);
@@ -196,7 +236,7 @@
 
                                       <script>
               
-                                      $(document).ready(function() {
+                                  
                                         // Your Ajax code here
                                         $.ajax({
                                           url: 'models/showEventTypes.php',
@@ -212,17 +252,10 @@
                                             console.log('Error:', error);
                                           }
                                         });
-                                      });
+                           
                                     </script>
 
-                                    <div class="d-flex align-items-center justify-content-between py-2 px-2 border-bottom">
-                                        <div class="px-2">
-                                            <h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>Church Collaboration</h6>
-                                        </div>
-                                        <!-- ALIGN SA CENTER -->
-                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3"><i class="fadeIn animated bx bx-x"></i></button>
-                                        </div>
-                                    </div>
+            
                             
 
                                  
@@ -365,7 +398,7 @@
                 </div>
 
               <script>
-                $(document).ready(function() {
+
                   // Your Ajax code here
                   $.ajax({
                     url: 'models/showEventTypes.php',
@@ -416,7 +449,7 @@
                       console.log('Error:', error);
                     }
                   });
-                });
+          
                 </script>
 
             </div>

@@ -1774,6 +1774,8 @@ $(function () {
   // Create the chart and render it
   var chart = new ApexCharts(document.querySelector("#report"), options);
   chart.render();
+
+
   
   // Call the function to fetch event counts and update the chart
   fetchEventCounts();

@@ -50,7 +50,23 @@ $("#submitUser").click(function(e) {
                 console.log(answer);
                 clearFields();
 
- 
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Sub-user created succesfully.'
+                  });
+
             },
             error: function() {
 
@@ -105,8 +121,24 @@ $("#submitMemberBtn").click(function(e) {
         processData: false,
         dataType: "text",
         success: function(answer) {
-            console.log(answer);
             clearFields();
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              });
+            
+              Toast.fire({
+                icon: 'success',
+                title: 'Promoted member succesfully.'
+              });
 
 
         },
@@ -122,8 +154,6 @@ $("#submitMemberBtn").click(function(e) {
 
 // CLEAR INPUT
 $(".UserAccountForm").reset(function() {
-
-
     clear();
 });
 

@@ -51,7 +51,7 @@
                                 </div>
 
                             <div class="col-12">
-                                <span style="font-weight:normal;">Remember to check your spam folder or unblock janryandivinagracia25@gmail.com if you can't find the message</span></span>
+                                <span style="font-weight:normal;">Remember to check your spam folder or unblock levites@levites.net if you can't find the message</span></span>
                             </div>
                         </form>
 				    </div>
