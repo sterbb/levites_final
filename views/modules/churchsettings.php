@@ -13,8 +13,6 @@ $stmt->execute();
 $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
 
 
-
-
 ?>
 
 
@@ -22,18 +20,18 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
     <div class="card overflow-hidden">
 
    
-        <img class="position-relative mb-4 border-bottom"  src="<?php echo "./views/UploadBack/".$profile['Back']?>" id="userBackground" name="userBackFile" style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat; height: 15rem;  background-position: center;">
+        <img class="position-relative mb-4 border-bottom"  src="<?php echo "./views/UploadBack/".$profile['Back']?>" id="userBackground" name="userBackFile" style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat; height: 20rem;  background-position: center;">
         <input type="file" id="userBack" name="userBack" class="position-absolute" style="top: 220; right: 140px; opacity: 0;" >
-        <label for="userBack" class="position-absolute btn btn-secondary rounded-circle" style="top: 220px; right: 140px; font-size: 18px;">
+        <label for="userBack" class="position-absolute btn btn-secondary rounded-circle" style="top: 290px; right: 140px; font-size: 18px;">
             <i class="fadeIn animated bx bx-upload"></i>
         </label>
         
-        <div class="user-profile-avatar  position-absolute translate-middle-x "  style="top: 120px; ">
+        <div class="user-profile-avatar  position-absolute translate-middle-x "  style="top: 200px; ">
             <img id="userProfileImage" src="<?php echo "./views/UploadAvatar/".$profile['Avatar']?>" style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat;   background-position: center;"  >
         </div>
             
         <input type="file" id="userAvatar" name="userAvatar" class="position-absolute" style="top: 220px; left: 140px; opacity: 0;" >
-        <label for="userAvatar" class="position-absolute btn btn-secondary rounded-circle" style="top: 220px; left: 140px; font-size: 18px;">
+        <label for="userAvatar" class="position-absolute btn btn-secondary rounded-circle" style="top: 290px; left: 140px; font-size: 18px;">
             <i class="fadeIn animated bx bx-upload"></i>
         </label>
 
@@ -125,7 +123,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                 <div class="card-body p-4">
                     <form id="updateChurch" method="POST">
                         <div class="row mb-3">
-                            <label for="NewChurch_name" class="col-sm-3 col-form-label">Church Name *</label>
+                            <label for="NewChurch_name" class="col-sm-3 col-form-label">Church Name  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="NewChurch_name" value="<?php $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
@@ -138,7 +136,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
 
                         <div class="row mb-3">
-                            <label for="contact" class="col-sm-3 col-form-label">Contact Details *</label>
+                            <label for="contact" class="col-sm-3 col-form-label">Contact Details  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="contact" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -148,7 +146,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="fname" class="col-sm-3 col-form-label">First Name *</label>
+                            <label for="fname" class="col-sm-3 col-form-label">First Name  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -158,7 +156,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="lname" class="col-sm-3 col-form-label">Last Name *</label>
+                            <label for="lname" class="col-sm-3 col-form-label">Last Name  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -169,7 +167,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
                         <div class="row mb-3">
 
-                        <label for="designation" class="col-sm-3 col-form-label">Designation *</label>
+                        <label for="designation" class="col-sm-3 col-form-label">Designation  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -181,7 +179,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
 
                      
                         <div class="row mb-3">
-                            <label for="email" class="col-sm-3 col-form-label">Email Address *</label>
+                            <label for="email" class="col-sm-3 col-form-label">Email Address  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
@@ -192,7 +190,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
 
                         <div class="row mb-3">
-                            <label for="church_num" class="col-sm-3 col-form-label">Church Number *</label>
+                            <label for="church_num" class="col-sm-3 col-form-label">Church Number  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="church_num" name="church_num" placeholder="Church Number" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
@@ -203,7 +201,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
 
                         <div class="row mb-3">
-                            <label for="username" class="col-sm-3 col-form-label">Username *</label>
+                            <label for="username" class="col-sm-3 col-form-label">Username  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -213,7 +211,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="password" class="col-sm-3 col-form-label"> Password *</label>
+                            <label for="password" class="col-sm-3 col-form-label"> Password  <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="password" name="password" placeholder="Choose Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -223,7 +221,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="conpassword" class="col-sm-3 col-form-label">Confirm Password *</label>
+                            <label for="conpassword" class="col-sm-3 col-form-label">Confirm Password<sup style='color:red;'> *</sup></label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="conpassword" name="confirm_password" placeholder="Confirm Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
                                 foreach($admin as $key => $value){
@@ -266,15 +264,17 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             <label for="church_region" class="col-sm-3 col-form-label">Region <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <select name="church_region" class="form-select" id="church_region" required>
+                                <input type="hidden" class="form-control " name="church_region_text" id="church_region_text" required>
+
                                     <?php
-                                    $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                    foreach ($admin as $value) {
-                                        $selected = ''; // Initialize the selected attribute
-                                        if ($value['church_region'] == $selected) {
-                                            $selected = 'selected'; // Set selected if it matches the selected value
-                                        }
-                                        echo "<option value='{$value['church_region']}' $selected>{$value['church_region']}</option>";
-                                    }
+                                    // $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                    // foreach ($admin as $value) {
+                                    //     $selected = ''; // Initialize the selected attribute
+                                    //     if ($value['church_region'] == $selected) {
+                                    //         $selected = 'selected'; // Set selected if it matches the selected value
+                                    //     }
+                                    //     echo "<option value='{$value['church_region']}' $selected>{$value['church_region']}</option>";
+                                    // }
                                     ?>
                                 </select>
                             </div>
@@ -300,29 +300,18 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
 
                         <div class="row mb-3">
-                            <label for="Newchurch_street" class="col-sm-3 col-form-label">Street <sup style='color:red;'>  *</sup></label>
+                            <label for="church_street" class="col-sm-3 col-form-label">Street <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control " id="Newchurch_street" name="Newchurch_street" placeholder="e.g. Henares" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                <input type="text" class="form-control " id="newchurch_street" name="church_street" placeholder="e.g. Henares"  value="<?php  $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
                                     echo $value['church_street'];
                                 }
-                                ?>" >
+                                ?> ">
                             </div>
 
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="church_num" class="col-sm-3 col-form-label">Church Contact *</label>
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="church_num" name="church_num" placeholder="Enter Church Number"  value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                    foreach($admin as $key => $value){
-                                        echo $value['church_num'];
-                                    }
-                                ?>" >
-                            </div>
-                        </div>
-
-
+                
                     
                                         <hr>
                         <div class="row">

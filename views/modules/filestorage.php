@@ -53,25 +53,47 @@
                   $requests = (new CollaborationController)->ctrshowAffilatedChurches();
                   foreach($requests as $key => $value){
 
-                      $churchname;
-                      $churchid;
-
-                      if (array_key_exists("churchid1", $value)) {
-                          // Key exists in the array
-                          $churchid = $value["churchid1"];
-                          $churchname = $value["churchname1"];
-                      } else {
-                          // Key is undefined
-                          $churchid = $value["churchid2"];
-                          $churchname = $value["churchname2"];
+                    $db = new Connection();
+                    $pdo = $db->connect();
+  
+                    foreach ($requests as $key => $value) {
+                        $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                        
+                        if (isset($value['churchid1'])) {
+                            $stmt->bindParam(':churchID', $value['churchid1'], PDO::PARAM_STR);
+                        } elseif (isset($value['churchid2'])) {
+                            $stmt->bindParam(':churchID', $value['churchid2'], PDO::PARAM_STR);
+                        } else {
+                            // Handle the case where there is no valid church ID
+                            continue; // Skip this iteration
+                        }
+  
+                        $stmt->execute();
+                        $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+  
+                        $churchname = '';
+                        $churchid = '';
+  
+                        if (isset($value['churchid1']) && isset($value['churchname1'])) {
+                            $churchid = $value['churchid1'];
+                            $churchname = $value['churchname1'];
+                        } elseif (isset($value['churchid2']) && isset($value['churchname2'])) {
+                            $churchid = $value['churchid2'];
+                            $churchname = $value['churchname2'];
+                        }
+  
+                        $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
+                        // Check if the church has a custom image, if not, use a default image
+                        if (empty($profile['Avatar']) || !file_exists($imagePath)) {
+                            $imagePath = "./views/images/default.png";
+                        }
                       }
-
 
                       echo '
                           <button class="affiliatesSection border border-0 bg-transparent " value="'.$value['collabID'].'" church_name="'.$churchname.'">
                             <div class="d-flex text-start mt-3">
-                              <div class="fm-file-box bg-light-primary text-primary mr-1">
-                                <img src="views/images/sanseb.jpg" alt="Responsive image" class="img-thumbnail">
+                              <div class="fm-file-box bg-light-primary text-primary mr-1" >
+                              <img src="'.$imagePath.'"alt="Responsive image" class="img-thumbnail">
                               </div>
                               <div class="flex-grow-1 ms-2">
                                 <h6 class="mb-0 cursor-pointer">'.$churchname.'</h6>

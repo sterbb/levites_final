@@ -390,7 +390,7 @@ static public function mdlshowMembership(){
     $acc_id = $_COOKIE['church_id'];
     $status = 0;
 
-    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status AND canmship_status = :canmship_status AND membership_status = :membership_status ORDER BY membershipDate DESC");
+    $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName,memberEmail FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status AND canmship_status = :canmship_status AND membership_status = :membership_status ORDER BY membershipDate DESC");
     $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
     $stmt->bindParam(':rejmship_status', $status, PDO::PARAM_INT);
     $stmt->bindParam(':membership_status', $status, PDO::PARAM_INT);
@@ -409,7 +409,7 @@ static public function mdlshowMembership(){
 
   
 
-        $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status");
+        $stmt = (new Connection)->connect()->prepare("SELECT mshipID, memberID, memberName, membershipDate, memberEmail FROM membership WHERE memChurchID = :memChurchID AND rejmship_status = :rejmship_status");
         $stmt->bindParam(':memChurchID', $acc_id, PDO::PARAM_STR);
         $stmt->bindParam(':rejmship_status', $status, PDO::PARAM_INT);
         $stmt->execute();

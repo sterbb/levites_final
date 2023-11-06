@@ -581,7 +581,7 @@ class ModelCalendar{
 
 
             
-            $stmt = $pdo->prepare("UPDATE calendar SET event_title = :event_title, event_date = :event_date, event_category = :event_category, event_venue = :event_venue, event_location = :event_location, event_announcement = :event_announcement, event_time = :event_time WHERE eventID = :eventID AND churchID = :churchID" );
+            $stmt = $pdo->prepare("UPDATE calendar SET event_title = :event_title, event_date = :event_date, event_category = :event_category, event_venue = :event_venue, event_location = :event_location, event_announcement = :event_announcement, event_time = :event_time, event_time2 = :event_time2 WHERE eventID = :eventID AND churchID = :churchID" );
 
             // $stmt = $pdo->prepare("INSERT INTO register (AccountID,acc_username,acc_password,acc_email,acc_type,fname,lname,designation,acc_contact,religion,verify_token,created_at) 
             // VALUES (:AccountID,:acc_username,:acc_password,:acc_email,:acc_type,:fname,:lname,:designation,:acc_contact,:religion,:verify_token,:created_at)");
@@ -599,6 +599,9 @@ class ModelCalendar{
 			$stmt->bindParam(":event_announcement", $data["new_announcement"]);
 
 			$stmt->bindParam(":event_time", $data["new_eventtime1"]);
+
+			$stmt->bindParam(":event_time2", $data["new_eventtime2"]);
+
 	
 	
 

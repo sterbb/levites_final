@@ -23,8 +23,6 @@ class ControllerSuperuser{
 
 
 
-
-
 	static public function ctrShowChurchListExplore($data){
         return $answer = (new ModelSuperUser)->mdlShowChurchListExplore($data);
 	}
@@ -49,6 +47,12 @@ class ControllerSuperuser{
 	static public function ctrRejectChurch($data){
         return $answer = (new ModelSuperUser)->mdlRejectChurch($data);
 	}
+
+	static public function ctrGetChurchDetailsOnly($data){
+        return $answer = (new ModelSuperUser)->mdlGetChurchDetailsOnly($data);
+	}
+	
+	
 	
 	
 	

@@ -68,40 +68,56 @@ $(function(){
 
     $(".addEventForm").submit(function(e){
         e.preventDefault();
-
+        Swal.fire({
+          title: 'Confirm Submission',
+          text: 'Are you sure you want to save this event information?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, save',
+          cancelButtonText: 'No, cancel'
+      }).then((result) => {
+          if (result.isConfirmed) {
 
         function formatTimeWithLeadingZero(time) {
           return time < 10 ? `0${time}` : time;
         }
         
-        var startHour = parseInt($("#event_time1").val().split(':')[0]);
-        var startMinute = parseInt($("#event_time1").val().split(':')[1]);
-        var startAMPM = startHour >= 12 ? 'PM' : 'AM';
-        
-        if (startHour === 0) {
-          startHour = 12;
-        } else if (startHour > 12) {
-          startHour -= 12;
-        }
-        
-        
-        var endHour = parseInt($("#event_time2").val().split(':')[0]);
-        var endMinute = parseInt($("#event_time2").val().split(':')[1]);
-        var endAMPM = endHour >= 12 ? 'PM' : 'AM';
-        
+          var startHour = parseInt($("#event_time1").val().split(':')[0]);
+          var startMinute = parseInt($("#event_time1").val().split(':')[1]);
+          var startAMPM = startHour >= 12 ? 'PM' : 'AM';
 
-        if (endHour === 0) {
-          endHour = 12;
-        } else if (endHour > 12) {
-          endHour -= 12;
-        }
+          if (startHour === 0) {
+              startHour = 12;
+          } else if (startHour > 12) {
+              startHour -= 12;
+          }
+
+          var endHour = parseInt($("#event_time2").val().split(':')[0]);
+          var endMinute = parseInt($("#event_time2").val().split(':')[1]);
+          var endAMPM = endHour >= 12 ? 'PM' : 'AM';
+
+          if (endHour === 0) {
+              endHour = 12;
+          } else if (endHour > 12) {
+              endHour -= 12;
+          }
+
+       
+        if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
+          Swal.fire({
+              title: 'Invalid Time Range',
+              text: 'The start time should be earlier than the end time.',
+              icon: 'error',
+          });
+          return; // Prevent form submission
+      }
+
        
         var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
         var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
         
         var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM
                           
-  
         var event_time2 =    endHour + ':' + formattedEndMinute + ' ' + endAMPM;
 
         var daterange = $("#event_date").val();
@@ -147,7 +163,24 @@ $(function(){
               processData: false,
               dataType: "text",
               success: function(answer) {
-                console.log(answer);
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Add event successfully.'
+                  });
+                  console.log(answer);
+                  $("#report_accountID").val('');
                 eventID = answer;
 
 
@@ -205,6 +238,7 @@ $(function(){
                       dataType: "text",
                       success: function(answer) {
                         console.log(answer);
+                        
                           
                     
                       },
@@ -229,8 +263,8 @@ $(function(){
               }
           });
         
-
-
+        }
+      });
 
         
     });
@@ -1007,139 +1041,178 @@ function editEventDetails(element){
 };
 
 function NewEditEvent() {
+  Swal.fire({
+      title: 'Confirm Submission',
+      text: 'Are you sure you want to edit this event information?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, save',
+      cancelButtonText: 'No, cancel'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          var event_id = $("#churchevent_id").val();
+          var new_title = $("#edit_event_title").val();
+          var new_date = $("#edit_event_date").val();
+          var new_category = $("#edit_event_type").val();
+          var new_venue = $("#edit_event_venue").val();
+          var new_location = $("#edit_event_location").val();
+          var new_announcement = $("#edit_event_announcement").val();
 
-  var event_id = $("#churchevent_id").val() 
+          function formatTimeWithLeadingZero(time) {
+              return time < 10 ? `0${time}` : time;
+          }
 
+          var startHour = parseInt($("#edit_event_time1").val().split(':')[0]);
+          var startMinute = parseInt($("#edit_event_time1").val().split(':')[1]);
+          var startAMPM = startHour >= 12 ? 'PM' : 'AM';
 
-  var new_title = $("#edit_event_title").val(); 
+          if (startHour === 0) {
+              startHour = 12;
+          } else if (startHour > 12) {
+              startHour -= 12;
+          }
 
-  var new_date = $("#edit_event_date").val();
+          var endHour = parseInt($("#edit_event_time2").val().split(':')[0]);
+          var endMinute = parseInt($("#edit_event_time2").val().split(':')[1]);
+          var endAMPM = endHour >= 12 ? 'PM' : 'AM';
 
-  var new_category = $("#edit_event_type").val();
+          if (endHour === 0) {
+              endHour = 12;
+          } else if (endHour > 12) {
+              endHour -= 12;
+          }
 
-  var new_venue = $("#edit_event_venue").val();
+          var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
+          var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
 
-  var new_location = $("#edit_event_location").val();
+          var new_eventtime1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM;
+          var new_eventtime2 = endHour + ':' + formattedEndMinute + ' ' + endAMPM;
 
-  var new_announcement = $("#edit_event_announcement").val();
+          if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
+              Swal.fire({
+                  title: 'Invalid Time Range',
+                  text: 'The start time should be earlier than the end time.',
+                  icon: 'error'
+              });
+              return; // Prevent form submission
+          }
 
+          console.log(new_eventtime1);
 
-  function formatTimeWithLeadingZero(time) {
-    return time < 10 ? `0${time}` : time;
-  }
-  
-  var startHour = parseInt($("#edit_event_time1").val().split(':')[0]);
-  var startMinute = parseInt($("#edit_event_time1").val().split(':')[1]);
-  var startAMPM = startHour >= 12 ? 'PM' : 'AM';
-  
-  if (startHour === 0) {
-    startHour = 12;
-  } else if (startHour > 12) {
-    startHour -= 12;
-  }
-  
-  var endHour = parseInt($("#edit_event_time2").val().split(':')[0]);
-  var endMinute = parseInt($("#edit_event_time2").val().split(':')[1]);
-  var endAMPM = endHour >= 12 ? 'PM' : 'AM';
-  
-  if (endHour === 0) {
-    endHour = 12;
-  } else if (endHour > 12) {
-    endHour -= 12;
-  }
-  
-  var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
-  var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
-  
-  var new_eventtime1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM + ' to ' +
-                       endHour + ':' + formattedEndMinute + ' ' + endAMPM;
-  
-  console.log(new_eventtime1);
+          var updateEvents = new FormData();
+          updateEvents.set("event_id", event_id);
+          updateEvents.set("new_title", new_title);
+          updateEvents.set("new_date", new_date);
+          updateEvents.set("new_category", new_category);
+          updateEvents.set("new_venue", new_venue);
+          updateEvents.set("new_location", new_location);
+          updateEvents.set("new_announcement", new_announcement);
+          updateEvents.set("new_eventtime1", new_eventtime1);
+          updateEvents.set("new_eventtime2", new_eventtime2);
 
+          $.ajax({
+              url: "ajax/update_eventDetails.ajax.php",
+              method: "POST",
+              data: updateEvents,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "text",
+              success: function (answer) {
+                  const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer);
+                          toast.addEventListener('mouseleave', Swal.resumeTimer);
+                      }
+                  });
 
+                  Toast.fire({
+                      icon: 'success',
+                      title: 'Edit event successfully.'
+                  });
 
-  var updateEvents = new FormData();
-  updateEvents.set("event_id", event_id); 
-
-  updateEvents.set("new_title", new_title);
-
-  updateEvents.set("new_date", new_date);
-
-  updateEvents.set("new_category", new_category);
-
-  updateEvents.set("new_venue", new_venue);
-
-  updateEvents.set("new_location", new_location);
-
-  updateEvents.set("new_announcement", new_announcement);
-
-  updateEvents.set("new_eventtime1", new_eventtime1);
-
-
-
-
-  $.ajax({
-      url: "ajax/update_eventDetails.ajax.php",
-      method: "POST",
-      data: updateEvents,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "text",
-      success: function(answer) {
-          // Load the content into the modal
-          location.reload(answer);
-
-  
-
-
-
-
-        },
-        error: function(xhr, status, error) {
-          alert(error);
-          console.log(error);
-        }
-  });
-
-
-};
-
-
-function deleteEvents(element) {
-
-  var eventID = $(element).attr('id');
-
-  var deleteEvent = new FormData();
-  deleteEvent.append("eventID", eventID);
-
-  //it is just the same because it is updating
-  $.ajax({
-      url: "ajax/delete_eventDetails.ajax.php",
-      method: "POST",
-      data: deleteEvent,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType: "text",
-      success: function(answer) {
-          console.log(answer);
-          location.reload();
-
-
-      },
-      error: function() {
-          Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
+                  console.log(answer);
+                  $("#report_accountID").val('');
+                  location.reload();
+              },
+              error: function (xhr, status, error) {
+                  alert(error);
+                  console.log(error);
+              }
           });
-      },
-      complete: function() {
-          // Handle any completion tasks if needed
       }
   });
 }
+
+
+function deleteEvents(element) {
+  var eventID = $(element).attr('id');
+
+  // Show a confirmation Swal before deleting
+  Swal.fire({
+      title: 'Confirm Deletion',
+      text: 'Are you sure you want to delete this event?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete',
+      cancelButtonText: 'No, cancel'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          // User confirmed the deletion
+
+          var deleteEvent = new FormData();
+          deleteEvent.append("eventID", eventID);
+
+          $.ajax({
+              url: "ajax/delete_eventDetails.ajax.php",
+              method: "POST",
+              data: deleteEvent,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "text",
+              success: function (answer) {
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Edit event successfully.'
+                  });
+                  console.log(answer);
+                  $("#report_accountID").val('');
+                location.reload();
+  
+              },
+              error: function () {
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Something went wrong!',
+                  });
+              },
+              complete: function () {
+                  // Handle any completion tasks if needed
+              }
+          });
+      }
+  });
+}
+
 
   // Event delegation for dynamically added elements
   $('.created_eventtypes_section').on('click', '.deleteEventType', function() {

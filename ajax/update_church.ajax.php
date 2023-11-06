@@ -7,7 +7,14 @@ require_once "../models/churchsetting.model.php";
 class updateChurch {
 
     public $Newchurch_name;
-    public $Newchurch_address;
+
+
+    public $Newregion;
+    public $Newprovince;
+    public $Newbarangay;
+    public $Newstreet;
+
+
     public $Newcontact;
     public $Newfname;
 
@@ -34,7 +41,15 @@ class updateChurch {
 
     public function updateChurches(){
         $Newchurch_name = $this -> Newchurch_name;
-        $Newchurch_address = $this -> Newchurch_address;
+        
+        $Newregion = $this -> Newregion;
+        $Newprovince = $this -> Newprovince;
+        $Newbarangay = $this -> Newbarangay;
+        $Newstreet = $this -> Newstreet;
+
+
+
+
         $Newcontact = $this -> Newcontact;
         $Newfname = $this -> Newfname;
 
@@ -56,7 +71,16 @@ class updateChurch {
 
 
         $data = array("Newchurch_name"=>$Newchurch_name,
-        "Newchurch_address"=>$Newchurch_address,
+        
+        "Newregion"=>$Newregion,
+        "Newprovince"=>$Newprovince,
+        "Newbarangay"=>$Newbarangay,
+        "Newstreet"=>$Newstreet,
+
+
+
+
+
         "Newcontact"=>$Newcontact,
         "Newfname"=>$Newfname,
 
@@ -91,7 +115,14 @@ $updateChurchDetails = new updateChurch();
 
 $updateChurchDetails -> Newchurch_name = $_POST["Newchurch_name"];
 
-$updateChurchDetails -> Newchurch_address = $_POST["Newchurch_address"];
+
+$updateChurchDetails -> Newregion = $_POST["Newregion"];
+$updateChurchDetails -> Newprovince = $_POST["Newprovince"];
+$updateChurchDetails -> Newbarangay = $_POST["Newbarangay"];
+$updateChurchDetails -> Newstreet = $_POST["Newstreet"];
+
+    
+
 
 $updateChurchDetails -> Newcontact = $_POST["Newcontact"];
 

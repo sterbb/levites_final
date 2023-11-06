@@ -89,9 +89,19 @@ if (isset($_COOKIE["acc_type"])) {
     
     if (isset($stmt)) {
         $stmt->execute();
-        $Profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+        $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+
+        $imagePath = "views/images/default.png"; // Default value
+
+        if (!empty($profile['Avatar'])) {
+            $avatarPath = "./views/UploadAvatar/".$profile['Avatar'];
+            if (file_exists($avatarPath)) {
+                $imagePath = $avatarPath;
+            }
+        }
     }
 }
+
 ?>
 
 
@@ -216,6 +226,8 @@ if (isset($_COOKIE["acc_type"])) {
              
                 
                     <?php 
+                    // echo "<script src='".base_url()."/assets/js/admin.js'></script>";
+                   
                     if($_COOKIE["acc_type"]  == "public"){
                       $notif = (new ControllerNotifications)->ctrGetCollaborationNotifPUblic();
                     }else{
@@ -223,7 +235,7 @@ if (isset($_COOKIE["acc_type"])) {
                     }
              
                     foreach($notif as $key => $value){
-
+                      
                       if($value['notification_type'] == "Rejected"){
                         if(str_contains($value['notification_title'], 'Request') || str_contains($value['notification_title'], 'Church')){
                           echo'<a class="dropdown-item" href="requests">';
@@ -327,7 +339,7 @@ if (isset($_COOKIE["acc_type"])) {
                 <div class="dropdown dropdown-center dropdown navbar-upperright">
                     <div class="dropdown-toggle d-flex align-items-center px-3 gap-3" data-bs-toggle="dropdown">
                       <div class="user-img">
-                        <img  src="<?php echo "./views/UploadAvatar/" . $Profile['Avatar']; ?>" style="background-image: url(views/images/default.png); background-size: cover ; background-repeat: no-repeat; background-position: center;" alt="" >
+                        <img class="border-2 border" src="<?php echo $imagePath ?>" style=" background-size: cover ;  background-repeat: no-repeat; background-position: center;" alt="" >
                       </div>
                       <div class="user-info">
                         <h5 class="mb-0 user-name"><?php

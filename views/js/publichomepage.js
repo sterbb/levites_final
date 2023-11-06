@@ -126,7 +126,14 @@ $(document).ready(function() {
                                                     .append(
                                                         $("<i>").addClass("bx bx-envelope"),
                                                         " "+ element.church_email
+                                                    ),
+
+                                                    $("<span>").addClass("badge bg-primary bg-primary-subtle text-primary border border-opacity-25 border-primary m-1")
+                                                    .append(
+                                                        $("<i>").addClass("bx bx-church"),
+                                                        " "+ element.religion
                                                     )
+
 
 
                                                        

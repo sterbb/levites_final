@@ -22,13 +22,44 @@
                         <div class="card-body" scrollable-y="true">
                             <?php 
                                     
-                                $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
+                                        $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
+                                        
+                                        $db = new Connection();
+                                        $pdo = $db->connect();
+                                        foreach($reports as $key => $value){
+                                        
+                                        $ID = $value['memID'];
+                                        $imagePath = "views/images/default.png"; // Default value
+                                        
+                                        if ($ID) {
+                                            $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE accID = :accID");
+                                            $stmt->bindParam(':accID', $ID, PDO::PARAM_STR);
+                                            $stmt->execute();
+                                            $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                                        
+                                            if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                                $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                            }
+                                        } else {
+                                            // If the user is not an admin, you can fetch the avatar from the "account" table here
+                                            $stmt = $pdo->prepare("SELECT Avatar FROM account WHERE AccountID = :AccountID");
+                                            $stmt->bindParam(':AccountID',$ID, PDO::PARAM_STR);
+                                            $stmt->execute();
+                                            $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        
+                                            if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                                $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                            }
+                                        }
+                                        
+                                                
 
-                                foreach($reports as $key => $value){
+
+
                                     echo '
                                             <div class="d-flex align-items-center gap-3">
                                             <div class="">
-                                                <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                                <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
                                             </div>
                                             <div class="flex-grow-1">
                                                 <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
@@ -70,25 +101,71 @@
 
                         $recipientDict = [];
 
-                        foreach ($reports as $report) {
-                            $recipientID = $report['recipientID'];
-                            if (!array_key_exists($recipientID, $recipientDict)) {
-                                $recipientDict[$recipientID] = [
-                                    'Count' => 0,
-                                    'Violation' => [],
-                                ];
+                            foreach ($reports as $report) {
+
+                                if(empty($report['recipientID'])){
+                                
+
+                                }else{
+                                    $recipientID = $report['recipientID'];
+                                    if (!array_key_exists($recipientID, $recipientDict)) {
+                                        $recipientDict[$recipientID] = [
+                                            'Count' => 0,
+                                            'Violation' => [],
+                                        ];
+                                    }
+        
+                                    $recipientDict[$recipientID]['Count']++;
+                                    $recipientDict[$recipientID]['Violation'][] = $report['notification_text'];
+
+                                }
+                    
                             }
 
-                            $recipientDict[$recipientID]['Count']++;
-                            $recipientDict[$recipientID]['Violation'][] = $report['notification_text'];
-                        }
+                            
+                            foreach($reports as $key => $value){
+
+                                    if(empty($value['recipientID'])){
+                                        $imagePath = "views/images/default.png"; // Default value
+
+                                    }else{
+
+                                            $ID = $value['recipientID'];
+
+                                            if ($ID) {
+                                                $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
+                                                $stmt->bindParam(':churchID', $ID, PDO::PARAM_STR);
+                                                $stmt->execute();
+                                                $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                                            
+                                                if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                                    $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                                }
+                                            } else {
+                                                // If the user is not an admin, you can fetch the avatar from the "account" table here
+                                                $stmt = $pdo->prepare("SELECT Avatar FROM account WHERE AccountID = :AccountID");
+                                                $stmt->bindParam(':AccountID',$ID, PDO::PARAM_STR);
+                                                $stmt->execute();
+                                                $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            
+                                                if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                                    $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+
+
 
         
                         foreach($recipientDict as $key => $value){
+
                             echo '
                                     <div class="d-flex align-items-center gap-3">
                                     <div class="">
-                                        <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                    <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h6 class="mb-1 fw-bold">'.$key.'<sup class="badge rounded-circle bg-warning " style="font-size:.8em; margin-left:.5em;">'.$value['Count'].'</sup></h6> 
@@ -134,11 +211,44 @@
                             
                             $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(0);
 
+                            $db = new Connection();
+                            $pdo = $db->connect();
+
+                            
                             foreach($reports as $key => $value){
+                                    
+                                $ID = $value['memID'];
+                             
+
+                                $imagePath = "views/images/default.png"; // Default value
+                                
+                                if ($ID) {
+                                    $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE accID = :accID");
+                                    $stmt->bindParam(':accID', $ID, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
+                                
+                                    if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                        $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                    }
+                                } else {
+                                    // If the user is not an admin, you can fetch the avatar from the "account" table here
+                                    $stmt = $pdo->prepare("SELECT Avatar FROM account WHERE AccountID = :AccountID");
+                                    $stmt->bindParam(':AccountID',$ID, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+                                
+                                    if (!empty($profile['Avatar']) && file_exists($imagePath)) {
+                                        $imagePath = "./views/UploadAvatar/" . $profile['Avatar'];
+                                    }
+                                }
+                                
+
+
                                 echo '
                                         <div class="d-flex align-items-center gap-3">
                                         <div class="">
-                                            <img src="views/images/ourlady.jpg" alt="" width="50" height="50" class="rounded-circle">
+                                        <img src="'.$imagePath.'" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
                                         </div>
                                         <div class="flex-grow-1">
                                             <h6 class="mb-1 fw-bold">'.$value['violation'].'</h6> 
