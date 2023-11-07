@@ -47,17 +47,131 @@ $(".addPlaylistForm").submit(function(e) {
                     success: function(answer) {
                         console.log(answer);
                         // Display a success Swal notification with a confirm button
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'Playlist added successfully!',
-                            confirmButtonText: 'OK',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Reload the system when the "OK" button is clicked
-                                location.reload();
+                        
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
                             }
-                        });
+                            });
+                        
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Playlist created successfully.'
+                            });
+
+                            var playlistData = new FormData();
+
+                            $.ajax({
+                                url: "ajax/async_playlist.ajax.php",
+                                method: "POST",
+                                data: playlistData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                dataType: "json",
+                                success: function(answer) {
+                                    console.log(answer);
+                                     $("#AddPlaylist").modal('hide');
+
+                                    var playlistList = document.querySelector('.playlist_section');
+                                    playlistList.innerHTML = ''
+                                    
+
+                                    let playlistHTML = '';
+
+                                    answer.forEach((value, key) => {
+                                        const accordionId = 'accordionExample_' + key;
+                                        const collapseId = 'collapseTwo_' + key;
+
+                                        playlistHTML += `
+                                            <div class="row mt-2">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="accordion col-12 col-xl-12" id="${value.playlist_name}-list">
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="headingTwo">
+                                                                <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                                                                    <input class="mb-0 border-0 text-dark h6" id="editing-${value.playlistID}-playlist-input" value="${value.playlist_name}" disabled>
+                                                                </button>
+                                                            </h2>
+                                                            <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#${value.playlist_name}-list">
+                                                                <div class="accordion-body">
+                                                                    <ul>
+                                        `;
+
+                                        const jsonStr = value.songs;
+                                        const dataArray = JSON.parse(jsonStr);
+
+                                        if (Array.isArray(dataArray)) {
+                                            dataArray.forEach(data => {
+                                                const trackID = data.trackID;
+                                                const title = data.title;
+
+                                                playlistHTML += `
+                                                    <li class="d-flex justify-content-between align-items-center mt-3 cursor-pointer">
+                                                        <span onclick="getSong(this)" trackID="${trackID}" class="" type="text" value="" id="flexCheckDefault" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">${title}</span>
+                                                        <button playlist_name="${value.playlist_name}" trackID="${trackID}" class="btn btn-sm delete-file ${value.playlistID}-playlist" onclick="removeSong(this)" hidden>
+                                                            <p hidden>${jsonStr}</p>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger">
+                                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                            </svg>
+                                                        </button>
+                                                    </li>
+                                                `;
+                                            });
+                                        }
+
+                                        playlistHTML += `
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 col-xl-12" style="margin-left:-5px">
+                                                            <button type="button" class="btn btn-transparent border-0" data-bs-toggle="dropdown">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info">
+                                                                    <path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
+                                                                </svg>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" id="${value.playlist_name}" onclick="setPlaylist(this)">Add Song</a><p hidden>${jsonStr}</p></li>
+                                                                <li><a type="button" class="dropdown-item" id="${value.playlistID}-playlist" onclick="editPlaylist(this)" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Edit Playlist</a></li>
+                                                                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#linkPlayslitModal" onclick="linkPlaylist(this)" songs="${value.songs}" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Link to Event</a></li>
+                                                                <li><a class="dropdown-item" type="button" onclick="downloadPlaylist(this)" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Download Playlist Songs</a><p hidden>${jsonStr}</p></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" type="button" id="${value.playlistID}" onclick="deletePlaylist(this)" playlistid="${value.playlistID}">Delete Playlist</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    });
+
+                                    playlistList.innerHTML += playlistHTML;
+                                    
+            
+                                },
+                                error: function() {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Something went wrong! dir?',
+                                    });
+                                },
+                                complete: function() {
+                                    // Handle any completion tasks if needed
+                                }
+                            });
+
+
+
                     },
                     error: function() {
                         Swal.fire({
@@ -105,8 +219,26 @@ function removeSong(element){
         processData: false,
         dataType: "text",
         success: function(answer) {
-            console.log(answer);
-            location.reload();
+    
+            var li = $(element).closest('li');
+            li.remove();
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                });
+            
+                Toast.fire({
+                icon: 'success',
+                title: 'Song remove successfully.'
+                });
 
 
         },
@@ -125,6 +257,8 @@ function removeSong(element){
 
 
 }
+
+
 
 function deletePlaylist(element) {
     var playlistID = $(element).attr('id');
@@ -151,18 +285,131 @@ function deletePlaylist(element) {
                 processData: false,
                 dataType: "text",
                 success: function(answer) {
-                    console.log(answer);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Delete Playlist successfully!',
-                        confirmButtonText: 'OK',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Reload the system when the "OK" button is clicked
-                            location.reload();
+                                
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
                         }
-                    });
+                        });
+                    
+                        Toast.fire({
+                        icon: 'success',
+                        title: 'Playlist created successfully.'
+                        });
+
+                                    
+                        var playlistData = new FormData();
+
+                        $.ajax({
+                            url: "ajax/async_playlist.ajax.php",
+                            method: "POST",
+                            data: playlistData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            dataType: "json",
+                            success: function(answer) {
+                                console.log(answer);
+                                $("#AddSongs").modal('hide');
+
+                                var playlistList = document.querySelector('.playlist_section');
+                                playlistList.innerHTML = ''
+                                
+
+                                let playlistHTML = '';
+
+                                answer.forEach((value, key) => {
+                                    const accordionId = 'accordionExample_' + key;
+                                    const collapseId = 'collapseTwo_' + key;
+
+                                    playlistHTML += `
+                                        <div class="row mt-2">
+                                            <div class="d-flex align-items-center">
+                                                <div class="accordion col-12 col-xl-12" id="${value.playlist_name}-list">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" id="headingTwo">
+                                                            <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                                                                <input class="mb-0 border-0 text-dark h6" id="editing-${value.playlistID}-playlist-input" value="${value.playlist_name}" disabled>
+                                                            </button>
+                                                        </h2>
+                                                        <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#${value.playlist_name}-list">
+                                                            <div class="accordion-body">
+                                                                <ul>
+                                    `;
+
+                                    const jsonStr = value.songs;
+                                    const dataArray = JSON.parse(jsonStr);
+
+                                    if (Array.isArray(dataArray)) {
+                                        dataArray.forEach(data => {
+                                            const trackID = data.trackID;
+                                            const title = data.title;
+
+                                            playlistHTML += `
+                                                <li class="d-flex justify-content-between align-items-center mt-3 cursor-pointer">
+                                                    <span onclick="getSong(this)" trackID="${trackID}" class="" type="text" value="" id="flexCheckDefault" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">${title}</span>
+                                                    <button playlist_name="${value.playlist_name}" trackID="${trackID}" class="btn btn-sm delete-file ${value.playlistID}-playlist" onclick="removeSong(this)" hidden>
+                                                        <p hidden>${jsonStr}</p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger">
+                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                        </svg>
+                                                    </button>
+                                                </li>
+                                            `;
+                                        });
+                                    }
+
+                                    playlistHTML += `
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-xl-12" style="margin-left:-5px">
+                                                        <button type="button" class="btn btn-transparent border-0" data-bs-toggle="dropdown">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info">
+                                                                <path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
+                                                            </svg>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" id="${value.playlist_name}" onclick="setPlaylist(this)">Add Song</a><p hidden>${jsonStr}</p></li>
+                                                            <li><a type="button" class="dropdown-item" id="${value.playlistID}-playlist" onclick="editPlaylist(this)" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Edit Playlist</a></li>
+                                                            <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#linkPlayslitModal" onclick="linkPlaylist(this)" songs="${value.songs}" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Link to Event</a></li>
+                                                            <li><a class="dropdown-item" type="button" onclick="downloadPlaylist(this)" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Download Playlist Songs</a><p hidden>${jsonStr}</p></li>
+                                                            <li><hr class="dropdown-divider"></li>
+                                                            <li><a class="dropdown-item text-danger" type="button" id="${value.playlistID}" onclick="deletePlaylist(this)" playlistid="${value.playlistID}">Delete Playlist</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                });
+
+                                playlistList.innerHTML += playlistHTML;
+                                
+        
+                            },
+                            error: function() {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'Something went wrong! dir?',
+                                });
+                            },
+                            complete: function() {
+                                // Handle any completion tasks if needed
+                            }
+                        });
+
+
                 },
                 error: function() {
                     Swal.fire({
@@ -331,8 +578,130 @@ $('#addToPlaylist').click(function() {
                     processData: false,
                     dataType: "text",
                     success: function(answer) {
-                        console.log(answer);
-                        location.reload();
+
+                           const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                            });
+                        
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Song added to playlist successfully.'
+                            });
+                            
+                            var playlistData = new FormData();
+
+                            $.ajax({
+                                url: "ajax/async_playlist.ajax.php",
+                                method: "POST",
+                                data: playlistData,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                dataType: "json",
+                                success: function(answer) {
+                                    console.log(answer);
+                                    $("#AddSongs").modal('hide');
+
+                                    var playlistList = document.querySelector('.playlist_section');
+                                    playlistList.innerHTML = ''
+                                    
+
+                                    let playlistHTML = '';
+
+                                    answer.forEach((value, key) => {
+                                        const accordionId = 'accordionExample_' + key;
+                                        const collapseId = 'collapseTwo_' + key;
+
+                                        playlistHTML += `
+                                            <div class="row mt-2">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="accordion col-12 col-xl-12" id="${value.playlist_name}-list">
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="headingTwo">
+                                                                <button class="accordion-button collapsed font-weight-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
+                                                                    <input class="mb-0 border-0 text-dark h6" id="editing-${value.playlistID}-playlist-input" value="${value.playlist_name}" disabled>
+                                                                </button>
+                                                            </h2>
+                                                            <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#${value.playlist_name}-list">
+                                                                <div class="accordion-body">
+                                                                    <ul>
+                                        `;
+
+                                        const jsonStr = value.songs;
+                                        const dataArray = JSON.parse(jsonStr);
+
+                                        if (Array.isArray(dataArray)) {
+                                            dataArray.forEach(data => {
+                                                const trackID = data.trackID;
+                                                const title = data.title;
+
+                                                playlistHTML += `
+                                                    <li class="d-flex justify-content-between align-items-center mt-3 cursor-pointer">
+                                                        <span onclick="getSong(this)" trackID="${trackID}" class="" type="text" value="" id="flexCheckDefault" onmouseover="this.style.color='blue';" onmouseout="this.style.color='';">${title}</span>
+                                                        <button playlist_name="${value.playlist_name}" trackID="${trackID}" class="btn btn-sm delete-file ${value.playlistID}-playlist" onclick="removeSong(this)" hidden>
+                                                            <p hidden>${jsonStr}</p>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus text-danger">
+                                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                            </svg>
+                                                        </button>
+                                                    </li>
+                                                `;
+                                            });
+                                        }
+
+                                        playlistHTML += `
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 col-xl-12" style="margin-left:-5px">
+                                                            <button type="button" class="btn btn-transparent border-0" data-bs-toggle="dropdown">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat text-info">
+                                                                    <path d="m11.998 2c5.517 0 9.997 4.48 9.997 9.998 0 5.517-4.48 9.997-9.997 9.997-5.518 0-9.998-4.48-9.998-9.997 0-5.518 4.48-9.998 9.998-9.998zm0 1.5c-4.69 0-8.498 3.808-8.498 8.498s3.808 8.497 8.498 8.497 8.497-3.807 8.497-8.497-3.807-8.498-8.497-8.498zm2.502 8.495c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25zm-3.75 0c0-.69.56-1.25 1.25-1.25s1.25.56 1.25 1.25-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25z"/>
+                                                                </svg>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#AddSongs" id="${value.playlist_name}" onclick="setPlaylist(this)">Add Song</a><p hidden>${jsonStr}</p></li>
+                                                                <li><a type="button" class="dropdown-item" id="${value.playlistID}-playlist" onclick="editPlaylist(this)" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Edit Playlist</a></li>
+                                                                <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#linkPlayslitModal" onclick="linkPlaylist(this)" songs="${value.songs}" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Link to Event</a></li>
+                                                                <li><a class="dropdown-item" type="button" onclick="downloadPlaylist(this)" playlistname="${value.playlist_name}" playlistid="${value.playlistID}">Download Playlist Songs</a><p hidden>${jsonStr}</p></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" type="button" id="${value.playlistID}" onclick="deletePlaylist(this)" playlistid="${value.playlistID}">Delete Playlist</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    });
+
+                                    playlistList.innerHTML += playlistHTML;
+                                    
+            
+                                },
+                                error: function() {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Oops...',
+                                        text: 'Something went wrong! dir?',
+                                    });
+                                },
+                                complete: function() {
+                                    // Handle any completion tasks if needed
+                                }
+                            });
+
+              
                     },
                     error: function() {
                         // Handle the error case if needed
@@ -419,8 +788,23 @@ function savedPlaylist(element) {
         processData: false,
         dataType: "text",
         success: function(answer) {
-            console.log(answer);
-            location.reload();
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                });
+            
+                Toast.fire({
+                icon: 'success',
+                title: 'Playlist updated successfully.'
+                });
+       
 
         },
         error: function() {
@@ -477,6 +861,26 @@ $("#linkPlaylistBtn").click(function(){
         dataType: "text",
         success: function(answer) {
             console.log(answer);
+            $("#linkPlayslitModal").modal('hide');
+            
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                });
+            
+                Toast.fire({
+                icon: 'success',
+                title: 'Playlist linked successfully.'
+                });
+
 
 
         },

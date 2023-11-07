@@ -412,32 +412,36 @@ class ModelCalendar{
 			
 
 			$html2 = '';
+			if (count($groups) === 0) {
+				// There are no records returned by the query
+				$html2.='<p> No groups found.</p> '; 
+			} else {
+				foreach($groups as $group){
+					$html2.='
+					<div class="col">
+						<div class="card mb-0">
+						<div class="card-body border-bottom d-flex justify-content-between align-items-center">
+							<h5 class="card-title inline">'.$group['group_name'].'</h5>
+							<button class="font-18  btn btn-outline-success px-3 inline" id="'.$group['group_name'].'" onclick="sendGroupEmail(this)">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+						</div>
+						<ul class="list-group list-group-flush">
+						';
 
-			foreach($groups as $group){
-				$html2.='
-				<div class="col">
-					<div class="card mb-0">
-					<div class="card-body border-bottom d-flex justify-content-between align-items-center">
-						<h5 class="card-title inline">'.$group['group_name'].'</h5>
-						<button class="font-18  btn btn-outline-success px-3 inline" id="'.$group['group_name'].'" onclick="sendGroupEmail(this)">	<i class="fadeIn animated bx bx-mail-send"></i></button>
+					$members = json_decode($group['memberList']);
+					$emails = json_decode($group['emailList']);
+
+					for ($i = 0; $i < count($members); $i++) {
+						$member = $members[$i];
+						$email = $emails[$i];
+						$html2 .= '<li class="list-group-item '.$group['group_name'].'-items " email="' . $email . '" event_title="'.$event['event_title'] .'" event_date="'.$event['event_date'] .'" event_time="'.$event['event_time'] .'" event_date2="'.$event['event_date2'] .'" event_time2="'.$event['event_time2'] .'">' . $member . '</li>';
+					}
+
+					$html2 .= '
+							</ul>
+						</div>
 					</div>
-					<ul class="list-group list-group-flush">
 					';
-
-				$members = json_decode($group['memberList']);
-				$emails = json_decode($group['emailList']);
-
-				for ($i = 0; $i < count($members); $i++) {
-					$member = $members[$i];
-					$email = $emails[$i];
-					$html2 .= '<li class="list-group-item '.$group['group_name'].'-items " email="' . $email . '" event_title="'.$event['event_title'] .'" event_date="'.$event['event_date'] .'" event_time="'.$event['event_time'] .'" event_date2="'.$event['event_date2'] .'" event_time2="'.$event['event_time2'] .'">' . $member . '</li>';
 				}
-
-				$html2 .= '
-						</ul>
-					</div>
-				</div>
-				';
 			}
 
 
@@ -502,7 +506,7 @@ class ModelCalendar{
 
 			  <div class="col d-flex justify-content-end">
 				<button class="btn btn-outline-success me-4" eventid="' . $event['eventID'] . '"  onclick="editEventDetails(this)"  style="font-size:1.2em;"><i class="fadeIn animated bx bx-calendar-edit"></i></button>
-				<button class="btn btn-outline-danger" id="'.$event['eventID'].'" onclick="deleteEvents(this)" eventID="'.$event['eventID'].'"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
+				<button class="btn btn-outline-danger deleteEventsClass" id="'.$event['eventID'].'" eventID="'.$event['eventID'].'"><i class="fadeIn animated bx bx-calendar-minus"></i> </button>
 			  </div>
 
 			</div>
@@ -517,15 +521,15 @@ class ModelCalendar{
 
 			<div class="row g-3 mt-2 mb-2">
 			  <div class="col-12 col-lg-12 ">
-				<h6 class="mb-2 ">When: '.$event['event_date'] .' @'.$event['event_time'] .' - '.$event['event_time2'] .'</h6>
+				<h6 class="mb-2 "><i class="fa-regular fa-clock me-2"></i> When: '.$event['event_date'] .' @'.$event['event_time'] .' - '.$event['event_time2'] .'</h6>
 			  </div>
 
 			  <div class="col-12 col-lg-12 ">
-				<h6 class="">Where:  '.$event['event_venue'] .' -  '.$event['event_location'] .'</h6>
+				<h6 class=""><i class="fa-regular fa-compass me-2"></i></i>Where:  '.$event['event_venue'] .' -  '.$event['event_location'] .'</h6>
 			  </div>
 
 			  <div class="col-12 col-lg-12 mb-3">
-				<h6 class="mb-2 ">Announcement</h6>
+				<h6 class="mb-2 "><i class="fa-solid fa-bullhorn me-2"></i>Announcement</h6>
 				<textarea class="form-control p-3" id="exampleFormControlTextarea1" rows="5" readonly>
 '.$event['event_announcement'] .'
 				</textarea>
@@ -534,7 +538,7 @@ class ModelCalendar{
 
 			</div>
 
-			<h6 >Groups</h6>
+			<h6 ><i class="fa-solid fa-users-line me-2"></i>Groups</h6>
 
 			<div class="row row-cols-1 row-cols-lg-3 g-3">';
 

@@ -52,17 +52,91 @@ $("#addDonation").on('click', function(e) {
                         console.log(answer);
 
                         // Display a success Swal notification with a confirm button
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'Donation added successfully!',
-                            confirmButtonText: 'OK',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Reload the system when the "OK" button is clicked
-                                location.reload();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
                             }
+                          });
+                        
+                          Toast.fire({
+                            icon: 'success',
+                            title: 'Donation added successfully.'
                         });
+
+                        var settingsArea = new FormData();
+                        settingsArea.append("settings", "donation");
+
+                        $.ajax({
+                          url: "ajax/async_settings.ajax.php", // Replace with the actual URL for adding the website
+                          method: "POST",
+                          data: settingsArea,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(answer) {
+
+                            console.log(answer);
+  
+                          var container = document.querySelector('.donation_list_section');
+                          container.innerHTML = '';
+  
+                  
+  
+                          answer.forEach(value => {
+                            let websiteCategory = value['donation_category'];
+                            let imageSrc = '';
+                            let imageAlt = '';
+                          
+                            if (websiteCategory === 'GCash') {
+                              imageSrc = 'views/images/gcash.png';
+                              imageAlt = 'GCASH';
+                            } else if (websiteCategory === 'PNB') {
+                              imageSrc = 'views/images/pnb.png';
+                              imageAlt = 'PNB';
+                            } else if (websiteCategory === 'BDO') {
+                              imageSrc = 'views/images/bdo.png';
+                              imageAlt = 'BDO';
+                            } else if (websiteCategory === 'Metrobank') {
+                              imageSrc = 'views/images/metrobank.png';
+                              imageAlt = 'METROBANK';
+                            } else {
+                              imageSrc = 'views/images/bpi.png';
+                              imageAlt = 'BPI';
+                            }
+                          
+                            const html = `
+                              <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                <img src="${imageSrc}" style="height: ${websiteCategory === 'GCash' ? '50px' : '25px'}; width: 100px;" alt="${imageAlt}">
+                                <p class="pt-3" style="color: black;">${value["donation_number"]}</p>
+                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData(${value["id"]})"></button>
+                              </li>
+                            `;
+                          
+                            // Add the HTML content to the container element
+                            container.innerHTML += html;
+                            });
+  
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              Swal.fire({
+                                  icon: 'error',
+                                  title: 'Error',
+                                  text: 'Oops. Something went wrong!',
+                              });
+                          },
+                          complete: function() {
+                          }
+                          });
+
+                        
 
                         // You can add more logic here if needed.
                     },
@@ -83,7 +157,7 @@ $("#addDonation").on('click', function(e) {
     }
 });
 
-$("#SocialMedia").on('click', function(e) {
+$(document).on("click", "#SocialMedia", function(e) {
     e.preventDefault();
 
     var socialMedia = $("#socialMedia").val();
@@ -135,18 +209,111 @@ $("#SocialMedia").on('click', function(e) {
                         console.log(answer);
 
                         // Display a success Swal notification with a confirm button
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'Social Media added successfully!',
-                            confirmButtonText: 'OK',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Reload the system when the "OK" button is clicked
-                                location.reload();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
                             }
-                        });
-
+                          });
+                        
+                          Toast.fire({
+                            icon: 'success',
+                            title: 'Donation deleted successfully.'
+                          });
+        
+                          
+        
+                          $("#report_accountID").val('');
+        
+                                        var settingsArea = new FormData();
+                                settingsArea.append("settings", "social");
+        
+                                $.ajax({
+                                  url: "ajax/async_settings.ajax.php", // Replace with the actual URL for adding the website
+                                  method: "POST",
+                                  data: settingsArea,
+                                  cache: false,
+                                  contentType: false,
+                                  processData: false,
+                                  dataType: "json",
+                                  success: function(answer) {
+        
+                                    console.log(answer);
+          
+                                  var container = document.querySelector('.social_media_section');
+                                  container.innerHTML = '';
+          
+                                  answer.forEach(value => {
+                                    let socialcategory = value['socialmedia_category'];
+                                    let iconClass = '';
+                                    let iconColor = '';
+                                  
+                                    switch (socialcategory) {
+                                      case 'Facebook':
+                                        iconClass = 'fab fa-facebook';
+                                        iconColor = '#1877F2';
+                                        break;
+                                      case 'Snapchat':
+                                        iconClass = 'fab fa-snapchat';
+                                        iconColor = '#FFFC00';
+                                        break;
+                                      case 'Instagram':
+                                        iconClass = 'fab fa-instagram';
+                                        iconColor = '#E4405F';
+                                        break;
+                                      case 'Twitter':
+                                        iconClass = 'fab fa-twitter';
+                                        iconColor = '#1DA1F2';
+                                        break;
+                                      case 'Tiktok':
+                                        iconClass = 'fab fa-tiktok';
+                                        iconColor = '#000000';
+                                        break;
+                                      case 'Youtube':
+                                        iconClass = 'fab fa-youtube';
+                                        iconColor = '#FF0000';
+                                        break;
+                                      case 'Pinterest':
+                                        iconClass = 'fab fa-pinterest';
+                                        iconColor = '#E60023';
+                                        break;
+                                      default:
+                                        iconClass = 'fab fa-whatsapp';
+                                        iconColor = '#25D366';
+                                    }
+                                  
+                                    const html = `
+                                      <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                        <i class="${iconClass}" style="color: ${iconColor};"></i>
+                                        <a href="${value['socialmedia']}" target="_blank">
+                                          <p style="width:250px;">${value['socialmedia']}</p>
+                                        </a>
+                                        <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteSocialMedia(${value["id"]})"></button>
+                                      </li>
+                                    `;
+                                  
+                                    // Add the HTML content to the container element
+                                    container.innerHTML += html;
+                                    });
+          
+                                  },
+                                  error: function(xhr, status, error) {
+                                    console.log(xhr)
+                                      Swal.fire({
+                                          icon: 'error',
+                                          title: 'Error',
+                                          text: 'Oops. Something went wrong!',
+                                      });
+                                  },
+                                  complete: function() {
+                                  }
+                                  });
+        
                         // You can add more logic here if needed.
                     },
                     error: function() {
@@ -206,8 +373,81 @@ function deleteData(id) {
                     icon: 'success',
                     title: 'Donation deleted successfully.'
                   });
+
+                  
+
                   $("#report_accountID").val('');
-                    location.reload();
+
+                                var settingsArea = new FormData();
+                        settingsArea.append("settings", "donation");
+
+                        $.ajax({
+                          url: "ajax/async_settings.ajax.php", // Replace with the actual URL for adding the website
+                          method: "POST",
+                          data: settingsArea,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(answer) {
+
+                            console.log(answer);
+  
+                          var container = document.querySelector('.donation_list_section');
+                          container.innerHTML = '';
+  
+                  
+  
+                          answer.forEach(value => {
+                            let websiteCategory = value['donation_category'];
+                            let imageSrc = '';
+                            let imageAlt = '';
+                          
+                            if (websiteCategory === 'GCash') {
+                              imageSrc = 'views/images/gcash.png';
+                              imageAlt = 'GCASH';
+                            } else if (websiteCategory === 'PNB') {
+                              imageSrc = 'views/images/pnb.png';
+                              imageAlt = 'PNB';
+                            } else if (websiteCategory === 'BDO') {
+                              imageSrc = 'views/images/bdo.png';
+                              imageAlt = 'BDO';
+                            } else if (websiteCategory === 'Metrobank') {
+                              imageSrc = 'views/images/metrobank.png';
+                              imageAlt = 'METROBANK';
+                            } else {
+                              imageSrc = 'views/images/bpi.png';
+                              imageAlt = 'BPI';
+                            }
+                          
+                            const html = `
+                              <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                <img src="${imageSrc}" style="height: ${websiteCategory === 'GCash' ? '50px' : '25px'}; width: 100px;" alt="${imageAlt}">
+                                <p class="pt-3" style="color: black;">${value["donation_number"]}</p>
+                                <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData(${value["id"]})"></button>
+                              </li>
+                            `;
+                          
+                            // Add the HTML content to the container element
+                            container.innerHTML += html;
+                            });
+  
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              Swal.fire({
+                                  icon: 'error',
+                                  title: 'Error',
+                                  text: 'Oops. Something went wrong!',
+                              });
+                          },
+                          complete: function() {
+                          }
+                          });
+
+
+
+              
         
                   
               },
@@ -245,24 +485,113 @@ function deleteSocialMedia(id) {
                     // Handle the response from the server after successful deletion (if needed)
                     console.log('Social Media deleted successfully:', response);
   
-                    const Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top-end',
-                      showConfirmButton: false,
-                      timer: 3000,
-                      timerProgressBar: true,
-                      didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                      }
-                    });
-  
-                    Toast.fire({
-                      icon: 'success',
-                      title: 'Social media deleted successfully.'
-                    });
-                    $("#report_accountID").val('');
-                    location.reload();
+                                     // Display a success Swal notification with a confirm button
+                                     const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                      });
+                                    
+                                      Toast.fire({
+                                        icon: 'success',
+                                        title: 'Social Media deleted successfully.'
+                                      });
+                    
+                                      
+                    
+                                      $("#report_accountID").val('');
+                    
+                                                    var settingsArea = new FormData();
+                                            settingsArea.append("settings", "social");
+                    
+                                            $.ajax({
+                                              url: "ajax/async_settings.ajax.php", // Replace with the actual URL for adding the website
+                                              method: "POST",
+                                              data: settingsArea,
+                                              cache: false,
+                                              contentType: false,
+                                              processData: false,
+                                              dataType: "json",
+                                              success: function(answer) {
+                    
+                                                console.log(answer);
+                      
+                                              var container = document.querySelector('.social_media_section');
+                                              container.innerHTML = '';
+                      
+                                              answer.forEach(value => {
+                                                let socialcategory = value['socialmedia_category'];
+                                                let iconClass = '';
+                                                let iconColor = '';
+                                              
+                                                switch (socialcategory) {
+                                                  case 'Facebook':
+                                                    iconClass = 'fab fa-facebook';
+                                                    iconColor = '#1877F2';
+                                                    break;
+                                                  case 'Snapchat':
+                                                    iconClass = 'fab fa-snapchat';
+                                                    iconColor = '#FFFC00';
+                                                    break;
+                                                  case 'Instagram':
+                                                    iconClass = 'fab fa-instagram';
+                                                    iconColor = '#E4405F';
+                                                    break;
+                                                  case 'Twitter':
+                                                    iconClass = 'fab fa-twitter';
+                                                    iconColor = '#1DA1F2';
+                                                    break;
+                                                  case 'Tiktok':
+                                                    iconClass = 'fab fa-tiktok';
+                                                    iconColor = '#000000';
+                                                    break;
+                                                  case 'Youtube':
+                                                    iconClass = 'fab fa-youtube';
+                                                    iconColor = '#FF0000';
+                                                    break;
+                                                  case 'Pinterest':
+                                                    iconClass = 'fab fa-pinterest';
+                                                    iconColor = '#E60023';
+                                                    break;
+                                                  default:
+                                                    iconClass = 'fab fa-whatsapp';
+                                                    iconColor = '#25D366';
+                                                }
+                                              
+                                                const html = `
+                                                  <li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
+                                                    <i class="${iconClass}" style="color: ${iconColor};"></i>
+                                                    <a href="${value['socialmedia']}" target="_blank">
+                                                      <p style="width:250px;">${value['socialmedia']}</p>
+                                                    </a>
+                                                    <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteSocialMedia(${value["id"]})"></button>
+                                                  </li>
+                                                `;
+                                              
+                                                // Add the HTML content to the container element
+                                                container.innerHTML += html;
+                                                });
+                      
+                                              },
+                                              error: function(xhr, status, error) {
+                                                console.log(xhr)
+                                                  Swal.fire({
+                                                      icon: 'error',
+                                                      title: 'Error',
+                                                      text: 'Oops. Something went wrong!',
+                                                  });
+                                              },
+                                              complete: function() {
+                                              }
+                                              });
+                    
+                
                 },
                 error: function(xhr, status, error) {
                     // Handle errors, if any, that occur during the AJAX request
@@ -292,6 +621,7 @@ userBack.addEventListener('change', function(event) {
     reader.onload = function (e) {
         const userBackground = document.getElementById('userBackground')
         userBackground.src = e.target.result;
+
     }
     reader.readAsDataURL(file);
 });
@@ -421,21 +751,81 @@ $("#updateChurch").submit(function(e) {
                   dataType: "text",
                   success: function(answer) {
                     
-                      console.log(answer);
                       
-                      // Display a success Swal notification with a confirm button
-                      Swal.fire({
-                          icon: 'success',
-                          title: 'Success',
-                          text: 'Church updated successfully!',
-                          confirmButtonText: 'OK',
-                          
-                      }).then((result) => {
-                          if (result.isConfirmed) {
-                              // Reload the page when the "OK" button is clicked
-                              location.reload();
-                          }
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
                       });
+                    
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Church details updated succesfully.'
+                      });
+
+                      var settingsArea = new FormData();
+                      settingsArea.append("settings", "church");
+
+                      $.ajax({
+                        url: "ajax/async_settings.ajax.php", // Replace with the actual URL for adding the website
+                        method: "POST",
+                        data: settingsArea,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+  
+
+                                // Initialize HTML content
+                        $('.church_settings_name').text(answer[0]['church_name']);
+                        $('.user-designation').text(answer[0]['church_name'] + " - Admin");
+                        $('.user-name').text(Newfname);
+                      
+
+                        var websiteList = document.querySelector('.church_info_section');
+                        websiteList.innerHTML = '';
+
+                
+
+
+                        let htmlContent = `
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                <i class="bx bx-map-pin"></i> ${answer[0]['church_province']}, ${answer[0]['church_city']}
+                            </span>
+                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                <i class="bx bx-map-pin"></i> ${answer[0]['church_barangay']}, ${answer[0]['church_street']}
+                            </span>
+                            <span class="badge bg-danger bg-danger-subtle text-danger border border-opacity-25 border-danger">
+                                <i class="bx bx-phone"></i> ${answer[0]['church_num']}
+                            </span>
+                            <span class="badge bg-primary bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                <i class="bx bx-envelope"></i> ${answer[0]['church_email']}
+                            </span>
+                        `;
+    
+                        // Set the innerHTML of the content container
+                        websiteList.innerHTML = htmlContent;
+
+                        },
+                        error: function() {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Oops. Something went wrong!',
+                            });
+                        },
+                        complete: function() {
+                        }
+                        });
+
+
                   },
                   error: function() {
                       Swal.fire({

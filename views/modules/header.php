@@ -448,7 +448,7 @@ if (isset($_COOKIE["acc_type"])) {
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="button" id="reportSubmissionBtn" class="btn btn-danger">Submit</button>
+        <button type="button" id="reportSubmissionBtn" class="btn btn-success">Submit</button>
       </div>
     </div>
   </div>

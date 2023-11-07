@@ -150,7 +150,7 @@ class ModelRegister {
         $mail->Body = $email_template;
         $mail->AltBody = 'Check for verification code';
 				$mail->send();
-			echo 'Message has been sent';
+		
 		} catch (Exception $e) {
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}
@@ -204,7 +204,7 @@ class ModelRegister {
 		    $pdo->commit();
 
 
-			
+			echo $_COOKIE['current_email'];
 		    return "ok";
 		}catch (Exception $e){
 			$pdo->rollBack();

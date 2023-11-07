@@ -78,12 +78,12 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
     <div class="d-flex align-items-start justify-content-between">
         <div class="">
             
-        <h2 class="mb-2"><?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+        <h2 class="mb-2 church_settings_name"><?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
              foreach($admin as $key => $value){
                 echo $value['church_name'];
              }
         ?></h2>
-            <div class="">
+            <div class="church_info_section">
 
                         <?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                         foreach($admin as $key => $value){
@@ -438,7 +438,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>           
                     </div>
-                    <ul class="list-group list-group-flush mb-0" style="overflow-y: scroll; height: 285px;">
+                    <ul class="list-group list-group-flush mb-0 social_media_section" style="overflow-y: scroll; height: 285px;">
                     <?php  $social = (new ControllerChurchSetting)->ctrShowSocialMedia();
                                 foreach($social as $key => $value){
 
@@ -542,7 +542,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
                     </div>
 
-                    <ul class="list-group list-group-flush mb-0" style="overflow-y: scroll; height: 265px;" >
+                    <ul class="list-group list-group-flush mb-0 donation_list_section" style="overflow-y: scroll; height: 265px;" >
                     <?php  $donation = (new ControllerChurchSetting)->ctrShowDonation();
                                 foreach($donation as $key => $value){
 
@@ -585,8 +585,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                     
                             
                                     
-                                    
-                                    
+    
                                     
                             
 

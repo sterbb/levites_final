@@ -61,214 +61,12 @@ $(function(){
     });
 
     $("#church_calendar_date").text(currentDate);
-    $("#dashboard-currentdate").text(currentDate);
+    $("#dashboard-currentdate").html('<h6 class="fw-bold mt-3"><i class="fa-solid fa-calendar-day me-2"></i>' + currentDate +'</h6>');
 
   });
 
 
-    $(".addEventForm").submit(function(e){
-        e.preventDefault();
-        Swal.fire({
-          title: 'Confirm Submission',
-          text: 'Are you sure you want to save this event information?',
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonText: 'Yes, save',
-          cancelButtonText: 'No, cancel'
-      }).then((result) => {
-          if (result.isConfirmed) {
-
-        function formatTimeWithLeadingZero(time) {
-          return time < 10 ? `0${time}` : time;
-        }
-        
-          var startHour = parseInt($("#event_time1").val().split(':')[0]);
-          var startMinute = parseInt($("#event_time1").val().split(':')[1]);
-          var startAMPM = startHour >= 12 ? 'PM' : 'AM';
-
-          if (startHour === 0) {
-              startHour = 12;
-          } else if (startHour > 12) {
-              startHour -= 12;
-          }
-
-          var endHour = parseInt($("#event_time2").val().split(':')[0]);
-          var endMinute = parseInt($("#event_time2").val().split(':')[1]);
-          var endAMPM = endHour >= 12 ? 'PM' : 'AM';
-
-          if (endHour === 0) {
-              endHour = 12;
-          } else if (endHour > 12) {
-              endHour -= 12;
-          }
-
-       
-        if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
-          Swal.fire({
-              title: 'Invalid Time Range',
-              text: 'The start time should be earlier than the end time.',
-              icon: 'error',
-          });
-          return; // Prevent form submission
-      }
-
-       
-        var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
-        var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
-        
-        var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM
-                          
-        var event_time2 =    endHour + ':' + formattedEndMinute + ' ' + endAMPM;
-
-        var daterange = $("#event_date").val();
-        var date1; 
-        var date2;
-
-        //tba
-        if(daterange.length <= 10){
-          date1=daterange.substring(0,10);
-          date2=daterange.substring(0,10);
-        }else{
-            date1=daterange.substring(0,10);
-            date2=daterange.substring(14,24);
-        }
-
-        var event_title = $("#event_title").val();
-        var event_type = $("#event_type").val();
-        var event_venue = $("#event_venue").val();
-        var event_location = $("#event_location").val();
-        var event_announcement = $("#event_announcement").val();
-        var eventID;
-
-          var eventData = new FormData();
-          
-          eventData.append("event_title", event_title);
-          eventData.append("event_type", event_type);
-          eventData.append("event_time1", event_time1);
-          eventData.append("event_time2", event_time2);
-          //tbc
-          eventData.append("event_date1", date1);
-          eventData.append("event_date2", date2);
-          eventData.append("event_venue", event_venue);
-          eventData.append("event_location", event_location);
-          eventData.append("event_announcement", event_announcement);
-
-
-          $.ajax({
-              url: "ajax/event_add.ajax.php",
-              method: "POST",
-              data: eventData,
-              cache: false,
-              contentType: false,
-              processData: false,
-              dataType: "text",
-              success: function(answer) {
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  });
-                
-                  Toast.fire({
-                    icon: 'success',
-                    title: 'Add event successfully.'
-                  });
-                  console.log(answer);
-                  $("#report_accountID").val('');
-                eventID = answer;
-
-
-                  // Select all elements with the class "add_group_event"
-                  $(".add_group_event").each(function () {
-                    // Initialize arrays to store the names and emails for each group
-                    var groupNames = [];
-                    var groupEmails = [];
-
-                    // Get the group name for the current card
-                    var groupName = $(this).find(".card-title").text().trim();
-
-                    // Loop through the list items within the current card
-                    $(this).find("."+groupName+"-items").each(function () {
-                      // Get the name for each list item
-                      var name = $(this).text().trim();
-                      groupNames.push(name);
-
-                      // Get the email from the "data-email" attribute for each list item
-                      var email = $(this).attr("email");
-                      groupEmails.push(email);
-                    });
-
-                    // Create an object to store the data for the current group
-                    var groupData = {
-                      groupName: groupName,
-                      names: groupNames,
-                      emails: groupEmails,
-                    };
-
-
-
-                  var groupDataSet = new FormData();
-                  groupDataSet.append("eventID", eventID);
-                  groupDataSet.append("group_name", groupData.groupName);
-                  groupDataSet.append("group_members", JSON.stringify(groupData.names));
-                  groupDataSet.append("members_email", JSON.stringify(groupData.emails));
-                  //tbc
-                  groupDataSet.append("event_date1", date1);
-                  groupDataSet.append("event_time1", event_time1);
-                  groupDataSet.append("event_date2", date2);
-                  groupDataSet.append("event_time2", event_time2);
-                  groupDataSet.append("event_title", event_title);
-                  groupDataSet.append("event_venue", event_venue);
-                  groupDataSet.append("event_location", event_location);
-
-
-                  $.ajax({
-                      url: "ajax/calendar_group_add.ajax.php",
-                      method: "POST",
-                      data: groupDataSet,
-                      cache: false,
-                      contentType: false,
-                      processData: false,
-                      dataType: "text",
-                      success: function(answer) {
-                        console.log(answer);
-                        
-                          
-                    
-                      },
-                      error: function(xhr, status, error) {
-                        alert(error);
-                        console.log(error);
-                      },
-                      complete: function() {
-                      }
-                    });
-                    
-                  });
-
-                  
-            
-              },
-              error: function(xhr, status, error) {
-                alert(error);
-                console.log(error);
-              },
-              complete: function() {
-              }
-          });
-        
-        }
-      });
-
-        
-    });
-    
+ 
 
     $("#groupAddBtn").click(function(e){
       e.preventDefault();
@@ -318,11 +116,9 @@ $(function(){
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');
   let currentDate = new Date().toJSON().slice(0, 10);
-
-
   
   var randomColors = [
     "#E9967A",
@@ -366,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  console.log(eventtypes);
 
         // Array of event categories
         var eventCategories = ["Bible Study", "Outreach", "Workshop", "Sunday Worship", "Prayer Meeting", "Baptismal", "Wedding"];
@@ -499,10 +294,270 @@ document.addEventListener('DOMContentLoaded', function () {
 
   calendar.render();
 
+
+  $(".addEventForm").submit(function(e){
+
+    
+    e.preventDefault();
+    Swal.fire({
+      title: 'Confirm Submission',
+      text: 'Are you sure you want to save this event information?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, save',
+      cancelButtonText: 'No, cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+  
+  
+    function formatTimeWithLeadingZero(time) {
+      return time < 10 ? `0${time}` : time;
+    }
+    
+    var startHour = parseInt($("#event_time1").val().split(':')[0]);
+    var startMinute = parseInt($("#event_time1").val().split(':')[1]);
+    var startAMPM = startHour >= 12 ? 'PM' : 'AM';
+    
+    if (startHour === 0) {
+      startHour = 12;
+    } else if (startHour > 12) {
+      startHour -= 12;
+    }
+    
+    
+    var endHour = parseInt($("#event_time2").val().split(':')[0]);
+    var endMinute = parseInt($("#event_time2").val().split(':')[1]);
+    var endAMPM = endHour >= 12 ? 'PM' : 'AM';
+    
+  
+    if (endHour === 0) {
+      endHour = 12;
+    } else if (endHour > 12) {
+      endHour -= 12;
+    }
+   
+    var formattedStartMinute = formatTimeWithLeadingZero(startMinute);
+    var formattedEndMinute = formatTimeWithLeadingZero(endMinute);
+    
+    var event_time1 = startHour + ':' + formattedStartMinute + ' ' + startAMPM
+                      
+  
+    var event_time2 =    endHour + ':' + formattedEndMinute + ' ' + endAMPM;
+  
+    var daterange = $("#event_date").val();
+    var date1; 
+    var date2;
+  
+    //tba
+    if(daterange.length <= 10){
+      date1=daterange.substring(0,10);
+      date2=daterange.substring(0,10);
+    }else{
+        date1=daterange.substring(0,10);
+        date2=daterange.substring(14,24);
+    }
+  
+    var event_title = $("#event_title").val();
+    var event_type = $("#event_type").val();
+    var event_venue = $("#event_venue").val();
+    var event_location = $("#event_location").val();
+    var event_announcement = $("#event_announcement").val();
+    var eventID;
+  
+      var eventData = new FormData();
+      
+      eventData.append("event_title", event_title);
+      eventData.append("event_type", event_type);
+      eventData.append("event_time1", event_time1);
+      eventData.append("event_time2", event_time2);
+      //tbc
+      eventData.append("event_date1", date1);
+      eventData.append("event_date2", date2);
+      eventData.append("event_venue", event_venue);
+      eventData.append("event_location", event_location);
+      eventData.append("event_announcement", event_announcement);
+  
+  
+      $.ajax({
+          url: "ajax/event_add.ajax.php",
+          method: "POST",
+          data: eventData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          dataType: "text",
+          success: function(answer) {
+  
+            eventID = answer;
+  
+  
+              // Select all elements with the class "add_group_event"
+              $(".add_group_event").each(function () {
+                // Initialize arrays to store the names and emails for each group
+                var groupNames = [];
+                var groupEmails = [];
+  
+                // Get the group name for the current card
+                var groupName = $(this).find(".card-title").text().trim();
+  
+                // Loop through the list items within the current card
+                $(this).find("."+groupName+"-items").each(function () {
+                  // Get the name for each list item
+                  var name = $(this).text().trim();
+                  groupNames.push(name);
+  
+                  // Get the email from the "data-email" attribute for each list item
+                  var email = $(this).attr("email");
+                  groupEmails.push(email);
+                });
+  
+                // Create an object to store the data for the current group
+                var groupData = {
+                  groupName: groupName,
+                  names: groupNames,
+                  emails: groupEmails,
+                };
+  
+  
+  
+              var groupDataSet = new FormData();
+              groupDataSet.append("eventID", eventID);
+              groupDataSet.append("group_name", groupData.groupName);
+              groupDataSet.append("group_members", JSON.stringify(groupData.names));
+              groupDataSet.append("members_email", JSON.stringify(groupData.emails));
+              //tbc
+              groupDataSet.append("event_date1", date1);
+              groupDataSet.append("event_time1", event_time1);
+              groupDataSet.append("event_date2", date2);
+              groupDataSet.append("event_time2", event_time2);
+              groupDataSet.append("event_title", event_title);
+              groupDataSet.append("event_venue", event_venue);
+              groupDataSet.append("event_location", event_location);
+  
+  
+              $.ajax({
+                  url: "ajax/calendar_group_add.ajax.php",
+                  method: "POST",
+                  data: groupDataSet,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "text",
+                  success: function(answer) {
+                  
+                      
+                
+                  },
+                  error: function(xhr, status, error) {
+                    alert(error);
+                    console.log(error);
+                  },
+                  complete: function() {
+                  }
+                });
+                
+              });
+  
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                });
+            
+                Toast.fire({
+                icon: 'success',
+                title: 'Event created successfully.'
+                });
+                
+                calendar.refetchEvents();
+                $("#AddEvents").modal('hide');
+                $("#event_title").val('');
+                $("#event_type").val('');
+               $("#event_venue").val('');
+                $("#event_location").val('');
+                $("#event_announcement").val('');
+                $("#event_time1").val('');
+                $("#event_time2").val('');
+  
+        
+          },
+          error: function(xhr, status, error) {
+            alert(error);
+            console.log(error);
+          },
+          complete: function() {
+          }
+      });
+      }
+    });
+
+  });
+
+  // $(".deleteEventsClass").click(function(e){
+  $(document).on('click', '.deleteEventsClass', function(e) {
+    e.preventDefault();
+    var eventID = $(this).attr('id');
+
+    var deleteEvent = new FormData();
+    deleteEvent.append("eventID", eventID);
+
+    //it is just the same because it is updating
+    $.ajax({
+        url: "ajax/delete_eventDetails.ajax.php",
+        method: "POST",
+        data: deleteEvent,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            });
+        
+            Toast.fire({
+            icon: 'success',
+            title: 'Event deleted successfully.'
+            });
+            
+            calendar.refetchEvents();
+        
+
+        },
+        error: function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
+        },
+        complete: function() {
+            // Handle any completion tasks if needed
+        }
+    });
+  });
+
+
   // Your filtering functions from the previous response
   function applyFilters() {
     var selectedFilters = [];
     filterCheckboxes.forEach(function (checkbox) {
+      console.log(checkbox.id)
       if (checkbox.checked) {
         selectedFilters.push(checkbox.id);
       }
@@ -524,7 +579,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Get all the filter checkboxes
-  var filterCheckboxes = document.querySelectorAll('#calendar_filter_section input.calendar-filter');
+  var filterCheckboxes = $(document).find('.calendar-filter').get();
   console.log(filterCheckboxes)
   
   // Add event listener to each checkbox
@@ -535,6 +590,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar2');
@@ -897,6 +953,24 @@ $('#uploadPodcast').click(function() {
       podcastPlaceholder
         .putString("", "raw", metadata)
         .then(function () {
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            });
+        
+            Toast.fire({
+            icon: 'success',
+            title: 'Podcast uploaded successfully.'
+            });
+            checkFileExistenceAndDisplayMessage(path);
           console.log("Subfolder created:", path);
         })
         .catch(function (error) {
@@ -906,7 +980,12 @@ $('#uploadPodcast').click(function() {
 
   } else {
     // Alert if no file is selected
-    alert('Please select a file.');
+            // Display an error message when the group name is already taken
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Please select a file.',
+          });
   }
 });
 
@@ -952,6 +1031,24 @@ function downloadLinkedFile(element){
 
     // Programmatically trigger the download
     link.click();
+
+    
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+      });
+  
+      Toast.fire({
+      icon: 'success',
+      title: 'Downloading file...'
+      });
 
     // Remove the link from the document body
     document.body.removeChild(link);
@@ -1150,74 +1247,10 @@ function NewEditEvent() {
 }
 
 
-function deleteEvents(element) {
-  var eventID = $(element).attr('id');
-
-  // Show a confirmation Swal before deleting
-  Swal.fire({
-      title: 'Confirm Deletion',
-      text: 'Are you sure you want to delete this event?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete',
-      cancelButtonText: 'No, cancel'
-  }).then((result) => {
-      if (result.isConfirmed) {
-          // User confirmed the deletion
-
-          var deleteEvent = new FormData();
-          deleteEvent.append("eventID", eventID);
-
-          $.ajax({
-              url: "ajax/delete_eventDetails.ajax.php",
-              method: "POST",
-              data: deleteEvent,
-              cache: false,
-              contentType: false,
-              processData: false,
-              dataType: "text",
-              success: function (answer) {
-                  const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  });
-                
-                  Toast.fire({
-                    icon: 'success',
-                    title: 'Edit event successfully.'
-                  });
-                  console.log(answer);
-                  $("#report_accountID").val('');
-                location.reload();
-  
-              },
-              error: function () {
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Oops...',
-                      text: 'Something went wrong!',
-                  });
-              },
-              complete: function () {
-                  // Handle any completion tasks if needed
-              }
-          });
-      }
-  });
-}
-
 
   // Event delegation for dynamically added elements
-  $('.created_eventtypes_section').on('click', '.deleteEventType', function() {
+  $(document).on('click', '.deleteEventType', function() {
       var value = $(this).val();
-
       var type = new FormData();
       type.append("type", value);
     
@@ -1231,6 +1264,163 @@ function deleteEvents(element) {
         dataType: "text",
         success: function(answer) {
             console.log(answer);
+            
+            var section = document.querySelector('.created_eventtypes_section');
+            section.innerHTML = '';
+            $.ajax({
+              url: 'models/showEventTypes.php',
+              method: 'GET',
+              dataType: 'json',
+              success: function(response) {
+                response.forEach((type) =>{           
+                  $('.created_eventtypes_section').append('<div class="d-flex align-items-center justify-content-between py-2 px-2 border-bottom"><div class="px-2"><h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>'+ type.type_name+'</h6></div><button class="btn btn-outline-danger rounded-5 btn-sm px-3 deleteEventType" value="'+ type.type_name+'"><i class="fadeIn animated bx bx-x"></i></button></div></div>');
+                });
+              },
+              error: function(xhr, status, error) {
+                // Handle errors, if any
+                console.log('Error:', error);
+              }
+            });
+
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+              });
+  
+  
+              Toast.fire({
+              icon: 'success',
+              title: 'Event type deleted successfully.'
+              });
+
+              var weddingSection = $('.event_type_list').find('[data-bs-target="#WeddingSection"]');
+
+              // Remove all siblings that come after the target section
+              weddingSection.nextAll().remove();
+
+              
+              var randomColors = [
+                "#E9967A",
+                "#4B0082",
+                "#8B4513",
+                "#DDA0DD",
+                "#20B2AA",
+                "#B0C4DE",
+                "#00FF00",
+                "#FF00FF",
+                "#800000",
+                "#008080",
+                "#FFD700",
+                "#ADFF2F",
+                "#FFE4B5",
+                "#FA8072",
+                "#00FA9A",
+                "#D2691E",
+                "#800080",
+                "#008000",
+                "#2E8B57",
+                "#C71585"
+              ];
+                                
+              var colorIndex = 0;
+  
+              
+
+              $.ajax({
+                url: 'models/showEventTypes.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                                    
+                  var eventsList = '';
+  
+                  response.forEach((type) =>{
+                    if(colorIndex == randomColors.length){
+                      colorIndex = 0;
+                    }
+
+                    var current_color = randomColors[colorIndex];
+
+                      eventsList +=
+                      '<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#'+ type.type_name.replace(/\s/g, '') +'Section" type="button"><i class="fas fa-regular fa-calendar-days me-2" style="color:'+current_color+ ';"></i>'+ type.type_name +'</button>';
+
+                      colorIndex++;
+                    });
+
+                    $('.event_type_list').find('[data-bs-target="#WeddingSection"]').after(eventsList);
+                },
+                error: function(xhr, status, error) {
+                  // Handle errors, if any
+                  console.log('Error:', error);
+                }
+              });
+
+              var weddingDiv = $('#calendar_filter_section .form-check:has(#Wedding)');
+
+              // Remove all siblings that come after the target section
+              weddingDiv.nextAll().remove();
+
+              $('.event_type_list').append('<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#AddType" type="button"><i class="lni lni-plus me-2 "></i>Manage Event Types</button>')
+              
+                 // Your Ajax code here
+                 $.ajax({
+                  url: 'models/showEventTypes.php',
+                  method: 'GET',
+                  dataType: 'json',
+                  success: function(response) {
+
+                    var randomColors = [
+                      "#E9967A",
+                      "#4B0082",
+                      "#8B4513",
+                      "#DDA0DD",
+                      "#20B2AA",
+                      "#B0C4DE",
+                      "#00FF00",
+                      "#FF00FF",
+                      "#800000",
+                      "#008080",
+                      "#FFD700",
+                      "#ADFF2F",
+                      "#FFE4B5",
+                      "#FA8072",
+                      "#00FA9A",
+                      "#D2691E",
+                      "#800080",
+                      "#008000",
+                      "#2E8B57",
+                      "#C71585"
+                    ];
+                                      
+                    var colorIndex = 0;
+
+                    response.forEach((type) =>{
+
+                      if(colorIndex == randomColors.length){
+                        colorIndex = 0;
+                      }
+
+                      var current_color = randomColors[colorIndex];
+
+                      $('#calendar_filter_section').append('<div class="form-check form-switch"><input class="form-check-input calendar-filter" type="checkbox" id="'+ type.type_name+'" checked style="background-color: '+current_color+'; border: 2px solid '+current_color+'  ;"><label class="form-check-label" for="flexSwitchCheckChecked">'+ type.type_name+'</label></div>');
+
+                      colorIndex++;
+                    });
+                  },
+                  error: function(xhr, status, error) {
+                    // Handle errors, if any
+                    console.log('Error:', error);
+                  }
+                });
+
+      
 
 
 
@@ -1338,3 +1528,207 @@ function deleteEvents(element) {
 
 
   }
+  $("#clearFields").click(function(){
+    $("#event_title").val('');
+     $("#event_type").val('');
+    $("#event_venue").val('');
+     $("#event_location").val('');
+     $("#event_announcement").val('');
+     $("#event_time1").val('');
+     $("#event_time2").val('');
+  })
+
+
+  $('#AddEventType').click(function(e) {
+    e.preventDefault();
+   
+
+    var type_name = $("#type_name").val();
+
+
+    var addEventType = new FormData();
+
+    addEventType.append("type_name", type_name);
+
+    $.ajax({
+        url: "ajax/event_type.ajax.php",
+        method: "POST",
+        data: addEventType,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        success: function(answer) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            });
+
+
+            Toast.fire({
+            icon: 'success',
+            title: 'Event type created successfully.'
+            });
+
+         
+            var section = document.querySelector('.created_eventtypes_section');
+            section.innerHTML = '';
+            $.ajax({
+              url: 'models/showEventTypes.php',
+              method: 'GET',
+              dataType: 'json',
+              success: function(response) {
+                response.forEach((type) =>{           
+                  $('.created_eventtypes_section').append('<div class="d-flex align-items-center justify-content-between py-2 px-2 border-bottom"><div class="px-2"><h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>'+ type.type_name+'</h6></div><button class="btn btn-outline-danger rounded-5 btn-sm px-3 deleteEventType" value="'+ type.type_name+'"><i class="fadeIn animated bx bx-x"></i></button></div></div>');
+                });
+              },
+              error: function(xhr, status, error) {
+                // Handle errors, if any
+                console.log('Error:', error);
+              }
+            });
+
+            $("#type_name").val('');
+
+            var weddingSection = $('.event_type_list').find('[data-bs-target="#WeddingSection"]');
+
+            // Remove all siblings that come after the target section
+            weddingSection.nextAll().remove();
+
+            var randomColors = [
+              "#E9967A",
+              "#4B0082",
+              "#8B4513",
+              "#DDA0DD",
+              "#20B2AA",
+              "#B0C4DE",
+              "#00FF00",
+              "#FF00FF",
+              "#800000",
+              "#008080",
+              "#FFD700",
+              "#ADFF2F",
+              "#FFE4B5",
+              "#FA8072",
+              "#00FA9A",
+              "#D2691E",
+              "#800080",
+              "#008000",
+              "#2E8B57",
+              "#C71585"
+            ];
+                              
+            var colorIndex = 0;
+
+            
+            $.ajax({
+              url: 'models/showEventTypes.php',
+              method: 'GET',
+              dataType: 'json',
+              success: function(response) {
+                                  
+                var eventsList = '';
+
+          
+                response.forEach((type) =>{
+
+                  if(colorIndex == randomColors.length){
+                  colorIndex = 0;
+                }
+
+                var current_color = randomColors[colorIndex];
+
+                  eventsList +=
+                  '<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#'+ type.type_name.replace(/\s/g, '') +'Section" type="button"><i class="fas fa-regular fa-calendar-days me-2" style="color:'+current_color+ ';"></i>'+ type.type_name +'</button>';
+
+                  colorIndex++;
+                });
+                $('.event_type_list').find('[data-bs-target="#WeddingSection"]').after(eventsList);
+              },
+              error: function(xhr, status, error) {
+                // Handle errors, if any
+                console.log('Error:', error);
+              }
+            });
+            $('.event_type_list').append('<button class="nav-link px-4 rounded-0" data-bs-toggle="pill" data-bs-target="#AddType" type="button"><i class="lni lni-plus me-2 "></i>Manage Event Types</button>')
+
+              var weddingDiv = $('#calendar_filter_section .form-check:has(#Wedding)');
+
+
+              // Remove all siblings that come after the target section
+              weddingDiv.nextAll().remove();
+
+               // Your Ajax code here
+               $.ajax({
+                url: 'models/showEventTypes.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+
+                  var randomColors = [
+                    "#E9967A",
+                    "#4B0082",
+                    "#8B4513",
+                    "#DDA0DD",
+                    "#20B2AA",
+                    "#B0C4DE",
+                    "#00FF00",
+                    "#FF00FF",
+                    "#800000",
+                    "#008080",
+                    "#FFD700",
+                    "#ADFF2F",
+                    "#FFE4B5",
+                    "#FA8072",
+                    "#00FA9A",
+                    "#D2691E",
+                    "#800080",
+                    "#008000",
+                    "#2E8B57",
+                    "#C71585"
+                  ];
+                                    
+                  var colorIndex = 0;
+
+                  response.forEach((type) =>{
+
+                    if(colorIndex == randomColors.length){
+                      colorIndex = 0;
+                    }
+
+                    var current_color = randomColors[colorIndex];
+
+                    $('#calendar_filter_section').append('<div class="form-check form-switch"><input class="form-check-input calendar-filter" type="checkbox" id="'+ type.type_name+'" checked style="background-color: '+current_color+'; border: 2px solid '+current_color+'  ;"><label class="form-check-label" for="flexSwitchCheckChecked">'+ type.type_name+'</label></div>');
+
+                    colorIndex++;
+                  });
+                },
+                error: function(xhr, status, error) {
+                  // Handle errors, if any
+                  console.log('Error:', error);
+                }
+              });
+
+              
+
+        
+           
+        },
+        error: function() {
+           
+        },
+        complete: function() {
+            // Handle any completion tasks if needed
+        }
+    });
+    
+});
+
+

@@ -71,7 +71,7 @@
                                     <div class="church_div">
                                         <input type="text" name="trans_type" id="church_id" value='.$value["churchID"].' name="church_id" style="display:none;" required>
                                         <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
-                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="'.$value["church_name"].'" onclick="changeButtonText(this)">Accept</button>
+                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="'.$value["church_name"].'" >Accept</button>
                                         <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="'.$value["church_name"].'">Reject</button>
                                     </div>
                                     </div>
@@ -110,7 +110,7 @@
                         <div>
                         
 
-                            <div class="registration_churches scrollable-left-superuser" id="registration_churches">
+                            <div class="rejected_churches scrollable-left-superuser" id="rejected_churches">
                                 <?php
                                     $churches = (new ControllerSuperuser)->ctrShowRejectedChurches(0);
                                 

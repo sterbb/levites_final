@@ -12,7 +12,7 @@
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
                                 <div class="px-2">
-                                    <h6 class="mb-0 fw-bold"><i class="lni lni-envelope m-2"></i>Request Collaboration</h6>
+                                    <h6 class="mb-0 fw-bold"><i class="fa-regular fa-paper-plane me-2"></i>Request Collaboration</h6>
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
@@ -28,7 +28,7 @@
                         </div>
 
 
-                        <div class="card-body" scrollable-y="true">
+                        <div class="card-body pending_section_admin" scrollable-y="true">
                         <?php 
 
                             $requests = (new CollaborationController)->ctrshowPendingRequest();
@@ -37,13 +37,13 @@
 
                             foreach($requests as $key => $value){
                                 $stmt = $pdo->prepare("SELECT Avatar FROM churches WHERE churchID = :churchID");
-                                $stmt->bindParam(':churchID', $value['churchid1'], PDO::PARAM_STR);
+                                $stmt->bindParam(':churchID', $value['churchid2'], PDO::PARAM_STR);
                                 $stmt->execute();
                                 $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                               
         
                                 
-                                $imagePath = "views/images/default.png"; // Default value
+                                $imagePath = "./views/images/default.png"; // Default value
 
                                 if (!empty($profile['Avatar']) && file_exists($imagePath)) {
                                     $imagePath = "./views/UploadAvatar/".$profile['Avatar'];
@@ -64,7 +64,7 @@
                                             <div class="">
                                                 <input type="text" id="church_id" value='.$value['collabID'].' churchid='.$value['churchid2'].' churchname='.$value['churchname2'].' style="display:none;">
                                                 <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtnAdmin">View Details</button>
-                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 pendcan cancelPending">Cancel </button>
+                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 cancelPending">Cancel </button>
                                             </div>
                                         </div>
                                         <hr>
@@ -93,7 +93,7 @@
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
                                 <div class="px-2">
-                                    <h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>Church Collaboration</h6>
+                                    <h6 class="mb-0 fw-bold"> <i class="fa-solid fa-handshake-simple m-2"></i>Church Collaboration</h6>
                                 </div>
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
@@ -112,9 +112,7 @@
                         <?php 
 
                          
-                          
-                            
-
+                        
                             $requests = (new CollaborationController)->ctrshowRequests();
 
                             
@@ -183,7 +181,7 @@
                         <div class="card-header bg-transparent">
                             <div class="d-flex align-items-center py-2 px-2">
                                 <div class="px-2">  
-                                    <h6 class="mb-0 fw-bold"> <i class="fadeIn animated bx bx-church fs-4 m-2"></i>Rejected Collaboration</h6>
+                                    <h6 class="mb-0 fw-bold"> <i class="fa-solid fa-ban m-2"></i>Rejected Collaboration</h6>
                                 </div>  
                                 <!-- MARGIN RIGHT -->
                                 <div class="ms-auto me-2">
@@ -192,7 +190,7 @@
                                 <!-- ALIGN SA CENTER -->
                             </div>
                         </div>
-                        <div class="card-body" scrollable-y="true">
+                        <div class="card-body rejected_collab_section" scrollable-y="true">
 
                         <?php 
 
@@ -284,14 +282,14 @@
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">
-                        <h6 class="mb-0 fw-bold"><i class="lni lni-users m-2"></i>Affilliated Churches</h6>
+                        <h6 class="mb-0 fw-bold"><i class="fa-solid fa-place-of-worship m-2"></i>Affilliated Churches</h6>
                         </div>
                         <div class="ms-auto me-2">
                             <input class="form-control px-2 " type="search"  placeholder="Search Church" id="searchAffillChurch">
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body accepted_collab_section">
 
 
                                          <?php 
@@ -335,7 +333,6 @@
                                                             // You can set a default image or handle the error as needed.
                                                             $imagePath = "./views/images/default.png";
                                                         }
-
                                                         $details = (new ControllerSuperuser)->ctrGetChurchDetailsOnly($churchid);
 
                                                         echo '
@@ -382,7 +379,7 @@
                 <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center py-2 px-2">
                     <div class="px-2">
-                       <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-plus m-2"></i>Membership Request</h6>
+                       <h6 class="mb-0 fw-bold"><i class="fa-solid fa-user-check m-2"></i>Membership Request</h6>
                     </div>
                     <div class="ms-auto me-2">
                             <input class="form-control px-2 " type="search"  placeholder="Search Name" id="searchMem">
@@ -393,7 +390,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="card-body" scrollable-y="true">
+                <div class="card-body membership_request_section" scrollable-y="true">
                 <?php 
              
                             $requests = (new CollaborationController)->ctrshowMembership();
@@ -450,14 +447,14 @@
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                         <div class="">
-                            <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-circle m-2"></i>Members</h6>
+                            <h6 class="mb-0 fw-bold"><i class="fa-solid fa-users m-2"></i>Members</h6>
                         </div>
                         <div class="ms-auto me-2">
                             <input class="form-control px-2 " type="search"  placeholder="Search Name" id="memberSearch">
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body members_section">
                     <?php 
 
                         $requests = (new CollaborationController)->ctrshowAffilatedMember();
@@ -517,7 +514,7 @@
                 <div class="card-header bg-transparent">
                 <div class="d-flex align-items-center py-2 px-2">
                     <div class="px-2">
-                       <h6 class="mb-0 fw-bold"><i class="fadeIn animated bx bx-user-plus m-2"></i>Rejected Membership</h6>
+                       <h6 class="mb-0 fw-bold"><i class="fa-solid fa-user-xmark m-2"></i>Rejected Membership</h6>
                     </div>
                     <div class="ms-auto me-2">
                             <input class="form-control px-2 " type="search"  placeholder="Search Name" id="rejectMemSearch">
@@ -528,7 +525,7 @@
                     </div> -->
                 </div>
                 </div>
-                <div class="card-body" scrollable-y="true">
+                <div class="card-body rejected_membership_section" scrollable-y="true">
                 <?php 
              
                             $reject = (new CollaborationController)->ctrRejectMembership();
@@ -575,7 +572,6 @@
                                             <div class="">
                                                 <input type="text" name="trans_type" id="church_id" value='.$value['mshipID'].' name="church_id" style="display:none;" required>
                                                 <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept </button>
-                                                <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject </button>
                                             </div>
                                         </div>
                                         <hr>
@@ -608,7 +604,7 @@
     <div class="modal-dialog modal-dialog-centered moda-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Request Collaboration</h5>
+          <h5 class="modal-title"><i class="fa-regular fa-paper-plane me-2"></i>Request Collaboration</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" >

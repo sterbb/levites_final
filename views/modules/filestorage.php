@@ -19,10 +19,10 @@
         <div class="col-12 col-lg-3 notPublic notMember">
           <div class="card ">
             <div class="card-body cursor-pointer" id="myFileStroage">
-              <h5 class="mt-2 mb-0">My Storage</h5>
+              <h5 class="mt-2 mb-0"><i class="fa-solid fa-database me-2 text-success"></i>My Storage</h5>
               <p class="mb-1 mt-2">
                 <span id="myStorageSizeTxt"></span>
-                <span class="float-end">1 GB</span>
+                <span class="float-end">300 MB</span>
               </p>
               <div class="progress" style="height: 7px;">
                 <div class="progress-bar bg-warning" role="progressbar" id="myStorageSize" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -45,7 +45,7 @@
           <!-- Additional content -->
               <div class="card overflow-hidden notPublic notMember">
                 <div class="card-body">
-                  <h5 class="aff mb-0 text-dark font-weight-bold">Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' data-toggle="tooltip" data-placement="top" title="Add Affiliates"></i></a></h5>
+                  <h5 class="aff mb-0 text-dark font-weight-bold"><i class="fa-solid fa-place-of-worship me-2 text-primary"></i>Affiliates <a href="requests"><i class='upicon bx bxs-user-plus' data-toggle="tooltip" data-placement="top" title="Add Affiliates"></i></a></h5>
                   <div class="mt-3"></div>
 
                   <?php 

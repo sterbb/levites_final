@@ -203,12 +203,12 @@
                     <div class="card-header bg-transparent h-100">
                         <div class="d-flex align-items-center">
                             <div class="p-2">
-                                <h6 class="mb-0 fw-bold">Monthly Events</h6>
+                                <h6 class="mb-0 fw-bold"><i class="fa-regular fa-calendar-days me-2  text-success"></i>Monthly Events</h6>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div id="chart3"></div>
+                        <div id="eventsChartDash"></div>
                     </div>
                 </div>
             </div>
@@ -217,7 +217,7 @@
                 <div class="card-header bg-transparent">
                     <div class="d-flex align-items-center">
                     <div class="p-2">
-                        <h6 class="mb-0 fw-bold">Monthly Members</h6>
+                        <h6 class="mb-0 fw-bold"><i class="fa-solid fa-people-roof me-2  text-danger"></i>Monthly Members</h6>
 
                     </div>
                     </div>
@@ -239,7 +239,7 @@
         <div class="col-8" >
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-0 text-uppercase">File Storage</h6>
+                    <h6 class="mb-0 text-uppercase"><i class="fa-solid fa-box-open me-2  text-primary"></i>File Storage</h6>
                     <div class="my-3 border-top"></div>
                     
                     <div class="row row-cols-1 row-cols-lg-2 g-3" id="dashboardStorageSection">
@@ -269,7 +269,7 @@
          <div class="card">
                 <div class="card-body d-flex justify-content-around align-items-center">
                     <h6 class="mb-0 text-uppercase" id="dashboard-currentdate"></h6>
-                    <a href="churchcalendar"><button type="button" class="btn btn-outline-dark px-5 radius-30">View Calendar</button></a> 
+                    <a href="churchcalendar"><button type="button" class="btn btn-outline-dark px-5 radius-30"><i class="far fa-calendar me-2"></i>View Calendar</button></a> 
                 </div>
                   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

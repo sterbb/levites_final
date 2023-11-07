@@ -19,7 +19,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="card-body" scrollable-y="true">
+                        <div class="card-body violations_warning_section" scrollable-y="true">
                             <?php 
                                     
                                         $reports  = (new ControllerReportSubmission)->ctrgetSubmissions(1);
@@ -94,12 +94,12 @@
                             </div>
                         </div>
                     </div>  
-                    <div class="card-body" scrollable-y="true">
+                    <div class="card-body warned_section" scrollable-y="true">
                         <?php 
                             
                         $reports  = (new ControllerReportSubmission)->ctrWarnedAccounts();
 
-                        $recipientDict = [];
+                            $recipientDict = [];
 
                             foreach ($reports as $report) {
 

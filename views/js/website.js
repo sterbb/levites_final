@@ -97,16 +97,77 @@ $(".addWebsiteForm").submit(function(e) {
                       success: function(answer) {
                           console.log(answer);
 
-                          // Display a success Swal notification with a confirm button
-                          Swal.fire({
-                              icon: 'success',
-                              title: 'Success',
-                              text: 'Website added successfully!',
-                              confirmButtonText: 'OK',
-                          }).then((result) => {
-                              if (result.isConfirmed) {
-                                  // Reload the system when the "OK" button is clicked
-                                  location.reload();
+                          var websitefunction = new FormData();
+                          websitefunction.append("websitefunction", "website_list");
+                          
+                          $.ajax({
+                              url: "ajax/async_websiteorg.ajax.php", // Replace with the actual URL for adding the website
+                              method: "POST",
+                              data: websitefunction,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(answer) {
+                                console.log(answer[0]['website_name']);
+                                // alert(answer);
+                                $(".website_add_modal").modal('hide');
+                                
+                                var websiteList = document.querySelector('.website_list_section');
+                                websiteList.innerHTML = '';
+
+                                for (var value of answer) {
+                                    console.log( "fjlajslfs" + value['website_path']);
+                                    // websiteList.innerHTML += "<button> jalksfj</button>"
+                                    var websiteHTML = '<div class="col text-center mt-3 website">';
+                                    websiteHTML += '<a href="' + value["website_path"] + '" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' + value["website_description"]  + '">';
+                                    
+                                    if(value['website_category'] === 'Social Media'){
+                                        websiteHTML += '<img src="views/images/socmed.png">';
+                                    }else if     (value['website_category'] === 'Productivity') {
+                                        websiteHTML += '<img src="views/images/productivity.png">';
+                                    } else if (value['website_category'] === 'Multimedia') {
+                                        websiteHTML += '<img src="views/images/multimedia.png">';
+                                    }else{
+                                        websiteHTML += '<img src="views/images/videocon.png">';
+                                    }
+                                    websiteHTML += '<p class="text-dark mt-3" style="font-size: 1.5em;">' +value['website_name'] + '</p>';
+                                    websiteHTML += '</a> <button class="btn btn-danger mb-3 mt-0 minus-website"  data-toggle="tooltip" data-placement="left" title="Delete Website" id="' + value['accountID'] + '" value="' + value['website_name'] + '" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
+                                    websiteHTML += '</div>';
+                                    // Update the innerHTML once with the concatenated HTML
+                                    websiteList.innerHTML += websiteHTML;
+                                }
+
+                                  const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                  });
+                                
+                                  Toast.fire({
+                                    icon: 'success',
+                                    title: 'Website added succesfully.'
+                                  });
+
+                                  $("#website_name").val('');
+                                  $("#website_path").val('');
+                                  $("#website_category").val('Social Media');
+                                  $("#website_desc").val('');
+
+                                  
+        
+                              },
+                              error: function() {
+                                  // Handle AJAX errors if needed
+                              },
+                              complete: function() {
+                                  // Handle any completion tasks if needed
                               }
                           });
                       },
@@ -198,7 +259,7 @@ $(".addWebsiteForm").submit(function(e) {
                         Swal.fire({
                             title: 'Are you sure?',
                             icon: 'warning',
-                            text: 'Group name updated successfully!',
+                            text: 'This action will update the group name.',
                             confirmButtonText: 'OK',
                             showCancelButton: true,
                             cancelButtonText: 'Cancel', 
@@ -214,14 +275,93 @@ $(".addWebsiteForm").submit(function(e) {
                                     processData: false,
                                     dataType: "text",
                                     success: function(answer) {
-                                        console.log(answer);
+                                        
+                                    console.log(answer);
+                                    var websitefunction = new FormData();
+                                    websitefunction.append("websitefunction", "website_group");
+                                    $.ajax({
+                                        url: "ajax/async_websiteorg.ajax.php", // Replace with the actual URL for adding the website
+                                        method: "POST",
+                                        data: websitefunction,
+                                        cache: false,
+                                        contentType: false,
+                                        processData: false,
+                                        dataType: "json",
+                                        success: function(answer) {
+                                            console.log(answer);
+                          
+                                        
+                                        var websiteList = document.querySelector('#website_group_section');
+                                        websiteList.innerHTML = '';
+
+                                            for (var value of answer) {
+                                                console.log(value['group_name']);
+                                            var websiteHTML = '<div class="row mt-4 border border-2 mx-3 px-3"> <div class="col pt-3 d-flex justify-content-between align-items-center mb-2"><input class="mb-0 text-uppercase border-0  text-dark h5" id="editing-' + value['group_name']+'-website-input" value="'+value['group_name']+'"  disabled></input><div><button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  data-toggle="tooltip"  title="Edit Group" data-placement="left"  id="' + value['group_name']+'-website"  onclick="editGroup(this)" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button><button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" data-toggle="tooltip"  title="Delete Group" data-placement="right" group_name="'+value['group_name']+'" id="'+value['accID']+'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button></div></div><hr><div class="row row-cols-4 row-cols-lg-6 g-1 ">';
+        
+                                            var list_websites = JSON.parse(value['websites_list']);
+
+                                            for(var websites of list_websites){
+            
+                                                var images = websites['category'];
+                                                
+                
+                                                if ( images == "Social Media"){
+                                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/socmed.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                
+                                                }else if (images == "Productivity"){
+                                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/productivity.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                                }else if (images == "Multimedia"){
+                                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/multimedia.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                
+                                                }else{
+                                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/videocon.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                                }
+                            
+                                                            
+                    
+                    
+                                                
+                                                }
+                    
+                                                websiteHTML += ' </div> </div>';
+                                                websiteList.innerHTML += websiteHTML;
+                                            }
+
+                                            
+
+                                                const Toast = Swal.mixin({
+                                                toast: true,
+                                                position: 'top-end',
+                                                showConfirmButton: false,
+                                                timer: 3000,
+                                                timerProgressBar: true,
+                                                didOpen: (toast) => {
+                                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                }
+                                                });
+                                            
+                                                Toast.fire({
+                                                icon: 'success',
+                                                title: 'Group name changed successfully.'
+                                                });
+
+                                        
+                                            },
+                                            error: function() {
+                                                // Handle AJAX errors if needed
+                                            },
+                                            complete: function() {
+                                                // Handle any completion tasks if needed
+                                            }
+                                        });
                                     },
                                     error: function() {
                                         // Handle AJAX errors if needed
                                     },
                                     complete: function() {
                                         // Reload the page when the "OK" button is clicked
-                                        location.reload();
+                                    
                                     }
                                 });
                             } else {
@@ -305,8 +445,90 @@ $("#addGroupBtn").on('click', function() {
                         processData: false,
                         dataType: "text",
                         success: function(answer) {
+
                             console.log(answer);
-                            location.reload();
+                            var websitefunction = new FormData();
+                            websitefunction.append("websitefunction", "website_group");
+                            $.ajax({
+                                url: "ajax/async_websiteorg.ajax.php", // Replace with the actual URL for adding the website
+                                method: "POST",
+                                data: websitefunction,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                dataType: "json",
+                                success: function(answer) {
+                                    console.log(answer);
+                                // console.log(answer[0]['website_name']);
+                                $("#Group").modal('hide');
+                                
+                                var websiteList = document.querySelector('#website_group_section');
+                                websiteList.innerHTML = '';
+
+                                for (var value of answer) {
+                                    console.log(value['group_name']);
+                                 var websiteHTML = '<div class="row mt-4 border border-2 mx-3 px-3"> <div class="col pt-3 d-flex justify-content-between align-items-center mb-2"><input class="mb-0 text-uppercase border-0  text-dark h5" id="editing-' + value['group_name']+'-website-input" value="'+value['group_name']+'"  disabled></input><div><button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  data-toggle="tooltip"  title="Edit Group" data-placement="left"  id="' + value['group_name']+'-website"  onclick="editGroup(this)" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button><button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" data-toggle="tooltip"  title="Delete Group" data-placement="right" group_name="'+value['group_name']+'" id="'+value['accID']+'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button></div></div><hr><div class="row row-cols-4 row-cols-lg-6 g-1 ">';
+        
+                                    var list_websites = JSON.parse(value['websites_list']);
+
+                                    for(var websites of list_websites){
+    
+                                        var images = websites['category'];
+                                        
+        
+                                        if ( images == "Social Media"){
+                                            websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/socmed.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+        
+                                        }else if (images == "Productivity"){
+                                            websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/productivity.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                        }else if (images == "Multimedia"){
+                                            websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/multimedia.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+        
+                                        }else{
+                                            websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/videocon.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                        }
+        
+                                                
+        
+        
+                                       
+                                    }
+        
+                                    websiteHTML += ' </div> </div>';
+                                    websiteList.innerHTML += websiteHTML;
+                                }
+
+                                
+
+                                    const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                    });
+                                
+                                    Toast.fire({
+                                    icon: 'success',
+                                    title: 'Website group created successfully.'
+                                    });
+
+                                    $("#website_groupname").val('');
+                                },
+                                error: function() {
+                                    // Handle AJAX errors if needed
+                                },
+                                complete: function() {
+                                    // Handle any completion tasks if needed
+                                }
+                            });
+                                            
+                                            
+                        
                         },
                         error: function() {
                             // Handle AJAX errors if needed
@@ -327,7 +549,7 @@ $("#addGroupBtn").on('click', function() {
 
 
 
-  $(".minus-website").click(function(){
+$(document).on("click", ".minus-website", function() {
     var w_id =  $(this).attr('id');
     var w_name =  $(this).val();
 
@@ -346,7 +568,76 @@ $("#addGroupBtn").on('click', function() {
         dataType: "text",
         success: function(answer) {
             console.log(answer);
-            location.reload();
+            var websitefunction = new FormData();
+            websitefunction.append("websitefunction", "website_list");
+            $.ajax({
+                url: "ajax/async_websiteorg.ajax.php", // Replace with the actual URL for adding the website
+                method: "POST",
+                data: websitefunction,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(answer) {
+                  console.log(answer[0]['website_name']);
+                  // alert(answer);
+                  $(".website_add_modal").modal('hide');
+                  
+                  var websiteList = document.querySelector('.website_list_section');
+                  websiteList.innerHTML = '';
+
+                  for (var value of answer) {
+                      console.log( "fjlajslfs" + value['website_path']);
+                      // websiteList.innerHTML += "<button> jalksfj</button>"
+                      var websiteHTML = '<div class="col text-center mt-3 website">';
+                      websiteHTML += '<a href="' + value["website_path"] + '" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' + value["website_description"]  + '">';
+                      
+                      if(value['website_category'] === 'Social Media'){
+                          websiteHTML += '<img src="views/images/socmed.png">';
+                      }else if     (value['website_category'] === 'Productivity') {
+                          websiteHTML += '<img src="views/images/productivity.png">';
+                      } else if (value['website_category'] === 'Multimedia') {
+                          websiteHTML += '<img src="views/images/multimedia.png">';
+                      }else{
+                          websiteHTML += '<img src="views/images/videocon.png">';
+                      }
+                      websiteHTML += '<p class="text-dark mt-3" style="font-size: 1.5em;">' +value['website_name'] + '</p>';
+                      websiteHTML += '</a> <button class="btn btn-danger mb-3 mt-0 minus-website"  data-toggle="tooltip" data-placement="left" title="Delete Website" id="' + value['accountID'] + '" value="' + value['website_name'] + '" hidden><i class="fadeIn animated bx bx-minus"></i></button>';
+                      websiteHTML += '</div>';
+                      // Update the innerHTML once with the concatenated HTML
+                      websiteList.innerHTML += websiteHTML;
+                  }
+
+                    const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                      }
+                    });
+                  
+                    Toast.fire({
+                      icon: 'success',
+                      title: 'Website deleted successfully.'
+                    });
+
+                        $("#editing-website").addClass("btn-outline-success");
+                        $("#editing-website").removeClass("btn-outline-danger");
+                        $("#editing-website").attr('id', 'edit-website');
+                        $(".minus-website").attr("hidden",true);
+                },
+                error: function() {
+                    // Handle AJAX errors if needed
+                },
+                complete: function() {
+                    // Handle any completion tasks if needed
+                }
+            });
+         
   
            
         },
@@ -390,10 +681,91 @@ $("#addGroupBtn").on('click', function() {
                 processData: false,
                 dataType: "text",
                 success: function(answer) {
-                    console.log(answer);
                     if ($(".website-group-" + group_id).length === 0) {
                         deleteGroup(group_id);
                     }
+
+                    console.log(answer);
+                    var websitefunction = new FormData();
+                    websitefunction.append("websitefunction", "website_group");
+                    $.ajax({
+                        url: "ajax/async_websiteorg.ajax.php", // Replace with the actual URL for adding the website
+                        method: "POST",
+                        data: websitefunction,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                            console.log(answer);
+          
+                        
+                        var websiteList = document.querySelector('#website_group_section');
+                        websiteList.innerHTML = '';
+
+                            for (var value of answer) {
+                                console.log(value['group_name']);
+                            var websiteHTML = '<div class="row mt-4 border border-2 mx-3 px-3"> <div class="col pt-3 d-flex justify-content-between align-items-center mb-2"><input class="mb-0 text-uppercase border-0  text-dark h5" id="editing-' + value['group_name']+'-website-input" value="'+value['group_name']+'"  disabled></input><div><button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  data-toggle="tooltip"  title="Edit Group" data-placement="left"  id="' + value['group_name']+'-website"  onclick="editGroup(this)" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button><button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" data-toggle="tooltip"  title="Delete Group" data-placement="right" group_name="'+value['group_name']+'" id="'+value['accID']+'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button></div></div><hr><div class="row row-cols-4 row-cols-lg-6 g-1 ">';
+
+                            var list_websites = JSON.parse(value['websites_list']);
+
+                            for(var websites of list_websites){
+
+                                var images = websites['category'];
+                                
+
+                                if ( images == "Social Media"){
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/socmed.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+
+                                }else if (images == "Productivity"){
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/productivity.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                }else if (images == "Multimedia"){
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/multimedia.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+
+                                }else{
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/videocon.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                }
+            
+                                            
+    
+    
+                                
+                                }
+    
+                                websiteHTML += ' </div> </div>';
+                                websiteList.innerHTML += websiteHTML;
+                            }
+
+                            
+
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                });
+                            
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Website removed from group successfully.'
+                                });
+
+                        
+                            },
+                            error: function() {
+                                // Handle AJAX errors if needed
+                            },
+                            complete: function() {
+                                // Handle any completion tasks if needed
+                            }
+                        });
+
+                    
                     
                 },
                 error: function() {
@@ -401,7 +773,7 @@ $("#addGroupBtn").on('click', function() {
                 },
                 complete: function() {
                     // Check if the group has no websites left, and if so, delete the group
-                    location.reload();
+    
                 }
             });
         }
@@ -435,8 +807,86 @@ function deleteGroup(element) {
                 processData: false,
                 dataType: "text",
                 success: function(answer) {
+                
                     console.log(answer);
-                    location.reload();
+                    var websitefunction = new FormData();
+                    websitefunction.append("websitefunction", "website_group");
+                    $.ajax({
+                        url: "ajax/async_websiteorg.ajax.php", // Replace with the actual URL for adding the website
+                        method: "POST",
+                        data: websitefunction,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                            console.log(answer);
+          
+                        
+                        var websiteList = document.querySelector('#website_group_section');
+                        websiteList.innerHTML = '';
+
+                            for (var value of answer) {
+                                console.log(value['group_name']);
+                            var websiteHTML = '<div class="row mt-4 border border-2 mx-3 px-3"> <div class="col pt-3 d-flex justify-content-between align-items-center mb-2"><input class="mb-0 text-uppercase border-0  text-dark h5" id="editing-' + value['group_name']+'-website-input" value="'+value['group_name']+'"  disabled></input><div><button type="button" class="btn btn-outline-success px-3 radius-30 text-center"  data-toggle="tooltip"  title="Edit Group" data-placement="left"  id="' + value['group_name']+'-website"  onclick="editGroup(this)" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" ><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.1em;" ></i></button><button type="button" class="btn btn-outline-danger px-3 radius-30 text-center" data-toggle="tooltip"  title="Delete Group" data-placement="right" group_name="'+value['group_name']+'" id="'+value['accID']+'"  onclick="deleteGroup(this)"><i class="fadeIn animated bx bx-message-square-minus" style="font-size: 1.1em;" ></i></button></div></div><hr><div class="row row-cols-4 row-cols-lg-6 g-1 ">';
+
+                            var list_websites = JSON.parse(value['websites_list']);
+
+                            for(var websites of list_websites){
+
+                                var images = websites['category'];
+                                
+
+                                if ( images == "Social Media"){
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/socmed.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+
+                                }else if (images == "Productivity"){
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/productivity.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                }else if (images == "Multimedia"){
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/multimedia.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+
+                                }else{
+                                    websiteHTML += '<div class="col text-center website mb-3" ><a href="'+websites['path']+'"  target="_blank"><img src="views/images/videocon.png" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="'+websites['description'] + '"><p class="text-dark" style="font-size:1.5em;">'+websites['name'] + '</p></a><button data-toggle="tooltip" data-placement="left" title="Delete Website" class="btn btn-danger  mb-3 mt-0 '+value['group_name']+'-website" value="'+websites['name'] + '" groupname="'+value['group_name']+'" groupid="'+value['accID']+'" onclick="removeWebsiteGroup(this)" hidden><i class="fadeIn animated bx bx-minus"></i></button></div>';
+                                }
+            
+                                            
+    
+    
+                                
+                                }
+    
+                                websiteHTML += ' </div> </div>';
+                                websiteList.innerHTML += websiteHTML;
+                            }
+
+                            
+
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                });
+                            
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Group deleted successfully.'
+                                });
+
+                        
+                            },
+                            error: function() {
+                                // Handle AJAX errors if needed
+                            },
+                            complete: function() {
+                                // Handle any completion tasks if needed
+                            }
+                        });
                 },
                 error: function() {
                     // Handle AJAX errors if needed

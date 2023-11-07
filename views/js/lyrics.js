@@ -76,6 +76,24 @@ function copyLyrics(button) {
     setTimeout(() => {
         selection.removeAllRanges();
     }, 3000);  //Remove the highlighting after 3 seconds (adjust as needed)
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        });
+    
+        Toast.fire({
+        icon: 'success',
+        title: 'Lyrics copied to clipboard.'
+        });
+        
   }
   
   function copyToClipboard(text) {
@@ -114,6 +132,23 @@ function copyWholeLyrics() {
         lyricsElement.classList.remove('highlighted');
         selection.removeAllRanges();
     }, 3000); // Remove the highlighting after 2 seconds
+
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    });
+
+    Toast.fire({
+    icon: 'success',
+    title: 'Lyrics copied to clipboard.'
+    });
     
 }
 
@@ -140,6 +175,23 @@ function downloadLyrics() {
     a.href = url;
     a.download = title + artist + '.txt';
     a.click();
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        });
+    
+        Toast.fire({
+        icon: 'success',
+        title: 'Downloading lyrics...'
+        });
 
     URL.revokeObjectURL(url);
 }
@@ -189,6 +241,24 @@ function downloadPlaylist(element){
 
     // Submit the form to initiate the download
     form.submit();
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        });
+    
+        Toast.fire({
+        icon: 'success',
+        title: 'Downloading playlist lyrics...'
+        });
+
 }
 
 function printLyrics() {
@@ -263,6 +333,24 @@ function downloadLinkedSong(element) {
           downloadLink.href = url;
           downloadLink.download = response.title + '.txt'; // Set the file name
           downloadLink.click();
+
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            });
+        
+            Toast.fire({
+            icon: 'success',
+            title: 'Downloading lyrics...'
+            });
   
           // Clean up the URL and the anchor element
           URL.revokeObjectURL(url);

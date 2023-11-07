@@ -74,7 +74,9 @@
                   </div>
                   <div class="col-12">
                     <div class="text-start">
-                      <p class="mb-0">Don't have an account yet? <a href="churchregistration" style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sign up here</a>
+                      <p class="mb-0">Don't have an account yet?
+                      <a class="btn btn-white" href="churchregistration" style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="fa-solid fa-church text-white me-2"></i> Sign up</a>
+                      <a class="btn btn-white" href="publicregistration" style="background: -webkit-radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="fa-solid fa-person-praying text-white me-2"></i>Sign up</a>
                       </p>
                     </div>
                   </div>

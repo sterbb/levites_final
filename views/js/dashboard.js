@@ -22,8 +22,8 @@ $(document).ready(function() {
               valuesList.push(parseFloat(valueInMB)); 
           });
 
-          var freesize = 1024-(totalSize / 1048576).toFixed(2)
-          if(freesize < 500){
+          var freesize = 300-(totalSize / 1048576).toFixed(2)
+          if(freesize < 150){
             var warn = '<a class="dropdown-item" href="filestorage" id="notificationFileStorage"><div class="d-flex align-items-center"><div class="notify text-warning border"><span class="material-symbols-outlined">hard_drive</span></div><div class="flex-grow-1"><h6 class="msg-name">Local Storage</h6><p class="msg-info">You only have ' +freesize.toFixed(2) +' MB left.</p></div></div></a>';
             $("#notifications-storage").append(warn);
           }

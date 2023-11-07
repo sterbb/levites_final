@@ -177,7 +177,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
                       <script>
-                        $(document).ready(function() {
+                 
                           // Your Ajax code here
                           $.ajax({
                             url: 'models/showEventTypes.php',
@@ -228,7 +228,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                               console.log('Error:', error);
                             }
                           });
-                        });
+                      
                       </script>
                   </div>
                 </div>

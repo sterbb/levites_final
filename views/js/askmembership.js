@@ -94,7 +94,7 @@ $(document).on("click", ".askMembershipBtn", function() {
     
   });
 
-  $(".removeMembershipBtn").on("click", function() {
+  $(document).on('click', '.removeMembershipBtn', function() {
     
 
     var membershipID = $(".removeMembershipBtn").val();
@@ -126,7 +126,7 @@ $(document).on("click", ".askMembershipBtn", function() {
         
           Toast.fire({
             icon: 'success',
-            title: 'Remove submitted successfully.'
+            title: 'Membership cancelled successfully.'
           });
           console.log(answer);
           $("#report_accountID").val('');
@@ -144,8 +144,7 @@ $(document).on("click", ".askMembershipBtn", function() {
   });
 
   
-
-  $(".acceptAllMembers").on('click', function() {
+  $(document).on('click', '.acceptAllMembers', function() {
     Swal.fire({
         title: 'Are you sure?',
         text: 'This will accept all members. Continue?',
@@ -176,7 +175,7 @@ $(document).on("click", ".askMembershipBtn", function() {
     });
 });
 
-$(".rejectAllMembers").on('click', function() {
+$(document).on('click', '.rejectAllMembers', function() {
     Swal.fire({
         title: 'Are you sure?',
         text: 'This will reject all members. Continue?',
@@ -237,11 +236,429 @@ function acceptAllMembers(dataArray) {
                 
                   Toast.fire({
                     icon: 'success',
-                    title: 'Accept all submitted successfully.'
+                    title: 'Memberships accepted successfully.'
                   });
                   console.log(answer);
                   $("#report_accountID").val('');
-                location.reload();
+
+                  var asyncCollab = new FormData();
+                  asyncCollab.append("collab_section", "membership_request");
+                  $.ajax({
+                    url: "ajax/async_collaboration.ajax.php",
+                    method: "POST",
+                    data: asyncCollab,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(answer) {
+                      console.log(answer);
+            
+                        var requestSection = document.querySelector('.membership_request_section');
+                        requestSection.innerHTML = '';
+                        var imagePath = ""; // Default value
+            
+                      answer.forEach(function (value, key) {
+            
+                   
+            
+                        var asyncImage = new FormData();
+                        asyncImage.append("image_purpose", "public");
+                        asyncImage.append("data1",  value['memberID']);
+                        asyncImage.append("data2", "");
+            
+                        $.ajax({
+                          url: "ajax/async_images.ajax.php",
+                          method: "POST",
+                          data: asyncImage,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(image) {
+
+                                  if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                    
+                                    imagePath = "./views/images/default.png"; // Default value
+                  
+                  
+                  
+                  
+                                    const html = `
+                                      <div class="searchMemReq">
+                                          <div class="team-list m-3 churchDiv">
+                                              <div class="d-flex align-items-center gap-3">
+                                                  <div class="">
+                                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                  </div>
+                                                  <div class="flex-grow-1">
+                                                      <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                  </div>
+                                                  <div class="">
+                                                      <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                      <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                      <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                  </div>
+                                              </div>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                      `;
+
+                                      requestSection.innerHTML += html;
+                        
+                        
+                                  } else {
+                                      imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                  
+                        
+                  
+                                    
+                                      const html = `
+                                      <div class="searchMemReq">
+                                          <div class="team-list m-3 churchDiv">
+                                              <div class="d-flex align-items-center gap-3">
+                                                  <div class="">
+                                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                  </div>
+                                                  <div class="flex-grow-1">
+                                                      <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                  </div>
+                                                  <div class="">
+                                                      <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                      <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                      <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                  </div>
+                                              </div>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                      `;
+
+                                      requestSection.innerHTML += html;
+                        
+                          
+                          
+                          
+                                  }
+                  
+                                  console.log(imagePath)
+                      
+        
+        
+        
+        
+                                
+        
+    
+        
+               
+          
+                    
+              
+                    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+                      });
+
+                
+                    },
+                    error: function() {
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+
+                  var asyncCollab = new FormData();
+                  asyncCollab.append("collab_section", "members");
+                  $.ajax({
+                    url: "ajax/async_collaboration.ajax.php",
+                    method: "POST",
+                    data: asyncCollab,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(answer) {
+                      console.log(answer);
+            
+                        var requestSection = document.querySelector('.members_section');
+                        requestSection.innerHTML = '';
+                        var imagePath = ""; // Default value
+            
+                      answer.forEach(function (value, key) {
+            
+                   
+            
+                        var asyncImage = new FormData();
+                        asyncImage.append("image_purpose", "public");
+                        asyncImage.append("data1",  value['memberID']);
+                        asyncImage.append("data2", "");
+            
+                        $.ajax({
+                          url: "ajax/async_images.ajax.php",
+                          method: "POST",
+                          data: asyncImage,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(image) {
+
+                                  if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                    
+                                    imagePath = "./views/images/default.png"; // Default value
+                  
+                  
+                  
+                  
+                                    const html = `
+                                    <div class="memSearch">
+                                        <div class="team-list m-3">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="">
+                                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">${value['memberName']} </h6>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i> ${value['membershipDate']}</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    `;
+
+                                      requestSection.innerHTML += html;
+                        
+                        
+                                  } else {
+                                      imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                  
+                        
+                  
+                                    
+                                     
+                                    const html = `
+                                    <div class="memSearch">
+                                        <div class="team-list m-3">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="">
+                                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">${value['memberName']} </h6>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i> ${value['membershipDate']}</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                    <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    `;
+
+                                      requestSection.innerHTML += html;
+                        
+                          
+                          
+                          
+                                  }
+                  
+                                  console.log(imagePath)
+                      
+        
+        
+        
+        
+                                
+        
+    
+        
+               
+          
+                    
+              
+                    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+                      });
+
+                
+                    },
+                    error: function() {
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+
+                  var asyncCollab = new FormData();
+                  asyncCollab.append("collab_section", "reject_membership");
+                  $.ajax({
+                    url: "ajax/async_collaboration.ajax.php",
+                    method: "POST",
+                    data: asyncCollab,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(answer) {
+                      console.log(answer);
+            
+                        var requestSection = document.querySelector('.rejected_membership_section');
+                        requestSection.innerHTML = '';
+                        var imagePath = ""; // Default value
+            
+                      answer.forEach(function (value, key) {
+            
+                   
+            
+                        var asyncImage = new FormData();
+                        asyncImage.append("image_purpose", "public");
+                        asyncImage.append("data1",  value['memberID']);
+                        asyncImage.append("data2", "");
+            
+                        $.ajax({
+                          url: "ajax/async_images.ajax.php",
+                          method: "POST",
+                          data: asyncImage,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(image) {
+
+                                  if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                    
+                                    imagePath = "./views/images/default.png"; // Default value
+                  
+                  
+                  
+                  
+                                    const html = `
+                                    <div class="RejectSearchMem">
+                                        <div class="team-list m-3 churchDiv">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="">
+                                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                              
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    `;
+                                      requestSection.innerHTML += html;
+                        
+                        
+                                  } else {
+                                      imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                  
+                        
+                  
+                                    
+                                      const html = `
+                                    <div class="RejectSearchMem">
+                                        <div class="team-list m-3 churchDiv">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="">
+                                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                    
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    `;
+
+                                      requestSection.innerHTML += html;
+                        
+                          
+                          
+                          
+                                  }
+                  
+                                  console.log(imagePath)
+                      
+        
+        
+        
+        
+                                
+        
+    
+        
+               
+          
+                    
+              
+                    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+                      });
+
+                
+                    },
+                    error: function() {
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+                    
+
+
+
+
               },
             error: function() {
                 alert("Oops. Something went wrong!");
@@ -280,11 +697,285 @@ function rejectAllMembers(dataArray) {
                 
                   Toast.fire({
                     icon: 'success',
-                    title: 'Reject all submitted successfully.'
+                    title: 'Memberships rejected successfully.'
                   });
                   console.log(answer);
                   $("#report_accountID").val('');
-                location.reload();
+                  var asyncCollab = new FormData();
+                  asyncCollab.append("collab_section", "membership_request");
+                  $.ajax({
+                    url: "ajax/async_collaboration.ajax.php",
+                    method: "POST",
+                    data: asyncCollab,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(answer) {
+                      console.log(answer);
+            
+                        var requestSection = document.querySelector('.membership_request_section');
+                        requestSection.innerHTML = '';
+                        var imagePath = ""; // Default value
+            
+                      answer.forEach(function (value, key) {
+            
+                   
+            
+                        var asyncImage = new FormData();
+                        asyncImage.append("image_purpose", "public");
+                        asyncImage.append("data1",  value['memberID']);
+                        asyncImage.append("data2", "");
+            
+                        $.ajax({
+                          url: "ajax/async_images.ajax.php",
+                          method: "POST",
+                          data: asyncImage,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(image) {
+
+                                  if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                    
+                                    imagePath = "./views/images/default.png"; // Default value
+                  
+                  
+                  
+                  
+                                    const html = `
+                                      <div class="searchMemReq">
+                                          <div class="team-list m-3 churchDiv">
+                                              <div class="d-flex align-items-center gap-3">
+                                                  <div class="">
+                                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                  </div>
+                                                  <div class="flex-grow-1">
+                                                      <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                  </div>
+                                                  <div class="">
+                                                      <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                      <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                      <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                  </div>
+                                              </div>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                      `;
+
+                                      requestSection.innerHTML += html;
+                        
+                        
+                                  } else {
+                                      imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                  
+                        
+                  
+                                    
+                                      const html = `
+                                      <div class="searchMemReq">
+                                          <div class="team-list m-3 churchDiv">
+                                              <div class="d-flex align-items-center gap-3">
+                                                  <div class="">
+                                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                  </div>
+                                                  <div class="flex-grow-1">
+                                                      <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                  </div>
+                                                  <div class="">
+                                                      <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                      <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                      <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                  </div>
+                                              </div>
+                                              <hr>
+                                          </div>
+                                      </div>
+                                      `;
+
+                                      requestSection.innerHTML += html;
+                        
+                          
+                          
+                          
+                                  }
+                  
+                                  console.log(imagePath)
+                      
+        
+        
+        
+        
+                                
+        
+    
+        
+               
+          
+                    
+              
+                    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+                      });
+
+                
+                    },
+                    error: function() {
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+
+                  var asyncCollab = new FormData();
+                  asyncCollab.append("collab_section", "reject_membership");
+                  $.ajax({
+                    url: "ajax/async_collaboration.ajax.php",
+                    method: "POST",
+                    data: asyncCollab,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(answer) {
+                      console.log(answer);
+            
+                        var requestSection = document.querySelector('.rejected_membership_section');
+                        requestSection.innerHTML = '';
+                        var imagePath = ""; // Default value
+            
+                      answer.forEach(function (value, key) {
+            
+                   
+            
+                        var asyncImage = new FormData();
+                        asyncImage.append("image_purpose", "public");
+                        asyncImage.append("data1",  value['memberID']);
+                        asyncImage.append("data2", "");
+            
+                        $.ajax({
+                          url: "ajax/async_images.ajax.php",
+                          method: "POST",
+                          data: asyncImage,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(image) {
+
+                                  if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                    
+                                    imagePath = "./views/images/default.png"; // Default value
+                  
+                  
+                  
+                  
+                                    const html = `
+                                    <div class="RejectSearchMem">
+                                        <div class="team-list m-3 churchDiv">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="">
+                                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                              
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    `;
+                                      requestSection.innerHTML += html;
+                        
+                        
+                                  } else {
+                                      imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                  
+                        
+                  
+                                    
+                                      const html = `
+                                    <div class="RejectSearchMem">
+                                        <div class="team-list m-3 churchDiv">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="">
+                                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                </div>
+                                                <div class="">
+                                                    <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                    <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                    
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    `;
+
+                                      requestSection.innerHTML += html;
+                        
+                          
+                          
+                          
+                                  }
+                  
+                                  console.log(imagePath)
+                      
+        
+        
+        
+        
+                                
+        
+    
+        
+               
+          
+                    
+              
+                    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+                      });
+
+                
+                    },
+                    error: function() {
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+
               },
             error: function() {
                 alert("Oops. Something went wrong!");
@@ -293,7 +984,7 @@ function rejectAllMembers(dataArray) {
     });
 }
 // Individual Accept Member
-$(".acceptMember").on('click', function() {
+$(document).on('click', '.acceptMember', function() {
     var mshipID = $(this).siblings('input').first().val();
     var acc_id = $(this).siblings('input').first().attr('acc_id');
     var acc_name = $(this).siblings('input').first().attr('acc_name');
@@ -335,11 +1026,425 @@ $(".acceptMember").on('click', function() {
                     
                       Toast.fire({
                         icon: 'success',
-                        title: 'Accept submitted successfully.'
+                        title: 'Membership accepted successfully.'
                       });
                       console.log(answer);
                       $("#report_accountID").val('');
-                    location.reload();
+
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "membership_request");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.membership_request_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+ 
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                          <div class="searchMemReq">
+                                              <div class="team-list m-3 churchDiv">
+                                                  <div class="d-flex align-items-center gap-3">
+                                                      <div class="">
+                                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                      </div>
+                                                      <div class="flex-grow-1">
+                                                          <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                      </div>
+                                                      <div class="">
+                                                          <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                          <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                          `;
+
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                          const html = `
+                                          <div class="searchMemReq">
+                                              <div class="team-list m-3 churchDiv">
+                                                  <div class="d-flex align-items-center gap-3">
+                                                      <div class="">
+                                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                      </div>
+                                                      <div class="flex-grow-1">
+                                                          <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                      </div>
+                                                      <div class="">
+                                                          <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                          <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                          `;
+
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+        
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "members");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.members_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+ 
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                        <div class="memSearch">
+                                            <div class="team-list m-3">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']} </h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i> ${value['membershipDate']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                         
+                                        const html = `
+                                        <div class="memSearch">
+                                            <div class="team-list m-3">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']} </h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i> ${value['membershipDate']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+        
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "reject_membership");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.rejected_membership_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+    
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                        <div class="RejectSearchMem">
+                                            <div class="team-list m-3 churchDiv">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                  
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                          const html = `
+                                        <div class="RejectSearchMem">
+                                            <div class="team-list m-3 churchDiv">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                        
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+        
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+    
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+           
                 },
                 error: function() {
                     alert("Oops. Something went wrong!");
@@ -350,7 +1455,7 @@ $(".acceptMember").on('click', function() {
 });
 
 // Individual Reject Member
-$(".rejectMember").on('click', function() {
+$(document).on('click', '.rejectMember', function() {
     var mshipID = $(this).siblings('input').first().val();
     var acc_id = $(this).siblings('input').first().attr('acc_id');
     var acc_name = $(this).siblings('input').first().attr('acc_name');
@@ -392,11 +1497,275 @@ $(".rejectMember").on('click', function() {
                     
                       Toast.fire({
                         icon: 'success',
-                        title: 'Reject submitted successfully.'
+                        title: 'Member rejected successfully.'
                       });
                       console.log(answer);
                       $("#report_accountID").val('');
-                    location.reload();
+                    
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "membership_request");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.membership_request_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+    
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                          <div class="searchMemReq">
+                                              <div class="team-list m-3 churchDiv">
+                                                  <div class="d-flex align-items-center gap-3">
+                                                      <div class="">
+                                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                      </div>
+                                                      <div class="flex-grow-1">
+                                                          <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                      </div>
+                                                      <div class="">
+                                                          <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                          <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                          `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                          const html = `
+                                          <div class="searchMemReq">
+                                              <div class="team-list m-3 churchDiv">
+                                                  <div class="d-flex align-items-center gap-3">
+                                                      <div class="">
+                                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                      </div>
+                                                      <div class="flex-grow-1">
+                                                          <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                      </div>
+                                                      <div class="">
+                                                          <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                          <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                          `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+                   
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+    
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "reject_membership");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.rejected_membership_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+    
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                        <div class="RejectSearchMem">
+                                            <div class="team-list m-3 churchDiv">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                  
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                          const html = `
+                                        <div class="RejectSearchMem">
+                                            <div class="team-list m-3 churchDiv">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                        
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+        
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+    
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+    
                 },
                 error: function() {
                     alert("Oops. Something went wrong!");
@@ -407,8 +1776,7 @@ $(".rejectMember").on('click', function() {
 });
 
 
-
-$(".removeMember").on('click', function () {
+$(document).on('click', '.removeMember', function() {
     var mshipID = $(this).siblings('input').first().val();
 
     // Show a SweetAlert confirmation dialog
@@ -449,11 +1817,289 @@ $(".removeMember").on('click', function () {
                     
                       Toast.fire({
                         icon: 'success',
-                        title: 'Remove submitted successfully.'
+                        title: 'Member removed successfully.'
                       });
                       console.log(answer);
                       $("#report_accountID").val('');
-                    location.reload();
+
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "membership_request");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.membership_request_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+    
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                          <div class="searchMemReq">
+                                              <div class="team-list m-3 churchDiv">
+                                                  <div class="d-flex align-items-center gap-3">
+                                                      <div class="">
+                                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                      </div>
+                                                      <div class="flex-grow-1">
+                                                          <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                      </div>
+                                                      <div class="">
+                                                          <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                          <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                          `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                          const html = `
+                                          <div class="searchMemReq">
+                                              <div class="team-list m-3 churchDiv">
+                                                  <div class="d-flex align-items-center gap-3">
+                                                      <div class="">
+                                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                      </div>
+                                                      <div class="flex-grow-1">
+                                                          <h6 class="mb-1 fw-bold">${value['memberName']}</h6>
+                                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                      </div>
+                                                      <div class="">
+                                                          <input type="text" value="${value['mshipID']}" acc_id="${value['memberID']}" acc_name="${value['memberName']}" style="display:none;" required>
+                                                          <button class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptMember">Accept</button>
+                                                          <button class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectMember">Reject</button>
+                                                      </div>
+                                                  </div>
+                                                  <hr>
+                                              </div>
+                                          </div>
+                                          `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+        
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+    
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+    
+                      var asyncCollab = new FormData();
+                      asyncCollab.append("collab_section", "members");
+                      $.ajax({
+                        url: "ajax/async_collaboration.ajax.php",
+                        method: "POST",
+                        data: asyncCollab,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                          console.log(answer);
+                
+                            var requestSection = document.querySelector('.members_section');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "public");
+                            asyncImage.append("data1",  value['memberID']);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+    
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                        <div class="memSearch">
+                                            <div class="team-list m-3">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']} </h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i> ${value['membershipDate']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                         
+                                        const html = `
+                                        <div class="memSearch">
+                                            <div class="team-list m-3">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <div class="">
+                                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" alt="..." style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-bold">${value['memberName']} </h6>
+                                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success"><i class="bx bx-envelope"> </i> ${value['memberEmail']}</span>
+                                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary"><i class="bi bi-calendar-check-fill"></i> ${value['membershipDate']}</span>
+                                                    </div>
+                                                    <div class="">
+                                                        <input type="text" name="trans_type" id="church_id" value="${value['mshipID']}" name="church_id" style="display:none;" required>
+                                                        <button class="btn btn-outline-danger rounded-5 btn-sm px-3 removeMember">Remove</button>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        `;
+    
+                                          requestSection.innerHTML += html;
+                            
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+        
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                          });
+    
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+                        
+
                 },
                 error: function (xhr, status, error) {
                     console.log(xhr);

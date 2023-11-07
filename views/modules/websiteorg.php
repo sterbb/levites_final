@@ -6,7 +6,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col d-flex align-items-center">
-                            <h6 class="mb-0 text-uppercase">Website Organizer</h6>
+                            <h6 class="mb-0 text-uppercase"><i class="fa-solid fa-table-columns me-2"></i>
+                            Website Organizer</h6>
                         </div>
                         <div class="col d-flex justify-content-end gap-3">
                             <button type="button" class="btn btn-outline-success px-3 radius-30 text-center" data-toggle="tooltip" data-placement="left" title="Edit Website" id="edit-website"><i class="fadeIn animated bx bx-message-square-edit" style="font-size: 1.2em;" ></i></button>
@@ -18,22 +19,15 @@
 
                 
                    
-                    <div class="row row-cols-4 row-cols-lg-6 g-1">
-
-
-                  
+                    <div class="row row-cols-4 row-cols-lg-6 g-1 website_list_section">
 
                     <?php 
                     $websites = (new ControllerWebsite)->ctrShowWebsites();
 
                     foreach ($websites as $key => $value) {
                         echo '<div class="col text-center mt-3 website">';
-                        $Deletewebsites = $value;
-
-                        if (isset($_GET['accoutID'])) {
-                            $accountID =  $_GET['accountID'];
-                        }
-
+               
+                
                         echo '<a href="' . $value['website_path'] . '" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $value['website_description'] . '">';
                         
                         if ($value['website_category'] === 'Social Media') {
@@ -59,7 +53,8 @@
 
                     <hr>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-               
+
+                    <div id="website_group_section">
                     <?php 
                    $websites = (new ControllerWebsite)->ctrShowGroups();
                     foreach($websites as $key => $value){
@@ -78,13 +73,6 @@
                             </div>
                             <hr>
                             <div class="row row-cols-4 row-cols-lg-6 g-1 ">';
-
-                            // $list1 = json_decode(stripslashes($value['websites_list']));
-
-               
-                            // $list2 = json_encode($value['websites_list']);
-                            // echo $list1;
-                            // echo $list2;
 
                             $list_websites = json_decode($value['websites_list']);
                           
@@ -149,6 +137,7 @@
                             echo' </div> </div>';
                     }
                         ?>
+                    </div>
                                         
                     
              
@@ -162,7 +151,7 @@
             <div class="col-12 col-lg-8 col-xl-4">
                 <div class="card " style="height: 650px;">
                     <div class="card-body" >
-                    <h6 class="mb-0 text-uppercase">Recommendation</h6>
+                    <h6 class="mb-0 text-uppercase"><i class="fa-regular fa-thumbs-up me-2"></i>Recommendations</h6>
                     <div class="my-3 border-top"></div>
 
                     <div class="row g-3">
@@ -186,7 +175,7 @@
 </main>
 
 
-<div class="modal fade" id="Application" tabindex="-1" aria-hidden="true">
+<div class="modal fade website_add_modal" id="Application" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header text-white" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">
