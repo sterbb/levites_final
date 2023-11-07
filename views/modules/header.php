@@ -336,17 +336,17 @@ if (isset($_COOKIE["acc_type"])) {
                 </div>
               </li>
               <li class="nav-item dropdown ">
-                <div class="dropdown dropdown-center dropdown navbar-upperright">
+                <div class=" dropdown-center ">
                     <div class="dropdown-toggle d-flex align-items-center px-3 gap-3" data-bs-toggle="dropdown">
                       <div class="user-img">
                         <img class="border-2 border" src="<?php echo $imagePath ?>" style=" background-size: cover ;  background-repeat: no-repeat; background-position: center;" alt="" >
                       </div>
                       <div class="user-info">
-                        <h5 class="mb-0 user-name"><?php
+                        <h5 class="mb-0 user-designation" style="font-size: 18px; font-weight: 600;"><?php
                           if($_COOKIE['acc_type'] == "superuser" ){
                             echo "Levites";
                           }else{
-                            echo $_COOKIE["acc_name"];
+                            echo $_COOKIE["acc_name"] .' '. $_COOKIE["acc_lname"];
                           }
                           ?>
                          
@@ -421,7 +421,7 @@ if (isset($_COOKIE["acc_type"])) {
       </div>
       <div class="modal-body">
         <div class="row">
-        <input type="text" class="form-control" id="report_accountID" placeholder="" hidden>
+        <input type="text" class="form-control" id="report_accountID" placeholder="" >
           <div class="col-5">
             <label for="reportSubmissionType" class="form-label fw-bold" >Report Type</label>
             <select class="form-select border-3" id="reportSubmissionType" aria-label="Default select example">

@@ -104,7 +104,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                     <div class="d-inline-block">
                         <input type="submit" class="btn btn-outline-primary mt-1" value="Save Profile" style="display: none;" id="SaveAdminProfile">
                     </div>
-                    <a href="javascript:;" class="btn btn-outline-danger"><i class="bi bi-person-x"></i>Deactivate Account</a>
+                    <a href="javascript:;" class="btn btn-outline-danger" hidden><i class="bi bi-person-x"></i>Deactivate Account</a>
                 </div>
             </div>
 
@@ -120,11 +120,15 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="card">
-                <div class="card-body p-4">
+                <div class="card-body m-4">
                     <form id="updateChurch" method="POST">
-                        <div class="row mb-3">
+
+                        <h5><i class="fadeIn animated bx bx-church fs-4 m-2"  style="color: #999ff0;"></i> Church Information</h5>
+
+
+                        <div class="row mb-3 mt-3">
                             <label for="NewChurch_name" class="col-sm-3 col-form-label">Church Name  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 border-3">
                                 <input type="text" class="form-control" id="NewChurch_name" value="<?php $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
                                     echo $value['church_name'];
@@ -135,52 +139,11 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="contact" class="col-sm-3 col-form-label">Contact Details  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="contact" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['acc_contact'];
-                                }
-                                ?>">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="fname" class="col-sm-3 col-form-label">First Name  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['fname'];
-                                }
-                                ?>">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="lname" class="col-sm-3 col-form-label">Last Name  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['lname'];
-                                }
-                                ?>">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
 
-                        <label for="designation" class="col-sm-3 col-form-label">Designation  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['designation'];
-                                }
-                                ?>">
-                            </div>
-                        </div>
-
-                     
+                         
                         <div class="row mb-3">
                             <label for="email" class="col-sm-3 col-form-label">Email Address  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 border-3">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
                                     echo $value['church_email'];
@@ -189,51 +152,10 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="church_num" class="col-sm-3 col-form-label">Church Number  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="church_num" name="church_num" placeholder="Church Number" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                foreach($admin as $key => $value){
-                                    echo $value['church_num'];
-                                }
-                                ?>">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="username" class="col-sm-3 col-form-label">Username  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['acc_username'];
-                                }
-                                ?>" >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="password" class="col-sm-3 col-form-label"> Password  <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="password" name="password" placeholder="Choose Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['acc_password'];
-                                }
-                                ?>" >
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="conpassword" class="col-sm-3 col-form-label">Confirm Password<sup style='color:red;'> *</sup></label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="conpassword" name="confirm_password" placeholder="Confirm Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
-                                foreach($admin as $key => $value){
-                                    echo $value['acc_password'];
-                                }
-                                ?>" >
-                            </div>
-                        </div>
 
                         <div class="row mb-3">
                             <label for="inputReligion" class="col-sm-3 col-form-label">Religion <sup style="color:red;">*</sup></label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 border-3">
                                 <select class="form-select" id="religion" name="religion" aria-label="Default select example">
                                     <?php
                                         $admin = (new ControllerAdmin)->ctrShowChurchAccount();
@@ -255,14 +177,11 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>
 
-                        
-
 
                         
-
-                        <div class="row  mb-3">
-                            <label for="church_region" class="col-sm-3 col-form-label">Region <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                        <div class="row ">
+                            <label for="church_region" class="col-sm-3 col-form-label mt-1">Region <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
                                 <select name="church_region" class="form-select" id="church_region" required>
                                 <input type="hidden" class="form-control " name="church_region_text" id="church_region_text" required>
 
@@ -279,29 +198,29 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                 </select>
                             </div>
                    
-                            <label for="church_province" class="col-sm-3 col-form-label">Province <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                            <label for="church_province" class="col-sm-3 col-form-labe mt-3">Province <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 mt-2 border-3">
                                 <select name="church_province" class="form-select" id="church_province" required></select>
                                 <input type="hidden" class="form-control " name="church_province_text" id="church_province_text" required>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="church_city" class="col-sm-3 col-form-label">City <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                        <div class="row mb-3 mt-2">
+                            <label for="church_city" class="col-sm-3 col-form-label mt-1">City <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
                                 <select name="church_city" class="form-select " id="church_city" required></select>
                                 <input type="hidden" class="form-control " name="church_city_text" id="church_city_text" required>
                             </div>
-                            <label for="church_barangay" class="col-sm-3 col-form-label">Barangay <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                            <label for="church_barangay" class="col-sm-3 col-form-label mt-2">Barangay <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 mt-2 border-3">
                                 <select name="church_barangay" class="form-select " id="church_barangay" required></select>
                                 <input type="hidden" class="form-control " name="church_barangay_text" id="church_barangay_text" required>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="church_street" class="col-sm-3 col-form-label">Street <sup style='color:red;'>  *</sup></label>
-                            <div class="col-sm-9">
+                            <label for="church_street" class="col-sm-3 col-form-label mt-2">Street <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
                                 <input type="text" class="form-control " id="newchurch_street" name="church_street" placeholder="e.g. Henares"  value="<?php  $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                                 foreach($admin as $key => $value){
                                     echo $value['church_street'];
@@ -311,60 +230,175 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
 
                         </div>
 
-                
-                    
-                                        <hr>
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <div class="mt-1 text-start align-items-start justify-content-start">
-                                    <button type="submit" class="btn text-white" name="submit" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold;">Update Profile</button>
+                        <div class="row mb-3">
+                            <label for="church_num" class="col-sm-3 col-form-label">Church Number  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="church_num" name="church_num" placeholder="Church Number" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                foreach($admin as $key => $value){
+                                    echo $value['church_num'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                       
+                        <div class="border-bottom pb-4 border-4"></div>
+
+
+
+                        <h5 class="mb-3 mt-3"><i class="fadeIn animated bx bx-id-card fs-4 m-2" style="color: #f4e971"></i> Personal Information</h5>
+
+                          
+                        <div class="row mb-3">
+                            <label for="fname" class="col-sm-3 col-form-label">First Name  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['fname'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="lname" class="col-sm-3 col-form-label">Last Name  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['lname'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="designation" class="col-sm-3 col-form-label">Designation  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['designation'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <label for="contact" class="col-sm-3 col-form-label">Contact Details  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="contact" name="phone" placeholder="Phone No" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_contact'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+
+                        <div class="border-bottom pb-4 border-4"></div>
+
+
+                        <h5 class="mb-3 mt-3"><i class="fadeIn animated bx bx-user-circle fs-4 m-2" style="color: #6b93ef"></i> Account Information</h5>
+
+
+                      
+
+                        <div class="row mb-3">
+                            <label for="username" class="col-sm-3 col-form-label">Username  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_username'];
+                                }
+                                ?>" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-sm-3 col-form-label"> Password  <sup style='color:red;'>  *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="password" name="password" placeholder="Choose Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_password'];
+                                }
+                                ?>" >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="conpassword" class="col-sm-3 col-form-label">Confirm Password<sup style='color:red;'> *</sup></label>
+                            <div class="col-sm-9 border-3">
+                                <input type="text" class="form-control" id="conpassword" name="confirm_password" placeholder="Confirm Password" value="<?php   $admin = (new ControllerAdmin)->ctrShowChurchAccount();
+                                foreach($admin as $key => $value){
+                                    echo $value['acc_password'];
+                                }
+                                ?>" >
+                            </div>
+                        </div>
+
+                        <div class="border-bottom pb-4 border-4"></div>
+
+                         <div class="row mb-3 mt-3"  >
+                                <div class="col-6 mt-3 border-3">
+                                        <div class="card">
+                                            <h2 class="text-center pt-3 mb-0  ">MISSION</h2>
+                                            <div class="card-body d-flex justify-content-center align-items-center">
+                                                <textarea class="form-control" id="mission"  placeholder="" rows="3" style="height: 250px;"><?php   $mission = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                                        foreach($mission as $key => $value){
+                                                            echo $value['mission'];
+                                                        }
+                                                        ?></textarea>
+                                            </div>
+                                        </div>
+                                
+
+                                </div>
+
+
+                                <div class="col-6 mt-3 border-3">
+                                    <div class="card">
+                                            <h2 class="text-center pt-3 mb-0 ">VISION</h2>
+                                        <div class="card-body d-flex justify-content-center align-items-center">
+                                            <textarea class="form-control" id="vision" placeholder=""  rows="3" style="height: 250px;"><?php  $vision = (new ControllerAdmin)->ctrShowChurchAdmin();
+                                                        foreach($vision as $key => $value){
+                                                            echo $value['vision'];
+                                                        }
+                                                        ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-bottom pb-4 border-4" style="margin-top: -30px;"></div>
+
+                          
+                        </div>
+
+                     
+                                                      
+                        <div class="row mb-3">
+                            <div class="col text-end align-items-end justify-content-end " >
+                                <div class="mb-3">
+                                    <button type="submit" class="btn text-white" name="submit" style="background: radial-gradient(circle, rgba(192,128,249,1) 0%, rgba(148,191,242,1) 100%); font-weight:bold; margin-right: 30px;">Update Profile</button>
                                 </div>
                             </div>
                         </div>
+
+                        
                         
                     
 
                 </div>
             </div>
 
-            <div class="row">
-                    <div class="col-6">
-                            <div class="card">
-                                <h2 class="text-center pt-3 mb-0  ">MISSION</h2>
-                                <div class="card-body d-flex justify-content-around align-items-center">
-                                    <textarea class="form-control" id="mission"  placeholder="" rows="3" style="height: 250px;"><?php   $mission = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                            foreach($mission as $key => $value){
-                                                echo $value['mission'];
-                                            }
-                                            ?></textarea>
-                                </div>
-                            </div>
-                    
+                       
 
-                    </div>
+                                    
 
 
-                    <div class="col-6">
-                        <div class="card">
-                                <h2 class="text-center pt-3 mb-0 ">VISION</h2>
-                            <div class="card-body d-flex justify-content-around align-items-center">
-                                <textarea class="form-control" id="vision" placeholder=""  rows="3" style="height: 250px;"><?php  $vision = (new ControllerAdmin)->ctrShowChurchAdmin();
-                                            foreach($vision as $key => $value){
-                                                echo $value['vision'];
-                                            }
-                                            ?></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    
+
     
 
         <div class="col">
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="">Add Your Location &nbsp;<button type="button" id="updateChurchloc" class="btn btn-outline-success align-items-end justify-content-end"><i class="fadeIn animated bx bx-plus"></i></button></h5>
+                    <h5 class=""><i class="fadeIn animated fa-solid fa-location-dot fs-4 m-2" style="color: #ff3842;"></i> Add Your Location &nbsp;<button type="button" id="updateChurchloc" class="btn btn-outline-success align-items-end justify-content-end"><i class="fadeIn animated bx bx-plus"></i></button></h5>
 
                         <div id="marker-map" class="gmaps mb-3"></div>
 
@@ -378,7 +412,9 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                 <div class="card">
                     <div class="card-body">
                         <div class="row">  
-                            <div class="col-4">
+                        <h5 class="mb-3"><i class="fadeIn animated fab fa-facebook fs-4 m-2" style="color: #447dee;"></i> Add Social Media</h5>
+
+                            <div class="col-4 border-3">
                                 <select class="form-select" aria-label="Default select example" id="socialMedia_category">
                                     <option selected="" value="Facebook">Facebook</option>
                                     <option value="Snapchat">Snapchat</option>
@@ -393,7 +429,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
 
                             <div class="col-6">
-                                <input class="form-control" type="text" placeholder="Enter Link" id="socialMedia" aria-label="default input example">
+                                <input class="form-control border-3" type="text" placeholder="Enter Link" id="socialMedia" aria-label="default input example">
                             </div>
 
 
@@ -486,8 +522,10 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                 <div class="card">
                     <div class="card-body d-flex justify-content-around align-items-center">
                         <div class="row">
+                        <h5 class="mb-3"><i class="fadeIn animated fas fa-donate fs-4 m-2" style="color: #289f40;"></i> Add Donation</h5>
+
                             <div class="col-4">
-                                <select class="form-select" aria-label="Default select example" id="donation_category">
+                                <select class="form-select border-3" aria-label="Default select example" id="donation_category">
                                     <option selected="" value="GCash">GCash</option>
                                     <option value="PNB">PNB</option>
                                     <option value="BDO">BDO</option>
@@ -496,7 +534,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                 </select>
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" placeholder="" id="donation_number" aria-label="default input example">
+                                <input class="form-control border-3" type="text" placeholder="" id="donation_number" aria-label="default input example">
                             </div>
                             <div class="col-1">
                                 <button type="button" id="addDonation" class="btn btn-outline-success"><i class="fadeIn animated bx bx-plus"></i></button>
@@ -513,32 +551,32 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                         if ($websiteCategory === 'GCash') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/gcash.png" style="height:50px; width:100px;" alt="GCASH">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;"  onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;"  onclick="deleteData('.$value["id"].')">
                                                 </button>
                                                 
                                             </li>';
                                         } elseif ($websiteCategory === 'PNB') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/pnb.png" style="height:25px; width:100px;" alt="PNB">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } elseif ($websiteCategory === 'BDO') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/bdo.png" style="height:25px; width:100px;" alt="BDO">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } elseif ($websiteCategory === 'Metrobank') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/metrobank.png" style="height:30px; width:100px;" alt="METROBANK">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } else {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/bpi.png" style="height:30px; width:100px;" alt="BPI">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0"  style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0"  style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         }
