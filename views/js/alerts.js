@@ -307,8 +307,23 @@ $(document).ready(function() {
 					  processData: false,
 					  dataType: "text",
 					  success: function(answer) {
-						console.log(answer);
-						location.reload(answer);
+
+						const Toast = Swal.mixin({
+							toast: true,
+							position: 'top-end',
+							showConfirmButton: false,
+							timer: 3000,
+							timerProgressBar: true,
+							didOpen: (toast) => {
+							  toast.addEventListener('mouseenter', Swal.stopTimer)
+							  toast.addEventListener('mouseleave', Swal.resumeTimer)
+							}
+						  });
+						
+						  Toast.fire({
+							icon: 'success',
+							title: 'Location saved successfully.'
+						  });
 					  },
 					  error: function() {
 						alert("Oops. Something went wrong! diri");

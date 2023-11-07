@@ -66,38 +66,25 @@
                 <form class="row g-3 " role="form" id="publicRegistrationForm" method="POST" autocomplete="nope" class="churchAccountsForm row g-3">
                 <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" >
 
-                <div class="col-12">
-                            <label for="pubUsername" class="form-label">Username <sup style='color:red;'>  *</sup></label>
-                            <input type="text" class="form-control border-3" id="pubUsername" placeholder="Jhon" required>
-                        </div>
+                            <h5><i class="fa-solid fa-user me-2 text-warning"></i>Personal Information</h5>
 
                             <div class="col-12">
-                            <label for="pubPassword" class="form-label">Password <sup style='color:red;'>  *</sup></label>
-                            <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control border-end-0 border-3" id="pubPassword" value="" placeholder="Enter Password">
-                                <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
-                                </div>
-                            </div>     
-                            
-                            <hr>
-
-                            <div class="col-12">
-                            <label for="pubEmail" class="form-label">Email Address <sup style='color:red;'>  *</sup></label>
+                            <label for="pubEmail" class="form-label fw-bold"><i class="fa-solid fa-envelope me-2"></i>Email Address <sup style='color:red;'>  *</sup></label>
                             <input type="email" class="form-control border-3" id="pubEmail" placeholder="example@user.com" required>
                             </div> 
                             <div class="col-12">
-                                <label for="inputName" class="form-label">First Name <sup style='color:red;'>  *</sup></label>
+                                <label for="inputName" class="form-label fw-bold"><i class="fa-solid fa-circle-info me-2"></i>First Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="pubfname" placeholder="JAY COBB" required>
                             </div>
 
                             <div class="col-12">
-                                <label for="inputLastName" class="form-label">Last Name <sup style='color:red;'>  *</sup></label>
+                                <label for="inputLastName" class="form-label fw-bold"><i class="fa-solid fa-circle-info me-2"></i>Last Name <sup style='color:red;'>  *</sup></label>
                                 <input type="text" class="form-control border-3" id="publname" placeholder="MOYA" required>
                             </div>
 
 
-                            <div class="col-12 mb-4">
-                                <label for="inputReligion" class="form-label">Religion<sup style='color:red;'>  *</sup></label>
+                            <div class="col-12  border-bottom pb-3 border-4">
+                                <label for="inputReligion" class="form-label fw-bold"><i class="fa-solid fa-place-of-worship me-2"></i>Religion<sup style='color:red;'>  *</sup></label>
                                 <select class="form-select border-3" id="pubReligion" aria-label="Default select example" >
                                 <option value="" hidden selected></option>
                                 <optgroup label="Christianity">
@@ -116,6 +103,23 @@
 
                                 </select>
                             </div>
+
+                            
+                            <h5><i class="fa-solid fa-circle-info me-2 text-primary"></i>Account Information</h5>
+                            <div class="col-12">
+              
+                                <label for="pubUsername " class="form-label fw-bold"><i class="fa-solid fa-user me-2"></i>Username <sup style='color:red;'>  *</sup></label>
+                                <input type="text" class="form-control border-3" id="pubUsername" placeholder="Jhon" required>
+                            </div>
+
+                            <div class="col-12  ">
+                            <label for="pubPassword" class="form-label fw-bold"><i class="fa-solid fa-key me-2"></i>Password <sup style='color:red;'>  *</sup></label>
+                            <div class="input-group" id="show_hide_password">
+                                <input type="password" class="form-control border-end-0 border-3" id="pubPassword" value="" placeholder="Enter Password">
+                                <a href="javascript:;" class="input-group-text  border-3"><i class="bi bi-eye-slash-fill"></i></a>
+                                </div>
+                            </div>     
+                            
 
                         </div>
 

@@ -49,8 +49,7 @@
       });
     });
     
-
-    $(".viewBtn").on('click', function(){
+    $(document).on("click", ".viewBtn", function(e) {
         // var parentid=  $(this).closest("div.church_div").find("input[name='church_id']").val();
         var church_id = $(this).siblings('input').first().val();
     
@@ -99,10 +98,10 @@
     
 $(document).ready(function() {
     
-    $(".AccoutAllAccept").on('click', function() {
+  $(document).on("click", ".AccoutAllAccept", function(e) {
       Swal.fire({
-        title: 'Confirm Acceptance',
-        text: 'Are you sure you want to accept all accounts registered?',
+        title: 'Confirm Church Request?',
+        text: 'Are you sure you want to accept all churches?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, accept all!',
@@ -145,22 +144,558 @@ $(document).ready(function() {
           success: function(answer) {
               console.log(answer);
 
-              // Show success toast notification
-              Swal.fire({
-                  icon: 'success',
-                  title: 'Request Accepted',
-                  text: 'All accounts registered have been successfully accepted.',
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 3000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
               });
-              location.reload();
+            
+              Toast.fire({
+                icon: 'success',
+                title: 'Churches accepted successfully.'
+              });
+   
+
+              var superuser = new FormData();
+              superuser.append("superuser_function", "approve");
+              superuser.append("data1", "");
+
+              $.ajax({
+                url: "ajax/async_superuser.ajax.php",
+                method: "POST",
+                data: superuser,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(answer) {
+        
+                    var requestSection = document.querySelector('#registration_churches');
+                    requestSection.innerHTML = '';
+                    var imagePath = ""; // Default value
+        
+                  answer.forEach(function (value, key) {
+        
+               
+        
+                    var asyncImage = new FormData();
+                    asyncImage.append("image_purpose", "request");
+                    asyncImage.append("data1",  value["churchID"]);
+                    asyncImage.append("data2", "");
+        
+                    $.ajax({
+                      url: "ajax/async_images.ajax.php",
+                      method: "POST",
+                      data: asyncImage,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(image) {
+                        console.log(image);
+    
+                        var asyncSuperuser = new FormData();
+                        asyncSuperuser.append("superuser_function", "admin_details");
+                        asyncSuperuser.append("data1",  value["churchID"]);
+    
+                        $.ajax({
+                          url: "ajax/async_superuser.ajax.php",
+                          method: "POST",
+                          data: asyncSuperuser,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(details) {
+                             console.log(details);
+      
+                              if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                
+                                imagePath = "./views/images/default.png"; // Default value
+              
+              
+              
+              
+                                const html = `
+                                <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                  <div class="d-flex align-items-center approval_churches gap-3">
+                                    <div class="team-lis">
+                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                      </span>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                      </span>
+                                    </div>
+                                    <div class="church_div">
+                                      <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                      <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                      <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" >Accept</button>
+                                      <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                    </div>
+                                  </div>
+                                  <hr> <!-- Add hr within the container -->
+                                </div>
+                              `;
+                                  requestSection.innerHTML += html;
+                    
+                    
+                              } else {
+                                  imagePath = "./views/UploadAvatar/" + image["Avatar"];
+              
+                    
+              
+                                  const html = `
+                                        <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                          <div class="d-flex align-items-center approval_churches gap-3">
+                                            <div class="team-lis">
+                                              <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                              <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                              </span>
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                              </span>
+                                            </div>
+                                            <div class="church_div">
+                                              <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                              <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                              <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" >Accept</button>
+                                              <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                            </div>
+                                          </div>
+                                          <hr> <!-- Add hr within the container -->
+                                        </div>
+                                      `;
+                                    requestSection.innerHTML += html;
+                      
+                      
+                      
+                              }
+              
+                              console.log(imagePath)
+                  
+    
+    
+    
+    
+                            
+    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+    
+    
+           
+      
+                
+          
+                
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+          
+        
+        
+        
+        
+        
+        
+        
+        
+                  });
+        
+                  
+          
+            
+                },
+                error: function() {
+                    alert("Oops. Something went wrong!");
+                },
+                complete: function() {
+                }
+              });
+
+              var requestSection = document.querySelector('#accepted_churches');
+              requestSection.innerHTML = '';
+
+
+              var superuser = new FormData();
+              superuser.append("superuser_function", "deactivated");
+              superuser.append("data1", "");
+
+              $.ajax({
+                url: "ajax/async_superuser.ajax.php",
+                method: "POST",
+                data: superuser,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(answer) {
+        
+           
+                    var imagePath = ""; // Default value
+        
+                  answer.forEach(function (value, key) {
+        
+               
+        
+                    var asyncImage = new FormData();
+                    asyncImage.append("image_purpose", "request");
+                    asyncImage.append("data1", value["churchID"]);
+                    asyncImage.append("data2", "");
+        
+                    $.ajax({
+                      url: "ajax/async_images.ajax.php",
+                      method: "POST",
+                      data: asyncImage,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(image) {
+                        console.log(image);
+    
+                        var asyncSuperuser = new FormData();
+                        asyncSuperuser.append("superuser_function", "admin_details");
+                        asyncSuperuser.append("data1",  value["churchID"]);
+    
+                        $.ajax({
+                          url: "ajax/async_superuser.ajax.php",
+                          method: "POST",
+                          data: asyncSuperuser,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(details) {
+                             console.log(details);
+      
+                              if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                
+                                imagePath = "./views/images/default.png"; // Default value
+              
+              
+              
+              
+                                const html = `
+                                <div class="deactivatedChurch">
+                                  <div class="d-flex align-items-center gap-3">
+                                    <div class="team-list">
+                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                      </span>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                      </span>
+                                    </div>
+                                    <div class="">
+                                      <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                </div>
+                              `;
+                                  requestSection.innerHTML += html;
+                    
+                    
+                              } else {
+                                  imagePath = "./views/UploadAvatar/" + image["Avatar"];
+              
+                    
+              
+                                  const html = `
+                                  <div class="deactivatedChurch">
+                                    <div class="d-flex align-items-center gap-3">
+                                      <div class="team-list">
+                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                      </div>
+                                      <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                        </span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                        </span>
+                                      </div>
+                                      <div class="">
+                                        <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                  </div>
+                                `;
+                                    requestSection.innerHTML += html;
+                      
+                      
+                      
+                              }
+              
+                              console.log(imagePath)
+                  
+    
+    
+    
+    
+                            
+    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+    
+    
+           
+      
+                
+          
+                
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+          
+        
+        
+        
+        
+        
+        
+        
+        
+                  });
+        
+                  
+          
+            
+                },
+                error: function() {
+                    alert("Oops. Something went wrong!");
+                },
+                complete: function() {
+                }
+              });
+
+
+              var superuser = new FormData();
+              superuser.append("superuser_function", "accepted");
+              superuser.append("data1", "");
+
+              $.ajax({
+                url: "ajax/async_superuser.ajax.php",
+                method: "POST",
+                data: superuser,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(answer) {
+        
+           
+                    var imagePath = ""; // Default value
+        
+                  answer.forEach(function (value, key) {
+        
+               
+        
+                    var asyncImage = new FormData();
+                    asyncImage.append("image_purpose", "request");
+                    asyncImage.append("data1", value["churchID"]);
+                    asyncImage.append("data2", "");
+        
+                    $.ajax({
+                      url: "ajax/async_images.ajax.php",
+                      method: "POST",
+                      data: asyncImage,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(image) {
+                        console.log(image);
+    
+                        var asyncSuperuser = new FormData();
+                        asyncSuperuser.append("superuser_function", "admin_details");
+                        asyncSuperuser.append("data1",  value["churchID"]);
+    
+                        $.ajax({
+                          url: "ajax/async_superuser.ajax.php",
+                          method: "POST",
+                          data: asyncSuperuser,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(details) {
+                             console.log(details);
+      
+                              if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                
+                                imagePath = "./views/images/default.png"; // Default value
+              
+              
+              
+              
+                                const html = `
+                                  <div class="churchApprove">
+                                    <div class="d-flex align-items-center gap-3">
+                                      <div class="team-list">
+                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                      </div>
+                                      <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                        </span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                        </span>
+                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                          <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                        </span>
+                                      </div>
+                                      <div class="">
+                                        <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                  </div>
+                                `;
+                                  requestSection.innerHTML += html;
+                    
+                    
+                              } else {
+                                  imagePath = "./views/UploadAvatar/" + image["Avatar"];
+              
+                    
+              
+                                
+                                  const html = `
+                                  <div class="churchApprove">
+                                    <div class="d-flex align-items-center gap-3">
+                                      <div class="team-list">
+                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                      </div>
+                                      <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                        </span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                        </span>
+                                        <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                          <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                        </span>
+                                      </div>
+                                      <div class="">
+                                        <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                  </div>
+                                `;
+                                    requestSection.innerHTML += html;
+                      
+                      
+                      
+                              }
+              
+                              console.log(imagePath)
+                  
+    
+    
+    
+    
+                            
+    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+    
+    
+           
+      
+                
+          
+                
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+          
+        
+        
+        
+        
+        
+        
+        
+        
+                  });
+        
+                  
+          
+            
+                },
+                error: function() {
+                    alert("Oops. Something went wrong!");
+                },
+                complete: function() {
+                }
+              });
           },
           error: function() {
               alert("Oops. Something went wrong!");
@@ -214,16 +749,17 @@ $(document).ready(function() {
 
     }
 
-    $(".acceptBtn, .acceptBtnRjct").on('click', function(){
+  $(document).on("click", ".acceptBtn, .acceptBtnRjct", function(e) {
+
       var church_id = $(this).siblings('input').first().val();
       var church_name = $(this).val();
   
       Swal.fire({
-          title: 'Confirm Church Acceptance',
+          title: 'Confirm Church Request',
           text: 'Are you sure you want to accept this church?',
           icon: 'question',
           showCancelButton: true,
-          confirmButtonText: 'Yes, accept church',
+          confirmButtonText: 'Yes, accept request',
           cancelButtonText: 'No, cancel',
       }).then((result) => {
           if (result.isConfirmed) {
@@ -266,7 +802,6 @@ $(document).ready(function() {
                           try {
                               await createSubfolder(church_id, "Public");
                               await createSubfolder(church_id, "Members");
-                              location.reload();
                           } catch (error) {
   
                           }
@@ -274,6 +809,567 @@ $(document).ready(function() {
   
                       // Call the function
                       createSubfoldersAndReload();
+
+                      const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      });
+                    
+                      Toast.fire({
+                        icon: 'success',
+                        title: 'Church accepted successfully.'
+                      });
+           
+
+                      var superuser = new FormData();
+                      superuser.append("superuser_function", "approve");
+                      superuser.append("data1", "");
+
+                      $.ajax({
+                        url: "ajax/async_superuser.ajax.php",
+                        method: "POST",
+                        data: superuser,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                
+                            var requestSection = document.querySelector('#registration_churches');
+                            requestSection.innerHTML = '';
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "request");
+                            asyncImage.append("data1",  value["churchID"]);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+                                console.log(image);
+            
+                                var asyncSuperuser = new FormData();
+                                asyncSuperuser.append("superuser_function", "admin_details");
+                                asyncSuperuser.append("data1",  value["churchID"]);
+            
+                                $.ajax({
+                                  url: "ajax/async_superuser.ajax.php",
+                                  method: "POST",
+                                  data: asyncSuperuser,
+                                  cache: false,
+                                  contentType: false,
+                                  processData: false,
+                                  dataType: "json",
+                                  success: function(details) {
+                                     console.log(details);
+              
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                        <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                          <div class="d-flex align-items-center approval_churches gap-3">
+                                            <div class="team-lis">
+                                              <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                              <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                              </span>
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                              </span>
+                                            </div>
+                                            <div class="church_div">
+                                              <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                              <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                              <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" >Accept</button>
+                                              <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                            </div>
+                                          </div>
+                                          <hr> <!-- Add hr within the container -->
+                                        </div>
+                                      `;
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                          const html = `
+                                                <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                                  <div class="d-flex align-items-center approval_churches gap-3">
+                                                    <div class="team-lis">
+                                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                                      </span>
+                                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                                      </span>
+                                                    </div>
+                                                    <div class="church_div">
+                                                      <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                                      <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                                      <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" >Accept</button>
+                                                      <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                                    </div>
+                                                  </div>
+                                                  <hr> <!-- Add hr within the container -->
+                                                </div>
+                                              `;
+                                            requestSection.innerHTML += html;
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+                                  },
+                                  error: function(xhr, status, error) {
+                                    console.log(xhr)
+                                      alert("Oops. Something went wrong!");
+                                  },
+                                  complete: function() {
+                                  }
+                                });
+                    
+            
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                  
+                
+                
+                
+                
+                
+                
+                
+                
+                          });
+                
+                          
+                  
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+
+                      var requestSection = document.querySelector('#accepted_churches');
+                      requestSection.innerHTML = '';
+
+
+                      var superuser = new FormData();
+                      superuser.append("superuser_function", "deactivated");
+                      superuser.append("data1", "");
+
+                      $.ajax({
+                        url: "ajax/async_superuser.ajax.php",
+                        method: "POST",
+                        data: superuser,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                
+                   
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "request");
+                            asyncImage.append("data1", value["churchID"]);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+                                console.log(image);
+            
+                                var asyncSuperuser = new FormData();
+                                asyncSuperuser.append("superuser_function", "admin_details");
+                                asyncSuperuser.append("data1",  value["churchID"]);
+            
+                                $.ajax({
+                                  url: "ajax/async_superuser.ajax.php",
+                                  method: "POST",
+                                  data: asyncSuperuser,
+                                  cache: false,
+                                  contentType: false,
+                                  processData: false,
+                                  dataType: "json",
+                                  success: function(details) {
+                                     console.log(details);
+              
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                        <div class="deactivatedChurch">
+                                          <div class="d-flex align-items-center gap-3">
+                                            <div class="team-list">
+                                              <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                              <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                              </span>
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                              </span>
+                                            </div>
+                                            <div class="">
+                                              <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                            </div>
+                                          </div>
+                                          <hr>
+                                        </div>
+                                      `;
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                          const html = `
+                                          <div class="deactivatedChurch">
+                                            <div class="d-flex align-items-center gap-3">
+                                              <div class="team-list">
+                                                <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                  <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                                </span>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                  <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                                </span>
+                                              </div>
+                                              <div class="">
+                                                <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                              </div>
+                                            </div>
+                                            <hr>
+                                          </div>
+                                        `;
+                                            requestSection.innerHTML += html;
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+                                  },
+                                  error: function(xhr, status, error) {
+                                    console.log(xhr)
+                                      alert("Oops. Something went wrong!");
+                                  },
+                                  complete: function() {
+                                  }
+                                });
+                    
+            
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                  
+                
+                
+                
+                
+                
+                
+                
+                
+                          });
+                
+                          
+                  
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+
+
+                      var superuser = new FormData();
+                      superuser.append("superuser_function", "accepted");
+                      superuser.append("data1", "");
+
+                      $.ajax({
+                        url: "ajax/async_superuser.ajax.php",
+                        method: "POST",
+                        data: superuser,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(answer) {
+                
+                   
+                            var imagePath = ""; // Default value
+                
+                          answer.forEach(function (value, key) {
+                
+                       
+                
+                            var asyncImage = new FormData();
+                            asyncImage.append("image_purpose", "request");
+                            asyncImage.append("data1", value["churchID"]);
+                            asyncImage.append("data2", "");
+                
+                            $.ajax({
+                              url: "ajax/async_images.ajax.php",
+                              method: "POST",
+                              data: asyncImage,
+                              cache: false,
+                              contentType: false,
+                              processData: false,
+                              dataType: "json",
+                              success: function(image) {
+                                console.log(image);
+            
+                                var asyncSuperuser = new FormData();
+                                asyncSuperuser.append("superuser_function", "admin_details");
+                                asyncSuperuser.append("data1",  value["churchID"]);
+            
+                                $.ajax({
+                                  url: "ajax/async_superuser.ajax.php",
+                                  method: "POST",
+                                  data: asyncSuperuser,
+                                  cache: false,
+                                  contentType: false,
+                                  processData: false,
+                                  dataType: "json",
+                                  success: function(details) {
+                                     console.log(details);
+              
+                                      if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                        
+                                        imagePath = "./views/images/default.png"; // Default value
+                      
+                      
+                      
+                      
+                                        const html = `
+                                          <div class="churchApprove">
+                                            <div class="d-flex align-items-center gap-3">
+                                              <div class="team-list">
+                                                <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                  <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                                </span>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                  <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                                </span>
+                                                <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                                  <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                                </span>
+                                              </div>
+                                              <div class="">
+                                                <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                              </div>
+                                            </div>
+                                            <hr>
+                                          </div>
+                                        `;
+                                          requestSection.innerHTML += html;
+                            
+                            
+                                      } else {
+                                          imagePath = "./views/UploadAvatar/" + image["Avatar"];
+                      
+                            
+                      
+                                        
+                                          const html = `
+                                          <div class="churchApprove">
+                                            <div class="d-flex align-items-center gap-3">
+                                              <div class="team-list">
+                                                <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                              </div>
+                                              <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                  <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                                </span>
+                                                <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                  <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                                </span>
+                                                <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                                  <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                                </span>
+                                              </div>
+                                              <div class="">
+                                                <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                              </div>
+                                            </div>
+                                            <hr>
+                                          </div>
+                                        `;
+                                            requestSection.innerHTML += html;
+                              
+                              
+                              
+                                      }
+                      
+                                      console.log(imagePath)
+                          
+            
+            
+            
+            
+                                    
+            
+                                  },
+                                  error: function(xhr, status, error) {
+                                    console.log(xhr)
+                                      alert("Oops. Something went wrong!");
+                                  },
+                                  complete: function() {
+                                  }
+                                });
+                    
+            
+            
+                   
+              
+                        
+                  
+                        
+                              },
+                              error: function(xhr, status, error) {
+                                console.log(xhr)
+                                  alert("Oops. Something went wrong!");
+                              },
+                              complete: function() {
+                              }
+                            });
+                
+                  
+                
+                
+                
+                
+                
+                
+                
+                
+                          });
+                
+                          
+                  
+                    
+                        },
+                        error: function() {
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+
+
+          
+
+
+
+
+
                   },
                   error: function() {
   
@@ -287,8 +1383,7 @@ $(document).ready(function() {
   });
   
 
-
-  $(".AccoutAllReject").on('click', function() {
+  $(document).on("click", ".AccoutAllReject", function(e) {
     console.log("Clicked Reject All")
     var rejectAllData = [];
   
@@ -331,14 +1426,8 @@ function rejectAccount(dataArray) {
         dataType: "text",
         success: function(answer) {
           console.log(answer);
-          
-          
 
-          // Show success toast notification
-          Swal.fire({
-            icon: 'success',
-            title: 'Requests Rejected',
-            text: 'All accounts registered have been rejected.',
+          const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -349,9 +1438,375 @@ function rejectAccount(dataArray) {
               toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
           });
+        
+          Toast.fire({
+            icon: 'success',
+            title: 'Churches rejected successfully.'
+          });
+
+          
+          
+
+         
+          var superuser = new FormData();
+          superuser.append("superuser_function", "approve");
+          superuser.append("data1", "");
+
+          $.ajax({
+            url: "ajax/async_superuser.ajax.php",
+            method: "POST",
+            data: superuser,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(answer) {
+    
+                var requestSection = document.querySelector('#registration_churches');
+                requestSection.innerHTML = '';
+                var imagePath = ""; // Default value
+    
+              answer.forEach(function (value, key) {
+    
+           
+    
+                var asyncImage = new FormData();
+                asyncImage.append("image_purpose", "request");
+                asyncImage.append("data1",  value["churchID"]);
+                asyncImage.append("data2", "");
+    
+                $.ajax({
+                  url: "ajax/async_images.ajax.php",
+                  method: "POST",
+                  data: asyncImage,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "json",
+                  success: function(image) {
+                    console.log(image);
+
+                    var asyncSuperuser = new FormData();
+                    asyncSuperuser.append("superuser_function", "admin_details");
+                    asyncSuperuser.append("data1",  value["churchID"]);
+
+                    $.ajax({
+                      url: "ajax/async_superuser.ajax.php",
+                      method: "POST",
+                      data: asyncSuperuser,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(details) {
+                         console.log(details);
+  
+                          if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                            
+                            imagePath = "./views/images/default.png"; // Default value
+          
+          
+          
+          
+                            const html = `
+                            <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                              <div class="d-flex align-items-center approval_churches gap-3">
+                                <div class="team-lis">
+                                  <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                </div>
+                                <div class="flex-grow-1">
+                                  <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                  <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                    <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                  </span>
+                                  <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                    <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                  </span>
+                                </div>
+                                <div class="church_div">
+                                  <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                  <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                  <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" onclick="changeButtonText(this)">Accept</button>
+                                  <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                </div>
+                              </div>
+                              <hr> <!-- Add hr within the container -->
+                            </div>
+                          `;
+                              requestSection.innerHTML += html;
+                
+                
+                          } else {
+                              imagePath = "./views/UploadAvatar/" + image["Avatar"];
+          
+                
+          
+                              const html = `
+                                    <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                      <div class="d-flex align-items-center approval_churches gap-3">
+                                        <div class="team-lis">
+                                          <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                          <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                            <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                          </span>
+                                          <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                            <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                          </span>
+                                        </div>
+                                        <div class="church_div">
+                                          <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                          <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                          <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" onclick="changeButtonText(this)">Accept</button>
+                                          <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                        </div>
+                                      </div>
+                                      <hr> <!-- Add hr within the container -->
+                                    </div>
+                                  `;
+                                requestSection.innerHTML += html;
+                  
+                  
+                  
+                          }
+          
+                          console.log(imagePath)
+              
+
+
+
+
+                        
+
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+
+
+       
+  
+            
+      
+            
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr)
+                      alert("Oops. Something went wrong!");
+                  },
+                  complete: function() {
+                  }
+                });
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+              });
+    
+              
+      
+        
+            },
+            error: function() {
+                alert("Oops. Something went wrong!");
+            },
+            complete: function() {
+            }
+          });
+
+          var superuser = new FormData();
+          superuser.append("superuser_function", "rejected");
+          superuser.append("data1", "");
+
+          $.ajax({
+            url: "ajax/async_superuser.ajax.php",
+            method: "POST",
+            data: superuser,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(answer) {
+    
+                var requestSection = document.querySelector('#rejected_churches');
+                requestSection.innerHTML = '';
+                var imagePath = ""; // Default value
+    
+              answer.forEach(function (value, key) {
+    
+           
+    
+                var asyncImage = new FormData();
+                asyncImage.append("image_purpose", "request");
+                asyncImage.append("data1",  value["churchID"]);
+                asyncImage.append("data2", "");
+    
+                $.ajax({
+                  url: "ajax/async_images.ajax.php",
+                  method: "POST",
+                  data: asyncImage,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "json",
+                  success: function(image) {
+                    console.log(image);
+
+                    var asyncSuperuser = new FormData();
+                    asyncSuperuser.append("superuser_function", "admin_details");
+                    asyncSuperuser.append("data1",  value["churchID"]);
+
+                    $.ajax({
+                      url: "ajax/async_superuser.ajax.php",
+                      method: "POST",
+                      data: asyncSuperuser,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(details) {
+                         console.log(details);
+  
+                          if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                            
+                            imagePath = "./views/images/default.png"; // Default value
+          
+          
+          
+          
+                            const html = `
+                                  <div class="AccountReject">
+                                    <div class="d-flex align-items-center gap-3 ">
+                                      <div class="team-list">
+                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                      </div>
+                                      <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                        </span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                        </span>
+                                      </div>
+                                      <div class="church_div">
+                                        <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
+                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtnRjct" onclick="changeButtonText(this)">Accept </button>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                  </div>
+                                `;
+
+                                // Add the HTML content to the container element
+                                container.innerHTML += html;
+                
+                          } else {
+                              imagePath = "./views/UploadAvatar/" + image["Avatar"];
+          
+                
+          
+                              const html = `
+                              <div class="AccountReject">
+                                <div class="d-flex align-items-center gap-3 ">
+                                  <div class="team-list">
+                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                  </div>
+                                  <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                    </span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                    </span>
+                                  </div>
+                                  <div class="church_div">
+                                    <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                    <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
+                                    <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtnRjct" onclick="changeButtonText(this)">Accept </button>
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                            `;
+                                requestSection.innerHTML += html;
+                  
+                  
+                  
+                          }
+          
+                          console.log(imagePath)
+              
+
+
+
+
+                        
+
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+
+
+       
+  
+            
+      
+            
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr)
+                      alert("Oops. Something went wrong!");
+                  },
+                  complete: function() {
+                  }
+                });
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+              });
+    
+              
+      
+        
+            },
+            error: function() {
+                alert("Oops. Something went wrong!");
+            },
+            complete: function() {
+            }
+          });
 
           // Reload the page
-          location.reload();
+
         },
         error: function() {
           alert("Oops. Something went wrong!");
@@ -364,8 +1819,7 @@ function rejectAccount(dataArray) {
   });
 }
     
-
-    $(".rejectBtn").on('click', function(){
+$(document).on("click", ".rejectBtn", function(e) {
 
 
       
@@ -399,7 +1853,382 @@ function rejectAccount(dataArray) {
 
               $("#superuser_churchID").val(answer[0]);
 
-              location.reload();
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              });
+            
+              Toast.fire({
+                icon: 'success',
+                title: 'Church rejected successfully.'
+              });
+   
+
+              var superuser = new FormData();
+              superuser.append("superuser_function", "approve");
+              superuser.append("data1", "");
+
+              $.ajax({
+                url: "ajax/async_superuser.ajax.php",
+                method: "POST",
+                data: superuser,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(answer) {
+        
+                    var requestSection = document.querySelector('#registration_churches');
+                    requestSection.innerHTML = '';
+                    var imagePath = ""; // Default value
+        
+                  answer.forEach(function (value, key) {
+        
+               
+        
+                    var asyncImage = new FormData();
+                    asyncImage.append("image_purpose", "request");
+                    asyncImage.append("data1",  value["churchID"]);
+                    asyncImage.append("data2", "");
+        
+                    $.ajax({
+                      url: "ajax/async_images.ajax.php",
+                      method: "POST",
+                      data: asyncImage,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(image) {
+                        console.log(image);
+    
+                        var asyncSuperuser = new FormData();
+                        asyncSuperuser.append("superuser_function", "admin_details");
+                        asyncSuperuser.append("data1",  value["churchID"]);
+    
+                        $.ajax({
+                          url: "ajax/async_superuser.ajax.php",
+                          method: "POST",
+                          data: asyncSuperuser,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(details) {
+                             console.log(details);
+      
+                              if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                
+                                imagePath = "./views/images/default.png"; // Default value
+              
+              
+              
+              
+                                const html = `
+                                <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                  <div class="d-flex align-items-center approval_churches gap-3">
+                                    <div class="team-lis">
+                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                      </span>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                      </span>
+                                    </div>
+                                    <div class="church_div">
+                                      <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                      <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                      <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" onclick="changeButtonText(this)">Accept</button>
+                                      <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                    </div>
+                                  </div>
+                                  <hr> <!-- Add hr within the container -->
+                                </div>
+                              `;
+                                  requestSection.innerHTML += html;
+                    
+                    
+                              } else {
+                                  imagePath = "./views/UploadAvatar/" + image["Avatar"];
+              
+                    
+              
+                                  const html = `
+                                        <div class="church_container ApproveAccount"> <!-- Wrap each church entry in a container -->
+                                          <div class="d-flex align-items-center approval_churches gap-3">
+                                            <div class="team-lis">
+                                              <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                              <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                              </span>
+                                              <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                                <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                              </span>
+                                            </div>
+                                            <div class="church_div">
+                                              <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                              <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details</button>
+                                              <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtn" value="${value["church_name"]}" onclick="changeButtonText(this)">Accept</button>
+                                              <button type="button" class="btn btn-outline-danger rounded-5 btn-sm px-3 rejectBtn" value="${value["church_name"]}">Reject</button>
+                                            </div>
+                                          </div>
+                                          <hr> <!-- Add hr within the container -->
+                                        </div>
+                                      `;
+                                    requestSection.innerHTML += html;
+                      
+                      
+                      
+                              }
+              
+                              console.log(imagePath)
+                  
+    
+    
+    
+    
+                            
+    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+    
+    
+           
+      
+                
+          
+                
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+          
+        
+        
+        
+        
+        
+        
+        
+        
+                  });
+        
+                  
+          
+            
+                },
+                error: function() {
+                    alert("Oops. Something went wrong!");
+                },
+                complete: function() {
+                }
+              });
+
+              var superuser = new FormData();
+              superuser.append("superuser_function", "rejected");
+              superuser.append("data1", "");
+
+              $.ajax({
+                url: "ajax/async_superuser.ajax.php",
+                method: "POST",
+                data: superuser,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(answer) {
+        
+                    var requestSection = document.querySelector('#rejected_churches');
+                    requestSection.innerHTML = '';
+                    var imagePath = ""; // Default value
+        
+                  answer.forEach(function (value, key) {
+        
+               
+        
+                    var asyncImage = new FormData();
+                    asyncImage.append("image_purpose", "request");
+                    asyncImage.append("data1",  value["churchID"]);
+                    asyncImage.append("data2", "");
+        
+                    $.ajax({
+                      url: "ajax/async_images.ajax.php",
+                      method: "POST",
+                      data: asyncImage,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(image) {
+                        console.log(image);
+    
+                        var asyncSuperuser = new FormData();
+                        asyncSuperuser.append("superuser_function", "admin_details");
+                        asyncSuperuser.append("data1",  value["churchID"]);
+    
+                        $.ajax({
+                          url: "ajax/async_superuser.ajax.php",
+                          method: "POST",
+                          data: asyncSuperuser,
+                          cache: false,
+                          contentType: false,
+                          processData: false,
+                          dataType: "json",
+                          success: function(details) {
+                             console.log(details);
+      
+                              if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                                
+                                imagePath = "./views/images/default.png"; // Default value
+              
+              
+              
+              
+                                const html = `
+                                      <div class="AccountReject">
+                                        <div class="d-flex align-items-center gap-3 ">
+                                          <div class="team-list">
+                                            <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                          </div>
+                                          <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                              <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                            </span>
+                                            <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                              <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                            </span>
+                                          </div>
+                                          <div class="church_div">
+                                            <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                            <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
+                                            <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtnRjct" onclick="changeButtonText(this)">Accept </button>
+                                          </div>
+                                        </div>
+                                        <hr>
+                                      </div>
+                                    `;
+
+                                    // Add the HTML content to the container element
+                                    container.innerHTML += html;
+                    
+                              } else {
+                                  imagePath = "./views/UploadAvatar/" + image["Avatar"];
+              
+                    
+              
+                                  const html = `
+                                  <div class="AccountReject">
+                                    <div class="d-flex align-items-center gap-3 ">
+                                      <div class="team-list">
+                                        <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                      </div>
+                                      <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-bold">${value["church_name"]}</h6> 
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                        </span>
+                                        <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                          <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                        </span>
+                                      </div>
+                                      <div class="church_div">
+                                        <input type="text" name="trans_type" id="church_id" value="${value["churchID"]}" name="church_id" style="display:none;" required>
+                                        <button type="button" class="btn btn-outline-secondary rounded-5 btn-sm pr-3 viewBtn" >View Details </button>
+                                        <button type="button" class="btn btn-outline-success rounded-5 btn-sm pr-3 acceptBtnRjct" onclick="changeButtonText(this)">Accept </button>
+                                      </div>
+                                    </div>
+                                    <hr>
+                                  </div>
+                                `;
+                                    requestSection.innerHTML += html;
+                      
+                      
+                      
+                              }
+              
+                              console.log(imagePath)
+                  
+    
+    
+    
+    
+                            
+    
+                          },
+                          error: function(xhr, status, error) {
+                            console.log(xhr)
+                              alert("Oops. Something went wrong!");
+                          },
+                          complete: function() {
+                          }
+                        });
+            
+    
+    
+           
+      
+                
+          
+                
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+          
+        
+        
+        
+        
+        
+        
+        
+        
+                  });
+        
+                  
+          
+            
+                },
+                error: function() {
+                    alert("Oops. Something went wrong!");
+                },
+                complete: function() {
+                }
+              });
+
+
 
               
             },
@@ -415,8 +2244,7 @@ function rejectAccount(dataArray) {
         });
     });
 
-
-    $(".superuser_deactivate").on('click', function(){
+$(document).on("click", ".superuser_deactivate", function(e) {
 
         
   Swal.fire({
@@ -429,6 +2257,8 @@ function rejectAccount(dataArray) {
   }).then((result) => {
     if (result.isConfirmed) {
       var church_id = $(this).val();
+
+
 
 
     
@@ -444,7 +2274,385 @@ function rejectAccount(dataArray) {
         processData: false,
         dataType: "text",
         success: function(answer) {
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          });
+        
+          Toast.fire({
+            icon: 'success',
+            title: 'Churches accepted successfully.'
+          });
+
+          
+          var requestSection = document.querySelector('#accepted_churches');
+          requestSection.innerHTML = '';
+
+
+          var superuser = new FormData();
+          superuser.append("superuser_function", "deactivated");
+          superuser.append("data1", "");
+
+          $.ajax({
+            url: "ajax/async_superuser.ajax.php",
+            method: "POST",
+            data: superuser,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(answer) {
+    
        
+                var imagePath = ""; // Default value
+    
+              answer.forEach(function (value, key) {
+    
+           
+    
+                var asyncImage = new FormData();
+                asyncImage.append("image_purpose", "request");
+                asyncImage.append("data1", value["churchID"]);
+                asyncImage.append("data2", "");
+    
+                $.ajax({
+                  url: "ajax/async_images.ajax.php",
+                  method: "POST",
+                  data: asyncImage,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "json",
+                  success: function(image) {
+                    console.log(image);
+
+                    var asyncSuperuser = new FormData();
+                    asyncSuperuser.append("superuser_function", "admin_details");
+                    asyncSuperuser.append("data1",  value["churchID"]);
+
+                    $.ajax({
+                      url: "ajax/async_superuser.ajax.php",
+                      method: "POST",
+                      data: asyncSuperuser,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(details) {
+                         console.log(details);
+  
+                          if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                            
+                            imagePath = "./views/images/default.png"; // Default value
+          
+          
+          
+          
+                            const html = `
+                            <div class="deactivatedChurch">
+                              <div class="d-flex align-items-center gap-3">
+                                <div class="team-list">
+                                  <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                </div>
+                                <div class="flex-grow-1">
+                                  <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                  <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                    <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                  </span>
+                                  <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                    <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                  </span>
+                                </div>
+                                <div class="">
+                                  <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                </div>
+                              </div>
+                              <hr>
+                            </div>
+                          `;
+                              requestSection.innerHTML += html;
+                
+                
+                          } else {
+                              imagePath = "./views/UploadAvatar/" + image["Avatar"];
+          
+                
+          
+                              const html = `
+                              <div class="deactivatedChurch">
+                                <div class="d-flex align-items-center gap-3">
+                                  <div class="team-list">
+                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                  </div>
+                                  <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                    </span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                    </span>
+                                  </div>
+                                  <div class="">
+                                    <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                            `;
+                                requestSection.innerHTML += html;
+                  
+                  
+                  
+                          }
+          
+                          console.log(imagePath)
+              
+
+
+
+
+                        
+
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+
+
+       
+  
+            
+      
+            
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr)
+                      alert("Oops. Something went wrong!");
+                  },
+                  complete: function() {
+                  }
+                });
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+              });
+    
+              
+      
+        
+            },
+            error: function() {
+                alert("Oops. Something went wrong!");
+            },
+            complete: function() {
+            }
+          });
+
+
+          var superuser = new FormData();
+          superuser.append("superuser_function", "accepted");
+          superuser.append("data1", "");
+
+          $.ajax({
+            url: "ajax/async_superuser.ajax.php",
+            method: "POST",
+            data: superuser,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function(answer) {
+    
+       
+                var imagePath = ""; // Default value
+    
+              answer.forEach(function (value, key) {
+    
+           
+    
+                var asyncImage = new FormData();
+                asyncImage.append("image_purpose", "request");
+                asyncImage.append("data1", value["churchID"]);
+                asyncImage.append("data2", "");
+    
+                $.ajax({
+                  url: "ajax/async_images.ajax.php",
+                  method: "POST",
+                  data: asyncImage,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  dataType: "json",
+                  success: function(image) {
+                    console.log(image);
+
+                    var asyncSuperuser = new FormData();
+                    asyncSuperuser.append("superuser_function", "admin_details");
+                    asyncSuperuser.append("data1",  value["churchID"]);
+
+                    $.ajax({
+                      url: "ajax/async_superuser.ajax.php",
+                      method: "POST",
+                      data: asyncSuperuser,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      dataType: "json",
+                      success: function(details) {
+                         console.log(details);
+  
+                          if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                            
+                            imagePath = "./views/images/default.png"; // Default value
+          
+          
+          
+          
+                            const html = `
+                              <div class="churchApprove">
+                                <div class="d-flex align-items-center gap-3">
+                                  <div class="team-list">
+                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                  </div>
+                                  <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                    </span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                    </span>
+                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                      <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                    </span>
+                                  </div>
+                                  <div class="">
+                                    <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                            `;
+                              requestSection.innerHTML += html;
+                
+                
+                          } else {
+                              imagePath = "./views/UploadAvatar/" + image["Avatar"];
+          
+                
+          
+                            
+                              const html = `
+                              <div class="churchApprove">
+                                <div class="d-flex align-items-center gap-3">
+                                  <div class="team-list">
+                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                  </div>
+                                  <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                    </span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                    </span>
+                                    <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                      <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                    </span>
+                                  </div>
+                                  <div class="">
+                                    <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                            `;
+                                requestSection.innerHTML += html;
+                  
+                  
+                  
+                          }
+          
+                          console.log(imagePath)
+              
+
+
+
+
+                        
+
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(xhr)
+                          alert("Oops. Something went wrong!");
+                      },
+                      complete: function() {
+                      }
+                    });
+        
+
+
+       
+  
+            
+      
+            
+                  },
+                  error: function(xhr, status, error) {
+                    console.log(xhr)
+                      alert("Oops. Something went wrong!");
+                  },
+                  complete: function() {
+                  }
+                });
+    
+      
+    
+    
+    
+    
+    
+    
+    
+    
+              });
+    
+              
+      
+        
+            },
+            error: function() {
+                alert("Oops. Something went wrong!");
+            },
+            complete: function() {
+            }
+          });
+
+
+
+
+        
         },
         error: function(xhr, status, error) {
           //         var errorMessage = xhr.responseText; // Extract the error message
@@ -459,8 +2667,7 @@ function rejectAccount(dataArray) {
   
     });
 
-    
-    $(".superuser_activate").on('click', function(){
+    $(document).on("click", ".superuser_activate", function(e) {
       Swal.fire({
         title: 'Confirm Rejection',
         text: 'Are you sure you want to activated this accounts registered?',
@@ -487,6 +2694,383 @@ function rejectAccount(dataArray) {
           processData: false,
           dataType: "text",
           success: function(answer) {
+
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            });
+          
+            Toast.fire({
+              icon: 'success',
+              title: 'Church activated successfully.'
+            });
+
+            var requestSection = document.querySelector('#accepted_churches');
+            requestSection.innerHTML = '';
+  
+  
+            var superuser = new FormData();
+            superuser.append("superuser_function", "deactivated");
+            superuser.append("data1", "");
+  
+            $.ajax({
+              url: "ajax/async_superuser.ajax.php",
+              method: "POST",
+              data: superuser,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "json",
+              success: function(answer) {
+      
+         
+                  var imagePath = ""; // Default value
+      
+                answer.forEach(function (value, key) {
+      
+             
+      
+                  var asyncImage = new FormData();
+                  asyncImage.append("image_purpose", "request");
+                  asyncImage.append("data1", value["churchID"]);
+                  asyncImage.append("data2", "");
+      
+                  $.ajax({
+                    url: "ajax/async_images.ajax.php",
+                    method: "POST",
+                    data: asyncImage,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(image) {
+                      console.log(image);
+  
+                      var asyncSuperuser = new FormData();
+                      asyncSuperuser.append("superuser_function", "admin_details");
+                      asyncSuperuser.append("data1",  value["churchID"]);
+  
+                      $.ajax({
+                        url: "ajax/async_superuser.ajax.php",
+                        method: "POST",
+                        data: asyncSuperuser,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(details) {
+                           console.log(details);
+    
+                            if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                              
+                              imagePath = "./views/images/default.png"; // Default value
+            
+            
+            
+            
+                              const html = `
+                              <div class="deactivatedChurch">
+                                <div class="d-flex align-items-center gap-3">
+                                  <div class="team-list">
+                                    <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                  </div>
+                                  <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                    </span>
+                                    <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                      <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                    </span>
+                                  </div>
+                                  <div class="">
+                                    <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                            `;
+                                requestSection.innerHTML += html;
+                  
+                  
+                            } else {
+                                imagePath = "./views/UploadAvatar/" + image["Avatar"];
+            
+                  
+            
+                                const html = `
+                                <div class="deactivatedChurch">
+                                  <div class="d-flex align-items-center gap-3">
+                                    <div class="team-list">
+                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                      </span>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                      </span>
+                                    </div>
+                                    <div class="">
+                                      <button href="javascript:;" class="btn btn-outline-primary rounded-5 btn-sm px-3 btn-hover superuser_activate" value="${value["churchID"]}" >Activate</button>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                </div>
+                              `;
+                                  requestSection.innerHTML += html;
+                    
+                    
+                    
+                            }
+            
+                            console.log(imagePath)
+                
+  
+  
+  
+  
+                          
+  
+                        },
+                        error: function(xhr, status, error) {
+                          console.log(xhr)
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+          
+  
+  
+         
+    
+              
+        
+              
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr)
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      
+                });
+      
+                
+        
+          
+              },
+              error: function() {
+                  alert("Oops. Something went wrong!");
+              },
+              complete: function() {
+              }
+            });
+  
+  
+            var superuser = new FormData();
+            superuser.append("superuser_function", "accepted");
+            superuser.append("data1", "");
+  
+            $.ajax({
+              url: "ajax/async_superuser.ajax.php",
+              method: "POST",
+              data: superuser,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: "json",
+              success: function(answer) {
+      
+         
+                  var imagePath = ""; // Default value
+      
+                answer.forEach(function (value, key) {
+      
+             
+      
+                  var asyncImage = new FormData();
+                  asyncImage.append("image_purpose", "request");
+                  asyncImage.append("data1", value["churchID"]);
+                  asyncImage.append("data2", "");
+      
+                  $.ajax({
+                    url: "ajax/async_images.ajax.php",
+                    method: "POST",
+                    data: asyncImage,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(image) {
+                      console.log(image);
+  
+                      var asyncSuperuser = new FormData();
+                      asyncSuperuser.append("superuser_function", "admin_details");
+                      asyncSuperuser.append("data1",  value["churchID"]);
+  
+                      $.ajax({
+                        url: "ajax/async_superuser.ajax.php",
+                        method: "POST",
+                        data: asyncSuperuser,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(details) {
+                           console.log(details);
+    
+                            if (image["Avatar"] === null || image["Avatar"] === undefined || image["Avatar"] === "") {
+                              
+                              imagePath = "./views/images/default.png"; // Default value
+            
+            
+            
+            
+                              const html = `
+                                <div class="churchApprove">
+                                  <div class="d-flex align-items-center gap-3">
+                                    <div class="team-list">
+                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                      </span>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                      </span>
+                                      <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                        <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                      </span>
+                                    </div>
+                                    <div class="">
+                                      <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                </div>
+                              `;
+                                requestSection.innerHTML += html;
+                  
+                  
+                            } else {
+                                imagePath = "./views/UploadAvatar/" + image["Avatar"];
+            
+                  
+            
+                              
+                                const html = `
+                                <div class="churchApprove">
+                                  <div class="d-flex align-items-center gap-3">
+                                    <div class="team-list">
+                                      <img src="${imagePath}" width="50" height="50" class="rounded-circle border-2 border" style="background-size: cover; background-repeat: no-repeat; background-position: center;">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                      <h6 class="mb-1 fw-bold">${value["church_name"]}</h6>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_province"]}, ${details["church_city"]}
+                                      </span>
+                                      <span class="badge bg-success bg-success-subtle text-success border border-opacity-25 border-success">
+                                        <i class="bx bx-map-pin"></i> ${details["church_barangay"]}, ${details["church_street"]}
+                                      </span>
+                                      <span class="badge bg-success bg-primary-subtle text-primary border border-opacity-25 border-primary">
+                                        <i class="bi bi-calendar-check-fill"></i> ${value['status_date']}
+                                      </span>
+                                    </div>
+                                    <div class="">
+                                      <button href="javascript:;" class="btn btn-outline-danger rounded-5 btn-sm px-3 btn-hover superuser_deactivate" value="${value["churchID"]}">Deactivate</button>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                </div>
+                              `;
+                                  requestSection.innerHTML += html;
+                    
+                    
+                    
+                            }
+            
+                            console.log(imagePath)
+                
+  
+  
+  
+  
+                          
+  
+                        },
+                        error: function(xhr, status, error) {
+                          console.log(xhr)
+                            alert("Oops. Something went wrong!");
+                        },
+                        complete: function() {
+                        }
+                      });
+          
+  
+  
+         
+    
+              
+        
+              
+                    },
+                    error: function(xhr, status, error) {
+                      console.log(xhr)
+                        alert("Oops. Something went wrong!");
+                    },
+                    complete: function() {
+                    }
+                  });
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      
+                });
+      
+                
+        
+          
+              },
+              error: function() {
+                  alert("Oops. Something went wrong!");
+              },
+              complete: function() {
+              }
+            });
+  
+ 
+
+           
          
           },
           error: function(xhr, status, error) {

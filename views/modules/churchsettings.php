@@ -78,12 +78,12 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
     <div class="d-flex align-items-start justify-content-between">
         <div class="">
             
-        <h2 class="mb-2"><?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
+        <h2 class="mb-2 church_settings_name"><?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
              foreach($admin as $key => $value){
                 echo $value['church_name'];
              }
         ?></h2>
-            <div class="">
+            <div class="church_info_section">
 
                         <?php   $admin = (new ControllerAdmin)->ctrShowChurchAdmin();
                         foreach($admin as $key => $value){
@@ -278,7 +278,9 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                     ?>
                                 </select>
                             </div>
-                   
+                        </div>
+
+                        <div class="row  mb-3">
                             <label for="church_province" class="col-sm-3 col-form-label">Province <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <select name="church_province" class="form-select" id="church_province" required></select>
@@ -292,6 +294,10 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                 <select name="church_city" class="form-select " id="church_city" required></select>
                                 <input type="hidden" class="form-control " name="church_city_text" id="church_city_text" required>
                             </div>
+                        </div>
+
+                        <div class="row mb-3">
+
                             <label for="church_barangay" class="col-sm-3 col-form-label">Barangay <sup style='color:red;'>  *</sup></label>
                             <div class="col-sm-9">
                                 <select name="church_barangay" class="form-select " id="church_barangay" required></select>
@@ -364,7 +370,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
             <div class="row">
                 <div class="card">
                     <div class="card-body">
-                    <h5 class="">Add Your Location &nbsp;<button type="button" id="updateChurchloc" class="btn btn-outline-success align-items-end justify-content-end"><i class="fadeIn animated bx bx-plus"></i></button></h5>
+                    <h5 class="">Location &nbsp;<button type="button" id="updateChurchloc" class="btn btn-outline-success align-items-end justify-content-end"><i class="fadeIn animated bx bx-plus"></i></button></h5>
 
                         <div id="marker-map" class="gmaps mb-3"></div>
 
@@ -393,7 +399,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
 
                             <div class="col-6">
-                                <input class="form-control" type="text" placeholder="Enter Link" id="socialMedia" aria-label="default input example">
+                                <input class="form-control" type="text" placeholder="e.g. https://www.facebook.com/" id="socialMedia" aria-label="default input example">
                             </div>
 
 
@@ -402,7 +408,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                             </div>
                         </div>           
                     </div>
-                    <ul class="list-group list-group-flush mb-0" style="overflow-y: scroll; height: 285px;">
+                    <ul class="list-group list-group-flush mb-0 social_media_section" style="overflow-y: scroll; height: 285px;">
                     <?php  $social = (new ControllerChurchSetting)->ctrShowSocialMedia();
                                 foreach($social as $key => $value){
 
@@ -504,7 +510,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                         </div>
                     </div>
 
-                    <ul class="list-group list-group-flush mb-0" style="overflow-y: scroll; height: 265px;" >
+                    <ul class="list-group list-group-flush mb-0 donation_list_section" style="overflow-y: scroll; height: 265px;" >
                     <?php  $donation = (new ControllerChurchSetting)->ctrShowDonation();
                                 foreach($donation as $key => $value){
 
@@ -513,32 +519,32 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                         if ($websiteCategory === 'GCash') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/gcash.png" style="height:50px; width:100px;" alt="GCASH">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;"  onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3 fw-bold" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;"  onclick="deleteData('.$value["id"].')">
                                                 </button>
                                                 
                                             </li>';
                                         } elseif ($websiteCategory === 'PNB') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/pnb.png" style="height:25px; width:100px;" alt="PNB">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3 fw-bold" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red; " onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } elseif ($websiteCategory === 'BDO') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/bdo.png" style="height:25px; width:100px;" alt="BDO">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3 fw-bold" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } elseif ($websiteCategory === 'Metrobank') {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/metrobank.png" style="height:30px; width:100px;" alt="METROBANK">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3 fw-bold" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0" style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         } else {
                                             echo '<li class="list-group-item border-top d-flex justify-content-between align-items-center bg-transparent" value="">
                                                 <img src="views/images/bpi.png" style="height:30px; width:100px;" alt="BPI">
-                                                <p class="pt-3" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0"  style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
+                                                <p class="pt-3 fw-bold" style="color:black;">'.$value["donation_number"].'</p> <button type="button" class="btn bi bi-x-circle border-0"  style="cursor: pointer; color: red;" onclick="deleteData('.$value["id"].')">
                                                 </button>
                                             </li>';
                                         }
@@ -547,8 +553,7 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the profile data
                                     
                             
                                     
-                                    
-                                    
+    
                                     
                             
 

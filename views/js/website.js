@@ -161,8 +161,7 @@ $(".addWebsiteForm").submit(function(e) {
                                   $("#website_desc").val('');
 
                                   
-              
-
+        
                               },
                               error: function() {
                                   // Handle AJAX errors if needed
